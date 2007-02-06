@@ -1,0 +1,121 @@
+<%@ page import="org.jivesoftware.site.Versions"%>
+
+<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<html>
+<head>
+<title>Products</title>
+<meta name="body-id" content="projects" />
+<style type="text/css" media="screen">
+	@import "/styles/interior.css";
+</style>
+</head>
+<body>
+
+
+	<!-- BEGIN body area -->
+	<div id="ignite_body">
+		
+		<!-- BEGIN left column (main content) -->
+		<div id="ignite_body_leftcol">
+			
+			<!-- BEGIN body content area -->
+			<div id="ignite_int_body">
+			
+				<!-- BEGIN body header -->
+				<div id="ignite_body_header">
+					<h1>Products</h1> <strong>Open Source Real-Time Communication</strong>
+				</div>
+				<!-- END body header -->
+				
+				<!-- BEGIN project - wildfire -->
+				<div class="ignite_project_big ignite_project_big_left">
+				<div class="ignite_project_type">Server</div>
+					<div class="ignite_project_content">
+						<a href="wildfire/index.jsp" class="ignite_project_wildfire">
+						<h1 class="wildfire">Wildfire <span><%= Versions.getVersion("wildfire") %></span></h1></a>
+						<p>Cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.</p> 
+						<p><a href="wildfire/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+					</div>
+				</div>
+				<!-- END project - wildfire -->
+				
+				<!-- BEGIN project - spark -->
+				<div class="ignite_project_big">
+				<div class="ignite_project_type">Client</div>
+					<div class="ignite_project_content">
+						<a href="spark/index.jsp" class="ignite_project_spark">
+						<h1>Spark <span><%= Versions.getVersion("spark") %></span></h1></a>
+						<p>Cross-platform real-time collaboration client optimized for business and organizations.</p>
+						<p><a href="spark/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+					</div>
+				</div>
+				<!-- END project - spark -->
+				
+				
+				<!-- BEGIN libraries -->
+				<div class="ignite_project_type">Libraries</div>
+				<div class="ignite_project_table">
+					<table border cellpadding="0" cellspacing="0" border="0">
+						<tr class="ignite_project_table-row-odd">
+							<td class="ignite_project_table-title">
+								<a href="smack/index.jsp">Smack API</a>
+							</td>
+							<td class="ignite_project_table-description">
+								Easy to use Java XMPP client library.
+							</td>
+							<td class="ignite_project_table-version">
+								<%= Versions.getVersion("smack") %>
+							</td>
+							<td class="ignite_project_table-link">
+								<a href="smack/index.jsp">Learn More</a>
+							</td>
+						</tr>
+						<tr class="ignite_project_table-row-even">
+							<td class="ignite_project_table-title">
+								<a href="xiff/index.jsp">XIFF API</a>
+							</td>
+							<td class="ignite_project_table-description">
+								Flash XMPP client library.
+							</td>
+							<td class="ignite_project_table-version">
+								<%= Versions.getVersion("xiff") %>
+							</td>
+							<td class="ignite_project_table-link">
+								<a href="xiff/index.jsp">Learn More</a>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<!-- END libraries -->
+				
+				
+			</div>
+			<!-- END body content area -->
+			
+		</div>
+		<!-- END left column (main content) -->
+		
+		<!-- BEGIN right column (sidebar) -->
+		<div id="ignite_body_rightcol">
+			
+			
+			<%@ include file="/includes/sidebar_enterprise.jspf" %>
+			
+            <!-- RANDOM SCREENSHOT HERE -->
+			
+			<%@ include file="/includes/sidebar_testimonial.jspf" %>
+			
+			<%@ include file="/includes/sidebar_chat.jspf" %>
+			
+		</div>
+		<!-- END right column (sidebar) -->
+	
+	</div>
+	<!-- END body area -->
+
+
+
+</body>
+</html>

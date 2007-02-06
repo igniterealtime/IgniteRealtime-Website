@@ -1,0 +1,76 @@
+<%@ page import="org.jivesoftware.site.Versions, java.io.File, java.text.DecimalFormat, java.text.SimpleDateFormat, java.util.Date"%>
+<%  { %>
+
+<%  String path = request.getContextPath();
+    String buildsPath = application.getInitParameter("builds-path");
+
+    String version = Versions.getVersion("smack");
+    if (version == null) {
+        version = "0.0";
+    }
+
+    DecimalFormat formatter = new DecimalFormat("0.00");
+    String basedir = buildsPath + "/smack";
+    File binZip = new File(basedir, "smack_" + version.replace('.','_') + ".zip");
+    File binTarGz = new File(basedir, "smack_" + version.replace('.','_') + ".tar.gz");
+    File srcZip = new File(basedir, "smack_src_" + version.replace('.','_') + ".zip");
+    File srcTarGz = new File(basedir, "smack_src_" + version.replace('.','_') + ".tar.gz");
+
+    String buildDate = "UNKNOWN";
+    if (binZip.exists()) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
+        buildDate = dateFormat.format(new Date(binZip.lastModified()));
+    }
+%>
+
+<a name="smack">&nbsp;</a>
+<div class="ignite_downloads">
+    <div class="ignite_int_body_padding">
+
+        <div class="ignite_downloads_logo">
+        <img src="/images/ignite_dl_smack.gif" alt="" width="68" height="68" border="0">
+        </div>
+
+        <div class="ignite_downloads_content">
+            <span class="ignite_downloads_info">
+                <!-- <a href="#"><strong>Plugins</strong></a> |  -->
+                <a href="http://www.igniterealtime.org/builds/smack/docs/latest/README.html">Readme & License</a> |
+                <a href="http://www.igniterealtime.org/builds/smack/docs/latest/changelog.html">Changelog</a> |
+                <a href="nightly_smack.jsp">Nightly Builds</a> |
+                <a href="source.jsp">Source Code</a>
+            </span>
+
+            <h2>Smack <%= version %></h2>
+            <p>Easy to use Java XMPP client library.</p>
+
+            <span class="ignite_download_choose">Choose your platform:</span>
+            <span id="smackCpBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('smackCp'); return false;"></a></span>
+
+            <!-- BEGIN cross platform -->
+            <div class="ignite_download_panel" id="smackCp" style="display: none;">
+                <div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= binZip.getName() %>"><%= binZip.getName() %></a>
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binZip.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a>
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binTarGz.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END cross platform -->
+
+        </div>
+    </div>
+</div>
+
+<%  } %>

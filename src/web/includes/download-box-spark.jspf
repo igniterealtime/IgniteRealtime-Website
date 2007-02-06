@@ -1,0 +1,128 @@
+<%@ page import="org.jivesoftware.site.Versions, java.io.File, java.text.SimpleDateFormat, java.util.Date, java.text.DecimalFormat"%>
+<%  { %>
+
+<%  String path = request.getContextPath();
+    String buildsPath = application.getInitParameter("builds-path");
+
+    String version = Versions.getVersion("spark");
+    if (version == null) {
+        version = "0.0";
+    }
+
+    DecimalFormat formatter = new DecimalFormat("0.00");
+    String basedir = buildsPath + "/spark";
+    File binExe = new File(basedir, "spark_" + version.replace('.','_') + ".exe");
+    File binExeAlt = new File(basedir, "/online/spark_" + version.replace('.','_') + "_online" + ".exe");
+    File binMsiAlt = new File(basedir, "/online/spark_" + version.replace('.','_') + "_online" + ".msi");
+    File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
+    File binTar = new File(basedir, "spark_" + version.replace('.','_') + ".tar.gz");
+    File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
+
+    String buildDate = "UNKNOWN";
+    if (binExe.exists()) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
+        buildDate = dateFormat.format(new Date(binExe.lastModified()));
+    }
+%>
+
+<a name="spark">&nbsp;</a>
+<div class="ignite_downloads">
+    <div class="ignite_int_body_padding">
+
+        <div class="ignite_downloads_logo">
+        <img src="/images/ignite_dl_spark.gif" alt="" width="68" height="68" border="0">
+        </div>
+
+        <div class="ignite_downloads_content">
+            <span class="ignite_downloads_info">
+                <!-- <a href="#"><strong>Plugins</strong></a> |  -->
+                <a href="http://www.igniterealtime.org/builds/spark/docs/latest/README.html">Readme & License</a> |
+                <a href="http://www.igniterealtime.org/builds/spark/docs/latest/changelog.html">Changelog</a><!--  |
+                <a href="#">Nightly Builds</a> |  -->
+                <!-- <a href="#">Source Code</a> -->
+            </span>
+
+
+            <h2>Spark <%= version %></h2>
+            <p>Cross-platform real-time collaboration client optimized for business and organizations.</p>
+
+            <span class="ignite_download_choose">Choose your platform:</span>
+            <span id="sparkWindowsBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkWindows','sparkLinux','sparkMac'); return false;"></a></span>
+            <span id="sparkLinuxBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkLinux','sparkWindows','sparkMac'); return false;"></a></span>
+            <span id="sparkMacBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkMac','sparkWindows','sparkLinux'); return false;"></a></span>
+
+            <!-- BEGIN windows -->
+            <div class="ignite_download_panel" id="sparkWindows" style="display: none;">
+                <div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binExe.getName() %>"><%= binExe.getName() %></a> Offline installation, includes Java JRE (recommended)
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binExe.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/online/<%= binExeAlt.getName() %>"><%= binExeAlt.getName() %></a> Online installation, does not include Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binExeAlt.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binMsi.getName() %>"><%= binMsi.getName() %></a> MSI package, includes Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsi.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/online/<%= binMsiAlt.getName() %>"><%= binMsiAlt.getName() %></a> Online MSI package, does not include Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsiAlt.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END windows -->
+
+            <!-- BEGIN linux -->
+            <div class="ignite_download_panel" id="sparkLinux" style="display: none;">
+                <div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binTar.getName() %>"><%= binTar.getName() %></a>
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binTar.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END linux -->
+
+            <!-- BEGIN mac -->
+            <div class="ignite_download_panel" id="sparkMac" style="display: none;">
+                <div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binDmg.getName() %>"><%= binDmg.getName() %></a>
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binDmg.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                </div>
+            </div>
+            <!-- END mac -->
+
+        </div>
+    </div>
+</div>
+
+
+<%  } %>

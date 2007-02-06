@@ -1,0 +1,40 @@
+<%@ page import="java.util.*" %>
+
+<%!
+    // Constant for the session value
+    public static final String INDEX_SESSION_KEY = "feature.roller.index";
+
+    // The list of filenames for the features
+    public static List<String> filenames = new ArrayList<String>();
+
+{
+    // Configure the list of features to roll through
+    filenames.add("/includes/features/featured_example.jspf");
+    filenames.add("/includes/features/featured_example2.jspf");
+}
+%>
+
+<%
+    int index = 0;
+    String storedIndex = (String)session.getAttribute(INDEX_SESSION_KEY);
+    if (storedIndex != null) {
+        try {
+            index = Integer.parseInt(storedIndex);
+        }
+        catch (Exception ignored) { /* ignored */ }
+    }
+
+    // Get the filename
+    String filename = filenames.get(index);
+
+    // Increment to the next index
+    index++;
+    if (index >= filenames.size()) {
+        index = 0;
+    }
+
+    // Add the index to the session
+    session.setAttribute(INDEX_SESSION_KEY, String.valueOf(index));
+%>
+
+<jsp:include page="<%= filename %>" flush="true" />

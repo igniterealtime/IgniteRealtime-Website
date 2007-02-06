@@ -1,0 +1,92 @@
+<%@ page import="java.util.TimeZone" %>
+<%
+    // ---------------------------------------------------------------------
+    // Display a group chat notification if the group chat is active or
+    // starting within the hour.
+
+    // Compute current offset of PST to UTC.
+    int zoneOffset = Math.abs(TimeZone.getTimeZone("America/Los_Angeles").getOffset(System.currentTimeMillis()) / (1000 * 60 * 60));
+
+    // Day of week.
+    final int chatDay = java.util.Calendar.WEDNESDAY;
+    // Hour of day (24 hour clock)
+    final int chatHour = 10;
+
+    String displayString = "";
+    boolean chatInProgress = false;
+
+    java.util.Calendar cal = java.util.Calendar.getInstance();
+    cal.setTimeZone(java.util.TimeZone.getTimeZone("PST"));
+    if (cal.get(java.util.Calendar.DAY_OF_WEEK) != chatDay) {
+//        display
+    }
+    if (cal.get(java.util.Calendar.DAY_OF_WEEK) == chatDay) {
+        int hour = cal.get(java.util.Calendar.HOUR_OF_DAY);
+        // If before the chat.
+        if (hour == chatHour - 1 || hour == chatHour) {
+            if (hour == chatHour - 1) {
+                int minute = cal.get(java.util.Calendar.MINUTE);
+                displayString = (60 - minute - 1) + " minute" + ((60 - minute - 1) == 1 ? "" : "s");
+            }
+            else if (hour == chatHour) {
+                displayString = "In Progress Now";
+                chatInProgress = true;
+            }
+        }
+        else if (hour > chatHour) {
+            displayString = "7 days";
+        }
+        else {
+            // This will be at least 2, if not more, hours
+            displayString = (chatHour - hour) + " hours";
+        }
+    }
+    else if (cal.get(java.util.Calendar.DAY_OF_WEEK) < chatDay) {
+        int difference = chatDay - cal.get(java.util.Calendar.DAY_OF_WEEK);
+        if (difference == 1) {
+            displayString = "1 day";
+        }
+        else {
+            displayString = difference + " days";
+        }
+    }
+    else {
+        displayString = "" + (7 - cal.get(java.util.Calendar.DAY_OF_WEEK) + chatDay) + " days";
+    }
+%>
+
+			<!-- BEGIN blue sidebar box 'IGNITE DEVELOPER CHAT' -->
+            <div class="ignite_sidebar_bluebox">
+                <div class="ignite_sidebar_top"></div>
+                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_chat"></div>
+                <div class="ignite_sidebar_body">
+
+                    <p>Have ideas or suggestions? Join our community group chat every Wednesday at <%= chatHour %>:00am PST (<%= chatHour + zoneOffset %>:00 UTC/GMT).</p>
+					
+						<!-- BEGIN countdown -->
+						<div class="ignite_sidebar_chat-upcoming">
+                            <% if (displayString.equals("In Progress Now")) { %>
+                            The live chat session is:<br>
+                            <% } else { %>
+                            The next live chat session will begin in:<br>
+                            <% } %>
+                            <strong><%= displayString %></strong>
+                        </div>
+						<!-- END countdown -->
+
+						<!-- BEGIN chat live now -->
+                        <% if (chatInProgress) { %>
+                        <div class="ignite_sidebar_chat-now">
+							<a href="javascript:launchWin('Login','http://www.igniterealtime.org/forum/groupchat/guest-login.jsp?allowAnonymous=true',678,496);"></a>
+						</div>
+                        <% } %>
+                        <!-- END chat live now -->
+
+					
+					<a href="/support/group_chat.jsp" class="ignite_link_arrow">About the community group chat</a><br>
+					
+
+                </div>
+				<div class="ignite_sidebar_btm"></div>
+			</div>
+			<!-- END blue sidebar box 'IGNITE DEVELOPER CHAT' -->

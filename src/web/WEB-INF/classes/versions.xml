@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<versions>
+    <product name="wildfire" version="3.1.1" date="October 28, 2006" />
+    <!--<product name="wildfire-beta" version="3.2.0.rc2" date="January 31, 2007" />-->
+    <product name="spark" version="2.0.8" date="January 23, 2007" />
+    <product name="spark-beta" version="2.5.0.beta2" date="February 6, 2007" />
+    <product name="smack" version="2.2.1" date="June 12, 2006" />
+    <product name="smack-beta" version="3.0.0.beta1" date="February 6, 2007" />
+    <product name="xiff" version="2.0.0-beta4" date="Oct. 25, 2005" />
+    <product name="asterisk-im" version="1.1.1" date="July 3, 2006" />
+    <product name="connection_manager" version="3.1.0" date="October 9, 2006" />
+</versions>

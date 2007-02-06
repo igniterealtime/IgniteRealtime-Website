@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+
+<!--
+    Build Requirements:
+
+        * Ant 1.6 or higher (including optional tasks)
+-->
+
+<project name="igniterealtime.org Site" default="war" basedir="..">
+
+    <property file="${basedir}/build/build.properties" />
+    <property name="web.dir" value="${basedir}/src/web" />
+    <property name="build.lib.dir" value="${basedir}/build/lib" />
+    <property name="war.name" value="site.war" />
+    <property name="src.java.dir" value="${web.dir}/WEB-INF/classes" />
+    <property name="target.dir" value="${basedir}/target" />
+    <property name="jspc.dest.dir" value="${target.dir}/jspc" />
+    <property name="jspc.java.dest.dir" value="${target.dir}/jspc/java" />
+    <property name="jspc.classes.dest.dir" value="${target.dir}/jspc/classes" />
+    <property name="jspc.jar.name" value="admin-jsp.jar" />
+    <property name="deploy.dir" value="${target.dir}/deploy" />
+    <property name="target.classes.dir" value="${deploy.dir}/WEB-INF/classes" />
+    <property name="overwrite" value="false" />
+
+    <path id="dependencies">
+        <fileset dir="${build.lib.dir}" includes="*.jar" />
+        <fileset dir="${web.dir}/WEB-INF/lib" includes="*.jar" />
+    </path>
+    <path id="jspc.dependencies">
+        <path refid="dependencies" />
+        <pathelement path="${target.classes.dir}" />
+    </path>
+
+    <!-- init ================================================================================== -->
+    <target name="init">
+        <mkdir dir="target" />
+    </target>
+
+    <!-- compile =============================================================================== -->
+    <target name="compile" depends="init">
+        <mkdir dir="${target.classes.dir}" />
+        <javac srcdir="${src.java.dir}" 
+                destdir="${target.classes.dir}"
+                debug="on"
+                source="1.5"
+                classpathref="dependencies" />
+    </target>
+
+    <!-- jspc ================================================================================== -->
+    <target name="jspc" depends="compile" description="Compiles all JSP pages.">
+        <mkdir dir="${jspc.dest.dir}" />
+        <mkdir dir="${jspc.java.dest.dir}" />
+        <mkdir dir="${jspc.classes.dest.dir}" />
+
+        <antcall target="-jspc-impl" />
+
+        </target><target name="-jspc-impl" unless="no.jspc">
+        <!-- Have to use Tomcat 5's JspC task, not the default Ant one -->
+        <taskdef classname="org.apache.jasper.JspC" name="jasper2" >
+            <classpath id="jspc.classpath">
+                <pathelement location="${java.home}/../lib/tools.jar" />
+                <path refid="jspc.dependencies" />
+            </classpath>
+        </taskdef>
+
+        <!-- JSP to JAVA -->
+        <jasper2
+            validateXml="false"
+            uriroot="${web.dir}"
+            outputDir="${jspc.java.dest.dir}"
+            package="org.igniterealtime.site"
+            webXmlFragment="${jspc.dest.dir}/web.partial.xml" />
+
+        <!-- Compile java source -->
+        <javac
+            destdir="${jspc.classes.dest.dir}"
+            includeAntRuntime="no"
+            debug="on"
+            source="1.5"
+            includes="org/igniterealtime/site/**/*.java"
+        >
+            <src path="${jspc.java.dest.dir}" />
+            <classpath>
+                <path refid="jspc.dependencies" />
+            </classpath>
+        </javac>
+
+    </target>
+
+    <!-- war =================================================================================== -->
+    <target name="war" depends="jspc" description="Creates a WAR of the site.">
+        <war warfile="${target.dir}/${war.name}"
+            webxml="${web.dir}/WEB-INF/web.xml"
+        >
+            <classes dir="${web.dir}/WEB-INF/classes" />
+            <lib dir="${web.dir}/WEB-INF/lib" includes="*.jar" />
+            <fileset dir="${web.dir}">
+                <include name="**/*.*" />
+                <exclude name="WEB-INF/**/*.*" />
+                <exclude name="**/*.iml" />
+            </fileset>
+            <fileset dir="${web.dir}">
+                <include name="WEB-INF/decorators.xml" />
+                <include name="WEB-INF/sitemesh.xml" />
+            </fileset>
+        </war>
+    </target>
+
+    <!-- deploywar ============================================================================= -->
+    <target name="deploywar" depends="war" description="Deploys the WAR to a specified dir.">
+        <copy todir="${deploy.dir}/.." overwrite="${overwrite}" file="${target.dir}/${war.name}" />
+    </target>
+
+    <!-- deployjsp ============================================================================= -->
+    <target name="deployjsp" depends="war" description="Copies just the JSP to a specified dir.">
+        <!-- All web files, no WEB-INF stuff -->
+        <copy todir="${deploy.dir}" overwrite="${overwrite}">
+            <fileset dir="${web.dir}">
+                <include name="**/*.jsp" />
+                <include name="**/*.gif" />
+                <include name="**/*.css" />
+                <include name="**/*.pdf" />
+                <include name="**/*.html" />
+                <include name="**/*.png" />
+                <include name="**/*.txt" />
+                <include name="**/*.jspf" />
+                <include name="**/*.xsl" />
+                <include name="**/*.jar" />
+                <include name="**/*.war" />
+                <exclude name="WEB-INF/**/*.*" />
+            </fileset>
+        </copy>
+        <!-- Special include just for xml files in WEB-INF/classes -->
+        <copy todir="${deploy.dir}" overwrite="${overwrite}">
+            <fileset dir="${web.dir}">
+                <include name="WEB-INF/classes/*.xml" />
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- deployapp ============================================================================= -->
+    <target name="deployapp" depends="war" description="Deploys exploded war to a specified dir.">
+        <unwar src="${target.dir}/${war.name}" dest="${deploy.dir}" overwrite="${overwrite}" />
+    </target>
+
+    <!-- clean ================================================================================= -->
+    <target name="clean" description="Cleans up all build-generated output">
+        <delete dir="${target.dir}" />
+    </target>
+
+    <!-- clean-jspc ============================================================================ -->
+    <target name="clean-jspc" description="Cleans all JSPC output">
+        <delete dir="${jspc.dest.dir}" />
+    </target>
+
+</project>
