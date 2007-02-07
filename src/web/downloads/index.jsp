@@ -16,7 +16,8 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_current">Releases</a></li>
 			<li id="subnav02"><a href="source.jsp">Source</a></li>
 			<li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
-		</ul>
+            <li id="subnav04"><a href="/projects/wildfire/plugins.jsp">Wildfire Plugins</a></li>
+        </ul>
 	</div>
 
     <!-- BEGIN body area -->
@@ -40,8 +41,9 @@
                         Below are links to the current releases for all projects. If you're looking for
                         source code or SVN access, please read the <a href="source.jsp">source code</a>
                         access page. If you would like to test the latest (possibly unstable) code,
-                        nightly builds are also maintained for the <a href="nightly_wildfire.jsp">Wildfire</a>
-                        and <a href="nightly_smack.jsp">Smack</a> projects.
+                        check out the <a href="beta.jsp">current betas</a>. Nightly builds are also maintained for the 
+                        <a href="nightly_wildfire.jsp">Wildfire</a> and
+                        <a href="nightly_smack.jsp">Smack</a> projects.
                     </p>
                 </div>
 

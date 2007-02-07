@@ -56,7 +56,8 @@
 			<li id="subnav01"><a href="index.jsp">Releases</a></li>
 			<li id="subnav02"><a href="source.jsp" class="ignite_subnav_current">Source</a></li>
 			<li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
-		</ul>
+            <li id="subnav04"><a href="/projects/wildfire/plugins.jsp">Wildfire Plugins</a></li>
+        </ul>
 	</div>
 
     <!-- BEGIN body area -->
