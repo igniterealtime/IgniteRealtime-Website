@@ -71,7 +71,8 @@
 							</div>	
 							<div id="ignite_support_activity_articles">
 								<h4>Recent Articles</h4>
-								<div class="articles"><a href="articles/pubsub.jsp">All About Pubsub</a></div>
+                                <div class="articles"><a href="articles/motd_plugin.jsp">Wildfire Plugin Development: Message of the Day</a></div>
+                                <div class="articles"><a href="articles/pubsub.jsp">All About Pubsub</a></div>
 								<div class="articles"><a href="articles/sparkplug_day.jsp">Sparkplug Day</a></div>
 								<div class="articles"><a href="articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
 								<div class="articles"><a href="articles/wildfire_optimization.jsp">Behind the Scenes: Wildfire Optimization</a></div>
