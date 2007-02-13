@@ -173,7 +173,7 @@
 					
 
                     <h4>Recent Articles</h4>
-                        <div class="articles"><a href="articles/motd_plugin.jsp">Wildfire Plugin Development: Message of the Day</a></div>                        
+                        <div class="articles"><a href="/support/articles/motd_plugin.jsp">Wildfire Plugin Development: Message of the Day</a></div>                        
                         <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
                         <div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
                         <div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
