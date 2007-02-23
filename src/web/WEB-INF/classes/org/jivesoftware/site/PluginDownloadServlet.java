@@ -82,6 +82,9 @@ public class PluginDownloadServlet extends HttpServlet {
                 // Do Not Log
             }
         }
+        catch (IOException ioe) {
+            // Ignore this sucker because it is caused by client disconnects most frequently
+        }
         catch (Exception e) {
             e.printStackTrace();
         }
