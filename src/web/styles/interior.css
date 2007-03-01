@@ -8,7 +8,10 @@ styles specific to the interior pages for the Ignite Real Time site.
 /* subnav styles */
 #ignite_subnav {
 	height: 30px;
+	display: block;
+	float: left;
 	clear: both;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 	background: #fff url(../images/ignite_subnav-bg.gif) repeat-x;
