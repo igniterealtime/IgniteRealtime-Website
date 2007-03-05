@@ -56,6 +56,11 @@ public class DownloadServlet extends HttpServlet {
         final String filename = request.getParameter("filename");
 
         try {
+			if (!validateFilename(filename)) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;				
+			}
+			
             final File downloadFile = new File(DownloadStats.getBuildsDirectory(), filename);
             // Check whether this file exists and is really a file
             if (!(downloadFile.exists() && downloadFile.isFile())) {
@@ -194,4 +199,11 @@ public class DownloadServlet extends HttpServlet {
         int indexOfPeriod = fileName.indexOf(".");
         return fileName.substring(indexOfPeriod + 1);
     }
+
+	private boolean validateFilename(String filename) {
+		if (filename.indexOf("..") != -1)
+			return false;
+		
+		return true;
+	}
 }

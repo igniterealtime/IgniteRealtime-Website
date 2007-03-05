@@ -47,6 +47,12 @@ public class PluginDownloadServlet extends HttpServlet {
 
         try {
             final File downloadFile = new File(filename);
+
+			if (!validateFilename(filename)) {
+                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                return;				
+			}
+			
             // Check whether this file exists and is really a file
             if (!(downloadFile.exists() && downloadFile.isFile())) {
                 // Not a file, return 404
@@ -240,4 +246,11 @@ public class PluginDownloadServlet extends HttpServlet {
             this.lastModified = lastModified;
         }
     }
+
+	private boolean validateFilename(String filename) {
+		if (filename.indexOf("..") != -1)
+			return false;
+		
+		return true;
+	}
 }
