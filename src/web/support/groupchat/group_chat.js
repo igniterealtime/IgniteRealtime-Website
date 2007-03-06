@@ -4,10 +4,11 @@
 //console.warn = console.error;
 
 jive_groupchat_config_defaults = {
-    width: 750,
-    height: 450,
+	width: 750,
+	height: 450,
     x: 0,
     y: 0,
+    fitToParent: "true",
     constrained: "false",
     draggable: "false",
     resizable: "true",
@@ -27,6 +28,10 @@ function jive_configureGroupChat()
 	   if(!jive_groupchat_config[key]) {
 	       jive_groupchat_config[key] = jive_groupchat_config_defaults[key];    
 	   }   
+    }
+    if(jive_groupchat_config["fitToParent"]) {
+    	jive_groupchat_config["width"] = null;
+    	jive_groupchat_config["height"] = null;
     }
 }
 
@@ -69,7 +74,10 @@ controller = {
     connectionFailed: function(connection, error) { alert("Error: " + error); },
     
     authenticationSuccessful: function(conn) {
-        this.chatWindow = new jive.spank.chat.ChatWindow('groupchat', window.jive_groupchat_config); 
+        this.chatWindow = new jive.spank.chat.ChatWindow('groupchat', window.jive_groupchat_config);
+        if(window.jive_groupchat_config["fitToParent"] == "true") {
+    		window.resizeHandler();
+    	}
         this.chatManager = new org.jive.spank.chat.Manager(conn, window.jive_groupchat_config["server"], false);
         this.mucManager = new org.jive.spank.muc.Manager(conn, this.chatManager);
         this.joinChat();
@@ -175,8 +183,8 @@ controller = {
             }
             if(nick.indexOf(state.original) == 0 && state.original.length < nick.length)
             {
-                state.completed = nick;
-                textArea.dom.value = nick + ":";
+                state.completed = nick + ":";
+                textArea.dom.value = state.completed;
                 textArea.dom.selectionStart = state.original.length;
                 textArea.dom.selectionEnd = textArea.dom.value.length;
                 return;
@@ -211,6 +219,16 @@ controller = {
     }
 };
 
+var resizeHandler = function() {
+	var dlog = window.controller.chatWindow.dialog;
+	dlog.beginUpdate();
+	dlog.getEl().fitToParent();
+	dlog.resizeTo(dlog.getEl().getWidth(), dlog.getEl().getHeight()); //force the contents to update
+	var xy = YAHOO.util.Dom.getXY(dlog.getEl().dom.parentNode);
+	dlog.moveTo(xy[0], xy[1]);
+	dlog.endUpdate();
+}
+
 var toggleTheme = function() {
     getEl(document.body, true).toggleClass('jivetheme-muc');
 };
@@ -219,3 +237,7 @@ YAHOO.ext.EventManager.onDocumentReady(function(){
     window.connection = new XMPPConnection("/http-bind/", window.jive_groupchat_config["connectionAddress"], controller);
     connection.connect(); toggleTheme();
 });
+
+if(window.jive_groupchat_config["fitToParent"] == "true") {
+	YAHOO.ext.EventManager.onWindowResize(resizeHandler, window, false);
+}

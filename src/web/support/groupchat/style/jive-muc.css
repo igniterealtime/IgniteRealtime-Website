@@ -34,6 +34,14 @@ body {
 
 /* Custom classes and IDs for Group Chat ------------------------------------------- */
 
+/* Container for the chat window. Helps determine where the chat window is on page. */
+#groupchat-container {
+	background: #fff url(../jive-images/animated/waitLoadingChattrans.gif) no-repeat center center;
+	height: 500px;
+	width: 700px;
+	margin: 15px 0px;
+}
+
 /* Topic Bar Styles */
 .jivetheme-muc .jive-topic {
 	border: 1px solid #b5b5b5;
@@ -87,7 +95,6 @@ div.jive-user-controls {
 	border: 1px solid #b5b5b5 !important;
 	padding: 9px 5px 0px;
 }
-
 	
 	
 /* This will override the YUI styles from basic-dialog.css and ignitechat.css */
@@ -157,19 +164,19 @@ div.jive-user-controls {
  
 /* Messages in the main Chat Window --------------------------------------------------------------- */
 .jivetheme-muc div.jive-history div {
-    padding: 5px;
+    padding: 0px;
     font-family: Verdana,Arial,Geneva,sans-serif;
 	font-size: 10px !important;
-    margin: 0px 0px 10px;
+    margin: 0px;
 }
 .jivetheme-muc div.jive-history div.contact-message {
-	padding-right: 15px;
-	padding-left: 15px;
+	padding: 2px 15px;
+	margin: 5px 0px;
 }
 .jivetheme-muc div.jive-history div.user-message {
-	padding-right: 15px;
-	padding-left: 15px;
 	background: #f4f8ff;
+	margin: 5px 0px;
+	padding: 5px 15px;
 }
 
 .jivetheme-muc div.jive-history div span.meta {
@@ -190,8 +197,8 @@ div.jive-user-controls {
 
 .jivetheme-muc div.jive-history div.status-message { /* Messages from the server (User logged out, logged in, etc.) */
 	color: #666666;
-	margin: 0px 0px 5px;
-	padding: 0px 5px 5px;
+	margin: 3px 0px;
+	padding: 2px 5px;
 }
 
 .jivetheme-muc div.jive-history div span.meta em /* Date and Time Messages */

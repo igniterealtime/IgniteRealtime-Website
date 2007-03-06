@@ -18,21 +18,24 @@
 </style>
 
 	<script type="text/javascript">
-	jive_groupchat_config = {
-	width: 500,
-    height: 450,
-    x: 0,
-    y: 0,
-    constrained: "false",
-    draggable: "true",
-    resizable: "true",
-    closable: "true",
-    bottomPane: "false",
-    mucServer: "conference.igniterealtime.org",
-    server: "http://www.igniterealtime.org",
-    connectionAddress: "http://www.igniterealtime.org",
-    roomName: "test"
+		jive_groupchat_config = {
+		width: 500,
+	    height: 450,
+	    x: 0,
+	    y: 0,
+	    constrained: "false",
+	    draggable: "false",
+	    resizable: "false",
+	    closable: "true",
+	    bottomPane: "false",
+	    mucServer: "conference.igniterealtime.org",
+	    server: "http://www.igniterealtime.org",
+	    connectionAddress: "http://www.igniterealtime.org",
+	    roomName: "test",
+		fitToParent: "true"
 	}
+
+
 	</script>
 
 	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/sarissa.js" type="text/javascript"></script>
@@ -131,7 +134,9 @@
 					available to answer questions <b>every Wednesday at 10:00 AM PST (<%= 10 + offset %>:00 UTC/GMT)</b>
 					for one hour.</p>
 					
-					<div id="groupchat"></div>
+					<div id="groupchat-container">
+						<div id="groupchat"></div>
+					</div>
 
 					<h3>Previous Chats</h3>
 					<p>Transcripts of the weekly chats are posted in the 
