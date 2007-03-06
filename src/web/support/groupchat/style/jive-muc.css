@@ -5,7 +5,7 @@
 
 
 .ydlg .ydlg-close {
-	background-image: url(../jive-images/basic-dialog/btn-close-sprite.png) no-repeat fixed 0px 0px;
+	background-image: url(../jive-images/basic-dialog/btn-close-sprite.png);
 	cursor:pointer;
 	font-size:1px;
 	height:29px;
@@ -19,8 +19,8 @@
 	visibility:inherit;
 	z-index:6;
 	}
-.ydlg .ydlg-close:hover {
-	background: url(../jive-images/basic-dialog/btn-close-sprite.png) no-repeat fixed 0px 29px;
+.ydlg .ydlg-close.hover {
+	background-image: url(../jive-images/basic-dialog/btn-close-sprite.png) no-repeat fixed 0px 29px;
 }
 
 
@@ -28,12 +28,12 @@
 	}
 	
 body {
-	background: #CCC;
 	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
 	}
 
 
-/* Custom classes and IDs for Group Chat */
+/* Custom classes and IDs for Group Chat ------------------------------------------- */
+
 /* Topic Bar Styles */
 .jivetheme-muc .jive-topic {
 	border: 1px solid #b5b5b5;
@@ -46,7 +46,7 @@ div.jive-muc-ctrl p {
 	font-size: 12px;
 	height: 38px;
 	color: #f26522;
-	padding: 12px 0 0 5px;
+	padding: 10px 0 0 5px;
 	}
 div.jive-muc-ctrl p span {
 	color: #000000;
@@ -221,9 +221,9 @@ textarea.jive-tab-message
 .jivetheme-muc ul.jive-roster span.group-label, 
 .jivetheme-muc div.jive-muc-occupants span.group-label {  /* collapsible group label */
 	display: block;
-	background-color: #F3F2F2;
 	padding: 5px;
 	margin-bottom: 5px;
+	background: #F3F2F2 url(none);
 }
 .jivetheme-muc ul.jive-roster span.group-label em, 
 .jivetheme-muc div.jive-muc-occupants span.group-label em { 
@@ -247,7 +247,6 @@ textarea.jive-tab-message
 	display: block;
     padding: 2px 0px 1px 25px;
 	cursor: pointer;
-	background-position: 0px 1px;
 }
 .jivetheme-muc ul.jive-roster ul.group-list li {
 	background-position: 11px 1px;
@@ -263,23 +262,19 @@ textarea.jive-tab-message
 	padding: 0px 2px;
 }
 
+/* Selecting a user in the roster */
 .jivetheme-muc ul.jive-roster ul.group-list li.selected, 
 .jivetheme-muc div.jive-muc-occupants ul ul.group-list li.selected {
-	padding: 1px 0px 0px 20px !important;
-    border-top: 1px solid #BBC3D7;
+	padding: 1px 0px 1px 25px !important;
+	border-top: 1px solid #BBC3D7;
 	border-bottom: 1px solid #BBC3D7;
-	background-color: #D8E1F9 !important;
-	background-position: 0px 0px !important;
-}
-
-.jivetheme-muc ul.jive-roster ul.group-list li.selected {
-	background-position: 11px 0px !important;
-	padding-left: 29px !important;
+	background-color: #f4f8ff;
+	background-position: 5px 2px !important;
 }
 
 .jivetheme-muc ul.jive-roster ul.group-list li.hover, 
 .jivetheme-muc div.jive-muc-occupants ul ul.group-list li.hover {
-	color: #1879BF;
+	color: #F26522;
 }
 
 .jivetheme-muc .roster-contact-available {
