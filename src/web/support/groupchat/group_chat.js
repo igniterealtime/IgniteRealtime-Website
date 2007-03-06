@@ -49,6 +49,7 @@ MessageHandler = {
 
         var bodyEl = message.getBody();
         var local = window.controller.nickname.toLowerCase() == nick;  //why is it lowercase? O_o
+        bodyEl.mentioned = (bodyEl.body.indexOf(window.controller.nickname.toLowerCase()) > -1) ? "mentioned" : null;
         var t = message.getExtension("x", "jabber:x:delay");
         if ((t || !local) && bodyEl) {
             if (t) {

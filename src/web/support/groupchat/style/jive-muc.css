@@ -93,9 +93,14 @@ div.jive-muc-ctrl p span {
 div.jive-user-controls {
 	background: transparent url(../jive-images/groupchat/bg_topic.gif) repeat-x scroll left bottom;
 	border: 1px solid #b5b5b5 !important;
-	padding: 9px 5px 0px;
+	padding: 0px 5px 0px;
 }
-	
+input.jive-muc-username {
+	background: transparent;
+	border: none;
+}
+input.jive-muc-username-active {
+}
 	
 /* This will override the YUI styles from basic-dialog.css and ignitechat.css */
 
