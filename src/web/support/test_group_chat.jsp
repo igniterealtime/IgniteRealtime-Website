@@ -28,10 +28,10 @@
 		resizable: "false",
 		closable: "false",
 		bottomPane: "false",
-		mucServer: "conference.drag",
-		server: "drag",
-		connectionAddress: "drag:7080",
-		roomName: "test",
+		mucServer: "conference.igniterealtime.org",
+		server: "http://www.igniterealtime.org",
+		connectionAddress: "http://www.igniterealtime.org",
+		roomName: "open_chat",
 		fitToParent: "true", // forces the dlg to find #groupchat-container and conform to its layout and size
 	}
 	</script>

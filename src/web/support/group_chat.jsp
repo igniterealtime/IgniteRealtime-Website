@@ -11,11 +11,43 @@
 
 <html>
 <head>
-<title>Support - Group Chat</title>
-<meta name="body-id" content="support" />
-<style type="text/css" media="screen">
-	@import "/styles/interior.css";
-</style>
+	<title>Support - Group Chat</title>
+	<meta name="body-id" content="support" />
+	<style type="text/css" media="screen">
+		@import "/styles/interior.css";
+	</style>
+	
+	<script type="text/javascript">
+	jive_groupchat_config = {
+		width: 1000, //Taken over by groupchat-container if fitToParent: "true" and Height and Width are specified in the CSS
+		height: 450, // Same as above
+		x: 0, // 0 centers it on the page. Setting XY coords. will absolutely position the dlg on the page, unless fitToParent: "true"
+		y: 0, // Same as above
+		constrained: "false",
+		draggable: "false",
+		resizable: "false",
+		closable: "false",
+		bottomPane: "false",
+		mucServer: "conference.igniterealtime.org",
+		server: "http://www.igniterealtime.org",
+		connectionAddress: "http://www.igniterealtime.org",
+		roomName: "open_chat",
+		fitToParent: "true", // forces the dlg to find #groupchat-container and conform to its layout and size
+	}
+	</script>
+	
+	<script src="http://www.igniterealtime.org/support/groupchat/combined.compressed.js" type="text/javascript"></script>
+
+	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/basic-dialog.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/layout.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/fonts.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/grid.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/reset-min.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/roster.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/spank.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/ignitechat.css">
+ 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/jive-muc.css">
+	
 </head>
 <body>
 
@@ -53,12 +85,14 @@
 					available to answer questions <b>every Wednesday at 10:00 AM PST (<%= 10 + offset %>:00 UTC/GMT)</b>
 					for one hour.</p>
 
-					<div class="ignite_support_launchGC">
-						<h3><a href="javascript:launchWin('Login','http://www.igniterealtime.org/forum/groupchat/guest-login.jsp?allowAnonymous=true',678,496);">Launch Web Chat</a></h3>
-						<p>Alternatively, you may use any XMPP client (Spark, Exodus, Pandion, Trillian, etc) 
-						to connect to the group chat service at conference.jivesoftware.com. The chat name is
-                        &quot;Open Chat&quot; and its address is dev@conference.jivesoftware.com.</p>
+					<div id="groupchat-container">
+						<div id="groupchat"></div>
 					</div>
+					
+					<p>Alternatively, you may use any XMPP client (Spark, Exodus, Pandion, Trillian, etc) 
+					to connect to the group chat service at conference.igniterealtime.org. The chat name is
+                    &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p>
+
 
 					<h3>Previous Chats</h3>
 					<p>Transcripts of the weekly chats are posted in the 
