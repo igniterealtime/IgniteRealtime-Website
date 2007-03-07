@@ -77,7 +77,7 @@
 						<!-- BEGIN chat live now -->
                         <% if (chatInProgress) { %>
                         <div class="ignite_sidebar_chat-now">
-							<a href="javascript:launchWin('Login','http://www.igniterealtime.org/forum/groupchat/guest-login.jsp?allowAnonymous=true',678,496);"></a>
+							<a href="/support/group_chat.jsp"></a>
 						</div>
                         <% } %>
                         <!-- END chat live now -->
