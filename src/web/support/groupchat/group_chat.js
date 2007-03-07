@@ -198,6 +198,12 @@ controller = {
         this.conf.changeNickname(newName);
     },
         
+    sendTimeStamp : function()
+    {
+    	this.chatWindow.addStatusMessage(this.conf.jid, new Date().toString());
+    	window.setTimeout(this.sendTimeStamp.bind(this), 300000);
+    },
+        
     onSuccess : function(occupant) {
 		var chatWindow = window.controller.chatWindow;
 		var room = window.controller.conf;
@@ -217,6 +223,8 @@ controller = {
         chatWindow.addListener("changenameinmuc", this.handleNameChange.bind(this));
         chatWindow.dialog.addListener("beforeshow", this.joinChat, window.controller, true);
         chatWindow.dialog.addListener("beforehide", this.conf.leave.bind(this.conf));
+        window.setTimeout(chatWindow.addStatusMessage.bind(chatWindow), 2000, room.jid, "Welcome to " + room.jid + " you can change your name by clicking on it in the upper-right corner");
+        window.setTimeout(window.controller.sendTimeStamp.bind(window.controller), 1000);
     }
 };
 

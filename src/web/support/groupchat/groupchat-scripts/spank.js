@@ -263,7 +263,7 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
 
         thetab.addListener("close", function() {
             this._wrappedFns[tabId].each(function(value) {
-                    value();
+                value();
             });
             this.fireEvent("tabclosed", contactObj, this.tabs[contactObj.jid]);
 
@@ -363,7 +363,9 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
         };
         muctab.addListener("activate", tabFocusAction);
         muctab.addListener("close", this._wrappedFns[tabId].each.createDelegate(
-                this._wrappedFns[tabId], [function(func) { func();} ]));
+                this._wrappedFns[tabId], [function(func) {
+            func();
+        } ]));
 
         this.tabs['muc-chooser-' + tabId] = {
             type: "muc-chooser",
@@ -561,7 +563,8 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
                 clearNotifyListener);
 
         if (rosterWindow) {
-            this._doMucControls(tabId, roomObj, rosterWindow);
+            this._doMucControls(tabId, roomObj,
+                    rosterWindow.contactsForAutocomp.createDelegate(rosterWindow));
         }
         // fill in room participants
         jive.spank.chat.Template.roster.append(tabId + '-occupants', {
@@ -625,7 +628,7 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
                     this.fireEvent("nickcomplete", tabJID, this.getMessage(), textArea);
                     evt.preventDefault();
                 }
-                if(evt.getKey() == 13) {
+                if (evt.getKey() == 13) {
                     return;
                 }
                 this.fireEvent("input", tabJID);
@@ -648,11 +651,11 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
 
         this._wrappedFns[tabId].push(YAHOO.ext.EventManager.removeListener.createDelegate(
                 YAHOO.ext.EventManager, ["blur", textArea, wrapper]));
-        
+
         return innerLayout;
     },
 
-    _doMucControls: function(tabId, room, rosterWindow) {
+    _doMucControls: function(tabId, room, contactListFunction) {
         jive.spank.chat.Template.muc_controls.append(tabId + '-controls',
         {jid: room.jid});
         jive.spank.chat.Template.mucinvitemenu.append(document.body,
@@ -664,7 +667,7 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
 
         var mucAutoComp = new jive.spank.AutoComplete(room.jid + '-autocomp',
                 room.jid + '-autocomp-menu',
-                new YAHOO.widget.DS_JSFunction(rosterWindow.contactsForAutocomp.bind(rosterWindow)),
+                new YAHOO.widget.DS_JSFunction(contactListFunction),
         {typeAhead: true, autoHighlight: true, minQueryLength: 0, maxResultsDisplayed: 20}
                 );
         mucAutoComp.formatResult = function(oResultItem, sQuery) {
@@ -674,12 +677,12 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
         var jid = room.jid;
         var self = this;
         mucAutoComp.itemSelectEvent.subscribe(function(type, args) {
-            self.fireEvent('mucinvitation', self, args[2][1].jid, jid);
+            self.fireEvent('mucinvitation', self, args[2][1].toString(), jid);
             getEl(jid + '-autocomp').dom.blur();
         });
 
         var inviteControl = getEl(jid + '-control');
-        inviteControl.mon('click', function(chatWindow, inviteContainerElement, mucAutoComplete) {
+        inviteControl.mon('click', function(chatWindow, inviteContainerElement, mucAutoComplete, contactListFunction) {
             chatWindow.invitee = '';
 
             var entry = inviteContainerElement.getChildrenByTagName('input')[0];
@@ -690,21 +693,33 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
             inviteContainerElement.setStyle('z-index', self.dialog.lastZIndex + 1);
             entry.dom.focus();
 
-            mucAutoComp._populateList('', rosterWindow.contactsForAutocomp(), mucAutoComp);
-            
+            mucAutoComp._populateList('', contactListFunction(), mucAutoComp);
+
             inviteContainerElement.repaint();
-        }.createDelegate(inviteControl, [this, getEl(room.jid + '-container'), mucAutoComp]));
+        }.createDelegate(inviteControl, [this, getEl(room.jid + '-container'), mucAutoComp,
+                contactListFunction]));
         // realign menu when window moves? when pane resizes?
 
         var autoComplete = getEl(jid + '-autocomp');
-        autoComplete.mon('keypress', function(evt) {
+        autoComplete.mon('keypress', function(autoComplete, jid, contactListFunction,
+                                              evt) {
             if (evt.getKey() == 13) {
-                evt.preventDefault()
+                evt.preventDefault();
+                var contact = contactListFunction().detect(function(text, value) {
+                    return text == value[0];
+                }.bind(this, autoComplete.dom.value));
 
+                if (!contact) {
+                    contact = autoComplete.dom.value;
+                }
+                else {
+                    contact = contact[1].toString();
+                }
+                this.fireEvent('mucinvitation', this, contact, jid);
                 getEl(jid + '-container').hide();
                 getEl('jive-tab-' + this.getActiveTabJID() + '-text').dom.focus();
             }
-        }.bind(this));
+        }.bind(this, autoComplete, jid, contactListFunction));
         autoComplete.addListener('blur', function() {
             window.setTimeout("getEl('" + jid + "-container').hide();", 200);
             getEl('jive-tab-' + self.getActiveTabJID() + '-text').dom.focus();
@@ -1018,25 +1033,36 @@ YAHOO.extend(jive.spank.chat.ChatWindow, jive.spank.Window, {
         jive.spank.chat.Template.userpane_loggedin.append(this.bodyId + '-message', {id: this.bodyId, uname: uname});
 
 		//this lets us style the username field based on whether the user has clicked on it to edit.
-		var inputfield = getEl(this.bodyId + '-uname').dom;
-        var toggleEditing = function() { 
-        	if(this.className == "jive-muc-username") 
-        		this.className = "jive-muc-username-active";
-        	else
-        		this.className = "jive-muc-username";
-        };
-        inputfield.onfocus = toggleEditing;
-        inputfield.onblur = toggleEditing;
+		var input = getEl(this.bodyId + '-uname');
+		var inputfield = input.dom;
+        var setEditing = function() { 
+        	this.className = this.className.replace("jive-muc-username", "jive-muc-username-active");
+        }.bind(inputfield);
+        
+        var setNotEditing = function() {
+        	this.className = this.className.replace("jive-muc-username-active", "jive-muc-username");
+        }.bind(inputfield);
         
         // add changenick behavior
         var change = function(evt) {
-            if(evt.keyCode == 13) {
+            if(evt.keyCode == 13 || evt.type == "blur") {
                 var jidFromId = this.tabId.split("-")[2];
                 var room = this.tabs[jidFromId].room;
                 this.fireEvent("changenameinmuc", this, room.jid, getEl(this.bodyId + '-uname').dom.value);
+                setNotEditing();
             }
         };
         getEl(this.bodyId + '-uname').addListener('keydown', change.bind(this));
+        //resize stuff disabled for now.
+//        var resizeHandler = input.fitToParent.createDelegate(input);
+
+       // this.dialog.addListener("resize", resizeHandler);
+
+        inputfield.onfocus = setEditing;
+        inputfield.onblur = change.bind(this);
+        //XXX: this is a hack to get around the fact that it's too early. We should figure out where it really goes.
+        //Without it, the text entry box is too large until you resize the window.
+       // window.setTimeout(resizeHandler, 1000);
     },
 
 /**
@@ -1869,34 +1895,36 @@ YAHOO.extend(jive.spank.roster.RosterWindow, jive.spank.Window, {
     }
 });
 
-jive.spank.chat.Dialog = function(parentWindow, template, confObj) {
+jive.spank.chat.Dialog = function(parentWindow, template, configuration) {
     this.parentWindow = parentWindow;
 
     var elm = document.createElement('div');
     this.id = elm.id = YAHOO.util.Dom.generateId();
     document.body.appendChild(elm);
 
-    var constrained = !confObj.constrained;
+    var constrained = !configuration.constrained;
 	jive.spank.chat.Dialog.superclass.constructor.call(this, elm.id, {
-        title: confObj.title,
-        modal: confObj.modal,
+        title: configuration.title,
+        modal: configuration.modal,
         constraintoviewport: constrained,
-        width: confObj.width,
-        height: confObj.height,
+        width: configuration.width,
+        height: configuration.height,
         shadow: true,
         proxyDrag: true,
         resizable: false,
         draggable: true,
-        x: confObj.x ? confObj.x : (YAHOO.util.Dom.getViewportWidth() / 2) - (confObj.width / 2),
-        y: confObj.y ? confObj.y : (YAHOO.util.Dom.getViewportHeight() / 2) - (confObj.height / 2),
+        x: configuration.x ? configuration.x : (YAHOO.util.Dom.getViewportWidth() / 2)
+                - (configuration.width > 0 ? (configuration.width / 2) : 0),
+        y: configuration.y ? configuration.y : (YAHOO.util.Dom.getViewportHeight() / 2)
+                - (configuration.height > 0 ? configuration.height / 2 : 0),
         closable: true
     });
     this.dialog = this;
 
-    if (confObj.templateKeys) {
-        var newObj = confObj.templateKeys;
-        newObj.id = this.id;
-        template.append(this.body.dom, newObj);
+    if (configuration.templateKeys) {
+        var templateKeys = configuration.templateKeys;
+        templateKeys.id = this.id;
+        template.append(this.body.dom, templateKeys);
     }
     else {
         template.append(this.body.dom, {id: this.id});
@@ -1998,6 +2026,111 @@ YAHOO.extend(jive.spank.dialog.CreateConference, jive.spank.chat.Dialog, {
 		getEl(this.id + '-private').removeAllListeners();
 		getEl(this.id + '-createroom').removeAllListeners();
 	}
+});
+
+jive.spank.dialog.UserSearch = function(parentWindow, searchForm, configuration) {
+    if (!configuration) {
+        configuration = {};
+    }
+    configuration.templateKeys = {
+        instructions: 'Insert your instructions here.'
+    }
+    configuration = $H(configuration).merge(this._configuration);
+    var template = this._createTemplate(searchForm);
+    jive.spank.dialog.UserSearch.superclass.constructor.call(this, parentWindow,
+            template, configuration);
+    this.events = $H(this.events).merge({
+        "search": true
+    });
+
+    this.addListener("hide", this.onHide.bind(this));
+    this.addListener("show", this.onShow.bind(this));
+
+    this._buildSearchGrid([["test", "test", "test"], ["test", "test", "test"]],
+            this.id + "-search-grid");
+    this.onShow();
+    this.searchGrid.render();
+};
+
+YAHOO.extend(jive.spank.dialog.UserSearch, jive.spank.chat.Dialog, {
+    _configuration : {
+        title: "Person Search"
+    },
+    _template : [
+            '<div id="{id}-person-search" class="dbody personsearch">',
+            '<div class="jive-dbody-description">',
+            '<h1>Person Search</h1>',
+            '<p>{instructions}</p>',
+            '</div>',
+            '<div class="">',
+            '<fieldset>',
+            '<legend>Search Service</legend>',
+            '<p><label for="service">Search Service</label>',
+            '<select name="selectservice" tabindex="{firstTabIndex}">',
+            '</select>',
+            '<a href="#">Add Service</a>',
+            '</p>',
+            '</fieldset>',
+            '</div>',
+            '<div class="">',
+            '<fieldset>',
+            '<legend>Person Search Form</legend>',
+            '{searchform}',
+            '<p class="buttons"><input type="submit" value="Search" tabindex="{lastTabIndex}"/></p>',
+            '</fieldset>',
+            '</div>',
+            '<div id="{id}-search-grid" class="jive-grid">',
+            '</div>',
+            '</div>'],
+    _createTemplate: function(searchForm) {
+        searchForm = [
+                '<p><input name="Username" type="checkbox" value="Username" checked',
+                '/>Username</p>',
+                '<p><label for="testdrop">Test Dropdown</label>',
+                '<select id="testdrop" name="testdrop">',
+                '<option>test 1</option>',
+                '<option>test 2</option>',
+                '<option>test 3</option>',
+                '</select>',
+                '</p>'];
+        var template = this._template;
+        var index = template.indexOf("{searchform}");
+        template.splice(index, 1, searchForm.join(''));
+        return new YAHOO.ext.DomHelper.Template(template.join(''));
+    },
+    onHide : function() {
+        this.searchGrid.destroy();
+    },
+    onShow: function() {
+        var personSearch = getEl(this.id + "-person-search");
+        var width = Math.max(this.body.getWidth(), personSearch.getWidth());
+        this.resizeTo(500, 500);
+    },
+    _buildSearchGrid: function(searchData, searchGridId) {
+        var schema = {
+            fields: ["name", "muc#roominfo_subject", "muc#roominfo_occupants"]
+        }
+        var gridData = new YAHOO.ext.grid.DefaultDataModel(searchData);
+
+        // get some labels on there
+        var roomCols = [
+        {header: "Username", width: 240, sortable: true},
+        {header: "Name", width: 160, sortable: true},
+        {header: "E-Mail", width: 70, sortable: true}
+                ];
+        var gridCols = new YAHOO.ext.grid.DefaultColumnModel(roomCols);
+
+        // finally! build grid
+        this.searchGrid = new YAHOO.ext.grid.Grid(searchGridId, {
+            dataModel: gridData,
+            colModel: gridCols,
+            selModel: new YAHOO.ext.grid.SingleSelectionModel(),
+            monitorWindowResize: false,
+            stripeRows: false
+        });
+
+        return this.searchGrid;
+    }
 });
 
 jive.spank.dialog.CreateAccount = function(verify) {
@@ -2808,6 +2941,51 @@ jive.spank.AutoComplete.prototype._populateList = function(query, results, self)
     self.autoHighlight = (results[0][0].indexOf(query) == 0);
     jive.spank.AutoComplete.superclass._populateList.call(this, query, results, self);
 }
+
+jive.spank.AutoComplete.prototype._onTextboxKeyDown = function(v, oSelf) {
+    var nKeyCode = v.keyCode;
+
+    switch (nKeyCode) {
+        case 9: // tab
+            if (oSelf.delimChar && (oSelf._nKeyCode != nKeyCode)) {
+                if (oSelf._bContainerOpen) {
+                    YAHOO.util.Event.stopEvent(v);
+                }
+            }
+            // select an item or clear out
+            if (oSelf._oCurItem) {
+                oSelf._selectItem(oSelf._oCurItem);
+            }
+            else {
+                oSelf._toggleContainer(false);
+            }
+            break;
+        case 13: // enter
+            if (oSelf._nKeyCode != nKeyCode) {
+                if (oSelf._bContainerOpen) {
+                    YAHOO.util.Event.stopEvent(v);
+                }
+            }
+            oSelf._toggleContainer(false);
+            break;
+        case 27: // esc
+            oSelf._toggleContainer(false);
+            return;
+        case 39: // right
+            oSelf._jumpSelection();
+            break;
+        case 38: // up
+            YAHOO.util.Event.stopEvent(v);
+            oSelf._moveSelection(nKeyCode);
+            break;
+        case 40: // down
+            YAHOO.util.Event.stopEvent(v);
+            oSelf._moveSelection(nKeyCode);
+            break;
+        default:
+            break;
+    }
+};
 /**
  * This one tweaks it up a little extra for the roster-group data source, which is a 1-dimensional
  * array, not 2-D like the contacts datasource in the invite menu.

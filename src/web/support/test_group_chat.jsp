@@ -18,74 +18,25 @@
 </style>
 
 	<script type="text/javascript">
-		jive_groupchat_config = {
-		width: 500,
-	    height: 450,
-	    x: 0,
-	    y: 0,
-	    constrained: "false",
-	    draggable: "false",
-	    resizable: "false",
-	    closable: "true",
-	    bottomPane: "false",
-	    mucServer: "conference.igniterealtime.org",
-	    server: "http://www.igniterealtime.org",
-	    connectionAddress: "http://www.igniterealtime.org",
-	    roomName: "test",
-		fitToParent: "true"
+	jive_groupchat_config = {
+		width: 1000, //Taken over by groupchat-container if fitToParent: "true" and Height and Width are specified in the CSS
+		height: 450, // Same as above
+		x: 0, // 0 centers it on the page. Setting XY coords. will absolutely position the dlg on the page, unless fitToParent: "true"
+		y: 0, // Same as above
+		constrained: "false",
+		draggable: "false",
+		resizable: "false",
+		closable: "false",
+		bottomPane: "false",
+		mucServer: "conference.drag",
+		server: "drag",
+		connectionAddress: "drag:7080",
+		roomName: "test",
+		fitToParent: "true", // forces the dlg to find #groupchat-container and conform to its layout and size
 	}
-
-
 	</script>
 
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/sarissa.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/getElementsBySelector.js" type="text/javascript"></script>
-
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/prototype.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/connection.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/yahoo.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/dom.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/event.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/container_core.js" type="text/javascript"></script>
-
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/menu.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/dragdrop.js" type="text/javascript"></script>		
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/yutil.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/element.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/domhelper.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/compositeelement.js" type="text/javascript"></script>
-
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/eventmanager.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/autocomplete.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/tabpanel.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/resizable.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/state.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/basicdialog.js" type="text/javascript"></script>
-
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/splitbar.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/mixedcollection.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/layoutmanager.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/borderlayout.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/contentpanels.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/layoutregion.js" type="text/javascript"></script>
-
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/layoutstatemanager.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/splitlayoutregion.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/borderlayoutregions.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/grid/AbstractColumnModel.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/grid/DefaultColumnModel.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/grid/Grid.js" type="text/javascript"></script>
-
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/grid/GridView.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/grid/SelectionModel.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/data/AbstractDataModel.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/data/DefaultDataModel.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/loadabledatamodel.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/CSS.js" type="text/javascript"></script>
-
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/spank.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/control.js" type="text/javascript"></script>
-	<script src="http://www.igniterealtime.org/support/groupchat/group_chat.js" type="text/javascript"></script>
+	<script src="http://www.igniterealtime.org/support/groupchat/combined.compressed.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/basic-dialog.css">
  	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/layout.css">
@@ -137,6 +88,10 @@
 					<div id="groupchat-container">
 						<div id="groupchat"></div>
 					</div>
+					
+					<p>Alternatively, you may use any XMPP client (Spark, Exodus, Pandion, Trillian, etc) 
+					to connect to the group chat service at conference.igniterealtime.org. The chat name is
+                    &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p>
 
 					<h3>Previous Chats</h3>
 					<p>Transcripts of the weekly chats are posted in the 

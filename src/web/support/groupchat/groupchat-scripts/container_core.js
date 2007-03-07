@@ -1,8 +1,8 @@
 /*
-Copyright (c) 2006, Yahoo! Inc. All rights reserved.
+Copyright (c) 2007, Yahoo! Inc. All rights reserved.
 Code licensed under the BSD License:
 http://developer.yahoo.net/yui/license.txt
-version: 0.12.2
+version: 2.2.0
 */
 /**
 * Config is a utility used within an Object to allow the implementer to maintain a list of local configuration properties and listen for changes to those properties dynamically using CustomEvent. The initial values are also maintained so that the configuration can be reset at any given point to its initial state.
@@ -78,7 +78,6 @@ YAHOO.util.Config.prototype.init = function(owner) {
 	* @event configChangedEvent
 	*/
 	this.configChangedEvent = new YAHOO.util.CustomEvent("configChanged");
-
 	this.queueInProgress = false;
 
 	/* Private Members */
@@ -489,8 +488,9 @@ YAHOO.util.Config.alreadySubscribed = function(evt, fn, obj) {
 * @param {Object} userConfig	The configuration Object literal containing the configuration that should be set for this module. See configuration documentation for more details.
 */
 YAHOO.widget.Module = function(el, userConfig) {
-	if (el) { 
-		this.init(el, userConfig); 
+	if (el) {
+		this.init(el, userConfig);
+	} else {
 	}
 };
 
@@ -501,7 +501,7 @@ YAHOO.widget.Module = function(el, userConfig) {
 * @final
 * @type String
 */
-YAHOO.widget.Module.IMG_ROOT = "http://us.i1.yimg.com/us.yimg.com/i/";
+YAHOO.widget.Module.IMG_ROOT = null;
 
 /**
 * Constant representing the prefix path to use for securely served images
@@ -510,7 +510,7 @@ YAHOO.widget.Module.IMG_ROOT = "http://us.i1.yimg.com/us.yimg.com/i/";
 * @final
 * @type String
 */
-YAHOO.widget.Module.IMG_ROOT_SSL = "https://a248.e.akamai.net/sec.yimg.com/i/";
+YAHOO.widget.Module.IMG_ROOT_SSL = null;
 
 /**
 * Constant for the default CSS class name that represents a Module
@@ -561,7 +561,7 @@ YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL = "javascript:false;";
 * Singleton CustomEvent fired when the font size is changed in the browser.
 * Opera's "zoom" functionality currently does not support text size detection.
 * @event YAHOO.widget.Module.textResizeEvent
-*/	
+*/
 YAHOO.widget.Module.textResizeEvent = new YAHOO.util.CustomEvent("textResize");
 
 YAHOO.widget.Module.prototype = {
@@ -577,7 +577,7 @@ YAHOO.widget.Module.prototype = {
 	* @property element
 	* @type HTMLElement
 	*/
-	element : null, 
+	element : null,
 
 	/**
 	* The header element, denoted with CSS class "hd"
@@ -613,7 +613,7 @@ YAHOO.widget.Module.prototype = {
 	* @type String
 	*/
 	imageRoot : YAHOO.widget.Module.IMG_ROOT,
-		
+
 	/**
 	* Initializes the custom events for Module which are fired automatically at appropriate times by the Module class.
 	* @method initEvents
@@ -631,7 +631,7 @@ YAHOO.widget.Module.prototype = {
 		* CustomEvent fired after class initalization.
 		* @event initEvent
 		* @param {class} classRef	class reference of the initializing class, such as this.beforeInitEvent.fire(YAHOO.widget.Module)
-		*/		
+		*/
 		this.initEvent = new YAHOO.util.CustomEvent("init");
 
 		/**
@@ -651,21 +651,21 @@ YAHOO.widget.Module.prototype = {
 		* @event renderEvent
 		*/
 		this.renderEvent = new YAHOO.util.CustomEvent("render");
-	
+
 		/**
 		* CustomEvent fired when the header content of the Module is modified
 		* @event changeHeaderEvent
 		* @param {String/HTMLElement} content	String/element representing the new header content
 		*/
 		this.changeHeaderEvent = new YAHOO.util.CustomEvent("changeHeader");
-		
+
 		/**
 		* CustomEvent fired when the body content of the Module is modified
 		* @event changeBodyEvent
 		* @param {String/HTMLElement} content	String/element representing the new body content
-		*/		
+		*/
 		this.changeBodyEvent = new YAHOO.util.CustomEvent("changeBody");
-		
+
 		/**
 		* CustomEvent fired when the footer content of the Module is modified
 		* @event changeFooterEvent
@@ -684,7 +684,7 @@ YAHOO.widget.Module.prototype = {
 		* @event destroyEvent
 		*/
 		this.destroyEvent = new YAHOO.util.CustomEvent("destroy");
-		
+
 		/**
 		* CustomEvent fired before the Module is shown
 		* @event beforeShowEvent
@@ -708,7 +708,7 @@ YAHOO.widget.Module.prototype = {
 		* @event hideEvent
 		*/
 		this.hideEvent = new YAHOO.util.CustomEvent("hide");
-	}, 
+	},
 
 	/**
 	* String representing the current user-agent platform
@@ -766,7 +766,7 @@ YAHOO.widget.Module.prototype = {
 	*/
 	initDefaultConfig : function() {
 		// Add properties //
-		
+
 		/**
 		* Specifies whether the Module is visible on the page.
 		* @config visible
@@ -774,7 +774,7 @@ YAHOO.widget.Module.prototype = {
 		* @default true
 		*/
 		this.cfg.addProperty("visible", { value:true, handler:this.configVisible, validator:this.cfg.checkBoolean } );
-		
+
 		/**
 		* Object or array of objects representing the ContainerEffect classes that are active for animating the container.
 		* @config effect
@@ -782,7 +782,7 @@ YAHOO.widget.Module.prototype = {
 		* @default null
 		*/
 		this.cfg.addProperty("effect", { suppressEvent:true, supercedes:["visible"] } );
-		
+
 		/**
 		* Specifies whether to create a special proxy iframe to monitor for user font resizing in the document
 		* @config monitorresize
@@ -811,7 +811,7 @@ YAHOO.widget.Module.prototype = {
 		* @type YAHOO.util.Config
 		*/
 		this.cfg = new YAHOO.util.Config(this);
-		
+
 		if (this.isSecure) {
 			this.imageRoot = YAHOO.widget.Module.IMG_ROOT_SSL;
 		}
@@ -821,16 +821,16 @@ YAHOO.widget.Module.prototype = {
 
 			el = document.getElementById(el);
 			if (! el) {
-				el = document.createElement("DIV");
+				el = document.createElement("div");
 				el.id = elId;
 			}
 		}
 
 		this.element = el;
-		
+
 		if (el.id) {
 			this.id = el.id;
-		} 
+		}
 
 		var childNodes = this.element.childNodes;
 
@@ -877,61 +877,56 @@ YAHOO.widget.Module.prototype = {
         if(this.browser != "opera") {
 
             var resizeMonitor = document.getElementById("_yuiResizeMonitor");
-    
+
             if (! resizeMonitor) {
-    
+
                 resizeMonitor = document.createElement("iframe");
-    
+
                 var bIE = (this.browser.indexOf("ie") === 0);
-    
-                if(this.isSecure && 
-                   YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL && 
-                   bIE) {
-    
-                  resizeMonitor.src = 
-                       YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL;
-    
-                }                
+
+                if(this.isSecure && YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL && bIE) {
+                   resizeMonitor.src = YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL;
+                }
 
                 resizeMonitor.id = "_yuiResizeMonitor";
                 resizeMonitor.style.visibility = "hidden";
-                
+
                 document.body.appendChild(resizeMonitor);
-    
+
                 resizeMonitor.style.width = "10em";
                 resizeMonitor.style.height = "10em";
                 resizeMonitor.style.position = "absolute";
-                
-                var nLeft = -1 * resizeMonitor.offsetWidth,
-                    nTop = -1 * resizeMonitor.offsetHeight;
-    
+
+                var nLeft = -1 * resizeMonitor.offsetWidth;
+                var nTop = -1 * resizeMonitor.offsetHeight;
+
                 resizeMonitor.style.top = nTop + "px";
-                resizeMonitor.style.left =  nLeft + "px";
+                resizeMonitor.style.left = nLeft + "px";
                 resizeMonitor.style.borderStyle = "none";
                 resizeMonitor.style.borderWidth = "0";
                 YAHOO.util.Dom.setStyle(resizeMonitor, "opacity", "0");
-                
+
                 resizeMonitor.style.visibility = "visible";
-    
+
                 if(!bIE) {
-    
+
                     var doc = resizeMonitor.contentWindow.document;
-    
+
                     doc.open();
                     doc.close();
-                
+
                 }
             }
-    
+
 			var fireTextResize = function() {
 				YAHOO.widget.Module.textResizeEvent.fire();
 			};
 
             if(resizeMonitor && resizeMonitor.contentWindow) {
                 this.resizeMonitor = resizeMonitor;
-				
+
 				YAHOO.widget.Module.textResizeEvent.subscribe(this.onDomResize, this, true);
-				
+
 				if (! YAHOO.widget.Module.textResizeInitialized) {
 					if (! YAHOO.util.Event.addListener(this.resizeMonitor.contentWindow, "resize", fireTextResize)) {
 						// This will fail in IE if document.domain has changed, so we must change the listener to
@@ -941,7 +936,7 @@ YAHOO.widget.Module.prototype = {
 					YAHOO.widget.Module.textResizeInitialized = true;
 				}
             }
-        
+
         }
 
 	},
@@ -952,13 +947,14 @@ YAHOO.widget.Module.prototype = {
 	* @param {DOMEvent} e	The DOM resize event
 	* @param {Object} obj	The scope object passed to the handler
 	*/
-	onDomResize : function(e, obj) { 
+	onDomResize : function(e, obj) {
+
         var nLeft = -1 * this.resizeMonitor.offsetWidth,
             nTop = -1 * this.resizeMonitor.offsetHeight;
-        
+
         this.resizeMonitor.style.top = nTop + "px";
         this.resizeMonitor.style.left =  nLeft + "px";
-	
+
 	},
 
 	/**
@@ -966,13 +962,13 @@ YAHOO.widget.Module.prototype = {
 	* @method setHeader
 	* @param {String}	headerContent	The HTML used to set the header <em>OR</em>
 	* @param {HTMLElement}	headerContent	The HTMLElement to append to the header
-	*/	
+	*/
 	setHeader : function(headerContent) {
 		if (! this.header) {
-			this.header = document.createElement("DIV");
+			this.header = document.createElement("div");
 			this.header.className = YAHOO.widget.Module.CSS_HEADER;
 		}
-		
+
 		if (typeof headerContent == "string") {
 			this.header.innerHTML = headerContent;
 		} else {
@@ -988,13 +984,13 @@ YAHOO.widget.Module.prototype = {
 	* Appends the passed element to the header. If no header is present, one will be automatically created.
 	* @method appendToHeader
 	* @param {HTMLElement}	element	The element to append to the header
-	*/	
+	*/
 	appendToHeader : function(element) {
 		if (! this.header) {
-			this.header = document.createElement("DIV");
+			this.header = document.createElement("div");
 			this.header.className = YAHOO.widget.Module.CSS_HEADER;
 		}
-		
+
 		this.header.appendChild(element);
 		this.changeHeaderEvent.fire(element);
 		this.changeContentEvent.fire();
@@ -1005,10 +1001,10 @@ YAHOO.widget.Module.prototype = {
 	* @method setBody
 	* @param {String}	bodyContent	The HTML used to set the body <em>OR</em>
 	* @param {HTMLElement}	bodyContent	The HTMLElement to append to the body
-	*/		
+	*/
 	setBody : function(bodyContent) {
 		if (! this.body) {
-			this.body = document.createElement("DIV");
+			this.body = document.createElement("div");
 			this.body.className = YAHOO.widget.Module.CSS_BODY;
 		}
 
@@ -1031,7 +1027,7 @@ YAHOO.widget.Module.prototype = {
 	*/
 	appendToBody : function(element) {
 		if (! this.body) {
-			this.body = document.createElement("DIV");
+			this.body = document.createElement("div");
 			this.body.className = YAHOO.widget.Module.CSS_BODY;
 		}
 
@@ -1045,10 +1041,10 @@ YAHOO.widget.Module.prototype = {
 	* @method setFooter
 	* @param {String}	footerContent	The HTML used to set the footer <em>OR</em>
 	* @param {HTMLElement}	footerContent	The HTMLElement to append to the footer
-	*/	
+	*/
 	setFooter : function(footerContent) {
 		if (! this.footer) {
-			this.footer = document.createElement("DIV");
+			this.footer = document.createElement("div");
 			this.footer.className = YAHOO.widget.Module.CSS_FOOTER;
 		}
 
@@ -1070,7 +1066,7 @@ YAHOO.widget.Module.prototype = {
 	*/
 	appendToFooter : function(element) {
 		if (! this.footer) {
-			this.footer = document.createElement("DIV");
+			this.footer = document.createElement("div");
 			this.footer.className = YAHOO.widget.Module.CSS_FOOTER;
 		}
 
@@ -1083,8 +1079,8 @@ YAHOO.widget.Module.prototype = {
 	* Renders the Module by inserting the elements that are not already in the main Module into their correct places. Optionally appends the Module to the specified node prior to the render's execution. NOTE: For Modules without existing markup, the appendToNode argument is REQUIRED. If this argument is ommitted and the current element is not present in the document, the function will return false, indicating that the render was a failure.
 	* @method render
 	* @param {String}	appendToNode	The element id to which the Module should be appended to prior to rendering <em>OR</em>
-	* @param {HTMLElement}	appendToNode	The element to which the Module should be appended to prior to rendering	
-	* @param {HTMLElement}	moduleElement	OPTIONAL. The element that represents the actual Standard Module container. 
+	* @param {HTMLElement}	appendToNode	The element to which the Module should be appended to prior to rendering
+	* @param {HTMLElement}	moduleElement	OPTIONAL. The element that represents the actual Standard Module container.
 	* @return {Boolean} Success or failure of the render
 	*/
 	render : function(appendToNode, moduleElement) {
@@ -1099,7 +1095,7 @@ YAHOO.widget.Module.prototype = {
 			if (typeof element == "string") {
 				element = document.getElementById(element);
 			}
-			
+
 			if (element) {
 				element.appendChild(me.element);
 				me.appendEvent.fire();
@@ -1115,7 +1111,7 @@ YAHOO.widget.Module.prototype = {
 		}
 
 		// Need to get everything into the DOM if it isn't already
-		
+
 		if (this.header && ! YAHOO.util.Dom.inDocument(this.header)) {
 			// There is a header, but it's not in the DOM yet... need to add it
 			var firstChild = moduleElement.firstChild;
@@ -1236,7 +1232,7 @@ YAHOO.widget.Module.prototype = {
 * Returns a String representation of the Object.
 * @method toString
 * @return {String}	The string representation of the Module
-*/ 
+*/
 YAHOO.widget.Module.prototype.toString = function() {
 	return "Module " + this.id;
 };
@@ -1309,7 +1305,7 @@ YAHOO.widget.Overlay.BOTTOM_RIGHT = "br";
 * @final
 * @type String
 */
-YAHOO.widget.Overlay.CSS_OVERLAY = "overlay";
+YAHOO.widget.Overlay.CSS_OVERLAY = "yui-overlay";
 
 /**
 * The Overlay initialization method, which is executed for Overlay and all of its subclasses. This method is automatically called by the constructor, and  sets up all DOM references for pre-existing markup, and creates required markup if it is not already present.
@@ -1320,7 +1316,7 @@ YAHOO.widget.Overlay.CSS_OVERLAY = "overlay";
 */
 YAHOO.widget.Overlay.prototype.init = function(el, userConfig) {
 	YAHOO.widget.Overlay.superclass.init.call(this, el/*, userConfig*/);  // Note that we don't pass the user config in here yet because we only want it executed once, at the lowest subclass level
-	
+
 	this.beforeInitEvent.fire(YAHOO.widget.Overlay);
 
 	YAHOO.util.Dom.addClass(this.element, YAHOO.widget.Overlay.CSS_OVERLAY);
@@ -1339,6 +1335,7 @@ YAHOO.widget.Overlay.prototype.init = function(el, userConfig) {
 	}
 
 	this.initEvent.fire(YAHOO.widget.Overlay);
+
 };
 
 /**
@@ -1379,7 +1376,7 @@ YAHOO.widget.Overlay.prototype.initDefaultConfig = function() {
 	* @config x
 	* @type Number
 	* @default null
-	*/	
+	*/
 	this.cfg.addProperty("x", { handler:this.configX, validator:this.cfg.checkNumber, suppressEvent:true, supercedes:["iframe"] } );
 
 	/**
@@ -1387,7 +1384,7 @@ YAHOO.widget.Overlay.prototype.initDefaultConfig = function() {
 	* @config y
 	* @type Number
 	* @default null
-	*/	
+	*/
 	this.cfg.addProperty("y", { handler:this.configY, validator:this.cfg.checkNumber, suppressEvent:true, supercedes:["iframe"] } );
 
 	/**
@@ -1395,7 +1392,7 @@ YAHOO.widget.Overlay.prototype.initDefaultConfig = function() {
 	* @config xy
 	* @type Number[]
 	* @default null
-	*/	
+	*/
 	this.cfg.addProperty("xy",{ handler:this.configXY, suppressEvent:true, supercedes:["iframe"] } );
 
 	/**
@@ -1403,7 +1400,7 @@ YAHOO.widget.Overlay.prototype.initDefaultConfig = function() {
 	* @config context
 	* @type Array
 	* @default null
-	*/	
+	*/
 	this.cfg.addProperty("context",	{ handler:this.configContext, suppressEvent:true, supercedes:["iframe"] } );
 
 	/**
@@ -1496,21 +1493,20 @@ YAHOO.widget.Overlay.prototype.showMacGeckoScrollbars = function() {
 */
 YAHOO.widget.Overlay.prototype.configVisible = function(type, args, obj) {
 	var visible = args[0];
-
 	var currentVis = YAHOO.util.Dom.getStyle(this.element, "visibility");
 
-	if (currentVis == "inherit") { 
+	if (currentVis == "inherit") {
 		var e = this.element.parentNode;
 		while (e.nodeType != 9 && e.nodeType != 11) {
 			currentVis = YAHOO.util.Dom.getStyle(e, "visibility");
 			if (currentVis != "inherit") { break; }
 			e = e.parentNode;
 		}
-		if (currentVis == "inherit") { 
+		if (currentVis == "inherit") {
 			currentVis = "visible";
 		}
 	}
-	
+
 	var effect = this.cfg.getProperty("effect");
 
 	var effectInstances = [];
@@ -1530,7 +1526,7 @@ YAHOO.widget.Overlay.prototype.configVisible = function(type, args, obj) {
 	if (visible) { // Show
 		if (isMacGecko) {
 			this.showMacGeckoScrollbars();
-		}	
+		}
 
 		if (effect) { // Animate in
 			if (visible) { // Animate in if not showing
@@ -1557,14 +1553,14 @@ YAHOO.widget.Overlay.prototype.configVisible = function(type, args, obj) {
 	} else { // Hide
 		if (isMacGecko) {
 			this.hideMacGeckoScrollbars();
-		}	
+		}
 
 		if (effect) { // Animate out if showing
 			if (currentVis == "visible") {
 				this.beforeHideEvent.fire();
 				for (var k=0;k<effectInstances.length;k++) {
 					var h = effectInstances[k];
-					if (k === 0 && ! YAHOO.util.Config.alreadySubscribed(h.animateOutCompleteEvent,this.hideEvent.fire,this.hideEvent)) {				
+					if (k === 0 && ! YAHOO.util.Config.alreadySubscribed(h.animateOutCompleteEvent,this.hideEvent.fire,this.hideEvent)) {
 						h.animateOutCompleteEvent.subscribe(this.hideEvent.fire,this.hideEvent,true); // Delegate hideEvent until end of animateOutComplete
 					}
 					h.animateOut();
@@ -1579,7 +1575,7 @@ YAHOO.widget.Overlay.prototype.configVisible = function(type, args, obj) {
 				this.cfg.refireEvent("iframe");
 				this.hideEvent.fire();
 			}
-		}	
+		}
 	}
 };
 
@@ -1605,11 +1601,11 @@ YAHOO.widget.Overlay.prototype.configFixedCenter = function(type, args, obj) {
 
 	if (val) {
 		this.center();
-			
+
 		if (! YAHOO.util.Config.alreadySubscribed(this.beforeShowEvent, this.center, this)) {
 			this.beforeShowEvent.subscribe(this.center, this, true);
 		}
-		
+
 		if (! YAHOO.util.Config.alreadySubscribed(YAHOO.widget.Overlay.windowResizeEvent, this.doCenterOnDOMEvent, this)) {
 			YAHOO.widget.Overlay.windowResizeEvent.subscribe(this.doCenterOnDOMEvent, this, true);
 		}
@@ -1701,6 +1697,7 @@ YAHOO.widget.Overlay.prototype.configXY = function(type, args, obj) {
 	x = this.cfg.getProperty("x");
 	y = this.cfg.getProperty("y");
 
+
 	this.cfg.refireEvent("iframe");
 	this.moveEvent.fire([x,y]);
 };
@@ -1725,7 +1722,7 @@ YAHOO.widget.Overlay.prototype.configX = function(type, args, obj) {
 	y = this.cfg.getProperty("y");
 
 	YAHOO.util.Dom.setX(this.element, x, true);
-	
+
 	this.cfg.setProperty("xy", [x, y], true);
 
 	this.cfg.refireEvent("iframe");
@@ -1808,13 +1805,14 @@ YAHOO.widget.Overlay.prototype.configIframe = function(type, args, obj) {
 			y = this.cfg.getProperty("y");
 		}
 
+
 		if (! isNaN(x) && ! isNaN(y)) {
 			if (! this.iframe) {
 				this.iframe = document.createElement("iframe");
 				if (this.isSecure) {
 					this.iframe.src = YAHOO.widget.Overlay.IFRAME_SRC;
 				}
-				
+
 				var parent = this.element.parentNode;
 				if (parent) {
 					parent.appendChild(this.iframe);
@@ -1833,7 +1831,7 @@ YAHOO.widget.Overlay.prototype.configIframe = function(type, args, obj) {
 					this.hideIframe();
 				}
 			}
-			
+
 			var iframeDisplay = YAHOO.util.Dom.getStyle(this.iframe, "display");
 
 			if (iframeDisplay == "none") {
@@ -1899,11 +1897,11 @@ YAHOO.widget.Overlay.prototype.configContext = function(type, args, obj) {
 			if (typeof contextEl == "string") {
 				this.cfg.setProperty("context", [document.getElementById(contextEl),elementMagnetCorner,contextMagnetCorner], true);
 			}
-			
+
 			if (elementMagnetCorner && contextMagnetCorner) {
 				this.align(elementMagnetCorner, contextMagnetCorner);
 			}
-		}	
+		}
 	}
 };
 
@@ -1920,7 +1918,7 @@ YAHOO.widget.Overlay.prototype.align = function(elementAlign, contextAlign) {
 	var contextArgs = this.cfg.getProperty("context");
 	if (contextArgs) {
 		var context = contextArgs[0];
-		
+
 		var element = this.element;
 		var me = this;
 
@@ -1933,7 +1931,6 @@ YAHOO.widget.Overlay.prototype.align = function(elementAlign, contextAlign) {
 		}
 
 		if (element && context) {
-			var elementRegion = YAHOO.util.Dom.getRegion(element);
 			var contextRegion = YAHOO.util.Dom.getRegion(context);
 
 			var doAlign = function(v,h) {
@@ -1959,7 +1956,7 @@ YAHOO.widget.Overlay.prototype.align = function(elementAlign, contextAlign) {
 					break;
 				case YAHOO.widget.Overlay.TOP_RIGHT:
 					doAlign(contextRegion.top, contextRegion.right);
-					break;		
+					break;
 				case YAHOO.widget.Overlay.BOTTOM_LEFT:
 					doAlign(contextRegion.bottom, contextRegion.left);
 					break;
@@ -1997,7 +1994,7 @@ YAHOO.widget.Overlay.prototype.enforceConstraints = function(type, args, obj) {
 	var leftConstraint = scrollX + 10;
 	var bottomConstraint = scrollY + viewPortHeight - offsetHeight - 10;
 	var rightConstraint = scrollX + viewPortWidth - offsetWidth - 10;
-	
+
 	if (x < leftConstraint) {
 		x = leftConstraint;
 	} else if (x > rightConstraint) {
@@ -2031,7 +2028,7 @@ YAHOO.widget.Overlay.prototype.center = function() {
 
 	var x = (viewPortWidth / 2) - (elementWidth / 2) + scrollX;
 	var y = (viewPortHeight / 2) - (elementHeight / 2) + scrollY;
-		
+
 	this.cfg.setProperty("xy", [parseInt(x, 10), parseInt(y, 10)]);
 
 	this.cfg.refireEvent("iframe");
@@ -2072,20 +2069,20 @@ YAHOO.widget.Overlay.prototype.destroy = function() {
 	if (this.iframe) {
 		this.iframe.parentNode.removeChild(this.iframe);
 	}
-	
+
 	this.iframe = null;
 
 	YAHOO.widget.Overlay.windowResizeEvent.unsubscribe(this.doCenterOnDOMEvent, this);
 	YAHOO.widget.Overlay.windowScrollEvent.unsubscribe(this.doCenterOnDOMEvent, this);
 
-	YAHOO.widget.Overlay.superclass.destroy.call(this);  
+	YAHOO.widget.Overlay.superclass.destroy.call(this);
 };
 
 /**
 * Returns a String representation of the object.
 * @method toString
 * @return {String} The string representation of the Overlay.
-*/ 
+*/
 YAHOO.widget.Overlay.prototype.toString = function() {
 	return "Overlay " + this.id;
 };
@@ -2192,7 +2189,7 @@ YAHOO.widget.OverlayManager.prototype = {
 	/**
 	* Initializes the default configuration of the OverlayManager
 	* @method initDefaultConfig
-	*/	
+	*/
 	initDefaultConfig : function() {
 		/**
 		* The collection of registered Overlays in use by the OverlayManager
@@ -2209,7 +2206,7 @@ YAHOO.widget.OverlayManager.prototype = {
 		* @default "mousedown"
 		*/
 		this.cfg.addProperty("focusevent", { value:"mousedown" } );
-	}, 
+	},
 
 	/**
 	* Initializes the OverlayManager
@@ -2301,11 +2298,11 @@ YAHOO.widget.OverlayManager.prototype = {
 			activeOverlay = null;
 			for (var o=0;o<this.overlays.length;o++) {
 				YAHOO.util.Dom.removeClass(this.overlays[o].element, YAHOO.widget.OverlayManager.CSS_FOCUSED);
-			}		
+			}
 		};
 
 		var overlays = this.cfg.getProperty("overlays");
-		
+
 		if (! this.overlays) {
 			this.overlays = [];
 		}
@@ -2329,7 +2326,7 @@ YAHOO.widget.OverlayManager.prototype = {
 
 			overlay.focusEvent = new YAHOO.util.CustomEvent("focus");
 			overlay.blurEvent = new YAHOO.util.CustomEvent("blur");
-			
+
 			var mgr=this;
 
 			overlay.focus = function() {
@@ -2345,7 +2342,7 @@ YAHOO.widget.OverlayManager.prototype = {
 			var focusOnDomEvent = function(e,obj) {
 				overlay.focus();
 			};
-			
+
 			var focusevent = this.cfg.getProperty("focusevent");
 			YAHOO.util.Event.addListener(overlay.element,focusevent,focusOnDomEvent,this,true);
 
@@ -2355,7 +2352,7 @@ YAHOO.widget.OverlayManager.prototype = {
 			} else {
 				overlay.cfg.setProperty("zIndex", 0);
 			}
-			
+
 			this.overlays.push(overlay);
 			return true;
 		} else if (overlay instanceof Array) {
@@ -2392,7 +2389,7 @@ YAHOO.widget.OverlayManager.prototype = {
 				if (this.overlays[p].id == overlay) {
 					return this.overlays[p];
 				}
-			}			
+			}
 		}
 		return null;
 	},
@@ -2436,12 +2433,11 @@ YAHOO.widget.OverlayManager.prototype = {
 		}
 	},
 
-
 	/**
 	* Returns a string representation of the object.
 	* @method toString
 	* @return {String}	The string representation of the OverlayManager
-	*/ 
+	*/
 	toString : function() {
 		return "OverlayManager";
 	}
@@ -2457,10 +2453,17 @@ YAHOO.widget.OverlayManager.prototype = {
 * @param {String}	attachTo	The element or element ID to which the key event should be attached
 * @param {Object}	keyData		The object literal representing the key(s) to detect. Possible attributes are shift(boolean), alt(boolean), ctrl(boolean) and keys(either an int or an array of ints representing keycodes).
 * @param {Function}	handler		The CustomEvent handler to fire when the key event is detected
-* @param {Object}	handler		An object literal representing the handler. 
+* @param {Object}	handler		An object literal representing the handler.
 * @param {String}	event		Optional. The event (keydown or keyup) to listen for. Defaults automatically to keydown.
 */
 YAHOO.util.KeyListener = function(attachTo, keyData, handler, event) {
+	if (! attachTo) {
+	}
+	if (! keyData) {
+	}
+	if (! handler) {
+	}
+
 	if (! event) {
 		event = YAHOO.util.KeyListener.KEYDOWN;
 	}
@@ -2472,7 +2475,7 @@ YAHOO.util.KeyListener = function(attachTo, keyData, handler, event) {
 	* @param {Object}	keyData		The object literal representing the key(s) to detect. Possible attributes are shift(boolean), alt(boolean), ctrl(boolean) and keys(either an int or an array of ints representing keycodes).
 	*/
 	var keyEvent = new YAHOO.util.CustomEvent("keyPressed");
-	
+
 	/**
 	* The CustomEvent fired when the KeyListener is enabled via the enable() function
 	* @event enabledEvent
@@ -2505,10 +2508,10 @@ YAHOO.util.KeyListener = function(attachTo, keyData, handler, event) {
 	* @private
 	*/
 	function handleKeyPress(e, obj) {
-		if (! keyData.shift) {	
-			keyData.shift = false; 
+		if (! keyData.shift) {
+			keyData.shift = false;
 		}
-		if (! keyData.alt) {	
+		if (! keyData.alt) {
 			keyData.alt = false;
 		}
 		if (! keyData.ctrl) {
@@ -2516,10 +2519,10 @@ YAHOO.util.KeyListener = function(attachTo, keyData, handler, event) {
 		}
 
 		// check held down modifying keys first
-		if (e.shiftKey == keyData.shift && 
+		if (e.shiftKey == keyData.shift &&
 			e.altKey   == keyData.alt &&
 			e.ctrlKey  == keyData.ctrl) { // if we pass this, all modifiers match
-			
+
 			var dataItem;
 			var keyPressed;
 
@@ -2537,7 +2540,6 @@ YAHOO.util.KeyListener = function(attachTo, keyData, handler, event) {
 				}
 			} else {
 				dataItem = keyData.keys;
-
 				if (dataItem == e.charCode ) {
 					keyEvent.fire(e.charCode, e);
 				} else if (dataItem == e.keyCode) {
@@ -2580,7 +2582,7 @@ YAHOO.util.KeyListener = function(attachTo, keyData, handler, event) {
 	* Returns a String representation of the object.
 	* @method toString
 	* @return {String}	The string representation of the KeyListener
-	*/ 
+	*/
 	this.toString = function() {
 		return "KeyListener [" + keyData.keys + "] " + attachTo.tagName + (attachTo.id ? "[" + attachTo.id + "]" : "");
 	};
@@ -2747,7 +2749,7 @@ YAHOO.widget.ContainerEffect.prototype.handleCompleteAnimateOut = function(type,
 * Returns a string representation of the object.
 * @method toString
 * @return {String}	The string representation of the ContainerEffect
-*/ 
+*/
 YAHOO.widget.ContainerEffect.prototype.toString = function() {
 	var output = "ContainerEffect";
 	if (this.overlay) {
@@ -2769,7 +2771,7 @@ YAHOO.widget.ContainerEffect.FADE = function(overlay, dur) {
 
 	fade.handleStartAnimateIn = function(type,args,obj) {
 		YAHOO.util.Dom.addClass(obj.overlay.element, "hide-select");
-		
+
 		if (! obj.overlay.underlay) {
 			obj.overlay.cfg.refireEvent("underlay");
 		}
@@ -2779,7 +2781,7 @@ YAHOO.widget.ContainerEffect.FADE = function(overlay, dur) {
 			obj.overlay.underlay.style.filter = null;
 		}
 
-		YAHOO.util.Dom.setStyle(obj.overlay.element, "visibility", "visible"); 
+		YAHOO.util.Dom.setStyle(obj.overlay.element, "visibility", "visible");
 		YAHOO.util.Dom.setStyle(obj.overlay.element, "opacity", 0);
 	};
 
@@ -2788,8 +2790,8 @@ YAHOO.widget.ContainerEffect.FADE = function(overlay, dur) {
 
 		if (obj.overlay.element.style.filter) {
 			obj.overlay.element.style.filter = null;
-		}			
-		
+		}
+
 		if (obj.overlay.underlay) {
 			YAHOO.util.Dom.setStyle(obj.overlay.underlay, "opacity", obj.initialUnderlayOpacity);
 		}
@@ -2806,18 +2808,18 @@ YAHOO.widget.ContainerEffect.FADE = function(overlay, dur) {
 		}
 	};
 
-	fade.handleCompleteAnimateOut =  function(type, args, obj) { 
+	fade.handleCompleteAnimateOut =  function(type, args, obj) {
 		YAHOO.util.Dom.removeClass(obj.overlay.element, "hide-select");
 		if (obj.overlay.element.style.filter) {
 			obj.overlay.element.style.filter = null;
-		}				
+		}
 		YAHOO.util.Dom.setStyle(obj.overlay.element, "visibility", "hidden");
-		YAHOO.util.Dom.setStyle(obj.overlay.element, "opacity", 1); 
+		YAHOO.util.Dom.setStyle(obj.overlay.element, "opacity", 1);
 
 		obj.overlay.cfg.refireEvent("iframe");
 
 		obj.animateOutCompleteEvent.fire();
-	};	
+	};
 
 	fade.init();
 	return fade;
@@ -2839,25 +2841,25 @@ YAHOO.widget.ContainerEffect.SLIDE = function(overlay, dur) {
 	var clientWidth = YAHOO.util.Dom.getClientWidth();
 	var offsetWidth = overlay.element.offsetWidth;
 
-	var slide = new YAHOO.widget.ContainerEffect(overlay, { 
-															attributes:{ points: { to:[x, y] } }, 
-															duration:dur, 
-															method:YAHOO.util.Easing.easeIn 
-														}, 
-														{ 
+	var slide = new YAHOO.widget.ContainerEffect(overlay, {
+															attributes:{ points: { to:[x, y] } },
+															duration:dur,
+															method:YAHOO.util.Easing.easeIn
+														},
+														{
 															attributes:{ points: { to:[(clientWidth+25), y] } },
-															duration:dur, 
+															duration:dur,
 															method:YAHOO.util.Easing.easeOut
 														},
 														overlay.element,
 														YAHOO.util.Motion);
-												
+
 
 	slide.handleStartAnimateIn = function(type,args,obj) {
 		obj.overlay.element.style.left = (-25-offsetWidth) + "px";
 		obj.overlay.element.style.top  = y + "px";
 	};
-	
+
 	slide.handleTweenAnimateIn = function(type, args, obj) {
 
 
@@ -2873,7 +2875,7 @@ YAHOO.widget.ContainerEffect.SLIDE = function(overlay, dur) {
 		obj.overlay.cfg.setProperty("xy", [currentX,currentY], true);
 		obj.overlay.cfg.refireEvent("iframe");
 	};
-	
+
 	slide.handleCompleteAnimateIn = function(type, args, obj) {
 		obj.overlay.cfg.setProperty("xy", [x,y], true);
 		obj.startX = x;
@@ -2884,7 +2886,7 @@ YAHOO.widget.ContainerEffect.SLIDE = function(overlay, dur) {
 
 	slide.handleStartAnimateOut = function(type, args, obj) {
 		var vw = YAHOO.util.Dom.getViewportWidth();
-		
+
 		var pos = YAHOO.util.Dom.getXY(obj.overlay.element);
 
 		var yso = pos[1];
@@ -2903,13 +2905,15 @@ YAHOO.widget.ContainerEffect.SLIDE = function(overlay, dur) {
 		obj.overlay.cfg.refireEvent("iframe");
 	};
 
-	slide.handleCompleteAnimateOut = function(type, args, obj) { 
+	slide.handleCompleteAnimateOut = function(type, args, obj) {
 		YAHOO.util.Dom.setStyle(obj.overlay.element, "visibility", "hidden");
 
 		obj.overlay.cfg.setProperty("xy", [x,y]);
 		obj.animateOutCompleteEvent.fire();
-	};	
+	};
 
 	slide.init();
 	return slide;
 };
+
+YAHOO.register("container_core", YAHOO.widget.Module, {version: "2.2.0", build: "127"});
