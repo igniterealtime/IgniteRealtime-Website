@@ -13,6 +13,7 @@
 <head>
 	<title>Support - Group Chat</title>
 	<meta name="body-id" content="support" />
+	<base href="http://www.igniterealtime.org">
 	<style type="text/css" media="screen">
 		@import "/styles/interior.css";
 	</style>
@@ -101,7 +102,18 @@
 					
 					<h3>About Group Chat</h3>
 					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
-					
+					<h4>Change Log</h4>
+					<ul>
+						<li>
+							<ul> <u>March 7th, 2007</u>
+							<li> Improved tab completion of nicknames </li>
+							<li> Removed per-message time stamps in favor of an every-five-minutes time message </li>
+							<li> Messages that mention your nickname are highlighted now </li>
+							<li> Added smileys </li>
+							<li> URLs like http://www.igniterealtime.org or www.igniterealtime.org are now clickable </li>
+							</ul>
+						</li>
+					</ul>
 					<p>&nbsp;</p>
 					
 				</div>
