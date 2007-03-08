@@ -20909,7 +20909,7 @@ addMessage(_c3.getJIDString(),_c5,_c4.getBody().body);
 function enableEmoticons(){
 var _c6=[["angry",/&gt;:o|&gt;:-o|&gt;:O|&gt;:-O/g],["confused",/\?:\|/g],["cool",/B-\)|8-\)/g],["cry",/:\'\(/g],["devil",/\]:\)/g],["grin",/:-D|:D/g],["happy",/:-\)|:\)/g],["laugh",/:\^0/g],["love",/:x/g],["mischief",/;\\/g],["sad",/:-\(|:\(/g],["silly",/:-p|:-P|:P|:p/g],["wink",/;-\)|;\)/g]];
 _c6.each(function(_c7){
-jive.spank.chat.Filter.add(_c7[0],_c7[1],"<img src=\"resources/images/emoticons/"+_c7[0]+".gif\" alt=\"\" />");
+jive.spank.chat.Filter.add(_c7[0],_c7[1],"<img src=\"jive-images/emoticons/"+_c7[0]+".gif\" alt=\"\" />");
 });
 }
 function enableAutolinking(){
