@@ -13,7 +13,7 @@
 <head>
 	<title>Support - Group Chat</title>
 	<meta name="body-id" content="support" />
-	<base href="http://www.igniterealtime.org">
+
 	<style type="text/css" media="screen">
 		@import "/styles/interior.css";
 	</style>
@@ -48,6 +48,13 @@
  	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/spank.css">
  	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/ignitechat.css">
  	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/jive-muc.css">
+ 	
+ 	<style type="text/css">
+ 		ul.changelogentry li {
+ 			margin-left: 3em;
+ 			list-style-type: disc;
+ 		}
+ 	</style>
 	
 </head>
 <body>
@@ -105,7 +112,8 @@
 					<h4>Change Log</h4>
 					<ul>
 						<li>
-							<ul> <u>March 7th, 2007</u>
+							<ul class="changelogentry">
+							<li style="list-style-type:none; margin-left: 1em;"> <u>March 7th, 2007</u></li>
 							<li> Improved tab completion of nicknames </li>
 							<li> Removed per-message time stamps in favor of an every-five-minutes time message </li>
 							<li> Messages that mention your nickname are highlighted now </li>
