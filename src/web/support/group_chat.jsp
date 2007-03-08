@@ -36,7 +36,7 @@
 	}
 	</script>
 	
-	<script src="http://www.igniterealtime.org/support/groupchat/combined.compressed.js" type="text/javascript"></script>
+	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-compressed.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/basic-dialog.css">
  	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/layout.css">
@@ -100,9 +100,7 @@
 					"chat transcript" to find them.</p>
 					
 					<h3>About Group Chat</h3>
-					<p>The web-based group chat client used on this site is powered by the group chat 
-					feature in <a href="http://www.jivesoftware.com/products/forums">Jive Forums</a>, a 
-					commercial product from Jive Software.</p>
+					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
 					
 					<p>&nbsp;</p>
 					

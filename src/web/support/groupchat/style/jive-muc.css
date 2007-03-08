@@ -195,16 +195,22 @@ div.jive-user-controls input.jive-muc-username-active {
 	padding: 2px 15px;
 	margin: 5px 0px;
 }
+
 .jivetheme-muc div.jive-history div.user-message {
 	background: #f4f8ff;
 	margin: 5px 0px;
 	padding: 5px 15px;
 }
 
+.jivetheme-muc div.jive-history div.mentioned {
+	background: #ffff99;
+}
+
 .jivetheme-muc div.jive-history div span.meta {
 	font-weight: bold;
 	width: 100%;
 }
+
 .jivetheme-muc div.jive-history div span.message-content {
 	line-height: 13px;
 	width: 100%;
@@ -225,7 +231,7 @@ div.jive-user-controls input.jive-muc-username-active {
 
 .jivetheme-muc div.jive-history div span.meta em /* Date and Time Messages */
 {
-	/* display: none; */ /* hides the timestamp next to the user name in the chat window */
+	display: none;  /* hides the timestamp next to the user name in the chat window */
 	color: #444;
 }
 
