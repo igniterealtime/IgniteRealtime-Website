@@ -39,20 +39,17 @@
 	
 	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-compressed.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/basic-dialog.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/layout.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/fonts.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/grid.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/reset-min.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/roster.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/spank.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/ignitechat.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/jive-muc.css">
+	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/groupchat-style.css">
  	
  	<style type="text/css">
  		ul.changelogentry li {
- 			margin-left: 3em;
+ 			margin-left: 1.5em;
  			list-style-type: disc;
+ 		}
+ 		
+ 		ul.changelogentry li.changelogheader {
+ 			list-style-type:none; 
+ 			margin-left: -1em;
  		}
  	</style>
 	
@@ -110,17 +107,20 @@
 					<h3>About Group Chat</h3>
 					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
 					<h4>Change Log</h4>
-					<ul>
-						<li>
-							<ul class="changelogentry">
-							<li style="list-style-type:none; margin-left: 1em;"> <u>March 7th, 2007</u></li>
+						<ul class="changelogentry">
+							<li class="changelogheader"> <u>March 7th, 2007</u></li>
 							<li> Improved tab completion of nicknames </li>
 							<li> Removed per-message time stamps in favor of an every-five-minutes time message </li>
 							<li> Messages that mention your nickname are highlighted now </li>
 							<li> Added smileys </li>
 							<li> URLs like http://www.igniterealtime.org or www.igniterealtime.org are now clickable </li>
-							</ul>
-						</li>
+						</ul>
+						<ul class="changelogentry">
+							<li class="changelogheader"> <u>March 8th, 2007</u></li>
+							<li> Reduced code size </li>
+							<li> Added support for /me, /nick, and /clear commands from IRC </li>
+							<li> Added nickname collision prevention </li>
+						</ul>
 					</ul>
 					<p>&nbsp;</p>
 					

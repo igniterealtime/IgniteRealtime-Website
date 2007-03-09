@@ -12482,1273 +12482,6 @@ return this.ctrlKey||this.altKey||this.shiftKey;
 }();
 
 
-YAHOO.widget.AutoComplete=function(_1,_2,_3,_4){
-if(_1&&_2&&_3){
-if(_3&&(_3 instanceof YAHOO.widget.DataSource)){
-this.dataSource=_3;
-}else{
-return;
-}
-if(YAHOO.util.Dom.inDocument(_1)){
-if(typeof _1=="string"){
-this._sName="instance"+YAHOO.widget.AutoComplete._nIndex+" "+_1;
-this._oTextbox=document.getElementById(_1);
-}else{
-this._sName=(_1.id)?"instance"+YAHOO.widget.AutoComplete._nIndex+" "+_1.id:"instance"+YAHOO.widget.AutoComplete._nIndex;
-this._oTextbox=_1;
-}
-}else{
-return;
-}
-if(YAHOO.util.Dom.inDocument(_2)){
-if(typeof _2=="string"){
-this._oContainer=document.getElementById(_2);
-}else{
-this._oContainer=_2;
-}
-if(this._oContainer.style.display=="none"){
-}
-}else{
-return;
-}
-if(typeof _4=="object"){
-for(var _5 in _4){
-if(_5){
-this[_5]=_4[_5];
-}
-}
-}
-this._initContainer();
-this._initProps();
-this._initList();
-this._initContainerHelpers();
-var _6=this;
-var _7=this._oTextbox;
-var _8=this._oContainer._oContent;
-YAHOO.util.Event.addListener(_7,"keyup",_6._onTextboxKeyUp,_6);
-YAHOO.util.Event.addListener(_7,"keydown",_6._onTextboxKeyDown,_6);
-YAHOO.util.Event.addListener(_7,"focus",_6._onTextboxFocus,_6);
-YAHOO.util.Event.addListener(_7,"blur",_6._onTextboxBlur,_6);
-YAHOO.util.Event.addListener(_8,"mouseover",_6._onContainerMouseover,_6);
-YAHOO.util.Event.addListener(_8,"mouseout",_6._onContainerMouseout,_6);
-YAHOO.util.Event.addListener(_8,"scroll",_6._onContainerScroll,_6);
-YAHOO.util.Event.addListener(_8,"resize",_6._onContainerResize,_6);
-if(_7.form){
-YAHOO.util.Event.addListener(_7.form,"submit",_6._onFormSubmit,_6);
-}
-YAHOO.util.Event.addListener(_7,"keypress",_6._onTextboxKeyPress,_6);
-this.textboxFocusEvent=new YAHOO.util.CustomEvent("textboxFocus",this);
-this.textboxKeyEvent=new YAHOO.util.CustomEvent("textboxKey",this);
-this.dataRequestEvent=new YAHOO.util.CustomEvent("dataRequest",this);
-this.dataReturnEvent=new YAHOO.util.CustomEvent("dataReturn",this);
-this.dataErrorEvent=new YAHOO.util.CustomEvent("dataError",this);
-this.containerExpandEvent=new YAHOO.util.CustomEvent("containerExpand",this);
-this.typeAheadEvent=new YAHOO.util.CustomEvent("typeAhead",this);
-this.itemMouseOverEvent=new YAHOO.util.CustomEvent("itemMouseOver",this);
-this.itemMouseOutEvent=new YAHOO.util.CustomEvent("itemMouseOut",this);
-this.itemArrowToEvent=new YAHOO.util.CustomEvent("itemArrowTo",this);
-this.itemArrowFromEvent=new YAHOO.util.CustomEvent("itemArrowFrom",this);
-this.itemSelectEvent=new YAHOO.util.CustomEvent("itemSelect",this);
-this.unmatchedItemSelectEvent=new YAHOO.util.CustomEvent("unmatchedItemSelect",this);
-this.selectionEnforceEvent=new YAHOO.util.CustomEvent("selectionEnforce",this);
-this.containerCollapseEvent=new YAHOO.util.CustomEvent("containerCollapse",this);
-this.textboxBlurEvent=new YAHOO.util.CustomEvent("textboxBlur",this);
-_7.setAttribute("autocomplete","off");
-YAHOO.widget.AutoComplete._nIndex++;
-}else{
-}
-};
-YAHOO.widget.AutoComplete.prototype.dataSource=null;
-YAHOO.widget.AutoComplete.prototype.minQueryLength=1;
-YAHOO.widget.AutoComplete.prototype.maxResultsDisplayed=10;
-YAHOO.widget.AutoComplete.prototype.queryDelay=0.5;
-YAHOO.widget.AutoComplete.prototype.highlightClassName="yui-ac-highlight";
-YAHOO.widget.AutoComplete.prototype.prehighlightClassName=null;
-YAHOO.widget.AutoComplete.prototype.delimChar=null;
-YAHOO.widget.AutoComplete.prototype.autoHighlight=true;
-YAHOO.widget.AutoComplete.prototype.typeAhead=false;
-YAHOO.widget.AutoComplete.prototype.animHoriz=false;
-YAHOO.widget.AutoComplete.prototype.animVert=true;
-YAHOO.widget.AutoComplete.prototype.animSpeed=0.3;
-YAHOO.widget.AutoComplete.prototype.forceSelection=false;
-YAHOO.widget.AutoComplete.prototype.allowBrowserAutocomplete=true;
-YAHOO.widget.AutoComplete.prototype.alwaysShowContainer=false;
-YAHOO.widget.AutoComplete.prototype.useIFrame=false;
-YAHOO.widget.AutoComplete.prototype.useShadow=false;
-YAHOO.widget.AutoComplete.prototype.toString=function(){
-return "AutoComplete "+this._sName;
-};
-YAHOO.widget.AutoComplete.prototype.isContainerOpen=function(){
-return this._bContainerOpen;
-};
-YAHOO.widget.AutoComplete.prototype.getListItems=function(){
-return this._aListItems;
-};
-YAHOO.widget.AutoComplete.prototype.getListItemData=function(_9){
-if(_9._oResultData){
-return _9._oResultData;
-}else{
-return false;
-}
-};
-YAHOO.widget.AutoComplete.prototype.setHeader=function(_a){
-if(_a){
-if(this._oContainer._oContent._oHeader){
-this._oContainer._oContent._oHeader.innerHTML=_a;
-this._oContainer._oContent._oHeader.style.display="block";
-}
-}else{
-this._oContainer._oContent._oHeader.innerHTML="";
-this._oContainer._oContent._oHeader.style.display="none";
-}
-};
-YAHOO.widget.AutoComplete.prototype.setFooter=function(_b){
-if(_b){
-if(this._oContainer._oContent._oFooter){
-this._oContainer._oContent._oFooter.innerHTML=_b;
-this._oContainer._oContent._oFooter.style.display="block";
-}
-}else{
-this._oContainer._oContent._oFooter.innerHTML="";
-this._oContainer._oContent._oFooter.style.display="none";
-}
-};
-YAHOO.widget.AutoComplete.prototype.setBody=function(_c){
-if(_c){
-if(this._oContainer._oContent._oBody){
-this._oContainer._oContent._oBody.innerHTML=_c;
-this._oContainer._oContent._oBody.style.display="block";
-this._oContainer._oContent.style.display="block";
-}
-}else{
-this._oContainer._oContent._oBody.innerHTML="";
-this._oContainer._oContent.style.display="none";
-}
-this._maxResultsDisplayed=0;
-};
-YAHOO.widget.AutoComplete.prototype.formatResult=function(_d,_e){
-var _f=_d[0];
-if(_f){
-return _f;
-}else{
-return "";
-}
-};
-YAHOO.widget.AutoComplete.prototype.doBeforeExpandContainer=function(_10,_11){
-return true;
-};
-YAHOO.widget.AutoComplete.prototype.sendQuery=function(_12){
-this._sendQuery(_12);
-};
-YAHOO.widget.AutoComplete.prototype.textboxFocusEvent=null;
-YAHOO.widget.AutoComplete.prototype.textboxKeyEvent=null;
-YAHOO.widget.AutoComplete.prototype.dataRequestEvent=null;
-YAHOO.widget.AutoComplete.prototype.dataReturnEvent=null;
-YAHOO.widget.AutoComplete.prototype.dataErrorEvent=null;
-YAHOO.widget.AutoComplete.prototype.containerExpandEvent=null;
-YAHOO.widget.AutoComplete.prototype.typeAheadEvent=null;
-YAHOO.widget.AutoComplete.prototype.itemMouseOverEvent=null;
-YAHOO.widget.AutoComplete.prototype.itemMouseOutEvent=null;
-YAHOO.widget.AutoComplete.prototype.itemArrowToEvent=null;
-YAHOO.widget.AutoComplete.prototype.itemArrowFromEvent=null;
-YAHOO.widget.AutoComplete.prototype.itemSelectEvent=null;
-YAHOO.widget.AutoComplete.prototype.unmatchedItemSelectEvent=null;
-YAHOO.widget.AutoComplete.prototype.selectionEnforceEvent=null;
-YAHOO.widget.AutoComplete.prototype.containerCollapseEvent=null;
-YAHOO.widget.AutoComplete.prototype.textboxBlurEvent=null;
-YAHOO.widget.AutoComplete._nIndex=0;
-YAHOO.widget.AutoComplete.prototype._sName=null;
-YAHOO.widget.AutoComplete.prototype._oTextbox=null;
-YAHOO.widget.AutoComplete.prototype._bFocused=true;
-YAHOO.widget.AutoComplete.prototype._oAnim=null;
-YAHOO.widget.AutoComplete.prototype._oContainer=null;
-YAHOO.widget.AutoComplete.prototype._bContainerOpen=false;
-YAHOO.widget.AutoComplete.prototype._bOverContainer=false;
-YAHOO.widget.AutoComplete.prototype._aListItems=null;
-YAHOO.widget.AutoComplete.prototype._nDisplayedItems=0;
-YAHOO.widget.AutoComplete.prototype._maxResultsDisplayed=0;
-YAHOO.widget.AutoComplete.prototype._sCurQuery=null;
-YAHOO.widget.AutoComplete.prototype._sSavedQuery=null;
-YAHOO.widget.AutoComplete.prototype._oCurItem=null;
-YAHOO.widget.AutoComplete.prototype._bItemSelected=false;
-YAHOO.widget.AutoComplete.prototype._nKeyCode=null;
-YAHOO.widget.AutoComplete.prototype._nDelayID=-1;
-YAHOO.widget.AutoComplete.prototype._iFrameSrc="javascript:false;";
-YAHOO.widget.AutoComplete.prototype._queryInterval=null;
-YAHOO.widget.AutoComplete.prototype._sLastTextboxValue=null;
-YAHOO.widget.AutoComplete.prototype._initProps=function(){
-var _13=this.minQueryLength;
-if(isNaN(_13)||(_13<1)){
-_13=1;
-}
-var _14=this.maxResultsDisplayed;
-if(isNaN(this.maxResultsDisplayed)||(this.maxResultsDisplayed<1)){
-this.maxResultsDisplayed=10;
-}
-var _15=this.queryDelay;
-if(isNaN(this.queryDelay)||(this.queryDelay<0)){
-this.queryDelay=0.5;
-}
-var _16=(this.delimChar)?this.delimChar:null;
-if(_16){
-if(typeof _16=="string"){
-this.delimChar=[_16];
-}else{
-if(_16.constructor!=Array){
-this.delimChar=null;
-}
-}
-}
-var _17=this.animSpeed;
-if((this.animHoriz||this.animVert)&&YAHOO.util.Anim){
-if(isNaN(_17)||(_17<0)){
-_17=0.3;
-}
-if(!this._oAnim){
-oAnim=new YAHOO.util.Anim(this._oContainer._oContent,{},this.animSpeed);
-this._oAnim=oAnim;
-}else{
-this._oAnim.duration=_17;
-}
-}
-if(this.forceSelection&&this.delimChar){
-}
-};
-YAHOO.widget.AutoComplete.prototype._initContainerHelpers=function(){
-if(this.useShadow&&!this._oContainer._oShadow){
-var _18=document.createElement("div");
-_18.className="yui-ac-shadow";
-this._oContainer._oShadow=this._oContainer.appendChild(_18);
-}
-if(this.useIFrame&&!this._oContainer._oIFrame){
-var _19=document.createElement("iframe");
-_19.src=this._iFrameSrc;
-_19.frameBorder=0;
-_19.scrolling="no";
-_19.style.position="absolute";
-_19.style.width="100%";
-_19.style.height="100%";
-_19.tabIndex=-1;
-this._oContainer._oIFrame=this._oContainer.appendChild(_19);
-}
-};
-YAHOO.widget.AutoComplete.prototype._initContainer=function(){
-if(!this._oContainer._oContent){
-var _1a=document.createElement("div");
-_1a.className="yui-ac-content";
-_1a.style.display="none";
-this._oContainer._oContent=this._oContainer.appendChild(_1a);
-var _1b=document.createElement("div");
-_1b.className="yui-ac-hd";
-_1b.style.display="none";
-this._oContainer._oContent._oHeader=this._oContainer._oContent.appendChild(_1b);
-var _1c=document.createElement("div");
-_1c.className="yui-ac-bd";
-this._oContainer._oContent._oBody=this._oContainer._oContent.appendChild(_1c);
-var _1d=document.createElement("div");
-_1d.className="yui-ac-ft";
-_1d.style.display="none";
-this._oContainer._oContent._oFooter=this._oContainer._oContent.appendChild(_1d);
-}else{
-}
-};
-YAHOO.widget.AutoComplete.prototype._initList=function(){
-this._aListItems=[];
-while(this._oContainer._oContent._oBody.hasChildNodes()){
-var _1e=this.getListItems();
-if(_1e){
-for(var _1f=_1e.length-1;_1f>=0;i--){
-_1e[_1f]=null;
-}
-}
-this._oContainer._oContent._oBody.innerHTML="";
-}
-var _21=document.createElement("ul");
-_21=this._oContainer._oContent._oBody.appendChild(_21);
-for(var i=0;i<this.maxResultsDisplayed;i++){
-var _22=document.createElement("li");
-_22=_21.appendChild(_22);
-this._aListItems[i]=_22;
-this._initListItem(_22,i);
-}
-this._maxResultsDisplayed=this.maxResultsDisplayed;
-};
-YAHOO.widget.AutoComplete.prototype._initListItem=function(_23,_24){
-var _25=this;
-_23.style.display="none";
-_23._nItemIndex=_24;
-_23.mouseover=_23.mouseout=_23.onclick=null;
-YAHOO.util.Event.addListener(_23,"mouseover",_25._onItemMouseover,_25);
-YAHOO.util.Event.addListener(_23,"mouseout",_25._onItemMouseout,_25);
-YAHOO.util.Event.addListener(_23,"click",_25._onItemMouseclick,_25);
-};
-YAHOO.widget.AutoComplete.prototype._onIMEDetected=function(_26){
-_26._enableIntervalDetection();
-};
-YAHOO.widget.AutoComplete.prototype._enableIntervalDetection=function(){
-var _27=this._oTextbox.value;
-var _28=this._sLastTextboxValue;
-if(_27!=_28){
-this._sLastTextboxValue=_27;
-this._sendQuery(_27);
-}
-};
-YAHOO.widget.AutoComplete.prototype._cancelIntervalDetection=function(_29){
-if(_29._queryInterval){
-clearInterval(_29._queryInterval);
-}
-};
-YAHOO.widget.AutoComplete.prototype._isIgnoreKey=function(_2a){
-if((_2a==9)||(_2a==13)||(_2a==16)||(_2a==17)||(_2a>=18&&_2a<=20)||(_2a==27)||(_2a>=33&&_2a<=35)||(_2a>=36&&_2a<=38)||(_2a==40)||(_2a>=44&&_2a<=45)){
-return true;
-}
-return false;
-};
-YAHOO.widget.AutoComplete.prototype._sendQuery=function(_2b){
-if(this.minQueryLength==-1){
-this._toggleContainer(false);
-return;
-}
-var _2c=(this.delimChar)?this.delimChar:null;
-if(_2c){
-var _2d=-1;
-for(var i=_2c.length-1;i>=0;i--){
-var _2f=_2b.lastIndexOf(_2c[i]);
-if(_2f>_2d){
-_2d=_2f;
-}
-}
-if(_2c[i]==" "){
-for(var j=_2c.length-1;j>=0;j--){
-if(_2b[_2d-1]==_2c[j]){
-_2d--;
-break;
-}
-}
-}
-if(_2d>-1){
-var _31=_2d+1;
-while(_2b.charAt(_31)==" "){
-_31+=1;
-}
-this._sSavedQuery=_2b.substring(0,_31);
-_2b=_2b.substr(_31);
-}else{
-if(_2b.indexOf(this._sSavedQuery)<0){
-this._sSavedQuery=null;
-}
-}
-}
-if(_2b&&(_2b.length<this.minQueryLength)||(!_2b&&this.minQueryLength>0)){
-if(this._nDelayID!=-1){
-clearTimeout(this._nDelayID);
-}
-this._toggleContainer(false);
-return;
-}
-_2b=encodeURIComponent(_2b);
-this._nDelayID=-1;
-this.dataRequestEvent.fire(this,_2b);
-this.dataSource.getResults(this._populateList,_2b,this);
-};
-YAHOO.widget.AutoComplete.prototype._populateList=function(_32,_33,_34){
-if(_33===null){
-_34.dataErrorEvent.fire(_34,_32);
-}
-if(!_34._bFocused||!_33){
-return;
-}
-var _35=(navigator.userAgent.toLowerCase().indexOf("opera")!=-1);
-var _36=_34._oContainer._oContent.style;
-_36.width=(!_35)?null:"";
-_36.height=(!_35)?null:"";
-var _37=decodeURIComponent(_32);
-_34._sCurQuery=_37;
-_34._bItemSelected=false;
-if(_34._maxResultsDisplayed!=_34.maxResultsDisplayed){
-_34._initList();
-}
-var _38=Math.min(_33.length,_34.maxResultsDisplayed);
-_34._nDisplayedItems=_38;
-if(_38>0){
-_34._initContainerHelpers();
-var _39=_34._aListItems;
-for(var i=_38-1;i>=0;i--){
-var _3b=_39[i];
-var _3c=_33[i];
-_3b.innerHTML=_34.formatResult(_3c,_37);
-_3b.style.display="list-item";
-_3b._sResultKey=_3c[0];
-_3b._oResultData=_3c;
-}
-for(var j=_39.length-1;j>=_38;j--){
-var _3e=_39[j];
-_3e.innerHTML=null;
-_3e.style.display="none";
-_3e._sResultKey=null;
-_3e._oResultData=null;
-}
-if(_34.autoHighlight){
-var _3f=_39[0];
-_34._toggleHighlight(_3f,"to");
-_34.itemArrowToEvent.fire(_34,_3f);
-_34._typeAhead(_3f,_32);
-}else{
-_34._oCurItem=null;
-}
-var ok=_34.doBeforeExpandContainer(_34._oTextbox,_34._oContainer,_32,_33);
-_34._toggleContainer(ok);
-}else{
-_34._toggleContainer(false);
-}
-_34.dataReturnEvent.fire(_34,_32,_33);
-};
-YAHOO.widget.AutoComplete.prototype._clearSelection=function(){
-var _41=this._oTextbox.value;
-var _42=(this.delimChar)?this.delimChar[0]:null;
-var _43=(_42)?_41.lastIndexOf(_42,_41.length-2):-1;
-if(_43>-1){
-this._oTextbox.value=_41.substring(0,_43);
-}else{
-this._oTextbox.value="";
-}
-this._sSavedQuery=this._oTextbox.value;
-this.selectionEnforceEvent.fire(this);
-};
-YAHOO.widget.AutoComplete.prototype._textMatchesOption=function(){
-var _44=false;
-for(var i=this._nDisplayedItems-1;i>=0;i--){
-var _46=this._aListItems[i];
-var _47=_46._sResultKey.toLowerCase();
-if(_47==this._sCurQuery.toLowerCase()){
-_44=true;
-break;
-}
-}
-return (_44);
-};
-YAHOO.widget.AutoComplete.prototype._typeAhead=function(_48,_49){
-if(!this.typeAhead||(this._nKeyCode==8)){
-return;
-}
-var _4a=this._oTextbox;
-var _4b=this._oTextbox.value;
-if(!_4a.setSelectionRange&&!_4a.createTextRange){
-return;
-}
-var _4c=_4b.length;
-this._updateValue(_48);
-var _4d=_4a.value.length;
-this._selectText(_4a,_4c,_4d);
-var _4e=_4a.value.substr(_4c,_4d);
-this.typeAheadEvent.fire(this,_49,_4e);
-};
-YAHOO.widget.AutoComplete.prototype._selectText=function(_4f,_50,_51){
-if(_4f.setSelectionRange){
-_4f.setSelectionRange(_50,_51);
-}else{
-if(_4f.createTextRange){
-var _52=_4f.createTextRange();
-_52.moveStart("character",_50);
-_52.moveEnd("character",_51-_4f.value.length);
-_52.select();
-}else{
-_4f.select();
-}
-}
-};
-YAHOO.widget.AutoComplete.prototype._toggleContainerHelpers=function(_53){
-var _54=false;
-var _55=this._oContainer._oContent.offsetWidth+"px";
-var _56=this._oContainer._oContent.offsetHeight+"px";
-if(this.useIFrame&&this._oContainer._oIFrame){
-_54=true;
-if(_53){
-this._oContainer._oIFrame.style.width=_55;
-this._oContainer._oIFrame.style.height=_56;
-}else{
-this._oContainer._oIFrame.style.width=0;
-this._oContainer._oIFrame.style.height=0;
-}
-}
-if(this.useShadow&&this._oContainer._oShadow){
-_54=true;
-if(_53){
-this._oContainer._oShadow.style.width=_55;
-this._oContainer._oShadow.style.height=_56;
-}else{
-this._oContainer._oShadow.style.width=0;
-this._oContainer._oShadow.style.height=0;
-}
-}
-};
-YAHOO.widget.AutoComplete.prototype._toggleContainer=function(_57){
-var _58=this._oContainer;
-if(this.alwaysShowContainer&&this._bContainerOpen){
-return;
-}
-if(!_57){
-this._oContainer._oContent.scrollTop=0;
-var _59=this._aListItems;
-if(_59&&(_59.length>0)){
-for(var i=_59.length-1;i>=0;i--){
-_59[i].style.display="none";
-}
-}
-if(this._oCurItem){
-this._toggleHighlight(this._oCurItem,"from");
-}
-this._oCurItem=null;
-this._nDisplayedItems=0;
-this._sCurQuery=null;
-}
-if(!_57&&!this._bContainerOpen){
-_58._oContent.style.display="none";
-return;
-}
-var _5b=this._oAnim;
-if(_5b&&_5b.getEl()&&(this.animHoriz||this.animVert)){
-if(!_57){
-this._toggleContainerHelpers(_57);
-}
-if(_5b.isAnimated()){
-_5b.stop();
-}
-var _5c=_58._oContent.cloneNode(true);
-_58.appendChild(_5c);
-_5c.style.top="-9000px";
-_5c.style.display="block";
-var _5d=_5c.offsetWidth;
-var _5e=_5c.offsetHeight;
-var _5f=(this.animHoriz)?0:_5d;
-var _60=(this.animVert)?0:_5e;
-_5b.attributes=(_57)?{width:{to:_5d},height:{to:_5e}}:{width:{to:_5f},height:{to:_60}};
-if(_57&&!this._bContainerOpen){
-_58._oContent.style.width=_5f+"px";
-_58._oContent.style.height=_60+"px";
-}else{
-_58._oContent.style.width=_5d+"px";
-_58._oContent.style.height=_5e+"px";
-}
-_58.removeChild(_5c);
-_5c=null;
-var _61=this;
-var _62=function(){
-_5b.onComplete.unsubscribeAll();
-if(_57){
-_61.containerExpandEvent.fire(_61);
-}else{
-_58._oContent.style.display="none";
-_61.containerCollapseEvent.fire(_61);
-}
-_61._toggleContainerHelpers(_57);
-};
-_58._oContent.style.display="block";
-_5b.onComplete.subscribe(_62);
-_5b.animate();
-this._bContainerOpen=_57;
-}else{
-if(_57){
-_58._oContent.style.display="block";
-this.containerExpandEvent.fire(this);
-}else{
-_58._oContent.style.display="none";
-this.containerCollapseEvent.fire(this);
-}
-this._toggleContainerHelpers(_57);
-this._bContainerOpen=_57;
-}
-};
-YAHOO.widget.AutoComplete.prototype._toggleHighlight=function(_63,_64){
-var _65=this.highlightClassName;
-if(this._oCurItem){
-YAHOO.util.Dom.removeClass(this._oCurItem,_65);
-}
-if((_64=="to")&&_65){
-YAHOO.util.Dom.addClass(_63,_65);
-this._oCurItem=_63;
-}
-};
-YAHOO.widget.AutoComplete.prototype._togglePrehighlight=function(_66,_67){
-if(_66==this._oCurItem){
-return;
-}
-var _68=this.prehighlightClassName;
-if((_67=="mouseover")&&_68){
-YAHOO.util.Dom.addClass(_66,_68);
-}else{
-YAHOO.util.Dom.removeClass(_66,_68);
-}
-};
-YAHOO.widget.AutoComplete.prototype._updateValue=function(_69){
-var _6a=this._oTextbox;
-var _6b=(this.delimChar)?(this.delimChar[0]||this.delimChar):null;
-var _6c=this._sSavedQuery;
-var _6d=_69._sResultKey;
-_6a.focus();
-_6a.value="";
-if(_6b){
-if(_6c){
-_6a.value=_6c;
-}
-_6a.value+=_6d+_6b;
-if(_6b!=" "){
-_6a.value+=" ";
-}
-}else{
-_6a.value=_6d;
-}
-if(_6a.type=="textarea"){
-_6a.scrollTop=_6a.scrollHeight;
-}
-var end=_6a.value.length;
-this._selectText(_6a,end,end);
-this._oCurItem=_69;
-};
-YAHOO.widget.AutoComplete.prototype._selectItem=function(_6f){
-this._bItemSelected=true;
-this._updateValue(_6f);
-this._cancelIntervalDetection(this);
-this.itemSelectEvent.fire(this,_6f,_6f._oResultData);
-this._toggleContainer(false);
-};
-YAHOO.widget.AutoComplete.prototype._jumpSelection=function(){
-if(!this.typeAhead){
-return;
-}else{
-this._toggleContainer(false);
-}
-};
-YAHOO.widget.AutoComplete.prototype._moveSelection=function(_70){
-if(this._bContainerOpen){
-var _71=this._oCurItem;
-var _72=-1;
-if(_71){
-_72=_71._nItemIndex;
-}
-var _73=(_70==40)?(_72+1):(_72-1);
-if(_73<-2||_73>=this._nDisplayedItems){
-return;
-}
-if(_71){
-this._toggleHighlight(_71,"from");
-this.itemArrowFromEvent.fire(this,_71);
-}
-if(_73==-1){
-if(this.delimChar&&this._sSavedQuery){
-if(!this._textMatchesOption()){
-this._oTextbox.value=this._sSavedQuery;
-}else{
-this._oTextbox.value=this._sSavedQuery+this._sCurQuery;
-}
-}else{
-this._oTextbox.value=this._sCurQuery;
-}
-this._oCurItem=null;
-return;
-}
-if(_73==-2){
-this._toggleContainer(false);
-return;
-}
-var _74=this._aListItems[_73];
-var _75=this._oContainer._oContent;
-var _76=((YAHOO.util.Dom.getStyle(_75,"overflow")=="auto")||(YAHOO.util.Dom.getStyle(_75,"overflowY")=="auto"));
-if(_76&&(_73>-1)&&(_73<this._nDisplayedItems)){
-if(_70==40){
-if((_74.offsetTop+_74.offsetHeight)>(_75.scrollTop+_75.offsetHeight)){
-_75.scrollTop=(_74.offsetTop+_74.offsetHeight)-_75.offsetHeight;
-}else{
-if((_74.offsetTop+_74.offsetHeight)<_75.scrollTop){
-_75.scrollTop=_74.offsetTop;
-}
-}
-}else{
-if(_74.offsetTop<_75.scrollTop){
-this._oContainer._oContent.scrollTop=_74.offsetTop;
-}else{
-if(_74.offsetTop>(_75.scrollTop+_75.offsetHeight)){
-this._oContainer._oContent.scrollTop=(_74.offsetTop+_74.offsetHeight)-_75.offsetHeight;
-}
-}
-}
-}
-this._toggleHighlight(_74,"to");
-this.itemArrowToEvent.fire(this,_74);
-if(this.typeAhead){
-this._updateValue(_74);
-}
-}
-};
-YAHOO.widget.AutoComplete.prototype._onItemMouseover=function(v,_78){
-if(_78.prehighlightClassName){
-_78._togglePrehighlight(this,"mouseover");
-}else{
-_78._toggleHighlight(this,"to");
-}
-_78.itemMouseOverEvent.fire(_78,this);
-};
-YAHOO.widget.AutoComplete.prototype._onItemMouseout=function(v,_7a){
-if(_7a.prehighlightClassName){
-_7a._togglePrehighlight(this,"mouseout");
-}else{
-_7a._toggleHighlight(this,"from");
-}
-_7a.itemMouseOutEvent.fire(_7a,this);
-};
-YAHOO.widget.AutoComplete.prototype._onItemMouseclick=function(v,_7c){
-_7c._toggleHighlight(this,"to");
-_7c._selectItem(this);
-};
-YAHOO.widget.AutoComplete.prototype._onContainerMouseover=function(v,_7e){
-_7e._bOverContainer=true;
-};
-YAHOO.widget.AutoComplete.prototype._onContainerMouseout=function(v,_80){
-_80._bOverContainer=false;
-if(_80._oCurItem){
-_80._toggleHighlight(_80._oCurItem,"to");
-}
-};
-YAHOO.widget.AutoComplete.prototype._onContainerScroll=function(v,_82){
-_82._oTextbox.focus();
-};
-YAHOO.widget.AutoComplete.prototype._onContainerResize=function(v,_84){
-_84._toggleContainerHelpers(_84._bContainerOpen);
-};
-YAHOO.widget.AutoComplete.prototype._onTextboxKeyDown=function(v,_86){
-var _87=v.keyCode;
-switch(_87){
-case 9:
-if(_86.delimChar&&(_86._nKeyCode!=_87)){
-if(_86._bContainerOpen){
-YAHOO.util.Event.stopEvent(v);
-}
-}
-if(_86._oCurItem){
-_86._selectItem(_86._oCurItem);
-}else{
-_86._toggleContainer(false);
-}
-break;
-case 13:
-if(_86._nKeyCode!=_87){
-if(_86._bContainerOpen){
-YAHOO.util.Event.stopEvent(v);
-}
-}
-if(_86._oCurItem){
-_86._selectItem(_86._oCurItem);
-}else{
-_86._toggleContainer(false);
-}
-break;
-case 27:
-_86._toggleContainer(false);
-return;
-case 39:
-_86._jumpSelection();
-break;
-case 38:
-YAHOO.util.Event.stopEvent(v);
-_86._moveSelection(_87);
-break;
-case 40:
-YAHOO.util.Event.stopEvent(v);
-_86._moveSelection(_87);
-break;
-default:
-break;
-}
-};
-YAHOO.widget.AutoComplete.prototype._onTextboxKeyPress=function(v,_89){
-var _8a=v.keyCode;
-var _8b=(navigator.userAgent.toLowerCase().indexOf("mac")!=-1);
-if(_8b){
-switch(_8a){
-case 9:
-if(_89.delimChar&&(_89._nKeyCode!=_8a)){
-if(_89._bContainerOpen){
-YAHOO.util.Event.stopEvent(v);
-}
-}
-break;
-case 13:
-if(_89._nKeyCode!=_8a){
-if(_89._bContainerOpen){
-YAHOO.util.Event.stopEvent(v);
-}
-}
-break;
-case 38:
-case 40:
-YAHOO.util.Event.stopEvent(v);
-break;
-default:
-break;
-}
-}else{
-if(_8a==229){
-_89._queryInterval=setInterval(function(){
-_89._onIMEDetected(_89);
-},500);
-}
-}
-};
-YAHOO.widget.AutoComplete.prototype._onTextboxKeyUp=function(v,_8d){
-_8d._initProps();
-var _8e=v.keyCode;
-_8d._nKeyCode=_8e;
-var _8f=this.value;
-if(_8d._isIgnoreKey(_8e)||(_8f.toLowerCase()==_8d._sCurQuery)){
-return;
-}else{
-_8d.textboxKeyEvent.fire(_8d,_8e);
-}
-if(_8d.queryDelay>0){
-var _90=setTimeout(function(){
-_8d._sendQuery(_8f);
-},(_8d.queryDelay*1000));
-if(_8d._nDelayID!=-1){
-clearTimeout(_8d._nDelayID);
-}
-_8d._nDelayID=_90;
-}else{
-_8d._sendQuery(_8f);
-}
-};
-YAHOO.widget.AutoComplete.prototype._onTextboxFocus=function(v,_92){
-_92._oTextbox.setAttribute("autocomplete","off");
-_92._bFocused=true;
-_92.textboxFocusEvent.fire(_92);
-};
-YAHOO.widget.AutoComplete.prototype._onTextboxBlur=function(v,_94){
-if(!_94._bOverContainer||(_94._nKeyCode==9)){
-if(!_94._bItemSelected){
-if(!_94._bContainerOpen||(_94._bContainerOpen&&!_94._textMatchesOption())){
-if(_94.forceSelection){
-_94._clearSelection();
-}else{
-_94.unmatchedItemSelectEvent.fire(_94,_94._sCurQuery);
-}
-}
-}
-if(_94._bContainerOpen){
-_94._toggleContainer(false);
-}
-_94._cancelIntervalDetection(_94);
-_94._bFocused=false;
-_94.textboxBlurEvent.fire(_94);
-}
-};
-YAHOO.widget.AutoComplete.prototype._onFormSubmit=function(v,_96){
-if(_96.allowBrowserAutocomplete){
-_96._oTextbox.setAttribute("autocomplete","on");
-}else{
-_96._oTextbox.setAttribute("autocomplete","off");
-}
-};
-YAHOO.widget.DataSource=function(){
-};
-YAHOO.widget.DataSource.ERROR_DATANULL="Response data was null";
-YAHOO.widget.DataSource.ERROR_DATAPARSE="Response data could not be parsed";
-YAHOO.widget.DataSource.prototype.maxCacheEntries=15;
-YAHOO.widget.DataSource.prototype.queryMatchContains=false;
-YAHOO.widget.DataSource.prototype.queryMatchSubset=false;
-YAHOO.widget.DataSource.prototype.queryMatchCase=false;
-YAHOO.widget.DataSource.prototype.toString=function(){
-return "DataSource "+this._sName;
-};
-YAHOO.widget.DataSource.prototype.getResults=function(_97,_98,_99){
-var _9a=this._doQueryCache(_97,_98,_99);
-if(_9a.length===0){
-this.queryEvent.fire(this,_99,_98);
-this.doQuery(_97,_98,_99);
-}
-};
-YAHOO.widget.DataSource.prototype.doQuery=function(_9b,_9c,_9d){
-};
-YAHOO.widget.DataSource.prototype.flushCache=function(){
-if(this._aCache){
-this._aCache=[];
-}
-if(this._aCacheHelper){
-this._aCacheHelper=[];
-}
-this.cacheFlushEvent.fire(this);
-};
-YAHOO.widget.DataSource.prototype.queryEvent=null;
-YAHOO.widget.DataSource.prototype.cacheQueryEvent=null;
-YAHOO.widget.DataSource.prototype.getResultsEvent=null;
-YAHOO.widget.DataSource.prototype.getCachedResultsEvent=null;
-YAHOO.widget.DataSource.prototype.dataErrorEvent=null;
-YAHOO.widget.DataSource.prototype.cacheFlushEvent=null;
-YAHOO.widget.DataSource._nIndex=0;
-YAHOO.widget.DataSource.prototype._sName=null;
-YAHOO.widget.DataSource.prototype._aCache=null;
-YAHOO.widget.DataSource.prototype._init=function(){
-var _9e=this.maxCacheEntries;
-if(isNaN(_9e)||(_9e<0)){
-_9e=0;
-}
-if(_9e>0&&!this._aCache){
-this._aCache=[];
-}
-this._sName="instance"+YAHOO.widget.DataSource._nIndex;
-YAHOO.widget.DataSource._nIndex++;
-this.queryEvent=new YAHOO.util.CustomEvent("query",this);
-this.cacheQueryEvent=new YAHOO.util.CustomEvent("cacheQuery",this);
-this.getResultsEvent=new YAHOO.util.CustomEvent("getResults",this);
-this.getCachedResultsEvent=new YAHOO.util.CustomEvent("getCachedResults",this);
-this.dataErrorEvent=new YAHOO.util.CustomEvent("dataError",this);
-this.cacheFlushEvent=new YAHOO.util.CustomEvent("cacheFlush",this);
-};
-YAHOO.widget.DataSource.prototype._addCacheElem=function(_9f){
-var _a0=this._aCache;
-if(!_a0||!_9f||!_9f.query||!_9f.results){
-return;
-}
-if(_a0.length>=this.maxCacheEntries){
-_a0.shift();
-}
-_a0.push(_9f);
-};
-YAHOO.widget.DataSource.prototype._doQueryCache=function(_a1,_a2,_a3){
-var _a4=[];
-var _a5=false;
-var _a6=this._aCache;
-var _a7=(_a6)?_a6.length:0;
-var _a8=this.queryMatchContains;
-if((this.maxCacheEntries>0)&&_a6&&(_a7>0)){
-this.cacheQueryEvent.fire(this,_a3,_a2);
-if(!this.queryMatchCase){
-var _a9=_a2;
-_a2=_a2.toLowerCase();
-}
-for(var i=_a7-1;i>=0;i--){
-var _ab=_a6[i];
-var _ac=_ab.results;
-var _ad=(!this.queryMatchCase)?encodeURIComponent(_ab.query).toLowerCase():encodeURIComponent(_ab.query);
-if(_ad==_a2){
-_a5=true;
-_a4=_ac;
-if(i!=_a7-1){
-_a6.splice(i,1);
-this._addCacheElem(_ab);
-}
-break;
-}else{
-if(this.queryMatchSubset){
-for(var j=_a2.length-1;j>=0;j--){
-var _af=_a2.substr(0,j);
-if(_ad==_af){
-_a5=true;
-for(var k=_ac.length-1;k>=0;k--){
-var _b1=_ac[k];
-var _b2=(this.queryMatchCase)?encodeURIComponent(_b1[0]).indexOf(_a2):encodeURIComponent(_b1[0]).toLowerCase().indexOf(_a2);
-if((!_a8&&(_b2===0))||(_a8&&(_b2>-1))){
-_a4.unshift(_b1);
-}
-}
-_ab={};
-_ab.query=_a2;
-_ab.results=_a4;
-this._addCacheElem(_ab);
-break;
-}
-}
-if(_a5){
-break;
-}
-}
-}
-}
-if(_a5){
-this.getCachedResultsEvent.fire(this,_a3,_a9,_a4);
-_a1(_a9,_a4,_a3);
-}
-}
-return _a4;
-};
-YAHOO.widget.DS_XHR=function(_b3,_b4,_b5){
-if(typeof _b5=="object"){
-for(var _b6 in _b5){
-this[_b6]=_b5[_b6];
-}
-}
-if(!_b4||(_b4.constructor!=Array)){
-return;
-}else{
-this.schema=_b4;
-}
-this.scriptURI=_b3;
-this._init();
-};
-YAHOO.widget.DS_XHR.prototype=new YAHOO.widget.DataSource();
-YAHOO.widget.DS_XHR.TYPE_JSON=0;
-YAHOO.widget.DS_XHR.TYPE_XML=1;
-YAHOO.widget.DS_XHR.TYPE_FLAT=2;
-YAHOO.widget.DS_XHR.ERROR_DATAXHR="XHR response failed";
-YAHOO.widget.DS_XHR.prototype.connMgr=YAHOO.util.Connect;
-YAHOO.widget.DS_XHR.prototype.connTimeout=0;
-YAHOO.widget.DS_XHR.prototype.scriptURI=null;
-YAHOO.widget.DS_XHR.prototype.scriptQueryParam="query";
-YAHOO.widget.DS_XHR.prototype.scriptQueryAppend="";
-YAHOO.widget.DS_XHR.prototype.responseType=YAHOO.widget.DS_XHR.TYPE_JSON;
-YAHOO.widget.DS_XHR.prototype.responseStripAfter="\n<!-";
-YAHOO.widget.DS_XHR.prototype.doQuery=function(_b7,_b8,_b9){
-var _ba=(this.responseType==YAHOO.widget.DS_XHR.TYPE_XML);
-var _bb=this.scriptURI+"?"+this.scriptQueryParam+"="+_b8;
-if(this.scriptQueryAppend.length>0){
-_bb+="&"+this.scriptQueryAppend;
-}
-var _bc=null;
-var _bd=this;
-var _be=function(_bf){
-if(!_bd._oConn||(_bf.tId!=_bd._oConn.tId)){
-_bd.dataErrorEvent.fire(_bd,_b9,_b8,YAHOO.widget.DataSource.ERROR_DATANULL);
-return;
-}
-for(var foo in _bf){
-}
-if(!_ba){
-_bf=_bf.responseText;
-}else{
-_bf=_bf.responseXML;
-}
-if(_bf===null){
-_bd.dataErrorEvent.fire(_bd,_b9,_b8,YAHOO.widget.DataSource.ERROR_DATANULL);
-return;
-}
-var _c1=_bd.parseResponse(_b8,_bf,_b9);
-var _c2={};
-_c2.query=decodeURIComponent(_b8);
-_c2.results=_c1;
-if(_c1===null){
-_bd.dataErrorEvent.fire(_bd,_b9,_b8,YAHOO.widget.DataSource.ERROR_DATAPARSE);
-_c1=[];
-}else{
-_bd.getResultsEvent.fire(_bd,_b9,_b8,_c1);
-_bd._addCacheElem(_c2);
-}
-_b7(_b8,_c1,_b9);
-};
-var _c3=function(_c4){
-_bd.dataErrorEvent.fire(_bd,_b9,_b8,YAHOO.widget.DS_XHR.ERROR_DATAXHR);
-return;
-};
-var _c5={success:_be,failure:_c3};
-if(!isNaN(this.connTimeout)&&this.connTimeout>0){
-_c5.timeout=this.connTimeout;
-}
-if(this._oConn){
-this.connMgr.abort(this._oConn);
-}
-_bd._oConn=this.connMgr.asyncRequest("GET",_bb,_c5,null);
-};
-YAHOO.widget.DS_XHR.prototype.parseResponse=function(_c6,_c7,_c8){
-var _c9=this.schema;
-var _ca=[];
-var _cb=false;
-var _cc=((this.responseStripAfter!=="")&&(_c7.indexOf))?_c7.indexOf(this.responseStripAfter):-1;
-if(_cc!=-1){
-_c7=_c7.substring(0,_cc);
-}
-switch(this.responseType){
-case YAHOO.widget.DS_XHR.TYPE_JSON:
-var _cd;
-if(window.JSON&&(navigator.userAgent.toLowerCase().indexOf("khtml")==-1)){
-var _ce=JSON.parse(_c7);
-if(!_ce){
-_cb=true;
-break;
-}else{
-try{
-_cd=eval("jsonObjParsed."+_c9[0]);
-}
-catch(e){
-_cb=true;
-break;
-}
-}
-}else{
-try{
-while(_c7.substring(0,1)==" "){
-_c7=_c7.substring(1,_c7.length);
-}
-if(_c7.indexOf("{")<0){
-_cb=true;
-break;
-}
-if(_c7.indexOf("{}")===0){
-break;
-}
-var _cf=eval("("+_c7+")");
-if(!_cf){
-_cb=true;
-break;
-}
-_cd=eval("(jsonObjRaw."+_c9[0]+")");
-}
-catch(e){
-_cb=true;
-break;
-}
-}
-if(!_cd){
-_cb=true;
-break;
-}
-if(_cd.constructor!=Array){
-_cd=[_cd];
-}
-for(var i=_cd.length-1;i>=0;i--){
-var _d1=[];
-var _d2=_cd[i];
-for(var j=_c9.length-1;j>=1;j--){
-var _d4=_d2[_c9[j]];
-if(!_d4){
-_d4="";
-}
-_d1.unshift(_d4);
-}
-if(_d1.length==1){
-_d1.push(_d2);
-}
-_ca.unshift(_d1);
-}
-break;
-case YAHOO.widget.DS_XHR.TYPE_XML:
-var _d5=_c7.getElementsByTagName(_c9[0]);
-if(!_d5){
-_cb=true;
-break;
-}
-for(var k=_d5.length-1;k>=0;k--){
-var _d7=_d5.item(k);
-var _d8=[];
-for(var m=_c9.length-1;m>=1;m--){
-var _da=null;
-var _db=_d7.attributes.getNamedItem(_c9[m]);
-if(_db){
-_da=_db.value;
-}else{
-var _dc=_d7.getElementsByTagName(_c9[m]);
-if(_dc&&_dc.item(0)&&_dc.item(0).firstChild){
-_da=_dc.item(0).firstChild.nodeValue;
-}else{
-_da="";
-}
-}
-_d8.unshift(_da);
-}
-_ca.unshift(_d8);
-}
-break;
-case YAHOO.widget.DS_XHR.TYPE_FLAT:
-if(_c7.length>0){
-var _dd=_c7.length-_c9[0].length;
-if(_c7.substr(_dd)==_c9[0]){
-_c7=_c7.substr(0,_dd);
-}
-var _de=_c7.split(_c9[0]);
-for(var n=_de.length-1;n>=0;n--){
-_ca[n]=_de[n].split(_c9[1]);
-}
-}
-break;
-default:
-break;
-}
-_c6=null;
-_c7=null;
-_c8=null;
-if(_cb){
-return null;
-}else{
-return _ca;
-}
-};
-YAHOO.widget.DS_XHR.prototype._oConn=null;
-YAHOO.widget.DS_JSFunction=function(_e0,_e1){
-if(typeof _e1=="object"){
-for(var _e2 in _e1){
-this[_e2]=_e1[_e2];
-}
-}
-if(!_e0||(_e0.constructor!=Function)){
-return;
-}else{
-this.dataFunction=_e0;
-this._init();
-}
-};
-YAHOO.widget.DS_JSFunction.prototype=new YAHOO.widget.DataSource();
-YAHOO.widget.DS_JSFunction.prototype.dataFunction=null;
-YAHOO.widget.DS_JSFunction.prototype.doQuery=function(_e3,_e4,_e5){
-var _e6=this.dataFunction;
-var _e7=[];
-_e7=_e6(_e4);
-if(_e7===null){
-this.dataErrorEvent.fire(this,_e5,_e4,YAHOO.widget.DataSource.ERROR_DATANULL);
-return;
-}
-var _e8={};
-_e8.query=decodeURIComponent(_e4);
-_e8.results=_e7;
-this._addCacheElem(_e8);
-this.getResultsEvent.fire(this,_e5,_e4,_e7);
-_e3(_e4,_e7,_e5);
-return;
-};
-YAHOO.widget.DS_JSArray=function(_e9,_ea){
-if(typeof _ea=="object"){
-for(var _eb in _ea){
-this[_eb]=_ea[_eb];
-}
-}
-if(!_e9||(_e9.constructor!=Array)){
-return;
-}else{
-this.data=_e9;
-this._init();
-}
-};
-YAHOO.widget.DS_JSArray.prototype=new YAHOO.widget.DataSource();
-YAHOO.widget.DS_JSArray.prototype.data=null;
-YAHOO.widget.DS_JSArray.prototype.doQuery=function(_ec,_ed,_ee){
-var _ef=this.data;
-var _f0=[];
-var _f1=false;
-var _f2=this.queryMatchContains;
-if(_ed){
-if(!this.queryMatchCase){
-_ed=_ed.toLowerCase();
-}
-for(var i=_ef.length-1;i>=0;i--){
-var _f4=[];
-if(_ef[i]){
-if(_ef[i].constructor==String){
-_f4[0]=_ef[i];
-}else{
-if(_ef[i].constructor==Array){
-_f4=_ef[i];
-}
-}
-}
-if(_f4[0]&&(_f4[0].constructor==String)){
-var _f5=(this.queryMatchCase)?encodeURIComponent(_f4[0]).indexOf(_ed):encodeURIComponent(_f4[0]).toLowerCase().indexOf(_ed);
-if((!_f2&&(_f5===0))||(_f2&&(_f5>-1))){
-_f0.unshift(_f4);
-}
-}
-}
-}
-this.getResultsEvent.fire(this,_ee,_ed,_f0);
-_ec(_ed,_f0,_ee);
-};
-YAHOO.register("autocomplete",YAHOO.widget.AutoComplete,{version:"2.2.0",build:"127"});
-
-
 YAHOO.ext.TabPanel=function(_1,_2){
 this.el=getEl(_1,true);
 this.tabPosition="top";
@@ -16568,1724 +15301,6 @@ YAHOO.ext.WestLayoutRegion.superclass.updateBox.call(this,box);
 }});
 
 
-YAHOO.ext.grid.AbstractColumnModel=function(){
-this.onWidthChange=new YAHOO.util.CustomEvent("widthChanged");
-this.onHeaderChange=new YAHOO.util.CustomEvent("headerChanged");
-this.onHiddenChange=new YAHOO.util.CustomEvent("hiddenChanged");
-this.events={"widthchange":this.onWidthChange,"headerchange":this.onHeaderChange,"hiddenchange":this.onHiddenChange};
-};
-YAHOO.ext.grid.AbstractColumnModel.prototype={fireEvent:YAHOO.ext.util.Observable.prototype.fireEvent,on:YAHOO.ext.util.Observable.prototype.on,addListener:YAHOO.ext.util.Observable.prototype.addListener,delayedListener:YAHOO.ext.util.Observable.prototype.delayedListener,removeListener:YAHOO.ext.util.Observable.prototype.removeListener,purgeListeners:YAHOO.ext.util.Observable.prototype.purgeListeners,bufferedListener:YAHOO.ext.util.Observable.prototype.bufferedListener,fireWidthChange:function(_1,_2){
-this.onWidthChange.fireDirect(this,_1,_2);
-},fireHeaderChange:function(_3,_4){
-this.onHeaderChange.fireDirect(this,_3,_4);
-},fireHiddenChange:function(_5,_6){
-this.onHiddenChange.fireDirect(this,_5,_6);
-},getColumnCount:function(){
-return 0;
-},isSortable:function(_7){
-return false;
-},isHidden:function(_8){
-return false;
-},getSortType:function(_9){
-return YAHOO.ext.grid.DefaultColumnModel.sortTypes.none;
-},getRenderer:function(_a){
-return YAHOO.ext.grid.DefaultColumnModel.defaultRenderer;
-},getColumnWidth:function(_b){
-return 0;
-},getTotalWidth:function(){
-return 0;
-},getColumnHeader:function(_c){
-return "";
-}};
-
-
-YAHOO.ext.grid.DefaultColumnModel=function(_1){
-YAHOO.ext.grid.DefaultColumnModel.superclass.constructor.call(this);
-this.config=_1;
-this.defaultWidth=100;
-this.defaultSortable=false;
-};
-YAHOO.extendX(YAHOO.ext.grid.DefaultColumnModel,YAHOO.ext.grid.AbstractColumnModel,{getColumnCount:function(){
-return this.config.length;
-},isSortable:function(_2){
-if(typeof this.config[_2].sortable=="undefined"){
-return this.defaultSortable;
-}
-return this.config[_2].sortable;
-},getSortType:function(_3){
-if(!this.dataMap){
-var _4=[];
-for(var i=0,_6=this.config.length;i<_6;i++){
-_4[this.getDataIndex(i)]=i;
-}
-this.dataMap=_4;
-}
-_3=this.dataMap[_3];
-if(!this.config[_3].sortType){
-return YAHOO.ext.grid.DefaultColumnModel.sortTypes.none;
-}
-return this.config[_3].sortType;
-},setSortType:function(_7,fn){
-this.config[_7].sortType=fn;
-},getRenderer:function(_9){
-if(!this.config[_9].renderer){
-return YAHOO.ext.grid.DefaultColumnModel.defaultRenderer;
-}
-return this.config[_9].renderer;
-},setRenderer:function(_a,fn){
-this.config[_a].renderer=fn;
-},getColumnWidth:function(_c){
-return this.config[_c].width||this.defaultWidth;
-},setColumnWidth:function(_d,_e,_f){
-this.config[_d].width=_e;
-this.totalWidth=null;
-if(!_f){
-this.onWidthChange.fireDirect(this,_d,_e);
-}
-},getTotalWidth:function(_10){
-if(!this.totalWidth){
-this.totalWidth=0;
-for(var i=0;i<this.config.length;i++){
-if(_10||!this.isHidden(i)){
-this.totalWidth+=this.getColumnWidth(i);
-}
-}
-}
-return this.totalWidth;
-},getColumnHeader:function(col){
-return this.config[col].header;
-},setColumnHeader:function(col,_14){
-this.config[col].header=_14;
-this.onHeaderChange.fireDirect(this,col,_14);
-},getColumnTooltip:function(col){
-return this.config[col].tooltip;
-},setColumnTooltip:function(col,_17){
-this.config[col].tooltip=tooltip;
-},getDataIndex:function(col){
-if(typeof this.config[col].dataIndex!="number"){
-return col;
-}
-return this.config[col].dataIndex;
-},setDataIndex:function(col,_1a){
-this.config[col].dataIndex=_1a;
-},isCellEditable:function(_1b,_1c){
-return this.config[_1b].editable||(typeof this.config[_1b].editable=="undefined"&&this.config[_1b].editor);
-},getCellEditor:function(_1d,_1e){
-return this.config[_1d].editor;
-},setEditable:function(col,_20){
-this.config[col].editable=_20;
-},isHidden:function(_21){
-return this.config[_21].hidden;
-},isFixed:function(_22){
-return this.config[_22].fixed;
-},isResizable:function(_23){
-return this.config[_23].resizable!==false;
-},setHidden:function(_24,_25){
-this.config[_24].hidden=_25;
-this.totalWidth=null;
-this.fireHiddenChange(_24,_25);
-},setEditor:function(col,_27){
-this.config[col].editor=_27;
-}});
-YAHOO.ext.grid.DefaultColumnModel.sortTypes={none:function(s){
-return s;
-},asUCString:function(s){
-return String(s).toUpperCase();
-},asDate:function(s){
-if(s instanceof Date){
-return s.getTime();
-}
-return Date.parse(String(s));
-},asFloat:function(s){
-var val=parseFloat(String(s).replace(/,/g,""));
-if(isNaN(val)){
-val=0;
-}
-return val;
-},asInt:function(s){
-var val=parseInt(String(s).replace(/,/g,""));
-if(isNaN(val)){
-val=0;
-}
-return val;
-}};
-YAHOO.ext.grid.DefaultColumnModel.defaultRenderer=function(_2f){
-if(typeof _2f=="string"&&_2f.length<1){
-return "&#160;";
-}
-return _2f;
-};
-
-
-YAHOO.ext.grid.Grid=function(_1,_2,_3,_4){
-this.container=YAHOO.ext.Element.get(_1);
-this.container.update("");
-this.container.setStyle("overflow","hidden");
-this.id=this.container.id;
-this.rows=[];
-this.rowCount=0;
-this.fieldId=null;
-var _5=_2;
-this.dataModel=_5;
-this.colModel=_3;
-this.selModel=_4;
-this.activeEditor=null;
-this.editingCell=null;
-this.minColumnWidth=25;
-this.autoSizeColumns=false;
-this.autoSizeHeaders=false;
-this.monitorWindowResize=true;
-this.maxRowsToMeasure=0;
-this.trackMouseOver=false;
-this.enableDragDrop=false;
-this.stripeRows=true;
-this.autoHeight=false;
-this.autoWidth=false;
-this.view=null;
-this.allowTextSelectionPattern=/INPUT|TEXTAREA|SELECT/i;
-if(typeof _2=="object"&&!_2.getRowCount){
-YAHOO.ext.util.Config.apply(this,_2);
-}
-this.setValueDelegate=this.setCellValue.createDelegate(this);
-this.events={"click":true,"dblclick":true,"mousedown":true,"mouseup":true,"mouseover":true,"mouseout":true,"keypress":true,"keydown":true,"cellclick":true,"celldblclick":true,"rowclick":true,"rowdblclick":true,"headerclick":true,"rowcontextmenu":true,"headercontextmenu":true,"beforeedit":true,"afteredit":true,"bodyscroll":true,"columnresize":true,"startdrag":true,"enddrag":true,"dragdrop":true,"dragover":true,"dragenter":true,"dragout":true};
-};
-YAHOO.ext.grid.Grid.prototype={render:function(){
-if((!this.container.dom.offsetHeight||this.container.dom.offsetHeight<20)||this.container.getStyle("height")=="auto"){
-this.autoHeight=true;
-}
-if((!this.container.dom.offsetWidth||this.container.dom.offsetWidth<20)){
-this.autoWidth=true;
-}
-if(!this.view){
-if(this.dataModel.isPaged()){
-this.view=new YAHOO.ext.grid.PagedGridView();
-}else{
-this.view=new YAHOO.ext.grid.GridView();
-}
-}
-this.view.init(this);
-this.el=getEl(this.view.render(),true);
-var c=this.container;
-c.mon("click",this.onClick,this,true);
-c.mon("dblclick",this.onDblClick,this,true);
-c.mon("contextmenu",this.onContextMenu,this,true);
-c.mon("selectstart",this.cancelTextSelection,this,true);
-c.mon("mousedown",this.cancelTextSelection,this,true);
-c.mon("mousedown",this.onMouseDown,this,true);
-c.mon("mouseup",this.onMouseUp,this,true);
-if(this.trackMouseOver){
-this.el.mon("mouseover",this.onMouseOver,this,true);
-this.el.mon("mouseout",this.onMouseOut,this,true);
-}
-c.mon("keypress",this.onKeyPress,this,true);
-c.mon("keydown",this.onKeyDown,this,true);
-this.init();
-return this;
-},init:function(){
-this.rows=this.el.dom.rows;
-if(!this.disableSelection){
-if(!this.selModel){
-this.selModel=new YAHOO.ext.grid.DefaultSelectionModel(this);
-}
-this.selModel.init(this);
-this.selModel.onSelectionChange.subscribe(this.updateField,this,true);
-}else{
-this.selModel=new YAHOO.ext.grid.DisableSelectionModel(this);
-this.selModel.init(this);
-}
-if(this.enableDragDrop){
-this.dd=new YAHOO.ext.grid.GridDD(this,this.container.dom);
-}
-},reset:function(_7){
-this.destroy(false,true);
-YAHOO.ext.util.Config.apply(this,_7);
-return this;
-},destroy:function(_8,_9){
-var c=this.container;
-c.removeAllListeners();
-this.view.destroy();
-YAHOO.ext.EventManager.removeResizeListener(this.view.onWindowResize,this.view);
-this.view=null;
-this.colModel.purgeListeners();
-if(!_9){
-this.purgeListeners();
-}
-c.update("");
-if(_8===true){
-c.remove();
-}
-},setDataModel:function(dm,_c){
-this.view.unplugDataModel(this.dataModel);
-this.dataModel=dm;
-this.view.plugDataModel(dm);
-if(_c){
-dm.fireEvent("datachanged");
-}
-},onMouseDown:function(e){
-this.fireEvent("mousedown",e);
-},onMouseUp:function(e){
-this.fireEvent("mouseup",e);
-},onMouseOver:function(e){
-this.fireEvent("mouseover",e);
-},onMouseOut:function(e){
-this.fireEvent("mouseout",e);
-},onKeyPress:function(e){
-this.fireEvent("keypress",e);
-},onKeyDown:function(e){
-this.fireEvent("keydown",e);
-},fireEvent:YAHOO.ext.util.Observable.prototype.fireEvent,on:YAHOO.ext.util.Observable.prototype.on,addListener:YAHOO.ext.util.Observable.prototype.addListener,delayedListener:YAHOO.ext.util.Observable.prototype.delayedListener,removeListener:YAHOO.ext.util.Observable.prototype.removeListener,purgeListeners:YAHOO.ext.util.Observable.prototype.purgeListeners,bufferedListener:YAHOO.ext.util.Observable.prototype.bufferedListener,onClick:function(e){
-this.fireEvent("click",e);
-var _14=e.getTarget();
-var row=this.getRowFromChild(_14);
-var _16=this.getCellFromChild(_14);
-var _17=this.getHeaderFromChild(_14);
-if(row){
-this.fireEvent("rowclick",this,row.rowIndex,e);
-}
-if(_16){
-this.fireEvent("cellclick",this,row.rowIndex,_16.columnIndex,e);
-}
-if(_17){
-this.fireEvent("headerclick",this,_17.columnIndex,e);
-}
-},onContextMenu:function(e){
-var _19=e.getTarget();
-var row=this.getRowFromChild(_19);
-var _1b=this.getHeaderFromChild(_19);
-if(row){
-this.fireEvent("rowcontextmenu",this,row.rowIndex,e);
-}
-if(_1b){
-this.fireEvent("headercontextmenu",this,_1b.columnIndex,e);
-}
-e.preventDefault();
-},onDblClick:function(e){
-this.fireEvent("dblclick",e);
-var _1d=e.getTarget();
-var row=this.getRowFromChild(_1d);
-var _1f=this.getCellFromChild(_1d);
-if(row){
-this.fireEvent("rowdblclick",this,row.rowIndex,e);
-}
-if(_1f){
-this.fireEvent("celldblclick",this,row.rowIndex,_1f.columnIndex,e);
-}
-},startEditing:function(_20,_21){
-var row=this.rows[_20];
-var _23=row.childNodes[_21];
-this.stopEditing();
-setTimeout(this.doEdit.createDelegate(this,[row,_23]),10);
-},stopEditing:function(){
-if(this.activeEditor){
-this.activeEditor.stopEditing();
-}
-},doEdit:function(row,_25){
-if(!row||!_25){
-return;
-}
-var cm=this.colModel;
-var dm=this.dataModel;
-var _28=_25.columnIndex;
-var _29=row.rowIndex;
-if(cm.isCellEditable(_28,_29)){
-var ed=cm.getCellEditor(_28,_29);
-if(ed){
-if(this.activeEditor){
-this.activeEditor.stopEditing();
-}
-this.fireEvent("beforeedit",this,_29,_28);
-this.activeEditor=ed;
-this.editingCell=_25;
-this.view.ensureVisible(row,true);
-try{
-_25.focus();
-}
-catch(e){
-}
-ed.init(this,this.el.dom.parentNode,this.setValueDelegate);
-var _2b=dm.getValueAt(_29,cm.getDataIndex(_28));
-setTimeout(ed.startEditing.createDelegate(ed,[_2b,row,_25]),1);
-}
-}
-},setCellValue:function(_2c,_2d,_2e){
-this.dataModel.setValueAt(_2c,_2d,this.colModel.getDataIndex(_2e));
-this.fireEvent("afteredit",this,_2d,_2e);
-},cancelTextSelection:function(e){
-var _30=e.getTarget();
-if(_30&&_30!=this.el.dom.parentNode&&!this.allowTextSelectionPattern.test(_30.tagName)){
-e.preventDefault();
-}
-},autoSize:function(){
-this.view.updateWrapHeight();
-this.view.adjustForScroll();
-},scrollTo:function(row){
-if(typeof row=="number"){
-row=this.rows[row];
-}
-this.view.ensureVisible(row,true);
-},getEditingCell:function(){
-return this.editingCell;
-},bindToField:function(_32){
-this.fieldId=_32;
-this.readField();
-},updateField:function(){
-if(this.fieldId){
-var _33=YAHOO.util.Dom.get(this.fieldId);
-_33.value=this.getSelectedRowIds().join(",");
-}
-},readField:function(){
-if(this.fieldId){
-var _34=YAHOO.util.Dom.get(this.fieldId);
-var _35=_34.value.split(",");
-var _36=this.getRowsById(_35);
-this.selModel.selectRows(_36,false);
-}
-},getRow:function(_37){
-return this.rows[_37];
-},getRowsById:function(id){
-var dm=this.dataModel;
-if(!(id instanceof Array)){
-for(var i=0;i<this.rows.length;i++){
-if(dm.getRowId(i)==id){
-return this.rows[i];
-}
-}
-return null;
-}
-var _3b=[];
-var re="^(?:";
-for(var i=0;i<id.length;i++){
-re+=id[i];
-if(i!=id.length-1){
-re+="|";
-}
-}
-var _3d=new RegExp(re+")$");
-for(var i=0;i<this.rows.length;i++){
-if(_3d.test(dm.getRowId(i))){
-_3b.push(this.rows[i]);
-}
-}
-return _3b;
-},getRowAfter:function(row){
-return this.getSibling("next",row);
-},getRowBefore:function(row){
-return this.getSibling("previous",row);
-},getCellAfter:function(_40,_41){
-var _42=this.getSibling("next",_40);
-if(_42&&!_41&&this.colModel.isHidden(_42.columnIndex)){
-return this.getCellAfter(_42);
-}
-return _42;
-},getCellBefore:function(_43,_44){
-var _45=this.getSibling("previous",_43);
-if(_45&&!_44&&this.colModel.isHidden(_45.columnIndex)){
-return this.getCellBefore(_45);
-}
-return _45;
-},getLastCell:function(row,_47){
-var _48=this.getElement("previous",row.lastChild);
-if(_48&&!_47&&this.colModel.isHidden(_48.columnIndex)){
-return this.getCellBefore(_48);
-}
-return _48;
-},getFirstCell:function(row,_4a){
-var _4b=this.getElement("next",row.firstChild);
-if(_4b&&!_4a&&this.colModel.isHidden(_4b.columnIndex)){
-return this.getCellAfter(_4b);
-}
-return _4b;
-},getSibling:function(_4c,_4d){
-if(!_4d){
-return null;
-}
-_4c+="Sibling";
-var n=_4d[_4c];
-while(n&&n.nodeType!=1){
-n=n[_4c];
-}
-return n;
-},getElement:function(_4f,_50){
-if(!_50||_50.nodeType==1){
-return _50;
-}else{
-return this.getSibling(_4f,_50);
-}
-},getElementFromChild:function(_51,_52){
-if(!_51||(YAHOO.util.Dom.hasClass(_51,_52))){
-return _51;
-}
-var p=_51.parentNode;
-var b=document.body;
-while(p&&p!=b){
-if(YAHOO.util.Dom.hasClass(p,_52)){
-return p;
-}
-p=p.parentNode;
-}
-return null;
-},getRowFromChild:function(_55){
-return this.getElementFromChild(_55,"ygrid-row");
-},getCellFromChild:function(_56){
-return this.getElementFromChild(_56,"ygrid-col");
-},getHeaderFromChild:function(_57){
-return this.getElementFromChild(_57,"ygrid-hd");
-},getSelectedRows:function(){
-return this.selModel.getSelectedRows();
-},getSelectedRow:function(){
-if(this.selModel.hasSelection()){
-return this.selModel.getSelectedRows()[0];
-}
-return null;
-},getSelectedRowIndexes:function(){
-var a=[];
-var _59=this.selModel.getSelectedRows();
-for(var i=0;i<_59.length;i++){
-a[i]=_59[i].rowIndex;
-}
-return a;
-},getSelectedRowIndex:function(){
-if(this.selModel.hasSelection()){
-return this.selModel.getSelectedRows()[0].rowIndex;
-}
-return -1;
-},getSelectedRowId:function(){
-if(this.selModel.hasSelection()){
-return this.selModel.getSelectedRowIds()[0];
-}
-return null;
-},getSelectedRowIds:function(){
-return this.selModel.getSelectedRowIds();
-},clearSelections:function(){
-this.selModel.clearSelections();
-},selectAll:function(){
-this.selModel.selectAll();
-},getSelectionCount:function(){
-return this.selModel.getCount();
-},hasSelection:function(){
-return this.selModel.hasSelection();
-},getSelectionModel:function(){
-if(!this.selModel){
-this.selModel=new DefaultSelectionModel();
-}
-return this.selModel;
-},getDataModel:function(){
-return this.dataModel;
-},getColumnModel:function(){
-return this.colModel;
-},getView:function(){
-return this.view;
-},getDragDropText:function(){
-return this.ddText.replace("%0",this.selModel.getCount());
-}};
-YAHOO.ext.grid.Grid.prototype.ddText="%0 selected row(s)";
-
-
-YAHOO.ext.grid.GridView=function(){
-this.grid=null;
-this.lastFocusedRow=null;
-this.onScroll=new YAHOO.util.CustomEvent("onscroll");
-this.adjustScrollTask=new YAHOO.ext.util.DelayedTask(this._adjustForScroll,this);
-this.ensureVisibleTask=new YAHOO.ext.util.DelayedTask();
-};
-YAHOO.ext.grid.GridView.prototype={init:function(_1){
-this.grid=_1;
-},fireScroll:function(_2,_3){
-this.onScroll.fireDirect(this.grid,_2,_3);
-},getColumnRenderers:function(){
-var _4=[];
-var cm=this.grid.colModel;
-var _6=cm.getColumnCount();
-for(var i=0;i<_6;i++){
-_4.push(cm.getRenderer(i));
-}
-return _4;
-},buildIndexMap:function(){
-var _8={};
-var _9={};
-var cm=this.grid.colModel;
-for(var i=0,_c=cm.getColumnCount();i<_c;i++){
-var di=cm.getDataIndex(i);
-_8[i]=di;
-_9[di]=i;
-}
-return {"colToData":_8,"dataToCol":_9};
-},getDataIndexes:function(){
-if(!this.indexMap){
-this.indexMap=this.buildIndexMap();
-}
-return this.indexMap.colToData;
-},getColumnIndexByDataIndex:function(_e){
-if(!this.indexMap){
-this.indexMap=this.buildIndexMap();
-}
-return this.indexMap.dataToCol[_e];
-},updateHeaders:function(){
-var _f=this.grid.colModel;
-var _10=this.headers;
-var _11=_f.getColumnCount();
-for(var i=0;i<_11;i++){
-_10[i].textNode.innerHTML=_f.getColumnHeader(i);
-}
-},adjustForScroll:function(_13){
-if(!_13){
-this.adjustScrollTask.delay(50);
-}else{
-this._adjustForScroll();
-}
-},getCellAtPoint:function(x,y){
-var _16=null;
-var _17=null;
-var xy=YAHOO.util.Dom.getXY(this.wrap);
-x=(x-xy[0])+this.wrap.scrollLeft;
-y=(y-xy[1])+this.wrap.scrollTop;
-var _19=this.grid.colModel;
-var pos=0;
-var _1b=_19.getColumnCount();
-for(var i=0;i<_1b;i++){
-if(_19.isHidden(i)){
-continue;
-}
-var _1d=_19.getColumnWidth(i);
-if(x>=pos&&x<pos+_1d){
-_16=i;
-break;
-}
-pos+=_1d;
-}
-if(_16!=null){
-_17=(y==0?0:Math.floor(y/this.getRowHeight()));
-if(_17>=this.grid.dataModel.getRowCount()){
-return null;
-}
-return [_16,_17];
-}
-return null;
-},_adjustForScroll:function(){
-this.forceScrollUpdate();
-if(this.scrollbarMode==YAHOO.ext.grid.GridView.SCROLLBARS_OVERLAP){
-var _1e=0;
-if(this.wrap.clientWidth&&this.wrap.clientWidth!==0){
-_1e=this.wrap.offsetWidth-this.wrap.clientWidth;
-}
-this.hwrap.setWidth(this.wrap.offsetWidth-_1e);
-}else{
-this.hwrap.setWidth(this.wrap.offsetWidth);
-}
-this.bwrap.setWidth(Math.max(this.grid.colModel.getTotalWidth(),this.wrap.clientWidth));
-},focusRow:function(row){
-if(typeof row=="number"){
-row=this.getBodyTable().childNodes[row];
-}
-if(!row){
-return;
-}
-var _20=this.wrap.scrollLeft;
-try{
-row.childNodes.item(0).hideFocus=true;
-row.childNodes.item(0).focus();
-}
-catch(e){
-}
-this.ensureVisible(row);
-this.wrap.scrollLeft=_20;
-this.handleScroll();
-this.lastFocusedRow=row;
-},ensureVisible:function(row,_22){
-if(!_22){
-this.ensureVisibleTask.delay(50,this._ensureVisible,this,[row]);
-}else{
-this._ensureVisible(row);
-}
-},_ensureVisible:function(row){
-if(typeof row=="number"){
-row=this.getBodyTable().childNodes[row];
-}
-if(!row){
-return;
-}
-var _24=this.wrap.scrollLeft;
-var _25=parseInt(row.offsetTop,10);
-var _26=_25+row.offsetHeight;
-var _27=parseInt(this.wrap.scrollTop,10);
-var _28=_27+this.wrap.clientHeight;
-if(_25<_27){
-this.wrap.scrollTop=_25;
-}else{
-if(_26>_28){
-this.wrap.scrollTop=_26-this.wrap.clientHeight;
-}
-}
-this.wrap.scrollLeft=_24;
-this.handleScroll();
-},updateColumns:function(){
-this.grid.stopEditing();
-var _29=this.grid.colModel;
-var _2a=this.headers;
-var _2b=_29.getColumnCount();
-var pos=0;
-var _2d=_29.getTotalWidth();
-for(var i=0;i<_2b;i++){
-if(_29.isHidden(i)){
-continue;
-}
-var _2f=_29.getColumnWidth(i);
-_2a[i].style.width=_2f+"px";
-_2a[i].style.left=pos+"px";
-_2a[i].split.style.left=(pos+_2f-3)+"px";
-this.setCSSWidth(i,_2f,pos);
-pos+=_2f;
-}
-this.lastWidth=_2d;
-if(this.grid.autoWidth){
-this.grid.container.setWidth(_2d+this.grid.container.getBorderWidth("lr"));
-this.grid.autoSize();
-}
-this.bwrap.setWidth(Math.max(_2d,this.wrap.clientWidth));
-if(!YAHOO.ext.util.Browser.isIE){
-this.wrap.scrollLeft=this.hwrap.dom.scrollLeft;
-}
-this.syncScroll();
-this.forceScrollUpdate();
-if(this.grid.autoHeight){
-this.autoHeight();
-this.updateWrapHeight();
-}
-},setCSSWidth:function(_30,_31,pos){
-var _33=["#"+this.grid.id+" .ygrid-col-"+_30,".ygrid-col-"+_30];
-YAHOO.ext.util.CSS.updateRule(_33,"width",_31+"px");
-if(typeof pos=="number"){
-YAHOO.ext.util.CSS.updateRule(_33,"left",pos+"px");
-}
-},setCSSStyle:function(_34,_35,_36){
-var _37=["#"+this.grid.id+" .ygrid-col-"+_34,".ygrid-col-"+_34];
-YAHOO.ext.util.CSS.updateRule(_37,_35,_36);
-},handleHiddenChange:function(_38,_39,_3a){
-if(_3a){
-this.hideColumn(_39);
-}else{
-this.unhideColumn(_39);
-}
-this.updateColumns();
-},hideColumn:function(_3b){
-var _3c=["#"+this.grid.id+" .ygrid-col-"+_3b,".ygrid-col-"+_3b];
-YAHOO.ext.util.CSS.updateRule(_3c,"position","absolute");
-YAHOO.ext.util.CSS.updateRule(_3c,"visibility","hidden");
-this.headers[_3b].style.display="none";
-this.headers[_3b].split.style.display="none";
-},unhideColumn:function(_3d){
-var _3e=["#"+this.grid.id+" .ygrid-col-"+_3d,".ygrid-col-"+_3d];
-YAHOO.ext.util.CSS.updateRule(_3e,"position","");
-YAHOO.ext.util.CSS.updateRule(_3e,"visibility","visible");
-this.headers[_3d].style.display="";
-this.headers[_3d].split.style.display="";
-},getBodyTable:function(){
-return this.bwrap.dom;
-},updateRowIndexes:function(_3f,_40){
-var _41=this.grid.stripeRows;
-var bt=this.getBodyTable();
-var _43=bt.childNodes;
-_3f=_3f||0;
-_40=_40||_43.length-1;
-var re=/^(?:ygrid-row ygrid-row-alt|ygrid-row)/;
-for(var _45=_3f;_45<=_40;_45++){
-var _46=_43[_45];
-if(_41&&(_45+1)%2==0){
-_46.className=_46.className.replace(re,"ygrid-row ygrid-row-alt");
-}else{
-_46.className=_46.className.replace(re,"ygrid-row");
-}
-_46.rowIndex=_45;
-_43[_45].style.top=(_45*this.rowHeight)+"px";
-}
-},insertRows:function(_47,_48,_49){
-this.updateBodyHeight();
-this.adjustForScroll(true);
-var _4a=this.getColumnRenderers();
-var _4b=this.getDataIndexes();
-var _4c=this.grid.colModel.getColumnCount();
-var _4d=null;
-var bt=this.getBodyTable();
-if(_48<bt.childNodes.length){
-_4d=bt.childNodes[_48];
-}
-for(var _4f=_48;_4f<=_49;_4f++){
-var row=document.createElement("span");
-row.className="ygrid-row";
-row.style.top=(_4f*this.rowHeight)+"px";
-this.renderRow(_47,row,_4f,_4c,_4a,_4b);
-if(_4d){
-bt.insertBefore(row,_4d);
-}else{
-bt.appendChild(row);
-}
-}
-this.updateRowIndexes(_48);
-this.adjustForScroll(true);
-},renderRow:function(_51,row,_53,_54,_55,_56){
-for(var _57=0;_57<_54;_57++){
-var td=document.createElement("span");
-td.className="ygrid-col ygrid-col-"+_57+(_57==_54-1?" ygrid-col-last":"");
-td.columnIndex=_57;
-td.tabIndex=0;
-var _59=document.createElement("span");
-_59.className="ygrid-cell-text";
-td.appendChild(_59);
-var val=_55[_57](_51.getValueAt(_53,_56[_57]),_53,_57,td);
-if(typeof val=="undefined"||val===""){
-val="&#160;";
-}
-_59.innerHTML=val;
-row.appendChild(td);
-}
-},deleteRows:function(_5b,_5c,_5d){
-this.updateBodyHeight();
-this.grid.selModel.deselectRange(_5c,_5d);
-var bt=this.getBodyTable();
-var _5f=[];
-for(var _60=_5c;_60<=_5d;_60++){
-_5f.push(bt.childNodes[_60]);
-}
-for(var i=0;i<_5f.length;i++){
-bt.removeChild(_5f[i]);
-_5f[i]=null;
-}
-_5f=null;
-this.updateRowIndexes(_5c);
-this.adjustForScroll();
-},updateRows:function(_62,_63,_64){
-var bt=this.getBodyTable();
-var _66=this.getDataIndexes();
-var _67=this.getColumnRenderers();
-var _68=this.grid.colModel.getColumnCount();
-for(var _69=_63;_69<=_64;_69++){
-var row=bt.rows[_69];
-var _6b=row.childNodes;
-for(var _6c=0;_6c<_68;_6c++){
-var td=_6b[_6c];
-var val=_67[_6c](_62.getValueAt(_69,_66[_6c]),_69,_6c,td);
-if(typeof val=="undefined"||val===""){
-val="&#160;";
-}
-td.firstChild.innerHTML=val;
-}
-}
-},handleSort:function(_6f,_70,_71,_72){
-this.grid.selModel.syncSelectionsToIds();
-if(!_72){
-this.updateRows(_6f,0,_6f.getRowCount()-1);
-}
-this.updateHeaderSortState();
-if(this.lastFocusedRow){
-this.focusRow(this.lastFocusedRow);
-}
-},syncScroll:function(){
-this.hwrap.dom.scrollLeft=this.wrap.scrollLeft;
-},handleScroll:function(){
-this.syncScroll();
-this.fireScroll(this.wrap.scrollLeft,this.wrap.scrollTop);
-this.grid.fireEvent("bodyscroll",this.wrap.scrollLeft,this.wrap.scrollTop);
-},getRowHeight:function(){
-if(!this.rowHeight){
-var _73=YAHOO.ext.util.CSS.getRule(["#"+this.grid.id+" .ygrid-row",".ygrid-row"]);
-if(_73&&_73.style.height){
-this.rowHeight=parseInt(_73.style.height,10);
-}else{
-this.rowHeight=21;
-}
-}
-return this.rowHeight;
-},renderRows:function(_74){
-this.grid.stopEditing();
-if(this.grid.selModel){
-this.grid.selModel.clearSelections();
-}
-var bt=this.getBodyTable();
-bt.innerHTML="";
-this.rowHeight=this.getRowHeight();
-this.insertRows(_74,0,_74.getRowCount()-1);
-},updateCell:function(_76,_77,_78){
-var _79=this.getColumnIndexByDataIndex(_78);
-if(typeof _79=="undefined"){
-return;
-}
-var bt=this.getBodyTable();
-var row=bt.childNodes[_77];
-var _7c=row.childNodes[_79];
-var _7d=this.grid.colModel.getRenderer(_79);
-var val=_7d(_76.getValueAt(_77,_78),_77,_79,_7c);
-if(typeof val=="undefined"||val===""){
-val="&#160;";
-}
-_7c.firstChild.innerHTML=val;
-},calcColumnWidth:function(_7f,_80){
-var _81=0;
-var bt=this.getBodyTable();
-var _83=bt.childNodes;
-var _84=Math.min(_80||_83.length,_83.length);
-if(this.grid.autoSizeHeaders){
-var h=this.headers[_7f];
-var _86=h.style.width;
-h.style.width=this.grid.minColumnWidth+"px";
-_81=Math.max(_81,h.scrollWidth);
-h.style.width=_86;
-}
-for(var i=0;i<_84;i++){
-var _88=_83[i].childNodes[_7f].firstChild;
-_81=Math.max(_81,_88.scrollWidth);
-}
-return _81+5;
-},autoSizeColumn:function(_89,_8a){
-if(_8a){
-this.setCSSWidth(_89,this.grid.minColumnWidth);
-}
-var _8b=this.calcColumnWidth(_89);
-this.grid.colModel.setColumnWidth(_89,Math.max(this.grid.minColumnWidth,_8b));
-this.grid.fireEvent("columnresize",_89,_8b);
-},autoSizeColumns:function(){
-var _8c=this.grid.colModel;
-var _8d=_8c.getColumnCount();
-var _8e=this.wrap;
-for(var i=0;i<_8d;i++){
-this.setCSSWidth(i,this.grid.minColumnWidth);
-_8c.setColumnWidth(i,this.calcColumnWidth(i,this.grid.maxRowsToMeasure),true);
-}
-if(_8c.getTotalWidth()<_8e.clientWidth){
-var _90=Math.floor((_8e.clientWidth-_8c.getTotalWidth())/_8d);
-for(var i=0;i<_8d;i++){
-_8c.setColumnWidth(i,_8c.getColumnWidth(i)+_90,true);
-}
-}
-this.updateColumns();
-},fitColumns:function(){
-var cm=this.grid.colModel;
-var _92=cm.getColumnCount();
-var _93=[];
-var _94=0;
-var i,w;
-for(i=0;i<_92;i++){
-if(!cm.isHidden(i)&&!cm.isFixed(i)){
-w=cm.getColumnWidth(i);
-_93.push(i);
-_93.push(w);
-_94+=w;
-}
-}
-var _97=(this.wrap.clientWidth-cm.getTotalWidth())/_94;
-while(_93.length){
-w=_93.pop();
-i=_93.pop();
-cm.setColumnWidth(i,Math.floor(w+w*_97),true);
-}
-this.updateColumns();
-},onWindowResize:function(){
-if(this.grid.monitorWindowResize){
-this.adjustForScroll();
-this.updateWrapHeight();
-this.adjustForScroll();
-}
-},updateWrapHeight:function(){
-this.grid.container.beginMeasure();
-this.autoHeight();
-var box=this.grid.container.getSize(true);
-this.wrapEl.setHeight(box.height-this.footerHeight-parseInt(this.wrap.offsetTop,10));
-this.pwrap.setSize(box.width,box.height);
-this.grid.container.endMeasure();
-},forceScrollUpdate:function(){
-var _99=this.wrapEl;
-_99.setWidth(_99.getWidth(true));
-setTimeout(function(){
-_99.setWidth("");
-},1);
-},updateHeaderSortState:function(){
-var _9a=this.grid.dataModel.getSortState();
-if(!_9a||typeof _9a.column=="undefined"){
-return;
-}
-var _9b=this.getColumnIndexByDataIndex(_9a.column);
-var _9c=_9a.direction;
-for(var i=0,len=this.headers.length;i<len;i++){
-var h=this.headers[i];
-if(i!=_9b){
-h.sortDesc.style.display="none";
-h.sortAsc.style.display="none";
-}else{
-h.sortDesc.style.display=_9c=="DESC"?"block":"none";
-h.sortAsc.style.display=_9c=="ASC"?"block":"none";
-}
-}
-},unplugDataModel:function(dm){
-dm.removeListener("cellupdated",this.updateCell,this);
-dm.removeListener("datachanged",this.renderRows,this);
-dm.removeListener("rowsdeleted",this.deleteRows,this);
-dm.removeListener("rowsinserted",this.insertRows,this);
-dm.removeListener("rowsupdated",this.updateRows,this);
-dm.removeListener("rowssorted",this.handleSort,this);
-},plugDataModel:function(dm){
-dm.on("cellupdated",this.updateCell,this,true);
-dm.on("datachanged",this.renderRows,this,true);
-dm.on("rowsdeleted",this.deleteRows,this,true);
-dm.on("rowsinserted",this.insertRows,this,true);
-dm.on("rowsupdated",this.updateRows,this,true);
-dm.on("rowssorted",this.handleSort,this,true);
-},destroy:function(){
-this.unplugDataModel(this.grid.dataModel);
-var sp=this.splitters;
-if(sp){
-for(var i in sp){
-if(sp[i]&&typeof sp[i]!="function"){
-sp[i].destroy(true);
-}
-}
-}
-},render:function(){
-var _a4=this.grid;
-var _a5=_a4.container.dom;
-var _a6=_a4.dataModel;
-this.plugDataModel(_a6);
-var _a7=_a4.colModel;
-_a7.onWidthChange.subscribe(this.updateColumns,this,true);
-_a7.onHeaderChange.subscribe(this.updateHeaders,this,true);
-_a7.onHiddenChange.subscribe(this.handleHiddenChange,this,true);
-if(_a4.monitorWindowResize===true){
-YAHOO.ext.EventManager.onWindowResize(this.onWindowResize,this,true);
-}
-var _a8=this.autoSizeColumn.createDelegate(this);
-var _a9=_a7.getColumnCount();
-var dh=YAHOO.ext.DomHelper;
-this.pwrap=dh.append(_a5,{tag:"div",cls:"ygrid-positioner",style:"position:relative;width:100%;height:100%;left:0;top:0;overflow:hidden;"},true);
-var pos=this.pwrap.dom;
-var _ac=dh.append(pos,{tag:"div",cls:"ygrid-wrap"});
-this.wrap=_ac;
-this.wrapEl=getEl(_ac,true);
-YAHOO.ext.EventManager.on(_ac,"scroll",this.handleScroll,this,true);
-var _ad=dh.append(pos,{tag:"div",cls:"ygrid-wrap-headers"});
-this.hwrap=getEl(_ad,true);
-var _ae=dh.append(_ac,{tag:"div",cls:"ygrid-wrap-body",id:_a5.id+"-body"});
-this.bwrap=getEl(_ae,true);
-this.bwrap.setWidth(_a7.getTotalWidth());
-_ae.rows=_ae.childNodes;
-this.footerHeight=0;
-var _af=this.appendFooter(this.pwrap.dom);
-if(_af){
-this.footer=getEl(_af,true);
-this.footerHeight=this.footer.getHeight();
-}
-this.updateWrapHeight();
-var _b0=dh.append(_ad,{tag:"span",cls:"ygrid-hrow"});
-this.hrow=_b0;
-if(!YAHOO.ext.util.Browser.isGecko){
-var _b1=document.createElement("iframe");
-_b1.className="ygrid-hrow-frame";
-_b1.frameBorder=0;
-_b1.src=YAHOO.ext.SSL_SECURE_URL;
-_ad.appendChild(_b1);
-}
-this.headerCtrl=new YAHOO.ext.grid.HeaderController(this.grid);
-this.headers=[];
-this.cols=[];
-this.splitters=[];
-var _b2=dh.createTemplate({tag:"span",cls:"ygrid-hd ygrid-header-{0}",children:[{tag:"span",cls:"ygrid-hd-body",html:"<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" title=\"{2}\">"+"<tbody><tr><td><span>{1}</span></td>"+"<td><span class=\"sort-desc\"></span><span class=\"sort-asc\"></span></td>"+"</tr></tbody></table>"}]});
-_b2.compile();
-for(var i=0;i<_a9;i++){
-var hd=_b2.append(_b0,[i,_a7.getColumnHeader(i),_a7.getColumnTooltip(i)||""]);
-var _b5=hd.getElementsByTagName("span");
-hd.textNode=_b5[1];
-hd.sortDesc=_b5[2];
-hd.sortAsc=_b5[3];
-hd.columnIndex=i;
-this.headers.push(hd);
-if(_a7.isSortable(i)){
-this.headerCtrl.register(hd);
-}
-var _b6=dh.append(_b0,{tag:"span",cls:"ygrid-hd-split"});
-hd.split=_b6;
-if(_a7.isResizable(i)&&!_a7.isFixed(i)){
-YAHOO.util.Event.on(_b6,"dblclick",_a8.createCallback(i+0,true));
-var sb=new YAHOO.ext.SplitBar(_b6,hd,null,YAHOO.ext.SplitBar.LEFT);
-sb.columnIndex=i;
-sb.minSize=_a4.minColumnWidth;
-sb.onMoved.subscribe(this.onColumnSplitterMoved,this,true);
-YAHOO.util.Dom.addClass(sb.proxy,"ygrid-column-sizer");
-YAHOO.util.Dom.setStyle(sb.proxy,"background-color","");
-sb.dd._resizeProxy=function(){
-var el=this.getDragEl();
-YAHOO.util.Dom.setStyle(el,"height",(_ad.clientHeight+_ac.clientHeight-2)+"px");
-};
-this.splitters[i]=sb;
-}else{
-_b6.style.cursor="default";
-}
-}
-if(_a4.autoSizeColumns){
-this.renderRows(_a6);
-this.autoSizeColumns();
-}else{
-this.updateColumns();
-this.renderRows(_a6);
-}
-for(var i=0;i<_a9;i++){
-if(_a7.isHidden(i)){
-this.hideColumn(i);
-}
-}
-this.updateHeaderSortState();
-return this.bwrap;
-},onColumnSplitterMoved:function(_b9,_ba){
-this.grid.colModel.setColumnWidth(_b9.columnIndex,_ba);
-this.grid.fireEvent("columnresize",_b9.columnIndex,_ba);
-},appendFooter:function(_bb){
-return null;
-},autoHeight:function(){
-if(this.grid.autoHeight){
-var h=this.getBodyHeight();
-var c=this.grid.container;
-var _be=h+(parseInt(this.wrap.offsetTop,10)||0)+this.footerHeight+c.getBorderWidth("tb")+c.getPadding("tb")+(this.wrap.offsetHeight-this.wrap.clientHeight);
-c.setHeight(_be);
-}
-},getBodyHeight:function(){
-return this.grid.dataModel.getRowCount()*this.getRowHeight();
-},updateBodyHeight:function(){
-this.getBodyTable().style.height=this.getBodyHeight()+"px";
-if(this.grid.autoHeight){
-this.autoHeight();
-this.updateWrapHeight();
-}
-}};
-YAHOO.ext.grid.GridView.SCROLLBARS_UNDER=0;
-YAHOO.ext.grid.GridView.SCROLLBARS_OVERLAP=1;
-YAHOO.ext.grid.GridView.prototype.scrollbarMode=YAHOO.ext.grid.GridView.SCROLLBARS_UNDER;
-YAHOO.ext.grid.GridView.prototype.fitColumnsToContainer=YAHOO.ext.grid.GridView.prototype.fitColumns;
-YAHOO.ext.grid.HeaderController=function(_bf){
-this.grid=_bf;
-this.headers=[];
-};
-YAHOO.ext.grid.HeaderController.prototype={register:function(_c0){
-this.headers.push(_c0);
-YAHOO.ext.EventManager.on(_c0,"selectstart",this.cancelTextSelection,this,true);
-YAHOO.ext.EventManager.on(_c0,"mousedown",this.cancelTextSelection,this,true);
-YAHOO.ext.EventManager.on(_c0,"mouseover",this.headerOver,this,true);
-YAHOO.ext.EventManager.on(_c0,"mouseout",this.headerOut,this,true);
-YAHOO.ext.EventManager.on(_c0,"click",this.headerClick,this,true);
-},headerClick:function(e){
-var _c2=this.grid,cm=_c2.colModel,dm=_c2.dataModel;
-_c2.stopEditing();
-var _c5=_c2.getHeaderFromChild(e.getTarget());
-var _c6=dm.getSortState();
-var _c7=_c5.sortDir||"ASC";
-if(typeof _c6.column!="undefined"&&_c2.getView().getColumnIndexByDataIndex(_c6.column)==_c5.columnIndex){
-_c7=(_c6.direction=="ASC"?"DESC":"ASC");
-}
-_c5.sortDir=_c7;
-dm.sort(cm,cm.getDataIndex(_c5.columnIndex),_c7);
-},headerOver:function(e){
-var _c9=this.grid.getHeaderFromChild(e.getTarget());
-YAHOO.util.Dom.addClass(_c9,"ygrid-hd-over");
-},headerOut:function(e){
-var _cb=this.grid.getHeaderFromChild(e.getTarget());
-YAHOO.util.Dom.removeClass(_cb,"ygrid-hd-over");
-},cancelTextSelection:function(e){
-e.preventDefault();
-}};
-
-
-YAHOO.ext.grid.DefaultSelectionModel=function(){
-this.selectedRows=[];
-this.selectedRowIds=[];
-this.lastSelectedRow=null;
-this.onRowSelect=new YAHOO.util.CustomEvent("SelectionTable.rowSelected");
-this.onSelectionChange=new YAHOO.util.CustomEvent("SelectionTable.selectionChanged");
-this.events={"selectionchange":this.onSelectionChange,"rowselect":this.onRowSelect};
-this.locked=false;
-};
-YAHOO.ext.grid.DefaultSelectionModel.prototype={init:function(_1){
-this.grid=_1;
-this.initEvents();
-},lock:function(){
-this.locked=true;
-},unlock:function(){
-this.locked=false;
-},isLocked:function(){
-return this.locked;
-},initEvents:function(){
-if(this.grid.trackMouseOver){
-this.grid.addListener("mouseover",this.handleOver,this,true);
-this.grid.addListener("mouseout",this.handleOut,this,true);
-}
-this.grid.addListener("rowclick",this.rowClick,this,true);
-this.grid.addListener("keydown",this.keyDown,this,true);
-},fireEvent:YAHOO.ext.util.Observable.prototype.fireEvent,on:YAHOO.ext.util.Observable.prototype.on,addListener:YAHOO.ext.util.Observable.prototype.addListener,delayedListener:YAHOO.ext.util.Observable.prototype.delayedListener,removeListener:YAHOO.ext.util.Observable.prototype.removeListener,purgeListeners:YAHOO.ext.util.Observable.prototype.purgeListeners,bufferedListener:YAHOO.ext.util.Observable.prototype.bufferedListener,syncSelectionsToIds:function(){
-if(this.getCount()>0){
-var _2=this.selectedRowIds.concat();
-this.clearSelections();
-this.selectRowsById(_2,true);
-}
-},selectRowsById:function(id,_4){
-var _5=this.grid.getRowsById(id);
-if(!(_5 instanceof Array)){
-this.selectRow(_5,_4);
-return;
-}
-this.selectRows(_5,_4);
-},getCount:function(){
-return this.selectedRows.length;
-},selectFirstRow:function(){
-for(var j=0;j<this.grid.rows.length;j++){
-if(this.isSelectable(this.grid.rows[j])){
-this.focusRow(this.grid.rows[j]);
-this.setRowState(this.grid.rows[j],true);
-return;
-}
-}
-},selectNext:function(_7){
-if(this.lastSelectedRow){
-for(var j=(this.lastSelectedRow.rowIndex+1);j<this.grid.rows.length;j++){
-var _9=this.grid.rows[j];
-if(this.isSelectable(_9)){
-this.focusRow(_9);
-this.setRowState(_9,true,_7);
-return;
-}
-}
-}
-},selectPrevious:function(_a){
-if(this.lastSelectedRow){
-for(var j=(this.lastSelectedRow.rowIndex-1);j>=0;j--){
-var _c=this.grid.rows[j];
-if(this.isSelectable(_c)){
-this.focusRow(_c);
-this.setRowState(_c,true,_a);
-return;
-}
-}
-}
-},getSelectedRows:function(){
-return this.selectedRows;
-},getSelectedRowIds:function(){
-return this.selectedRowIds;
-},clearSelections:function(){
-if(this.isLocked()){
-return;
-}
-var _d=this.selectedRows.concat();
-for(var j=0;j<_d.length;j++){
-this.setRowState(_d[j],false);
-}
-this.selectedRows=[];
-this.selectedRowIds=[];
-},selectAll:function(){
-if(this.isLocked()){
-return;
-}
-this.selectedRows=[];
-this.selectedRowIds=[];
-for(var j=0,len=this.grid.rows.length;j<len;j++){
-this.setRowState(this.grid.rows[j],true,true);
-}
-},hasSelection:function(){
-return this.selectedRows.length>0;
-},isSelected:function(row){
-return row&&(row.selected===true||row.getAttribute("selected")=="true");
-},isSelectable:function(row){
-return row&&row.getAttribute("selectable")!="false";
-},rowClick:function(_13,_14,e){
-if(this.isLocked()){
-return;
-}
-var row=_13.getRow(_14);
-if(this.isSelectable(row)){
-if(e.shiftKey&&this.lastSelectedRow){
-var _17=this.lastSelectedRow.rowIndex;
-this.selectRange(this.lastSelectedRow,row,e.ctrlKey);
-this.lastSelectedRow=this.grid.el.dom.rows[_17];
-}else{
-this.focusRow(row);
-var _18=e.ctrlKey?!this.isSelected(row):true;
-this.setRowState(row,_18,e.hasModifier());
-}
-}
-},focusRow:function(row){
-this.grid.view.focusRow(row);
-},selectRow:function(row,_1b){
-this.setRowState(this.getRow(row),true,_1b);
-},selectRows:function(_1c,_1d){
-if(!_1d){
-this.clearSelections();
-}
-for(var i=0;i<_1c.length;i++){
-this.selectRow(_1c[i],true);
-}
-},deselectRow:function(row){
-this.setRowState(this.getRow(row),false);
-},getRow:function(row){
-if(typeof row=="number"){
-row=this.grid.rows[row];
-}
-return row;
-},selectRange:function(_21,_22,_23){
-_21=this.getRow(_21);
-_22=this.getRow(_22);
-this.setRangeState(_21,_22,true,_23);
-},deselectRange:function(_24,_25){
-_24=this.getRow(_24);
-_25=this.getRow(_25);
-this.setRangeState(_24,_25,false,true);
-},setRowStateFromChild:function(_26,_27,_28){
-var row=this.grid.getRowFromChild(_26);
-this.setRowState(row,_27,_28);
-},setRangeState:function(_2a,_2b,_2c,_2d){
-if(this.isLocked()){
-return;
-}
-if(!_2d){
-this.clearSelections();
-}
-var _2e=_2a;
-while(_2e.rowIndex!=_2b.rowIndex){
-this.setRowState(_2e,_2c,true);
-_2e=(_2a.rowIndex<_2b.rowIndex?this.grid.getRowAfter(_2e):this.grid.getRowBefore(_2e));
-}
-this.setRowState(_2b,_2c,true);
-},setRowState:function(row,_30,_31){
-if(this.isLocked()){
-return;
-}
-if(this.isSelectable(row)){
-if(_30){
-if(!_31){
-this.clearSelections();
-}
-this.setRowClass(row,"selected");
-row.selected=true;
-this.selectedRows.push(row);
-this.selectedRowIds.push(this.grid.dataModel.getRowId(row.rowIndex));
-this.lastSelectedRow=row;
-}else{
-this.setRowClass(row,"");
-row.selected=false;
-this._removeSelected(row);
-}
-this.fireEvent("rowselect",this,row,_30);
-this.fireEvent("selectionchange",this,this.selectedRows,this.selectedRowIds);
-}
-},handleOver:function(e){
-var row=this.grid.getRowFromChild(e.getTarget());
-if(this.isSelectable(row)&&!this.isSelected(row)){
-this.setRowClass(row,"over");
-}
-},handleOut:function(e){
-var row=this.grid.getRowFromChild(e.getTarget());
-if(this.isSelectable(row)&&!this.isSelected(row)){
-this.setRowClass(row,"");
-}
-},keyDown:function(e){
-if(e.browserEvent.keyCode==e.DOWN){
-this.selectNext(e.shiftKey);
-e.preventDefault();
-}else{
-if(e.browserEvent.keyCode==e.UP){
-this.selectPrevious(e.shiftKey);
-e.preventDefault();
-}
-}
-},setRowClass:function(row,_38){
-if(this.isSelectable(row)){
-if(_38=="selected"){
-YAHOO.util.Dom.removeClass(row,"ygrid-row-over");
-YAHOO.util.Dom.addClass(row,"ygrid-row-selected");
-}else{
-if(_38=="over"){
-YAHOO.util.Dom.removeClass(row,"ygrid-row-selected");
-YAHOO.util.Dom.addClass(row,"ygrid-row-over");
-}else{
-if(_38==""){
-YAHOO.util.Dom.removeClass(row,"ygrid-row-selected");
-YAHOO.util.Dom.removeClass(row,"ygrid-row-over");
-}
-}
-}
-}
-},_removeSelected:function(row){
-var sr=this.selectedRows;
-for(var i=0;i<sr.length;i++){
-if(sr[i]===row){
-this.selectedRows.splice(i,1);
-this.selectedRowIds.splice(i,1);
-return;
-}
-}
-}};
-YAHOO.ext.grid.SingleSelectionModel=function(){
-YAHOO.ext.grid.SingleSelectionModel.superclass.constructor.call(this);
-};
-YAHOO.extendX(YAHOO.ext.grid.SingleSelectionModel,YAHOO.ext.grid.DefaultSelectionModel);
-YAHOO.ext.grid.SingleSelectionModel.prototype.setRowState=function(row,_3d){
-YAHOO.ext.grid.SingleSelectionModel.superclass.setRowState.call(this,row,_3d,false);
-};
-YAHOO.ext.grid.DisableSelectionModel=function(){
-YAHOO.ext.grid.DisableSelectionModel.superclass.constructor.call(this);
-};
-YAHOO.extendX(YAHOO.ext.grid.DisableSelectionModel,YAHOO.ext.grid.DefaultSelectionModel);
-YAHOO.ext.grid.DisableSelectionModel.prototype.initEvents=function(){
-};
-
-
-YAHOO.ext.grid.AbstractDataModel=function(){
-this.onCellUpdated=new YAHOO.util.CustomEvent("onCellUpdated");
-this.onTableDataChanged=new YAHOO.util.CustomEvent("onTableDataChanged");
-this.onRowsDeleted=new YAHOO.util.CustomEvent("onRowsDeleted");
-this.onRowsInserted=new YAHOO.util.CustomEvent("onRowsInserted");
-this.onRowsUpdated=new YAHOO.util.CustomEvent("onRowsUpdated");
-this.onRowsSorted=new YAHOO.util.CustomEvent("onRowsSorted");
-this.events={"cellupdated":this.onCellUpdated,"datachanged":this.onTableDataChanged,"rowsdeleted":this.onRowsDeleted,"rowsinserted":this.onRowsInserted,"rowsupdated":this.onRowsUpdated,"rowssorted":this.onRowsSorted};
-};
-YAHOO.ext.grid.AbstractDataModel.prototype={fireEvent:YAHOO.ext.util.Observable.prototype.fireEvent,on:YAHOO.ext.util.Observable.prototype.on,addListener:YAHOO.ext.util.Observable.prototype.addListener,delayedListener:YAHOO.ext.util.Observable.prototype.delayedListener,removeListener:YAHOO.ext.util.Observable.prototype.removeListener,purgeListeners:YAHOO.ext.util.Observable.prototype.purgeListeners,bufferedListener:YAHOO.ext.util.Observable.prototype.bufferedListener,fireCellUpdated:function(_1,_2){
-this.onCellUpdated.fireDirect(this,_1,_2);
-},fireTableDataChanged:function(){
-this.onTableDataChanged.fireDirect(this);
-},fireRowsDeleted:function(_3,_4){
-this.onRowsDeleted.fireDirect(this,_3,_4);
-},fireRowsInserted:function(_5,_6){
-this.onRowsInserted.fireDirect(this,_5,_6);
-},fireRowsUpdated:function(_7,_8){
-this.onRowsUpdated.fireDirect(this,_7,_8);
-},fireRowsSorted:function(_9,_a,_b){
-this.onRowsSorted.fireDirect(this,_9,_a,_b);
-},sort:function(_c,_d,_e,_f){
-},getSortState:function(){
-return {column:this.sortColumn,direction:this.sortDir};
-},getRowCount:function(){
-},getTotalRowCount:function(){
-return this.getRowCount();
-},getRowId:function(_10){
-},getValueAt:function(_11,_12){
-},setValueAt:function(_13,_14,_15){
-},isPaged:function(){
-return false;
-}};
-
-
-YAHOO.ext.grid.DefaultDataModel=function(_1){
-YAHOO.ext.grid.DefaultDataModel.superclass.constructor.call(this);
-this.data=_1;
-};
-YAHOO.extendX(YAHOO.ext.grid.DefaultDataModel,YAHOO.ext.grid.AbstractDataModel,{getRowCount:function(){
-return this.data.length;
-},getRowId:function(_2){
-return this.data[_2][0];
-},getRow:function(_3){
-return this.data[_3];
-},getRows:function(_4){
-var _5=this.data;
-var r=[];
-for(var i=0;i<_4.length;i++){
-r.push(_5[_4[i]]);
-}
-return r;
-},getValueAt:function(_8,_9){
-return this.data[_8][_9];
-},setValueAt:function(_a,_b,_c){
-this.data[_b][_c]=_a;
-this.fireCellUpdated(_b,_c);
-},removeRows:function(_d,_e){
-_e=_e||_d;
-this.data.splice(_d,_e-_d+1);
-this.fireRowsDeleted(_d,_e);
-},removeRow:function(_f){
-this.data.splice(_f,1);
-this.fireRowsDeleted(_f,_f);
-},removeAll:function(){
-var _10=this.getRowCount();
-if(_10>0){
-this.removeRows(0,_10-1);
-}
-},query:function(_11,_12){
-var d=this.data;
-var r=[];
-for(var i=0;i<d.length;i++){
-var row=d[i];
-var _17=true;
-for(var col in _11){
-if(!_17){
-continue;
-}
-var _19=_11[col];
-switch(typeof _19){
-case "string":
-case "number":
-case "boolean":
-if(row[col]!=_19){
-_17=false;
-}
-break;
-case "function":
-if(!_19(row[col],row)){
-_17=false;
-}
-break;
-case "object":
-if(_19 instanceof RegExp){
-if(String(row[col]).search(_19)===-1){
-_17=false;
-}
-}
-break;
-}
-}
-if(_17&&!_12){
-r.push(i);
-}else{
-if(!_17&&_12){
-r.push(i);
-}
-}
-}
-return r;
-},filter:function(_1a){
-var _1b=this.query(_1a,true);
-var _1c=this.data;
-for(var i=0;i<_1b.length;i++){
-_1c[_1b[i]]._deleted=true;
-}
-for(var i=0;i<_1c.length;i++){
-while(_1c[i]&&_1c[i]._deleted===true){
-this.removeRow(i);
-}
-}
-return _1b.length;
-},addRow:function(_1e){
-this.data.push(_1e);
-var _1f=this.data.length-1;
-this.fireRowsInserted(_1f,_1f);
-this.applySort();
-return _1f;
-},addRows:function(_20){
-this.data=this.data.concat(_20);
-var _21=this.data.length-_20.length;
-this.fireRowsInserted(_21,_21+_20.length-1);
-this.applySort();
-},insertRow:function(_22,_23){
-this.data.splice(_22,0,_23);
-this.fireRowsInserted(_22,_22);
-this.applySort();
-return _22;
-},insertRows:function(_24,_25){
-var _26=_25.concat();
-_26.splice(0,0,_24,0);
-this.data.splice.apply(this.data,_26);
-this.fireRowsInserted(_24,_24+_25.length-1);
-this.applySort();
-},applySort:function(_27){
-if(typeof this.sortColumn!="undefined"){
-this.sort(this.sortInfo,this.sortColumn,this.sortDir,_27);
-}
-},setDefaultSort:function(_28,_29,_2a){
-this.sortInfo=_28;
-this.sortColumn=_29;
-this.sortDir=_2a;
-},sort:function(_2b,_2c,_2d,_2e){
-this.sortInfo=_2b;
-this.sortColumn=_2c;
-this.sortDir=_2d;
-var dsc=(_2d&&_2d.toUpperCase()=="DESC");
-var _30=null;
-if(_2b!=null){
-if(typeof _2b=="function"){
-_30=_2b;
-}else{
-if(typeof _2b=="object"){
-_30=_2b.getSortType(_2c);
-}
-}
-}
-var fn=function(_32,_33){
-var v1=_30?_30(_32[_2c],_32):_32[_2c];
-var v2=_30?_30(_33[_2c],_33):_33[_2c];
-if(v1<v2){
-return dsc?+1:-1;
-}
-if(v1>v2){
-return dsc?-1:+1;
-}
-return 0;
-};
-this.data.sort(fn);
-if(!_2e){
-this.fireRowsSorted(_2c,_2d);
-}
-},each:function(fn,_37){
-var d=this.data;
-for(var i=0,len=d.length;i<len;i++){
-if(fn.call(_37||window,d[i],i)===false){
-break;
-}
-}
-}});
-if(YAHOO.ext.grid.DefaultColumnModel){
-YAHOO.ext.grid.DefaultDataModel.sortTypes=YAHOO.ext.grid.DefaultColumnModel.sortTypes;
-}
-
-
-YAHOO.ext.grid.LoadableDataModel=function(_1){
-YAHOO.ext.grid.LoadableDataModel.superclass.constructor.call(this,[]);
-this.onLoad=new YAHOO.util.CustomEvent("load");
-this.onLoadException=new YAHOO.util.CustomEvent("loadException");
-this.events["load"]=this.onLoad;
-this.events["beforeload"]=new YAHOO.util.CustomEvent("beforeload");
-this.events["loadexception"]=this.onLoadException;
-this.dataType=_1;
-this.preprocessors=[];
-this.postprocessors=[];
-this.loadedPage=1;
-this.remoteSort=false;
-this.pageSize=0;
-this.pageUrl=null;
-this.baseParams={};
-this.paramMap={"page":"page","pageSize":"pageSize","sortColumn":"sortColumn","sortDir":"sortDir"};
-};
-YAHOO.extendX(YAHOO.ext.grid.LoadableDataModel,YAHOO.ext.grid.DefaultDataModel,{setLoadedPage:function(_2,_3){
-this.loadedPage=_2;
-if(typeof _3=="function"){
-_3();
-}
-},isPaged:function(){
-return this.pageSize>0;
-},getTotalRowCount:function(){
-return this.totalCount||this.getRowCount();
-},getPageSize:function(){
-return this.pageSize;
-},getTotalPages:function(){
-if(this.getPageSize()==0||this.getTotalRowCount()==0){
-return 1;
-}
-return Math.ceil(this.getTotalRowCount()/this.getPageSize());
-},initPaging:function(_4,_5,_6){
-this.pageUrl=_4;
-this.pageSize=_5;
-this.remoteSort=true;
-if(_6){
-this.baseParams=_6;
-}
-},createParams:function(_7,_8,_9){
-var _a={},_b=this.paramMap;
-for(var _c in this.baseParams){
-if(typeof this.baseParams[_c]!="function"){
-_a[_c]=this.baseParams[_c];
-}
-}
-_a[_b["page"]]=_7;
-_a[_b["pageSize"]]=this.getPageSize();
-_a[_b["sortColumn"]]=(typeof _8=="undefined"?"":_8);
-_a[_b["sortDir"]]=_9||"";
-return _a;
-},loadPage:function(_d,_e,_f){
-var _10=this.getSortState();
-var _11=this.createParams(_d,_10.column,_10.direction);
-this.load(this.pageUrl,_11,this.setLoadedPage.createDelegate(this,[_d,_e]),_f?(_d-1)*this.pageSize:null);
-},applySort:function(_12){
-if(!this.remoteSort){
-YAHOO.ext.grid.LoadableDataModel.superclass.applySort.apply(this,arguments);
-}else{
-if(!_12){
-var _13=this.getSortState();
-if(_13.column){
-this.fireRowsSorted(_13.column,_13.direction,true);
-}
-}
-}
-},resetPaging:function(){
-this.loadedPage=1;
-},sort:function(_14,_15,_16,_17){
-if(!this.remoteSort){
-YAHOO.ext.grid.LoadableDataModel.superclass.sort.apply(this,arguments);
-}else{
-this.sortInfo=_14;
-this.sortColumn=_15;
-this.sortDir=_16;
-var _18=this.createParams(this.loadedPage,_15,_16);
-this.load(this.pageUrl,_18,this.fireRowsSorted.createDelegate(this,[_15,_16,true]));
-}
-},load:function(url,_1a,_1b,_1c){
-this.fireEvent("beforeload",this);
-if(_1a&&typeof _1a!="string"){
-var buf=[];
-for(var key in _1a){
-if(typeof _1a[key]!="function"){
-buf.push(encodeURIComponent(key),"=",encodeURIComponent(_1a[key]),"&");
-}
-}
-delete buf[buf.length-1];
-_1a=buf.join("");
-}
-var cb={success:this.processResponse,failure:this.processException,scope:this,argument:{callback:_1b,insertIndex:_1c}};
-var _20=_1a?"POST":"GET";
-this.transId=YAHOO.util.Connect.asyncRequest(_20,url,cb,_1a);
-},processResponse:function(_21){
-var cb=_21.argument.callback;
-var _23=(typeof _21.argument.insertIndex=="number");
-var _24=_21.argument.insertIndex;
-switch(this.dataType){
-case YAHOO.ext.grid.LoadableDataModel.XML:
-this.loadData(_21.responseXML,cb,_23,_24);
-break;
-case YAHOO.ext.grid.LoadableDataModel.JSON:
-var _25=_21.responseText;
-try{
-while(_25.substring(0,1)==" "){
-_25=_25.substring(1,_25.length);
-}
-if(_25.indexOf("{")<0){
-throw "Invalid JSON response";
-}
-if(_25.indexOf("{}")===0){
-this.loadData({},_21.argument.callback);
-return;
-}
-var _26=eval("("+_25+")");
-if(!_26){
-throw "Error evaling JSON response";
-}
-this.loadData(_26,cb,_23,_24);
-}
-catch(e){
-this.fireLoadException(e,_21);
-if(typeof cb=="function"){
-cb(this,false);
-}
-}
-break;
-case YAHOO.ext.grid.LoadableDataModel.TEXT:
-this.loadData(_21.responseText,cb,_23,_24);
-break;
-}
-},processException:function(_27){
-this.fireLoadException(null,_27);
-if(typeof _27.argument.callback=="function"){
-_27.argument.callback(this,false);
-}
-},fireLoadException:function(e,_29){
-this.onLoadException.fireDirect(this,e,_29);
-},fireLoadEvent:function(){
-this.fireEvent("load",this.loadedPage,this.getTotalPages());
-},addPreprocessor:function(_2a,fn){
-this.preprocessors[_2a]=fn;
-},getPreprocessor:function(_2c){
-return this.preprocessors[_2c];
-},removePreprocessor:function(_2d){
-this.preprocessors[_2d]=null;
-},addPostprocessor:function(_2e,fn){
-this.postprocessors[_2e]=fn;
-},getPostprocessor:function(_30){
-return this.postprocessors[_30];
-},removePostprocessor:function(_31){
-this.postprocessors[_31]=null;
-},loadData:function(_32,_33,_34,_35){
-}});
-YAHOO.ext.grid.LoadableDataModel.XML="xml";
-YAHOO.ext.grid.LoadableDataModel.JSON="json";
-YAHOO.ext.grid.LoadableDataModel.TEXT="text";
-
-
 YAHOO.ext.util.CSS=new function(){
 var _1=null;
 var _2=function(_3){
@@ -18573,6 +15588,7 @@ delete _29.dialog.layout.regions["center"].panels.items[_26+"-spinner"];
 });
 this.tabs["mucchooser"]={type:"muc-spinner",tab:_28};
 },addChooseMUCTab:function(_2a){
+if(window.jive_enable_grid){
 this.dialog.beginUpdate();
 if(this.tabs["mucchooser"]){
 this.getTabs().removeTab("jive-tab-mucchooser-spinner");
@@ -18606,7 +15622,9 @@ this.tabs["muc-chooser-"+_2b]={type:"muc-chooser",tab:_30};
 this.dialog.endUpdate();
 getEl(_2b+"-confcontrols").fitToParent();
 _32();
+}
 },_buildMUCChooserGrid:function(_34,_35){
+if(window.jive_enable_grid){
 var _36={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
 var _37=new YAHOO.ext.grid.SpankJSONDataModel(_36);
 var _38=function(_39){
@@ -18631,6 +15649,7 @@ var jid=_3d.getSelectedRowId();
 this.fireEvent("mucdblclicked",this,jid,_41,_40);
 }.bind(this));
 return _3c;
+}
 },preAddMUC:function(_43,_44){
 var _45="jive-tab-"+_43.jid;
 if(this.dialog.layout.regions["center"].panels.items["jive-tab-"+_43.jid+"-spinner"]){
@@ -18868,8 +15887,12 @@ _90.time=_94.toLocaleTimeString();
 }
 var _95=(_90.isLocal?"user":"contact");
 var _96=(_90.mentioned?"mentioned":"");
+if(_90.body.indexOf("/me")==0){
+_90.action="action";
+_90.body=" * "+_8f+_90.body.replace("/me","");
+}
 var _97=jive.spank.chat.Filter.applyAll(_90.body);
-var _98=jive.spank.chat.Template.message.append(_92.id,{from:_8f,message:_97,type:_95,mentioned:_96,time:_90.time,msgclass:_93});
+var _98=jive.spank.chat.Template.message.append(_92.id,{from:_8f,message:_97,type:_95,mentioned:_96,action:_90.action,time:_90.time,msgclass:_93});
 }else{
 _92.dom.appendChild(_90.el);
 _90.callback(this);
@@ -19014,35 +16037,38 @@ this.className=this.className.replace("jive-muc-username-active","jive-muc-usern
 var _c0=function(evt){
 if(evt.keyCode==13||evt.type=="blur"){
 var _c2=this.tabId.split("-")[2];
-var _c3=this.tabs[_c2].room;
-this.fireEvent("changenameinmuc",this,_c3.jid,getEl(this.bodyId+"-uname").dom.value);
+this.fireEvent("changenameinmuc",this,this.tabs[_c2].room.jid,getEl(this.bodyId+"-uname").dom.value);
 _bf();
 }
 };
 getEl(this.bodyId+"-uname").addListener("keydown",_c0.bind(this));
 _bd.onfocus=_be;
 _bd.onblur=_c0.bind(this);
-},setSubject:function(_c4,_c5){
-var _c6=getEl((this.tabId?this.tabId:"jive-tab-"+_c5)+"-subject");
-if(_c6&&_c6.dom){
-_c6.dom.innerHTML=_c4;
+var _c3=function(_c4,_c5,_c6){
+this.value=_c6;
+};
+this.addListener("changenameinmuc",_c3.bind(_bd));
+},setSubject:function(_c7,_c8){
+var _c9=getEl((this.tabId?this.tabId:"jive-tab-"+_c8)+"-subject");
+if(_c9&&_c9.dom){
+_c9.dom.innerHTML=_c7;
 }
 }});
-jive.spank.chat.ChatWindow.getWindow=function(_c7){
-return jive.spank.chat.ChatWindow.currentWindow[_c7];
+jive.spank.chat.ChatWindow.getWindow=function(_ca){
+return jive.spank.chat.ChatWindow.currentWindow[_ca];
 };
 jive.spank.chat.ChatWindow.createWindow=function(){
-var _c8=spank.loadComponent("chat");
-jive.spank.chat.ChatWindow.currentWindow[_c8.id]=_c8;
-_c8.dialog.addListener("hide",function(){
-delete jive.spank.chat.ChatWindow.currentWindow[_c8.id];
+var _cb=spank.loadComponent("chat");
+jive.spank.chat.ChatWindow.currentWindow[_cb.id]=_cb;
+_cb.dialog.addListener("hide",function(){
+delete jive.spank.chat.ChatWindow.currentWindow[_cb.id];
 });
-return _c8;
+return _cb;
 };
-jive.spank.chat.ChatWindow.destroyWindow=function(_c9){
-if(jive.spank.chat.ChatWindow.currentWindow[_c9]){
-jive.spank.chat.ChatWindow.currentWindow[_c9].hide();
-delete jive.spank.chat.ChatWindow.currentWindow[_c9];
+jive.spank.chat.ChatWindow.destroyWindow=function(_cc){
+if(jive.spank.chat.ChatWindow.currentWindow[_cc]){
+jive.spank.chat.ChatWindow.currentWindow[_cc].hide();
+delete jive.spank.chat.ChatWindow.currentWindow[_cc];
 }
 };
 jive.spank.chat.ChatWindow.tabConfObject={north:{initialSize:72},south:{split:true,initialSize:50,minSize:50,maxSize:200,autoScroll:false,collapsible:true},center:{autoScroll:true}};
@@ -19052,24 +16078,24 @@ jive.spank.chat.ChatWindow.mucConfObject={north:{initialSize:38,margins:{top:0,l
 jive.spank.chat.ChatWindow.currentWindow={};
 jive.spank.chat.ChatWindow.focusedJID="";
 jive.spank.roster={};
-jive.spank.roster.RosterWindow=function(id,_cb){
-var _cc=_cb["width"]?_cb["width"]:310;
-var _cd=_cb["height"]?_cb["height"]:YAHOO.util.Dom.getViewportHeight()-40;
-var x=_cb["x"]?_cb["x"]:YAHOO.util.Dom.getViewportWidth()-330;
-var y=_cb["y"]?_cb["y"]:20;
-var _d0=_cb["resizable"]!="false";
-var _d1=_cb["draggable"]!="false";
-var _d2=_cb["closable"]!="false";
+jive.spank.roster.RosterWindow=function(id,_ce){
+var _cf=_ce["width"]?_ce["width"]:310;
+var _d0=_ce["height"]?_ce["height"]:YAHOO.util.Dom.getViewportHeight()-40;
+var x=_ce["x"]?_ce["x"]:YAHOO.util.Dom.getViewportWidth()-330;
+var y=_ce["y"]?_ce["y"]:20;
+var _d3=_ce["resizable"]!="false";
+var _d4=_ce["draggable"]!="false";
+var _d5=_ce["closable"]!="false";
 this.roster=null;
 this.groups=null;
 this.controls={};
 this.controlCount=0;
-var _d3={modal:false,width:_cc,height:_cd,resizable:_d0,draggable:_d1,proxyDrag:true,shadow:false,minWidth:200,minHeight:150,x:x,y:y,closable:_d2,shim:false,north:{initialSize:50,autoScroll:false},center:{closeOnTab:true,alwaysShowTabs:false,autoTabs:true}};
+var _d6={modal:false,width:_cf,height:_d0,resizable:_d3,draggable:_d4,proxyDrag:true,shadow:false,minWidth:200,minHeight:150,x:x,y:y,closable:_d5,shim:false,north:{initialSize:50,autoScroll:false},center:{closeOnTab:true,alwaysShowTabs:false,autoTabs:true}};
 this.events={"changestatus":true,"setstatusmsgrequest":true,"addcontact":true,"acceptsubscription":true,"denysubscription":true,"renamecontact":true,"renamegroup":true,"removecontact":true,"removegroup":true,"close":true};
-jive.spank.roster.RosterWindow.superclass.constructor.call(this,id,"Spark Web",_d3);
-var _d4=this.dialog.getLayout();
+jive.spank.roster.RosterWindow.superclass.constructor.call(this,id,"Spark Web",_d6);
+var _d7=this.dialog.getLayout();
 this.dialog.beginUpdate();
-_d4.add("north",new YAHOO.ext.ContentPanel(this.bodyId+"-toppane"));
+_d7.add("north",new YAHOO.ext.ContentPanel(this.bodyId+"-toppane"));
 this.dialog.endUpdate();
 this.dialog.close.removeAllListeners();
 this.dialog.close.addListener("click",function(){
@@ -19080,52 +16106,52 @@ this.fireEvent("close",this);
 }.bind(this));
 this._prepContextMenus();
 };
-YAHOO.extend(jive.spank.roster.RosterWindow,jive.spank.Window,{needsUpdate:false,addTab:function(_d5){
-var _d6=YAHOO.util.Dom.generateId();
-jive.spank.chat.Template.rostertab.append(this.bodyId,{tabId:_d6});
-var _d7=this.dialog.getLayout();
+YAHOO.extend(jive.spank.roster.RosterWindow,jive.spank.Window,{needsUpdate:false,addTab:function(_d8){
+var _d9=YAHOO.util.Dom.generateId();
+jive.spank.chat.Template.rostertab.append(this.bodyId,{tabId:_d9});
+var _da=this.dialog.getLayout();
 this.dialog.beginUpdate();
-var _d8=new YAHOO.ext.BorderLayout(_d6+"-layout",{north:{split:false,initialSize:28,autoScroll:false},center:{autoScroll:true}});
-_d8.add("center",new YAHOO.ext.ContentPanel(_d6+"-resources"));
-jive.spank.chat.Template.roster.append(_d6+"-resources",{rosterId:"jive-roster",groups:""});
-_d8.add("north",new YAHOO.ext.ContentPanel(_d6+"-user"));
-jive.spank.chat.Template.control_panel.append(_d6+"-user",{tabId:_d6});
-this.controlPanel=_d8.regions["north"];
+var _db=new YAHOO.ext.BorderLayout(_d9+"-layout",{north:{split:false,initialSize:28,autoScroll:false},center:{autoScroll:true}});
+_db.add("center",new YAHOO.ext.ContentPanel(_d9+"-resources"));
+jive.spank.chat.Template.roster.append(_d9+"-resources",{rosterId:"jive-roster",groups:""});
+_db.add("north",new YAHOO.ext.ContentPanel(_d9+"-user"));
+jive.spank.chat.Template.control_panel.append(_d9+"-user",{tabId:_d9});
+this.controlPanel=_db.regions["north"];
 this.controlPanel.hide();
-_d7.add("center",new YAHOO.ext.NestedLayoutPanel(_d8,{title:_d5}));
+_da.add("center",new YAHOO.ext.NestedLayoutPanel(_db,{title:_d8}));
 this.dialog.endUpdate();
-this.tabs[_d5]=_d6;
-},_prepUserStatusPanel:function(_d9,_da){
+this.tabs[_d8]=_d9;
+},_prepUserStatusPanel:function(_dc,_dd){
 var elm=getEl(this.bodyId+"-toppane");
-jive.spank.chat.Template.status_panel.append(elm.id,{bodyId:this.bodyId,username:_d9,status:_da,statusName:_da.toLowerCase()});
-var _dc=new YAHOO.widget.Menu("jive-statusmenu");
-_dc.addItems([[{text:"Free to Chat"},{text:"Available"},{text:"On The Road"},{text:"Away"},{text:"On Phone"},{text:"Do Not Disturb"}],[{text:"Set status message...",disabled:true}]]);
-_dc.render(document.body);
-var _dd=this;
-var _de=function(_df,_e0,_e1){
-this.fireEvent("changestatus",this,_e1);
+jive.spank.chat.Template.status_panel.append(elm.id,{bodyId:this.bodyId,username:_dc,status:_dd,statusName:_dd.toLowerCase()});
+var _df=new YAHOO.widget.Menu("jive-statusmenu");
+_df.addItems([[{text:"Free to Chat"},{text:"Available"},{text:"On The Road"},{text:"Away"},{text:"On Phone"},{text:"Do Not Disturb"}],[{text:"Set status message...",disabled:true}]]);
+_df.render(document.body);
+var _e0=this;
+var _e1=function(_e2,_e3,_e4){
+this.fireEvent("changestatus",this,_e4);
 };
-var _e2=function(){
-_dd.fireEvent("setstatusmsgrequest",_dd);
+var _e5=function(){
+_e0.fireEvent("setstatusmsgrequest",_e0);
 };
-var _e3;
-var _e4=["chat","available","onroad","away","onphone","dnd"];
+var _e6;
+var _e7=["chat","available","onroad","away","onphone","dnd"];
 for(var i=0;i<6;i++){
-_e3=_dc.getItem(i);
-_e3.element.className+=" roster-contact-"+_e4[i];
-_e3.clickEvent.subscribe(_de,_e4[i],_dd);
+_e6=_df.getItem(i);
+_e6.element.className+=" roster-contact-"+_e7[i];
+_e6.clickEvent.subscribe(_e1,_e7[i],_e0);
 }
 getEl(this.bodyId+"-statusmenu-ctrl").addListener("click",function(){
-getEl(_dc.element).alignTo(this,"bl");
-_dc.element.style.zIndex=_dd.dialog.lastZIndex+1;
-_dc.show();
+getEl(_df.element).alignTo(this,"bl");
+_df.element.style.zIndex=_e0.dialog.lastZIndex+1;
+_df.show();
 });
-var _e6=function(){
-_dc.hide();
+var _e9=function(){
+_df.hide();
 };
-this.dialog.header.addListener("click",_e6);
-for(var _e7 in jive.spank.chat.ChatWindow.currentWindow){
-jive.spank.chat.ChatWindow.currentWindow[_e7].dialog.header.addListener("click",_e6);
+this.dialog.header.addListener("click",_e9);
+for(var _ea in jive.spank.chat.ChatWindow.currentWindow){
+jive.spank.chat.ChatWindow.currentWindow[_ea].dialog.header.addListener("click",_e9);
 }
 },_prepContextMenus:function(){
 if(!getEl("contact-conmenu")){
@@ -19136,13 +16162,13 @@ if(this.contactMenu.getItemGroups().length==0){
 this.contactMenu.addItems([{text:"Start Chat"},{text:"Rename Contact"},{text:"Remove Contact"}]);
 this.contactMenu.render(document.body);
 }
-var _e8=this;
-var _e9=function(_ea,_eb){
-_e8.contactMenu.clickedContact.group._roster.fireEvent("contactdblclicked",_e8.contactMenu.clickedContact.group._roster,_e8.contactMenu.clickedContact);
+var _eb=this;
+var _ec=function(_ed,_ee){
+_eb.contactMenu.clickedContact.group._roster.fireEvent("contactdblclicked",_eb.contactMenu.clickedContact.group._roster,_eb.contactMenu.clickedContact);
 };
-this.contactMenu.getItem(0).clickEvent.subscribe(_e9);
-this.contactMenu.getItem(1).clickEvent.subscribe(this.showRename.createDelegate(this,[_e8.contactMenu.clickedContact]),this);
-this.contactMenu.getItem(2).clickEvent.subscribe(this.showRemove.createDelegate(this,[_e8.contactMenu.clickedContact]),this);
+this.contactMenu.getItem(0).clickEvent.subscribe(_ec);
+this.contactMenu.getItem(1).clickEvent.subscribe(this.showRename.createDelegate(this,[_eb.contactMenu.clickedContact]),this);
+this.contactMenu.getItem(2).clickEvent.subscribe(this.showRemove.createDelegate(this,[_eb.contactMenu.clickedContact]),this);
 if(!getEl("group-conmenu")){
 this.addMenuDiv("group-conmenu");
 }
@@ -19153,38 +16179,38 @@ this.groupMenu.addItems([{text:"Rename Group"},{text:"Remove Group"}]);
 this.groupMenu.render(document.body);
 this.groupMenu.getItem(0).clickEvent.subscribe(this.showGroupRename.bind(this,this.fetchClickedGroup.bind(this)));
 this.groupMenu.getItem(1).clickEvent.subscribe(this.showGroupRemove.bind(this,this.fetchClickedGroup.bind(this)));
-},setUserInfo:function(_ec,_ed){
-var _ee;
+},setUserInfo:function(_ef,_f0){
+var _f1;
 if(arguments.length>1){
-_ee=_ec;
+_f1=_ef;
 }else{
-_ee=_ec.name;
-_ed=(_ec.status?_ec.status:_ec.mode);
+_f1=_ef.name;
+_f0=(_ef.status?_ef.status:_ef.mode);
 }
-this.dialog.setTitle("Spark Web - "+_ee);
-this._prepUserStatusPanel(_ee,_ed);
-},addGroup:function(_ef,_f0){
-this.roster.addGroup(_ef,_f0);
-},addControl:function(_f1,_f2){
-this.controls[_f1]=jive.spank.chat.Control.add(this.tabs["Contacts"]+"-controls",_f1,_f2);
+this.dialog.setTitle("Spark Web - "+_f1);
+this._prepUserStatusPanel(_f1,_f0);
+},addGroup:function(_f2,_f3){
+this.roster.addGroup(_f2,_f3);
+},addControl:function(_f4,_f5){
+this.controls[_f4]=jive.spank.chat.Control.add(this.tabs["Contacts"]+"-controls",_f4,_f5);
 this.controlCount++;
 if(!this.controlPanel.isVisible()){
 this.controlPanel.show();
 }
-return this.controls[_f1];
-},removeControl:function(_f3){
-if(this.controls[_f3]){
-this.controls[_f3].remove();
-delete this.controls[_f3];
+return this.controls[_f4];
+},removeControl:function(_f6){
+if(this.controls[_f6]){
+this.controls[_f6].remove();
+delete this.controls[_f6];
 }
 this.controlCount--;
-},setRoster:function(_f4){
-if(_f4==null){
-_f4=this.fakeRosterStruct;
+},setRoster:function(_f7){
+if(_f7==null){
+_f7=this.fakeRosterStruct;
 }
 this.roster=new jive.spank.roster.Roster("jive-roster",true);
 this.groups=this.roster.groups;
-this.roster.setRoster(_f4);
+this.roster.setRoster(_f7);
 this.render();
 this.roster.addListener("offlinemoved",function(){
 if(!this.isUpdating){
@@ -19195,16 +16221,16 @@ this.needsUpdate=true;
 },this,1);
 },getSelectedUser:function(){
 return this.roster.getSelectedUser();
-},getContactFromID:function(_f5){
-var _f6=_f5.split("-");
-var _f7=_f6.slice(2,_f6.length-1).join("");
-return jive.spank.roster.Contact.find(this,_f7,_f6[_f6.length-1]);
-},render:function(_f8){
-var _f9=this.tabs["Contacts"];
+},getContactFromID:function(_f8){
+var _f9=_f8.split("-");
+var _fa=_f9.slice(2,_f9.length-1).join("");
+return jive.spank.roster.Contact.find(this,_fa,_f9[_f9.length-1]);
+},render:function(_fb){
+var _fc=this.tabs["Contacts"];
 this.roster.render();
 this.needsUpdate=false;
 this.dialog.addListener("show",this.finishDisplay,this,true);
-if(_f8){
+if(_fb){
 this.finishDisplay();
 }
 },finishDisplay:function(){
@@ -19215,22 +16241,22 @@ this.enableContextMenus();
 },enableContextMenus:function(){
 getEls("ul#jive-roster ul.group-list li").mon("contextmenu",function(evt){
 evt.stopEvent();
-var _fb=evt.getTarget();
-if(_fb.tagName.toLowerCase()!="li"){
-_fb=_fb.parentNode;
+var _fe=evt.getTarget();
+if(_fe.tagName.toLowerCase()!="li"){
+_fe=_fe.parentNode;
 }
-this.contactMenu.clickedContact=this.getContactFromID(_fb.id);
-var _fc=_fb.id;
+this.contactMenu.clickedContact=this.getContactFromID(_fe.id);
+var _ff=_fe.id;
 getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_fc).className+=" selected";
+document.getElementById(_ff).className+=" selected";
 getEl(this.contactMenu.element).moveTo(evt.getPageX(),evt.getPageY());
 this.contactMenu.element.style.zIndex=this.dialog.lastZIndex+1;
 this.contactMenu.show();
 },this,true);
 getEls("ul#jive-roster span.group-isonline em").mon("contextmenu",function(evt){
 evt.stopEvent();
-var _fe=evt.getTarget();
-this.groupMenu.clickedGroup=this.groups[_fe.innerHTML];
+var _101=evt.getTarget();
+this.groupMenu.clickedGroup=this.groups[_101.innerHTML];
 getEl(this.groupMenu.element).moveTo(evt.getPageX(),evt.getPageY());
 this.groupMenu.element.style.zIndex=this.dialog.lastZIndex+1;
 this.groupMenu.show();
@@ -19242,18 +16268,18 @@ evt.stopEvent();
 }
 catch(error){
 }
-},addContact:function(_100,_101,_102){
-this.roster.addContact(_100,_101,_102);
+},addContact:function(_103,_104,_105){
+this.roster.addContact(_103,_104,_105);
 this.render(true);
 },removeContact:function(jid){
 this.roster.removeContact(jid);
-},changeUserStatus:function(_104,_105){
+},changeUserStatus:function(_107,_108){
 var menu=getEl(this.bodyId+"-statusmenu-ctrl");
-var _107={chat:"Free to Chat",available:"Available",onroad:"On Road",away:"Away",onphone:"On Phone",dnd:"Do Not Disturb"};
-menu.dom.className=menu.dom.className.replace(/roster-contact-([^ ]*)/,"roster-contact-"+_104);
-menu.getChildrenByTagName("span")[0].dom.innerHTML=(_105!=null?_105:_107[_104]);
-},changeContactStatus:function(jid,_109,_10a){
-this.roster.changeContactStatus(jid,_109,_10a);
+var _10a={chat:"Free to Chat",available:"Available",onroad:"On Road",away:"Away",onphone:"On Phone",dnd:"Do Not Disturb"};
+menu.dom.className=menu.dom.className.replace(/roster-contact-([^ ]*)/,"roster-contact-"+_107);
+menu.getChildrenByTagName("span")[0].dom.innerHTML=(_108!=null?_108:_10a[_107]);
+},changeContactStatus:function(jid,_10c,_10d){
+this.roster.changeContactStatus(jid,_10c,_10d);
 },getContactStatus:function(jid){
 return this.roster.getContactStatus(jid);
 },showAddGroup:function(){
@@ -19274,9 +16300,9 @@ getEl(addc.id+"-createcontact").addListener("click",function(){
 self.fireEvent("addcontact",self,$F(addc.id+"-addusername"),$F(addc.id+"-addnickname"),$F(addc.id+"-addcontact-group"));
 addc.dialog.hide();
 });
-},showSubscriptionRequest:function(_110,_111){
+},showSubscriptionRequest:function(_113,_114){
 var self=this;
-var subr=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.sub_request,{title:"Allow "+(_111!=""?_111:_110)+" to add you?",width:440,height:220,templateKeys:{jid:_110,nick:_111}});
+var subr=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.sub_request,{title:"Allow "+(_114!=""?_114:_113)+" to add you?",width:440,height:220,templateKeys:{jid:_113,nick:_114}});
 subr.dialog.show();
 this._autocompGroups(subr,"-subrequest-group");
 getEl(subr.id+"-add").addListener("click",function(){
@@ -19285,127 +16311,127 @@ getEl(subr.id+"-jid").toggleClass("disabled");
 getEl(subr.id+"-nick").dom.disabled=getEl(subr.id+"-subrequest-group").dom.disabled=!getEl(subr.id+"-add").dom.checked;
 });
 getEl(subr.id+"-acceptsubrequest").addListener("click",function(){
-self.fireEvent("acceptsubscription",self,$F(subr.id+"-add"),_110,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
+self.fireEvent("acceptsubscription",self,$F(subr.id+"-add"),_113,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
 subr.dialog.hide();
 });
 getEl(subr.id+"-denysubrequest").addListener("click",function(){
-self.fireEvent("denysubscription",self,$F(subr.id+"-add"),_110,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
+self.fireEvent("denysubscription",self,$F(subr.id+"-add"),_113,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
 subr.dialog.hide();
 });
-},showRename:function(_114){
-if(_114==null){
-_114=this.contactMenu.clickedContact;
+},showRename:function(_117){
+if(_117==null){
+_117=this.contactMenu.clickedContact;
 }
-var _115=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.rename,{title:"Renaming '"+_114.name+"'",width:250,height:115,templateKeys:{nick:_114.name}});
-_115.dialog.show();
+var _118=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.rename,{title:"Renaming '"+_117.name+"'",width:250,height:115,templateKeys:{nick:_117.name}});
+_118.dialog.show();
 var self=this;
-var _117=function(){
-var _118=(typeof _114.jid!="undefined")?"renamecontact":"renamegroup";
-self.fireEvent(_118,self,_114,$F(_115.id+"-name"));
-getEl(_115.id+"-rename").removeAllListeners();
-_115.dialog.hide();
+var _11a=function(){
+var _11b=(typeof _117.jid!="undefined")?"renamecontact":"renamegroup";
+self.fireEvent(_11b,self,_117,$F(_118.id+"-name"));
+getEl(_118.id+"-rename").removeAllListeners();
+_118.dialog.hide();
 };
-getEl(_115.id+"-name").mon("keypress",_117.createInterceptor(function(evt){
+getEl(_118.id+"-name").mon("keypress",_11a.createInterceptor(function(evt){
 return evt.getKey()==13;
 }));
-getEl(_115.id+"-rename").addListener("click",_117);
-},showRemove:function(_11a){
+getEl(_118.id+"-rename").addListener("click",_11a);
+},showRemove:function(_11d){
 this.fireEvent("removecontact",this,this.contactMenu.clickedContact.jid.toString());
-},showGroupRename:function(_11b){
-var _11c=_11b();
-this.showRename(_11c);
+},showGroupRename:function(_11e){
+var _11f=_11e();
+this.showRename(_11f);
 },fetchClickedGroup:function(){
 return this.groupMenu.clickedGroup;
-},showGroupRemove:function(_11d){
-var _11e=_11d();
-var _11f=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.remove_group,{title:"Removing '"+_11e.name+"'",width:250,height:100,templateKeys:{name:_11e.name}});
-_11f.dialog.show();
+},showGroupRemove:function(_120){
+var _121=_120();
+var _122=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.remove_group,{title:"Removing '"+_121.name+"'",width:250,height:100,templateKeys:{name:_121.name}});
+_122.dialog.show();
 var self=this;
-var _121=function(){
-self.fireEvent("removegroup",self,_11e);
-getEl(_11f.id+"-remove").removeAllListeners();
-_11f.dialog.hide();
+var _124=function(){
+self.fireEvent("removegroup",self,_121);
+getEl(_122.id+"-remove").removeAllListeners();
+_122.dialog.hide();
 };
-getEl(_11f.id+"-remove").addListener("click",_121);
-},_autocompGroups:function(dlog,_123){
-var _124=dlog.id+_123;
-var _125=_124+"-menu";
+getEl(_122.id+"-remove").addListener("click",_124);
+},_autocompGroups:function(dlog,_126){
+var _127=dlog.id+_126;
+var _128=_127+"-menu";
 var self=this;
-if(getEl(_125)==null){
-var _127=self.addMenuDiv(_125);
-_127.className="groups-ac";
+if(getEl(_128)==null){
+var _12a=self.addMenuDiv(_128);
+_12a.className="groups-ac";
 }
-var _128=function(_129){
-var _12a=[];
+var _12b=function(_12c){
+var _12d=[];
 for(var g in self.roster.groups){
-_12a.push(g);
+_12d.push(g);
 }
-return self._prepareAutocompArray(_12a,_129);
+return self._prepareAutocompArray(_12d,_12c);
 };
-var _12c=new jive.spank.FlatAutoComplete(_124,_125,new YAHOO.widget.DS_JSFunction(_128),{typeAhead:true,minQueryLength:0});
-_12c.formatResult=function(_12d,_12e){
-return _12d;
+var _12f=new jive.spank.FlatAutoComplete(_127,_128,new YAHOO.widget.DS_JSFunction(_12b),{typeAhead:true,minQueryLength:0});
+_12f.formatResult=function(_130,_131){
+return _130;
 };
-_12c.dataReturnEvent.subscribe(function(type,args){
+_12f.dataReturnEvent.subscribe(function(type,args){
 if(args[2].length==0){
-_12c.setBody("<div class='empty'>(No matches, will create new)</div>");
+_12f.setBody("<div class='empty'>(No matches, will create new)</div>");
 }
-var _131=getEl(_125);
-_131.alignTo(getEl(_124),"bl");
-_131.dom.style.zIndex=dlog.dialog.lastZIndex+1;
-_131.show();
+var _134=getEl(_128);
+_134.alignTo(getEl(_127),"bl");
+_134.dom.style.zIndex=dlog.dialog.lastZIndex+1;
+_134.show();
 });
-getEl(_124).addListener("blur",function(){
-getEl(_125).hide();
+getEl(_127).addListener("blur",function(){
+getEl(_128).hide();
 });
-getEls("#"+_125+" li").mon("mousedown",function(evt){
-getEl(_124).dom.value=evt.getTarget().innerHTML;
+getEls("#"+_128+" li").mon("mousedown",function(evt){
+getEl(_127).dom.value=evt.getTarget().innerHTML;
 });
 dlog.dialog.addListener("beforehide",function(){
-_12c.formatResult=Prototype.emptyFunction;
-_128=Prototype.emptyFunction;
-getEl(_125).removeAllListeners();
-getEl(_124).removeAllListeners();
-_12c.dataReturnEvent.unsubscribeAll();
-getEls("#"+_125+" li").removeAllListeners();
-getEl(_125).remove();
+_12f.formatResult=Prototype.emptyFunction;
+_12b=Prototype.emptyFunction;
+getEl(_128).removeAllListeners();
+getEl(_127).removeAllListeners();
+_12f.dataReturnEvent.unsubscribeAll();
+getEls("#"+_128+" li").removeAllListeners();
+getEl(_128).remove();
 });
-return _12c;
-},contactsForAutocomp:function(_133){
-var _134=this.roster;
-var _135=[];
-for(var g in _134.groups){
-_134.groups[g].contacts.each(function(_137){
-_135.push([_137.name,_137.jid,_137.status]);
+return _12f;
+},contactsForAutocomp:function(_136){
+var _137=this.roster;
+var _138=[];
+for(var g in _137.groups){
+_137.groups[g].contacts.each(function(_13a){
+_138.push([_13a.name,_13a.jid,_13a.status]);
 });
 }
-return this._prepareAutocompArray(_135,_133);
-},_prepareAutocompArray:function(_138,_139){
-var _13a=typeof _138[0]!="string";
-if(_13a&&_138.length==0){
-return _138;
+return this._prepareAutocompArray(_138,_136);
+},_prepareAutocompArray:function(_13b,_13c){
+var _13d=typeof _13b[0]!="string";
+if(_13d&&_13b.length==0){
+return _13b;
 }
-_138=_138.sortBy(function(_13b){
-if(_13a){
-return _13b[0].toLowerCase();
+_13b=_13b.sortBy(function(_13e){
+if(_13d){
+return _13e[0].toLowerCase();
 }else{
-return _13b.toLowerCase();
+return _13e.toLowerCase();
 }
 });
-if(_138.length<2||!_139||_139==""){
-return _138;
+if(_13b.length<2||!_13c||_13c==""){
+return _13b;
 }else{
-var _13c=_138.partition(function(_13d){
-return (_13a?_13d[0].indexOf(_139)==0:_13d.indexOf(_139)==0);
+var _13f=_13b.partition(function(_140){
+return (_13d?_140[0].indexOf(_13c)==0:_140.indexOf(_13c)==0);
 });
-return _13c[0].concat(_13c[1]);
+return _13f[0].concat(_13f[1]);
 }
-},addMenuDiv:function(_13e){
-var _13f=document.createElement("div");
-_13f.id=_13e;
-_13f.style.visibility="hidden";
-document.body.appendChild(_13f);
-return _13f;
+},addMenuDiv:function(_141){
+var _142=document.createElement("div");
+_142.id=_141;
+_142.style.visibility="hidden";
+document.body.appendChild(_142);
+return _142;
 },endUpdate:function(){
 if(this.needsUpdate){
 this.render(true);
@@ -19414,20 +16440,20 @@ jive.spank.roster.RosterWindow.superclass.endUpdate.call(this);
 },destroy:function(){
 jive.spank.roster.RosterWindow.superclass.destroy.call(this);
 }});
-jive.spank.chat.Dialog=function(_140,_141,_142){
-this.parentWindow=_140;
+jive.spank.chat.Dialog=function(_143,_144,_145){
+this.parentWindow=_143;
 var elm=document.createElement("div");
 this.id=elm.id=YAHOO.util.Dom.generateId();
 document.body.appendChild(elm);
-var _144=!_142.constrained;
-jive.spank.chat.Dialog.superclass.constructor.call(this,elm.id,{title:_142.title,modal:_142.modal,constraintoviewport:_144,width:_142.width,height:_142.height,shadow:true,proxyDrag:true,resizable:false,draggable:true,x:_142.x?_142.x:(YAHOO.util.Dom.getViewportWidth()/2)-(_142.width>0?(_142.width/2):0),y:_142.y?_142.y:(YAHOO.util.Dom.getViewportHeight()/2)-(_142.height>0?_142.height/2:0),closable:true});
+var _147=!_145.constrained;
+jive.spank.chat.Dialog.superclass.constructor.call(this,elm.id,{title:_145.title,modal:_145.modal,constraintoviewport:_147,width:_145.width,height:_145.height,shadow:true,proxyDrag:true,resizable:false,draggable:true,x:_145.x?_145.x:(YAHOO.util.Dom.getViewportWidth()/2)-(_145.width>0?(_145.width/2):0),y:_145.y?_145.y:(YAHOO.util.Dom.getViewportHeight()/2)-(_145.height>0?_145.height/2:0),closable:true});
 this.dialog=this;
-if(_142.templateKeys){
-var _145=_142.templateKeys;
-_145.id=this.id;
-_141.append(this.body.dom,_145);
+if(_145.templateKeys){
+var _148=_145.templateKeys;
+_148.id=this.id;
+_144.append(this.body.dom,_148);
 }else{
-_141.append(this.body.dom,{id:this.id});
+_144.append(this.body.dom,{id:this.id});
 }
 getEls("#"+this.id+" .jive-closedialog").addListener("click",this.hide.bind(this));
 this.addListener("hide",this.destroy.bind(this));
@@ -19442,38 +16468,38 @@ this.mask.remove();
 this.purgeListeners();
 }});
 jive.spank.dialog={};
-jive.spank.dialog.StartChat=function(_146){
-var _147=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.start_chat,{title:"Start a chat",width:250,height:105});
-_147.dialog.show();
-var _148=function(){
-var _149=$F(_147.id+"-jid");
-if(_149.replace(/^\s+|\s+$/g,"")!=""){
-_146(this,{jid:_149});
-getEl(_147.id+"-startbtn").removeAllListeners();
-_147.dialog.hide();
+jive.spank.dialog.StartChat=function(_149){
+var _14a=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.start_chat,{title:"Start a chat",width:250,height:105});
+_14a.dialog.show();
+var _14b=function(){
+var _14c=$F(_14a.id+"-jid");
+if(_14c.replace(/^\s+|\s+$/g,"")!=""){
+_149(this,{jid:_14c});
+getEl(_14a.id+"-startbtn").removeAllListeners();
+_14a.dialog.hide();
 }else{
-$(_147.id).focus();
+$(_14a.id).focus();
 }
 };
-$(_147.id+"-jid").focus();
-getEl(_147.id+"-startbtn").addListener("click",_148);
+$(_14a.id+"-jid").focus();
+getEl(_14a.id+"-startbtn").addListener("click",_14b);
 };
-jive.spank.dialog.CreateConference=function(_14a,_14b){
-if(!_14b){
-_14b={};
+jive.spank.dialog.CreateConference=function(_14d,_14e){
+if(!_14e){
+_14e={};
 }
-_14b=$H(_14b).merge(this._configuration);
-jive.spank.dialog.CreateConference.superclass.constructor.call(this,_14a,jive.spank.chat.Template.muccreation,_14b);
+_14e=$H(_14e).merge(this._configuration);
+jive.spank.dialog.CreateConference.superclass.constructor.call(this,_14d,jive.spank.chat.Template.muccreation,_14e);
 this.events=$H(this.events).merge({"muccreated":true});
 this.addListener("hide",this.onHide.bind(this));
 getEl(this.id+"-private").addListener("click",this._privateCheckboxListener.bind(this));
 getEl(this.id+"-createroom").addListener("click",this._createRoomListener.bind(this));
 };
 YAHOO.extend(jive.spank.dialog.CreateConference,jive.spank.chat.Dialog,{_configuration:{title:"Create a Conference",width:285,height:285},_createRoomListener:function(){
-var _14c=getEl(this.id+"-private");
-var _14d=$F(this.id+"-roompw");
-var _14e=$F(this.id+"-roomconfirm");
-if(_14c.dom.checked&&_14d!=_14e){
+var _14f=getEl(this.id+"-private");
+var _150=$F(this.id+"-roompw");
+var _151=$F(this.id+"-roomconfirm");
+if(_14f.dom.checked&&_150!=_151){
 alert("Sorry, your password and confirmation don't match.");
 $(this.id+"-roompw").select();
 return false;
@@ -19490,14 +16516,15 @@ return {name:$F(this.id+"-roomname"),topic:$F(this.id+"-roomtopic"),isPermanent:
 getEl(this.id+"-private").removeAllListeners();
 getEl(this.id+"-createroom").removeAllListeners();
 }});
-jive.spank.dialog.UserSearch=function(_14f,_150,_151){
-if(!_151){
-_151={};
+if(window.jive_enable_grid){
+jive.spank.dialog.UserSearch=function(_152,_153,_154){
+if(!_154){
+_154={};
 }
-_151.templateKeys={instructions:"Insert your instructions here."};
-_151=$H(_151).merge(this._configuration);
-var _152=this._createTemplate(_150);
-jive.spank.dialog.UserSearch.superclass.constructor.call(this,_14f,_152,_151);
+_154.templateKeys={instructions:"Insert your instructions here."};
+_154=$H(_154).merge(this._configuration);
+var _155=this._createTemplate(_153);
+jive.spank.dialog.UserSearch.superclass.constructor.call(this,_152,_155,_154);
 this.events=$H(this.events).merge({"search":true});
 this.addListener("hide",this.onHide.bind(this));
 this.addListener("show",this.onShow.bind(this));
@@ -19505,37 +16532,40 @@ this._buildSearchGrid([["test","test","test"],["test","test","test"]],this.id+"-
 this.onShow();
 this.searchGrid.render();
 };
-YAHOO.extend(jive.spank.dialog.UserSearch,jive.spank.chat.Dialog,{_configuration:{title:"Person Search"},_template:["<div id=\"{id}-person-search\" class=\"dbody personsearch\">","<div class=\"jive-dbody-description\">","<h1>Person Search</h1>","<p>{instructions}</p>","</div>","<div class=\"\">","<fieldset>","<legend>Search Service</legend>","<p><label for=\"service\">Search Service</label>","<select name=\"selectservice\" tabindex=\"{firstTabIndex}\">","</select>","<a href=\"#\">Add Service</a>","</p>","</fieldset>","</div>","<div class=\"\">","<fieldset>","<legend>Person Search Form</legend>","{searchform}","<p class=\"buttons\"><input type=\"submit\" value=\"Search\" tabindex=\"{lastTabIndex}\"/></p>","</fieldset>","</div>","<div id=\"{id}-search-grid\" class=\"jive-grid\">","</div>","</div>"],_createTemplate:function(_153){
-_153=["<p><input name=\"Username\" type=\"checkbox\" value=\"Username\" checked","/>Username</p>","<p><label for=\"testdrop\">Test Dropdown</label>","<select id=\"testdrop\" name=\"testdrop\">","<option>test 1</option>","<option>test 2</option>","<option>test 3</option>","</select>","</p>"];
-var _154=this._template;
-var _155=_154.indexOf("{searchform}");
-_154.splice(_155,1,_153.join(""));
-return new YAHOO.ext.DomHelper.Template(_154.join(""));
+}
+if(window.jive_enable_grid){
+YAHOO.extend(jive.spank.dialog.UserSearch,jive.spank.chat.Dialog,{_configuration:{title:"Person Search"},_template:["<div id=\"{id}-person-search\" class=\"dbody personsearch\">","<div class=\"jive-dbody-description\">","<h1>Person Search</h1>","<p>{instructions}</p>","</div>","<div class=\"\">","<fieldset>","<legend>Search Service</legend>","<p><label for=\"service\">Search Service</label>","<select name=\"selectservice\" tabindex=\"{firstTabIndex}\">","</select>","<a href=\"#\">Add Service</a>","</p>","</fieldset>","</div>","<div class=\"\">","<fieldset>","<legend>Person Search Form</legend>","{searchform}","<p class=\"buttons\"><input type=\"submit\" value=\"Search\" tabindex=\"{lastTabIndex}\"/></p>","</fieldset>","</div>","<div id=\"{id}-search-grid\" class=\"jive-grid\">","</div>","</div>"],_createTemplate:function(_156){
+_156=["<p><input name=\"Username\" type=\"checkbox\" value=\"Username\" checked","/>Username</p>","<p><label for=\"testdrop\">Test Dropdown</label>","<select id=\"testdrop\" name=\"testdrop\">","<option>test 1</option>","<option>test 2</option>","<option>test 3</option>","</select>","</p>"];
+var _157=this._template;
+var _158=_157.indexOf("{searchform}");
+_157.splice(_158,1,_156.join(""));
+return new YAHOO.ext.DomHelper.Template(_157.join(""));
 },onHide:function(){
 this.searchGrid.destroy();
 },onShow:function(){
-var _156=getEl(this.id+"-person-search");
-var _157=Math.max(this.body.getWidth(),_156.getWidth());
+var _159=getEl(this.id+"-person-search");
+var _15a=Math.max(this.body.getWidth(),_159.getWidth());
 this.resizeTo(500,500);
-},_buildSearchGrid:function(_158,_159){
-var _15a={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
-var _15b=new YAHOO.ext.grid.DefaultDataModel(_158);
-var _15c=[{header:"Username",width:240,sortable:true},{header:"Name",width:160,sortable:true},{header:"E-Mail",width:70,sortable:true}];
-var _15d=new YAHOO.ext.grid.DefaultColumnModel(_15c);
-this.searchGrid=new YAHOO.ext.grid.Grid(_159,{dataModel:_15b,colModel:_15d,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
+},_buildSearchGrid:function(_15b,_15c){
+var _15d={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
+var _15e=new YAHOO.ext.grid.DefaultDataModel(_15b);
+var _15f=[{header:"Username",width:240,sortable:true},{header:"Name",width:160,sortable:true},{header:"E-Mail",width:70,sortable:true}];
+var _160=new YAHOO.ext.grid.DefaultColumnModel(_15f);
+this.searchGrid=new YAHOO.ext.grid.Grid(_15c,{dataModel:_15e,colModel:_160,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
 return this.searchGrid;
 }});
-jive.spank.dialog.CreateAccount=function(_15e){
+}
+jive.spank.dialog.CreateAccount=function(_161){
 this.dialog=new jive.spank.chat.Dialog(null,jive.spank.chat.Template.create_account,{title:"Creating an account",width:250,height:180,modal:true});
-var _15f=this.dialog;
-this.nameField=getEl(_15f.id+"-name");
-this.passwordField=getEl(_15f.id+"-passwd");
-this.createButton=getEl(_15f.id+"-submit");
-this.verifyCallback=_15e;
-getEl(_15f.id+"-confirm").mon("keypress",this._doSubmit.createInterceptor(function(evt){
+var _162=this.dialog;
+this.nameField=getEl(_162.id+"-name");
+this.passwordField=getEl(_162.id+"-passwd");
+this.createButton=getEl(_162.id+"-submit");
+this.verifyCallback=_161;
+getEl(_162.id+"-confirm").mon("keypress",this._doSubmit.createInterceptor(function(evt){
 return evt.getKey()==13;
 }));
-getEl(_15f.id+"-submit").addListener("click",this._doSubmit.bind(this));
+getEl(_162.id+"-submit").addListener("click",this._doSubmit.bind(this));
 this.nameField.mon("keypress",function(){
 this.dom.style.backgroundColor="#fff";
 }.bind(this.nameField));
@@ -19543,158 +16573,158 @@ this.passwordField.mon("keypress",function(){
 this.dom.style.backgroundColor="#fff";
 }.bind(this.passwordField));
 this.nameField.dom.focus();
-_15f.dialog.show();
+_162.dialog.show();
 };
 jive.spank.dialog.CreateAccount.prototype={_doSubmit:function(){
-var _161=this.dialog;
-var _162=$(_161.id+"-error");
-$(_161.id+"-name").style.backgroundColor="#fff";
-$(_161.id+"-passwd").style.backgroundColor="#fff";
-if($F(_161.id+"-name")==""){
-$(_161.id+"-name").style.backgroundColor="#f00";
-$(_161.id+"-name").select();
+var _164=this.dialog;
+var _165=$(_164.id+"-error");
+$(_164.id+"-name").style.backgroundColor="#fff";
+$(_164.id+"-passwd").style.backgroundColor="#fff";
+if($F(_164.id+"-name")==""){
+$(_164.id+"-name").style.backgroundColor="#f00";
+$(_164.id+"-name").select();
 return false;
 }
-if($F(_161.id+"-passwd")==""){
-$(_161.id+"-passwd").style.backgroundColor="#f00";
-$(_161.id+"-passwd").select();
+if($F(_164.id+"-passwd")==""){
+$(_164.id+"-passwd").style.backgroundColor="#f00";
+$(_164.id+"-passwd").select();
 return false;
 }
-if($F(_161.id+"-passwd")!=$F(_161.id+"-confirm")){
-$(_161.id+"-passwd").style.backgroundColor="#f00";
-$(_161.id+"-passwd").select();
+if($F(_164.id+"-passwd")!=$F(_164.id+"-confirm")){
+$(_164.id+"-passwd").style.backgroundColor="#f00";
+$(_164.id+"-passwd").select();
 return false;
 }
 this.createButton.dom.disabled=true;
 this.createButton.hide();
 jive.spank.Spinner.show({x:this.createButton.getX()-10,y:this.createButton.getY()});
-this.verifyCallback({username:$F(_161.id+"-name"),password:$F(_161.id+"-passwd")});
-},verify:function(_163){
-var _164=this.dialog;
+this.verifyCallback({username:$F(_164.id+"-name"),password:$F(_164.id+"-passwd")});
+},verify:function(_166){
+var _167=this.dialog;
 if(verify){
 if(verify.name){
-$(_164.id+"-name").style.backgroundColor="#f00";
-$(_164.id+"-name").select();
+$(_167.id+"-name").style.backgroundColor="#f00";
+$(_167.id+"-name").select();
 return;
 }
 if(verify.password){
-$(_164.id+"-passwd").style.backgroundColor="#f00";
-$(_164.id+"-passwd").select();
+$(_167.id+"-passwd").style.backgroundColor="#f00";
+$(_167.id+"-passwd").select();
 return;
 }
 }
-getEl(_164.id+"-confirm").removeAllListeners();
-getEl(_164.id+"-submit").removeAllListeners();
+getEl(_167.id+"-confirm").removeAllListeners();
+getEl(_167.id+"-submit").removeAllListeners();
 this.nameField.removeAllListeners();
 this.passwordField.removeAllListeners();
 this.dialog.hide();
 }};
-jive.spank.roster.Roster=function(id,_166){
+jive.spank.roster.Roster=function(id,_169){
 this.el=getEl(id);
 this.groups={};
 this.closedgroups=[];
 this.events={"contactdblclicked":true,"offlinemoved":true};
-if(_166){
+if(_169){
 this.offlines="";
 this._wrappedClick=null;
 }
 };
-YAHOO.extend(jive.spank.roster.Roster,YAHOO.ext.util.Observable,{addGroup:function(_167,_168){
-if(this.groups[_167]){
-return this.groups[_167];
+YAHOO.extend(jive.spank.roster.Roster,YAHOO.ext.util.Observable,{addGroup:function(_16a,_16b){
+if(this.groups[_16a]){
+return this.groups[_16a];
 }
-this.groups[_167]=new jive.spank.roster.RosterGroup(this,_167,_168);
-this.el.insertHtml("beforeEnd",this.groups[_167].render(false));
-this.groups[_167]._enableBehaviors();
-return this.groups[_167];
-},addContact:function(_169,_16a,_16b){
-var _16c=this.addGroup(_16a,_16b);
-_16c.addContact(_169);
+this.groups[_16a]=new jive.spank.roster.RosterGroup(this,_16a,_16b);
+this.el.insertHtml("beforeEnd",this.groups[_16a].render(false));
+this.groups[_16a]._enableBehaviors();
+return this.groups[_16a];
+},addContact:function(_16c,_16d,_16e){
+var _16f=this.addGroup(_16d,_16e);
+_16f.addContact(_16c);
 },removeContact:function(jid){
-var _16e=this.findContact(jid);
-var grp=_16e.group;
-_16e.remove();
+var _171=this.findContact(jid);
+var grp=_171.group;
+_171.remove();
 if(grp.contacts.length==0){
 grp.remove();
 }
-},setRoster:function(_170){
-var _171;
-for(groupName in _170){
-_171=_170[groupName];
-this.groups[groupName]=new jive.spank.roster.RosterGroup(this,groupName,_171);
+},setRoster:function(_173){
+var _174;
+for(groupName in _173){
+_174=_173[groupName];
+this.groups[groupName]=new jive.spank.roster.RosterGroup(this,groupName,_174);
 }
 },render:function(){
-var _172="";
-var _173=typeof this.offlines!="undefined";
+var _175="";
+var _176=typeof this.offlines!="undefined";
 this._logClosedGroups();
 for(var g in this.groups){
-_172+=this.groups[g].render(_173);
+_175+=this.groups[g].render(_176);
 }
-this.el.dom.innerHTML=_172;
+this.el.dom.innerHTML=_175;
 return this;
 },getSelectedUser:function(){
-var _175=$$("ul#"+this.id+" ul.group-list li.selected")[0];
-var _176=_175.id.split("-");
-var _177=_176[3];
-var _178=_176[2];
-return this.findContact(_178,_177);
-},findContact:function(jid,_17a){
-if(_17a){
-_17a=_17a.replace(/[^0-9A-Za-z]/,"_");
+var _178=$$("ul#"+this.id+" ul.group-list li.selected")[0];
+var _179=_178.id.split("-");
+var _17a=_179[3];
+var _17b=_179[2];
+return this.findContact(_17b,_17a);
+},findContact:function(jid,_17d){
+if(_17d){
+_17d=_17d.replace(/[^0-9A-Za-z]/,"_");
 }
-for(var _17b in this.groups){
-if(_17a&&_17b.replace(/[^0-9A-Za-z]/,"_")!=_17a){
+for(var _17e in this.groups){
+if(_17d&&_17e.replace(/[^0-9A-Za-z]/,"_")!=_17d){
 continue;
 }
-var _17c=this.groups[_17b].contacts.find(function(_17d){
-return _17d.jid==jid;
+var _17f=this.groups[_17e].contacts.find(function(_180){
+return _180.jid==jid;
 });
-if(_17c){
-return _17c;
+if(_17f){
+return _17f;
 }
 }
 return null;
-},changeContactStatus:function(jid,_17f,_180){
-var _181=this.findContact(jid);
-if(_181){
-_181.changeStatus(_17f,_180);
+},changeContactStatus:function(jid,_182,_183){
+var _184=this.findContact(jid);
+if(_184){
+_184.changeStatus(_182,_183);
 }
 },getContactStatus:function(jid){
-var _183=this.findContact(jid);
-if(_183){
-return _183.status;
+var _186=this.findContact(jid);
+if(_186){
+return _186.status;
 }
 },renderOffline:function(){
-var _184=this.groups;
-var _185="";
-for(var _186 in _184){
-this.groups[_186].contacts.each(function(_187){
-if(_187.status=="unavailable"){
-_185+=_187.render();
+var _187=this.groups;
+var _188="";
+for(var _189 in _187){
+this.groups[_189].contacts.each(function(_18a){
+if(_18a.status=="unavailable"){
+_188+=_18a.render();
 }
 });
 }
-if((_185==""||this.offlines!="")&&getEl("group-"+this.offlines)){
+if((_188==""||this.offlines!="")&&getEl("group-"+this.offlines)){
 getEl("group-"+this.offlines).remove();
 }else{
 this.offlines="Offline_Group-"+this.el.id;
 }
-if(_185!=""){
-this.el.insertHtml("beforeEnd",jive.spank.chat.Template.roster_group.applyTemplate({id:this.offlines,renderClosed:"open",online:"",groupName:"Offline Group",users:_185}));
-var _188=getEl("group-label-"+this.offlines);
-_188.unselectable();
-this._wrappedClick=_188.getChildrenByTagName("em")[0].mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
+if(_188!=""){
+this.el.insertHtml("beforeEnd",jive.spank.chat.Template.roster_group.applyTemplate({id:this.offlines,renderClosed:"open",online:"",groupName:"Offline Group",users:_188}));
+var _18b=getEl("group-label-"+this.offlines);
+_18b.unselectable();
+this._wrappedClick=_18b.getChildrenByTagName("em")[0].mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
 jive.spank.roster.RosterGroup.sortContactHTML(this.offlines);
 }
 },sortGroups:function(){
-var _189=this.el;
-if(_189&&_189.dom!=null){
-var _18a=_189.getChildrenByClassName("group");
-var _18b=_18a.sortBy(function(line){
+var _18c=this.el;
+if(_18c&&_18c.dom!=null){
+var _18d=_18c.getChildrenByClassName("group");
+var _18e=_18d.sortBy(function(line){
 return line.id.split("-")[1].toLowerCase();
 });
-_18b.each(function(line){
-line.appendTo(_189.dom);
+_18e.each(function(line){
+line.appendTo(_18c.dom);
 });
 }
 for(var g in this.groups){
@@ -19702,45 +16732,45 @@ this.groups[g].sort();
 }
 },_logClosedGroups:function(){
 this.closedgroups=[];
-var _18f=this.el.getChildrenByClassName("closed");
-for(var i=0;i<_18f.length;i++){
-if(_18f[i].firstChild){
-this.closedgroups.push(_18f[i].firstChild.innerHTML);
+var _192=this.el.getChildrenByClassName("closed");
+for(var i=0;i<_192.length;i++){
+if(_192[i].firstChild){
+this.closedgroups.push(_192[i].firstChild.innerHTML);
 }
 }
-},_enableBehaviors:function(_191){
+},_enableBehaviors:function(_194){
 for(var g in this.groups){
-this.groups[g]._enableBehaviors(_191);
+this.groups[g]._enableBehaviors(_194);
 }
 }});
-jive.spank.roster.RosterGroup=function(_193,name,_195){
+jive.spank.roster.RosterGroup=function(_196,name,_198){
 this.name=name;
 this.cleanName=name.replace(/[^A-Za-z0-9]/,"_");
 this.contacts=[];
-if(_195){
-this._rebuildContacts(_195);
+if(_198){
+this._rebuildContacts(_198);
 }
-this._roster=_193;
+this._roster=_196;
 this.id=this.cleanName+"-"+this._roster.el.id;
 this._wrappedClick=null;
 };
 jive.spank.roster.RosterGroup.prototype={_rebuildContacts:function(json){
-for(var _197 in json){
-this.contacts.push(new jive.spank.roster.Contact(json[_197],this));
+for(var _19a in json){
+this.contacts.push(new jive.spank.roster.Contact(json[_19a],this));
 }
-},addContact:function(_198){
-var _199=new jive.spank.roster.Contact(_198,this);
-this.contacts.push(_199);
-var _19a="group-list-"+this.id;
-if(typeof this._roster.offlines!="undefined"&&_199.status=="unavailable"){
-_19a="group-list-"+this._roster.offlines;
+},addContact:function(_19b){
+var _19c=new jive.spank.roster.Contact(_19b,this);
+this.contacts.push(_19c);
+var _19d="group-list-"+this.id;
+if(typeof this._roster.offlines!="undefined"&&_19c.status=="unavailable"){
+_19d="group-list-"+this._roster.offlines;
 }
-jive.spank.chat.Template.contact.append(_19a,{id:_199.id,status:_199.status,username:_199.name});
+jive.spank.chat.Template.contact.append(_19d,{id:_19c.id,status:_19c.status,username:_19c.name});
 this.contacts[this.contacts.length-1]._enableBehaviors();
 },removeContact:function(jid){
-var _19c=this.getContactByJID(jid);
-if(_19c){
-_19c.remove();
+var _19f=this.getContactByJID(jid);
+if(_19f){
+_19f.remove();
 }
 },contactIndexByJid:function(jid){
 for(var u=this.contacts.length-1;u>=0;u--){
@@ -19750,23 +16780,23 @@ return u;
 }
 return -1;
 },getContactByJID:function(jid){
-var _1a0=this.contactIndexByJid(jid);
-if(_1a0>=0){
-return this.contacts[_1a0];
+var _1a3=this.contactIndexByJid(jid);
+if(_1a3>=0){
+return this.contacts[_1a3];
 }else{
 return null;
 }
-},render:function(_1a1){
-var _1a2="open";
-var _1a3=this._roster.closedgroups.indexOf(this.name)!=-1;
-if(_1a3){
-_1a2="closed";
+},render:function(_1a4){
+var _1a5="open";
+var _1a6=this._roster.closedgroups.indexOf(this.name)!=-1;
+if(_1a6){
+_1a5="closed";
 }
-var body=this._getMembersHtml(_1a1);
-if(body==""&&_1a1){
+var body=this._getMembersHtml(_1a4);
+if(body==""&&_1a4){
 return "";
 }
-return jive.spank.chat.Template.roster_group.applyTemplate({id:this.id,renderClosed:_1a2,online:"group-isonline",groupName:this.name,users:body});
+return jive.spank.chat.Template.roster_group.applyTemplate({id:this.id,renderClosed:_1a5,online:"group-isonline",groupName:this.name,users:body});
 },sort:function(){
 jive.spank.roster.RosterGroup.sortContactHTML(this.id);
 },remove:function(){
@@ -19775,25 +16805,25 @@ YAHOO.ext.EventManager.removeListener(elm,"click",this._wrappedClick);
 this._wrappedClick=null;
 elm.remove();
 delete this._roster.groups[this.name];
-},_getMembersHtml:function(_1a6){
-var _1a7="";
+},_getMembersHtml:function(_1a9){
+var _1aa="";
 for(var u=0;u<this.contacts.length;u++){
-if(!_1a6||this.contacts[u].status!="unavailable"){
-_1a7+=this.contacts[u].render();
+if(!_1a9||this.contacts[u].status!="unavailable"){
+_1aa+=this.contacts[u].render();
 }
 }
-return _1a7;
-},_enableBehaviors:function(_1a9){
-if(_1a9==null){
-_1a9=true;
+return _1aa;
+},_enableBehaviors:function(_1ac){
+if(_1ac==null){
+_1ac=true;
 }
-var _1aa=getEl("group-label-"+this.id);
-if(_1aa&&_1aa.dom){
-_1aa.unselectable();
-var _1ab=_1aa.getChildrenByTagName("em")[0];
-_1ab.unselectable();
-if(_1a9){
-this._wrappedClick=_1ab.mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
+var _1ad=getEl("group-label-"+this.id);
+if(_1ad&&_1ad.dom){
+_1ad.unselectable();
+var _1ae=_1ad.getChildrenByTagName("em")[0];
+_1ae.unselectable();
+if(_1ac){
+this._wrappedClick=_1ae.mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
 }
 }
 for(u=this.contacts.length-1;u>=0;u--){
@@ -19802,44 +16832,44 @@ this.contacts[u]._enableBehaviors();
 }};
 jive.spank.roster.RosterGroup.toggleGroupVisListener=function(evt){
 var elm=evt.getTarget().parentNode;
-var _1ae=elm.parentNode.childNodes.length;
-var _1af;
-for(var i=_1ae-1;i>=0;i--){
+var _1b1=elm.parentNode.childNodes.length;
+var _1b2;
+for(var i=_1b1-1;i>=0;i--){
 if(elm.parentNode.childNodes[i].nodeName=="UL"){
-_1af=elm.parentNode.childNodes[i];
+_1b2=elm.parentNode.childNodes[i];
 break;
 }
 }
-if(_1af!=null){
-var _1b1=(_1af.style.display=="none")?"block":"none";
-for(var j=_1af.childNodes.length-1;i>=0;i--){
-if(_1af.childNodes[j].nodeName=="LI"){
-_1af.childNodes[j].style.display=_1b1;
+if(_1b2!=null){
+var _1b4=(_1b2.style.display=="none")?"block":"none";
+for(var j=_1b2.childNodes.length-1;i>=0;i--){
+if(_1b2.childNodes[j].nodeName=="LI"){
+_1b2.childNodes[j].style.display=_1b4;
 }
 }
-_1af.style.display=_1b1;
+_1b2.style.display=_1b4;
 elm=getEl(elm);
-elm.removeClass(_1b1=="block"?"closed":"open");
-elm.addClass(_1b1=="block"?"open":"closed");
+elm.removeClass(_1b4=="block"?"closed":"open");
+elm.addClass(_1b4=="block"?"open":"closed");
 }
 };
 jive.spank.roster.RosterGroup.sortContactHTML=function(id){
-var _1b4=getEl("group-list-"+id);
-if(_1b4&&_1b4.dom!=null){
-var _1b5=_1b4.getChildrenByTagName("li");
-var _1b6=_1b5.sortBy(function(line){
+var _1b7=getEl("group-list-"+id);
+if(_1b7&&_1b7.dom!=null){
+var _1b8=_1b7.getChildrenByTagName("li");
+var _1b9=_1b8.sortBy(function(line){
 return line.dom.innerHTML;
 });
-_1b6.each(function(line){
-line.appendTo(_1b4.dom);
+_1b9.each(function(line){
+line.appendTo(_1b7.dom);
 });
 }
 };
-jive.spank.roster.Contact=function(_1b9,_1ba){
-this.jid=(typeof _1b9!="string"&&_1b9.getJID)?_1b9.getJID():"fake"+Math.random()+"@jivesoftware.com";
-this.name=(_1b9.getName&&_1b9.getName()?_1b9.getName():this.jid);
-this.status=typeof _1b9!="string"&&_1b9.status?_1b9.status:_1b9.isSubscriptionPending&&_1b9.isSubscriptionPending()?"pending":"unavailable";
-this.group=_1ba;
+jive.spank.roster.Contact=function(_1bc,_1bd){
+this.jid=(typeof _1bc!="string"&&_1bc.getJID)?_1bc.getJID():"fake"+Math.random()+"@jivesoftware.com";
+this.name=(_1bc.getName&&_1bc.getName()?_1bc.getName():this.jid);
+this.status=typeof _1bc!="string"&&_1bc.status?_1bc.status:_1bc.isSubscriptionPending&&_1bc.isSubscriptionPending()?"pending":"unavailable";
+this.group=_1bd;
 this.id="roster-contact-"+this.jid+"-"+this.group.cleanName;
 this.currentMessage="";
 this._wrappedClick=null;
@@ -19859,33 +16889,33 @@ delete this._wrappedMouseOut;
 elm.remove();
 this.group.contacts.splice(this.group.contactIndexByJid(this.jid),1);
 delete this.group;
-},changeStatus:function(_1bc,_1bd){
-_1bc=_1bc.toLowerCase();
-getEl(this.id).replaceClass("roster-contact-"+this.status,"roster-contact-"+_1bc);
-var _1be=(this.status?this.status:"unavailable");
-var _1bf=this.status;
-this.status=_1bc;
-if(_1bf=="unavailable"||_1bc=="unavailable"){
+},changeStatus:function(_1bf,_1c0){
+_1bf=_1bf.toLowerCase();
+getEl(this.id).replaceClass("roster-contact-"+this.status,"roster-contact-"+_1bf);
+var _1c1=(this.status?this.status:"unavailable");
+var _1c2=this.status;
+this.status=_1bf;
+if(_1c2=="unavailable"||_1bf=="unavailable"){
 this.group._roster.fireEvent("offlinemoved");
 }
-this.fireEvent("status",_1be,_1bc);
-this._changeStatusMsg(_1bd);
-return _1be;
+this.fireEvent("status",_1c1,_1bf);
+this._changeStatusMsg(_1c0);
+return _1c1;
 },render:function(){
 return jive.spank.chat.Template.contact.applyTemplate({id:this.id,username:this.name,status:this.status,message:this.currentMessage});
 },_changeStatusMsg:function(msg){
 this.currentMessage=(!msg||msg.strip()==""?"":"- "+msg);
-var _1c1=getEl(this.id+"-msg");
-_1c1.dom.innerHTML=this.currentMessage;
+var _1c4=getEl(this.id+"-msg");
+_1c4.dom.innerHTML=this.currentMessage;
 },_enableBehaviors:function(){
 var elm=getEl(this.id);
 if(elm){
 elm.unselectable();
 this._wrappedClick=elm.mon("click",function(evt){
-var _1c4=getEl(evt.getTarget());
-var _1c5=_1c4.dom.id;
+var _1c7=getEl(evt.getTarget());
+var _1c8=_1c7.dom.id;
 getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_1c5).className+=" selected";
+document.getElementById(_1c8).className+=" selected";
 });
 var self=this;
 this._wrappedDblClick=elm.mon("dblclick",function(evt){
@@ -19893,34 +16923,34 @@ evt.stopEvent();
 self.group._roster.fireEvent("contactdblclicked",self.group._roster,self);
 });
 this._wrappedMouseOver=elm.addManagedListener("mouseover",function(evt){
-var _1c9=getEl(evt.getTarget());
-var _1ca=_1c9.dom.id;
-document.getElementById(_1ca).className+=" hover";
+var _1cc=getEl(evt.getTarget());
+var _1cd=_1cc.dom.id;
+document.getElementById(_1cd).className+=" hover";
 });
 this._wrappedMouseOut=elm.addManagedListener("mouseout",function(evt){
 elm.removeClass("hover");
 });
 }
 }});
-jive.spank.roster.Contact.find=function(_1cc,jid,_1ce){
-var _1cf=_1cc.groups;
-for(var _1d0 in _1cf){
-if(_1ce&&_1d0.replace(/[^0-9A-Za-z]/,"_")!=_1ce){
+jive.spank.roster.Contact.find=function(_1cf,jid,_1d1){
+var _1d2=_1cf.groups;
+for(var _1d3 in _1d2){
+if(_1d1&&_1d3.replace(/[^0-9A-Za-z]/,"_")!=_1d1){
 continue;
 }
-var _1d1=_1cf[_1d0].contacts.find(function(_1d2){
-return _1d2.jid==jid;
+var _1d4=_1d2[_1d3].contacts.find(function(_1d5){
+return _1d5.jid==jid;
 });
-if(_1d1){
-return _1d1;
+if(_1d4){
+return _1d4;
 }
 }
 return null;
 };
-jive.spank.chat.Control=function(_1d3,_1d4,elm){
+jive.spank.chat.Control=function(_1d6,_1d7,elm){
 elm.id=elm.id||YAHOO.util.Dom.generateId();
 this.el=getEl(elm.id);
-this.el.appendTo(_1d3);
+this.el.appendTo(_1d6);
 this.el.setDisplayed("inline").unselectable();
 this.events={"click":true,"dblclick":true,"mouseover":true,"mouseout":true,"mousedown":true,"mouseup":true,"mousemove":true};
 this._wrappedListeners={};
@@ -19946,8 +16976,8 @@ self.fireEvent("mouseup",evt);
 this._wrappedListeners["mousemove"]=this.el.addManagedListener("mousemove",function(evt){
 self.fireEvent("mousemove",evt);
 });
-this.title=_1d4;
-this.panel=_1d3;
+this.title=_1d7;
+this.panel=_1d6;
 };
 YAHOO.extend(jive.spank.chat.Control,YAHOO.ext.util.Observable,{fireEvent:function(){
 if(!this.el.hasClass("jive-disabled")){
@@ -19955,8 +16985,8 @@ jive.spank.chat.Control.superclass.fireEvent.call(this,arguments[0],self,argumen
 }
 },remove:function(){
 this.purgeListeners();
-for(var _1de in this.events){
-YAHOO.ext.EventManager.removeListener(_1de,this.el,this._wrappedListeners[_1de]);
+for(var _1e1 in this.events){
+YAHOO.ext.EventManager.removeListener(_1e1,this.el,this._wrappedListeners[_1e1]);
 }
 this._wrappedListeners=null;
 this.el.remove();
@@ -19967,159 +16997,163 @@ this.el.addClass("jive-disabled");
 },toggleEnabled:function(){
 this.el.toggleClass("jive-disabled");
 }});
-jive.spank.chat.Control.add=function(_1df,_1e0,_1e1){
+jive.spank.chat.Control.add=function(_1e2,_1e3,_1e4){
 var body=document.getElementsByTagName("body")[0];
-if(typeof _1e1!="function"&&_1e1.elmId!=null){
-var _1e3=$(_1e1.elmId);
-var elm=_1e3.cloneNode(true);
-elm.id="jivectrl-"+_1e3.id;
+if(typeof _1e4!="function"&&_1e4.elmId!=null){
+var _1e6=$(_1e4.elmId);
+var elm=_1e6.cloneNode(true);
+elm.id="jivectrl-"+_1e6.id;
 elm.style.display="none";
 body.appendChild(elm);
 }else{
-if(typeof _1e1!="function"&&_1e1.imgSrc!=null){
+if(typeof _1e4!="function"&&_1e4.imgSrc!=null){
 var elm=document.createElement("a");
 elm.appendChild(document.createElement("img"));
-var _1e5=elm.id=YAHOO.util.Dom.generateId();
+var _1e8=elm.id=YAHOO.util.Dom.generateId();
 elm.className="imgbtn";
-elm.firstChild.setAttribute("src",_1e1.imgSrc);
-if(_1e1.tooltip){
-elm.setAttribute("title",_1e1.tooltip);
+elm.firstChild.setAttribute("src",_1e4.imgSrc);
+if(_1e4.tooltip){
+elm.setAttribute("title",_1e4.tooltip);
 }
 elm.setAttribute("href","#");
 body.appendChild(elm);
 }else{
-var _1e6="autobtn";
-var _1e5=YAHOO.util.Dom.generateId();
-if(typeof _1e1!="function"&&_1e1.className!=null){
-_1e6=_1e1.className;
+var _1e9="autobtn";
+var _1e8=YAHOO.util.Dom.generateId();
+if(typeof _1e4!="function"&&_1e4.className!=null){
+_1e9=_1e4.className;
 }
-jive.spank.chat.Template.control_btn.append(body,{id:_1e5,cls:_1e6,text:_1e0});
+jive.spank.chat.Template.control_btn.append(body,{id:_1e8,cls:_1e9,text:_1e3});
 }
 }
-if(typeof _1e1!="function"&&_1e1.tooltip){
-elm.setAttribute("title",_1e1.tooltip);
+if(typeof _1e4!="function"&&_1e4.tooltip){
+elm.setAttribute("title",_1e4.tooltip);
 }
-var _1e7=new jive.spank.chat.Control(getEl(_1df),_1e0,elm);
-if(typeof _1e1=="function"){
-_1e7.addListener("click",_1e1);
+var _1ea=new jive.spank.chat.Control(getEl(_1e2),_1e3,elm);
+if(typeof _1e4=="function"){
+_1ea.addListener("click",_1e4);
 }else{
-for(var _1e8 in _1e1.events){
-_1e7.addListener(_1e8,_1e1.events[_1e8]);
+for(var _1eb in _1e4.events){
+_1ea.addListener(_1eb,_1e4.events[_1eb]);
 }
 }
-return _1e7;
+return _1ea;
 };
-jive.spank.chat.CustomMessage=function(type,_1ea){
-var _1eb=new YAHOO.ext.DomHelper.Template(this.finishers[type].template.join(""));
+jive.spank.chat.CustomMessage=function(type,_1ed){
+var _1ee=new YAHOO.ext.DomHelper.Template(this.finishers[type].template.join(""));
 this.callback=this.finishers[type].callback;
 this.destroy=this.finishers[type].destroy;
 this.events=this.finishers[type].events;
-_1ea.id=_1ea.id||YAHOO.util.Dom.generateId();
+_1ed.id=_1ed.id||YAHOO.util.Dom.generateId();
 this.el=document.createElement("div");
-this.el.innerHTML=_1eb.applyTemplate(_1ea);
-this.el.id=_1ea.id;
-this.config=_1ea;
+this.el.innerHTML=_1ee.applyTemplate(_1ed);
+this.el.id=_1ed.id;
+this.config=_1ed;
 };
-YAHOO.extend(jive.spank.chat.CustomMessage,YAHOO.ext.util.Observable,{finishers:{mucinvitation:{events:{"accepted":true,"declined":true},callback:function(_1ec){
-var _1ed=this.el.id;
-var _1ee=getEl(_1ed+"-room").dom.innerHTML;
-var _1ef=getEl(_1ed+"-inviter").dom.innerHTML;
-getEl(_1ed+"-join").addListener("click",function(){
-this.fireEvent("accepted",_1ec,this.config);
-getEl(_1ed+"-message").dom.innerHTML="You accepted "+_1ef+"'s invitation to \""+_1ee+"\".";
+YAHOO.extend(jive.spank.chat.CustomMessage,YAHOO.ext.util.Observable,{finishers:{mucinvitation:{events:{"accepted":true,"declined":true},callback:function(_1ef){
+var _1f0=this.el.id;
+var _1f1=getEl(_1f0+"-room").dom.innerHTML;
+var _1f2=getEl(_1f0+"-inviter").dom.innerHTML;
+getEl(_1f0+"-join").addListener("click",function(){
+this.fireEvent("accepted",_1ef,this.config);
+getEl(_1f0+"-message").dom.innerHTML="You accepted "+_1f2+"'s invitation to \""+_1f1+"\".";
 this.destroy();
 }.bind(this));
-getEl(_1ed+"-decline").addListener("click",function(){
-this.fireEvent("declined",_1ec,this.config);
-getEl(_1ed+"-message").dom.innerHTML="You declined "+_1ef+"'s invitation to \""+_1ee+"\".";
+getEl(_1f0+"-decline").addListener("click",function(){
+this.fireEvent("declined",_1ef,this.config);
+getEl(_1f0+"-message").dom.innerHTML="You declined "+_1f2+"'s invitation to \""+_1f1+"\".";
 this.destroy();
 }.bind(this));
 },destroy:function(){
-var _1f0=this.el.id;
-getEl(_1f0+"-join").removeAllListeners();
-getEl(_1f0+"-decline").removeAllListeners();
-getEl(_1f0+"-controls").remove();
+var _1f3=this.el.id;
+getEl(_1f3+"-join").removeAllListeners();
+getEl(_1f3+"-decline").removeAllListeners();
+getEl(_1f3+"-controls").remove();
 this.purgeListeners();
 delete this.config;
 },template:["<div class=\"jive-mucinvite\">","<p id=\"{id}-message\"><span id=\"{id}-inviter\">{name}</span> has invited you to","join the conference \"<span id=\"{id}-room\">{chatname}</span>\".</p>","<div id=\"{id}-controls\"><a id=\"{id}-join\" href=\"#\">Accept</a>","<a id=\"{id}-decline\" href=\"#\">Decline</a></div>","<span id=\"{id}-jid\" style=\"display: none;\">{jid}</span>","</div>"]}}});
-jive.spank.AutoComplete=function(_1f1,_1f2,_1f3,_1f4){
-jive.spank.AutoComplete.superclass.constructor.call(this,_1f1,_1f2,_1f3,_1f4);
+if(window.jive_enable_autocomplete){
+jive.spank.AutoComplete=function(_1f4,_1f5,_1f6,_1f7){
+jive.spank.AutoComplete.superclass.constructor.call(this,_1f4,_1f5,_1f6,_1f7);
 };
 YAHOO.extend(jive.spank.AutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.AutoComplete.prototype._populateList=function(_1f5,_1f6,self){
-self.autoHighlight=(_1f6[0][0].indexOf(_1f5)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_1f5,_1f6,self);
+jive.spank.AutoComplete.prototype._populateList=function(_1f8,_1f9,self){
+self.autoHighlight=(_1f9[0][0].indexOf(_1f8)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_1f8,_1f9,self);
 };
-jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_1f9){
-var _1fa=v.keyCode;
-switch(_1fa){
+jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_1fc){
+var _1fd=v.keyCode;
+switch(_1fd){
 case 9:
-if(_1f9.delimChar&&(_1f9._nKeyCode!=_1fa)){
-if(_1f9._bContainerOpen){
+if(_1fc.delimChar&&(_1fc._nKeyCode!=_1fd)){
+if(_1fc._bContainerOpen){
 YAHOO.util.Event.stopEvent(v);
 }
 }
-if(_1f9._oCurItem){
-_1f9._selectItem(_1f9._oCurItem);
+if(_1fc._oCurItem){
+_1fc._selectItem(_1fc._oCurItem);
 }else{
-_1f9._toggleContainer(false);
+_1fc._toggleContainer(false);
 }
 break;
 case 13:
-if(_1f9._nKeyCode!=_1fa){
-if(_1f9._bContainerOpen){
+if(_1fc._nKeyCode!=_1fd){
+if(_1fc._bContainerOpen){
 YAHOO.util.Event.stopEvent(v);
 }
 }
-_1f9._toggleContainer(false);
+_1fc._toggleContainer(false);
 break;
 case 27:
-_1f9._toggleContainer(false);
+_1fc._toggleContainer(false);
 return;
 case 39:
-_1f9._jumpSelection();
+_1fc._jumpSelection();
 break;
 case 38:
 YAHOO.util.Event.stopEvent(v);
-_1f9._moveSelection(_1fa);
+_1fc._moveSelection(_1fd);
 break;
 case 40:
 YAHOO.util.Event.stopEvent(v);
-_1f9._moveSelection(_1fa);
+_1fc._moveSelection(_1fd);
 break;
 default:
 break;
 }
 };
-jive.spank.FlatAutoComplete=function(_1fb,_1fc,_1fd,_1fe){
-jive.spank.FlatAutoComplete.superclass.constructor.call(this,_1fb,_1fc,_1fd,_1fe);
+jive.spank.FlatAutoComplete=function(_1fe,_1ff,_200,_201){
+jive.spank.FlatAutoComplete.superclass.constructor.call(this,_1fe,_1ff,_200,_201);
 };
 YAHOO.extend(jive.spank.FlatAutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.FlatAutoComplete.prototype._populateList=function(_1ff,_200,self){
-self.autoHighlight=(_200[0]&&_200[0].indexOf(_1ff)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_1ff,_200,self);
+jive.spank.FlatAutoComplete.prototype._populateList=function(_202,_203,self){
+self.autoHighlight=(_203[0]&&_203[0].indexOf(_202)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_202,_203,self);
 };
 jive.spank.FlatAutoComplete.prototype._updateValue=function(item){
 item._sResultKey=item._oResultData;
 jive.spank.AutoComplete.superclass._updateValue.call(this,item);
 };
-jive.spank.Spinner={show:function(_203){
-if(_203==null){
-_203={};
+}else{
+jive.spank.AutoComplete={};
+}
+jive.spank.Spinner={show:function(_206){
+if(_206==null){
+_206={};
 }
 if(!this.isShowing){
-var x=_203.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
-var y=_203.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
-var text=_203.text||"Loading...";
+var x=_206.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
+var y=_206.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
+var text=_206.text||"Loading...";
 this.template.append(document.body,{text:text});
-var _207=getEl("jive-spinner");
-if(_203.el&&_203.position){
-_207.alignTo(_203.el,_203.position);
+var _20a=getEl("jive-spinner");
+if(_206.el&&_206.position){
+_20a.alignTo(_206.el,_206.position);
 }else{
-_207.moveTo(x,y);
+_20a.moveTo(x,y);
 }
-_207.setStyle("z-index",20000);
-_207.show();
+_20a.setStyle("z-index",20000);
+_20a.show();
 this.isShowing=true;
 }
 },isShowing:false,hide:function(){
@@ -20128,26 +17162,26 @@ getEl("jive-spinner").remove();
 this.isShowing=false;
 }
 },template:new YAHOO.ext.DomHelper.Template("<div style=\"visibility: hidden;\" id=\"jive-spinner\">"+"<img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>")};
-jive.spank.chat.Filter=function(name,_209,_20a){
-this.filterPattern=_209;
-this.filterReplacement=_20a;
+jive.spank.chat.Filter=function(name,_20c,_20d){
+this.filterPattern=_20c;
+this.filterReplacement=_20d;
 this.name=name;
 };
-jive.spank.chat.Filter.prototype.apply=function(_20b){
-return _20b.replace(this.filterPattern,this.filterReplacement);
+jive.spank.chat.Filter.prototype.apply=function(_20e){
+return _20e.replace(this.filterPattern,this.filterReplacement);
 };
-jive.spank.chat.Filter.applyAll=function(_20c){
-jive.spank.chat.Filter.registeredFilters.each(function(_20d){
-_20c=_20d.apply(_20c);
+jive.spank.chat.Filter.applyAll=function(_20f){
+jive.spank.chat.Filter.registeredFilters.each(function(_210){
+_20f=_210.apply(_20f);
 });
-return _20c;
+return _20f;
 };
-jive.spank.chat.Filter.add=function(name,_20f,_210){
-jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_20f,_210));
+jive.spank.chat.Filter.add=function(name,_212,_213){
+jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_212,_213));
 };
-jive.spank.chat.Filter.remove=function(_211){
+jive.spank.chat.Filter.remove=function(_214){
 jive.spank.chat.Filter.registeredFilters.each(function(ftr,i){
-if(ftr.name==_211){
+if(ftr.name==_214){
 delete jive.spank.chat.Filter.registeredFilters[i];
 throw $break;
 }
@@ -20164,18 +17198,18 @@ jive.spank.notifier.origTitle=null;
 jive.spank.notifier.titleMsg="";
 jive.spank.notifier.titleInterval=null;
 jive.spank.notifier.countNewMsgs=function(){
-var _215;
-var _216="";
-var _217=0;
-for(var _218 in jive.spank.chat.ChatWindow.currentWindow){
-_215=jive.spank.chat.ChatWindow.currentWindow[_218];
-for(var _219 in _215.newMessages){
-_217+=_215.newMessages[_219];
+var _218;
+var _219="";
+var _21a=0;
+for(var _21b in jive.spank.chat.ChatWindow.currentWindow){
+_218=jive.spank.chat.ChatWindow.currentWindow[_21b];
+for(var _21c in _218.newMessages){
+_21a+=_218.newMessages[_21c];
 }
 }
-return _217;
+return _21a;
 };
-jive.spank.notifier.doTitleNotify=function(_21a){
+jive.spank.notifier.doTitleNotify=function(_21d){
 var ct=jive.spank.notifier.countNewMsgs();
 if(jive.spank.notifier.titleInterval){
 window.clearTimeout(jive.spank.notifier.titleInterval);
@@ -20199,14 +17233,15 @@ jive.spank.notifier.rotateTitle=function(){
 document.title=(document.title==jive.spank.notifier.titleMsg)?jive.spank.notifier.origTitle:jive.spank.notifier.titleMsg;
 jive.spank.notifier.titleInterval=window.setTimeout(jive.spank.notifier.rotateTitle,2000);
 };
-jive.spank.chat.Template={add_contact:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody addcontact\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"{id}-addusername\">Username:</label>","</td><td width=\"65%\">","<input type=\"text\" id=\"{id}-addusername\" value=\"\" />","</td></tr>","<tr><td><label for=\"{id}-addnickname\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-addnickname\" value=\"\" /></td></tr>","<tr><td><label for=\"{id}-addcontact-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-addcontact-group\" value=\"\" />","</td></tr>","<tr><td colspan=\"2\" align=\"center\" class=\"masterctrl\">","<input type=\"button\" class=\"btn createcontact\" id=\"{id}-createcontact\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddcontact\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),add_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"25%\" rowspan=\"2\">","</td><td width=\"75%\">","Enter new group name:<br/>","<input type=\"text\" id=\"{id}-addgroupname\" value=\"\" />","</td></tr>","<tr><td>","<input type=\"button\" class=\"btn creategroup\" id=\"{id}-creategroup\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddgroup\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),chat_toppane:new YAHOO.ext.DomHelper.Template("<div id=\"{bodyId}-topchat\" class=\"jive-chat-toppane\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4></h4>"+"<p id=\"{bodyId}-time\">Time: <span></span></p>"+"<div id=\"{bodyId}-controls\" class=\"jive-ctrlbar-topchat\"></div>"+"</div>"),contact:new YAHOO.ext.DomHelper.Template("<li id=\"{id}\" class=\"roster-contact-{status}\">{username} <span id=\"{id}-msg\" class=\"msg\">{message}</span></li>"),control_btn:new YAHOO.ext.DomHelper.Template("<a href=\"#\" class=\"jive-control-btn {cls}\" id=\"{id}\">{text}</a>"),control_panel:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-controls\" class=\"jive-ctrlbar\"></div>"),create_account:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><div class=\"{id}-name-label\">Username:</div></td>","<td><input type=\"text\" id=\"{id}-name\" /></td></tr>","<td><div class=\"{id}-passwd-label\">Password:</div></td>","<td><input type=\"password\" id=\"{id}-passwd\" /></td></tr>","<td><div class=\"{id}-confirm-label\">Confirm Password:</div></td>","<td><input type=\"password\" id=\"{id}-confirm\" /></td></tr>","</table>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-submit\" value=\"Submit\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),dialog:new YAHOO.ext.DomHelper.Template("<div class=\"ydlg-hd\"><h1>{windowTitle}</h1></div>"+"<div id=\"{bodyId}\" class=\"ydlg-bd\">"+"<div id=\"{bodyId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"</div>"),message:new YAHOO.ext.DomHelper.Template("<div class=\"{type}-message {mentioned} {msgclass}\"><span class=\"meta\"><em>({time})</em>"+"&nbsp;{from}: </span><span class=\"message-content\">{message}</span></div>"),muc_chooser_top:new YAHOO.ext.DomHelper.Template("<div class=\"dhead chooseconf\">Create or join a conference room</div>"+"<div id=\"{tabId}-confcontrols\" class=\"dbody chooseconf\">"+"<div id=\"{tabId}-createconf\" class=\"jive-invite-control\">Create a Conference</div>"+"<div id=\"{tabId}-refresh\" class=\"jive-invite-control\">Refresh List</div>"+"</div>"),muc_controls:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"+"<div class=\"muc-ctrl-frame\">"+"<div id=\"{jid}-changenick\" class=\"jive-invite-control\">Change nickname</div>"+"<div id=\"{jid}-control\" class=\"jive-invite-control\">Invite contact "+"<img align=\"absmiddle\" src=\"resources/images/menutri.gif\" height=\"4\" width=\"7\" alt=\"\" /></div>"+"</div>"),muc_subject:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"),mucchooser:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-roomgrid\"></div>"+"</div>"),muccreation:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roomname\">Room Name:</label></td>","<td><input type=\"text\" id=\"{id}-roomname\" /></td></tr>","<tr><td><label for=\"{id}-roomtopic\">Room Topic:</label></td>","<td><input type=\"text\" id=\"{id}-roomtopic\" /></td></tr>","<tr><td colspan=\"2\"><input type=\"checkbox\" id=\"{id}-permanent\" />","<label for=\"{id}-permanent\"> Make permanent</label></td></tr></table>","<div class=\"fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-private\" />"," Make private</span></p>","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roompw\" class=\"disabled\">Password:</label></td>","<td><input type=\"password\" id=\"{id}-roompw\" disabled=\"disabled\" /></td></tr>","<td><label for=\"{id}-roomconfirm\" class=\"disabled\">Confirm Password:</label></td>","<td><input type=\"password\" id=\"{id}-roomconfirm\" disabled=\"disabled\" /></td></tr>","</table></div>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-createroom\" value=\"Create\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),mucinvitemenu:new YAHOO.ext.DomHelper.Template("<div id=\"{jid}-container\" class=\"jive-invite-menu\">"+"<input id=\"{jid}-autocomp\" type=\"text\">"+"<div id=\"{jid}-autocomp-menu\"></div>"+"</div>"),mucpassword:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Enter password:</p>","<p align=\"center\"><input type=\"password\" class=\"btn\" id=\"{id}-passwd\" value=\"\" /></p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-sendsecret\" value=\"Join\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),muctab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-controls\" class=\"jive-muc-ctrl\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<div id=\"{tabId}-sidebarlayout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-sidebar-header\" class=\"jive-muc-sidebar-header\"></div>"+"<div id=\"{tabId}-occupants\" class=\"jive-muc-occupants\"></div>"+"<div id=\"{tabId}-userstatus\" class=\"jive-muc-status\"></div>"+"</div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),remove_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Are you sure you want to remove '{name}'?</p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-remove\" value=\"Yes\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"No\" /></p>","</div>"].join("")),rename:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<div style=\"text-align: center; padding: 8px;\">Rename to: ","<input type=\"text\" id=\"{id}-name\" value=\"\" /></div>","<div style=\"text-align: center;\">","<input type=\"button\" class=\"btn\" id=\"{id}-rename\" value=\"OK\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-close\" value=\"Cancel\" />","</div>","</div>"].join("")),roster:new YAHOO.ext.DomHelper.Template("<ul id=\"{rosterId}\" class=\"jive-roster\">{groups}</ul>"),roster_group:new YAHOO.ext.DomHelper.Template("<li id=\"group-{id}\" class=\"group\">"+"<span id=\"group-label-{id}\" class=\"group-label {online} {renderClosed}\"><em>{groupName}</em></span>"+"<ul id=\"group-list-{id}\" class=\"group-list\">{users}</ul>"+"</li>"),rostertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-user\" class=\"jive-controlpanel\"></div>"+"<div id=\"{tabId}-resources\"></div>"+"</div>"),spinnertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-spinner\" class=\"ylayout-inactive-content ydlg-tab jive-spinnertab\">"+"<div id=\"jive-spinner\"><img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>"+"</div>"),start_chat:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\" style=\"text-align: center;\">","<p>Enter an address:</p>","<p><input type=\"text\" id=\"{id}-jid\" /></p>","<p style=\"margin-top: 4px;\"><input type=\"button\" class=\"btn\" id=\"{id}-startbtn\" value=\"Start Chat\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),statusMessage:new YAHOO.ext.DomHelper.Template("<div class=\"status-message\">{message}</div>"),status_panel:new YAHOO.ext.DomHelper.Template("<div class=\"jive-userstatus\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4>{username}</h4>"+"<p id=\"{bodyId}-status\" class=\"jive-mystatus\">"+"<a href=\"#\" id=\"{bodyId}-statusmenu-ctrl\" class=\"roster-contact-{statusName}\"><span>{status}</span></a></p>"+"</div>"),sub_request:new YAHOO.ext.DomHelper.Template(["<div class=\"dhead\">{nick} ({jid}) wants to add you as a contact.</div>","<div class=\"dbody fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-add\" checked=\"checked\" />"," Add user to your contacts too</span></p>","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"addusername\">Username:</label>","</td><td id=\"{id}-jid\" width=\"65%\">{jid}</td></tr>","<tr><td><label for=\"{id}-nick\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-nick\" value=\"{nick}\" /></td></tr>","<tr><td><label for=\"{id}-subrequest-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-subrequest-group\" value=\"\" />","</td></tr></table></div>","<p align=\"center\">","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-acceptsubrequest\" value=\"Allow\" />","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-denysubrequest\" value=\"Deny\" />","</p>"].join("")),tab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),userpane:new YAHOO.ext.DomHelper.Template("<span id=\"{id}-message\">{message}</span>"),userpane_loggedin:new YAHOO.ext.DomHelper.Template("<input class=\"jive-muc-username\" type=\"text\" id=\"{id}-uname\" value=\"{uname}\"></input>"),userpane_changebtn:new YAHOO.ext.DomHelper.Template("<a id=\"{id}-changenickbtn\" href=\"javascript:void(0);\">Change Nickname</a>"),userstatus:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>")};
-YAHOO.ext.grid.SpankJSONDataModel=function(_21c){
+jive.spank.chat.Template={add_contact:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody addcontact\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"{id}-addusername\">Username:</label>","</td><td width=\"65%\">","<input type=\"text\" id=\"{id}-addusername\" value=\"\" />","</td></tr>","<tr><td><label for=\"{id}-addnickname\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-addnickname\" value=\"\" /></td></tr>","<tr><td><label for=\"{id}-addcontact-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-addcontact-group\" value=\"\" />","</td></tr>","<tr><td colspan=\"2\" align=\"center\" class=\"masterctrl\">","<input type=\"button\" class=\"btn createcontact\" id=\"{id}-createcontact\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddcontact\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),add_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"25%\" rowspan=\"2\">","</td><td width=\"75%\">","Enter new group name:<br/>","<input type=\"text\" id=\"{id}-addgroupname\" value=\"\" />","</td></tr>","<tr><td>","<input type=\"button\" class=\"btn creategroup\" id=\"{id}-creategroup\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddgroup\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),chat_toppane:new YAHOO.ext.DomHelper.Template("<div id=\"{bodyId}-topchat\" class=\"jive-chat-toppane\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4></h4>"+"<p id=\"{bodyId}-time\">Time: <span></span></p>"+"<div id=\"{bodyId}-controls\" class=\"jive-ctrlbar-topchat\"></div>"+"</div>"),contact:new YAHOO.ext.DomHelper.Template("<li id=\"{id}\" class=\"roster-contact-{status}\">{username} <span id=\"{id}-msg\" class=\"msg\">{message}</span></li>"),control_btn:new YAHOO.ext.DomHelper.Template("<a href=\"#\" class=\"jive-control-btn {cls}\" id=\"{id}\">{text}</a>"),control_panel:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-controls\" class=\"jive-ctrlbar\"></div>"),create_account:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><div class=\"{id}-name-label\">Username:</div></td>","<td><input type=\"text\" id=\"{id}-name\" /></td></tr>","<td><div class=\"{id}-passwd-label\">Password:</div></td>","<td><input type=\"password\" id=\"{id}-passwd\" /></td></tr>","<td><div class=\"{id}-confirm-label\">Confirm Password:</div></td>","<td><input type=\"password\" id=\"{id}-confirm\" /></td></tr>","</table>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-submit\" value=\"Submit\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),dialog:new YAHOO.ext.DomHelper.Template("<div class=\"ydlg-hd\"><h1>{windowTitle}</h1></div>"+"<div id=\"{bodyId}\" class=\"ydlg-bd\">"+"<div id=\"{bodyId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"</div>"),message:new YAHOO.ext.DomHelper.Template("<div class=\"{type}-message {mentioned} {action} {msgclass}\"><span class=\"meta\"><em>({time})</em>"+"&nbsp;{from}: </span><span class=\"message-content\">{message}</span></div>"),muc_chooser_top:new YAHOO.ext.DomHelper.Template("<div class=\"dhead chooseconf\">Create or join a conference room</div>"+"<div id=\"{tabId}-confcontrols\" class=\"dbody chooseconf\">"+"<div id=\"{tabId}-createconf\" class=\"jive-invite-control\">Create a Conference</div>"+"<div id=\"{tabId}-refresh\" class=\"jive-invite-control\">Refresh List</div>"+"</div>"),muc_controls:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"+"<div class=\"muc-ctrl-frame\">"+"<div id=\"{jid}-changenick\" class=\"jive-invite-control\">Change nickname</div>"+"<div id=\"{jid}-control\" class=\"jive-invite-control\">Invite contact "+"<img align=\"absmiddle\" src=\"resources/images/menutri.gif\" height=\"4\" width=\"7\" alt=\"\" /></div>"+"</div>"),muc_subject:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"),mucchooser:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-roomgrid\"></div>"+"</div>"),muccreation:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roomname\">Room Name:</label></td>","<td><input type=\"text\" id=\"{id}-roomname\" /></td></tr>","<tr><td><label for=\"{id}-roomtopic\">Room Topic:</label></td>","<td><input type=\"text\" id=\"{id}-roomtopic\" /></td></tr>","<tr><td colspan=\"2\"><input type=\"checkbox\" id=\"{id}-permanent\" />","<label for=\"{id}-permanent\"> Make permanent</label></td></tr></table>","<div class=\"fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-private\" />"," Make private</span></p>","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roompw\" class=\"disabled\">Password:</label></td>","<td><input type=\"password\" id=\"{id}-roompw\" disabled=\"disabled\" /></td></tr>","<td><label for=\"{id}-roomconfirm\" class=\"disabled\">Confirm Password:</label></td>","<td><input type=\"password\" id=\"{id}-roomconfirm\" disabled=\"disabled\" /></td></tr>","</table></div>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-createroom\" value=\"Create\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),mucinvitemenu:new YAHOO.ext.DomHelper.Template("<div id=\"{jid}-container\" class=\"jive-invite-menu\">"+"<input id=\"{jid}-autocomp\" type=\"text\">"+"<div id=\"{jid}-autocomp-menu\"></div>"+"</div>"),mucpassword:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Enter password:</p>","<p align=\"center\"><input type=\"password\" class=\"btn\" id=\"{id}-passwd\" value=\"\" /></p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-sendsecret\" value=\"Join\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),muctab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-controls\" class=\"jive-muc-ctrl\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<div id=\"{tabId}-sidebarlayout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-sidebar-header\" class=\"jive-muc-sidebar-header\"></div>"+"<div id=\"{tabId}-occupants\" class=\"jive-muc-occupants\"></div>"+"<div id=\"{tabId}-userstatus\" class=\"jive-muc-status\"></div>"+"</div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),remove_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Are you sure you want to remove '{name}'?</p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-remove\" value=\"Yes\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"No\" /></p>","</div>"].join("")),rename:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<div style=\"text-align: center; padding: 8px;\">Rename to: ","<input type=\"text\" id=\"{id}-name\" value=\"\" /></div>","<div style=\"text-align: center;\">","<input type=\"button\" class=\"btn\" id=\"{id}-rename\" value=\"OK\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-close\" value=\"Cancel\" />","</div>","</div>"].join("")),roster:new YAHOO.ext.DomHelper.Template("<ul id=\"{rosterId}\" class=\"jive-roster\">{groups}</ul>"),roster_group:new YAHOO.ext.DomHelper.Template("<li id=\"group-{id}\" class=\"group\">"+"<span id=\"group-label-{id}\" class=\"group-label {online} {renderClosed}\"><em>{groupName}</em></span>"+"<ul id=\"group-list-{id}\" class=\"group-list\">{users}</ul>"+"</li>"),rostertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-user\" class=\"jive-controlpanel\"></div>"+"<div id=\"{tabId}-resources\"></div>"+"</div>"),spinnertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-spinner\" class=\"ylayout-inactive-content ydlg-tab jive-spinnertab\">"+"<div id=\"jive-spinner\"><img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>"+"</div>"),start_chat:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\" style=\"text-align: center;\">","<p>Enter an address:</p>","<p><input type=\"text\" id=\"{id}-jid\" /></p>","<p style=\"margin-top: 4px;\"><input type=\"button\" class=\"btn\" id=\"{id}-startbtn\" value=\"Start Chat\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),statusMessage:new YAHOO.ext.DomHelper.Template("<div class=\"status-message\">{message}</div>"),status_panel:new YAHOO.ext.DomHelper.Template("<div class=\"jive-userstatus\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4>{username}</h4>"+"<p id=\"{bodyId}-status\" class=\"jive-mystatus\">"+"<a href=\"#\" id=\"{bodyId}-statusmenu-ctrl\" class=\"roster-contact-{statusName}\"><span>{status}</span></a></p>"+"</div>"),sub_request:new YAHOO.ext.DomHelper.Template(["<div class=\"dhead\">{nick} ({jid}) wants to add you as a contact.</div>","<div class=\"dbody fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-add\" checked=\"checked\" />"," Add user to your contacts too</span></p>","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"addusername\">Username:</label>","</td><td id=\"{id}-jid\" width=\"65%\">{jid}</td></tr>","<tr><td><label for=\"{id}-nick\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-nick\" value=\"{nick}\" /></td></tr>","<tr><td><label for=\"{id}-subrequest-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-subrequest-group\" value=\"\" />","</td></tr></table></div>","<p align=\"center\">","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-acceptsubrequest\" value=\"Allow\" />","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-denysubrequest\" value=\"Deny\" />","</p>"].join("")),tab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),userpane:new YAHOO.ext.DomHelper.Template("<span id=\"{id}-message\">{message}</span>"),userpane_loggedin:new YAHOO.ext.DomHelper.Template("<input class=\"jive-muc-username\" type=\"text\" id=\"{id}-uname\" value=\"{uname}\"></input>"),userpane_changebtn:new YAHOO.ext.DomHelper.Template("<a id=\"{id}-changenickbtn\" href=\"javascript:void(0);\">Change Nickname</a>"),userstatus:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>")};
+if(window.jive_enable_grid){
+YAHOO.ext.grid.SpankJSONDataModel=function(_21f){
 YAHOO.ext.grid.SpankJSONDataModel.superclass.constructor.call(this,YAHOO.ext.grid.LoadableDataModel.JSON);
-this.schema=_21c;
+this.schema=_21f;
 };
-YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_21e,_21f){
-var _220=this.schema.id;
-var _221=this.schema.fields;
+YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_221,_222){
+var _223=this.schema.id;
+var _224=this.schema.fields;
 try{
 if(this.schema.totalProperty){
 var v=parseInt(eval("data."+this.schema.totalProperty),10);
@@ -20214,7 +17249,7 @@ if(!isNaN(v)){
 this.totalCount=v;
 }
 }
-var _223=[];
+var _226=[];
 if(this.schema.root){
 var root=eval("data."+this.schema.root);
 }else{
@@ -20222,51 +17257,52 @@ var root=data;
 }
 for(var i in root){
 var node=root[i];
-var _227=[];
-_227.node=node;
-_227.id=(typeof node[_220]!="undefined"&&node[_220]!==""?node[_220]:String(i));
-for(var j=0;j<_221.length;j++){
-var val=node[_221[j]];
+var _22a=[];
+_22a.node=node;
+_22a.id=(typeof node[_223]!="undefined"&&node[_223]!==""?node[_223]:String(i));
+for(var j=0;j<_224.length;j++){
+var val=node[_224[j]];
 if(typeof val=="undefined"){
 val="";
 }
 if(this.preprocessors[j]){
 val=this.preprocessors[j](val);
 }
-_227.push(val);
+_22a.push(val);
 }
-_223.push(_227);
+_226.push(_22a);
 }
-if(_21f!==true){
+if(_222!==true){
 this.removeAll();
 }
-this.addRows(_223);
-if(typeof _21e=="function"){
-_21e(this,true);
+this.addRows(_226);
+if(typeof _221=="function"){
+_221(this,true);
 }
 this.fireLoadEvent();
 }
 catch(e){
 this.fireLoadException(e,null);
-if(typeof _21e=="function"){
-_21e(this,false);
+if(typeof _221=="function"){
+_221(this,false);
 }
 }
-},getRowId:function(_22a){
-return this.data[_22a].id;
+},getRowId:function(_22d){
+return this.data[_22d].id;
 }});
-YAHOO.ext.Element.prototype.getParentByClass=function(_22b,_22c){
-if(_22c){
-_22c=_22c.toLowerCase();
+}
+YAHOO.ext.Element.prototype.getParentByClass=function(_22e,_22f){
+if(_22f){
+_22f=_22f.toLowerCase();
 }
 function isMatch(el){
 if(!el){
 return false;
 }
-if(_22b&&!YAHOO.util.Dom.hasClass(el,_22b)){
+if(_22e&&!YAHOO.util.Dom.hasClass(el,_22e)){
 return false;
 }
-return !(_22c&&el.tagName.toLowerCase()!=_22c);
+return !(_22f&&el.tagName.toLowerCase()!=_22f);
 }
 var t=this.dom;
 if(!t||isMatch(t)){
@@ -20282,9 +17318,9 @@ p=p.parentNode;
 }
 return null;
 };
-YAHOO.ext.Element.prototype.setSelectable=function(_231){
-this.dom.unselectable=_231?"off":"on";
-if(!_231){
+YAHOO.ext.Element.prototype.setSelectable=function(_234){
+this.dom.unselectable=_234?"off":"on";
+if(!_234){
 this.applyStyles("-moz-user-select:none;-khtml-user-select:none;");
 }else{
 this.applyStyles("-moz-user-select:normal;-khtml-user-select:auto;");
@@ -20293,639 +17329,24 @@ return this;
 };
 
 
-org.jive.spank.control={doConnect:function(_1,_2,_3){
-var _4=getEl("connect");
-_4.dom.disabled=true;
-_4.hide();
-jive.spank.Spinner.show({x:_4.getX()-10,y:_4.getY()});
-window.connection=new XMPPConnection("/http-bind/",_3,new org.jive.spank.control.ConnectionListener(_1,_2));
-connection.connect();
-},doLogout:function(){
-var _5=new XMPP.Presence();
-_5.setType("unavailable");
-connection.logout(_5);
-},onUnload:function(_6){
-if(typeof window.rosterWindow=="undefined"){
-return;
-}
-var _7=confirm("Leaving this page will disconnect you from Sparkweb, are you sure?");
-if(_7){
-org.jive.spank.control.doLogout();
-}else{
-_6.stopEvent();
-}
-},doRegistration:function(){
-window.accountDialog=new jive.spank.dialog.CreateAccount(doRegistrationValidation);
-},doRegistrationValidation:function(_8){
-},windows:{}};
-org.jive.spank.control.ConnectionListener=function(_9,_a){
-this.usernameField=_9;
-this.passwordField=_a;
-};
-org.jive.spank.control.ConnectionListener.prototype={connectionSuccessful:function(_b){
-window.chatManager=new org.jive.spank.chat.Manager(_b);
-window.chatSessionListener=new org.jive.spank.chat.ChatSessionListener(chatSessionCreated,chatSessionClosed);
-chatManager.addChatSessionListener(chatSessionListener);
-window.muc=new org.jive.spank.muc.Manager(_b,chatManager);
-console.debug("Connection successfully established.");
-var _c=$F(this.usernameField);
-var _d=$F(this.passwordField);
-_b.login(_c,_d,null);
-},connectionFailed:function(){
-this.authenticationFailed();
-},connectionClosed:function(_e,_f){
-destroyAllChatWindows();
-if(window.rosterWindow){
-window.rosterWindow.destroy();
-window.rosterWindow=undefined;
-}
-window.presenceManager=undefined;
-window.rosterManager=undefined;
-window.conferenceServers=undefined;
-window.mucControl=undefined;
-window.connection=undefined;
-window.chatManager=undefined;
-window.contactMonitor=undefined;
-window.mucManager=undefined;
-window.muc=undefined;
-$("jive-loginBox").style.visibility="";
-$("jive-webTop").style.display="";
-$("loginText").innerHTML="";
-var _10=getEl("connect");
-_10.dom.disabled=false;
-_10.show();
-$(this.usernameField).value="";
-$(this.passwordField).value="";
-if(_f){
-alert("Your connection to the server has closed.");
-}
-jive.spank.Spinner.hide();
-},authenticationSuccessful:function(_11){
-$("loginText").innerHTML="Login successful!";
-window.contactMonitor=new org.jive.spank.control.ContactMonitor();
-window.presenceManager=new org.jive.spank.presence.Manager(_11,null,"manual");
-window.presenceManager.addPresenceListener(contactMonitor.handlePresence.bind(contactMonitor));
-window.rosterManager=new org.jive.spank.roster.Manager(_11,doRoster,presenceManager);
-window.mucManager=new org.jive.spank.control.MucManager(muc);
-window.conferenceServers=new Array();
-muc.getConferenceServers(function(_12){
-window.mucControl.enable();
-conferenceServers.push(_12);
-});
-org.jive.spank.x.chatstate.getManager(chatManager).addStateListener(contactMonitor.handleState.bind(contactMonitor));
-},authenticationFailed:function(_13,_14){
-$("loginText").innerHTML="Login failure. :(";
-var _15=getEl("connect");
-_15.dom.disabled=false;
-_15.show();
-delete connection;
-jive.spank.Spinner.hide();
-},packetsReceived:function(){
-if(typeof window.rosterWindow!="undefined"){
-rosterWindow.beginUpdate();
-}
-},packetsProcessed:function(){
-if(typeof window.rosterWindow!="undefined"){
-rosterWindow.endUpdate();
-}
-}};
-org.jive.spank.control.ContactMonitor=function(){
-};
-org.jive.spank.control.ContactMonitor.prototype={handlePresence:function(_16){
-var _17;
-if(_16.getType()=="subscribe"){
-this.handleSubscription(_16.getFrom());
-return;
-}else{
-_17=this.getMode(_16);
-}
-var jid=_16.getFrom().toBareJID();
-var _19=rosterWindow.getContactStatus(jid);
-if(_19&&_19=="composing"){
-return;
-}
-rosterWindow.changeContactStatus(jid,_17.mode,_17.status);
-},handleState:function(jid,_1b,_1c){
-var _1d=chatManager.getSession(jid);
-var _1e;
-if(_1d){
-_1e=_1d.getJIDString();
-}else{
-if(_1c){
-_1e=jid.toString();
-}else{
-_1e=jid.toBareJID();
-}
-}
-var _1f=getContact(_1e);
-if(!_1f||!_1f.changeStatus){
-return;
-}
-if(_1b=="composing"){
-_1f.changeStatus(_1b);
-}else{
-var _20=this.getMode(getContactPresence(jid));
-_1f.changeStatus(_20.mode,_20.status);
-}
-},handleAddContact:function(_21,jid,_23,_24){
-rosterManager.addEntry(new XMPP.JID(jid),_23,new Array(_24));
-},handleRemoveContact:function(_25,jid){
-rosterManager.removeEntry(new XMPP.JID(jid));
-},onAdded:function(_27){
-for(var i=0;i<_27.length;i++){
-var _29=_27[i];
-this.addContact(_29);
-}
-},addContact:function(_2a){
-var _2b=_2a.getGroups();
-var jid=_2a.getJID().toString();
-var _2d=presenceManager.getPresence(_2a.getJID());
-var _2e;
-if(_2d){
-_2e=this.getMode(_2d).mode;
-}else{
-_2e="pending";
-}
-var _2f={getJID:function(){
-return jid;
-},getName:function(){
-return (_2a.getName()?_2a.getName():_2a.getJID().toString());
-},status:_2e};
-rosterWindow.addContact(_2f,(_2b[0]?_2b[0]:"Unfiled"));
-},onUpdated:function(_30){
-for(var i=0;i<_30.length;i++){
-var _32=_30[i];
-rosterWindow.removeContact(_32.getJID().toString());
-this.addContact(_32);
-}
-},onRemoved:function(_33){
-for(var i=0;i<_33.length;i++){
-var _35=_33[i];
-rosterWindow.removeContact(_35.getJID().toString());
-}
-},getMode:function(_36){
-var _37;
-var _38;
-if(!_36){
-return {mode:"unavailable",status:null};
-}
-switch(_36.getType()){
-case "available":
-_37=_36.getMode();
-if(!_37){
-_37="available";
-}
-_38=_36.getStatus();
-break;
-default:
-_37="unavailable";
-break;
-}
-return {mode:_37,status:_38};
-},handleSubscription:function(_39){
-if(!rosterManager._users[_39.toBareJID()]){
-rosterWindow.showSubscriptionRequest(_39.toString(),_39.getNode());
-}else{
-this.handleAcceptSubscription(null,false,_39.toBareJID());
-}
-},handleAcceptSubscription:function(_3a,_3b,jid,_3d,_3e){
-var _3f=new XMPP.Presence(new XMPP.JID(jid));
-_3f.setType("subscribed");
-connection.sendPacket(_3f);
-if(_3b){
-this.handleAddContact(_3a,jid,_3d,_3e);
-}
-},handleDenySubscription:function(_40,_41,jid,_43,_44){
-var _45=new XMPP.Presence(new XMPP.JID(jid));
-_45.setType("unsubscribed");
-connection.sendPacket(_45);
-}};
-org.jive.spank.control.MucManager=function(muc){
-this.muc=muc;
-this.muc.addInvitationsListener(this.handleInvitation.bind(this));
-};
-org.jive.spank.control.MucManager.prototype={handleInvitation:function(_47){
-var jid=new XMPP.JID(_47["from"]);
-var _49=chatManager.getSession(jid);
-if(!_49){
-_49=chatManager.createSession(jid);
-}
-var _4a=getContact(_49.getJIDString());
-var _4b=new jive.spank.chat.CustomMessage("mucinvitation",{contactJID:jid,name:_4a.name,chatname:_47["room"],jid:""});
-_4b.addListener("accepted",this.handleInvitationAccept.bind(this));
-_4b.addListener("declined",this.handleInvitationDecline.bind(this));
-addMessage(_4a.jid,_4a.name,_4b);
-},handleInvitationAccept:function(_4c,_4d){
-joinMUC(_4c,_4d.chatname.toString(),new XMPP.JID(_4d.chatname.toString()).getNode());
-},handleInvitationDecline:function(_4e,_4f){
-this.muc.declineInvitation(_4f.contactJID,_4f.chatname);
-},handleNameChange:function(_50,_51,_52){
-var _53=this.muc.getRoom(new XMPP.JID(_51));
-_53.changeNickname(_52);
-}};
-var rosterWindow;
-function doRoster(_54){
-rosterWindow=spank.loadComponent("roster");
-rosterWindow.addTab("Contacts");
-rosterWindow.setRoster(_54.getRoster());
-rosterWindow.roster.addListener("contactdblclicked",doOpenContact);
-rosterWindow.setUserInfo(connection.username,"Available");
-enableEmoticons();
-enableAutolinking();
-rosterWindow.addControl("addcontact",{events:{click:function(){
-rosterWindow.showAddContact(rosterWindow);
-}},imgSrc:"resources/images/addcontact_16x16.png",tooltip:"Add Contact"});
-window.mucControl=rosterWindow.addControl("muc",{events:{click:handleMUCChooser},imgSrc:"resources/images/conference_16x16.png",tooltip:"Conferences"});
-window.mucControl.disable();
-rosterWindow.addControl("startchat",{events:{click:org.jive.spank.control.actions.StartChat},imgSrc:"resources/images/chat_16x16.gif",tooltip:"Start Chat"});
-rosterWindow.addListener("changestatus",function(_55,_56,_57){
-var _58=new XMPP.Presence();
-_58.setMode(_56);
-_58.setStatus(_57);
-presenceManager.sendPresence(_58);
-_55.changeUserStatus(_56,_57);
-});
-rosterWindow.addListener("addcontact",contactMonitor.handleAddContact.bind(contactMonitor));
-rosterWindow.addListener("acceptsubscription",contactMonitor.handleAcceptSubscription.bind(contactMonitor));
-rosterWindow.addListener("denysubscription",contactMonitor.handleDenySubscription.bind(contactMonitor));
-rosterWindow.addListener("removecontact",contactMonitor.handleRemoveContact.bind(contactMonitor));
-rosterWindow.addListener("close",org.jive.spank.control.doLogout);
-rosterWindow.show();
-$("jive-loginBox").style.visibility="hidden";
-$("jive-webTop").style.display="block";
-rosterManager.addRosterListener(contactMonitor);
-jive.spank.Spinner.hide();
-}
-org.jive.spank.control.actions={StartChat:function(){
-jive.spank.dialog.StartChat(doOpenContact);
-},createConferenceWindow:function(_59){
-var _5a=new jive.spank.dialog.CreateConference(_59);
-_5a.show();
-_5a.focus();
-_5a.addListener("muccreated",org.jive.spank.control.actions.createConference.createCallback(_5a));
-},createConference:function(_5b){
-var _5c=_5b.getValues();
-var _5d={};
-if(_5c.isPrivate){
-_5d["muc#roomconfig_passwordprotectedroom"]="true";
-_5d["muc#roomconfig_roomsecret"]=_5c.password;
-}
-_5d["muc#roomconfig_roomname"]=_5c.name;
-if(_5c.isPermanent){
-_5d["muc#roomconfig_persistentroom"]="true";
-}
-if(_5c.topic&&_5c.topic!=""){
-_5d["muc#roomconfig_roomdesc"]=_5c.topic;
-}
-var _5e=new XMPP.JID(_5c.name+"@"+conferenceServers[0].toString());
-var _5f=_5c.name;
-var _60=muc.createRoom(_5e);
-var _61={onSuccess:function(){
-var tab=getChatWindow("chattest").addMUC({jid:_5e,name:_5f},null,rosterWindow);
-var _63=_60.getOccupants();
-for(var i=0;i<_63.length;i++){
-mucOccupantHandler(_63[i]);
-}
-tab.roster.addListener("contactdblclicked",doOpenContact);
-}};
-var _65=connection.username;
-_60.create(_65,_5d,_61,mucMessageHandler,mucOccupantHandler);
-_5b.hide();
-}};
-function getChatWindow(id){
-var _67;
-if(org.jive.spank.control.windows[id]){
-_67=jive.spank.chat.ChatWindow.getWindow(org.jive.spank.control.windows[id]);
-}
-if(!_67){
-_67=jive.spank.chat.ChatWindow.createWindow();
-org.jive.spank.control.windows[id]=_67.id;
-initializeChatWindow(_67);
-}
-if(!_67.isVisible()){
-_67.show();
-}
-return _67;
-}
-function destroyAllChatWindows(){
-for(var id in org.jive.spank.control.windows){
-jive.spank.chat.ChatWindow.destroyWindow(org.jive.spank.control.windows[id]);
-}
-delete org.jive.spank.control.windows;
-org.jive.spank.control.windows={};
-if(typeof inputMonitor!="undefined"){
-inputMonitor.destroy();
-delete inputMonitor;
-}
-}
-function initializeChatWindow(_69){
-_69.addListener("message",handleMessage);
-_69.addListener("mucdblclicked",joinMUC);
-_69.addListener("tabclosed",handleTabClosed);
-_69.addListener("mucinvitation",handleMUCInvite);
-_69.addListener("changenameinmuc",mucManager.handleNameChange.bind(mucManager));
-_69.addListener("createmuc",org.jive.spank.control.actions.createConferenceWindow);
-if(window.inputMonitor){
-window.inputMonitor.destroy();
-}
-window.inputMonitor=new org.jive.spank.control.InputMonitor();
-inputMonitor.init();
-_69.addListener("input",inputMonitor.handleUserInput.bind(inputMonitor));
-}
-function doOpenContact(_6a,_6b){
-var jid;
-if(!(_6b.jid instanceof XMPP.JID)){
-jid=new XMPP.JID(_6b.jid);
-}else{
-jid=_6b.jid;
-}
-var _6d=chatManager.getSession(jid);
-if(!_6d){
-_6d=chatManager.createSession(jid);
-}
-_6b.jid=_6d.getJIDString();
-var _6e=getChatWindow("chattest");
-_6e.getContactTab(_6b,true);
-}
-function chatSessionCreated(_6f,_70){
-console.debug("Chat session created.");
-_70.addListener(chatListener);
-var _71=getContact(_70.getJIDString());
-var _72=getChatWindow("chattest");
-_72.getContactTab(_71);
-org.jive.spank.x.chatstate.getManager(chatManager).setCurrentState("active",_70.getJID());
-}
-function getContact(jid){
-var _74=new XMPP.JID(jid).getBareJID();
-var _75;
-if(muc.getRoom(_74)){
-var _76=getChatWindow("chattest").tabs[_74].roster;
-_75=_76.findContact(jid);
-}else{
-_75=jive.spank.roster.Contact.find(rosterWindow.roster,jid);
-}
-if(!_75){
-jid=new XMPP.JID(jid);
-_75={jid:jid.toString(),name:jid.getNode(),status:"unavailable"};
-}
-return _75;
-}
-function getContactPresence(jid){
-var _78=muc.getRoom(jid.getBareJID());
-var _79;
-if(_78){
-_79=_78.presenceManager;
-}else{
-_79=presenceManager;
-}
-return _79.getPresence(jid);
-}
-function handleMessage(jid,_7b){
-jid=new XMPP.JID(jid);
-var _7c=getChatWindow("chattest").tabs[jid.toString()].type;
-var _7d;
-if(_7c=="chat"){
-var _7e=chatManager.getSession(jid);
-if(!_7e){
-_7e=chatManager.createSession(jid);
-}
-var _7f=org.jive.spank.x.chatstate.getManager(chatManager).setCurrentState("active",_7e.getJID());
-_7e.sendMessage(_7b,_7f);
-_7d=connection.username;
-}else{
-if(_7c=="muc-room"){
-var _80=muc.getRoom(jid);
-var _7f=org.jive.spank.x.chatstate.getManager(chatManager).setCurrentState("active",jid);
-_80.sendMessage(_7b,_7f);
-_7d=_80.nickname;
-}
-}
-addMessage(jid,_7d,_7b,true);
-}
-org.jive.spank.control.InputMonitor=function(){
-this.composingTimeout=3000;
-this.inputState={};
-};
-org.jive.spank.control.InputMonitor.prototype={init:function(){
-this.inputMonitor=new PeriodicalExecuter(this.monitorFunction.bind(this),2);
-},monitorFunction:function(){
-var _81=new Date().getTime();
-for(var _82 in this.inputState){
-var _83=this.inputState[_82];
-if(_83.state=="composing"&&(_81-_83.lastInput)>=this.composingTimeout){
-delete this.inputState[_82];
-this.updateState(_82,"active");
-}
-}
-},handleUserInput:function(jid){
-if(this.inputState[jid]&&this.inputState[jid].state=="composing"){
-this.inputState[jid].lastInput=new Date().getTime();
-return;
-}
-if(!this.inputState[jid]){
-this.inputState[jid]={};
-}
-this.inputState[jid].state="composing";
-this.inputState[jid].lastInput=new Date().getTime();
-this.updateState(jid,"composing");
-},updateState:function(jid,_86){
-console.debug("%s sent to %s",_86,jid);
-jid=new XMPP.JID(jid);
-var _87=chatManager.getSession(jid);
-var _88;
-if(_87){
-jid=_87.getJID();
-}else{
-_88=muc.getRoom(jid);
-}
-var _89=org.jive.spank.x.chatstate.getManager(chatManager).setCurrentState(_86,jid,null,_88!=null);
-if(_89){
-connection.sendPacket(_89);
-}
-},destroy:function(){
-this.inputMonitor.stop();
-this.inputState={};
-}};
-function addMessage(jid,_8b,msg,_8d,_8e){
-getChatWindow("chattest").getContactTab({jid:jid,name:_8b});
-var _8f=msg;
-if(typeof msg=="string"){
-_8f={body:msg,isLocal:_8d,time:_8e};
-}
-getChatWindow("chattest").addMessage(jid,_8b,_8f);
-}
-function handleMUCChooser(){
-var _90=muc;
-getChatWindow("chattest").preAddMUCChooser();
-_90.retrieveRooms(conferenceServers[0],function(_91){
-_90.retrieveRoomsInfo(_91,roomInfo);
-});
-}
-function roomInfo(_92){
-getChatWindow("chattest").addChooseMUCTab(_92);
-}
-function joinMUC(_93,_94,_95,_96,_97,_98){
-var _99=new XMPP.JID(_94);
-if(muc.getRoom(_99)&&muc.getRoom(_99).isJoined){
-getChatWindow("chattest").getTabByJID(_94).activate();
-return;
-}
-if(!_98){
-_93.preAddMUC({name:_95,jid:_94},_96);
-}
-var _9a=muc.createRoom(_99);
-if(!_95){
-_95=_99.getNode();
-}
-var _9b={onSuccess:function(){
-var tab=getChatWindow("chattest").addMUC({jid:_94,name:_95},_96,rosterWindow);
-var _9d=_9a.getOccupants();
-for(var i=0;i<_9d.length;i++){
-mucOccupantHandler(_9d[i]);
-}
-tab.roster.addListener("contactdblclicked",doOpenContact);
-},onError:function(_9f){
-if(_9f.getError()=="401"){
-getChatWindow("chattest").showMUCPassword({jid:_94,name:_95},null,function(_a0){
-if(!_a0){
-getChatWindow("chattest").removeMUCSpinner(_94);
-}else{
-joinMUC(_93,_94,_95,_96,_a0,true);
-}
-});
-return;
-}
-_93.removeMUCSpinner(_94);
-}};
-var _a1=connection.username;
-_9a.join(_a1,_97,_9b,mucMessageHandler,mucOccupantHandler);
-}
-var mucMessageHandler={messageReceived:function(_a2){
-var _a3=_a2.getFrom();
-var _a4=_a3.toBareJID();
-var _a5=_a3.getResource();
-var _a6=_a2.getBody();
-var _a7=connection.username==_a5;
-var _a8=_a2.getExtension("x","jabber:x:delay");
-if((_a8||!_a7)&&_a6){
-if(_a8){
-_a8=new XMPP.DelayInformation(_a8).getDate().toLocaleTimeString();
-}
-if(_a5){
-addMessage(_a4,_a5,_a6.body,_a7,_a8);
-}else{
-getChatWindow("chattest").addStatusMessage(_a4,_a6.body);
-}
-}
-},invitationDeclined:function(_a9){
-var jid=_a9.from;
-var _ab=getContact(jid);
-var _ac=jid;
-if(_ab){
-_ac=_ab.name;
-}
-getChatWindow("chattest").addStatusMessage(_a9.room.toString(),_ac+" has declined the invitation to join the room.");
-},subjectUpdated:function(_ad,_ae,_af){
-getChatWindow("chattest").setSubject(_af,_ad.jid.toString());
-}};
-function mucOccupantHandler(_b0){
-var _b1=_b0.getRoom();
-var _b2=muc.getRoom(new XMPP.JID(_b1));
-if(!_b2||!_b2.isJoined){
-return;
-}
-var jid=_b0.presence.getFrom();
-var tab=getChatWindow("chattest").tabs[_b1];
-if(!tab){
-return;
-}
-var _b5=tab.participants;
-if(!_b5){
-return;
-}
-var _b6=_b5.getContactByJID(jid.toString());
-var _b7;
-var _b8;
-switch(_b0.presence.getType()){
-case "available":
-_b7=_b0.presence.getMode();
-if(!_b7){
-_b7="available";
-}
-_b8=_b0.presence.getStatus();
-break;
-default:
-_b7="unavailable";
-break;
-}
-if(!_b6&&_b7!="unavailable"){
-_b6=_b5.addContact({jid:jid,getJID:function(){
-return this.jid.toString();
-},status:_b7,getName:function(){
-return _b0.getNick();
-}});
-getChatWindow("chattest").addStatusMessage(_b1,_b0.getNick()+" has joined the room.");
-}else{
-if(_b6&&_b7=="unavailable"){
-_b6.changeStatus(_b7);
-_b5.removeContact(jid.toString());
-getChatWindow("chattest").addStatusMessage(_b1,_b0.getNick()+" has left the room.");
-}else{
-if(_b6){
-_b6.changeStatus(_b7);
-}
-}
-}
-}
-function handleTabClosed(_b9,tab){
-switch(tab.type){
-case "muc-room":
-muc.getRoom(_b9.jid).leave();
-break;
-case "chat":
-var _bb=chatManager.getSession(new XMPP.JID(_b9.jid.toString()));
-if(_bb){
-chatManager.closeChatSession(_bb);
-}
-break;
-}
-}
-function handleMUCInvite(_bc,_bd,_be){
-muc.getRoom(_be).invite(new XMPP.JID(_bd));
-var _bf=getContact(_bd);
-var _c0=_bf.name+" has been invited to join the room.";
-_bc.addStatusMessage(_be,_c0);
-}
-function chatSessionClosed(_c1,_c2){
-console.debug("Chat session closed.");
-}
-var chatListener={messageRecieved:function(_c3,_c4){
-if(!_c4.getBody()||_c4.getBody().body==""){
-return;
-}
-var _c5=getChatWindow("chattest").tabs[_c3.getJIDString()].contact.name;
-addMessage(_c3.getJIDString(),_c5,_c4.getBody().body);
-}};
+jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",mucServer:"conference.localhost",server:"localhost",connectionAddress:"localhost:7080",roomName:"test"};
 function enableEmoticons(){
-var _c6=[["angry",/&gt;:o|&gt;:-o|&gt;:O|&gt;:-O/g],["confused",/\?:\|/g],["cool",/B-\)|8-\)/g],["cry",/:\'\(/g],["devil",/\]:\)/g],["grin",/:-D|:D/g],["happy",/:-\)|:\)/g],["laugh",/:\^0/g],["love",/:x/g],["mischief",/;\\/g],["sad",/:-\(|:\(/g],["silly",/:-p|:-P|:P|:p/g],["wink",/;-\)|;\)/g]];
-_c6.each(function(_c7){
-jive.spank.chat.Filter.add(_c7[0],_c7[1],"<img src=\"groupchat/jive-images/emoticons/"+_c7[0]+".gif\" alt=\"\" />");
+var _1=[["angry",/&gt;:o|&gt;:-o|&gt;:O|&gt;:-O/g],["confused",/\?:\|/g],["cool",/B-\)|8-\)/g],["cry",/:\'\(/g],["devil",/\]:\)/g],["grin",/:-D|:D/g],["happy",/:-\)|:\)/g],["laugh",/:\^0/g],["love",/:x/g],["mischief",/;\\/g],["sad",/:-\(|:\(/g],["silly",/:-p|:-P|:P|:p/g],["wink",/;-\)|;\)/g]];
+_1.each(function(_2){
+jive.spank.chat.Filter.add(_2[0],_2[1],"<img src=\"jive-images/emoticons/"+_2[0]+".gif\" alt=\"\" />");
 });
 }
 function enableAutolinking(){
 jive.spank.chat.Filter.add("uri",/\b(\w+?:\/\/[^\s+\"\<\>]+)/ig,"<a href=\"$1\" target=\"_blank\">$1</a>");
 jive.spank.chat.Filter.add("webaddress",/(\s|^)(www\.[^\s+\"\<\>]+)/ig,"<a href=\"http://$2\" target=\"_blank\">$2</a>");
 }
-
-
-jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",mucServer:"conference.localhost",server:"localhost",connectionAddress:"localhost:7080",roomName:"test"};
 function jive_configureGroupChat(){
 if(!window.jive_groupchat_config){
 window.jive_groupchat_config={};
 }
-for(var _1 in jive_groupchat_config_defaults){
-if(!jive_groupchat_config[_1]){
-jive_groupchat_config[_1]=jive_groupchat_config_defaults[_1];
+for(var _3 in jive_groupchat_config_defaults){
+if(!jive_groupchat_config[_3]){
+jive_groupchat_config[_3]=jive_groupchat_config_defaults[_3];
 }
 }
 if(jive_groupchat_config["fitToParent"]){
@@ -20934,160 +17355,191 @@ jive_groupchat_config["height"]=null;
 }
 }
 jive_configureGroupChat();
-MessageHandler={subjectUpdated:function(_2,_3,_4){
-window.controller.chatWindow.setSubject(_4,_2.jid.toString());
-},messageReceived:function(_5){
-var _6=_5.getFrom();
-var _7=_6.toBareJID();
-var _8=_6.getResource();
-var _9=_5.getBody();
-var _a=window.controller.nickname.toLowerCase()==_8;
-_9.mentioned=(_9.body.indexOf(window.controller.nickname.toLowerCase())>-1)?"mentioned":null;
-var t=_5.getExtension("x","jabber:x:delay");
-if((t||!_a)&&_9){
+MessageHandler={subjectUpdated:function(_4,_5,_6){
+window.controller.chatWindow.setSubject(_6,_4.jid.toString());
+},messageReceived:function(_7){
+var _8=_7.getFrom();
+var _9=_8.toBareJID();
+var _a=_8.getResource();
+var _b=_7.getBody();
+var _c=window.controller.nickname.toLowerCase()==_a;
+_b.mentioned=(_b.body.indexOf(window.controller.nickname.toLowerCase())>-1)?"mentioned":null;
+var t=_7.getExtension("x","jabber:x:delay");
+if((t||!_c)&&_b){
 if(t){
 t=new XMPP.DelayInformation(t).getDate().toLocaleTimeString();
 }
-window.controller.chatWindow.addMessage(_7,_8,_9,_a,t);
+if(_a){
+window.controller.chatWindow.addMessage(_9,_a,_b,_c,t);
+}else{
+window.controller.chatWindow.addStatusMessage(_9,_b.body);
+}
 }
 }};
-controller={chatWindow:null,conf:null,connection:null,connectionSuccessful:function(_c){
-this.connection=_c;
-_c.login();
-window.onbeforeunload=_c.disconnect;
-},connectionFailed:function(_d,_e){
-alert("Error: "+_e);
-},authenticationSuccessful:function(_f){
+controller={chatWindow:null,conf:null,connection:null,connectionSuccessful:function(_e){
+this.connection=_e;
+_e.login();
+window.onbeforeunload=_e.disconnect;
+},connectionFailed:function(_f,_10){
+alert("Error: "+_10);
+},authenticationSuccessful:function(_11){
 this.chatWindow=new jive.spank.chat.ChatWindow("groupchat",window.jive_groupchat_config);
 if(window.jive_groupchat_config["fitToParent"]=="true"){
 window.resizeHandler();
 }
-this.chatManager=new org.jive.spank.chat.Manager(_f,window.jive_groupchat_config["server"],false);
-this.mucManager=new org.jive.spank.muc.Manager(_f,this.chatManager);
+this.chatManager=new org.jive.spank.chat.Manager(_11,window.jive_groupchat_config["server"],false);
+this.mucManager=new org.jive.spank.muc.Manager(_11,this.chatManager);
 this.joinChat();
 },joinChat:function(){
 this.conf=this.mucManager.createRoom(new XMPP.JID(window.jive_groupchat_config["roomName"]+"@"+window.jive_groupchat_config["mucServer"]));
 this.nickname="User"+Math.floor(Math.random()*500);
 this.conf.join(this.nickname,"",this,MessageHandler,this.occupantListener);
-},authenticationFailed:function(_10,_11){
-alert("Authentication failed: "+_11);
-},connectionClosed:function(_12,_13){
-},occupantListener:function(_14){
-var _15=_14.getRoom();
-var _16=window.controller.mucManager.getRoom(new XMPP.JID(_15));
-if(!_16||!_16.isJoined){
+},authenticationFailed:function(_12,_13){
+alert("Authentication failed: "+_13);
+},connectionClosed:function(_14,_15){
+},occupantListener:function(_16){
+var _17=_16.getRoom();
+var _18=window.controller.mucManager.getRoom(new XMPP.JID(_17));
+if(!_18||!_18.isJoined){
 return;
 }
-var jid=_14.presence.getFrom();
-var tab=window.controller.chatWindow.tabs[_15];
+var jid=_16.presence.getFrom();
+var tab=window.controller.chatWindow.tabs[_17];
 if(!tab){
 return;
 }
-var _19=tab.participants;
-if(!_19){
+var _1b=tab.participants;
+if(!_1b){
 return;
 }
-var _1a=_19.getContactByJID(jid.toString());
-var _1b;
-var _1c;
-switch(_14.presence.getType()){
+var _1c=_1b.getContactByJID(jid.toString());
+var _1d;
+var _1e;
+switch(_16.presence.getType()){
 case "available":
-_1b=_14.presence.getMode();
-if(!_1b){
-_1b="available";
+_1d=_16.presence.getMode();
+if(!_1d){
+_1d="available";
 }
-_1c=_14.presence.getStatus();
+_1e=_16.presence.getStatus();
 break;
 default:
-_1b="unavailable";
+_1d="unavailable";
 break;
 }
-if(!_1a&&_1b!="unavailable"){
-_1a=_19.addContact({jid:jid,getJID:function(){
+if(!_1c&&_1d!="unavailable"){
+_1c=_1b.addContact({jid:jid,getJID:function(){
 return this.jid.toString();
-},status:_1b,getName:function(){
-return _14.getNick();
+},status:_1d,getName:function(){
+return _16.getNick();
 }});
-window.controller.chatWindow.addStatusMessage(_15,_14.getNick()+" has joined the room.");
+window.controller.chatWindow.addStatusMessage(_17,_16.getNick()+" has joined the room.");
 }else{
-if(_1a&&_1b=="unavailable"){
-_1a.changeStatus(_1b);
-_19.removeContact(jid.toString());
-window.controller.chatWindow.addStatusMessage(_15,_14.getNick()+" has left the room.");
+if(_1c&&_1d=="unavailable"){
+_1c.changeStatus(_1d);
+_1b.removeContact(jid.toString());
+window.controller.chatWindow.addStatusMessage(_17,_16.getNick()+" has left the room.");
 }else{
-if(_1a){
-_1a.changeStatus(_1b);
+if(_1c){
+_1c.changeStatus(_1d);
 }
 }
 }
-},sendMessage:function(_1d,_1e){
+},sendMessage:function(_1f,_20){
 this.completionState={index:0,completed:null,original:null};
-var jid=new XMPP.JID(this.nickname);
-this.conf.sendMessage(_1e,org.jive.spank.x.chatstate.getManager(this.chatManager).setCurrentState("active",jid));
-this.chatWindow.addMessage(window.controller.conf.jid,this.nickname,{body:_1e,isLocal:true},true);
-},completionState:{index:0,completed:null,original:null},completeNick:function(jid,_21,_22){
-jid=new XMPP.JID(jid);
-var _23=this.mucManager.getRoom(jid);
-var _24=_23.getOccupants();
-var _25;
-var _26=this.completionState;
-var _27=0;
-if(_26.original==null||_26.completed!=_21){
-_26.original=_21;
+if(_20.indexOf("/clear")==0){
+var _21=this.chatWindow.dialog.getEl().dom.getElementsByClassName("jive-history")[0];
+while(_21.firstChild){
+_21.removeChild(_21.firstChild);
 }
-for(var i=_26.index;i<_24.length&&_27<_24.length;i++){
-_27++;
-_26.index=i+1;
-_25=_24[i].getNick();
-if(_26.index>=_24.length){
-_26.index=0;
+}else{
+if(_20.indexOf("/nick")==0){
+this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_20.replace("/nick ",""));
+}else{
+var jid=new XMPP.JID(this.nickname);
+this.conf.sendMessage(_20,org.jive.spank.x.chatstate.getManager(this.chatManager).setCurrentState("active",jid));
+this.chatWindow.addMessage(window.controller.conf.jid,this.nickname,{body:_20,isLocal:true},true);
+}
+}
+},completionState:{index:0,completed:null,original:null},completeNick:function(jid,_24,_25){
+jid=new XMPP.JID(jid);
+var _26=this.mucManager.getRoom(jid);
+var _27=_26.getOccupants();
+var _28;
+var _29=this.completionState;
+var _2a=0;
+if(_29.original==null||_29.completed!=_24){
+_29.original=_24;
+}
+for(var i=_29.index;i<_27.length&&_2a<_27.length;i++){
+_2a++;
+_29.index=i+1;
+_28=_27[i].getNick();
+if(_29.index>=_27.length){
+_29.index=0;
 i=0;
 }
-if(_25.indexOf(_26.original)==0&&_26.original.length<_25.length){
-_26.completed=_25+": ";
-_22.dom.value=_26.completed;
-_22.dom.selectionStart=_22.dom.value.length;
-_22.dom.selectionEnd=_22.dom.value.length;
+if(_28.indexOf(_29.original)==0&&_29.original.length<_28.length){
+_29.completed=_28+": ";
+_25.dom.value=_29.completed;
+_25.dom.selectionStart=_25.dom.value.length;
+_25.dom.selectionEnd=_25.dom.value.length;
 return;
 }
 }
-},handleNameChange:function(_29,_2a,_2b){
-this.nickname=_2b;
-this.conf.changeNickname(_2b);
+},handleNameChange:function(_2c,_2d,_2e){
+var _2f=this.conf.getOccupants();
+var _30=false;
+for(var i=0;i<_2f.length;i++){
+if(_2e.toLowerCase()==_2f[i].getNick().toLowerCase()&&_2e!=this.nickname){
+_2e=_2e+"_";
+i=0;
+_30=true;
+}
+}
+if(_30==true){
+this.chatWindow.addStatusMessage(this.conf.jid,"Nickname collision with "+_2e+"; a _ has been appended to your nick to make it different.");
+}
+this.nickname=_2e;
+this.conf.changeNickname(_2e);
 },sendTimeStamp:function(){
 this.chatWindow.addStatusMessage(this.conf.jid,new Date().toString());
 window.setTimeout(this.sendTimeStamp.bind(this),300000);
-},onSuccess:function(_2c){
-var _2d=window.controller.chatWindow;
-var _2e=window.controller.conf;
-_2d.addMUC({name:_2e.nickname,jid:_2e.jid});
-var _2f=_2e.getOccupants();
-for(var i=0;i<_2f.length;i++){
-window.controller.occupantListener(_2f[i]);
+},onSuccess:function(_32){
+var _33=window.controller.chatWindow;
+var _34=window.controller.conf;
+_33.addMUC({name:_34.nickname,jid:_34.jid});
+var _35=_34.getOccupants();
+for(var i=0;i<_35.length;i++){
+window.controller.occupantListener(_35[i]);
 }
-_2d.prepUserPane();
-_2d.show();
-_2d.finalizeUserPane(this.nickname);
-_2d.setSubject("");
-getEl(_2d.tabId+"-layout").dom.parentNode.style.position="absolute";
+_33.prepUserPane();
+_33.show();
+_33.finalizeUserPane(this.nickname);
+_33.setSubject("");
+getEl(_33.tabId+"-layout").dom.parentNode.style.position="absolute";
 enableEmoticons();
 enableAutolinking();
-_2d.addListener("message",this.sendMessage.bind(this));
-_2d.addListener("nickcomplete",this.completeNick.bind(this));
-_2d.addListener("changenameinmuc",this.handleNameChange.bind(this));
-_2d.dialog.addListener("beforeshow",this.joinChat,window.controller,true);
-_2d.dialog.addListener("beforehide",this.conf.leave.bind(this.conf));
-window.setTimeout(_2d.addStatusMessage.bind(_2d),2000,_2e.jid,"Welcome to "+_2e.jid+" you can change your name by clicking on it in the upper-right corner");
+_33.addListener("message",this.sendMessage.bind(this));
+_33.addListener("nickcomplete",this.completeNick.bind(this));
+_33.addListener("changenameinmuc",this.handleNameChange.bind(this));
+_33.dialog.addListener("beforeshow",this.joinChat,window.controller,true);
+_33.dialog.addListener("beforehide",this.conf.leave.bind(this.conf));
+window.setTimeout(_33.addStatusMessage.bind(_33),2000,_34.jid,"Welcome to "+_34.jid+" you can change your name by clicking on it in the upper-right corner");
 window.setTimeout(window.controller.sendTimeStamp.bind(window.controller),1000);
-}};
+},logout:function(){
+var _37=new XMPP.Presence();
+_37.setType("unavailable");
+window.controller.connection.logout(_37);
+},};
 var resizeHandler=function(){
-var _31=window.controller.chatWindow.dialog;
-_31.beginUpdate();
-_31.getEl().fitToParent();
-_31.resizeTo(_31.getEl().getWidth(),_31.getEl().getHeight());
-var xy=YAHOO.util.Dom.getXY(_31.getEl().dom.parentNode);
-_31.moveTo(xy[0],xy[1]);
-_31.endUpdate();
+var _38=window.controller.chatWindow.dialog;
+_38.beginUpdate();
+_38.getEl().fitToParent();
+_38.resizeTo(_38.getEl().getWidth(),_38.getEl().getHeight());
+var xy=YAHOO.util.Dom.getXY(_38.getEl().dom.parentNode);
+_38.moveTo(xy[0],xy[1]);
+_38.endUpdate();
 };
 var toggleTheme=function(){
 getEl(document.body,true).toggleClass("jivetheme-muc");
