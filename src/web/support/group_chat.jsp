@@ -37,19 +37,19 @@
 	}
 	</script>
 	
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-compressed.js" type="text/javascript"></script>
+	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/groupchat-compressed.js" type="text/javascript"></script>
 
 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/groupchat-style.css">
  	
  	<style type="text/css">
  		ul.changelogentry li {
- 			margin-left: 1.5em;
+ 			margin-left: 2.5em;
  			list-style-type: disc;
  		}
  		
  		ul.changelogentry li.changelogheader {
  			list-style-type:none; 
- 			margin-left: -1em;
+ 			margin-left: 0em;
  		}
  	</style>
 	
@@ -120,6 +120,7 @@
 							<li> Reduced code size </li>
 							<li> Added support for /me, /nick, and /clear commands from IRC </li>
 							<li> Added nickname collision prevention </li>
+							<li> Changed window title </li>
 						</ul>
 					</ul>
 					<p>&nbsp;</p>

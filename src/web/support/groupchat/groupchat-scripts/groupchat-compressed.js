@@ -17454,7 +17454,9 @@ _21.removeChild(_21.firstChild);
 }
 }else{
 if(_20.indexOf("/nick")==0){
+if(_20.length>"/nick".length+2){
 this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_20.replace("/nick ",""));
+}
 }else{
 var jid=new XMPP.JID(this.nickname);
 this.conf.sendMessage(_20,org.jive.spank.x.chatstate.getManager(this.chatManager).setCurrentState("active",jid));
@@ -17517,6 +17519,7 @@ _33.prepUserPane();
 _33.show();
 _33.finalizeUserPane(this.nickname);
 _33.setSubject("");
+_33.dialog.setTitle("Chatting in "+_34.jid);
 getEl(_33.tabId+"-layout").dom.parentNode.style.position="absolute";
 enableEmoticons();
 enableAutolinking();
