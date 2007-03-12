@@ -37,9 +37,9 @@
 	}
 	</script>
 	
-	<script src="http://www.igniterealtime.org/support/groupchat/groupchat-scripts/groupchat-compressed.js" type="text/javascript"></script>
+	<script src="groupchat/groupchat-scripts/groupchat-compressed.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/groupchat-style.css">
+	<link rel="stylesheet" type="text/css" href="groupchat/groupchat-style.css">
  	
  	<style type="text/css">
  		ul.changelogentry li {
@@ -107,21 +107,26 @@
 					<h3>About Group Chat</h3>
 					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
 					<h4>Change Log</h4>
-						<ul class="changelogentry">
-							<li class="changelogheader"> <u>March 7th, 2007</u></li>
-							<li> Improved tab completion of nicknames </li>
-							<li> Removed per-message time stamps in favor of an every-five-minutes time message </li>
-							<li> Messages that mention your nickname are highlighted now </li>
-							<li> Added smileys </li>
-							<li> URLs like http://www.igniterealtime.org or www.igniterealtime.org are now clickable </li>
-						</ul>
-						<ul class="changelogentry">
-							<li class="changelogheader"> <u>March 8th, 2007</u></li>
-							<li> Reduced code size </li>
-							<li> Added support for /me, /nick, and /clear commands from IRC </li>
-							<li> Added nickname collision prevention </li>
-							<li> Changed window title </li>
-						</ul>
+					<ul class="changelogentry">
+						<li class="changelogheader"> <u>March 12th, 2007</u></li>
+						<li> Improved formatting of timestamps, and added the date to the window header </li>
+						<li> Fixed image urls </li>
+						<li> Added /part and /leave commands </li>
+					</ul>
+					<ul class="changelogentry">
+						<li class="changelogheader"> <u>March 8th, 2007</u></li>
+						<li> Reduced code size </li>
+						<li> Added support for /me, /nick, and /clear commands from IRC </li>
+						<li> Added nickname collision prevention </li>
+						<li> Changed window title </li>
+					</ul>
+					<ul class="changelogentry">
+						<li class="changelogheader"> <u>March 7th, 2007</u></li>
+						<li> Improved tab completion of nicknames </li>
+						<li> Removed per-message time stamps in favor of an every-five-minutes time message </li>
+						<li> Messages that mention your nickname are highlighted now </li>
+						<li> Added smileys </li>
+						<li> URLs like http://www.igniterealtime.org or www.igniterealtime.org are now clickable </li>
 					</ul>
 					<p>&nbsp;</p>
 					
