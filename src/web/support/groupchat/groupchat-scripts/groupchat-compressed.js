@@ -19712,11 +19712,286 @@ return this;
 };
 
 
-js: "/Users/david/Sites/sparkweb/groupchat-scripts/group_chat.js", line 300: unterminated string literal
-js: 			this.chatWindow.addStatusMessage(this.conf.jid, "Nickname collision with " + newName + "; a _ has been appended to your nick to make it different.", muc-name-conflict-message");
-js: ...................................................................................................................................................................................^
-js: "/Users/david/Sites/sparkweb/groupchat-scripts/group_chat.js", line 300: missing ) after argument list
-js: 			this.chatWindow.addStatusMessage(this.conf.jid, "Nickname collision with " + newName + "; a _ has been appended to your nick to make it different.", muc-name-conflict-message");
-js: ...................................................................................................................................................................................^
-js: "/Users/david/Sites/sparkweb/groupchat-scripts/group_chat.js", line 1: Compilation produced 2 syntax errors.
+jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",mucServer:"conference.localhost",server:"localhost",connectionAddress:"localhost:7080",roomName:"test"};
+var jive_prefs={data:{},load:function(){
+var _1=document.cookie.split(";");
+if(_1[0]){
+var _2=unescape(_1[0]);
+var _3=_2.split(",");
+var _4;
+for(var i=0;i<_3.length;i++){
+_4=_3[i].split(":");
+if(_4[0]&&_4[0].length>0){
+this.data[_4[0]]=_4[1];
+}
+}
+}
+return this.data;
+},save:function(_6,_7){
+var d=_6||new Date(2020,2,2);
+var p=_7||"/";
+var _a="";
+for(var _b in this.data){
+_a+=(_b+":"+this.data[_b]+",");
+}
+document.cookie=escape(_a)+";path="+p+";expires="+d.toUTCString();
+}};
+function enableEmoticons(){
+var _c=[["angry",/&gt;:o|&gt;:-o|&gt;:O|&gt;:-O/g],["confused",/\?:\|/g],["cool",/B-\)|8-\)/g],["cry",/:\'\(/g],["devil",/\]:\)/g],["grin",/:-D|:D/g],["happy",/:-\)|:\)/g],["laugh",/:\^0/g],["love",/:x/g],["mischief",/;\\/g],["sad",/:-\(|:\(/g],["silly",/:-p|:-P|:P|:p/g],["wink",/;-\)|;\)/g]];
+_c.each(function(_d){
+jive.spank.chat.Filter.add(_d[0],_d[1],"<img src=\"groupchat/jive-images/emoticons/"+_d[0]+".gif\" alt=\"\" />");
+});
+}
+function enableAutolinking(){
+jive.spank.chat.Filter.add("uri",/\b(\w+?:\/\/[^\s+\"\<\>]+)/ig,"<a href=\"$1\" target=\"_blank\">$1</a>");
+jive.spank.chat.Filter.add("webaddress",/(\s|^)(www\.[^\s+\"\<\>]+)/ig,"<a href=\"http://$2\" target=\"_blank\">$2</a>");
+}
+function jive_configureGroupChat(){
+if(!window.jive_groupchat_config){
+window.jive_groupchat_config={};
+}
+for(var _e in jive_groupchat_config_defaults){
+if(!jive_groupchat_config[_e]){
+jive_groupchat_config[_e]=jive_groupchat_config_defaults[_e];
+}
+}
+if(jive_groupchat_config["fitToParent"]){
+jive_groupchat_config["width"]=null;
+jive_groupchat_config["height"]=null;
+}
+}
+jive_configureGroupChat();
+MessageHandler={subjectUpdated:function(_f,_10,_11){
+window.controller.chatWindow.setSubject(_11,_f.jid.toString());
+},messageReceived:function(_12){
+var _13=_12.getFrom();
+var _14=_13.toBareJID();
+var _15=_13.getResource();
+var _16=_12.getBody();
+var _17=window.controller.nickname.toLowerCase()==_15;
+_16.mentioned=(_16.body.indexOf(window.controller.nickname.toLowerCase())>-1)?"mentioned":null;
+var t=_12.getExtension("x","jabber:x:delay");
+if((t||!_17)&&_16){
+if(t){
+t=new XMPP.DelayInformation(t).getDate().toLocaleTimeString();
+}
+if(_15){
+window.controller.chatWindow.addMessage(_14,_15,_16,_17,t);
+}else{
+window.controller.chatWindow.addStatusMessage(_14,_16.body);
+}
+}
+}};
+controller={chatWindow:null,conf:null,connection:null,connectionSuccessful:function(_19){
+this.connection=_19;
+_19.login();
+window.onbeforeunload=_19.disconnect;
+},connectionFailed:function(_1a,_1b){
+alert("Error: "+_1b);
+},authenticationSuccessful:function(_1c){
+this.chatWindow=new jive.spank.chat.ChatWindow("groupchat",window.jive_groupchat_config);
+if(window.jive_groupchat_config["fitToParent"]=="true"){
+window.resizeHandler();
+}
+this.chatManager=new org.jive.spank.chat.Manager(_1c,window.jive_groupchat_config["server"],false);
+this.mucManager=new org.jive.spank.muc.Manager(_1c,this.chatManager);
+this.joinChat();
+},joinChat:function(){
+this.conf=this.mucManager.createRoom(new XMPP.JID(window.jive_groupchat_config["roomName"]+"@"+window.jive_groupchat_config["mucServer"]));
+jive_prefs.load();
+this.nickname="User"+Math.floor(Math.random()*500);
+this.conf.join(this.nickname,"",this,MessageHandler,this.occupantListener);
+},authenticationFailed:function(_1d,_1e){
+alert("Authentication failed: "+_1e);
+},connectionClosed:function(_1f,_20){
+},occupantListener:function(_21){
+var _22=_21.getRoom();
+var _23=window.controller.mucManager.getRoom(new XMPP.JID(_22));
+if(!_23||!_23.isJoined){
+return;
+}
+var jid=_21.presence.getFrom();
+var tab=window.controller.chatWindow.tabs[_22];
+if(!tab){
+return;
+}
+var _26=tab.participants;
+if(!_26){
+return;
+}
+var _27=_26.getContactByJID(jid.toString());
+var _28;
+var _29;
+switch(_21.presence.getType()){
+case "available":
+_28=_21.presence.getMode();
+if(!_28){
+_28="available";
+}
+_29=_21.presence.getStatus();
+break;
+default:
+_28="unavailable";
+break;
+}
+if(!_27&&_28!="unavailable"){
+_27=_26.addContact({jid:jid,getJID:function(){
+return this.jid.toString();
+},status:_28,getName:function(){
+return _21.getNick();
+}});
+window.controller.chatWindow.addStatusMessage(_22,_21.getNick()+" has joined the room.","muc-join-message");
+}else{
+if(_27&&_28=="unavailable"){
+_27.changeStatus(_28);
+_26.removeContact(jid.toString());
+var _2a=_21.presence.getStatus();
+if(_2a!=null&&_2a.length>0){
+window.controller.chatWindow.addStatusMessage(_22,_21.getNick()+" has left the room, saying "+_2a,"muc-leave-message");
+}else{
+window.controller.chatWindow.addStatusMessage(_22,_21.getNick()+" has left the room.","muc-leave-message");
+}
+}else{
+if(_27){
+_27.changeStatus(_28);
+}
+}
+}
+},sendMessage:function(_2b,_2c){
+this.completionState={index:0,completed:null,original:null};
+if(_2c.indexOf("/clear")==0){
+var _2d=this.chatWindow.dialog.getEl().dom.getElementsByClassName("jive-history")[0];
+while(_2d.firstChild){
+_2d.removeChild(_2d.firstChild);
+}
+}else{
+if(_2c.indexOf("/nick")==0){
+if(_2c.length>"/nick".length+2){
+this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_2c.replace("/nick ",""));
+}
+}else{
+if(_2c.indexOf("/part")==0){
+this.logout(_2c.replace("/part ","").replace("/part",""));
+}else{
+if(_2c.indexOf("/leave")==0){
+this.logout(_2c.replace("/leave ","").replace("/leave",""));
+}else{
+var jid=new XMPP.JID(this.nickname);
+this.conf.sendMessage(_2c,org.jive.spank.x.chatstate.getManager(this.chatManager).setCurrentState("active",jid));
+this.chatWindow.addMessage(window.controller.conf.jid,this.nickname,{body:_2c,isLocal:true},true);
+}
+}
+}
+}
+},completionState:{index:0,completed:null,original:null},completeNick:function(jid,_30,_31){
+jid=new XMPP.JID(jid);
+var _32=this.mucManager.getRoom(jid);
+var _33=_32.getOccupants();
+var _34;
+var _35=this.completionState;
+var _36=0;
+if(_35.original==null||_35.completed!=_30){
+_35.original=_30;
+}
+for(var i=_35.index;i<_33.length&&_36<_33.length;i++){
+_36++;
+_35.index=i+1;
+_34=_33[i].getNick();
+if(_35.index>=_33.length){
+_35.index=0;
+i=0;
+}
+if(_34.indexOf(_35.original)==0&&_35.original.length<_34.length){
+_35.completed=_34+": ";
+_31.dom.value=_35.completed;
+_31.dom.selectionStart=_31.dom.value.length;
+_31.dom.selectionEnd=_31.dom.value.length;
+return;
+}
+}
+},handleNameChange:function(_38,_39,_3a,_3b){
+var _3c=this.conf.getOccupants();
+var _3d=false;
+for(var i=0;i<_3c.length;i++){
+if(_3a.toLowerCase()==_3c[i].getNick().toLowerCase()&&_3a!=this.nickname){
+_3a=_3a+"_";
+i=0;
+_3d=true;
+}
+}
+if(_3d==true){
+this.chatWindow.addStatusMessage(this.conf.jid,"Nickname collision with "+_3a+"; a _ has been appended to your nick to make it different.","muc-name-conflict-message");
+}
+this.nickname=_3a;
+if(_3b!="nosave"){
+jive_prefs.data.nickname=_3a;
+jive_prefs.save();
+}
+this.conf.changeNickname(_3a);
+},sendTimeStamp:function(){
+this.chatWindow.addStatusMessage(this.conf.jid,window.strftime(new Date(),"%1I:%M %p"),"muc-time-message");
+window.setTimeout(this.sendTimeStamp.bind(this),300000);
+},updateDate:function(){
+window.controller.chatWindow.dialog.setTitle("Chatting in "+window.controller.conf.jid+" on "+window.strftime(new Date(),"%A, %B %e"));
+var _3f=new Date();
+_3f.setMinutes(0);
+_3f.setHours(0);
+_3f.setSeconds(5);
+_3f.setDate(_3f.getDate()+1);
+window.setTimeout(window.controller.updateDate,_3f-new Date());
+},onSuccess:function(_40){
+var _41=window.controller.chatWindow;
+var _42=window.controller.conf;
+_41.addMUC({name:_42.nickname,jid:_42.jid});
+var _43=_42.getOccupants();
+for(var i=0;i<_43.length;i++){
+window.controller.occupantListener(_43[i]);
+}
+_41.prepUserPane();
+_41.show();
+_41.finalizeUserPane(this.nickname,this.mucManager);
+_41.setSubject("");
+window.controller.updateDate();
+getEl(_41.tabId+"-layout").dom.parentNode.style.position="absolute";
+enableEmoticons();
+enableAutolinking();
+_41.addListener("message",this.sendMessage.bind(this));
+_41.addListener("nickcomplete",this.completeNick.bind(this));
+_41.addListener("changenameinmuc",this.handleNameChange.bind(this));
+_41.dialog.addListener("beforeshow",this.joinChat,window.controller,true);
+_41.dialog.addListener("beforehide",this.conf.leave.bind(this.conf));
+var _45=jive_prefs.data.nickname;
+if(!_45){
+_45=this.nickname;
+}
+this.handleNameChange(_41,this.conf.jid,_45);
+window.setTimeout(_41.addStatusMessage.bind(_41),2000,_42.jid,"Welcome to "+_42.jid+" you can change your name by clicking on it in the upper-right corner","muc-welcome-message");
+window.setTimeout(window.controller.sendTimeStamp.bind(window.controller),1000);
+},logout:function(_46){
+window.controller.conf.leave(false);
+var _47=new XMPP.Presence();
+_47.setType("unavailable");
+window.controller.connection.logout(_47);
+},};
+var resizeHandler=function(){
+var _48=window.controller.chatWindow.dialog;
+_48.beginUpdate();
+_48.getEl().fitToParent();
+_48.resizeTo(_48.getEl().getWidth(),_48.getEl().getHeight());
+var xy=YAHOO.util.Dom.getXY(_48.getEl().dom.parentNode);
+_48.moveTo(xy[0],xy[1]);
+_48.endUpdate();
+};
+var toggleTheme=function(){
+getEl(document.body,true).toggleClass("jivetheme-muc");
+};
+YAHOO.ext.EventManager.onDocumentReady(function(){
+window.connection=new XMPPConnection("/http-bind/",window.jive_groupchat_config["connectionAddress"],controller);
+connection.connect();
+toggleTheme();
+});
+if(window.jive_groupchat_config["fitToParent"]=="true"){
+YAHOO.ext.EventManager.onWindowResize(resizeHandler,window,false);
+}
+
 
