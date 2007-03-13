@@ -112,6 +112,11 @@
 						<li> Improved formatting of timestamps, and added the date to the window header </li>
 						<li> Fixed image urls </li>
 						<li> Added /part and /leave commands </li>
+						<li> Added click-to-change status (available/away) </li>
+						<li> Consecutive messages from the same person are now visually combined </li>
+						<li> Usernames are now stored in a cookie </li>
+						<li> Added a tooltip on the presence change and name change controls </li>
+						<li> Automated informational messages can now be styled differently </li>
 					</ul>
 					<ul class="changelogentry">
 						<li class="changelogheader"> <u>March 8th, 2007</u></li>

@@ -1924,6 +1924,21 @@ div.jive-user-controls input.jive-muc-username-active {
 	height: 14px;
 	padding: 2px 4px;
 }
+#nickname-control-tooltip {
+	background: white;
+	border: 1px solid black;
+	width: 150px;
+	height: auto;
+}
+	
+/* Presence Control */
+
+#presence-control-tooltip {
+	background: white;
+	border: 1px solid black;
+	width: 150px;
+	height: auto;
+}
 	
 /* This will override the YUI styles from basic-dialog.css and ignitechat.css */
 
@@ -2017,9 +2032,17 @@ div.jive-user-controls input.jive-muc-username-active {
 	background: #ffff99;
 }
 
+.jivetheme-muc div.jive-history div.consecutive {
+	padding-left: 15px;
+}
+
 .jivetheme-muc div.jive-history div span.meta {
 	font-weight: bold;
 	width: 100%;
+}
+
+.jivetheme-muc div.jive-history div.consecutive span.meta {
+	display: none;
 }
 
 .jivetheme-muc div.jive-history div.action span.meta {

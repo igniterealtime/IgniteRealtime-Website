@@ -9723,6 +9723,2284 @@ return ("MenuBarItem: "+this.cfg.getProperty("text"));
 YAHOO.register("menu",YAHOO.widget.Menu,{version:"2.2.0",build:"127"});
 
 
+YAHOO.util.Config=function(_1){
+if(_1){
+this.init(_1);
+}
+};
+YAHOO.util.Config.prototype={owner:null,queueInProgress:false,checkBoolean:function(_2){
+if(typeof _2=="boolean"){
+return true;
+}else{
+return false;
+}
+},checkNumber:function(_3){
+if(isNaN(_3)){
+return false;
+}else{
+return true;
+}
+}};
+YAHOO.util.Config.prototype.init=function(_4){
+this.owner=_4;
+this.configChangedEvent=new YAHOO.util.CustomEvent("configChanged");
+this.queueInProgress=false;
+var _5={};
+var _6={};
+var _7=[];
+var _8=function(_9,_a){
+_9=_9.toLowerCase();
+var _b=_5[_9];
+if(typeof _b!="undefined"&&_b.event){
+_b.event.fire(_a);
+}
+};
+this.addProperty=function(_c,_d){
+_c=_c.toLowerCase();
+_5[_c]=_d;
+_d.event=new YAHOO.util.CustomEvent(_c);
+_d.key=_c;
+if(_d.handler){
+_d.event.subscribe(_d.handler,this.owner,true);
+}
+this.setProperty(_c,_d.value,true);
+if(!_d.suppressEvent){
+this.queueProperty(_c,_d.value);
+}
+};
+this.getConfig=function(){
+var _e={};
+for(var _f in _5){
+var _10=_5[_f];
+if(typeof _10!="undefined"&&_10.event){
+_e[_f]=_10.value;
+}
+}
+return _e;
+};
+this.getProperty=function(key){
+key=key.toLowerCase();
+var _12=_5[key];
+if(typeof _12!="undefined"&&_12.event){
+return _12.value;
+}else{
+return undefined;
+}
+};
+this.resetProperty=function(key){
+key=key.toLowerCase();
+var _14=_5[key];
+if(typeof _14!="undefined"&&_14.event){
+if(_6[key]&&_6[key]!="undefined"){
+this.setProperty(key,_6[key]);
+}
+return true;
+}else{
+return false;
+}
+};
+this.setProperty=function(key,_16,_17){
+key=key.toLowerCase();
+if(this.queueInProgress&&!_17){
+this.queueProperty(key,_16);
+return true;
+}else{
+var _18=_5[key];
+if(typeof _18!="undefined"&&_18.event){
+if(_18.validator&&!_18.validator(_16)){
+return false;
+}else{
+_18.value=_16;
+if(!_17){
+_8(key,_16);
+this.configChangedEvent.fire([key,_16]);
+}
+return true;
+}
+}else{
+return false;
+}
+}
+};
+this.queueProperty=function(key,_1a){
+key=key.toLowerCase();
+var _1b=_5[key];
+if(typeof _1b!="undefined"&&_1b.event){
+if(typeof _1a!="undefined"&&_1b.validator&&!_1b.validator(_1a)){
+return false;
+}else{
+if(typeof _1a!="undefined"){
+_1b.value=_1a;
+}else{
+_1a=_1b.value;
+}
+var _1c=false;
+for(var i=0;i<_7.length;i++){
+var _1e=_7[i];
+if(_1e){
+var _1f=_1e[0];
+var _20=_1e[1];
+if(_1f.toLowerCase()==key){
+_7[i]=null;
+_7.push([key,(typeof _1a!="undefined"?_1a:_20)]);
+_1c=true;
+break;
+}
+}
+}
+if(!_1c&&typeof _1a!="undefined"){
+_7.push([key,_1a]);
+}
+}
+if(_1b.supercedes){
+for(var s=0;s<_1b.supercedes.length;s++){
+var _22=_1b.supercedes[s];
+for(var q=0;q<_7.length;q++){
+var _24=_7[q];
+if(_24){
+var _25=_24[0];
+var _26=_24[1];
+if(_25.toLowerCase()==_22.toLowerCase()){
+_7.push([_25,_26]);
+_7[q]=null;
+break;
+}
+}
+}
+}
+}
+return true;
+}else{
+return false;
+}
+};
+this.refireEvent=function(key){
+key=key.toLowerCase();
+var _28=_5[key];
+if(typeof _28!="undefined"&&_28.event&&typeof _28.value!="undefined"){
+if(this.queueInProgress){
+this.queueProperty(key);
+}else{
+_8(key,_28.value);
+}
+}
+};
+this.applyConfig=function(_29,_2a){
+if(_2a){
+_6=_29;
+}
+for(var _2b in _29){
+this.queueProperty(_2b,_29[_2b]);
+}
+};
+this.refresh=function(){
+for(var _2c in _5){
+this.refireEvent(_2c);
+}
+};
+this.fireQueue=function(){
+this.queueInProgress=true;
+for(var i=0;i<_7.length;i++){
+var _2e=_7[i];
+if(_2e){
+var key=_2e[0];
+var _30=_2e[1];
+var _31=_5[key];
+_31.value=_30;
+_8(key,_30);
+}
+}
+this.queueInProgress=false;
+_7=[];
+};
+this.subscribeToConfigEvent=function(key,_33,obj,_35){
+key=key.toLowerCase();
+var _36=_5[key];
+if(typeof _36!="undefined"&&_36.event){
+if(!YAHOO.util.Config.alreadySubscribed(_36.event,_33,obj)){
+_36.event.subscribe(_33,obj,_35);
+}
+return true;
+}else{
+return false;
+}
+};
+this.unsubscribeFromConfigEvent=function(key,_38,obj){
+key=key.toLowerCase();
+var _3a=_5[key];
+if(typeof _3a!="undefined"&&_3a.event){
+return _3a.event.unsubscribe(_38,obj);
+}else{
+return false;
+}
+};
+this.toString=function(){
+var _3b="Config";
+if(this.owner){
+_3b+=" ["+this.owner.toString()+"]";
+}
+return _3b;
+};
+this.outputEventQueue=function(){
+var _3c="";
+for(var q=0;q<_7.length;q++){
+var _3e=_7[q];
+if(_3e){
+_3c+=_3e[0]+"="+_3e[1]+", ";
+}
+}
+return _3c;
+};
+};
+YAHOO.util.Config.alreadySubscribed=function(evt,fn,obj){
+for(var e=0;e<evt.subscribers.length;e++){
+var _43=evt.subscribers[e];
+if(_43&&_43.obj==obj&&_43.fn==fn){
+return true;
+}
+}
+return false;
+};
+YAHOO.widget.Module=function(el,_45){
+if(el){
+this.init(el,_45);
+}else{
+}
+};
+YAHOO.widget.Module.IMG_ROOT=null;
+YAHOO.widget.Module.IMG_ROOT_SSL=null;
+YAHOO.widget.Module.CSS_MODULE="module";
+YAHOO.widget.Module.CSS_HEADER="hd";
+YAHOO.widget.Module.CSS_BODY="bd";
+YAHOO.widget.Module.CSS_FOOTER="ft";
+YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL="javascript:false;";
+YAHOO.widget.Module.textResizeEvent=new YAHOO.util.CustomEvent("textResize");
+YAHOO.widget.Module.prototype={constructor:YAHOO.widget.Module,element:null,header:null,body:null,footer:null,id:null,imageRoot:YAHOO.widget.Module.IMG_ROOT,initEvents:function(){
+this.beforeInitEvent=new YAHOO.util.CustomEvent("beforeInit");
+this.initEvent=new YAHOO.util.CustomEvent("init");
+this.appendEvent=new YAHOO.util.CustomEvent("append");
+this.beforeRenderEvent=new YAHOO.util.CustomEvent("beforeRender");
+this.renderEvent=new YAHOO.util.CustomEvent("render");
+this.changeHeaderEvent=new YAHOO.util.CustomEvent("changeHeader");
+this.changeBodyEvent=new YAHOO.util.CustomEvent("changeBody");
+this.changeFooterEvent=new YAHOO.util.CustomEvent("changeFooter");
+this.changeContentEvent=new YAHOO.util.CustomEvent("changeContent");
+this.destroyEvent=new YAHOO.util.CustomEvent("destroy");
+this.beforeShowEvent=new YAHOO.util.CustomEvent("beforeShow");
+this.showEvent=new YAHOO.util.CustomEvent("show");
+this.beforeHideEvent=new YAHOO.util.CustomEvent("beforeHide");
+this.hideEvent=new YAHOO.util.CustomEvent("hide");
+},platform:function(){
+var ua=navigator.userAgent.toLowerCase();
+if(ua.indexOf("windows")!=-1||ua.indexOf("win32")!=-1){
+return "windows";
+}else{
+if(ua.indexOf("macintosh")!=-1){
+return "mac";
+}else{
+return false;
+}
+}
+}(),browser:function(){
+var ua=navigator.userAgent.toLowerCase();
+if(ua.indexOf("opera")!=-1){
+return "opera";
+}else{
+if(ua.indexOf("msie 7")!=-1){
+return "ie7";
+}else{
+if(ua.indexOf("msie")!=-1){
+return "ie";
+}else{
+if(ua.indexOf("safari")!=-1){
+return "safari";
+}else{
+if(ua.indexOf("gecko")!=-1){
+return "gecko";
+}else{
+return false;
+}
+}
+}
+}
+}
+}(),isSecure:function(){
+if(window.location.href.toLowerCase().indexOf("https")===0){
+return true;
+}else{
+return false;
+}
+}(),initDefaultConfig:function(){
+this.cfg.addProperty("visible",{value:true,handler:this.configVisible,validator:this.cfg.checkBoolean});
+this.cfg.addProperty("effect",{suppressEvent:true,supercedes:["visible"]});
+this.cfg.addProperty("monitorresize",{value:true,handler:this.configMonitorResize});
+},init:function(el,_49){
+this.initEvents();
+this.beforeInitEvent.fire(YAHOO.widget.Module);
+this.cfg=new YAHOO.util.Config(this);
+if(this.isSecure){
+this.imageRoot=YAHOO.widget.Module.IMG_ROOT_SSL;
+}
+if(typeof el=="string"){
+var _4a=el;
+el=document.getElementById(el);
+if(!el){
+el=document.createElement("div");
+el.id=_4a;
+}
+}
+this.element=el;
+if(el.id){
+this.id=el.id;
+}
+var _4b=this.element.childNodes;
+if(_4b){
+for(var i=0;i<_4b.length;i++){
+var _4d=_4b[i];
+switch(_4d.className){
+case YAHOO.widget.Module.CSS_HEADER:
+this.header=_4d;
+break;
+case YAHOO.widget.Module.CSS_BODY:
+this.body=_4d;
+break;
+case YAHOO.widget.Module.CSS_FOOTER:
+this.footer=_4d;
+break;
+}
+}
+}
+this.initDefaultConfig();
+YAHOO.util.Dom.addClass(this.element,YAHOO.widget.Module.CSS_MODULE);
+if(_49){
+this.cfg.applyConfig(_49,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(this.renderEvent,this.cfg.fireQueue,this.cfg)){
+this.renderEvent.subscribe(this.cfg.fireQueue,this.cfg,true);
+}
+this.initEvent.fire(YAHOO.widget.Module);
+},initResizeMonitor:function(){
+if(this.browser!="opera"){
+var _4e=document.getElementById("_yuiResizeMonitor");
+if(!_4e){
+_4e=document.createElement("iframe");
+var bIE=(this.browser.indexOf("ie")===0);
+if(this.isSecure&&YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL&&bIE){
+_4e.src=YAHOO.widget.Module.RESIZE_MONITOR_SECURE_URL;
+}
+_4e.id="_yuiResizeMonitor";
+_4e.style.visibility="hidden";
+document.body.appendChild(_4e);
+_4e.style.width="10em";
+_4e.style.height="10em";
+_4e.style.position="absolute";
+var _50=-1*_4e.offsetWidth;
+var _51=-1*_4e.offsetHeight;
+_4e.style.top=_51+"px";
+_4e.style.left=_50+"px";
+_4e.style.borderStyle="none";
+_4e.style.borderWidth="0";
+YAHOO.util.Dom.setStyle(_4e,"opacity","0");
+_4e.style.visibility="visible";
+if(!bIE){
+var doc=_4e.contentWindow.document;
+doc.open();
+doc.close();
+}
+}
+var _53=function(){
+YAHOO.widget.Module.textResizeEvent.fire();
+};
+if(_4e&&_4e.contentWindow){
+this.resizeMonitor=_4e;
+YAHOO.widget.Module.textResizeEvent.subscribe(this.onDomResize,this,true);
+if(!YAHOO.widget.Module.textResizeInitialized){
+if(!YAHOO.util.Event.addListener(this.resizeMonitor.contentWindow,"resize",_53)){
+YAHOO.util.Event.addListener(this.resizeMonitor,"resize",_53);
+}
+YAHOO.widget.Module.textResizeInitialized=true;
+}
+}
+}
+},onDomResize:function(e,obj){
+var _56=-1*this.resizeMonitor.offsetWidth,_57=-1*this.resizeMonitor.offsetHeight;
+this.resizeMonitor.style.top=_57+"px";
+this.resizeMonitor.style.left=_56+"px";
+},setHeader:function(_58){
+if(!this.header){
+this.header=document.createElement("div");
+this.header.className=YAHOO.widget.Module.CSS_HEADER;
+}
+if(typeof _58=="string"){
+this.header.innerHTML=_58;
+}else{
+this.header.innerHTML="";
+this.header.appendChild(_58);
+}
+this.changeHeaderEvent.fire(_58);
+this.changeContentEvent.fire();
+},appendToHeader:function(_59){
+if(!this.header){
+this.header=document.createElement("div");
+this.header.className=YAHOO.widget.Module.CSS_HEADER;
+}
+this.header.appendChild(_59);
+this.changeHeaderEvent.fire(_59);
+this.changeContentEvent.fire();
+},setBody:function(_5a){
+if(!this.body){
+this.body=document.createElement("div");
+this.body.className=YAHOO.widget.Module.CSS_BODY;
+}
+if(typeof _5a=="string"){
+this.body.innerHTML=_5a;
+}else{
+this.body.innerHTML="";
+this.body.appendChild(_5a);
+}
+this.changeBodyEvent.fire(_5a);
+this.changeContentEvent.fire();
+},appendToBody:function(_5b){
+if(!this.body){
+this.body=document.createElement("div");
+this.body.className=YAHOO.widget.Module.CSS_BODY;
+}
+this.body.appendChild(_5b);
+this.changeBodyEvent.fire(_5b);
+this.changeContentEvent.fire();
+},setFooter:function(_5c){
+if(!this.footer){
+this.footer=document.createElement("div");
+this.footer.className=YAHOO.widget.Module.CSS_FOOTER;
+}
+if(typeof _5c=="string"){
+this.footer.innerHTML=_5c;
+}else{
+this.footer.innerHTML="";
+this.footer.appendChild(_5c);
+}
+this.changeFooterEvent.fire(_5c);
+this.changeContentEvent.fire();
+},appendToFooter:function(_5d){
+if(!this.footer){
+this.footer=document.createElement("div");
+this.footer.className=YAHOO.widget.Module.CSS_FOOTER;
+}
+this.footer.appendChild(_5d);
+this.changeFooterEvent.fire(_5d);
+this.changeContentEvent.fire();
+},render:function(_5e,_5f){
+this.beforeRenderEvent.fire();
+if(!_5f){
+_5f=this.element;
+}
+var me=this;
+var _61=function(_62){
+if(typeof _62=="string"){
+_62=document.getElementById(_62);
+}
+if(_62){
+_62.appendChild(me.element);
+me.appendEvent.fire();
+}
+};
+if(_5e){
+_61(_5e);
+}else{
+if(!YAHOO.util.Dom.inDocument(this.element)){
+return false;
+}
+}
+if(this.header&&!YAHOO.util.Dom.inDocument(this.header)){
+var _63=_5f.firstChild;
+if(_63){
+_5f.insertBefore(this.header,_63);
+}else{
+_5f.appendChild(this.header);
+}
+}
+if(this.body&&!YAHOO.util.Dom.inDocument(this.body)){
+if(this.footer&&YAHOO.util.Dom.isAncestor(this.moduleElement,this.footer)){
+_5f.insertBefore(this.body,this.footer);
+}else{
+_5f.appendChild(this.body);
+}
+}
+if(this.footer&&!YAHOO.util.Dom.inDocument(this.footer)){
+_5f.appendChild(this.footer);
+}
+this.renderEvent.fire();
+return true;
+},destroy:function(){
+var _64;
+if(this.element){
+YAHOO.util.Event.purgeElement(this.element,true);
+_64=this.element.parentNode;
+}
+if(_64){
+_64.removeChild(this.element);
+}
+this.element=null;
+this.header=null;
+this.body=null;
+this.footer=null;
+for(var e in this){
+if(e instanceof YAHOO.util.CustomEvent){
+e.unsubscribeAll();
+}
+}
+YAHOO.widget.Module.textResizeEvent.unsubscribe(this.onDomResize,this);
+this.destroyEvent.fire();
+},show:function(){
+this.cfg.setProperty("visible",true);
+},hide:function(){
+this.cfg.setProperty("visible",false);
+},configVisible:function(_66,_67,obj){
+var _69=_67[0];
+if(_69){
+this.beforeShowEvent.fire();
+YAHOO.util.Dom.setStyle(this.element,"display","block");
+this.showEvent.fire();
+}else{
+this.beforeHideEvent.fire();
+YAHOO.util.Dom.setStyle(this.element,"display","none");
+this.hideEvent.fire();
+}
+},configMonitorResize:function(_6a,_6b,obj){
+var _6d=_6b[0];
+if(_6d){
+this.initResizeMonitor();
+}else{
+YAHOO.widget.Module.textResizeEvent.unsubscribe(this.onDomResize,this,true);
+this.resizeMonitor=null;
+}
+}};
+YAHOO.widget.Module.prototype.toString=function(){
+return "Module "+this.id;
+};
+YAHOO.widget.Overlay=function(el,_6f){
+YAHOO.widget.Overlay.superclass.constructor.call(this,el,_6f);
+};
+YAHOO.extend(YAHOO.widget.Overlay,YAHOO.widget.Module);
+YAHOO.widget.Overlay.IFRAME_SRC="javascript:false;";
+YAHOO.widget.Overlay.TOP_LEFT="tl";
+YAHOO.widget.Overlay.TOP_RIGHT="tr";
+YAHOO.widget.Overlay.BOTTOM_LEFT="bl";
+YAHOO.widget.Overlay.BOTTOM_RIGHT="br";
+YAHOO.widget.Overlay.CSS_OVERLAY="yui-overlay";
+YAHOO.widget.Overlay.prototype.init=function(el,_71){
+YAHOO.widget.Overlay.superclass.init.call(this,el);
+this.beforeInitEvent.fire(YAHOO.widget.Overlay);
+YAHOO.util.Dom.addClass(this.element,YAHOO.widget.Overlay.CSS_OVERLAY);
+if(_71){
+this.cfg.applyConfig(_71,true);
+}
+if(this.platform=="mac"&&this.browser=="gecko"){
+if(!YAHOO.util.Config.alreadySubscribed(this.showEvent,this.showMacGeckoScrollbars,this)){
+this.showEvent.subscribe(this.showMacGeckoScrollbars,this,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(this.hideEvent,this.hideMacGeckoScrollbars,this)){
+this.hideEvent.subscribe(this.hideMacGeckoScrollbars,this,true);
+}
+}
+this.initEvent.fire(YAHOO.widget.Overlay);
+};
+YAHOO.widget.Overlay.prototype.initEvents=function(){
+YAHOO.widget.Overlay.superclass.initEvents.call(this);
+this.beforeMoveEvent=new YAHOO.util.CustomEvent("beforeMove",this);
+this.moveEvent=new YAHOO.util.CustomEvent("move",this);
+};
+YAHOO.widget.Overlay.prototype.initDefaultConfig=function(){
+YAHOO.widget.Overlay.superclass.initDefaultConfig.call(this);
+this.cfg.addProperty("x",{handler:this.configX,validator:this.cfg.checkNumber,suppressEvent:true,supercedes:["iframe"]});
+this.cfg.addProperty("y",{handler:this.configY,validator:this.cfg.checkNumber,suppressEvent:true,supercedes:["iframe"]});
+this.cfg.addProperty("xy",{handler:this.configXY,suppressEvent:true,supercedes:["iframe"]});
+this.cfg.addProperty("context",{handler:this.configContext,suppressEvent:true,supercedes:["iframe"]});
+this.cfg.addProperty("fixedcenter",{value:false,handler:this.configFixedCenter,validator:this.cfg.checkBoolean,supercedes:["iframe","visible"]});
+this.cfg.addProperty("width",{handler:this.configWidth,suppressEvent:true,supercedes:["iframe"]});
+this.cfg.addProperty("height",{handler:this.configHeight,suppressEvent:true,supercedes:["iframe"]});
+this.cfg.addProperty("zIndex",{value:null,handler:this.configzIndex});
+this.cfg.addProperty("constraintoviewport",{value:false,handler:this.configConstrainToViewport,validator:this.cfg.checkBoolean,supercedes:["iframe","x","y","xy"]});
+this.cfg.addProperty("iframe",{value:(this.browser=="ie"?true:false),handler:this.configIframe,validator:this.cfg.checkBoolean,supercedes:["zIndex"]});
+};
+YAHOO.widget.Overlay.prototype.moveTo=function(x,y){
+this.cfg.setProperty("xy",[x,y]);
+};
+YAHOO.widget.Overlay.prototype.hideMacGeckoScrollbars=function(){
+YAHOO.util.Dom.removeClass(this.element,"show-scrollbars");
+YAHOO.util.Dom.addClass(this.element,"hide-scrollbars");
+};
+YAHOO.widget.Overlay.prototype.showMacGeckoScrollbars=function(){
+YAHOO.util.Dom.removeClass(this.element,"hide-scrollbars");
+YAHOO.util.Dom.addClass(this.element,"show-scrollbars");
+};
+YAHOO.widget.Overlay.prototype.configVisible=function(_74,_75,obj){
+var _77=_75[0];
+var _78=YAHOO.util.Dom.getStyle(this.element,"visibility");
+if(_78=="inherit"){
+var e=this.element.parentNode;
+while(e.nodeType!=9&&e.nodeType!=11){
+_78=YAHOO.util.Dom.getStyle(e,"visibility");
+if(_78!="inherit"){
+break;
+}
+e=e.parentNode;
+}
+if(_78=="inherit"){
+_78="visible";
+}
+}
+var _7a=this.cfg.getProperty("effect");
+var _7b=[];
+if(_7a){
+if(_7a instanceof Array){
+for(var i=0;i<_7a.length;i++){
+var eff=_7a[i];
+_7b[_7b.length]=eff.effect(this,eff.duration);
+}
+}else{
+_7b[_7b.length]=_7a.effect(this,_7a.duration);
+}
+}
+var _7e=(this.platform=="mac"&&this.browser=="gecko");
+if(_77){
+if(_7e){
+this.showMacGeckoScrollbars();
+}
+if(_7a){
+if(_77){
+if(_78!="visible"||_78===""){
+this.beforeShowEvent.fire();
+for(var j=0;j<_7b.length;j++){
+var ei=_7b[j];
+if(j===0&&!YAHOO.util.Config.alreadySubscribed(ei.animateInCompleteEvent,this.showEvent.fire,this.showEvent)){
+ei.animateInCompleteEvent.subscribe(this.showEvent.fire,this.showEvent,true);
+}
+ei.animateIn();
+}
+}
+}
+}else{
+if(_78!="visible"||_78===""){
+this.beforeShowEvent.fire();
+YAHOO.util.Dom.setStyle(this.element,"visibility","visible");
+this.cfg.refireEvent("iframe");
+this.showEvent.fire();
+}
+}
+}else{
+if(_7e){
+this.hideMacGeckoScrollbars();
+}
+if(_7a){
+if(_78=="visible"){
+this.beforeHideEvent.fire();
+for(var k=0;k<_7b.length;k++){
+var h=_7b[k];
+if(k===0&&!YAHOO.util.Config.alreadySubscribed(h.animateOutCompleteEvent,this.hideEvent.fire,this.hideEvent)){
+h.animateOutCompleteEvent.subscribe(this.hideEvent.fire,this.hideEvent,true);
+}
+h.animateOut();
+}
+}else{
+if(_78===""){
+YAHOO.util.Dom.setStyle(this.element,"visibility","hidden");
+}
+}
+}else{
+if(_78=="visible"||_78===""){
+this.beforeHideEvent.fire();
+YAHOO.util.Dom.setStyle(this.element,"visibility","hidden");
+this.cfg.refireEvent("iframe");
+this.hideEvent.fire();
+}
+}
+}
+};
+YAHOO.widget.Overlay.prototype.doCenterOnDOMEvent=function(){
+if(this.cfg.getProperty("visible")){
+this.center();
+}
+};
+YAHOO.widget.Overlay.prototype.configFixedCenter=function(_83,_84,obj){
+var val=_84[0];
+if(val){
+this.center();
+if(!YAHOO.util.Config.alreadySubscribed(this.beforeShowEvent,this.center,this)){
+this.beforeShowEvent.subscribe(this.center,this,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(YAHOO.widget.Overlay.windowResizeEvent,this.doCenterOnDOMEvent,this)){
+YAHOO.widget.Overlay.windowResizeEvent.subscribe(this.doCenterOnDOMEvent,this,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(YAHOO.widget.Overlay.windowScrollEvent,this.doCenterOnDOMEvent,this)){
+YAHOO.widget.Overlay.windowScrollEvent.subscribe(this.doCenterOnDOMEvent,this,true);
+}
+}else{
+YAHOO.widget.Overlay.windowResizeEvent.unsubscribe(this.doCenterOnDOMEvent,this);
+YAHOO.widget.Overlay.windowScrollEvent.unsubscribe(this.doCenterOnDOMEvent,this);
+}
+};
+YAHOO.widget.Overlay.prototype.configHeight=function(_87,_88,obj){
+var _8a=_88[0];
+var el=this.element;
+YAHOO.util.Dom.setStyle(el,"height",_8a);
+this.cfg.refireEvent("iframe");
+};
+YAHOO.widget.Overlay.prototype.configWidth=function(_8c,_8d,obj){
+var _8f=_8d[0];
+var el=this.element;
+YAHOO.util.Dom.setStyle(el,"width",_8f);
+this.cfg.refireEvent("iframe");
+};
+YAHOO.widget.Overlay.prototype.configzIndex=function(_91,_92,obj){
+var _94=_92[0];
+var el=this.element;
+if(!_94){
+_94=YAHOO.util.Dom.getStyle(el,"zIndex");
+if(!_94||isNaN(_94)){
+_94=0;
+}
+}
+if(this.iframe){
+if(_94<=0){
+_94=1;
+}
+YAHOO.util.Dom.setStyle(this.iframe,"zIndex",(_94-1));
+}
+YAHOO.util.Dom.setStyle(el,"zIndex",_94);
+this.cfg.setProperty("zIndex",_94,true);
+};
+YAHOO.widget.Overlay.prototype.configXY=function(_96,_97,obj){
+var pos=_97[0];
+var x=pos[0];
+var y=pos[1];
+this.cfg.setProperty("x",x);
+this.cfg.setProperty("y",y);
+this.beforeMoveEvent.fire([x,y]);
+x=this.cfg.getProperty("x");
+y=this.cfg.getProperty("y");
+this.cfg.refireEvent("iframe");
+this.moveEvent.fire([x,y]);
+};
+YAHOO.widget.Overlay.prototype.configX=function(_9c,_9d,obj){
+var x=_9d[0];
+var y=this.cfg.getProperty("y");
+this.cfg.setProperty("x",x,true);
+this.cfg.setProperty("y",y,true);
+this.beforeMoveEvent.fire([x,y]);
+x=this.cfg.getProperty("x");
+y=this.cfg.getProperty("y");
+YAHOO.util.Dom.setX(this.element,x,true);
+this.cfg.setProperty("xy",[x,y],true);
+this.cfg.refireEvent("iframe");
+this.moveEvent.fire([x,y]);
+};
+YAHOO.widget.Overlay.prototype.configY=function(_a1,_a2,obj){
+var x=this.cfg.getProperty("x");
+var y=_a2[0];
+this.cfg.setProperty("x",x,true);
+this.cfg.setProperty("y",y,true);
+this.beforeMoveEvent.fire([x,y]);
+x=this.cfg.getProperty("x");
+y=this.cfg.getProperty("y");
+YAHOO.util.Dom.setY(this.element,y,true);
+this.cfg.setProperty("xy",[x,y],true);
+this.cfg.refireEvent("iframe");
+this.moveEvent.fire([x,y]);
+};
+YAHOO.widget.Overlay.prototype.showIframe=function(){
+if(this.iframe){
+this.iframe.style.display="block";
+}
+};
+YAHOO.widget.Overlay.prototype.hideIframe=function(){
+if(this.iframe){
+this.iframe.style.display="none";
+}
+};
+YAHOO.widget.Overlay.prototype.configIframe=function(_a6,_a7,obj){
+var val=_a7[0];
+if(val){
+if(!YAHOO.util.Config.alreadySubscribed(this.showEvent,this.showIframe,this)){
+this.showEvent.subscribe(this.showIframe,this,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(this.hideEvent,this.hideIframe,this)){
+this.hideEvent.subscribe(this.hideIframe,this,true);
+}
+var x=this.cfg.getProperty("x");
+var y=this.cfg.getProperty("y");
+if(!x||!y){
+this.syncPosition();
+x=this.cfg.getProperty("x");
+y=this.cfg.getProperty("y");
+}
+if(!isNaN(x)&&!isNaN(y)){
+if(!this.iframe){
+this.iframe=document.createElement("iframe");
+if(this.isSecure){
+this.iframe.src=YAHOO.widget.Overlay.IFRAME_SRC;
+}
+var _ac=this.element.parentNode;
+if(_ac){
+_ac.appendChild(this.iframe);
+}else{
+document.body.appendChild(this.iframe);
+}
+YAHOO.util.Dom.setStyle(this.iframe,"position","absolute");
+YAHOO.util.Dom.setStyle(this.iframe,"border","none");
+YAHOO.util.Dom.setStyle(this.iframe,"margin","0");
+YAHOO.util.Dom.setStyle(this.iframe,"padding","0");
+YAHOO.util.Dom.setStyle(this.iframe,"opacity","0");
+if(this.cfg.getProperty("visible")){
+this.showIframe();
+}else{
+this.hideIframe();
+}
+}
+var _ad=YAHOO.util.Dom.getStyle(this.iframe,"display");
+if(_ad=="none"){
+this.iframe.style.display="block";
+}
+YAHOO.util.Dom.setXY(this.iframe,[x,y]);
+var _ae=this.element.clientWidth;
+var _af=this.element.clientHeight;
+YAHOO.util.Dom.setStyle(this.iframe,"width",(_ae+2)+"px");
+YAHOO.util.Dom.setStyle(this.iframe,"height",(_af+2)+"px");
+if(_ad=="none"){
+this.iframe.style.display="none";
+}
+}
+}else{
+if(this.iframe){
+this.iframe.style.display="none";
+}
+this.showEvent.unsubscribe(this.showIframe,this);
+this.hideEvent.unsubscribe(this.hideIframe,this);
+}
+};
+YAHOO.widget.Overlay.prototype.configConstrainToViewport=function(_b0,_b1,obj){
+var val=_b1[0];
+if(val){
+if(!YAHOO.util.Config.alreadySubscribed(this.beforeMoveEvent,this.enforceConstraints,this)){
+this.beforeMoveEvent.subscribe(this.enforceConstraints,this,true);
+}
+}else{
+this.beforeMoveEvent.unsubscribe(this.enforceConstraints,this);
+}
+};
+YAHOO.widget.Overlay.prototype.configContext=function(_b4,_b5,obj){
+var _b7=_b5[0];
+if(_b7){
+var _b8=_b7[0];
+var _b9=_b7[1];
+var _ba=_b7[2];
+if(_b8){
+if(typeof _b8=="string"){
+this.cfg.setProperty("context",[document.getElementById(_b8),_b9,_ba],true);
+}
+if(_b9&&_ba){
+this.align(_b9,_ba);
+}
+}
+}
+};
+YAHOO.widget.Overlay.prototype.align=function(_bb,_bc){
+var _bd=this.cfg.getProperty("context");
+if(_bd){
+var _be=_bd[0];
+var _bf=this.element;
+var me=this;
+if(!_bb){
+_bb=_bd[1];
+}
+if(!_bc){
+_bc=_bd[2];
+}
+if(_bf&&_be){
+var _c1=YAHOO.util.Dom.getRegion(_be);
+var _c2=function(v,h){
+switch(_bb){
+case YAHOO.widget.Overlay.TOP_LEFT:
+me.moveTo(h,v);
+break;
+case YAHOO.widget.Overlay.TOP_RIGHT:
+me.moveTo(h-_bf.offsetWidth,v);
+break;
+case YAHOO.widget.Overlay.BOTTOM_LEFT:
+me.moveTo(h,v-_bf.offsetHeight);
+break;
+case YAHOO.widget.Overlay.BOTTOM_RIGHT:
+me.moveTo(h-_bf.offsetWidth,v-_bf.offsetHeight);
+break;
+}
+};
+switch(_bc){
+case YAHOO.widget.Overlay.TOP_LEFT:
+_c2(_c1.top,_c1.left);
+break;
+case YAHOO.widget.Overlay.TOP_RIGHT:
+_c2(_c1.top,_c1.right);
+break;
+case YAHOO.widget.Overlay.BOTTOM_LEFT:
+_c2(_c1.bottom,_c1.left);
+break;
+case YAHOO.widget.Overlay.BOTTOM_RIGHT:
+_c2(_c1.bottom,_c1.right);
+break;
+}
+}
+}
+};
+YAHOO.widget.Overlay.prototype.enforceConstraints=function(_c5,_c6,obj){
+var pos=_c6[0];
+var x=pos[0];
+var y=pos[1];
+var _cb=this.element.offsetHeight;
+var _cc=this.element.offsetWidth;
+var _cd=YAHOO.util.Dom.getViewportWidth();
+var _ce=YAHOO.util.Dom.getViewportHeight();
+var _cf=document.documentElement.scrollLeft||document.body.scrollLeft;
+var _d0=document.documentElement.scrollTop||document.body.scrollTop;
+var _d1=_d0+10;
+var _d2=_cf+10;
+var _d3=_d0+_ce-_cb-10;
+var _d4=_cf+_cd-_cc-10;
+if(x<_d2){
+x=_d2;
+}else{
+if(x>_d4){
+x=_d4;
+}
+}
+if(y<_d1){
+y=_d1;
+}else{
+if(y>_d3){
+y=_d3;
+}
+}
+this.cfg.setProperty("x",x,true);
+this.cfg.setProperty("y",y,true);
+this.cfg.setProperty("xy",[x,y],true);
+};
+YAHOO.widget.Overlay.prototype.center=function(){
+var _d5=document.documentElement.scrollLeft||document.body.scrollLeft;
+var _d6=document.documentElement.scrollTop||document.body.scrollTop;
+var _d7=YAHOO.util.Dom.getClientWidth();
+var _d8=YAHOO.util.Dom.getClientHeight();
+var _d9=this.element.offsetWidth;
+var _da=this.element.offsetHeight;
+var x=(_d7/2)-(_d9/2)+_d5;
+var y=(_d8/2)-(_da/2)+_d6;
+this.cfg.setProperty("xy",[parseInt(x,10),parseInt(y,10)]);
+this.cfg.refireEvent("iframe");
+};
+YAHOO.widget.Overlay.prototype.syncPosition=function(){
+var pos=YAHOO.util.Dom.getXY(this.element);
+this.cfg.setProperty("x",pos[0],true);
+this.cfg.setProperty("y",pos[1],true);
+this.cfg.setProperty("xy",pos,true);
+};
+YAHOO.widget.Overlay.prototype.onDomResize=function(e,obj){
+YAHOO.widget.Overlay.superclass.onDomResize.call(this,e,obj);
+var me=this;
+setTimeout(function(){
+me.syncPosition();
+me.cfg.refireEvent("iframe");
+me.cfg.refireEvent("context");
+},0);
+};
+YAHOO.widget.Overlay.prototype.destroy=function(){
+if(this.iframe){
+this.iframe.parentNode.removeChild(this.iframe);
+}
+this.iframe=null;
+YAHOO.widget.Overlay.windowResizeEvent.unsubscribe(this.doCenterOnDOMEvent,this);
+YAHOO.widget.Overlay.windowScrollEvent.unsubscribe(this.doCenterOnDOMEvent,this);
+YAHOO.widget.Overlay.superclass.destroy.call(this);
+};
+YAHOO.widget.Overlay.prototype.toString=function(){
+return "Overlay "+this.id;
+};
+YAHOO.widget.Overlay.windowScrollEvent=new YAHOO.util.CustomEvent("windowScroll");
+YAHOO.widget.Overlay.windowResizeEvent=new YAHOO.util.CustomEvent("windowResize");
+YAHOO.widget.Overlay.windowScrollHandler=function(e){
+if(YAHOO.widget.Module.prototype.browser=="ie"||YAHOO.widget.Module.prototype.browser=="ie7"){
+if(!window.scrollEnd){
+window.scrollEnd=-1;
+}
+clearTimeout(window.scrollEnd);
+window.scrollEnd=setTimeout(function(){
+YAHOO.widget.Overlay.windowScrollEvent.fire();
+},1);
+}else{
+YAHOO.widget.Overlay.windowScrollEvent.fire();
+}
+};
+YAHOO.widget.Overlay.windowResizeHandler=function(e){
+if(YAHOO.widget.Module.prototype.browser=="ie"||YAHOO.widget.Module.prototype.browser=="ie7"){
+if(!window.resizeEnd){
+window.resizeEnd=-1;
+}
+clearTimeout(window.resizeEnd);
+window.resizeEnd=setTimeout(function(){
+YAHOO.widget.Overlay.windowResizeEvent.fire();
+},100);
+}else{
+YAHOO.widget.Overlay.windowResizeEvent.fire();
+}
+};
+YAHOO.widget.Overlay._initialized=null;
+if(YAHOO.widget.Overlay._initialized===null){
+YAHOO.util.Event.addListener(window,"scroll",YAHOO.widget.Overlay.windowScrollHandler);
+YAHOO.util.Event.addListener(window,"resize",YAHOO.widget.Overlay.windowResizeHandler);
+YAHOO.widget.Overlay._initialized=true;
+}
+YAHOO.widget.OverlayManager=function(_e3){
+this.init(_e3);
+};
+YAHOO.widget.OverlayManager.CSS_FOCUSED="focused";
+YAHOO.widget.OverlayManager.prototype={constructor:YAHOO.widget.OverlayManager,overlays:null,initDefaultConfig:function(){
+this.cfg.addProperty("overlays",{suppressEvent:true});
+this.cfg.addProperty("focusevent",{value:"mousedown"});
+},init:function(_e4){
+this.cfg=new YAHOO.util.Config(this);
+this.initDefaultConfig();
+if(_e4){
+this.cfg.applyConfig(_e4,true);
+}
+this.cfg.fireQueue();
+var _e5=null;
+this.getActive=function(){
+return _e5;
+};
+this.focus=function(_e6){
+var o=this.find(_e6);
+if(o){
+this.blurAll();
+_e5=o;
+YAHOO.util.Dom.addClass(_e5.element,YAHOO.widget.OverlayManager.CSS_FOCUSED);
+this.overlays.sort(this.compareZIndexDesc);
+var _e8=YAHOO.util.Dom.getStyle(this.overlays[0].element,"zIndex");
+if(!isNaN(_e8)&&this.overlays[0]!=_e6){
+_e5.cfg.setProperty("zIndex",(parseInt(_e8,10)+2));
+}
+this.overlays.sort(this.compareZIndexDesc);
+}
+};
+this.remove=function(_e9){
+var o=this.find(_e9);
+if(o){
+var _eb=YAHOO.util.Dom.getStyle(o.element,"zIndex");
+o.cfg.setProperty("zIndex",-1000,true);
+this.overlays.sort(this.compareZIndexDesc);
+this.overlays=this.overlays.slice(0,this.overlays.length-1);
+o.cfg.setProperty("zIndex",_eb,true);
+o.cfg.setProperty("manager",null);
+o.focusEvent=null;
+o.blurEvent=null;
+o.focus=null;
+o.blur=null;
+}
+};
+this.blurAll=function(){
+_e5=null;
+for(var o=0;o<this.overlays.length;o++){
+YAHOO.util.Dom.removeClass(this.overlays[o].element,YAHOO.widget.OverlayManager.CSS_FOCUSED);
+}
+};
+var _ed=this.cfg.getProperty("overlays");
+if(!this.overlays){
+this.overlays=[];
+}
+if(_ed){
+this.register(_ed);
+this.overlays.sort(this.compareZIndexDesc);
+}
+},register:function(_ee){
+if(_ee instanceof YAHOO.widget.Overlay){
+_ee.cfg.addProperty("manager",{value:this});
+_ee.focusEvent=new YAHOO.util.CustomEvent("focus");
+_ee.blurEvent=new YAHOO.util.CustomEvent("blur");
+var mgr=this;
+_ee.focus=function(){
+mgr.focus(this);
+this.focusEvent.fire();
+};
+_ee.blur=function(){
+mgr.blurAll();
+this.blurEvent.fire();
+};
+var _f0=function(e,obj){
+_ee.focus();
+};
+var _f3=this.cfg.getProperty("focusevent");
+YAHOO.util.Event.addListener(_ee.element,_f3,_f0,this,true);
+var _f4=YAHOO.util.Dom.getStyle(_ee.element,"zIndex");
+if(!isNaN(_f4)){
+_ee.cfg.setProperty("zIndex",parseInt(_f4,10));
+}else{
+_ee.cfg.setProperty("zIndex",0);
+}
+this.overlays.push(_ee);
+return true;
+}else{
+if(_ee instanceof Array){
+var _f5=0;
+for(var i=0;i<_ee.length;i++){
+if(this.register(_ee[i])){
+_f5++;
+}
+}
+if(_f5>0){
+return true;
+}
+}else{
+return false;
+}
+}
+},find:function(_f7){
+if(_f7 instanceof YAHOO.widget.Overlay){
+for(var o=0;o<this.overlays.length;o++){
+if(this.overlays[o]==_f7){
+return this.overlays[o];
+}
+}
+}else{
+if(typeof _f7=="string"){
+for(var p=0;p<this.overlays.length;p++){
+if(this.overlays[p].id==_f7){
+return this.overlays[p];
+}
+}
+}
+}
+return null;
+},compareZIndexDesc:function(o1,o2){
+var _fc=o1.cfg.getProperty("zIndex");
+var _fd=o2.cfg.getProperty("zIndex");
+if(_fc>_fd){
+return -1;
+}else{
+if(_fc<_fd){
+return 1;
+}else{
+return 0;
+}
+}
+},showAll:function(){
+for(var o=0;o<this.overlays.length;o++){
+this.overlays[o].show();
+}
+},hideAll:function(){
+for(var o=0;o<this.overlays.length;o++){
+this.overlays[o].hide();
+}
+},toString:function(){
+return "OverlayManager";
+}};
+YAHOO.util.KeyListener=function(_100,_101,_102,_103){
+if(!_100){
+}
+if(!_101){
+}
+if(!_102){
+}
+if(!_103){
+_103=YAHOO.util.KeyListener.KEYDOWN;
+}
+var _104=new YAHOO.util.CustomEvent("keyPressed");
+this.enabledEvent=new YAHOO.util.CustomEvent("enabled");
+this.disabledEvent=new YAHOO.util.CustomEvent("disabled");
+if(typeof _100=="string"){
+_100=document.getElementById(_100);
+}
+if(typeof _102=="function"){
+_104.subscribe(_102);
+}else{
+_104.subscribe(_102.fn,_102.scope,_102.correctScope);
+}
+function handleKeyPress(e,obj){
+if(!_101.shift){
+_101.shift=false;
+}
+if(!_101.alt){
+_101.alt=false;
+}
+if(!_101.ctrl){
+_101.ctrl=false;
+}
+if(e.shiftKey==_101.shift&&e.altKey==_101.alt&&e.ctrlKey==_101.ctrl){
+var _107;
+var _108;
+if(_101.keys instanceof Array){
+for(var i=0;i<_101.keys.length;i++){
+_107=_101.keys[i];
+if(_107==e.charCode){
+_104.fire(e.charCode,e);
+break;
+}else{
+if(_107==e.keyCode){
+_104.fire(e.keyCode,e);
+break;
+}
+}
+}
+}else{
+_107=_101.keys;
+if(_107==e.charCode){
+_104.fire(e.charCode,e);
+}else{
+if(_107==e.keyCode){
+_104.fire(e.keyCode,e);
+}
+}
+}
+}
+}
+this.enable=function(){
+if(!this.enabled){
+YAHOO.util.Event.addListener(_100,_103,handleKeyPress);
+this.enabledEvent.fire(_101);
+}
+this.enabled=true;
+};
+this.disable=function(){
+if(this.enabled){
+YAHOO.util.Event.removeListener(_100,_103,handleKeyPress);
+this.disabledEvent.fire(_101);
+}
+this.enabled=false;
+};
+this.toString=function(){
+return "KeyListener ["+_101.keys+"] "+_100.tagName+(_100.id?"["+_100.id+"]":"");
+};
+};
+YAHOO.util.KeyListener.KEYDOWN="keydown";
+YAHOO.util.KeyListener.KEYUP="keyup";
+YAHOO.widget.Tooltip=function(el,_10b){
+YAHOO.widget.Tooltip.superclass.constructor.call(this,el,_10b);
+};
+YAHOO.extend(YAHOO.widget.Tooltip,YAHOO.widget.Overlay);
+YAHOO.widget.Tooltip.CSS_TOOLTIP="yui-tt";
+YAHOO.widget.Tooltip.prototype.init=function(el,_10d){
+if(document.readyState&&document.readyState!="complete"){
+var _10e=function(){
+this.init(el,_10d);
+};
+YAHOO.util.Event.addListener(window,"load",_10e,this,true);
+}else{
+YAHOO.widget.Tooltip.superclass.init.call(this,el);
+this.beforeInitEvent.fire(YAHOO.widget.Tooltip);
+YAHOO.util.Dom.addClass(this.element,YAHOO.widget.Tooltip.CSS_TOOLTIP);
+if(_10d){
+this.cfg.applyConfig(_10d,true);
+}
+this.cfg.queueProperty("visible",false);
+this.cfg.queueProperty("constraintoviewport",true);
+this.setBody("");
+this.render(this.cfg.getProperty("container"));
+this.initEvent.fire(YAHOO.widget.Tooltip);
+}
+};
+YAHOO.widget.Tooltip.prototype.initDefaultConfig=function(){
+YAHOO.widget.Tooltip.superclass.initDefaultConfig.call(this);
+this.cfg.addProperty("preventoverlap",{value:true,validator:this.cfg.checkBoolean,supercedes:["x","y","xy"]});
+this.cfg.addProperty("showdelay",{value:200,handler:this.configShowDelay,validator:this.cfg.checkNumber});
+this.cfg.addProperty("autodismissdelay",{value:5000,handler:this.configAutoDismissDelay,validator:this.cfg.checkNumber});
+this.cfg.addProperty("hidedelay",{value:250,handler:this.configHideDelay,validator:this.cfg.checkNumber});
+this.cfg.addProperty("text",{handler:this.configText,suppressEvent:true});
+this.cfg.addProperty("container",{value:document.body,handler:this.configContainer});
+};
+YAHOO.widget.Tooltip.prototype.configText=function(type,args,obj){
+var text=args[0];
+if(text){
+this.setBody(text);
+}
+};
+YAHOO.widget.Tooltip.prototype.configContainer=function(type,args,obj){
+var _116=args[0];
+if(typeof _116=="string"){
+this.cfg.setProperty("container",document.getElementById(_116),true);
+}
+};
+YAHOO.widget.Tooltip.prototype.configContext=function(type,args,obj){
+var _11a=args[0];
+if(_11a){
+if(!(_11a instanceof Array)){
+if(typeof _11a=="string"){
+this.cfg.setProperty("context",[document.getElementById(_11a)],true);
+}else{
+this.cfg.setProperty("context",[_11a],true);
+}
+_11a=this.cfg.getProperty("context");
+}
+if(this._context){
+for(var c=0;c<this._context.length;++c){
+var el=this._context[c];
+YAHOO.util.Event.removeListener(el,"mouseover",this.onContextMouseOver);
+YAHOO.util.Event.removeListener(el,"mousemove",this.onContextMouseMove);
+YAHOO.util.Event.removeListener(el,"mouseout",this.onContextMouseOut);
+}
+}
+this._context=_11a;
+for(var d=0;d<this._context.length;++d){
+var el2=this._context[d];
+YAHOO.util.Event.addListener(el2,"mouseover",this.onContextMouseOver,this);
+YAHOO.util.Event.addListener(el2,"mousemove",this.onContextMouseMove,this);
+YAHOO.util.Event.addListener(el2,"mouseout",this.onContextMouseOut,this);
+}
+}
+};
+YAHOO.widget.Tooltip.prototype.onContextMouseMove=function(e,obj){
+obj.pageX=YAHOO.util.Event.getPageX(e);
+obj.pageY=YAHOO.util.Event.getPageY(e);
+};
+YAHOO.widget.Tooltip.prototype.onContextMouseOver=function(e,obj){
+if(obj.hideProcId){
+clearTimeout(obj.hideProcId);
+obj.hideProcId=null;
+}
+var _123=this;
+YAHOO.util.Event.addListener(_123,"mousemove",obj.onContextMouseMove,obj);
+if(_123.title){
+obj._tempTitle=_123.title;
+_123.title="";
+}
+obj.showProcId=obj.doShow(e,_123);
+};
+YAHOO.widget.Tooltip.prototype.onContextMouseOut=function(e,obj){
+var el=this;
+if(obj._tempTitle){
+el.title=obj._tempTitle;
+obj._tempTitle=null;
+}
+if(obj.showProcId){
+clearTimeout(obj.showProcId);
+obj.showProcId=null;
+}
+if(obj.hideProcId){
+clearTimeout(obj.hideProcId);
+obj.hideProcId=null;
+}
+obj.hideProcId=setTimeout(function(){
+obj.hide();
+},obj.cfg.getProperty("hidedelay"));
+};
+YAHOO.widget.Tooltip.prototype.doShow=function(e,_128){
+var _129=25;
+if(this.browser=="opera"&&_128.tagName=="A"){
+_129+=12;
+}
+var me=this;
+return setTimeout(function(){
+if(me._tempTitle){
+me.setBody(me._tempTitle);
+}else{
+me.cfg.refireEvent("text");
+}
+me.moveTo(me.pageX,me.pageY+_129);
+if(me.cfg.getProperty("preventoverlap")){
+me.preventOverlap(me.pageX,me.pageY);
+}
+YAHOO.util.Event.removeListener(_128,"mousemove",me.onContextMouseMove);
+me.show();
+me.hideProcId=me.doHide();
+},this.cfg.getProperty("showdelay"));
+};
+YAHOO.widget.Tooltip.prototype.doHide=function(){
+var me=this;
+return setTimeout(function(){
+me.hide();
+},this.cfg.getProperty("autodismissdelay"));
+};
+YAHOO.widget.Tooltip.prototype.preventOverlap=function(_12c,_12d){
+var _12e=this.element.offsetHeight;
+var _12f=YAHOO.util.Dom.getRegion(this.element);
+_12f.top-=5;
+_12f.left-=5;
+_12f.right+=5;
+_12f.bottom+=5;
+var _130=new YAHOO.util.Point(_12c,_12d);
+if(_12f.contains(_130)){
+this.cfg.setProperty("y",(_12d-_12e-5));
+}
+};
+YAHOO.widget.Tooltip.prototype.toString=function(){
+return "Tooltip "+this.id;
+};
+YAHOO.widget.Panel=function(el,_132){
+YAHOO.widget.Panel.superclass.constructor.call(this,el,_132);
+};
+YAHOO.extend(YAHOO.widget.Panel,YAHOO.widget.Overlay);
+YAHOO.widget.Panel.CSS_PANEL="yui-panel";
+YAHOO.widget.Panel.CSS_PANEL_CONTAINER="yui-panel-container";
+YAHOO.widget.Panel.prototype.init=function(el,_134){
+YAHOO.widget.Panel.superclass.init.call(this,el);
+this.beforeInitEvent.fire(YAHOO.widget.Panel);
+YAHOO.util.Dom.addClass(this.element,YAHOO.widget.Panel.CSS_PANEL);
+this.buildWrapper();
+if(_134){
+this.cfg.applyConfig(_134,true);
+}
+this.beforeRenderEvent.subscribe(function(){
+var _135=this.cfg.getProperty("draggable");
+if(_135){
+if(!this.header){
+this.setHeader("&#160;");
+}
+}
+},this,true);
+var me=this;
+var _137=function(){
+this.blur();
+};
+this.showMaskEvent.subscribe(function(){
+var _138=function(el){
+if((el.tagName=="A"||el.tagName=="BUTTON"||el.tagName=="SELECT"||el.tagName=="INPUT"||el.tagName=="TEXTAREA")&&el.type!="hidden"){
+if(!YAHOO.util.Dom.isAncestor(me.element,el)){
+YAHOO.util.Event.addListener(el,"focus",_137,el,true);
+return true;
+}
+}else{
+return false;
+}
+};
+this.focusableElements=YAHOO.util.Dom.getElementsBy(_138);
+},this,true);
+this.hideMaskEvent.subscribe(function(){
+for(var i=0;i<this.focusableElements.length;i++){
+var el2=this.focusableElements[i];
+YAHOO.util.Event.removeListener(el2,"focus",_137);
+}
+},this,true);
+this.beforeShowEvent.subscribe(function(){
+this.cfg.refireEvent("underlay");
+},this,true);
+this.initEvent.fire(YAHOO.widget.Panel);
+};
+YAHOO.widget.Panel.prototype.initEvents=function(){
+YAHOO.widget.Panel.superclass.initEvents.call(this);
+this.showMaskEvent=new YAHOO.util.CustomEvent("showMask");
+this.hideMaskEvent=new YAHOO.util.CustomEvent("hideMask");
+this.dragEvent=new YAHOO.util.CustomEvent("drag");
+};
+YAHOO.widget.Panel.prototype.initDefaultConfig=function(){
+YAHOO.widget.Panel.superclass.initDefaultConfig.call(this);
+this.cfg.addProperty("close",{value:true,handler:this.configClose,validator:this.cfg.checkBoolean,supercedes:["visible"]});
+this.cfg.addProperty("draggable",{value:true,handler:this.configDraggable,validator:this.cfg.checkBoolean,supercedes:["visible"]});
+this.cfg.addProperty("underlay",{value:"shadow",handler:this.configUnderlay,supercedes:["visible"]});
+this.cfg.addProperty("modal",{value:false,handler:this.configModal,validator:this.cfg.checkBoolean,supercedes:["visible"]});
+this.cfg.addProperty("keylisteners",{handler:this.configKeyListeners,suppressEvent:true,supercedes:["visible"]});
+};
+YAHOO.widget.Panel.prototype.configClose=function(type,args,obj){
+var val=args[0];
+var _140=function(e,obj){
+obj.hide();
+};
+if(val){
+if(!this.close){
+this.close=document.createElement("span");
+YAHOO.util.Dom.addClass(this.close,"container-close");
+this.close.innerHTML="&#160;";
+this.innerElement.appendChild(this.close);
+YAHOO.util.Event.addListener(this.close,"click",_140,this);
+}else{
+this.close.style.display="block";
+}
+}else{
+if(this.close){
+this.close.style.display="none";
+}
+}
+};
+YAHOO.widget.Panel.prototype.configDraggable=function(type,args,obj){
+var val=args[0];
+if(val){
+if(this.header){
+YAHOO.util.Dom.setStyle(this.header,"cursor","move");
+this.registerDragDrop();
+}
+}else{
+if(this.dd){
+this.dd.unreg();
+}
+if(this.header){
+YAHOO.util.Dom.setStyle(this.header,"cursor","auto");
+}
+}
+};
+YAHOO.widget.Panel.prototype.configUnderlay=function(type,args,obj){
+var val=args[0];
+switch(val.toLowerCase()){
+case "shadow":
+YAHOO.util.Dom.removeClass(this.element,"matte");
+YAHOO.util.Dom.addClass(this.element,"shadow");
+if(!this.underlay){
+this.underlay=document.createElement("div");
+this.underlay.className="underlay";
+this.underlay.innerHTML="&#160;";
+this.element.appendChild(this.underlay);
+}
+this.sizeUnderlay();
+break;
+case "matte":
+YAHOO.util.Dom.removeClass(this.element,"shadow");
+YAHOO.util.Dom.addClass(this.element,"matte");
+break;
+default:
+YAHOO.util.Dom.removeClass(this.element,"shadow");
+YAHOO.util.Dom.removeClass(this.element,"matte");
+break;
+}
+};
+YAHOO.widget.Panel.prototype.configModal=function(type,args,obj){
+var _14e=args[0];
+if(_14e){
+this.buildMask();
+if(!YAHOO.util.Config.alreadySubscribed(this.beforeShowEvent,this.showMask,this)){
+this.beforeShowEvent.subscribe(this.showMask,this,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(this.hideEvent,this.hideMask,this)){
+this.hideEvent.subscribe(this.hideMask,this,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(YAHOO.widget.Overlay.windowResizeEvent,this.sizeMask,this)){
+YAHOO.widget.Overlay.windowResizeEvent.subscribe(this.sizeMask,this,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(this.destroyEvent,this.removeMask,this)){
+this.destroyEvent.subscribe(this.removeMask,this,true);
+}
+this.cfg.refireEvent("zIndex");
+}else{
+this.beforeShowEvent.unsubscribe(this.showMask,this);
+this.hideEvent.unsubscribe(this.hideMask,this);
+YAHOO.widget.Overlay.windowResizeEvent.unsubscribe(this.sizeMask,this);
+this.destroyEvent.unsubscribe(this.removeMask,this);
+}
+};
+YAHOO.widget.Panel.prototype.removeMask=function(){
+if(this.mask){
+if(this.mask.parentNode){
+this.mask.parentNode.removeChild(this.mask);
+}
+this.mask=null;
+}
+};
+YAHOO.widget.Panel.prototype.configKeyListeners=function(type,args,obj){
+var _152=args[0];
+if(_152){
+if(_152 instanceof Array){
+for(var i=0;i<_152.length;i++){
+var _154=_152[i];
+if(!YAHOO.util.Config.alreadySubscribed(this.showEvent,_154.enable,_154)){
+this.showEvent.subscribe(_154.enable,_154,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(this.hideEvent,_154.disable,_154)){
+this.hideEvent.subscribe(_154.disable,_154,true);
+this.destroyEvent.subscribe(_154.disable,_154,true);
+}
+}
+}else{
+if(!YAHOO.util.Config.alreadySubscribed(this.showEvent,_152.enable,_152)){
+this.showEvent.subscribe(_152.enable,_152,true);
+}
+if(!YAHOO.util.Config.alreadySubscribed(this.hideEvent,_152.disable,_152)){
+this.hideEvent.subscribe(_152.disable,_152,true);
+this.destroyEvent.subscribe(_152.disable,_152,true);
+}
+}
+}
+};
+YAHOO.widget.Panel.prototype.configHeight=function(type,args,obj){
+var _158=args[0];
+var el=this.innerElement;
+YAHOO.util.Dom.setStyle(el,"height",_158);
+this.cfg.refireEvent("underlay");
+this.cfg.refireEvent("iframe");
+};
+YAHOO.widget.Panel.prototype.configWidth=function(type,args,obj){
+var _15d=args[0];
+var el=this.innerElement;
+YAHOO.util.Dom.setStyle(el,"width",_15d);
+this.cfg.refireEvent("underlay");
+this.cfg.refireEvent("iframe");
+};
+YAHOO.widget.Panel.prototype.configzIndex=function(type,args,obj){
+YAHOO.widget.Panel.superclass.configzIndex.call(this,type,args,obj);
+var _162=0;
+var _163=YAHOO.util.Dom.getStyle(this.element,"zIndex");
+if(this.mask){
+if(!_163||isNaN(_163)){
+_163=0;
+}
+if(_163===0){
+this.cfg.setProperty("zIndex",1);
+}else{
+_162=_163-1;
+YAHOO.util.Dom.setStyle(this.mask,"zIndex",_162);
+}
+}
+};
+YAHOO.widget.Panel.prototype.buildWrapper=function(){
+var _164=this.element.parentNode;
+var _165=this.element;
+var _166=document.createElement("div");
+_166.className=YAHOO.widget.Panel.CSS_PANEL_CONTAINER;
+_166.id=_165.id+"_c";
+if(_164){
+_164.insertBefore(_166,_165);
+}
+_166.appendChild(_165);
+this.element=_166;
+this.innerElement=_165;
+YAHOO.util.Dom.setStyle(this.innerElement,"visibility","inherit");
+};
+YAHOO.widget.Panel.prototype.sizeUnderlay=function(){
+if(this.underlay&&this.browser!="gecko"&&this.browser!="safari"){
+this.underlay.style.width=this.innerElement.offsetWidth+"px";
+this.underlay.style.height=this.innerElement.offsetHeight+"px";
+}
+};
+YAHOO.widget.Panel.prototype.onDomResize=function(e,obj){
+YAHOO.widget.Panel.superclass.onDomResize.call(this,e,obj);
+var me=this;
+setTimeout(function(){
+me.sizeUnderlay();
+},0);
+};
+YAHOO.widget.Panel.prototype.registerDragDrop=function(){
+if(this.header){
+this.dd=new YAHOO.util.DD(this.element.id,this.id);
+if(!this.header.id){
+this.header.id=this.id+"_h";
+}
+var me=this;
+this.dd.startDrag=function(){
+if(me.browser=="ie"){
+YAHOO.util.Dom.addClass(me.element,"drag");
+}
+if(me.cfg.getProperty("constraintoviewport")){
+var _16b=me.element.offsetHeight;
+var _16c=me.element.offsetWidth;
+var _16d=YAHOO.util.Dom.getViewportWidth();
+var _16e=YAHOO.util.Dom.getViewportHeight();
+var _16f=window.scrollX||document.documentElement.scrollLeft;
+var _170=window.scrollY||document.documentElement.scrollTop;
+var _171=_170+10;
+var _172=_16f+10;
+var _173=_170+_16e-_16b-10;
+var _174=_16f+_16d-_16c-10;
+this.minX=_172;
+this.maxX=_174;
+this.constrainX=true;
+this.minY=_171;
+this.maxY=_173;
+this.constrainY=true;
+}else{
+this.constrainX=false;
+this.constrainY=false;
+}
+me.dragEvent.fire("startDrag",arguments);
+};
+this.dd.onDrag=function(){
+me.syncPosition();
+me.cfg.refireEvent("iframe");
+if(this.platform=="mac"&&this.browser=="gecko"){
+this.showMacGeckoScrollbars();
+}
+me.dragEvent.fire("onDrag",arguments);
+};
+this.dd.endDrag=function(){
+if(me.browser=="ie"){
+YAHOO.util.Dom.removeClass(me.element,"drag");
+}
+me.dragEvent.fire("endDrag",arguments);
+};
+this.dd.setHandleElId(this.header.id);
+this.dd.addInvalidHandleType("INPUT");
+this.dd.addInvalidHandleType("SELECT");
+this.dd.addInvalidHandleType("TEXTAREA");
+}
+};
+YAHOO.widget.Panel.prototype.buildMask=function(){
+if(!this.mask){
+this.mask=document.createElement("div");
+this.mask.id=this.id+"_mask";
+this.mask.className="mask";
+this.mask.innerHTML="&#160;";
+var _175=function(e,obj){
+YAHOO.util.Event.stopEvent(e);
+};
+var _178=document.body.firstChild;
+if(_178){
+document.body.insertBefore(this.mask,document.body.firstChild);
+}else{
+document.body.appendChild(this.mask);
+}
+}
+};
+YAHOO.widget.Panel.prototype.hideMask=function(){
+if(this.cfg.getProperty("modal")&&this.mask){
+this.mask.style.display="none";
+this.hideMaskEvent.fire();
+YAHOO.util.Dom.removeClass(document.body,"masked");
+}
+};
+YAHOO.widget.Panel.prototype.showMask=function(){
+if(this.cfg.getProperty("modal")&&this.mask){
+YAHOO.util.Dom.addClass(document.body,"masked");
+this.sizeMask();
+this.mask.style.display="block";
+this.showMaskEvent.fire();
+}
+};
+YAHOO.widget.Panel.prototype.sizeMask=function(){
+if(this.mask){
+this.mask.style.height=YAHOO.util.Dom.getDocumentHeight()+"px";
+this.mask.style.width=YAHOO.util.Dom.getDocumentWidth()+"px";
+}
+};
+YAHOO.widget.Panel.prototype.render=function(_179){
+return YAHOO.widget.Panel.superclass.render.call(this,_179,this.innerElement);
+};
+YAHOO.widget.Panel.prototype.toString=function(){
+return "Panel "+this.id;
+};
+YAHOO.widget.Dialog=function(el,_17b){
+YAHOO.widget.Dialog.superclass.constructor.call(this,el,_17b);
+};
+YAHOO.extend(YAHOO.widget.Dialog,YAHOO.widget.Panel);
+YAHOO.widget.Dialog.CSS_DIALOG="yui-dialog";
+YAHOO.widget.Dialog.prototype.initDefaultConfig=function(){
+YAHOO.widget.Dialog.superclass.initDefaultConfig.call(this);
+this.callback={success:null,failure:null,argument:null};
+this.cfg.addProperty("postmethod",{value:"async",handler:this.configPostMethod,validator:function(val){
+if(val!="form"&&val!="async"&&val!="none"&&val!="manual"){
+return false;
+}else{
+return true;
+}
+}});
+this.cfg.addProperty("buttons",{value:"none",handler:this.configButtons});
+};
+YAHOO.widget.Dialog.prototype.initEvents=function(){
+YAHOO.widget.Dialog.superclass.initEvents.call(this);
+this.beforeSubmitEvent=new YAHOO.util.CustomEvent("beforeSubmit");
+this.submitEvent=new YAHOO.util.CustomEvent("submit");
+this.manualSubmitEvent=new YAHOO.util.CustomEvent("manualSubmit");
+this.asyncSubmitEvent=new YAHOO.util.CustomEvent("asyncSubmit");
+this.formSubmitEvent=new YAHOO.util.CustomEvent("formSubmit");
+this.cancelEvent=new YAHOO.util.CustomEvent("cancel");
+};
+YAHOO.widget.Dialog.prototype.init=function(el,_17e){
+YAHOO.widget.Dialog.superclass.init.call(this,el);
+this.beforeInitEvent.fire(YAHOO.widget.Dialog);
+YAHOO.util.Dom.addClass(this.element,YAHOO.widget.Dialog.CSS_DIALOG);
+this.cfg.setProperty("visible",false);
+if(_17e){
+this.cfg.applyConfig(_17e,true);
+}
+this.showEvent.subscribe(this.focusFirst,this,true);
+this.beforeHideEvent.subscribe(this.blurButtons,this,true);
+this.beforeRenderEvent.subscribe(function(){
+var _17f=this.cfg.getProperty("buttons");
+if(_17f&&_17f!="none"){
+if(!this.footer){
+this.setFooter("");
+}
+}
+},this,true);
+this.initEvent.fire(YAHOO.widget.Dialog);
+};
+YAHOO.widget.Dialog.prototype.doSubmit=function(){
+var pm=this.cfg.getProperty("postmethod");
+switch(pm){
+case "async":
+var _181=this.form.getAttribute("method")||"POST";
+_181=_181.toUpperCase();
+YAHOO.util.Connect.setForm(this.form);
+var cObj=YAHOO.util.Connect.asyncRequest(_181,this.form.getAttribute("action"),this.callback);
+this.asyncSubmitEvent.fire();
+break;
+case "form":
+this.form.submit();
+this.formSubmitEvent.fire();
+break;
+case "none":
+case "manual":
+this.manualSubmitEvent.fire();
+break;
+}
+};
+YAHOO.widget.Dialog.prototype.registerForm=function(){
+var form=this.element.getElementsByTagName("form")[0];
+if(!form){
+var _184="<form name=\"frm_"+this.id+"\" action=\"\"></form>";
+this.body.innerHTML+=_184;
+form=this.element.getElementsByTagName("form")[0];
+}
+this.firstFormElement=function(){
+for(var f=0;f<form.elements.length;f++){
+var el=form.elements[f];
+if(el.focus&&!el.disabled){
+if(el.type&&el.type!="hidden"){
+return el;
+}
+}
+}
+return null;
+}();
+this.lastFormElement=function(){
+for(var f=form.elements.length-1;f>=0;f--){
+var el=form.elements[f];
+if(el.focus&&!el.disabled){
+if(el.type&&el.type!="hidden"){
+return el;
+}
+}
+}
+return null;
+}();
+this.form=form;
+if(this.cfg.getProperty("modal")&&this.form){
+var me=this;
+var _18a=this.firstFormElement||this.firstButton;
+if(_18a){
+this.preventBackTab=new YAHOO.util.KeyListener(_18a,{shift:true,keys:9},{fn:me.focusLast,scope:me,correctScope:true});
+this.showEvent.subscribe(this.preventBackTab.enable,this.preventBackTab,true);
+this.hideEvent.subscribe(this.preventBackTab.disable,this.preventBackTab,true);
+}
+var _18b=this.lastButton||this.lastFormElement;
+if(_18b){
+this.preventTabOut=new YAHOO.util.KeyListener(_18b,{shift:false,keys:9},{fn:me.focusFirst,scope:me,correctScope:true});
+this.showEvent.subscribe(this.preventTabOut.enable,this.preventTabOut,true);
+this.hideEvent.subscribe(this.preventTabOut.disable,this.preventTabOut,true);
+}
+}
+};
+YAHOO.widget.Dialog.prototype.configClose=function(type,args,obj){
+var val=args[0];
+var _190=function(e,obj){
+obj.cancel();
+};
+if(val){
+if(!this.close){
+this.close=document.createElement("div");
+YAHOO.util.Dom.addClass(this.close,"container-close");
+this.close.innerHTML="&#160;";
+this.innerElement.appendChild(this.close);
+YAHOO.util.Event.addListener(this.close,"click",_190,this);
+}else{
+this.close.style.display="block";
+}
+}else{
+if(this.close){
+this.close.style.display="none";
+}
+}
+};
+YAHOO.widget.Dialog.prototype.configButtons=function(type,args,obj){
+var _196=args[0];
+if(_196!="none"){
+this.buttonSpan=null;
+this.buttonSpan=document.createElement("span");
+this.buttonSpan.className="button-group";
+for(var b=0;b<_196.length;b++){
+var _198=_196[b];
+var _199=document.createElement("button");
+_199.setAttribute("type","button");
+if(_198.isDefault){
+_199.className="default";
+this.defaultHtmlButton=_199;
+}
+_199.appendChild(document.createTextNode(_198.text));
+YAHOO.util.Event.addListener(_199,"click",_198.handler,this,true);
+this.buttonSpan.appendChild(_199);
+_198.htmlButton=_199;
+if(b===0){
+this.firstButton=_198.htmlButton;
+}
+if(b==(_196.length-1)){
+this.lastButton=_198.htmlButton;
+}
+}
+this.setFooter(this.buttonSpan);
+this.cfg.refireEvent("iframe");
+this.cfg.refireEvent("underlay");
+}else{
+if(this.buttonSpan){
+if(this.buttonSpan.parentNode){
+this.buttonSpan.parentNode.removeChild(this.buttonSpan);
+}
+this.buttonSpan=null;
+this.firstButton=null;
+this.lastButton=null;
+this.defaultHtmlButton=null;
+}
+}
+};
+YAHOO.widget.Dialog.prototype.focusFirst=function(type,args,obj){
+if(args){
+var e=args[1];
+if(e){
+YAHOO.util.Event.stopEvent(e);
+}
+}
+if(this.firstFormElement){
+this.firstFormElement.focus();
+}else{
+this.focusDefaultButton();
+}
+};
+YAHOO.widget.Dialog.prototype.focusLast=function(type,args,obj){
+if(args){
+var e=args[1];
+if(e){
+YAHOO.util.Event.stopEvent(e);
+}
+}
+var _1a2=this.cfg.getProperty("buttons");
+if(_1a2&&_1a2 instanceof Array){
+this.focusLastButton();
+}else{
+if(this.lastFormElement){
+this.lastFormElement.focus();
+}
+}
+};
+YAHOO.widget.Dialog.prototype.focusDefaultButton=function(){
+if(this.defaultHtmlButton){
+this.defaultHtmlButton.focus();
+}
+};
+YAHOO.widget.Dialog.prototype.blurButtons=function(){
+var _1a3=this.cfg.getProperty("buttons");
+if(_1a3&&_1a3 instanceof Array){
+var html=_1a3[0].htmlButton;
+if(html){
+html.blur();
+}
+}
+};
+YAHOO.widget.Dialog.prototype.focusFirstButton=function(){
+var _1a5=this.cfg.getProperty("buttons");
+if(_1a5&&_1a5 instanceof Array){
+var html=_1a5[0].htmlButton;
+if(html){
+html.focus();
+}
+}
+};
+YAHOO.widget.Dialog.prototype.focusLastButton=function(){
+var _1a7=this.cfg.getProperty("buttons");
+if(_1a7&&_1a7 instanceof Array){
+var html=_1a7[_1a7.length-1].htmlButton;
+if(html){
+html.focus();
+}
+}
+};
+YAHOO.widget.Dialog.prototype.configPostMethod=function(type,args,obj){
+var _1ac=args[0];
+this.registerForm();
+YAHOO.util.Event.addListener(this.form,"submit",function(e){
+YAHOO.util.Event.stopEvent(e);
+this.submit();
+this.form.blur();
+},this,true);
+};
+YAHOO.widget.Dialog.prototype.validate=function(){
+return true;
+};
+YAHOO.widget.Dialog.prototype.submit=function(){
+if(this.validate()){
+this.beforeSubmitEvent.fire();
+this.doSubmit();
+this.submitEvent.fire();
+this.hide();
+return true;
+}else{
+return false;
+}
+};
+YAHOO.widget.Dialog.prototype.cancel=function(){
+this.cancelEvent.fire();
+this.hide();
+};
+YAHOO.widget.Dialog.prototype.getData=function(){
+var _1ae=this.form;
+if(_1ae){
+var _1af=_1ae.elements,_1b0=_1af.length,_1b1={},_1b2,_1b3;
+for(var i=0;i<_1b0;i++){
+_1b2=_1af[i].name,_1b3=_1af[_1b2];
+if(_1b3){
+if(_1b3.tagName){
+var _1b5=_1b3.type,_1b6=_1b3.tagName.toUpperCase();
+switch(_1b6){
+case "INPUT":
+if(_1b5=="checkbox"){
+_1b1[_1b2]=_1b3.checked;
+}else{
+if(_1b5!="radio"){
+_1b1[_1b2]=_1b3.value;
+}
+}
+break;
+case "TEXTAREA":
+_1b1[_1b2]=_1b3.value;
+break;
+case "SELECT":
+var _1b7=_1b3.options,_1b8=_1b7.length,_1b9=[],_1ba,_1bb;
+for(var n=0;n<_1b8;n++){
+_1ba=_1b7[n];
+if(_1ba.selected){
+_1bb=_1ba.value;
+if(!_1bb||_1bb===""){
+_1bb=_1ba.text;
+}
+_1b9[_1b9.length]=_1bb;
+}
+}
+_1b1[_1b2]=_1b9;
+break;
+}
+}else{
+var _1bd=_1b3.length,_1b5=_1b3[0].type,_1b6=_1b3[0].tagName.toUpperCase();
+switch(_1b5){
+case "radio":
+var _1be;
+for(var n=0;n<_1bd;n++){
+_1be=_1b3[n];
+if(_1be.checked){
+_1b1[_1b2]=_1be.value;
+break;
+}
+}
+break;
+case "checkbox":
+var _1b9=[],_1bf;
+for(var n=0;n<_1bd;n++){
+_1bf=_1b3[n];
+if(_1bf.checked){
+_1b9[_1b9.length]=_1bf.value;
+}
+}
+_1b1[_1b2]=_1b9;
+break;
+}
+}
+}
+}
+}
+return _1b1;
+};
+YAHOO.widget.Dialog.prototype.toString=function(){
+return "Dialog "+this.id;
+};
+YAHOO.widget.SimpleDialog=function(el,_1c1){
+YAHOO.widget.SimpleDialog.superclass.constructor.call(this,el,_1c1);
+};
+YAHOO.extend(YAHOO.widget.SimpleDialog,YAHOO.widget.Dialog);
+YAHOO.widget.SimpleDialog.ICON_BLOCK="blckicon";
+YAHOO.widget.SimpleDialog.ICON_ALARM="alrticon";
+YAHOO.widget.SimpleDialog.ICON_HELP="hlpicon";
+YAHOO.widget.SimpleDialog.ICON_INFO="infoicon";
+YAHOO.widget.SimpleDialog.ICON_WARN="warnicon";
+YAHOO.widget.SimpleDialog.ICON_TIP="tipicon";
+YAHOO.widget.SimpleDialog.CSS_SIMPLEDIALOG="yui-simple-dialog";
+YAHOO.widget.SimpleDialog.prototype.initDefaultConfig=function(){
+YAHOO.widget.SimpleDialog.superclass.initDefaultConfig.call(this);
+this.cfg.addProperty("icon",{value:"none",handler:this.configIcon,suppressEvent:true});
+this.cfg.addProperty("text",{value:"",handler:this.configText,suppressEvent:true,supercedes:["icon"]});
+};
+YAHOO.widget.SimpleDialog.prototype.init=function(el,_1c3){
+YAHOO.widget.SimpleDialog.superclass.init.call(this,el);
+this.beforeInitEvent.fire(YAHOO.widget.SimpleDialog);
+YAHOO.util.Dom.addClass(this.element,YAHOO.widget.SimpleDialog.CSS_SIMPLEDIALOG);
+this.cfg.queueProperty("postmethod","manual");
+if(_1c3){
+this.cfg.applyConfig(_1c3,true);
+}
+this.beforeRenderEvent.subscribe(function(){
+if(!this.body){
+this.setBody("");
+}
+},this,true);
+this.initEvent.fire(YAHOO.widget.SimpleDialog);
+};
+YAHOO.widget.SimpleDialog.prototype.registerForm=function(){
+YAHOO.widget.SimpleDialog.superclass.registerForm.call(this);
+this.form.innerHTML+="<input type=\"hidden\" name=\""+this.id+"\" value=\"\"/>";
+};
+YAHOO.widget.SimpleDialog.prototype.configIcon=function(type,args,obj){
+var icon=args[0];
+if(icon&&icon!="none"){
+var _1c8="";
+if(icon.indexOf(".")==-1){
+_1c8="<span class=\"yui-icon "+icon+"\" >&#160;</span>";
+}else{
+_1c8="<img src=\""+this.imageRoot+icon+"\" class=\"yui-icon\" />";
+}
+this.body.innerHTML=_1c8+this.body.innerHTML;
+}
+};
+YAHOO.widget.SimpleDialog.prototype.configText=function(type,args,obj){
+var text=args[0];
+if(text){
+this.setBody(text);
+this.cfg.refireEvent("icon");
+}
+};
+YAHOO.widget.SimpleDialog.prototype.toString=function(){
+return "SimpleDialog "+this.id;
+};
+YAHOO.widget.ContainerEffect=function(_1cd,_1ce,_1cf,_1d0,_1d1){
+if(!_1d1){
+_1d1=YAHOO.util.Anim;
+}
+this.overlay=_1cd;
+this.attrIn=_1ce;
+this.attrOut=_1cf;
+this.targetElement=_1d0||_1cd.element;
+this.animClass=_1d1;
+};
+YAHOO.widget.ContainerEffect.prototype.init=function(){
+this.beforeAnimateInEvent=new YAHOO.util.CustomEvent("beforeAnimateIn");
+this.beforeAnimateOutEvent=new YAHOO.util.CustomEvent("beforeAnimateOut");
+this.animateInCompleteEvent=new YAHOO.util.CustomEvent("animateInComplete");
+this.animateOutCompleteEvent=new YAHOO.util.CustomEvent("animateOutComplete");
+this.animIn=new this.animClass(this.targetElement,this.attrIn.attributes,this.attrIn.duration,this.attrIn.method);
+this.animIn.onStart.subscribe(this.handleStartAnimateIn,this);
+this.animIn.onTween.subscribe(this.handleTweenAnimateIn,this);
+this.animIn.onComplete.subscribe(this.handleCompleteAnimateIn,this);
+this.animOut=new this.animClass(this.targetElement,this.attrOut.attributes,this.attrOut.duration,this.attrOut.method);
+this.animOut.onStart.subscribe(this.handleStartAnimateOut,this);
+this.animOut.onTween.subscribe(this.handleTweenAnimateOut,this);
+this.animOut.onComplete.subscribe(this.handleCompleteAnimateOut,this);
+};
+YAHOO.widget.ContainerEffect.prototype.animateIn=function(){
+this.beforeAnimateInEvent.fire();
+this.animIn.animate();
+};
+YAHOO.widget.ContainerEffect.prototype.animateOut=function(){
+this.beforeAnimateOutEvent.fire();
+this.animOut.animate();
+};
+YAHOO.widget.ContainerEffect.prototype.handleStartAnimateIn=function(type,args,obj){
+};
+YAHOO.widget.ContainerEffect.prototype.handleTweenAnimateIn=function(type,args,obj){
+};
+YAHOO.widget.ContainerEffect.prototype.handleCompleteAnimateIn=function(type,args,obj){
+};
+YAHOO.widget.ContainerEffect.prototype.handleStartAnimateOut=function(type,args,obj){
+};
+YAHOO.widget.ContainerEffect.prototype.handleTweenAnimateOut=function(type,args,obj){
+};
+YAHOO.widget.ContainerEffect.prototype.handleCompleteAnimateOut=function(type,args,obj){
+};
+YAHOO.widget.ContainerEffect.prototype.toString=function(){
+var _1e4="ContainerEffect";
+if(this.overlay){
+_1e4+=" ["+this.overlay.toString()+"]";
+}
+return _1e4;
+};
+YAHOO.widget.ContainerEffect.FADE=function(_1e5,dur){
+var fade=new YAHOO.widget.ContainerEffect(_1e5,{attributes:{opacity:{from:0,to:1}},duration:dur,method:YAHOO.util.Easing.easeIn},{attributes:{opacity:{to:0}},duration:dur,method:YAHOO.util.Easing.easeOut},_1e5.element);
+fade.handleStartAnimateIn=function(type,args,obj){
+YAHOO.util.Dom.addClass(obj.overlay.element,"hide-select");
+if(!obj.overlay.underlay){
+obj.overlay.cfg.refireEvent("underlay");
+}
+if(obj.overlay.underlay){
+obj.initialUnderlayOpacity=YAHOO.util.Dom.getStyle(obj.overlay.underlay,"opacity");
+obj.overlay.underlay.style.filter=null;
+}
+YAHOO.util.Dom.setStyle(obj.overlay.element,"visibility","visible");
+YAHOO.util.Dom.setStyle(obj.overlay.element,"opacity",0);
+};
+fade.handleCompleteAnimateIn=function(type,args,obj){
+YAHOO.util.Dom.removeClass(obj.overlay.element,"hide-select");
+if(obj.overlay.element.style.filter){
+obj.overlay.element.style.filter=null;
+}
+if(obj.overlay.underlay){
+YAHOO.util.Dom.setStyle(obj.overlay.underlay,"opacity",obj.initialUnderlayOpacity);
+}
+obj.overlay.cfg.refireEvent("iframe");
+obj.animateInCompleteEvent.fire();
+};
+fade.handleStartAnimateOut=function(type,args,obj){
+YAHOO.util.Dom.addClass(obj.overlay.element,"hide-select");
+if(obj.overlay.underlay){
+obj.overlay.underlay.style.filter=null;
+}
+};
+fade.handleCompleteAnimateOut=function(type,args,obj){
+YAHOO.util.Dom.removeClass(obj.overlay.element,"hide-select");
+if(obj.overlay.element.style.filter){
+obj.overlay.element.style.filter=null;
+}
+YAHOO.util.Dom.setStyle(obj.overlay.element,"visibility","hidden");
+YAHOO.util.Dom.setStyle(obj.overlay.element,"opacity",1);
+obj.overlay.cfg.refireEvent("iframe");
+obj.animateOutCompleteEvent.fire();
+};
+fade.init();
+return fade;
+};
+YAHOO.widget.ContainerEffect.SLIDE=function(_1f4,dur){
+var x=_1f4.cfg.getProperty("x")||YAHOO.util.Dom.getX(_1f4.element);
+var y=_1f4.cfg.getProperty("y")||YAHOO.util.Dom.getY(_1f4.element);
+var _1f8=YAHOO.util.Dom.getClientWidth();
+var _1f9=_1f4.element.offsetWidth;
+var _1fa=new YAHOO.widget.ContainerEffect(_1f4,{attributes:{points:{to:[x,y]}},duration:dur,method:YAHOO.util.Easing.easeIn},{attributes:{points:{to:[(_1f8+25),y]}},duration:dur,method:YAHOO.util.Easing.easeOut},_1f4.element,YAHOO.util.Motion);
+_1fa.handleStartAnimateIn=function(type,args,obj){
+obj.overlay.element.style.left=(-25-_1f9)+"px";
+obj.overlay.element.style.top=y+"px";
+};
+_1fa.handleTweenAnimateIn=function(type,args,obj){
+var pos=YAHOO.util.Dom.getXY(obj.overlay.element);
+var _202=pos[0];
+var _203=pos[1];
+if(YAHOO.util.Dom.getStyle(obj.overlay.element,"visibility")=="hidden"&&_202<x){
+YAHOO.util.Dom.setStyle(obj.overlay.element,"visibility","visible");
+}
+obj.overlay.cfg.setProperty("xy",[_202,_203],true);
+obj.overlay.cfg.refireEvent("iframe");
+};
+_1fa.handleCompleteAnimateIn=function(type,args,obj){
+obj.overlay.cfg.setProperty("xy",[x,y],true);
+obj.startX=x;
+obj.startY=y;
+obj.overlay.cfg.refireEvent("iframe");
+obj.animateInCompleteEvent.fire();
+};
+_1fa.handleStartAnimateOut=function(type,args,obj){
+var vw=YAHOO.util.Dom.getViewportWidth();
+var pos=YAHOO.util.Dom.getXY(obj.overlay.element);
+var yso=pos[1];
+var _20d=obj.animOut.attributes.points.to;
+obj.animOut.attributes.points.to=[(vw+25),yso];
+};
+_1fa.handleTweenAnimateOut=function(type,args,obj){
+var pos=YAHOO.util.Dom.getXY(obj.overlay.element);
+var xto=pos[0];
+var yto=pos[1];
+obj.overlay.cfg.setProperty("xy",[xto,yto],true);
+obj.overlay.cfg.refireEvent("iframe");
+};
+_1fa.handleCompleteAnimateOut=function(type,args,obj){
+YAHOO.util.Dom.setStyle(obj.overlay.element,"visibility","hidden");
+obj.overlay.cfg.setProperty("xy",[x,y]);
+obj.animateOutCompleteEvent.fire();
+};
+_1fa.init();
+return _1fa;
+};
+YAHOO.register("container",YAHOO.widget.Module,{version:"2.2.0",build:"115"});
+
+
 if(!YAHOO.util.DragDropMgr){
 YAHOO.util.DragDropMgr=function(){
 var _1=YAHOO.util.Event;
@@ -15971,57 +18249,59 @@ _90.time=_94.toLocaleTimeString();
 }
 var _95=(_90.isLocal?"user":"contact");
 var _96=(_90.mentioned?"mentioned":"");
+var _97=((this.previousMessageInfo!=null&&_8f==this.previousMessageInfo.from)?"consecutive":"");
+this.previousMessageInfo={jid:jid,from:_8f,msg:_90,time:_90.time};
 if(_90.body.indexOf("/me")==0){
 _90.action="action";
 _90.body=" * "+_8f+_90.body.replace("/me","");
 }
-var _97=jive.spank.chat.Filter.applyAll(_90.body);
-var _98=jive.spank.chat.Template.message.append(_92.id,{from:_8f,message:_97,type:_95,mentioned:_96,action:_90.action,time:_90.time,msgclass:_93});
+var _98=jive.spank.chat.Filter.applyAll(_90.body);
+var _99=jive.spank.chat.Template.message.append(_92.id,{from:_8f,message:_98,type:_95,mentioned:_96,consecutive:_97,action:_90.action,time:_90.time,msgclass:_93});
 }else{
 _92.dom.appendChild(_90.el);
 _90.callback(this);
 }
 this._scrollMessageHistory(_92);
-var _99=jive.spank.chat.ChatWindow.focusedJID;
-if(_99!=jid){
+var _9a=jive.spank.chat.ChatWindow.focusedJID;
+if(_9a!=jid){
 this.addNotification(jid);
 }
-},addStatusMessage:function(jid,_9b){
-var _9c=getEl("jive-tab-"+jid+"-history");
-var _9d=jive.spank.chat.Template.statusMessage.append(_9c.id,{message:_9b});
-this._scrollMessageHistory(_9c);
-},_scrollMessageHistory:function(_9e){
-_9e.dom.parentNode.scrollTop=_9e.getHeight()-_9e.dom.parentNode.clientHeight;
+},addStatusMessage:function(jid,_9c,_9d){
+var _9e=getEl("jive-tab-"+jid+"-history");
+var _9f=jive.spank.chat.Template.statusMessage.append(_9e.id,{message:_9c,customClass:_9d});
+this._scrollMessageHistory(_9e);
+},_scrollMessageHistory:function(_a0){
+_a0.dom.parentNode.scrollTop=_a0.getHeight()-_a0.dom.parentNode.clientHeight;
 },addNotification:function(jid){
-var _a0=this.getTabByJID(jid);
+var _a2=this.getTabByJID(jid);
 if(typeof this.newMessages[jid]=="undefined"){
 this.newMessages[jid]=1;
 }else{
 this.newMessages[jid]++;
 }
-if(_a0&&_a0.textEl){
-_a0.textEl.addClass("jive-notify");
+if(_a2&&_a2.textEl){
+_a2.textEl.addClass("jive-notify");
 }
 if(this.notificationInterval&&!this.notificationInterval[jid]){
-var _a1=this.bodyId;
+var _a3=this.bodyId;
 this.notificationInterval=window.setInterval(function(){
-getEls("#"+_a1+" span.jive-notify").toggleClass("flashNotify");
+getEls("#"+_a3+" span.jive-notify").toggleClass("flashNotify");
 },1000);
 }else{
 getEls("#"+this.bodyId+" span.jive-notify").addClass("flashNotify");
 }
 jive.spank.notifier.doTitleNotify();
-if(_a0&&_a0.text){
-if(/ \(\d+\)$/.test(_a0.text)){
-_a0.setText(_a0.text.replace(/ \(\d+\)$/,""));
+if(_a2&&_a2.text){
+if(/ \(\d+\)$/.test(_a2.text)){
+_a2.setText(_a2.text.replace(/ \(\d+\)$/,""));
 }
-_a0.setText(_a0.text+" ("+this.newMessages[jid]+")");
+_a2.setText(_a2.text+" ("+this.newMessages[jid]+")");
 }
 },clearNotification:function(jid){
-var _a3=this.getTabByJID(jid);
-if(_a3&&_a3.textEl){
-_a3.textEl.removeClass("jive-notify").removeClass("flashNotify");
-_a3.setText(_a3.text.replace(/ \(\d+\)$/,""));
+var _a5=this.getTabByJID(jid);
+if(_a5&&_a5.textEl){
+_a5.textEl.removeClass("jive-notify").removeClass("flashNotify");
+_a5.setText(_a5.text.replace(/ \(\d+\)$/,""));
 }
 delete this.newMessages[jid];
 if(this.notificationInterval&&this.notificationInterval[jid]&&this.newMessages.properties&&this.newMessages.properties.length==0){
@@ -16030,45 +18310,45 @@ this.notificationInterval[jid]=null;
 }
 jive.spank.notifier.doTitleNotify();
 },clearAllNotifications:function(){
-var _a4=getEls("#"+this.bodyId+" span.jive-notify");
-_a4.removeClass("jive-notify");
+var _a6=getEls("#"+this.bodyId+" span.jive-notify");
+_a6.removeClass("jive-notify");
 window.clearInterval(this.notificationInterval);
 this.notificationInterval=null;
-_a4.removeClass("flashNotify");
+_a6.removeClass("flashNotify");
 this.newMessages={};
 jive.spank.notifier.doTitleNotify();
 },getMessage:function(){
-var _a5=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
-var _a6=_a5.id.split("-");
-_a6[3]="text";
-var _a7=_a6.join("-");
-return getEl(_a7).dom.value;
+var _a7=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
+var _a8=_a7.id.split("-");
+_a8[3]="text";
+var _a9=_a8.join("-");
+return getEl(_a9).dom.value;
 },getActiveTabJID:function(){
-var _a8=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
-return _a8.id.split("-")[2];
-},getTabJID:function(id){
-var _aa=this.getTabs()?this.getTabs().getTab(id):this._tabIfSingleTab();
+var _aa=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
 return _aa.id.split("-")[2];
+},getTabJID:function(id){
+var _ac=this.getTabs()?this.getTabs().getTab(id):this._tabIfSingleTab();
+return _ac.id.split("-")[2];
 },getTabs:function(){
-var _ab=this.dialog.getLayout().regions;
-return _ab["center"].getTabs();
+var _ad=this.dialog.getLayout().regions;
+return _ad["center"].getTabs();
 },getTabByJID:function(jid){
-var _ad=this.getTabs();
-if(_ad!=null){
-var _ae=_ad.items["jive-tab-"+jid+"-layout"];
-return (typeof _ae=="undefined")?null:_ae;
+var _af=this.getTabs();
+if(_af!=null){
+var _b0=_af.items["jive-tab-"+jid+"-layout"];
+return (typeof _b0=="undefined")?null:_b0;
 }else{
 return this._tabIfSingleTab();
 }
 },_tabIfSingleTab:function(){
 return this.dialog.getLayout().regions["center"].panels.items[0];
 },removeAllTabs:function(){
-var _af=this.getTabs();
-if(!_af){
+var _b1=this.getTabs();
+if(!_b1){
 return;
 }
-for(var i=_af.getCount()-1;i>=0;i--){
-_af.getTab(i).closeClick();
+for(var i=_b1.getCount()-1;i>=0;i--){
+_b1.getTab(i).closeClick();
 }
 delete this.tabs;
 this.tabs={};
@@ -16079,84 +18359,99 @@ delete this.tabs;
 },hide:function(){
 this.clearAllNotifications();
 jive.spank.chat.ChatWindow.superclass.hide.call(this);
-},getContactTab:function(_b1,_b2){
-if(typeof _b1=="string"){
-var jid=_b1;
-_b1={name:jid,jid:jid};
+},getContactTab:function(_b3,_b4){
+if(typeof _b3=="string"){
+var jid=_b3;
+_b3={name:jid,jid:jid};
 }
-var _b4=this.getTabs();
-var _b5;
+var _b6=this.getTabs();
+var _b7;
+if(_b6){
+_b7=_b6.getTab("jive-tab-"+_b3.jid+"-layout");
+}
+if(typeof _b7=="undefined"){
+this.addTab(_b3);
+}
 if(_b4){
-_b5=_b4.getTab("jive-tab-"+_b1.jid+"-layout");
+this.focusContactTab(_b3);
 }
-if(typeof _b5=="undefined"){
-this.addTab(_b1);
-}
-if(_b2){
-this.focusContactTab(_b1);
-}
-},focusContactTab:function(_b6){
-var _b7=this.getTabs();
-_b7.activate("jive-tab-"+_b6.jid+"-layout");
-var _b8=getEl("jive-tab-"+_b6.jid+"-text");
-_b8.dom.focus();
+},focusContactTab:function(_b8){
+var _b9=this.getTabs();
+_b9.activate("jive-tab-"+_b8.jid+"-layout");
+var _ba=getEl("jive-tab-"+_b8.jid+"-text");
+_ba.dom.focus();
 },prepUserPane:function(){
-var _b9=this.dialog.getLayout().getRegion("east").getPanel(0).getLayout();
+var _bb=this.dialog.getLayout().getRegion("east").getPanel(0).getLayout();
 jive.spank.chat.Template.userpane.append(this.bodyId+"-toppane",{id:this.bodyId});
 this.dialog.beginUpdate();
-var _ba=new YAHOO.ext.ContentPanel(this.bodyId+"-toppane");
-_b9.add("north",_ba);
-_ba.getEl().dom.parentNode.className+=" jive-user-controls";
+var _bc=new YAHOO.ext.ContentPanel(this.bodyId+"-toppane");
+_bb.add("north",_bc);
+_bc.getEl().dom.parentNode.className+=" jive-user-controls";
 this.dialog.endUpdate();
-},finalizeUserPane:function(_bb){
-jive.spank.chat.Template.userpane_loggedin.append(this.bodyId+"-message",{id:this.bodyId,uname:_bb});
-var _bc=getEl(this.bodyId+"-uname");
-var _bd=_bc.dom;
-var _be=function(){
-this.className=this.className.replace("jive-muc-username","jive-muc-username-active");
-}.bind(_bd);
-var _bf=function(){
-this.className=this.className.replace("jive-muc-username-active","jive-muc-username");
-}.bind(_bd);
-var _c0=function(evt){
+},finalizeUserPane:function(_bd,_be){
+jive.spank.chat.Template.userpane_loggedin.append(this.bodyId+"-message",{id:this.bodyId,uname:_bd,presence:"available"});
+var _bf=getEl(this.bodyId+"-uname");
+var _c0=function(){
+this.replaceClass("jive-muc-username","jive-muc-username-active");
+}.bind(_bf);
+var _c1=function(){
+this.replaceClass("jive-muc-username-active","jive-muc-username");
+}.bind(_bf);
+var _c2=function(evt){
 if(evt.keyCode==13||evt.type=="blur"){
-var _c2=this.tabId.split("-")[2];
-this.fireEvent("changenameinmuc",this,this.tabs[_c2].room.jid,getEl(this.bodyId+"-uname").dom.value);
-_bf();
+var _c4=this.tabId.split("-")[2];
+this.fireEvent("changenameinmuc",this,this.tabs[_c4].room.jid,getEl(this.bodyId+"-uname").dom.value);
+_c1();
 if(evt.keyCode==13){
-evt.preventDefault();
 getEl("jive-tab-"+this.getActiveTabJID()+"-text").dom.focus();
+evt.preventDefault();
 }
 }
 };
-getEl(this.bodyId+"-uname").addListener("keydown",_c0.bind(this));
-_bd.onfocus=_be;
-_bd.onblur=_c0.bind(this);
-var _c3=function(_c4,_c5,_c6){
-this.value=_c6;
-};
-this.addListener("changenameinmuc",_c3.bind(_bd));
-},setSubject:function(_c7,_c8){
-var _c9=getEl((this.tabId?this.tabId:"jive-tab-"+_c8)+"-subject");
-if(_c9&&_c9.dom){
-_c9.dom.innerHTML=_c7;
+_bf.on("keydown",_c2.bind(this));
+_bf.on("focus",_c0);
+_bf.on("blur",_c2.bind(this));
+var _c5=function(_c6,_c7,_c8){
+this.dom.value=_c8;
+}.bind(_bf);
+this.addListener("changenameinmuc",_c5);
+new YAHOO.widget.Tooltip("nickname-control-tooltip",{context:_bf.dom,text:"Click here to set your nickname",showDelay:200,zIndex:15000});
+if(_be){
+var _c9=getEl(this.bodyId+"-presencecontrol");
+var _ca=function(){
+var _cb=_c9.hasClass("available")?"away":"available";
+var _cc=_cb=="available"?"away":"available";
+_c9.replaceClass(_cc,_cb);
+_c9.dom.innerHTML=_cb;
+var _cd=this.tabId.split("-")[2];
+var _ce=new XMPP.Presence();
+_ce.setMode(_cb);
+_be.getRoom(_cd).presenceManager.sendPresence(_ce);
+}.bind(this);
+_c9.on("click",_ca);
+new YAHOO.widget.Tooltip("presence-control-tooltip",{context:_c9.dom,text:"Click here to set your availability",showDelay:200,zIndex:15000});
+}
+},setSubject:function(_cf,_d0){
+var _d1=getEl((this.tabId?this.tabId:"jive-tab-"+_d0)+"-subject");
+if(_d1&&_d1.dom){
+_d1.dom.innerHTML=_cf;
 }
 }});
-jive.spank.chat.ChatWindow.getWindow=function(_ca){
-return jive.spank.chat.ChatWindow.currentWindow[_ca];
+jive.spank.chat.ChatWindow.getWindow=function(_d2){
+return jive.spank.chat.ChatWindow.currentWindow[_d2];
 };
 jive.spank.chat.ChatWindow.createWindow=function(){
-var _cb=spank.loadComponent("chat");
-jive.spank.chat.ChatWindow.currentWindow[_cb.id]=_cb;
-_cb.dialog.addListener("hide",function(){
-delete jive.spank.chat.ChatWindow.currentWindow[_cb.id];
+var _d3=spank.loadComponent("chat");
+jive.spank.chat.ChatWindow.currentWindow[_d3.id]=_d3;
+_d3.dialog.addListener("hide",function(){
+delete jive.spank.chat.ChatWindow.currentWindow[_d3.id];
 });
-return _cb;
+return _d3;
 };
-jive.spank.chat.ChatWindow.destroyWindow=function(_cc){
-if(jive.spank.chat.ChatWindow.currentWindow[_cc]){
-jive.spank.chat.ChatWindow.currentWindow[_cc].hide();
-delete jive.spank.chat.ChatWindow.currentWindow[_cc];
+jive.spank.chat.ChatWindow.destroyWindow=function(_d4){
+if(jive.spank.chat.ChatWindow.currentWindow[_d4]){
+jive.spank.chat.ChatWindow.currentWindow[_d4].hide();
+delete jive.spank.chat.ChatWindow.currentWindow[_d4];
 }
 };
 jive.spank.chat.ChatWindow.tabConfObject={north:{initialSize:72},south:{split:true,initialSize:50,minSize:50,maxSize:200,autoScroll:false,collapsible:true},center:{autoScroll:true}};
@@ -16166,24 +18461,24 @@ jive.spank.chat.ChatWindow.mucConfObject={north:{initialSize:38,margins:{top:0,l
 jive.spank.chat.ChatWindow.currentWindow={};
 jive.spank.chat.ChatWindow.focusedJID="";
 jive.spank.roster={};
-jive.spank.roster.RosterWindow=function(id,_ce){
-var _cf=_ce["width"]?_ce["width"]:310;
-var _d0=_ce["height"]?_ce["height"]:YAHOO.util.Dom.getViewportHeight()-40;
-var x=_ce["x"]?_ce["x"]:YAHOO.util.Dom.getViewportWidth()-330;
-var y=_ce["y"]?_ce["y"]:20;
-var _d3=_ce["resizable"]!="false";
-var _d4=_ce["draggable"]!="false";
-var _d5=_ce["closable"]!="false";
+jive.spank.roster.RosterWindow=function(id,_d6){
+var _d7=_d6["width"]?_d6["width"]:310;
+var _d8=_d6["height"]?_d6["height"]:YAHOO.util.Dom.getViewportHeight()-40;
+var x=_d6["x"]?_d6["x"]:YAHOO.util.Dom.getViewportWidth()-330;
+var y=_d6["y"]?_d6["y"]:20;
+var _db=_d6["resizable"]!="false";
+var _dc=_d6["draggable"]!="false";
+var _dd=_d6["closable"]!="false";
 this.roster=null;
 this.groups=null;
 this.controls={};
 this.controlCount=0;
-var _d6={modal:false,width:_cf,height:_d0,resizable:_d3,draggable:_d4,proxyDrag:true,shadow:false,minWidth:200,minHeight:150,x:x,y:y,closable:_d5,shim:false,north:{initialSize:50,autoScroll:false},center:{closeOnTab:true,alwaysShowTabs:false,autoTabs:true}};
+var _de={modal:false,width:_d7,height:_d8,resizable:_db,draggable:_dc,proxyDrag:true,shadow:false,minWidth:200,minHeight:150,x:x,y:y,closable:_dd,shim:false,north:{initialSize:50,autoScroll:false},center:{closeOnTab:true,alwaysShowTabs:false,autoTabs:true}};
 this.events={"changestatus":true,"setstatusmsgrequest":true,"addcontact":true,"acceptsubscription":true,"denysubscription":true,"renamecontact":true,"renamegroup":true,"removecontact":true,"removegroup":true,"close":true};
-jive.spank.roster.RosterWindow.superclass.constructor.call(this,id,"Spark Web",_d6);
-var _d7=this.dialog.getLayout();
+jive.spank.roster.RosterWindow.superclass.constructor.call(this,id,"Spark Web",_de);
+var _df=this.dialog.getLayout();
 this.dialog.beginUpdate();
-_d7.add("north",new YAHOO.ext.ContentPanel(this.bodyId+"-toppane"));
+_df.add("north",new YAHOO.ext.ContentPanel(this.bodyId+"-toppane"));
 this.dialog.endUpdate();
 this.dialog.close.removeAllListeners();
 this.dialog.close.addListener("click",function(){
@@ -16194,52 +18489,52 @@ this.fireEvent("close",this);
 }.bind(this));
 this._prepContextMenus();
 };
-YAHOO.extend(jive.spank.roster.RosterWindow,jive.spank.Window,{needsUpdate:false,addTab:function(_d8){
-var _d9=YAHOO.util.Dom.generateId();
-jive.spank.chat.Template.rostertab.append(this.bodyId,{tabId:_d9});
-var _da=this.dialog.getLayout();
+YAHOO.extend(jive.spank.roster.RosterWindow,jive.spank.Window,{needsUpdate:false,addTab:function(_e0){
+var _e1=YAHOO.util.Dom.generateId();
+jive.spank.chat.Template.rostertab.append(this.bodyId,{tabId:_e1});
+var _e2=this.dialog.getLayout();
 this.dialog.beginUpdate();
-var _db=new YAHOO.ext.BorderLayout(_d9+"-layout",{north:{split:false,initialSize:28,autoScroll:false},center:{autoScroll:true}});
-_db.add("center",new YAHOO.ext.ContentPanel(_d9+"-resources"));
-jive.spank.chat.Template.roster.append(_d9+"-resources",{rosterId:"jive-roster",groups:""});
-_db.add("north",new YAHOO.ext.ContentPanel(_d9+"-user"));
-jive.spank.chat.Template.control_panel.append(_d9+"-user",{tabId:_d9});
-this.controlPanel=_db.regions["north"];
+var _e3=new YAHOO.ext.BorderLayout(_e1+"-layout",{north:{split:false,initialSize:28,autoScroll:false},center:{autoScroll:true}});
+_e3.add("center",new YAHOO.ext.ContentPanel(_e1+"-resources"));
+jive.spank.chat.Template.roster.append(_e1+"-resources",{rosterId:"jive-roster",groups:""});
+_e3.add("north",new YAHOO.ext.ContentPanel(_e1+"-user"));
+jive.spank.chat.Template.control_panel.append(_e1+"-user",{tabId:_e1});
+this.controlPanel=_e3.regions["north"];
 this.controlPanel.hide();
-_da.add("center",new YAHOO.ext.NestedLayoutPanel(_db,{title:_d8}));
+_e2.add("center",new YAHOO.ext.NestedLayoutPanel(_e3,{title:_e0}));
 this.dialog.endUpdate();
-this.tabs[_d8]=_d9;
-},_prepUserStatusPanel:function(_dc,_dd){
+this.tabs[_e0]=_e1;
+},_prepUserStatusPanel:function(_e4,_e5){
 var elm=getEl(this.bodyId+"-toppane");
-jive.spank.chat.Template.status_panel.append(elm.id,{bodyId:this.bodyId,username:_dc,status:_dd,statusName:_dd.toLowerCase()});
-var _df=new YAHOO.widget.Menu("jive-statusmenu");
-_df.addItems([[{text:"Free to Chat"},{text:"Available"},{text:"On The Road"},{text:"Away"},{text:"On Phone"},{text:"Do Not Disturb"}],[{text:"Set status message...",disabled:true}]]);
-_df.render(document.body);
-var _e0=this;
-var _e1=function(_e2,_e3,_e4){
-this.fireEvent("changestatus",this,_e4);
+jive.spank.chat.Template.status_panel.append(elm.id,{bodyId:this.bodyId,username:_e4,status:_e5,statusName:_e5.toLowerCase()});
+var _e7=new YAHOO.widget.Menu("jive-statusmenu");
+_e7.addItems([[{text:"Free to Chat"},{text:"Available"},{text:"On The Road"},{text:"Away"},{text:"On Phone"},{text:"Do Not Disturb"}],[{text:"Set status message...",disabled:true}]]);
+_e7.render(document.body);
+var _e8=this;
+var _e9=function(_ea,_eb,_ec){
+this.fireEvent("changestatus",this,_ec);
 };
-var _e5=function(){
-_e0.fireEvent("setstatusmsgrequest",_e0);
+var _ed=function(){
+_e8.fireEvent("setstatusmsgrequest",_e8);
 };
-var _e6;
-var _e7=["chat","available","onroad","away","onphone","dnd"];
+var _ee;
+var _ef=["chat","available","onroad","away","onphone","dnd"];
 for(var i=0;i<6;i++){
-_e6=_df.getItem(i);
-_e6.element.className+=" roster-contact-"+_e7[i];
-_e6.clickEvent.subscribe(_e1,_e7[i],_e0);
+_ee=_e7.getItem(i);
+_ee.element.className+=" roster-contact-"+_ef[i];
+_ee.clickEvent.subscribe(_e9,_ef[i],_e8);
 }
 getEl(this.bodyId+"-statusmenu-ctrl").addListener("click",function(){
-getEl(_df.element).alignTo(this,"bl");
-_df.element.style.zIndex=_e0.dialog.lastZIndex+1;
-_df.show();
+getEl(_e7.element).alignTo(this,"bl");
+_e7.element.style.zIndex=_e8.dialog.lastZIndex+1;
+_e7.show();
 });
-var _e9=function(){
-_df.hide();
+var _f1=function(){
+_e7.hide();
 };
-this.dialog.header.addListener("click",_e9);
-for(var _ea in jive.spank.chat.ChatWindow.currentWindow){
-jive.spank.chat.ChatWindow.currentWindow[_ea].dialog.header.addListener("click",_e9);
+this.dialog.header.addListener("click",_f1);
+for(var _f2 in jive.spank.chat.ChatWindow.currentWindow){
+jive.spank.chat.ChatWindow.currentWindow[_f2].dialog.header.addListener("click",_f1);
 }
 },_prepContextMenus:function(){
 if(!getEl("contact-conmenu")){
@@ -16250,13 +18545,13 @@ if(this.contactMenu.getItemGroups().length==0){
 this.contactMenu.addItems([{text:"Start Chat"},{text:"Rename Contact"},{text:"Remove Contact"}]);
 this.contactMenu.render(document.body);
 }
-var _eb=this;
-var _ec=function(_ed,_ee){
-_eb.contactMenu.clickedContact.group._roster.fireEvent("contactdblclicked",_eb.contactMenu.clickedContact.group._roster,_eb.contactMenu.clickedContact);
+var _f3=this;
+var _f4=function(_f5,_f6){
+_f3.contactMenu.clickedContact.group._roster.fireEvent("contactdblclicked",_f3.contactMenu.clickedContact.group._roster,_f3.contactMenu.clickedContact);
 };
-this.contactMenu.getItem(0).clickEvent.subscribe(_ec);
-this.contactMenu.getItem(1).clickEvent.subscribe(this.showRename.createDelegate(this,[_eb.contactMenu.clickedContact]),this);
-this.contactMenu.getItem(2).clickEvent.subscribe(this.showRemove.createDelegate(this,[_eb.contactMenu.clickedContact]),this);
+this.contactMenu.getItem(0).clickEvent.subscribe(_f4);
+this.contactMenu.getItem(1).clickEvent.subscribe(this.showRename.createDelegate(this,[_f3.contactMenu.clickedContact]),this);
+this.contactMenu.getItem(2).clickEvent.subscribe(this.showRemove.createDelegate(this,[_f3.contactMenu.clickedContact]),this);
 if(!getEl("group-conmenu")){
 this.addMenuDiv("group-conmenu");
 }
@@ -16267,38 +18562,38 @@ this.groupMenu.addItems([{text:"Rename Group"},{text:"Remove Group"}]);
 this.groupMenu.render(document.body);
 this.groupMenu.getItem(0).clickEvent.subscribe(this.showGroupRename.bind(this,this.fetchClickedGroup.bind(this)));
 this.groupMenu.getItem(1).clickEvent.subscribe(this.showGroupRemove.bind(this,this.fetchClickedGroup.bind(this)));
-},setUserInfo:function(_ef,_f0){
-var _f1;
+},setUserInfo:function(_f7,_f8){
+var _f9;
 if(arguments.length>1){
-_f1=_ef;
+_f9=_f7;
 }else{
-_f1=_ef.name;
-_f0=(_ef.status?_ef.status:_ef.mode);
+_f9=_f7.name;
+_f8=(_f7.status?_f7.status:_f7.mode);
 }
-this.dialog.setTitle("Spark Web - "+_f1);
-this._prepUserStatusPanel(_f1,_f0);
-},addGroup:function(_f2,_f3){
-this.roster.addGroup(_f2,_f3);
-},addControl:function(_f4,_f5){
-this.controls[_f4]=jive.spank.chat.Control.add(this.tabs["Contacts"]+"-controls",_f4,_f5);
+this.dialog.setTitle("Spark Web - "+_f9);
+this._prepUserStatusPanel(_f9,_f8);
+},addGroup:function(_fa,_fb){
+this.roster.addGroup(_fa,_fb);
+},addControl:function(_fc,_fd){
+this.controls[_fc]=jive.spank.chat.Control.add(this.tabs["Contacts"]+"-controls",_fc,_fd);
 this.controlCount++;
 if(!this.controlPanel.isVisible()){
 this.controlPanel.show();
 }
-return this.controls[_f4];
-},removeControl:function(_f6){
-if(this.controls[_f6]){
-this.controls[_f6].remove();
-delete this.controls[_f6];
+return this.controls[_fc];
+},removeControl:function(_fe){
+if(this.controls[_fe]){
+this.controls[_fe].remove();
+delete this.controls[_fe];
 }
 this.controlCount--;
-},setRoster:function(_f7){
-if(_f7==null){
-_f7=this.fakeRosterStruct;
+},setRoster:function(_ff){
+if(_ff==null){
+_ff=this.fakeRosterStruct;
 }
 this.roster=new jive.spank.roster.Roster("jive-roster",true);
 this.groups=this.roster.groups;
-this.roster.setRoster(_f7);
+this.roster.setRoster(_ff);
 this.render();
 this.roster.addListener("offlinemoved",function(){
 if(!this.isUpdating){
@@ -16309,16 +18604,16 @@ this.needsUpdate=true;
 },this,1);
 },getSelectedUser:function(){
 return this.roster.getSelectedUser();
-},getContactFromID:function(_f8){
-var _f9=_f8.split("-");
-var _fa=_f9.slice(2,_f9.length-1).join("");
-return jive.spank.roster.Contact.find(this,_fa,_f9[_f9.length-1]);
-},render:function(_fb){
-var _fc=this.tabs["Contacts"];
+},getContactFromID:function(_100){
+var _101=_100.split("-");
+var cJid=_101.slice(2,_101.length-1).join("");
+return jive.spank.roster.Contact.find(this,cJid,_101[_101.length-1]);
+},render:function(_103){
+var _104=this.tabs["Contacts"];
 this.roster.render();
 this.needsUpdate=false;
 this.dialog.addListener("show",this.finishDisplay,this,true);
-if(_fb){
+if(_103){
 this.finishDisplay();
 }
 },finishDisplay:function(){
@@ -16329,22 +18624,22 @@ this.enableContextMenus();
 },enableContextMenus:function(){
 getEls("ul#jive-roster ul.group-list li").mon("contextmenu",function(evt){
 evt.stopEvent();
-var _fe=evt.getTarget();
-if(_fe.tagName.toLowerCase()!="li"){
-_fe=_fe.parentNode;
+var _106=evt.getTarget();
+if(_106.tagName.toLowerCase()!="li"){
+_106=_106.parentNode;
 }
-this.contactMenu.clickedContact=this.getContactFromID(_fe.id);
-var _ff=_fe.id;
+this.contactMenu.clickedContact=this.getContactFromID(_106.id);
+var _107=_106.id;
 getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_ff).className+=" selected";
+document.getElementById(_107).className+=" selected";
 getEl(this.contactMenu.element).moveTo(evt.getPageX(),evt.getPageY());
 this.contactMenu.element.style.zIndex=this.dialog.lastZIndex+1;
 this.contactMenu.show();
 },this,true);
 getEls("ul#jive-roster span.group-isonline em").mon("contextmenu",function(evt){
 evt.stopEvent();
-var _101=evt.getTarget();
-this.groupMenu.clickedGroup=this.groups[_101.innerHTML];
+var _109=evt.getTarget();
+this.groupMenu.clickedGroup=this.groups[_109.innerHTML];
 getEl(this.groupMenu.element).moveTo(evt.getPageX(),evt.getPageY());
 this.groupMenu.element.style.zIndex=this.dialog.lastZIndex+1;
 this.groupMenu.show();
@@ -16356,18 +18651,18 @@ evt.stopEvent();
 }
 catch(error){
 }
-},addContact:function(_103,_104,_105){
-this.roster.addContact(_103,_104,_105);
+},addContact:function(_10b,_10c,_10d){
+this.roster.addContact(_10b,_10c,_10d);
 this.render(true);
 },removeContact:function(jid){
 this.roster.removeContact(jid);
-},changeUserStatus:function(_107,_108){
+},changeUserStatus:function(_10f,_110){
 var menu=getEl(this.bodyId+"-statusmenu-ctrl");
-var _10a={chat:"Free to Chat",available:"Available",onroad:"On Road",away:"Away",onphone:"On Phone",dnd:"Do Not Disturb"};
-menu.dom.className=menu.dom.className.replace(/roster-contact-([^ ]*)/,"roster-contact-"+_107);
-menu.getChildrenByTagName("span")[0].dom.innerHTML=(_108!=null?_108:_10a[_107]);
-},changeContactStatus:function(jid,_10c,_10d){
-this.roster.changeContactStatus(jid,_10c,_10d);
+var _112={chat:"Free to Chat",available:"Available",onroad:"On Road",away:"Away",onphone:"On Phone",dnd:"Do Not Disturb"};
+menu.dom.className=menu.dom.className.replace(/roster-contact-([^ ]*)/,"roster-contact-"+_10f);
+menu.getChildrenByTagName("span")[0].dom.innerHTML=(_110!=null?_110:_112[_10f]);
+},changeContactStatus:function(jid,_114,_115){
+this.roster.changeContactStatus(jid,_114,_115);
 },getContactStatus:function(jid){
 return this.roster.getContactStatus(jid);
 },showAddGroup:function(){
@@ -16388,9 +18683,9 @@ getEl(addc.id+"-createcontact").addListener("click",function(){
 self.fireEvent("addcontact",self,$F(addc.id+"-addusername"),$F(addc.id+"-addnickname"),$F(addc.id+"-addcontact-group"));
 addc.dialog.hide();
 });
-},showSubscriptionRequest:function(_113,_114){
+},showSubscriptionRequest:function(_11b,_11c){
 var self=this;
-var subr=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.sub_request,{title:"Allow "+(_114!=""?_114:_113)+" to add you?",width:440,height:220,templateKeys:{jid:_113,nick:_114}});
+var subr=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.sub_request,{title:"Allow "+(_11c!=""?_11c:_11b)+" to add you?",width:440,height:220,templateKeys:{jid:_11b,nick:_11c}});
 subr.dialog.show();
 this._autocompGroups(subr,"-subrequest-group");
 getEl(subr.id+"-add").addListener("click",function(){
@@ -16399,127 +18694,127 @@ getEl(subr.id+"-jid").toggleClass("disabled");
 getEl(subr.id+"-nick").dom.disabled=getEl(subr.id+"-subrequest-group").dom.disabled=!getEl(subr.id+"-add").dom.checked;
 });
 getEl(subr.id+"-acceptsubrequest").addListener("click",function(){
-self.fireEvent("acceptsubscription",self,$F(subr.id+"-add"),_113,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
+self.fireEvent("acceptsubscription",self,$F(subr.id+"-add"),_11b,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
 subr.dialog.hide();
 });
 getEl(subr.id+"-denysubrequest").addListener("click",function(){
-self.fireEvent("denysubscription",self,$F(subr.id+"-add"),_113,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
+self.fireEvent("denysubscription",self,$F(subr.id+"-add"),_11b,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
 subr.dialog.hide();
 });
-},showRename:function(_117){
-if(_117==null){
-_117=this.contactMenu.clickedContact;
+},showRename:function(_11f){
+if(_11f==null){
+_11f=this.contactMenu.clickedContact;
 }
-var _118=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.rename,{title:"Renaming '"+_117.name+"'",width:250,height:115,templateKeys:{nick:_117.name}});
-_118.dialog.show();
+var _120=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.rename,{title:"Renaming '"+_11f.name+"'",width:250,height:115,templateKeys:{nick:_11f.name}});
+_120.dialog.show();
 var self=this;
-var _11a=function(){
-var _11b=(typeof _117.jid!="undefined")?"renamecontact":"renamegroup";
-self.fireEvent(_11b,self,_117,$F(_118.id+"-name"));
-getEl(_118.id+"-rename").removeAllListeners();
-_118.dialog.hide();
+var _122=function(){
+var _123=(typeof _11f.jid!="undefined")?"renamecontact":"renamegroup";
+self.fireEvent(_123,self,_11f,$F(_120.id+"-name"));
+getEl(_120.id+"-rename").removeAllListeners();
+_120.dialog.hide();
 };
-getEl(_118.id+"-name").mon("keypress",_11a.createInterceptor(function(evt){
+getEl(_120.id+"-name").mon("keypress",_122.createInterceptor(function(evt){
 return evt.getKey()==13;
 }));
-getEl(_118.id+"-rename").addListener("click",_11a);
-},showRemove:function(_11d){
+getEl(_120.id+"-rename").addListener("click",_122);
+},showRemove:function(_125){
 this.fireEvent("removecontact",this,this.contactMenu.clickedContact.jid.toString());
-},showGroupRename:function(_11e){
-var _11f=_11e();
-this.showRename(_11f);
+},showGroupRename:function(_126){
+var _127=_126();
+this.showRename(_127);
 },fetchClickedGroup:function(){
 return this.groupMenu.clickedGroup;
-},showGroupRemove:function(_120){
-var _121=_120();
-var _122=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.remove_group,{title:"Removing '"+_121.name+"'",width:250,height:100,templateKeys:{name:_121.name}});
-_122.dialog.show();
+},showGroupRemove:function(_128){
+var _129=_128();
+var _12a=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.remove_group,{title:"Removing '"+_129.name+"'",width:250,height:100,templateKeys:{name:_129.name}});
+_12a.dialog.show();
 var self=this;
-var _124=function(){
-self.fireEvent("removegroup",self,_121);
-getEl(_122.id+"-remove").removeAllListeners();
-_122.dialog.hide();
+var _12c=function(){
+self.fireEvent("removegroup",self,_129);
+getEl(_12a.id+"-remove").removeAllListeners();
+_12a.dialog.hide();
 };
-getEl(_122.id+"-remove").addListener("click",_124);
-},_autocompGroups:function(dlog,_126){
-var _127=dlog.id+_126;
-var _128=_127+"-menu";
+getEl(_12a.id+"-remove").addListener("click",_12c);
+},_autocompGroups:function(dlog,_12e){
+var _12f=dlog.id+_12e;
+var _130=_12f+"-menu";
 var self=this;
-if(getEl(_128)==null){
-var _12a=self.addMenuDiv(_128);
-_12a.className="groups-ac";
+if(getEl(_130)==null){
+var _132=self.addMenuDiv(_130);
+_132.className="groups-ac";
 }
-var _12b=function(_12c){
-var _12d=[];
+var _133=function(_134){
+var _135=[];
 for(var g in self.roster.groups){
-_12d.push(g);
+_135.push(g);
 }
-return self._prepareAutocompArray(_12d,_12c);
+return self._prepareAutocompArray(_135,_134);
 };
-var _12f=new jive.spank.FlatAutoComplete(_127,_128,new YAHOO.widget.DS_JSFunction(_12b),{typeAhead:true,minQueryLength:0});
-_12f.formatResult=function(_130,_131){
-return _130;
+var _137=new jive.spank.FlatAutoComplete(_12f,_130,new YAHOO.widget.DS_JSFunction(_133),{typeAhead:true,minQueryLength:0});
+_137.formatResult=function(_138,_139){
+return _138;
 };
-_12f.dataReturnEvent.subscribe(function(type,args){
+_137.dataReturnEvent.subscribe(function(type,args){
 if(args[2].length==0){
-_12f.setBody("<div class='empty'>(No matches, will create new)</div>");
+_137.setBody("<div class='empty'>(No matches, will create new)</div>");
 }
-var _134=getEl(_128);
-_134.alignTo(getEl(_127),"bl");
-_134.dom.style.zIndex=dlog.dialog.lastZIndex+1;
-_134.show();
+var _13c=getEl(_130);
+_13c.alignTo(getEl(_12f),"bl");
+_13c.dom.style.zIndex=dlog.dialog.lastZIndex+1;
+_13c.show();
 });
-getEl(_127).addListener("blur",function(){
-getEl(_128).hide();
+getEl(_12f).addListener("blur",function(){
+getEl(_130).hide();
 });
-getEls("#"+_128+" li").mon("mousedown",function(evt){
-getEl(_127).dom.value=evt.getTarget().innerHTML;
+getEls("#"+_130+" li").mon("mousedown",function(evt){
+getEl(_12f).dom.value=evt.getTarget().innerHTML;
 });
 dlog.dialog.addListener("beforehide",function(){
-_12f.formatResult=Prototype.emptyFunction;
-_12b=Prototype.emptyFunction;
-getEl(_128).removeAllListeners();
-getEl(_127).removeAllListeners();
-_12f.dataReturnEvent.unsubscribeAll();
-getEls("#"+_128+" li").removeAllListeners();
-getEl(_128).remove();
+_137.formatResult=Prototype.emptyFunction;
+_133=Prototype.emptyFunction;
+getEl(_130).removeAllListeners();
+getEl(_12f).removeAllListeners();
+_137.dataReturnEvent.unsubscribeAll();
+getEls("#"+_130+" li").removeAllListeners();
+getEl(_130).remove();
 });
-return _12f;
-},contactsForAutocomp:function(_136){
-var _137=this.roster;
-var _138=[];
-for(var g in _137.groups){
-_137.groups[g].contacts.each(function(_13a){
-_138.push([_13a.name,_13a.jid,_13a.status]);
+return _137;
+},contactsForAutocomp:function(_13e){
+var _13f=this.roster;
+var _140=[];
+for(var g in _13f.groups){
+_13f.groups[g].contacts.each(function(_142){
+_140.push([_142.name,_142.jid,_142.status]);
 });
 }
-return this._prepareAutocompArray(_138,_136);
-},_prepareAutocompArray:function(_13b,_13c){
-var _13d=typeof _13b[0]!="string";
-if(_13d&&_13b.length==0){
-return _13b;
+return this._prepareAutocompArray(_140,_13e);
+},_prepareAutocompArray:function(_143,_144){
+var _145=typeof _143[0]!="string";
+if(_145&&_143.length==0){
+return _143;
 }
-_13b=_13b.sortBy(function(_13e){
-if(_13d){
-return _13e[0].toLowerCase();
+_143=_143.sortBy(function(_146){
+if(_145){
+return _146[0].toLowerCase();
 }else{
-return _13e.toLowerCase();
+return _146.toLowerCase();
 }
 });
-if(_13b.length<2||!_13c||_13c==""){
-return _13b;
+if(_143.length<2||!_144||_144==""){
+return _143;
 }else{
-var _13f=_13b.partition(function(_140){
-return (_13d?_140[0].indexOf(_13c)==0:_140.indexOf(_13c)==0);
+var _147=_143.partition(function(_148){
+return (_145?_148[0].indexOf(_144)==0:_148.indexOf(_144)==0);
 });
-return _13f[0].concat(_13f[1]);
+return _147[0].concat(_147[1]);
 }
-},addMenuDiv:function(_141){
-var _142=document.createElement("div");
-_142.id=_141;
-_142.style.visibility="hidden";
-document.body.appendChild(_142);
-return _142;
+},addMenuDiv:function(_149){
+var _14a=document.createElement("div");
+_14a.id=_149;
+_14a.style.visibility="hidden";
+document.body.appendChild(_14a);
+return _14a;
 },endUpdate:function(){
 if(this.needsUpdate){
 this.render(true);
@@ -16528,20 +18823,20 @@ jive.spank.roster.RosterWindow.superclass.endUpdate.call(this);
 },destroy:function(){
 jive.spank.roster.RosterWindow.superclass.destroy.call(this);
 }});
-jive.spank.chat.Dialog=function(_143,_144,_145){
-this.parentWindow=_143;
+jive.spank.chat.Dialog=function(_14b,_14c,_14d){
+this.parentWindow=_14b;
 var elm=document.createElement("div");
 this.id=elm.id=YAHOO.util.Dom.generateId();
 document.body.appendChild(elm);
-var _147=!_145.constrained;
-jive.spank.chat.Dialog.superclass.constructor.call(this,elm.id,{title:_145.title,modal:_145.modal,constraintoviewport:_147,width:_145.width,height:_145.height,shadow:true,proxyDrag:true,resizable:false,draggable:true,x:_145.x?_145.x:(YAHOO.util.Dom.getViewportWidth()/2)-(_145.width>0?(_145.width/2):0),y:_145.y?_145.y:(YAHOO.util.Dom.getViewportHeight()/2)-(_145.height>0?_145.height/2:0),closable:true});
+var _14f=!_14d.constrained;
+jive.spank.chat.Dialog.superclass.constructor.call(this,elm.id,{title:_14d.title,modal:_14d.modal,constraintoviewport:_14f,width:_14d.width,height:_14d.height,shadow:true,proxyDrag:true,resizable:false,draggable:true,x:_14d.x?_14d.x:(YAHOO.util.Dom.getViewportWidth()/2)-(_14d.width>0?(_14d.width/2):0),y:_14d.y?_14d.y:(YAHOO.util.Dom.getViewportHeight()/2)-(_14d.height>0?_14d.height/2:0),closable:true});
 this.dialog=this;
-if(_145.templateKeys){
-var _148=_145.templateKeys;
-_148.id=this.id;
-_144.append(this.body.dom,_148);
+if(_14d.templateKeys){
+var _150=_14d.templateKeys;
+_150.id=this.id;
+_14c.append(this.body.dom,_150);
 }else{
-_144.append(this.body.dom,{id:this.id});
+_14c.append(this.body.dom,{id:this.id});
 }
 getEls("#"+this.id+" .jive-closedialog").addListener("click",this.hide.bind(this));
 this.addListener("hide",this.destroy.bind(this));
@@ -16556,38 +18851,38 @@ this.mask.remove();
 this.purgeListeners();
 }});
 jive.spank.dialog={};
-jive.spank.dialog.StartChat=function(_149){
-var _14a=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.start_chat,{title:"Start a chat",width:250,height:105});
-_14a.dialog.show();
-var _14b=function(){
-var _14c=$F(_14a.id+"-jid");
-if(_14c.replace(/^\s+|\s+$/g,"")!=""){
-_149(this,{jid:_14c});
-getEl(_14a.id+"-startbtn").removeAllListeners();
-_14a.dialog.hide();
+jive.spank.dialog.StartChat=function(_151){
+var _152=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.start_chat,{title:"Start a chat",width:250,height:105});
+_152.dialog.show();
+var _153=function(){
+var _154=$F(_152.id+"-jid");
+if(_154.replace(/^\s+|\s+$/g,"")!=""){
+_151(this,{jid:_154});
+getEl(_152.id+"-startbtn").removeAllListeners();
+_152.dialog.hide();
 }else{
-$(_14a.id).focus();
+$(_152.id).focus();
 }
 };
-$(_14a.id+"-jid").focus();
-getEl(_14a.id+"-startbtn").addListener("click",_14b);
+$(_152.id+"-jid").focus();
+getEl(_152.id+"-startbtn").addListener("click",_153);
 };
-jive.spank.dialog.CreateConference=function(_14d,_14e){
-if(!_14e){
-_14e={};
+jive.spank.dialog.CreateConference=function(_155,_156){
+if(!_156){
+_156={};
 }
-_14e=$H(_14e).merge(this._configuration);
-jive.spank.dialog.CreateConference.superclass.constructor.call(this,_14d,jive.spank.chat.Template.muccreation,_14e);
+_156=$H(_156).merge(this._configuration);
+jive.spank.dialog.CreateConference.superclass.constructor.call(this,_155,jive.spank.chat.Template.muccreation,_156);
 this.events=$H(this.events).merge({"muccreated":true});
 this.addListener("hide",this.onHide.bind(this));
 getEl(this.id+"-private").addListener("click",this._privateCheckboxListener.bind(this));
 getEl(this.id+"-createroom").addListener("click",this._createRoomListener.bind(this));
 };
 YAHOO.extend(jive.spank.dialog.CreateConference,jive.spank.chat.Dialog,{_configuration:{title:"Create a Conference",width:285,height:285},_createRoomListener:function(){
-var _14f=getEl(this.id+"-private");
-var _150=$F(this.id+"-roompw");
-var _151=$F(this.id+"-roomconfirm");
-if(_14f.dom.checked&&_150!=_151){
+var _157=getEl(this.id+"-private");
+var _158=$F(this.id+"-roompw");
+var _159=$F(this.id+"-roomconfirm");
+if(_157.dom.checked&&_158!=_159){
 alert("Sorry, your password and confirmation don't match.");
 $(this.id+"-roompw").select();
 return false;
@@ -16605,14 +18900,14 @@ getEl(this.id+"-private").removeAllListeners();
 getEl(this.id+"-createroom").removeAllListeners();
 }});
 if(window.jive_enable_grid){
-jive.spank.dialog.UserSearch=function(_152,_153,_154){
-if(!_154){
-_154={};
+jive.spank.dialog.UserSearch=function(_15a,_15b,_15c){
+if(!_15c){
+_15c={};
 }
-_154.templateKeys={instructions:"Insert your instructions here."};
-_154=$H(_154).merge(this._configuration);
-var _155=this._createTemplate(_153);
-jive.spank.dialog.UserSearch.superclass.constructor.call(this,_152,_155,_154);
+_15c.templateKeys={instructions:"Insert your instructions here."};
+_15c=$H(_15c).merge(this._configuration);
+var _15d=this._createTemplate(_15b);
+jive.spank.dialog.UserSearch.superclass.constructor.call(this,_15a,_15d,_15c);
 this.events=$H(this.events).merge({"search":true});
 this.addListener("hide",this.onHide.bind(this));
 this.addListener("show",this.onShow.bind(this));
@@ -16622,38 +18917,38 @@ this.searchGrid.render();
 };
 }
 if(window.jive_enable_grid){
-YAHOO.extend(jive.spank.dialog.UserSearch,jive.spank.chat.Dialog,{_configuration:{title:"Person Search"},_template:["<div id=\"{id}-person-search\" class=\"dbody personsearch\">","<div class=\"jive-dbody-description\">","<h1>Person Search</h1>","<p>{instructions}</p>","</div>","<div class=\"\">","<fieldset>","<legend>Search Service</legend>","<p><label for=\"service\">Search Service</label>","<select name=\"selectservice\" tabindex=\"{firstTabIndex}\">","</select>","<a href=\"#\">Add Service</a>","</p>","</fieldset>","</div>","<div class=\"\">","<fieldset>","<legend>Person Search Form</legend>","{searchform}","<p class=\"buttons\"><input type=\"submit\" value=\"Search\" tabindex=\"{lastTabIndex}\"/></p>","</fieldset>","</div>","<div id=\"{id}-search-grid\" class=\"jive-grid\">","</div>","</div>"],_createTemplate:function(_156){
-_156=["<p><input name=\"Username\" type=\"checkbox\" value=\"Username\" checked","/>Username</p>","<p><label for=\"testdrop\">Test Dropdown</label>","<select id=\"testdrop\" name=\"testdrop\">","<option>test 1</option>","<option>test 2</option>","<option>test 3</option>","</select>","</p>"];
-var _157=this._template;
-var _158=_157.indexOf("{searchform}");
-_157.splice(_158,1,_156.join(""));
-return new YAHOO.ext.DomHelper.Template(_157.join(""));
+YAHOO.extend(jive.spank.dialog.UserSearch,jive.spank.chat.Dialog,{_configuration:{title:"Person Search"},_template:["<div id=\"{id}-person-search\" class=\"dbody personsearch\">","<div class=\"jive-dbody-description\">","<h1>Person Search</h1>","<p>{instructions}</p>","</div>","<div class=\"\">","<fieldset>","<legend>Search Service</legend>","<p><label for=\"service\">Search Service</label>","<select name=\"selectservice\" tabindex=\"{firstTabIndex}\">","</select>","<a href=\"#\">Add Service</a>","</p>","</fieldset>","</div>","<div class=\"\">","<fieldset>","<legend>Person Search Form</legend>","{searchform}","<p class=\"buttons\"><input type=\"submit\" value=\"Search\" tabindex=\"{lastTabIndex}\"/></p>","</fieldset>","</div>","<div id=\"{id}-search-grid\" class=\"jive-grid\">","</div>","</div>"],_createTemplate:function(_15e){
+_15e=["<p><input name=\"Username\" type=\"checkbox\" value=\"Username\" checked","/>Username</p>","<p><label for=\"testdrop\">Test Dropdown</label>","<select id=\"testdrop\" name=\"testdrop\">","<option>test 1</option>","<option>test 2</option>","<option>test 3</option>","</select>","</p>"];
+var _15f=this._template;
+var _160=_15f.indexOf("{searchform}");
+_15f.splice(_160,1,_15e.join(""));
+return new YAHOO.ext.DomHelper.Template(_15f.join(""));
 },onHide:function(){
 this.searchGrid.destroy();
 },onShow:function(){
-var _159=getEl(this.id+"-person-search");
-var _15a=Math.max(this.body.getWidth(),_159.getWidth());
+var _161=getEl(this.id+"-person-search");
+var _162=Math.max(this.body.getWidth(),_161.getWidth());
 this.resizeTo(500,500);
-},_buildSearchGrid:function(_15b,_15c){
-var _15d={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
-var _15e=new YAHOO.ext.grid.DefaultDataModel(_15b);
-var _15f=[{header:"Username",width:240,sortable:true},{header:"Name",width:160,sortable:true},{header:"E-Mail",width:70,sortable:true}];
-var _160=new YAHOO.ext.grid.DefaultColumnModel(_15f);
-this.searchGrid=new YAHOO.ext.grid.Grid(_15c,{dataModel:_15e,colModel:_160,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
+},_buildSearchGrid:function(_163,_164){
+var _165={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
+var _166=new YAHOO.ext.grid.DefaultDataModel(_163);
+var _167=[{header:"Username",width:240,sortable:true},{header:"Name",width:160,sortable:true},{header:"E-Mail",width:70,sortable:true}];
+var _168=new YAHOO.ext.grid.DefaultColumnModel(_167);
+this.searchGrid=new YAHOO.ext.grid.Grid(_164,{dataModel:_166,colModel:_168,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
 return this.searchGrid;
 }});
 }
-jive.spank.dialog.CreateAccount=function(_161){
+jive.spank.dialog.CreateAccount=function(_169){
 this.dialog=new jive.spank.chat.Dialog(null,jive.spank.chat.Template.create_account,{title:"Creating an account",width:250,height:180,modal:true});
-var _162=this.dialog;
-this.nameField=getEl(_162.id+"-name");
-this.passwordField=getEl(_162.id+"-passwd");
-this.createButton=getEl(_162.id+"-submit");
-this.verifyCallback=_161;
-getEl(_162.id+"-confirm").mon("keypress",this._doSubmit.createInterceptor(function(evt){
+var _16a=this.dialog;
+this.nameField=getEl(_16a.id+"-name");
+this.passwordField=getEl(_16a.id+"-passwd");
+this.createButton=getEl(_16a.id+"-submit");
+this.verifyCallback=_169;
+getEl(_16a.id+"-confirm").mon("keypress",this._doSubmit.createInterceptor(function(evt){
 return evt.getKey()==13;
 }));
-getEl(_162.id+"-submit").addListener("click",this._doSubmit.bind(this));
+getEl(_16a.id+"-submit").addListener("click",this._doSubmit.bind(this));
 this.nameField.mon("keypress",function(){
 this.dom.style.backgroundColor="#fff";
 }.bind(this.nameField));
@@ -16661,158 +18956,158 @@ this.passwordField.mon("keypress",function(){
 this.dom.style.backgroundColor="#fff";
 }.bind(this.passwordField));
 this.nameField.dom.focus();
-_162.dialog.show();
+_16a.dialog.show();
 };
 jive.spank.dialog.CreateAccount.prototype={_doSubmit:function(){
-var _164=this.dialog;
-var _165=$(_164.id+"-error");
-$(_164.id+"-name").style.backgroundColor="#fff";
-$(_164.id+"-passwd").style.backgroundColor="#fff";
-if($F(_164.id+"-name")==""){
-$(_164.id+"-name").style.backgroundColor="#f00";
-$(_164.id+"-name").select();
+var _16c=this.dialog;
+var _16d=$(_16c.id+"-error");
+$(_16c.id+"-name").style.backgroundColor="#fff";
+$(_16c.id+"-passwd").style.backgroundColor="#fff";
+if($F(_16c.id+"-name")==""){
+$(_16c.id+"-name").style.backgroundColor="#f00";
+$(_16c.id+"-name").select();
 return false;
 }
-if($F(_164.id+"-passwd")==""){
-$(_164.id+"-passwd").style.backgroundColor="#f00";
-$(_164.id+"-passwd").select();
+if($F(_16c.id+"-passwd")==""){
+$(_16c.id+"-passwd").style.backgroundColor="#f00";
+$(_16c.id+"-passwd").select();
 return false;
 }
-if($F(_164.id+"-passwd")!=$F(_164.id+"-confirm")){
-$(_164.id+"-passwd").style.backgroundColor="#f00";
-$(_164.id+"-passwd").select();
+if($F(_16c.id+"-passwd")!=$F(_16c.id+"-confirm")){
+$(_16c.id+"-passwd").style.backgroundColor="#f00";
+$(_16c.id+"-passwd").select();
 return false;
 }
 this.createButton.dom.disabled=true;
 this.createButton.hide();
 jive.spank.Spinner.show({x:this.createButton.getX()-10,y:this.createButton.getY()});
-this.verifyCallback({username:$F(_164.id+"-name"),password:$F(_164.id+"-passwd")});
-},verify:function(_166){
-var _167=this.dialog;
+this.verifyCallback({username:$F(_16c.id+"-name"),password:$F(_16c.id+"-passwd")});
+},verify:function(_16e){
+var _16f=this.dialog;
 if(verify){
 if(verify.name){
-$(_167.id+"-name").style.backgroundColor="#f00";
-$(_167.id+"-name").select();
+$(_16f.id+"-name").style.backgroundColor="#f00";
+$(_16f.id+"-name").select();
 return;
 }
 if(verify.password){
-$(_167.id+"-passwd").style.backgroundColor="#f00";
-$(_167.id+"-passwd").select();
+$(_16f.id+"-passwd").style.backgroundColor="#f00";
+$(_16f.id+"-passwd").select();
 return;
 }
 }
-getEl(_167.id+"-confirm").removeAllListeners();
-getEl(_167.id+"-submit").removeAllListeners();
+getEl(_16f.id+"-confirm").removeAllListeners();
+getEl(_16f.id+"-submit").removeAllListeners();
 this.nameField.removeAllListeners();
 this.passwordField.removeAllListeners();
 this.dialog.hide();
 }};
-jive.spank.roster.Roster=function(id,_169){
+jive.spank.roster.Roster=function(id,_171){
 this.el=getEl(id);
 this.groups={};
 this.closedgroups=[];
 this.events={"contactdblclicked":true,"offlinemoved":true};
-if(_169){
+if(_171){
 this.offlines="";
 this._wrappedClick=null;
 }
 };
-YAHOO.extend(jive.spank.roster.Roster,YAHOO.ext.util.Observable,{addGroup:function(_16a,_16b){
-if(this.groups[_16a]){
-return this.groups[_16a];
+YAHOO.extend(jive.spank.roster.Roster,YAHOO.ext.util.Observable,{addGroup:function(_172,_173){
+if(this.groups[_172]){
+return this.groups[_172];
 }
-this.groups[_16a]=new jive.spank.roster.RosterGroup(this,_16a,_16b);
-this.el.insertHtml("beforeEnd",this.groups[_16a].render(false));
-this.groups[_16a]._enableBehaviors();
-return this.groups[_16a];
-},addContact:function(_16c,_16d,_16e){
-var _16f=this.addGroup(_16d,_16e);
-_16f.addContact(_16c);
+this.groups[_172]=new jive.spank.roster.RosterGroup(this,_172,_173);
+this.el.insertHtml("beforeEnd",this.groups[_172].render(false));
+this.groups[_172]._enableBehaviors();
+return this.groups[_172];
+},addContact:function(_174,_175,_176){
+var _177=this.addGroup(_175,_176);
+_177.addContact(_174);
 },removeContact:function(jid){
-var _171=this.findContact(jid);
-var grp=_171.group;
-_171.remove();
+var _179=this.findContact(jid);
+var grp=_179.group;
+_179.remove();
 if(grp.contacts.length==0){
 grp.remove();
 }
-},setRoster:function(_173){
-var _174;
-for(groupName in _173){
-_174=_173[groupName];
-this.groups[groupName]=new jive.spank.roster.RosterGroup(this,groupName,_174);
+},setRoster:function(_17b){
+var _17c;
+for(groupName in _17b){
+_17c=_17b[groupName];
+this.groups[groupName]=new jive.spank.roster.RosterGroup(this,groupName,_17c);
 }
 },render:function(){
-var _175="";
-var _176=typeof this.offlines!="undefined";
+var _17d="";
+var _17e=typeof this.offlines!="undefined";
 this._logClosedGroups();
 for(var g in this.groups){
-_175+=this.groups[g].render(_176);
+_17d+=this.groups[g].render(_17e);
 }
-this.el.dom.innerHTML=_175;
+this.el.dom.innerHTML=_17d;
 return this;
 },getSelectedUser:function(){
-var _178=$$("ul#"+this.id+" ul.group-list li.selected")[0];
-var _179=_178.id.split("-");
-var _17a=_179[3];
-var _17b=_179[2];
-return this.findContact(_17b,_17a);
-},findContact:function(jid,_17d){
-if(_17d){
-_17d=_17d.replace(/[^0-9A-Za-z]/,"_");
+var _180=$$("ul#"+this.id+" ul.group-list li.selected")[0];
+var _181=_180.id.split("-");
+var _182=_181[3];
+var _183=_181[2];
+return this.findContact(_183,_182);
+},findContact:function(jid,_185){
+if(_185){
+_185=_185.replace(/[^0-9A-Za-z]/,"_");
 }
-for(var _17e in this.groups){
-if(_17d&&_17e.replace(/[^0-9A-Za-z]/,"_")!=_17d){
+for(var _186 in this.groups){
+if(_185&&_186.replace(/[^0-9A-Za-z]/,"_")!=_185){
 continue;
 }
-var _17f=this.groups[_17e].contacts.find(function(_180){
-return _180.jid==jid;
+var _187=this.groups[_186].contacts.find(function(_188){
+return _188.jid==jid;
 });
-if(_17f){
-return _17f;
+if(_187){
+return _187;
 }
 }
 return null;
-},changeContactStatus:function(jid,_182,_183){
-var _184=this.findContact(jid);
-if(_184){
-_184.changeStatus(_182,_183);
+},changeContactStatus:function(jid,_18a,_18b){
+var _18c=this.findContact(jid);
+if(_18c){
+_18c.changeStatus(_18a,_18b);
 }
 },getContactStatus:function(jid){
-var _186=this.findContact(jid);
-if(_186){
-return _186.status;
+var _18e=this.findContact(jid);
+if(_18e){
+return _18e.status;
 }
 },renderOffline:function(){
-var _187=this.groups;
-var _188="";
-for(var _189 in _187){
-this.groups[_189].contacts.each(function(_18a){
-if(_18a.status=="unavailable"){
-_188+=_18a.render();
+var _18f=this.groups;
+var _190="";
+for(var _191 in _18f){
+this.groups[_191].contacts.each(function(_192){
+if(_192.status=="unavailable"){
+_190+=_192.render();
 }
 });
 }
-if((_188==""||this.offlines!="")&&getEl("group-"+this.offlines)){
+if((_190==""||this.offlines!="")&&getEl("group-"+this.offlines)){
 getEl("group-"+this.offlines).remove();
 }else{
 this.offlines="Offline_Group-"+this.el.id;
 }
-if(_188!=""){
-this.el.insertHtml("beforeEnd",jive.spank.chat.Template.roster_group.applyTemplate({id:this.offlines,renderClosed:"open",online:"",groupName:"Offline Group",users:_188}));
-var _18b=getEl("group-label-"+this.offlines);
-_18b.unselectable();
-this._wrappedClick=_18b.getChildrenByTagName("em")[0].mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
+if(_190!=""){
+this.el.insertHtml("beforeEnd",jive.spank.chat.Template.roster_group.applyTemplate({id:this.offlines,renderClosed:"open",online:"",groupName:"Offline Group",users:_190}));
+var _193=getEl("group-label-"+this.offlines);
+_193.unselectable();
+this._wrappedClick=_193.getChildrenByTagName("em")[0].mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
 jive.spank.roster.RosterGroup.sortContactHTML(this.offlines);
 }
 },sortGroups:function(){
-var _18c=this.el;
-if(_18c&&_18c.dom!=null){
-var _18d=_18c.getChildrenByClassName("group");
-var _18e=_18d.sortBy(function(line){
+var _194=this.el;
+if(_194&&_194.dom!=null){
+var _195=_194.getChildrenByClassName("group");
+var _196=_195.sortBy(function(line){
 return line.id.split("-")[1].toLowerCase();
 });
-_18e.each(function(line){
-line.appendTo(_18c.dom);
+_196.each(function(line){
+line.appendTo(_194.dom);
 });
 }
 for(var g in this.groups){
@@ -16820,45 +19115,45 @@ this.groups[g].sort();
 }
 },_logClosedGroups:function(){
 this.closedgroups=[];
-var _192=this.el.getChildrenByClassName("closed");
-for(var i=0;i<_192.length;i++){
-if(_192[i].firstChild){
-this.closedgroups.push(_192[i].firstChild.innerHTML);
+var _19a=this.el.getChildrenByClassName("closed");
+for(var i=0;i<_19a.length;i++){
+if(_19a[i].firstChild){
+this.closedgroups.push(_19a[i].firstChild.innerHTML);
 }
 }
-},_enableBehaviors:function(_194){
+},_enableBehaviors:function(_19c){
 for(var g in this.groups){
-this.groups[g]._enableBehaviors(_194);
+this.groups[g]._enableBehaviors(_19c);
 }
 }});
-jive.spank.roster.RosterGroup=function(_196,name,_198){
+jive.spank.roster.RosterGroup=function(_19e,name,_1a0){
 this.name=name;
 this.cleanName=name.replace(/[^A-Za-z0-9]/,"_");
 this.contacts=[];
-if(_198){
-this._rebuildContacts(_198);
+if(_1a0){
+this._rebuildContacts(_1a0);
 }
-this._roster=_196;
+this._roster=_19e;
 this.id=this.cleanName+"-"+this._roster.el.id;
 this._wrappedClick=null;
 };
 jive.spank.roster.RosterGroup.prototype={_rebuildContacts:function(json){
-for(var _19a in json){
-this.contacts.push(new jive.spank.roster.Contact(json[_19a],this));
+for(var _1a2 in json){
+this.contacts.push(new jive.spank.roster.Contact(json[_1a2],this));
 }
-},addContact:function(_19b){
-var _19c=new jive.spank.roster.Contact(_19b,this);
-this.contacts.push(_19c);
-var _19d="group-list-"+this.id;
-if(typeof this._roster.offlines!="undefined"&&_19c.status=="unavailable"){
-_19d="group-list-"+this._roster.offlines;
+},addContact:function(_1a3){
+var _1a4=new jive.spank.roster.Contact(_1a3,this);
+this.contacts.push(_1a4);
+var _1a5="group-list-"+this.id;
+if(typeof this._roster.offlines!="undefined"&&_1a4.status=="unavailable"){
+_1a5="group-list-"+this._roster.offlines;
 }
-jive.spank.chat.Template.contact.append(_19d,{id:_19c.id,status:_19c.status,username:_19c.name});
+jive.spank.chat.Template.contact.append(_1a5,{id:_1a4.id,status:_1a4.status,username:_1a4.name});
 this.contacts[this.contacts.length-1]._enableBehaviors();
 },removeContact:function(jid){
-var _19f=this.getContactByJID(jid);
-if(_19f){
-_19f.remove();
+var _1a7=this.getContactByJID(jid);
+if(_1a7){
+_1a7.remove();
 }
 },contactIndexByJid:function(jid){
 for(var u=this.contacts.length-1;u>=0;u--){
@@ -16868,23 +19163,23 @@ return u;
 }
 return -1;
 },getContactByJID:function(jid){
-var _1a3=this.contactIndexByJid(jid);
-if(_1a3>=0){
-return this.contacts[_1a3];
+var _1ab=this.contactIndexByJid(jid);
+if(_1ab>=0){
+return this.contacts[_1ab];
 }else{
 return null;
 }
-},render:function(_1a4){
-var _1a5="open";
-var _1a6=this._roster.closedgroups.indexOf(this.name)!=-1;
-if(_1a6){
-_1a5="closed";
+},render:function(_1ac){
+var _1ad="open";
+var _1ae=this._roster.closedgroups.indexOf(this.name)!=-1;
+if(_1ae){
+_1ad="closed";
 }
-var body=this._getMembersHtml(_1a4);
-if(body==""&&_1a4){
+var body=this._getMembersHtml(_1ac);
+if(body==""&&_1ac){
 return "";
 }
-return jive.spank.chat.Template.roster_group.applyTemplate({id:this.id,renderClosed:_1a5,online:"group-isonline",groupName:this.name,users:body});
+return jive.spank.chat.Template.roster_group.applyTemplate({id:this.id,renderClosed:_1ad,online:"group-isonline",groupName:this.name,users:body});
 },sort:function(){
 jive.spank.roster.RosterGroup.sortContactHTML(this.id);
 },remove:function(){
@@ -16893,25 +19188,25 @@ YAHOO.ext.EventManager.removeListener(elm,"click",this._wrappedClick);
 this._wrappedClick=null;
 elm.remove();
 delete this._roster.groups[this.name];
-},_getMembersHtml:function(_1a9){
-var _1aa="";
+},_getMembersHtml:function(_1b1){
+var _1b2="";
 for(var u=0;u<this.contacts.length;u++){
-if(!_1a9||this.contacts[u].status!="unavailable"){
-_1aa+=this.contacts[u].render();
+if(!_1b1||this.contacts[u].status!="unavailable"){
+_1b2+=this.contacts[u].render();
 }
 }
-return _1aa;
-},_enableBehaviors:function(_1ac){
-if(_1ac==null){
-_1ac=true;
+return _1b2;
+},_enableBehaviors:function(_1b4){
+if(_1b4==null){
+_1b4=true;
 }
-var _1ad=getEl("group-label-"+this.id);
-if(_1ad&&_1ad.dom){
-_1ad.unselectable();
-var _1ae=_1ad.getChildrenByTagName("em")[0];
-_1ae.unselectable();
-if(_1ac){
-this._wrappedClick=_1ae.mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
+var _1b5=getEl("group-label-"+this.id);
+if(_1b5&&_1b5.dom){
+_1b5.unselectable();
+var _1b6=_1b5.getChildrenByTagName("em")[0];
+_1b6.unselectable();
+if(_1b4){
+this._wrappedClick=_1b6.mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
 }
 }
 for(u=this.contacts.length-1;u>=0;u--){
@@ -16920,44 +19215,44 @@ this.contacts[u]._enableBehaviors();
 }};
 jive.spank.roster.RosterGroup.toggleGroupVisListener=function(evt){
 var elm=evt.getTarget().parentNode;
-var _1b1=elm.parentNode.childNodes.length;
-var _1b2;
-for(var i=_1b1-1;i>=0;i--){
+var _1b9=elm.parentNode.childNodes.length;
+var _1ba;
+for(var i=_1b9-1;i>=0;i--){
 if(elm.parentNode.childNodes[i].nodeName=="UL"){
-_1b2=elm.parentNode.childNodes[i];
+_1ba=elm.parentNode.childNodes[i];
 break;
 }
 }
-if(_1b2!=null){
-var _1b4=(_1b2.style.display=="none")?"block":"none";
-for(var j=_1b2.childNodes.length-1;i>=0;i--){
-if(_1b2.childNodes[j].nodeName=="LI"){
-_1b2.childNodes[j].style.display=_1b4;
+if(_1ba!=null){
+var _1bc=(_1ba.style.display=="none")?"block":"none";
+for(var j=_1ba.childNodes.length-1;i>=0;i--){
+if(_1ba.childNodes[j].nodeName=="LI"){
+_1ba.childNodes[j].style.display=_1bc;
 }
 }
-_1b2.style.display=_1b4;
+_1ba.style.display=_1bc;
 elm=getEl(elm);
-elm.removeClass(_1b4=="block"?"closed":"open");
-elm.addClass(_1b4=="block"?"open":"closed");
+elm.removeClass(_1bc=="block"?"closed":"open");
+elm.addClass(_1bc=="block"?"open":"closed");
 }
 };
 jive.spank.roster.RosterGroup.sortContactHTML=function(id){
-var _1b7=getEl("group-list-"+id);
-if(_1b7&&_1b7.dom!=null){
-var _1b8=_1b7.getChildrenByTagName("li");
-var _1b9=_1b8.sortBy(function(line){
+var _1bf=getEl("group-list-"+id);
+if(_1bf&&_1bf.dom!=null){
+var _1c0=_1bf.getChildrenByTagName("li");
+var _1c1=_1c0.sortBy(function(line){
 return line.dom.innerHTML;
 });
-_1b9.each(function(line){
-line.appendTo(_1b7.dom);
+_1c1.each(function(line){
+line.appendTo(_1bf.dom);
 });
 }
 };
-jive.spank.roster.Contact=function(_1bc,_1bd){
-this.jid=(typeof _1bc!="string"&&_1bc.getJID)?_1bc.getJID():"fake"+Math.random()+"@jivesoftware.com";
-this.name=(_1bc.getName&&_1bc.getName()?_1bc.getName():this.jid);
-this.status=typeof _1bc!="string"&&_1bc.status?_1bc.status:_1bc.isSubscriptionPending&&_1bc.isSubscriptionPending()?"pending":"unavailable";
-this.group=_1bd;
+jive.spank.roster.Contact=function(_1c4,_1c5){
+this.jid=(typeof _1c4!="string"&&_1c4.getJID)?_1c4.getJID():"fake"+Math.random()+"@jivesoftware.com";
+this.name=(_1c4.getName&&_1c4.getName()?_1c4.getName():this.jid);
+this.status=typeof _1c4!="string"&&_1c4.status?_1c4.status:_1c4.isSubscriptionPending&&_1c4.isSubscriptionPending()?"pending":"unavailable";
+this.group=_1c5;
 this.id="roster-contact-"+this.jid+"-"+this.group.cleanName;
 this.currentMessage="";
 this._wrappedClick=null;
@@ -16977,33 +19272,33 @@ delete this._wrappedMouseOut;
 elm.remove();
 this.group.contacts.splice(this.group.contactIndexByJid(this.jid),1);
 delete this.group;
-},changeStatus:function(_1bf,_1c0){
-_1bf=_1bf.toLowerCase();
-getEl(this.id).replaceClass("roster-contact-"+this.status,"roster-contact-"+_1bf);
-var _1c1=(this.status?this.status:"unavailable");
-var _1c2=this.status;
-this.status=_1bf;
-if(_1c2=="unavailable"||_1bf=="unavailable"){
+},changeStatus:function(_1c7,_1c8){
+_1c7=_1c7.toLowerCase();
+getEl(this.id).replaceClass("roster-contact-"+this.status,"roster-contact-"+_1c7);
+var _1c9=(this.status?this.status:"unavailable");
+var _1ca=this.status;
+this.status=_1c7;
+if(_1ca=="unavailable"||_1c7=="unavailable"){
 this.group._roster.fireEvent("offlinemoved");
 }
-this.fireEvent("status",_1c1,_1bf);
-this._changeStatusMsg(_1c0);
-return _1c1;
+this.fireEvent("status",_1c9,_1c7);
+this._changeStatusMsg(_1c8);
+return _1c9;
 },render:function(){
 return jive.spank.chat.Template.contact.applyTemplate({id:this.id,username:this.name,status:this.status,message:this.currentMessage});
 },_changeStatusMsg:function(msg){
 this.currentMessage=(!msg||msg.strip()==""?"":"- "+msg);
-var _1c4=getEl(this.id+"-msg");
-_1c4.dom.innerHTML=this.currentMessage;
+var _1cc=getEl(this.id+"-msg");
+_1cc.dom.innerHTML=this.currentMessage;
 },_enableBehaviors:function(){
 var elm=getEl(this.id);
 if(elm){
 elm.unselectable();
 this._wrappedClick=elm.mon("click",function(evt){
-var _1c7=getEl(evt.getTarget());
-var _1c8=_1c7.dom.id;
+var _1cf=getEl(evt.getTarget());
+var _1d0=_1cf.dom.id;
 getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_1c8).className+=" selected";
+document.getElementById(_1d0).className+=" selected";
 });
 var self=this;
 this._wrappedDblClick=elm.mon("dblclick",function(evt){
@@ -17011,34 +19306,34 @@ evt.stopEvent();
 self.group._roster.fireEvent("contactdblclicked",self.group._roster,self);
 });
 this._wrappedMouseOver=elm.addManagedListener("mouseover",function(evt){
-var _1cc=getEl(evt.getTarget());
-var _1cd=_1cc.dom.id;
-document.getElementById(_1cd).className+=" hover";
+var _1d4=getEl(evt.getTarget());
+var _1d5=_1d4.dom.id;
+document.getElementById(_1d5).className+=" hover";
 });
 this._wrappedMouseOut=elm.addManagedListener("mouseout",function(evt){
 elm.removeClass("hover");
 });
 }
 }});
-jive.spank.roster.Contact.find=function(_1cf,jid,_1d1){
-var _1d2=_1cf.groups;
-for(var _1d3 in _1d2){
-if(_1d1&&_1d3.replace(/[^0-9A-Za-z]/,"_")!=_1d1){
+jive.spank.roster.Contact.find=function(_1d7,jid,_1d9){
+var _1da=_1d7.groups;
+for(var _1db in _1da){
+if(_1d9&&_1db.replace(/[^0-9A-Za-z]/,"_")!=_1d9){
 continue;
 }
-var _1d4=_1d2[_1d3].contacts.find(function(_1d5){
-return _1d5.jid==jid;
+var _1dc=_1da[_1db].contacts.find(function(_1dd){
+return _1dd.jid==jid;
 });
-if(_1d4){
-return _1d4;
+if(_1dc){
+return _1dc;
 }
 }
 return null;
 };
-jive.spank.chat.Control=function(_1d6,_1d7,elm){
+jive.spank.chat.Control=function(_1de,_1df,elm){
 elm.id=elm.id||YAHOO.util.Dom.generateId();
 this.el=getEl(elm.id);
-this.el.appendTo(_1d6);
+this.el.appendTo(_1de);
 this.el.setDisplayed("inline").unselectable();
 this.events={"click":true,"dblclick":true,"mouseover":true,"mouseout":true,"mousedown":true,"mouseup":true,"mousemove":true};
 this._wrappedListeners={};
@@ -17064,8 +19359,8 @@ self.fireEvent("mouseup",evt);
 this._wrappedListeners["mousemove"]=this.el.addManagedListener("mousemove",function(evt){
 self.fireEvent("mousemove",evt);
 });
-this.title=_1d7;
-this.panel=_1d6;
+this.title=_1df;
+this.panel=_1de;
 };
 YAHOO.extend(jive.spank.chat.Control,YAHOO.ext.util.Observable,{fireEvent:function(){
 if(!this.el.hasClass("jive-disabled")){
@@ -17073,8 +19368,8 @@ jive.spank.chat.Control.superclass.fireEvent.call(this,arguments[0],self,argumen
 }
 },remove:function(){
 this.purgeListeners();
-for(var _1e1 in this.events){
-YAHOO.ext.EventManager.removeListener(_1e1,this.el,this._wrappedListeners[_1e1]);
+for(var _1e9 in this.events){
+YAHOO.ext.EventManager.removeListener(_1e9,this.el,this._wrappedListeners[_1e9]);
 }
 this._wrappedListeners=null;
 this.el.remove();
@@ -17085,138 +19380,138 @@ this.el.addClass("jive-disabled");
 },toggleEnabled:function(){
 this.el.toggleClass("jive-disabled");
 }});
-jive.spank.chat.Control.add=function(_1e2,_1e3,_1e4){
+jive.spank.chat.Control.add=function(_1ea,_1eb,_1ec){
 var body=document.getElementsByTagName("body")[0];
-if(typeof _1e4!="function"&&_1e4.elmId!=null){
-var _1e6=$(_1e4.elmId);
-var elm=_1e6.cloneNode(true);
-elm.id="jivectrl-"+_1e6.id;
+if(typeof _1ec!="function"&&_1ec.elmId!=null){
+var _1ee=$(_1ec.elmId);
+var elm=_1ee.cloneNode(true);
+elm.id="jivectrl-"+_1ee.id;
 elm.style.display="none";
 body.appendChild(elm);
 }else{
-if(typeof _1e4!="function"&&_1e4.imgSrc!=null){
+if(typeof _1ec!="function"&&_1ec.imgSrc!=null){
 var elm=document.createElement("a");
 elm.appendChild(document.createElement("img"));
-var _1e8=elm.id=YAHOO.util.Dom.generateId();
+var _1f0=elm.id=YAHOO.util.Dom.generateId();
 elm.className="imgbtn";
-elm.firstChild.setAttribute("src",_1e4.imgSrc);
-if(_1e4.tooltip){
-elm.setAttribute("title",_1e4.tooltip);
+elm.firstChild.setAttribute("src",_1ec.imgSrc);
+if(_1ec.tooltip){
+elm.setAttribute("title",_1ec.tooltip);
 }
 elm.setAttribute("href","#");
 body.appendChild(elm);
 }else{
-var _1e9="autobtn";
-var _1e8=YAHOO.util.Dom.generateId();
-if(typeof _1e4!="function"&&_1e4.className!=null){
-_1e9=_1e4.className;
+var _1f1="autobtn";
+var _1f0=YAHOO.util.Dom.generateId();
+if(typeof _1ec!="function"&&_1ec.className!=null){
+_1f1=_1ec.className;
 }
-jive.spank.chat.Template.control_btn.append(body,{id:_1e8,cls:_1e9,text:_1e3});
+jive.spank.chat.Template.control_btn.append(body,{id:_1f0,cls:_1f1,text:_1eb});
 }
 }
-if(typeof _1e4!="function"&&_1e4.tooltip){
-elm.setAttribute("title",_1e4.tooltip);
+if(typeof _1ec!="function"&&_1ec.tooltip){
+elm.setAttribute("title",_1ec.tooltip);
 }
-var _1ea=new jive.spank.chat.Control(getEl(_1e2),_1e3,elm);
-if(typeof _1e4=="function"){
-_1ea.addListener("click",_1e4);
+var _1f2=new jive.spank.chat.Control(getEl(_1ea),_1eb,elm);
+if(typeof _1ec=="function"){
+_1f2.addListener("click",_1ec);
 }else{
-for(var _1eb in _1e4.events){
-_1ea.addListener(_1eb,_1e4.events[_1eb]);
+for(var _1f3 in _1ec.events){
+_1f2.addListener(_1f3,_1ec.events[_1f3]);
 }
 }
-return _1ea;
+return _1f2;
 };
-jive.spank.chat.CustomMessage=function(type,_1ed){
-var _1ee=new YAHOO.ext.DomHelper.Template(this.finishers[type].template.join(""));
+jive.spank.chat.CustomMessage=function(type,_1f5){
+var _1f6=new YAHOO.ext.DomHelper.Template(this.finishers[type].template.join(""));
 this.callback=this.finishers[type].callback;
 this.destroy=this.finishers[type].destroy;
 this.events=this.finishers[type].events;
-_1ed.id=_1ed.id||YAHOO.util.Dom.generateId();
+_1f5.id=_1f5.id||YAHOO.util.Dom.generateId();
 this.el=document.createElement("div");
-this.el.innerHTML=_1ee.applyTemplate(_1ed);
-this.el.id=_1ed.id;
-this.config=_1ed;
+this.el.innerHTML=_1f6.applyTemplate(_1f5);
+this.el.id=_1f5.id;
+this.config=_1f5;
 };
-YAHOO.extend(jive.spank.chat.CustomMessage,YAHOO.ext.util.Observable,{finishers:{mucinvitation:{events:{"accepted":true,"declined":true},callback:function(_1ef){
-var _1f0=this.el.id;
-var _1f1=getEl(_1f0+"-room").dom.innerHTML;
-var _1f2=getEl(_1f0+"-inviter").dom.innerHTML;
-getEl(_1f0+"-join").addListener("click",function(){
-this.fireEvent("accepted",_1ef,this.config);
-getEl(_1f0+"-message").dom.innerHTML="You accepted "+_1f2+"'s invitation to \""+_1f1+"\".";
+YAHOO.extend(jive.spank.chat.CustomMessage,YAHOO.ext.util.Observable,{finishers:{mucinvitation:{events:{"accepted":true,"declined":true},callback:function(_1f7){
+var _1f8=this.el.id;
+var _1f9=getEl(_1f8+"-room").dom.innerHTML;
+var _1fa=getEl(_1f8+"-inviter").dom.innerHTML;
+getEl(_1f8+"-join").addListener("click",function(){
+this.fireEvent("accepted",_1f7,this.config);
+getEl(_1f8+"-message").dom.innerHTML="You accepted "+_1fa+"'s invitation to \""+_1f9+"\".";
 this.destroy();
 }.bind(this));
-getEl(_1f0+"-decline").addListener("click",function(){
-this.fireEvent("declined",_1ef,this.config);
-getEl(_1f0+"-message").dom.innerHTML="You declined "+_1f2+"'s invitation to \""+_1f1+"\".";
+getEl(_1f8+"-decline").addListener("click",function(){
+this.fireEvent("declined",_1f7,this.config);
+getEl(_1f8+"-message").dom.innerHTML="You declined "+_1fa+"'s invitation to \""+_1f9+"\".";
 this.destroy();
 }.bind(this));
 },destroy:function(){
-var _1f3=this.el.id;
-getEl(_1f3+"-join").removeAllListeners();
-getEl(_1f3+"-decline").removeAllListeners();
-getEl(_1f3+"-controls").remove();
+var _1fb=this.el.id;
+getEl(_1fb+"-join").removeAllListeners();
+getEl(_1fb+"-decline").removeAllListeners();
+getEl(_1fb+"-controls").remove();
 this.purgeListeners();
 delete this.config;
 },template:["<div class=\"jive-mucinvite\">","<p id=\"{id}-message\"><span id=\"{id}-inviter\">{name}</span> has invited you to","join the conference \"<span id=\"{id}-room\">{chatname}</span>\".</p>","<div id=\"{id}-controls\"><a id=\"{id}-join\" href=\"#\">Accept</a>","<a id=\"{id}-decline\" href=\"#\">Decline</a></div>","<span id=\"{id}-jid\" style=\"display: none;\">{jid}</span>","</div>"]}}});
 if(window.jive_enable_autocomplete){
-jive.spank.AutoComplete=function(_1f4,_1f5,_1f6,_1f7){
-jive.spank.AutoComplete.superclass.constructor.call(this,_1f4,_1f5,_1f6,_1f7);
+jive.spank.AutoComplete=function(_1fc,_1fd,_1fe,_1ff){
+jive.spank.AutoComplete.superclass.constructor.call(this,_1fc,_1fd,_1fe,_1ff);
 };
 YAHOO.extend(jive.spank.AutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.AutoComplete.prototype._populateList=function(_1f8,_1f9,self){
-self.autoHighlight=(_1f9[0][0].indexOf(_1f8)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_1f8,_1f9,self);
+jive.spank.AutoComplete.prototype._populateList=function(_200,_201,self){
+self.autoHighlight=(_201[0][0].indexOf(_200)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_200,_201,self);
 };
-jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_1fc){
-var _1fd=v.keyCode;
-switch(_1fd){
+jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_204){
+var _205=v.keyCode;
+switch(_205){
 case 9:
-if(_1fc.delimChar&&(_1fc._nKeyCode!=_1fd)){
-if(_1fc._bContainerOpen){
+if(_204.delimChar&&(_204._nKeyCode!=_205)){
+if(_204._bContainerOpen){
 YAHOO.util.Event.stopEvent(v);
 }
 }
-if(_1fc._oCurItem){
-_1fc._selectItem(_1fc._oCurItem);
+if(_204._oCurItem){
+_204._selectItem(_204._oCurItem);
 }else{
-_1fc._toggleContainer(false);
+_204._toggleContainer(false);
 }
 break;
 case 13:
-if(_1fc._nKeyCode!=_1fd){
-if(_1fc._bContainerOpen){
+if(_204._nKeyCode!=_205){
+if(_204._bContainerOpen){
 YAHOO.util.Event.stopEvent(v);
 }
 }
-_1fc._toggleContainer(false);
+_204._toggleContainer(false);
 break;
 case 27:
-_1fc._toggleContainer(false);
+_204._toggleContainer(false);
 return;
 case 39:
-_1fc._jumpSelection();
+_204._jumpSelection();
 break;
 case 38:
 YAHOO.util.Event.stopEvent(v);
-_1fc._moveSelection(_1fd);
+_204._moveSelection(_205);
 break;
 case 40:
 YAHOO.util.Event.stopEvent(v);
-_1fc._moveSelection(_1fd);
+_204._moveSelection(_205);
 break;
 default:
 break;
 }
 };
-jive.spank.FlatAutoComplete=function(_1fe,_1ff,_200,_201){
-jive.spank.FlatAutoComplete.superclass.constructor.call(this,_1fe,_1ff,_200,_201);
+jive.spank.FlatAutoComplete=function(_206,_207,_208,_209){
+jive.spank.FlatAutoComplete.superclass.constructor.call(this,_206,_207,_208,_209);
 };
 YAHOO.extend(jive.spank.FlatAutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.FlatAutoComplete.prototype._populateList=function(_202,_203,self){
-self.autoHighlight=(_203[0]&&_203[0].indexOf(_202)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_202,_203,self);
+jive.spank.FlatAutoComplete.prototype._populateList=function(_20a,_20b,self){
+self.autoHighlight=(_20b[0]&&_20b[0].indexOf(_20a)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_20a,_20b,self);
 };
 jive.spank.FlatAutoComplete.prototype._updateValue=function(item){
 item._sResultKey=item._oResultData;
@@ -17225,23 +19520,23 @@ jive.spank.AutoComplete.superclass._updateValue.call(this,item);
 }else{
 jive.spank.AutoComplete={};
 }
-jive.spank.Spinner={show:function(_206){
-if(_206==null){
-_206={};
+jive.spank.Spinner={show:function(_20e){
+if(_20e==null){
+_20e={};
 }
 if(!this.isShowing){
-var x=_206.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
-var y=_206.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
-var text=_206.text||"Loading...";
+var x=_20e.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
+var y=_20e.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
+var text=_20e.text||"Loading...";
 this.template.append(document.body,{text:text});
-var _20a=getEl("jive-spinner");
-if(_206.el&&_206.position){
-_20a.alignTo(_206.el,_206.position);
+var _212=getEl("jive-spinner");
+if(_20e.el&&_20e.position){
+_212.alignTo(_20e.el,_20e.position);
 }else{
-_20a.moveTo(x,y);
+_212.moveTo(x,y);
 }
-_20a.setStyle("z-index",20000);
-_20a.show();
+_212.setStyle("z-index",20000);
+_212.show();
 this.isShowing=true;
 }
 },isShowing:false,hide:function(){
@@ -17250,26 +19545,26 @@ getEl("jive-spinner").remove();
 this.isShowing=false;
 }
 },template:new YAHOO.ext.DomHelper.Template("<div style=\"visibility: hidden;\" id=\"jive-spinner\">"+"<img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>")};
-jive.spank.chat.Filter=function(name,_20c,_20d){
-this.filterPattern=_20c;
-this.filterReplacement=_20d;
+jive.spank.chat.Filter=function(name,_214,_215){
+this.filterPattern=_214;
+this.filterReplacement=_215;
 this.name=name;
 };
-jive.spank.chat.Filter.prototype.apply=function(_20e){
-return _20e.replace(this.filterPattern,this.filterReplacement);
+jive.spank.chat.Filter.prototype.apply=function(_216){
+return _216.replace(this.filterPattern,this.filterReplacement);
 };
-jive.spank.chat.Filter.applyAll=function(_20f){
-jive.spank.chat.Filter.registeredFilters.each(function(_210){
-_20f=_210.apply(_20f);
+jive.spank.chat.Filter.applyAll=function(_217){
+jive.spank.chat.Filter.registeredFilters.each(function(_218){
+_217=_218.apply(_217);
 });
-return _20f;
+return _217;
 };
-jive.spank.chat.Filter.add=function(name,_212,_213){
-jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_212,_213));
+jive.spank.chat.Filter.add=function(name,_21a,_21b){
+jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_21a,_21b));
 };
-jive.spank.chat.Filter.remove=function(_214){
+jive.spank.chat.Filter.remove=function(_21c){
 jive.spank.chat.Filter.registeredFilters.each(function(ftr,i){
-if(ftr.name==_214){
+if(ftr.name==_21c){
 delete jive.spank.chat.Filter.registeredFilters[i];
 throw $break;
 }
@@ -17286,18 +19581,18 @@ jive.spank.notifier.origTitle=null;
 jive.spank.notifier.titleMsg="";
 jive.spank.notifier.titleInterval=null;
 jive.spank.notifier.countNewMsgs=function(){
-var _218;
-var _219="";
-var _21a=0;
-for(var _21b in jive.spank.chat.ChatWindow.currentWindow){
-_218=jive.spank.chat.ChatWindow.currentWindow[_21b];
-for(var _21c in _218.newMessages){
-_21a+=_218.newMessages[_21c];
+var _220;
+var _221="";
+var _222=0;
+for(var _223 in jive.spank.chat.ChatWindow.currentWindow){
+_220=jive.spank.chat.ChatWindow.currentWindow[_223];
+for(var _224 in _220.newMessages){
+_222+=_220.newMessages[_224];
 }
 }
-return _21a;
+return _222;
 };
-jive.spank.notifier.doTitleNotify=function(_21d){
+jive.spank.notifier.doTitleNotify=function(_225){
 var ct=jive.spank.notifier.countNewMsgs();
 if(jive.spank.notifier.titleInterval){
 window.clearTimeout(jive.spank.notifier.titleInterval);
@@ -17321,15 +19616,15 @@ jive.spank.notifier.rotateTitle=function(){
 document.title=(document.title==jive.spank.notifier.titleMsg)?jive.spank.notifier.origTitle:jive.spank.notifier.titleMsg;
 jive.spank.notifier.titleInterval=window.setTimeout(jive.spank.notifier.rotateTitle,2000);
 };
-jive.spank.chat.Template={add_contact:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody addcontact\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"{id}-addusername\">Username:</label>","</td><td width=\"65%\">","<input type=\"text\" id=\"{id}-addusername\" value=\"\" />","</td></tr>","<tr><td><label for=\"{id}-addnickname\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-addnickname\" value=\"\" /></td></tr>","<tr><td><label for=\"{id}-addcontact-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-addcontact-group\" value=\"\" />","</td></tr>","<tr><td colspan=\"2\" align=\"center\" class=\"masterctrl\">","<input type=\"button\" class=\"btn createcontact\" id=\"{id}-createcontact\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddcontact\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),add_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"25%\" rowspan=\"2\">","</td><td width=\"75%\">","Enter new group name:<br/>","<input type=\"text\" id=\"{id}-addgroupname\" value=\"\" />","</td></tr>","<tr><td>","<input type=\"button\" class=\"btn creategroup\" id=\"{id}-creategroup\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddgroup\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),chat_toppane:new YAHOO.ext.DomHelper.Template("<div id=\"{bodyId}-topchat\" class=\"jive-chat-toppane\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4></h4>"+"<p id=\"{bodyId}-time\">Time: <span></span></p>"+"<div id=\"{bodyId}-controls\" class=\"jive-ctrlbar-topchat\"></div>"+"</div>"),contact:new YAHOO.ext.DomHelper.Template("<li id=\"{id}\" class=\"roster-contact-{status}\">{username} <span id=\"{id}-msg\" class=\"msg\">{message}</span></li>"),control_btn:new YAHOO.ext.DomHelper.Template("<a href=\"#\" class=\"jive-control-btn {cls}\" id=\"{id}\">{text}</a>"),control_panel:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-controls\" class=\"jive-ctrlbar\"></div>"),create_account:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><div class=\"{id}-name-label\">Username:</div></td>","<td><input type=\"text\" id=\"{id}-name\" /></td></tr>","<td><div class=\"{id}-passwd-label\">Password:</div></td>","<td><input type=\"password\" id=\"{id}-passwd\" /></td></tr>","<td><div class=\"{id}-confirm-label\">Confirm Password:</div></td>","<td><input type=\"password\" id=\"{id}-confirm\" /></td></tr>","</table>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-submit\" value=\"Submit\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),dialog:new YAHOO.ext.DomHelper.Template("<div class=\"ydlg-hd\"><h1>{windowTitle}</h1></div>"+"<div id=\"{bodyId}\" class=\"ydlg-bd\">"+"<div id=\"{bodyId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"</div>"),message:new YAHOO.ext.DomHelper.Template("<div class=\"{type}-message {mentioned} {action} {msgclass}\"><span class=\"meta\"><em>({time})</em>"+"&nbsp;{from}: </span><span class=\"message-content\">{message}</span></div>"),muc_chooser_top:new YAHOO.ext.DomHelper.Template("<div class=\"dhead chooseconf\">Create or join a conference room</div>"+"<div id=\"{tabId}-confcontrols\" class=\"dbody chooseconf\">"+"<div id=\"{tabId}-createconf\" class=\"jive-invite-control\">Create a Conference</div>"+"<div id=\"{tabId}-refresh\" class=\"jive-invite-control\">Refresh List</div>"+"</div>"),muc_controls:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"+"<div class=\"muc-ctrl-frame\">"+"<div id=\"{jid}-changenick\" class=\"jive-invite-control\">Change nickname</div>"+"<div id=\"{jid}-control\" class=\"jive-invite-control\">Invite contact "+"<img align=\"absmiddle\" src=\"resources/images/menutri.gif\" height=\"4\" width=\"7\" alt=\"\" /></div>"+"</div>"),muc_subject:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"),mucchooser:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-roomgrid\"></div>"+"</div>"),muccreation:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roomname\">Room Name:</label></td>","<td><input type=\"text\" id=\"{id}-roomname\" /></td></tr>","<tr><td><label for=\"{id}-roomtopic\">Room Topic:</label></td>","<td><input type=\"text\" id=\"{id}-roomtopic\" /></td></tr>","<tr><td colspan=\"2\"><input type=\"checkbox\" id=\"{id}-permanent\" />","<label for=\"{id}-permanent\"> Make permanent</label></td></tr></table>","<div class=\"fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-private\" />"," Make private</span></p>","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roompw\" class=\"disabled\">Password:</label></td>","<td><input type=\"password\" id=\"{id}-roompw\" disabled=\"disabled\" /></td></tr>","<td><label for=\"{id}-roomconfirm\" class=\"disabled\">Confirm Password:</label></td>","<td><input type=\"password\" id=\"{id}-roomconfirm\" disabled=\"disabled\" /></td></tr>","</table></div>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-createroom\" value=\"Create\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),mucinvitemenu:new YAHOO.ext.DomHelper.Template("<div id=\"{jid}-container\" class=\"jive-invite-menu\">"+"<input id=\"{jid}-autocomp\" type=\"text\">"+"<div id=\"{jid}-autocomp-menu\"></div>"+"</div>"),mucpassword:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Enter password:</p>","<p align=\"center\"><input type=\"password\" class=\"btn\" id=\"{id}-passwd\" value=\"\" /></p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-sendsecret\" value=\"Join\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),muctab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-controls\" class=\"jive-muc-ctrl\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<div id=\"{tabId}-sidebarlayout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-sidebar-header\" class=\"jive-muc-sidebar-header\"></div>"+"<div id=\"{tabId}-occupants\" class=\"jive-muc-occupants\"></div>"+"<div id=\"{tabId}-userstatus\" class=\"jive-muc-status\"></div>"+"</div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),remove_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Are you sure you want to remove '{name}'?</p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-remove\" value=\"Yes\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"No\" /></p>","</div>"].join("")),rename:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<div style=\"text-align: center; padding: 8px;\">Rename to: ","<input type=\"text\" id=\"{id}-name\" value=\"\" /></div>","<div style=\"text-align: center;\">","<input type=\"button\" class=\"btn\" id=\"{id}-rename\" value=\"OK\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-close\" value=\"Cancel\" />","</div>","</div>"].join("")),roster:new YAHOO.ext.DomHelper.Template("<ul id=\"{rosterId}\" class=\"jive-roster\">{groups}</ul>"),roster_group:new YAHOO.ext.DomHelper.Template("<li id=\"group-{id}\" class=\"group\">"+"<span id=\"group-label-{id}\" class=\"group-label {online} {renderClosed}\"><em>{groupName}</em></span>"+"<ul id=\"group-list-{id}\" class=\"group-list\">{users}</ul>"+"</li>"),rostertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-user\" class=\"jive-controlpanel\"></div>"+"<div id=\"{tabId}-resources\"></div>"+"</div>"),spinnertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-spinner\" class=\"ylayout-inactive-content ydlg-tab jive-spinnertab\">"+"<div id=\"jive-spinner\"><img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>"+"</div>"),start_chat:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\" style=\"text-align: center;\">","<p>Enter an address:</p>","<p><input type=\"text\" id=\"{id}-jid\" /></p>","<p style=\"margin-top: 4px;\"><input type=\"button\" class=\"btn\" id=\"{id}-startbtn\" value=\"Start Chat\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),statusMessage:new YAHOO.ext.DomHelper.Template("<div class=\"status-message\">{message}</div>"),status_panel:new YAHOO.ext.DomHelper.Template("<div class=\"jive-userstatus\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4>{username}</h4>"+"<p id=\"{bodyId}-status\" class=\"jive-mystatus\">"+"<a href=\"#\" id=\"{bodyId}-statusmenu-ctrl\" class=\"roster-contact-{statusName}\"><span>{status}</span></a></p>"+"</div>"),sub_request:new YAHOO.ext.DomHelper.Template(["<div class=\"dhead\">{nick} ({jid}) wants to add you as a contact.</div>","<div class=\"dbody fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-add\" checked=\"checked\" />"," Add user to your contacts too</span></p>","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"addusername\">Username:</label>","</td><td id=\"{id}-jid\" width=\"65%\">{jid}</td></tr>","<tr><td><label for=\"{id}-nick\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-nick\" value=\"{nick}\" /></td></tr>","<tr><td><label for=\"{id}-subrequest-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-subrequest-group\" value=\"\" />","</td></tr></table></div>","<p align=\"center\">","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-acceptsubrequest\" value=\"Allow\" />","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-denysubrequest\" value=\"Deny\" />","</p>"].join("")),tab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),userpane:new YAHOO.ext.DomHelper.Template("<span id=\"{id}-message\">{message}</span>"),userpane_loggedin:new YAHOO.ext.DomHelper.Template("<input class=\"jive-muc-username\" type=\"text\" id=\"{id}-uname\" value=\"{uname}\"></input>"),userpane_changebtn:new YAHOO.ext.DomHelper.Template("<a id=\"{id}-changenickbtn\" href=\"javascript:void(0);\">Change Nickname</a>"),userstatus:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>")};
+jive.spank.chat.Template={add_contact:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody addcontact\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"{id}-addusername\">Username:</label>","</td><td width=\"65%\">","<input type=\"text\" id=\"{id}-addusername\" value=\"\" />","</td></tr>","<tr><td><label for=\"{id}-addnickname\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-addnickname\" value=\"\" /></td></tr>","<tr><td><label for=\"{id}-addcontact-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-addcontact-group\" value=\"\" />","</td></tr>","<tr><td colspan=\"2\" align=\"center\" class=\"masterctrl\">","<input type=\"button\" class=\"btn createcontact\" id=\"{id}-createcontact\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddcontact\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),add_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"25%\" rowspan=\"2\">","</td><td width=\"75%\">","Enter new group name:<br/>","<input type=\"text\" id=\"{id}-addgroupname\" value=\"\" />","</td></tr>","<tr><td>","<input type=\"button\" class=\"btn creategroup\" id=\"{id}-creategroup\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddgroup\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),chat_toppane:new YAHOO.ext.DomHelper.Template("<div id=\"{bodyId}-topchat\" class=\"jive-chat-toppane\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4></h4>"+"<p id=\"{bodyId}-time\">Time: <span></span></p>"+"<div id=\"{bodyId}-controls\" class=\"jive-ctrlbar-topchat\"></div>"+"</div>"),contact:new YAHOO.ext.DomHelper.Template("<li id=\"{id}\" class=\"roster-contact-{status}\">{username} <span id=\"{id}-msg\" class=\"msg\">{message}</span></li>"),control_btn:new YAHOO.ext.DomHelper.Template("<a href=\"#\" class=\"jive-control-btn {cls}\" id=\"{id}\">{text}</a>"),control_panel:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-controls\" class=\"jive-ctrlbar\"></div>"),create_account:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><div class=\"{id}-name-label\">Username:</div></td>","<td><input type=\"text\" id=\"{id}-name\" /></td></tr>","<td><div class=\"{id}-passwd-label\">Password:</div></td>","<td><input type=\"password\" id=\"{id}-passwd\" /></td></tr>","<td><div class=\"{id}-confirm-label\">Confirm Password:</div></td>","<td><input type=\"password\" id=\"{id}-confirm\" /></td></tr>","</table>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-submit\" value=\"Submit\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),dialog:new YAHOO.ext.DomHelper.Template("<div class=\"ydlg-hd\"><h1>{windowTitle}</h1></div>"+"<div id=\"{bodyId}\" class=\"ydlg-bd\">"+"<div id=\"{bodyId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"</div>"),message:new YAHOO.ext.DomHelper.Template("<div class=\"{type}-message {mentioned} {consecutive} {action} {msgclass}\"><span class=\"meta\"><em>({time})</em>"+"&nbsp;{from}: </span><span class=\"message-content\">{message}</span></div>"),muc_chooser_top:new YAHOO.ext.DomHelper.Template("<div class=\"dhead chooseconf\">Create or join a conference room</div>"+"<div id=\"{tabId}-confcontrols\" class=\"dbody chooseconf\">"+"<div id=\"{tabId}-createconf\" class=\"jive-invite-control\">Create a Conference</div>"+"<div id=\"{tabId}-refresh\" class=\"jive-invite-control\">Refresh List</div>"+"</div>"),muc_controls:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"+"<div class=\"muc-ctrl-frame\">"+"<div id=\"{jid}-changenick\" class=\"jive-invite-control\">Change nickname</div>"+"<div id=\"{jid}-control\" class=\"jive-invite-control\">Invite contact "+"<img align=\"absmiddle\" src=\"resources/images/menutri.gif\" height=\"4\" width=\"7\" alt=\"\" /></div>"+"</div>"),muc_subject:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"),mucchooser:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-roomgrid\"></div>"+"</div>"),muccreation:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roomname\">Room Name:</label></td>","<td><input type=\"text\" id=\"{id}-roomname\" /></td></tr>","<tr><td><label for=\"{id}-roomtopic\">Room Topic:</label></td>","<td><input type=\"text\" id=\"{id}-roomtopic\" /></td></tr>","<tr><td colspan=\"2\"><input type=\"checkbox\" id=\"{id}-permanent\" />","<label for=\"{id}-permanent\"> Make permanent</label></td></tr></table>","<div class=\"fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-private\" />"," Make private</span></p>","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roompw\" class=\"disabled\">Password:</label></td>","<td><input type=\"password\" id=\"{id}-roompw\" disabled=\"disabled\" /></td></tr>","<td><label for=\"{id}-roomconfirm\" class=\"disabled\">Confirm Password:</label></td>","<td><input type=\"password\" id=\"{id}-roomconfirm\" disabled=\"disabled\" /></td></tr>","</table></div>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-createroom\" value=\"Create\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),mucinvitemenu:new YAHOO.ext.DomHelper.Template("<div id=\"{jid}-container\" class=\"jive-invite-menu\">"+"<input id=\"{jid}-autocomp\" type=\"text\">"+"<div id=\"{jid}-autocomp-menu\"></div>"+"</div>"),mucpassword:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Enter password:</p>","<p align=\"center\"><input type=\"password\" class=\"btn\" id=\"{id}-passwd\" value=\"\" /></p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-sendsecret\" value=\"Join\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),muctab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-controls\" class=\"jive-muc-ctrl\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<div id=\"{tabId}-sidebarlayout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-sidebar-header\" class=\"jive-muc-sidebar-header\"></div>"+"<div id=\"{tabId}-occupants\" class=\"jive-muc-occupants\"></div>"+"<div id=\"{tabId}-userstatus\" class=\"jive-muc-status\"></div>"+"</div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),remove_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Are you sure you want to remove '{name}'?</p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-remove\" value=\"Yes\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"No\" /></p>","</div>"].join("")),rename:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<div style=\"text-align: center; padding: 8px;\">Rename to: ","<input type=\"text\" id=\"{id}-name\" value=\"\" /></div>","<div style=\"text-align: center;\">","<input type=\"button\" class=\"btn\" id=\"{id}-rename\" value=\"OK\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-close\" value=\"Cancel\" />","</div>","</div>"].join("")),roster:new YAHOO.ext.DomHelper.Template("<ul id=\"{rosterId}\" class=\"jive-roster\">{groups}</ul>"),roster_group:new YAHOO.ext.DomHelper.Template("<li id=\"group-{id}\" class=\"group\">"+"<span id=\"group-label-{id}\" class=\"group-label {online} {renderClosed}\"><em>{groupName}</em></span>"+"<ul id=\"group-list-{id}\" class=\"group-list\">{users}</ul>"+"</li>"),rostertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-user\" class=\"jive-controlpanel\"></div>"+"<div id=\"{tabId}-resources\"></div>"+"</div>"),spinnertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-spinner\" class=\"ylayout-inactive-content ydlg-tab jive-spinnertab\">"+"<div id=\"jive-spinner\"><img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>"+"</div>"),start_chat:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\" style=\"text-align: center;\">","<p>Enter an address:</p>","<p><input type=\"text\" id=\"{id}-jid\" /></p>","<p style=\"margin-top: 4px;\"><input type=\"button\" class=\"btn\" id=\"{id}-startbtn\" value=\"Start Chat\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),statusMessage:new YAHOO.ext.DomHelper.Template("<div class=\"status-message {customClass}\">{message}</div>"),status_panel:new YAHOO.ext.DomHelper.Template("<div class=\"jive-userstatus\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4>{username}</h4>"+"<p id=\"{bodyId}-status\" class=\"jive-mystatus\">"+"<a href=\"#\" id=\"{bodyId}-statusmenu-ctrl\" class=\"roster-contact-{statusName}\"><span>{status}</span></a></p>"+"</div>"),sub_request:new YAHOO.ext.DomHelper.Template(["<div class=\"dhead\">{nick} ({jid}) wants to add you as a contact.</div>","<div class=\"dbody fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-add\" checked=\"checked\" />"," Add user to your contacts too</span></p>","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"addusername\">Username:</label>","</td><td id=\"{id}-jid\" width=\"65%\">{jid}</td></tr>","<tr><td><label for=\"{id}-nick\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-nick\" value=\"{nick}\" /></td></tr>","<tr><td><label for=\"{id}-subrequest-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-subrequest-group\" value=\"\" />","</td></tr></table></div>","<p align=\"center\">","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-acceptsubrequest\" value=\"Allow\" />","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-denysubrequest\" value=\"Deny\" />","</p>"].join("")),tab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),userpane:new YAHOO.ext.DomHelper.Template("<span id=\"{id}-message\">{message}</span>"),userpane_loggedin:new YAHOO.ext.DomHelper.Template("<input class=\"jive-muc-username\" type=\"text\" id=\"{id}-uname\" value=\"{uname}\"></input>"+"<div class=\"jive-muc-presence-control {presence}\" id=\"{id}-presencecontrol\">{presence}</div>"),userpane_changebtn:new YAHOO.ext.DomHelper.Template("<a id=\"{id}-changenickbtn\" href=\"javascript:void(0);\">Change Nickname</a>"),userstatus:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>")};
 if(window.jive_enable_grid){
-YAHOO.ext.grid.SpankJSONDataModel=function(_21f){
+YAHOO.ext.grid.SpankJSONDataModel=function(_227){
 YAHOO.ext.grid.SpankJSONDataModel.superclass.constructor.call(this,YAHOO.ext.grid.LoadableDataModel.JSON);
-this.schema=_21f;
+this.schema=_227;
 };
-YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_221,_222){
-var _223=this.schema.id;
-var _224=this.schema.fields;
+YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_229,_22a){
+var _22b=this.schema.id;
+var _22c=this.schema.fields;
 try{
 if(this.schema.totalProperty){
 var v=parseInt(eval("data."+this.schema.totalProperty),10);
@@ -17337,7 +19632,7 @@ if(!isNaN(v)){
 this.totalCount=v;
 }
 }
-var _226=[];
+var _22e=[];
 if(this.schema.root){
 var root=eval("data."+this.schema.root);
 }else{
@@ -17345,52 +19640,52 @@ var root=data;
 }
 for(var i in root){
 var node=root[i];
-var _22a=[];
-_22a.node=node;
-_22a.id=(typeof node[_223]!="undefined"&&node[_223]!==""?node[_223]:String(i));
-for(var j=0;j<_224.length;j++){
-var val=node[_224[j]];
+var _232=[];
+_232.node=node;
+_232.id=(typeof node[_22b]!="undefined"&&node[_22b]!==""?node[_22b]:String(i));
+for(var j=0;j<_22c.length;j++){
+var val=node[_22c[j]];
 if(typeof val=="undefined"){
 val="";
 }
 if(this.preprocessors[j]){
 val=this.preprocessors[j](val);
 }
-_22a.push(val);
+_232.push(val);
 }
-_226.push(_22a);
+_22e.push(_232);
 }
-if(_222!==true){
+if(_22a!==true){
 this.removeAll();
 }
-this.addRows(_226);
-if(typeof _221=="function"){
-_221(this,true);
+this.addRows(_22e);
+if(typeof _229=="function"){
+_229(this,true);
 }
 this.fireLoadEvent();
 }
 catch(e){
 this.fireLoadException(e,null);
-if(typeof _221=="function"){
-_221(this,false);
+if(typeof _229=="function"){
+_229(this,false);
 }
 }
-},getRowId:function(_22d){
-return this.data[_22d].id;
+},getRowId:function(_235){
+return this.data[_235].id;
 }});
 }
-YAHOO.ext.Element.prototype.getParentByClass=function(_22e,_22f){
-if(_22f){
-_22f=_22f.toLowerCase();
+YAHOO.ext.Element.prototype.getParentByClass=function(_236,_237){
+if(_237){
+_237=_237.toLowerCase();
 }
 function isMatch(el){
 if(!el){
 return false;
 }
-if(_22e&&!YAHOO.util.Dom.hasClass(el,_22e)){
+if(_236&&!YAHOO.util.Dom.hasClass(el,_236)){
 return false;
 }
-return !(_22f&&el.tagName.toLowerCase()!=_22f);
+return !(_237&&el.tagName.toLowerCase()!=_237);
 }
 var t=this.dom;
 if(!t||isMatch(t)){
@@ -17406,9 +19701,9 @@ p=p.parentNode;
 }
 return null;
 };
-YAHOO.ext.Element.prototype.setSelectable=function(_234){
-this.dom.unselectable=_234?"off":"on";
-if(!_234){
+YAHOO.ext.Element.prototype.setSelectable=function(_23c){
+this.dom.unselectable=_23c?"off":"on";
+if(!_23c){
 this.applyStyles("-moz-user-select:none;-khtml-user-select:none;");
 }else{
 this.applyStyles("-moz-user-select:normal;-khtml-user-select:auto;");
@@ -17417,251 +19712,11 @@ return this;
 };
 
 
-jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",mucServer:"conference.localhost",server:"localhost",connectionAddress:"localhost:7080",roomName:"test"};
-function enableEmoticons(){
-var _1=[["angry",/&gt;:o|&gt;:-o|&gt;:O|&gt;:-O/g],["confused",/\?:\|/g],["cool",/B-\)|8-\)/g],["cry",/:\'\(/g],["devil",/\]:\)/g],["grin",/:-D|:D/g],["happy",/:-\)|:\)/g],["laugh",/:\^0/g],["love",/:x/g],["mischief",/;\\/g],["sad",/:-\(|:\(/g],["silly",/:-p|:-P|:P|:p/g],["wink",/;-\)|;\)/g]];
-_1.each(function(_2){
-jive.spank.chat.Filter.add(_2[0],_2[1],"<img src=\"jive-images/emoticons/"+_2[0]+".gif\" alt=\"\" />");
-});
-}
-function enableAutolinking(){
-jive.spank.chat.Filter.add("uri",/\b(\w+?:\/\/[^\s+\"\<\>]+)/ig,"<a href=\"$1\" target=\"_blank\">$1</a>");
-jive.spank.chat.Filter.add("webaddress",/(\s|^)(www\.[^\s+\"\<\>]+)/ig,"<a href=\"http://$2\" target=\"_blank\">$2</a>");
-}
-function jive_configureGroupChat(){
-if(!window.jive_groupchat_config){
-window.jive_groupchat_config={};
-}
-for(var _3 in jive_groupchat_config_defaults){
-if(!jive_groupchat_config[_3]){
-jive_groupchat_config[_3]=jive_groupchat_config_defaults[_3];
-}
-}
-if(jive_groupchat_config["fitToParent"]){
-jive_groupchat_config["width"]=null;
-jive_groupchat_config["height"]=null;
-}
-}
-jive_configureGroupChat();
-MessageHandler={subjectUpdated:function(_4,_5,_6){
-window.controller.chatWindow.setSubject(_6,_4.jid.toString());
-},messageReceived:function(_7){
-var _8=_7.getFrom();
-var _9=_8.toBareJID();
-var _a=_8.getResource();
-var _b=_7.getBody();
-var _c=window.controller.nickname.toLowerCase()==_a;
-_b.mentioned=(_b.body.indexOf(window.controller.nickname.toLowerCase())>-1)?"mentioned":null;
-var t=_7.getExtension("x","jabber:x:delay");
-if((t||!_c)&&_b){
-if(t){
-t=new XMPP.DelayInformation(t).getDate().toLocaleTimeString();
-}
-if(_a){
-window.controller.chatWindow.addMessage(_9,_a,_b,_c,t);
-}else{
-window.controller.chatWindow.addStatusMessage(_9,_b.body);
-}
-}
-}};
-controller={chatWindow:null,conf:null,connection:null,connectionSuccessful:function(_e){
-this.connection=_e;
-_e.login();
-window.onbeforeunload=_e.disconnect;
-},connectionFailed:function(_f,_10){
-alert("Error: "+_10);
-},authenticationSuccessful:function(_11){
-this.chatWindow=new jive.spank.chat.ChatWindow("groupchat",window.jive_groupchat_config);
-if(window.jive_groupchat_config["fitToParent"]=="true"){
-window.resizeHandler();
-}
-this.chatManager=new org.jive.spank.chat.Manager(_11,window.jive_groupchat_config["server"],false);
-this.mucManager=new org.jive.spank.muc.Manager(_11,this.chatManager);
-this.joinChat();
-},joinChat:function(){
-this.conf=this.mucManager.createRoom(new XMPP.JID(window.jive_groupchat_config["roomName"]+"@"+window.jive_groupchat_config["mucServer"]));
-this.nickname="User"+Math.floor(Math.random()*500);
-this.conf.join(this.nickname,"",this,MessageHandler,this.occupantListener);
-},authenticationFailed:function(_12,_13){
-alert("Authentication failed: "+_13);
-},connectionClosed:function(_14,_15){
-},occupantListener:function(_16){
-var _17=_16.getRoom();
-var _18=window.controller.mucManager.getRoom(new XMPP.JID(_17));
-if(!_18||!_18.isJoined){
-return;
-}
-var jid=_16.presence.getFrom();
-var tab=window.controller.chatWindow.tabs[_17];
-if(!tab){
-return;
-}
-var _1b=tab.participants;
-if(!_1b){
-return;
-}
-var _1c=_1b.getContactByJID(jid.toString());
-var _1d;
-var _1e;
-switch(_16.presence.getType()){
-case "available":
-_1d=_16.presence.getMode();
-if(!_1d){
-_1d="available";
-}
-_1e=_16.presence.getStatus();
-break;
-default:
-_1d="unavailable";
-break;
-}
-if(!_1c&&_1d!="unavailable"){
-_1c=_1b.addContact({jid:jid,getJID:function(){
-return this.jid.toString();
-},status:_1d,getName:function(){
-return _16.getNick();
-}});
-window.controller.chatWindow.addStatusMessage(_17,_16.getNick()+" has joined the room.");
-}else{
-if(_1c&&_1d=="unavailable"){
-_1c.changeStatus(_1d);
-_1b.removeContact(jid.toString());
-var _1f=_16.presence.getStatus();
-if(_1f!=null&&_1f.length>0){
-window.controller.chatWindow.addStatusMessage(_17,_16.getNick()+" has left the room, saying "+_1f);
-}else{
-window.controller.chatWindow.addStatusMessage(_17,_16.getNick()+" has left the room.");
-}
-}else{
-if(_1c){
-_1c.changeStatus(_1d);
-}
-}
-}
-},sendMessage:function(_20,_21){
-this.completionState={index:0,completed:null,original:null};
-if(_21.indexOf("/clear")==0){
-var _22=this.chatWindow.dialog.getEl().dom.getElementsByClassName("jive-history")[0];
-while(_22.firstChild){
-_22.removeChild(_22.firstChild);
-}
-}else{
-if(_21.indexOf("/nick")==0){
-if(_21.length>"/nick".length+2){
-this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_21.replace("/nick ",""));
-}
-}else{
-if(_21.indexOf("/part")==0){
-this.logout(_21.replace("/part ","").replace("/part",""));
-}else{
-if(_21.indexOf("/leave")==0){
-this.logout(_21.replace("/leave ","").replace("/leave",""));
-}else{
-var jid=new XMPP.JID(this.nickname);
-this.conf.sendMessage(_21,org.jive.spank.x.chatstate.getManager(this.chatManager).setCurrentState("active",jid));
-this.chatWindow.addMessage(window.controller.conf.jid,this.nickname,{body:_21,isLocal:true},true);
-}
-}
-}
-}
-},completionState:{index:0,completed:null,original:null},completeNick:function(jid,_25,_26){
-jid=new XMPP.JID(jid);
-var _27=this.mucManager.getRoom(jid);
-var _28=_27.getOccupants();
-var _29;
-var _2a=this.completionState;
-var _2b=0;
-if(_2a.original==null||_2a.completed!=_25){
-_2a.original=_25;
-}
-for(var i=_2a.index;i<_28.length&&_2b<_28.length;i++){
-_2b++;
-_2a.index=i+1;
-_29=_28[i].getNick();
-if(_2a.index>=_28.length){
-_2a.index=0;
-i=0;
-}
-if(_29.indexOf(_2a.original)==0&&_2a.original.length<_29.length){
-_2a.completed=_29+": ";
-_26.dom.value=_2a.completed;
-_26.dom.selectionStart=_26.dom.value.length;
-_26.dom.selectionEnd=_26.dom.value.length;
-return;
-}
-}
-},handleNameChange:function(_2d,_2e,_2f){
-var _30=this.conf.getOccupants();
-var _31=false;
-for(var i=0;i<_30.length;i++){
-if(_2f.toLowerCase()==_30[i].getNick().toLowerCase()&&_2f!=this.nickname){
-_2f=_2f+"_";
-i=0;
-_31=true;
-}
-}
-if(_31==true){
-this.chatWindow.addStatusMessage(this.conf.jid,"Nickname collision with "+_2f+"; a _ has been appended to your nick to make it different.");
-}
-this.nickname=_2f;
-this.conf.changeNickname(_2f);
-},sendTimeStamp:function(){
-this.chatWindow.addStatusMessage(this.conf.jid,window.strftime(new Date(),"%1I:%M %p"));
-window.setTimeout(this.sendTimeStamp.bind(this),300000);
-},updateDate:function(){
-window.controller.chatWindow.dialog.setTitle("Chatting in "+window.controller.conf.jid+" on "+window.strftime(new Date(),"%A, %B %e"));
-var _33=new Date();
-_33.setMinutes(0);
-_33.setHours(0);
-_33.setSeconds(5);
-_33.setDate(_33.getDate()+1);
-window.setTimeout(window.controller.updateDate,_33-new Date());
-},onSuccess:function(_34){
-var _35=window.controller.chatWindow;
-var _36=window.controller.conf;
-_35.addMUC({name:_36.nickname,jid:_36.jid});
-var _37=_36.getOccupants();
-for(var i=0;i<_37.length;i++){
-window.controller.occupantListener(_37[i]);
-}
-_35.prepUserPane();
-_35.show();
-_35.finalizeUserPane(this.nickname);
-_35.setSubject("");
-window.controller.updateDate();
-getEl(_35.tabId+"-layout").dom.parentNode.style.position="absolute";
-enableEmoticons();
-enableAutolinking();
-_35.addListener("message",this.sendMessage.bind(this));
-_35.addListener("nickcomplete",this.completeNick.bind(this));
-_35.addListener("changenameinmuc",this.handleNameChange.bind(this));
-_35.dialog.addListener("beforeshow",this.joinChat,window.controller,true);
-_35.dialog.addListener("beforehide",this.conf.leave.bind(this.conf));
-window.setTimeout(_35.addStatusMessage.bind(_35),2000,_36.jid,"Welcome to "+_36.jid+" you can change your name by clicking on it in the upper-right corner");
-window.setTimeout(window.controller.sendTimeStamp.bind(window.controller),1000);
-},logout:function(_39){
-window.controller.conf.leave(false);
-window.controller.connection.logout(presence);
-},};
-var resizeHandler=function(){
-var _3a=window.controller.chatWindow.dialog;
-_3a.beginUpdate();
-_3a.getEl().fitToParent();
-_3a.resizeTo(_3a.getEl().getWidth(),_3a.getEl().getHeight());
-var xy=YAHOO.util.Dom.getXY(_3a.getEl().dom.parentNode);
-_3a.moveTo(xy[0],xy[1]);
-_3a.endUpdate();
-};
-var toggleTheme=function(){
-getEl(document.body,true).toggleClass("jivetheme-muc");
-};
-YAHOO.ext.EventManager.onDocumentReady(function(){
-window.connection=new XMPPConnection("/http-bind/",window.jive_groupchat_config["connectionAddress"],controller);
-connection.connect();
-toggleTheme();
-});
-if(window.jive_groupchat_config["fitToParent"]=="true"){
-YAHOO.ext.EventManager.onWindowResize(resizeHandler,window,false);
-}
-
+js: "/Users/david/Sites/sparkweb/groupchat-scripts/group_chat.js", line 300: unterminated string literal
+js: 			this.chatWindow.addStatusMessage(this.conf.jid, "Nickname collision with " + newName + "; a _ has been appended to your nick to make it different.", muc-name-conflict-message");
+js: ...................................................................................................................................................................................^
+js: "/Users/david/Sites/sparkweb/groupchat-scripts/group_chat.js", line 300: missing ) after argument list
+js: 			this.chatWindow.addStatusMessage(this.conf.jid, "Nickname collision with " + newName + "; a _ has been appended to your nick to make it different.", muc-name-conflict-message");
+js: ...................................................................................................................................................................................^
+js: "/Users/david/Sites/sparkweb/groupchat-scripts/group_chat.js", line 1: Compilation produced 2 syntax errors.
 
