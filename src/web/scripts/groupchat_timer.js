@@ -4,7 +4,7 @@
 function runGroupChatTimer() {
     // All times/dates are UTC
     var SCHEDULED_DAY = 3;
-    var SCHEDULED_HOUR = 18;
+    var SCHEDULED_HOUR = 17;
 
     // Constants
     var MINUTES_IN_HOUR = 60;
