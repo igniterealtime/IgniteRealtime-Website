@@ -1,5 +1,5 @@
 .ydlg-proxy {
-	background-image: url('images/gradient-bg.gif');
+	background-image: url('../images/gradient-bg.gif');
 	background-color:#c3daf9;
 	border:1px solid #6593cf;
 	z-index:10001;
@@ -45,7 +45,7 @@ body.masked .ydlg select {
 	z-index:10002;
 }
 .ydlg .ydlg-hd {
-	background: url(images/basic-dialog/hd-sprite.gif) repeat-x 0px -82px;
+	background: url(../images/basic-dialog/hd-sprite.gif) repeat-x 0px -82px;
 	background-color:navy;
 	color:#FFF;
 	font:bold 12px "sans serif", tahoma, verdana, helvetica;
@@ -53,18 +53,18 @@ body.masked .ydlg select {
 	padding:5px;
 }
 .ydlg .ydlg-hd-left {
-	background: url(images/basic-dialog/hd-sprite.gif) no-repeat 0px -41px;
+	background: url(../images/basic-dialog/hd-sprite.gif) no-repeat 0px -41px;
 	padding-left:3px;
 	margin:0px;
 }
 .ydlg .ydlg-hd-right {
-	background: url(images/basic-dialog/hd-sprite.gif) no-repeat right 0px;
+	background: url(../images/basic-dialog/hd-sprite.gif) no-repeat right 0px;
 	padding-right:3px;
 }
 
 
  .ydlg .ydlg-dlg-body{
-	background:url(images/layout/gradient-bg.gif);
+	background:url(../images/layout/gradient-bg.gif);
 	border:1px solid #6593cf;
 	border-top:0px none;
 	padding:10px;
@@ -110,18 +110,18 @@ body.masked .ydlg select {
 .ydlg-button-left{
 	width:3px;
 	height:21px;
-	background:url(images/basic-dialog/btn-sprite.gif) no-repeat 0px 0px;
+	background:url(../images/basic-dialog/btn-sprite.gif) no-repeat 0px 0px;
 }
 .ydlg-button-right{
 	width:3px;
 	height:21px;
-	background:url(images/basic-dialog/btn-sprite.gif) no-repeat 0px -21px;
+	background:url(../images/basic-dialog/btn-sprite.gif) no-repeat 0px -21px;
 }
 .ydlg-button-focus{
 	text-decoration:none !important;
 }
 .ydlg-button-center{
-	background:url(images/basic-dialog/btn-sprite.gif) repeat-x 0px -42px;
+	background:url(../images/basic-dialog/btn-sprite.gif) repeat-x 0px -42px;
 	font:normal 11px "san serif",tahoma,verdana,helvetica;
 	vertical-align: middle;
 	text-align:center;
@@ -171,29 +171,29 @@ body.masked .ydlg select {
 	background-repeat:no-repeat;
 	cursor:pointer;
 	visibility:inherit;
-	background-image:url(images/basic-dialog/close.gif);
+	background-image:url(../images/basic-dialog/close.gif);
 }
 .ydlg div.yresizable-handle-east{
-	background-image:url(images/basic-dialog/e-handle.gif);
+	background-image:url(../images/basic-dialog/e-handle.gif);
 	border:0px;
 	background-position:right;
 }
 .ydlg div.yresizable-handle-south{
-	background-image:url(images/sizer/s-handle-dark.gif);
+	background-image:url(../images/sizer/s-handle-dark.gif);
 	border:0px;
 	height:6px;
 }
 .ydlg div.yresizable-handle-west{
-	background-image:url(images/basic-dialog/e-handle.gif);
+	background-image:url(../images/basic-dialog/e-handle.gif);
 	border:0px;
 	background-position:1px;
 }
 .ydlg div.yresizable-handle-north{
-	background-image:url(images/s.gif);
+	background-image:url(../images/s.gif);
 	border:0px;
 }
 .ydlg div.yresizable-handle-southeast{
-	background-image:url(images/basic-dialog/se-handle.gif);
+	background-image:url(../images/basic-dialog/se-handle.gif);
 	background-position: bottom right;
 	width:8px;
 	height:8px;
@@ -203,7 +203,7 @@ body.masked .ydlg select {
 /** gray theme */
 
 .ytheme-gray .ydlg-proxy {
-	background-image: url('images/layout/gray/gradient-bg.gif');
+	background-image: url('../images/layout/gray/gradient-bg.gif');
 	background-color:#EAE8D5;
 	border:1px solid #b3b6b0;
 }
@@ -211,17 +211,17 @@ body.masked .ydlg select {
 	background:#aaaaaa;
 }
 .ytheme-gray .ydlg-proxy .tabset{
-    background:url(images/layout/gray/gradient-bg.gif);
+    background:url(../images/layout/gray/gradient-bg.gif);
 }
 .ytheme-gray .ydlg .ydlg-hd {
-	background: url(images/basic-dialog/gray/hd-sprite.gif) repeat-x 0px -82px;
+	background: url(../images/basic-dialog/gray/hd-sprite.gif) repeat-x 0px -82px;
 	background-color:#333333;
 }
 .ytheme-gray .ydlg .ydlg-hd-left {
-	background: url(images/basic-dialog/gray/hd-sprite.gif) no-repeat 0px -41px;
+	background: url(../images/basic-dialog/gray/hd-sprite.gif) no-repeat 0px -41px;
 }
 .ytheme-gray .ydlg .ydlg-hd-right {
-	background: url(images/basic-dialog/gray/hd-sprite.gif) no-repeat right 0px;
+	background: url(../images/basic-dialog/gray/hd-sprite.gif) no-repeat right 0px;
 }
 .ytheme-gray .ydlg .ydlg-dlg-body{
 	background:#efefec;
@@ -240,29 +240,29 @@ body.masked .ydlg select {
 	border:0px none;
 }
 .ytheme-gray .ydlg .ydlg-close {
-	background-image:url(images/basic-dialog/gray/close.gif);
+	background-image:url(../images/basic-dialog/gray/close.gif);
 }
 .ytheme-gray .ydlg div.yresizable-handle-east{
-	background-image:url(images/basic-dialog/gray/e-handle.gif);
+	background-image:url(../images/basic-dialog/gray/e-handle.gif);
 	border:0px none;
 }
 .ytheme-gray .ydlg div.yresizable-handle-south{
-	background-image:url(images/basic-dialog/gray/s-handle.gif);
+	background-image:url(../images/basic-dialog/gray/s-handle.gif);
 	border:0px none;
 }
 .ytheme-gray .ydlg div.yresizable-handle-west{
-	background-image:url(images/basic-dialog/gray/e-handle.gif);
+	background-image:url(../images/basic-dialog/gray/e-handle.gif);
 	border:0px none;
 }
 .ytheme-gray .ydlg div.yresizable-handle-southeast{
-	background-image:url(images/basic-dialog/gray/se-handle.gif);
+	background-image:url(../images/basic-dialog/gray/se-handle.gif);
 	background-position: bottom right;
 	width:8px;
 	height:8px;
 	border:0px;
 }
 .ytheme-gray .ydlg div.yresizable-handle-north{
-	background-image:url(images/s.gif);
+	background-image:url(../images/s.gif);
 	border:0px none;
 }
 .ylayout-container{
@@ -338,7 +338,7 @@ body.masked .ydlg select {
     background-color:#c3daf9;
 }
 .ylayout-panel-hd{
-    background-image: url(images/layout/panel-title-light-bg.gif);
+    background-image: url(../images/layout/panel-title-light-bg.gif);
     color: black;
     border-bottom:1px solid #98c0f4;
     position:relative;
@@ -377,30 +377,30 @@ body.masked .ydlg select {
     background-position:center;
 }
 .ylayout-close{
-    background-image:url(images/layout/panel-close.gif);
+    background-image:url(../images/layout/panel-close.gif);
 }
 .ylayout-collapse-west,.ylayout-expand-east{
-    background-image:url(images/layout/collapse.gif);
+    background-image:url(../images/layout/collapse.gif);
 }
 .ylayout-expand-west,.ylayout-collapse-east{
-    background-image:url(images/layout/expand.gif);
+    background-image:url(../images/layout/expand.gif);
 }
 .ylayout-collapse-north,.ylayout-expand-south{
-    background-image:url(images/layout/ns-collapse.gif);
+    background-image:url(../images/layout/ns-collapse.gif);
 }
 .ylayout-expand-north,.ylayout-collapse-south{
-    background-image:url(images/layout/ns-expand.gif);
+    background-image:url(../images/layout/ns-expand.gif);
 }
 .ylayout-split-h{
-    background-image:url(images/sizer/e-handle.gif);
+    background-image:url(../images/sizer/e-handle.gif);
     background-position: left;
 }
 .ylayout-split-v{
-    background-image:url(images/sizer/s-handle.gif);
+    background-image:url(../images/sizer/s-handle.gif);
     background-position: top;
 }
 .ylayout-panel .ytab-wrap{
-    background:url(images/layout/gradient-bg.gif);
+    background:url(../images/layout/gradient-bg.gif);
 }
 .ylayout-panel .yui-ext-tabbody {
     background-color:white;
@@ -436,7 +436,7 @@ body.masked .ydlg select {
 	border: 2px solid #6593cf;
 }
 .ylayout-panel-proxy {
-	background-image: url('images/layout/gradient-bg.gif');
+	background-image: url('../images/layout/gradient-bg.gif');
 	background-color:#c3daf9;
 	border:1px dashed #6593cf;
 	z-index:10001;
@@ -475,35 +475,35 @@ body.masked .ydlg select {
     background-color:#f3f2e7;
 }
 .ytheme-gray .ylayout-panel-hd{
-    background-image: url(images/layout/gray/panel-title-light-bg.gif);
+    background-image: url(../images/layout/gray/panel-title-light-bg.gif);
     border-bottom:1px solid #aca899;
 }
 .ytheme-gray .ylayout-tools-button-over{
     border:1px solid #aca899;
 }
 .ytheme-gray .ylayout-close{
-    background-image:url(images/layout/gray/panel-close.gif);
+    background-image:url(../images/layout/gray/panel-close.gif);
 }
 .ytheme-gray .ylayout-collapse-west,.ytheme-gray .ylayout-expand-east{
-    background-image:url(images/layout/gray/collapse.gif);
+    background-image:url(../images/layout/gray/collapse.gif);
 }
 .ytheme-gray .ylayout-expand-west,.ytheme-gray .ylayout-collapse-east{
-    background-image:url(images/layout/gray/expand.gif);
+    background-image:url(../images/layout/gray/expand.gif);
 }
 .ytheme-gray .ylayout-collapse-north,.ytheme-gray .ylayout-expand-south{
-    background-image:url(images/layout/gray/ns-collapse.gif);
+    background-image:url(../images/layout/gray/ns-collapse.gif);
 }
 .ytheme-gray .ylayout-expand-north,.ytheme-gray .ylayout-collapse-south{
-    background-image:url(images/layout/gray/ns-expand.gif);
+    background-image:url(../images/layout/gray/ns-expand.gif);
 }
 .ytheme-gray .ylayout-split-h{
-    background-image:url(images/sizer/gray/e-handle-dark.gif);
+    background-image:url(../images/sizer/gray/e-handle-dark.gif);
 }
 .ytheme-gray .ylayout-split-v{
-    background-image:url(images/sizer/gray/s-handle-dark.gif);
+    background-image:url(../images/sizer/gray/s-handle-dark.gif);
 }
 .ytheme-gray .ylayout-panel .ytab-wrap{
-    background:url(images/layout/gray/gradient-bg.gif);
+    background:url(../images/layout/gray/gradient-bg.gif);
 }
 .ytheme-gray .ylayout-nested-layout .ylayout-panel-north {
 	  border-bottom:1px solid #aca899;
@@ -521,7 +521,7 @@ body.masked .ydlg select {
 	border: 2px solid #aca899;
 }
 .ytheme-gray .ylayout-panel-proxy {
-	background-image: url('images/layout/gray/gradient-bg.gif');
+	background-image: url('../images/layout/gray/gradient-bg.gif');
 	background-color:#f3f2e7;
 	border:1px dashed #aca899;
 }
@@ -616,11 +616,11 @@ body * {line-height:1.22em;}
 	right:0;
 	top:0;
 	z-index:2;
-	background-image: url(images/grid/pick-button.gif);
+	background-image: url(../images/grid/pick-button.gif);
 	background-repeat: no-repeat;
 }
 .ygrid-editor-invalid{
-	background-image: url(images/grid/invalid_line.gif);
+	background-image: url(../images/grid/invalid_line.gif);
 	background-repeat: repeat-x;
 	background-position: bottom;
 	border: 1px solid #afbdc9;
@@ -694,13 +694,13 @@ select.ygrid-editor{
 	background-repeat: no-repeat;
 }
 .ygrid-drop-nodrop{
-   background-image: url(images/grid/drop-no.gif);
+   background-image: url(../images/grid/drop-no.gif);
 }
 .ygrid-drop-ok{
-   background-image: url(images/grid/drop-yes.gif);
+   background-image: url(../images/grid/drop-yes.gif);
 }
 .ygrid-hd .sort-asc {
-	background-image: url(images/grid/sort_asc.gif);
+	background-image: url(../images/grid/sort_asc.gif);
 	background-position: right;
 	background-repeat: no-repeat;
 	display: none;
@@ -708,7 +708,7 @@ select.ygrid-editor{
 	width: 16px;
 }
 .ygrid-hd .sort-desc {
-	background-image: url(images/grid/sort_desc.gif);
+	background-image: url(../images/grid/sort_desc.gif);
 	background-position: right;
 	background-repeat: no-repeat;
 	display: none;
@@ -739,7 +739,7 @@ select.ygrid-editor{
 	border-bottom: 1px solid #f9a900;
 }
 .ygrid-hd-split {
-	background-image: url(images/grid/grid-split.gif);
+	background-image: url(../images/grid/grid-split.gif);
 	background-position: center;
 	background-repeat: no-repeat;
 	cursor: e-resize;
@@ -780,34 +780,34 @@ select.ygrid-editor{
 	height:14px;	
 }
 .ygrid-page-first{
-	background-image: url(images/grid/page-first.gif);
+	background-image: url(../images/grid/page-first.gif);
 }
 .ygrid-loading{
-	background-image: url(images/grid/done.gif);
+	background-image: url(../images/grid/done.gif);
 }
 .ygrid-page-last{
-	background-image: url(images/grid/page-last.gif);
+	background-image: url(../images/grid/page-last.gif);
 }
 .ygrid-page-next{
-	background-image: url(images/grid/page-next.gif);
+	background-image: url(../images/grid/page-next.gif);
 }
 .ygrid-page-prev{
-	background-image: url(images/grid/page-prev.gif);
+	background-image: url(../images/grid/page-prev.gif);
 }
 .ytb-button-disabled .ygrid-loading{
-	background-image: url(images/grid/loading.gif);
+	background-image: url(../images/grid/loading.gif);
 }
 .ytb-button-disabled .ygrid-page-first{
-	background-image: url(images/grid/page-first-disabled.gif);
+	background-image: url(../images/grid/page-first-disabled.gif);
 }
 .ytb-button-disabled .ygrid-page-last{
-	background-image: url(images/grid/page-last-disabled.gif);
+	background-image: url(../images/grid/page-last-disabled.gif);
 }
 .ytb-button-disabled .ygrid-page-next{
-	background-image: url(images/grid/page-next-disabled.gif);
+	background-image: url(../images/grid/page-next-disabled.gif);
 }
 .ytb-button-disabled .ygrid-page-prev{
-	background-image: url(images/grid/page-prev-disabled.gif);
+	background-image: url(../images/grid/page-prev-disabled.gif);
 }
 .ygrid-mso{
 }
@@ -832,13 +832,13 @@ select.ygrid-editor{
 	background-color: transparent;
 }
 .ygrid-mso .ygrid-hd-split {
-	background-image: url(images/grid/grid-blue-split.gif);
+	background-image: url(../images/grid/grid-blue-split.gif);
 }
 .ygrid-mso .ytoolbar .ytb-sep {
-	background-image: url(images/grid/grid-blue-split.gif);
+	background-image: url(../images/grid/grid-blue-split.gif);
 }
 .ygrid-mso .ygrid-hrow{
-	background: url(images/grid/mso-hd.gif);
+	background: url(../images/grid/mso-hd.gif);
 	border-bottom: 1px solid #6593cf;
 	height: 21px;
 }
@@ -921,10 +921,10 @@ select.ygrid-editor{
 	border-bottom:0px;
 }
 .ygrid-vista .ygrid-hd-split {
-	background-image: url(images/grid/grid-split.gif);
+	background-image: url(../images/grid/grid-split.gif);
 }
 .ygrid-vista .ygrid-hrow{
-	background: url(images/grid/grid-vista-hd.gif);
+	background: url(../images/grid/grid-vista-hd.gif);
 	height: 21px;
 }
 .ygrid-vista .ygrid-row-alt{
@@ -1157,14 +1157,14 @@ like above - #container-id .ygrid-col-0 and they must each be a separate rule
 
 .ypopcal-head .next-month{
 	width:16px;
-	background-image: url(images/grid/arrow-right-white.gif);
+	background-image: url(../images/grid/arrow-right-white.gif);
 	background-position: center;
 	background-repeat: no-repeat;
 	cursor:pointer;
 }
 .ypopcal-head .prev-month{
 	width:16px;
-	background-image: url(images/grid/arrow-left-white.gif);
+	background-image: url(../images/grid/arrow-left-white.gif);
 	background-position: center;
 	background-repeat: no-repeat;
 	cursor:pointer;
@@ -1258,11 +1258,11 @@ li.group-label a.group-link {
 	}
 	
 li.roster-contact-available {
-	list-style-image: url(images/im_available.png);
+	list-style-image: url(../images/im_available.png);
 }
 
 li.roster-contact-away {
-	list-style-image: url(images/im_away.png);
+	list-style-image: url(../images/im_away.png);
 }
 
 li.roster-contact-available a.contact-link, li.roster-contact-away a.contact-link {
@@ -1340,7 +1340,7 @@ textarea.jive-tab-message
 	padding-top: 3px;
 }
 .ylayout-panel .ytab-wrap {
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left bottom !important;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left bottom !important;
 }
 td.ytab-closable span.flashNotify
 {
@@ -1360,21 +1360,21 @@ td.ytab-closable span.jive-status-composing
 	background-position: -1px -1px;
 	background-repeat: no-repeat;
 }
-td.ytab-closable span.jive-status-unavailable {background-image: url(images/im_unavailable.png);}
-td.ytab-closable span.jive-status-away {background-image: url(images/im_away.png);}
-td.ytab-closable span.jive-status-available {background-image: url(images/im_available.png);}
-td.ytab-closable span.jive-status-dnd {background-image: url(images/im_dnd.png);}
-td.ytab-closable span.jive-status-composing {background-image: url(images/message_edit.png);}
-td.ytab-closable span.jive-status-pending {background-image: url(images/im_pending.png);}
-td span.jive-muc {background-image: url(images/conference_16x16.png);}
+td.ytab-closable span.jive-status-unavailable {background-image: url(../images/im_unavailable.png);}
+td.ytab-closable span.jive-status-away {background-image: url(../images/im_away.png);}
+td.ytab-closable span.jive-status-available {background-image: url(../images/im_available.png);}
+td.ytab-closable span.jive-status-dnd {background-image: url(../images/im_dnd.png);}
+td.ytab-closable span.jive-status-composing {background-image: url(../images/message_edit.png);}
+td.ytab-closable span.jive-status-pending {background-image: url(../images/im_pending.png);}
+td span.jive-muc {background-image: url(../images/conference_16x16.png);}
 
-.ytab-closable span.jive-status-unavailable {background-image: url(images/im_unavailable.png);}
-.ytab-closable span.jive-status-away {background-image: url(images/im_away.png);}
-.ytab-closable span.jive-status-available {background-image: url(images/im_available.png);}
-.ytab-closable span.jive-status-dnd {background-image: url(images/im_dnd.png);}
-.ytab-closable span.jive-status-composing {background-image: url(images/message_edit.png);}
-.ytab-closable span.jive-status-pending {background-image: url(images/im_pending.png);}
-span.jive-muc {background-image: url(images/conference_16x16.png);}
+.ytab-closable span.jive-status-unavailable {background-image: url(../images/im_unavailable.png);}
+.ytab-closable span.jive-status-away {background-image: url(../images/im_away.png);}
+.ytab-closable span.jive-status-available {background-image: url(../images/im_available.png);}
+.ytab-closable span.jive-status-dnd {background-image: url(../images/im_dnd.png);}
+.ytab-closable span.jive-status-composing {background-image: url(../images/message_edit.png);}
+.ytab-closable span.jive-status-pending {background-image: url(../images/im_pending.png);}
+span.jive-muc {background-image: url(../images/conference_16x16.png);}
 
 /* roster */
 ul#jive-roster, div.jive-muc-occupants ul {
@@ -1390,7 +1390,7 @@ ul#jive-roster span.group-label,
 div.jive-muc-occupants span.group-label {  /* collapsible group label */
     display: block;
 	color: #215DC6;
-    background: #fff url(images/group-bg.png) repeat-y top right;
+    background: #fff url(../images/group-bg.png) repeat-y top right;
 }
 ul#jive-roster span.group-label em, 
 div.jive-muc-occupants span.group-label em { 
@@ -1404,10 +1404,10 @@ div.jive-muc-occupants span.group-label em {font-size: 0.88em;}
 
 ul#jive-roster li.group span.group-label {cursor: pointer;}
 ul#jive-roster li.group span.open em {
-	background: url(images/metallic_up.png) right no-repeat;
+	background: url(../images/metallic_up.png) right no-repeat;
 }
 ul#jive-roster li.group span.closed em { 
-	background: url(images/metallic_down.png) right no-repeat;
+	background: url(../images/metallic_down.png) right no-repeat;
 }
 
 ul#jive-roster ul.group-list li span.msg, 
@@ -1457,58 +1457,58 @@ div.jive-muc-occupants ul ul.group-list li.hover {
 }
 
 .roster-contact-available {
-	background: url(images/im_available.png) no-repeat;
+	background: url(../images/im_available.png) no-repeat;
 }
 
 .roster-contact-chat {
-	background: url(images/im_free_chat.png) no-repeat;
+	background: url(../images/im_free_chat.png) no-repeat;
 }
 
 .roster-contact-composing {
-	background: url(images/message_edit.png) no-repeat;
+	background: url(../images/message_edit.png) no-repeat;
 }
 
 .roster-contact-away {
-	background: url(images/im_away.png) no-repeat;
+	background: url(../images/im_away.png) no-repeat;
     font-style: italic;
     color: #999;
 }
 
 .roster-contact-xa {
-	background: url(images/im_away.png) no-repeat;
+	background: url(../images/im_away.png) no-repeat;
     font-style: italic;
     color: #999;
 }
 
 .roster-contact-dnd {
-	background: url(images/im_dnd.png) no-repeat;
+	background: url(../images/im_dnd.png) no-repeat;
     font-style: italic;
     color: #999;
 }
 
 .roster-contact-onphone {
-	background: url(images/im_onphone.png) no-repeat;
+	background: url(../images/im_onphone.png) no-repeat;
     font-style: italic;
     color: #999;
 }
 
 .roster-contact-onroad {
-	background: url(images/im_onroad.png) no-repeat;
+	background: url(../images/im_onroad.png) no-repeat;
 }
 
 .roster-contact-pending {
-	background: url(images/im_pending.png) no-repeat;
+	background: url(../images/im_pending.png) no-repeat;
 }
 
 .roster-contact-unavailable {
-	background: url(images/im_unavailable.png) no-repeat;
+	background: url(../images/im_unavailable.png) no-repeat;
     font-style: italic;
     color: #999;
 }
 
 /* invite menu */
 div.jive-muc-ctrl {
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left center;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left center;
 	height: 35px;
 	padding: 3px;
 	position: relative;
@@ -1651,7 +1651,7 @@ div.jive-mucinvite a {
 .jive-userstatus, .jive-chat-toppane, .jive-controlpanel {
 	padding: 4px;
 	font-family: Arial,Geneva,sans-serif;
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left bottom;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left bottom;
 	position: relative;
 }
 .jive-chat-toppane p {
@@ -1685,7 +1685,7 @@ div.jive-mucinvite a {
 }
 .jive-userstatus p.jive-mystatus a span {
 	padding-right: 10px;
-	background: transparent url(images/menutri.gif) no-repeat right 50%;
+	background: transparent url(../images/menutri.gif) no-repeat right 50%;
 }
 
 div#jive-statusmenu, div#contact-conmenu, div#group-conmenu {
@@ -1738,7 +1738,7 @@ div#jive-statusmenu ul li a,
 }
 .jive-toppane .dbody {
 	padding: 7px 5px; 
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left bottom;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left bottom;
 }
 .jive-toppane .dhead {padding: 4px 6px; font-size: 0.71em; font-weight: bold;}
 .jive-toppane .chooseconf a {
@@ -1816,7 +1816,7 @@ div.jive-spinnertab div {position: absolute; top: 185px; left: 200px;}
 
 
 .ydlg .ydlg-close {
-	background-image: url(jive-images/basic-dialog/btn-close-sprite.png);
+	background-image: url(../jive-images/basic-dialog/btn-close-sprite.png);
 	cursor:pointer;
 	font-size:1px;
 	height:29px;
@@ -1831,7 +1831,7 @@ div.jive-spinnertab div {position: absolute; top: 185px; left: 200px;}
 	z-index:6;
 	}
 .ydlg .ydlg-close.hover {
-	background-image: url(jive-images/basic-dialog/btn-close-sprite.png) no-repeat fixed 0px 29px;
+	background-image: url(../jive-images/basic-dialog/btn-close-sprite.png) no-repeat fixed 0px 29px;
 }
 
 
@@ -1848,7 +1848,7 @@ body {
 /* Container for the chat window. Helps determine where the chat window is on page. */
 /* If fitToParent: "true" in the config js, then #groupchat-container controls where the dialog is positioned on screen as well as its size */
 #groupchat-container { 
-	background: #fff url(jive-images/animated/waitLoadingChattrans.gif) no-repeat center center;
+	background: #fff url(../jive-images/animated/waitLoadingChattrans.gif) no-repeat center center;
 	height: 500px;
 	width: 650px;
 	margin: 15px 0px;
@@ -1860,7 +1860,7 @@ body {
 	height: 36;
 }
 div.jive-muc-ctrl {
-	background: url(jive-images/groupchat/bg_topic.gif);
+	background: url(../jive-images/groupchat/bg_topic.gif);
 	}
 div.jive-muc-ctrl p {
 	font-weight: bold;
@@ -1904,7 +1904,7 @@ div.jive-muc-ctrl p span {
 
 /* User Controls - Username and Availability */
 div.jive-user-controls {
-	background: transparent url(jive-images/groupchat/bg_topic.gif) repeat-x scroll left bottom;
+	background: transparent url(../jive-images/groupchat/bg_topic.gif) repeat-x scroll left bottom;
 	border: 1px solid #b5b5b5 !important;
 	padding: 5px 5px;
 }
@@ -1947,7 +1947,7 @@ div.jive-user-controls input.jive-muc-username-active {
 	padding: 0px;
 	}
 .jivetheme-muc .ydlg .ydlg-dlg-body { 
-	background: url(jive-images/layout/bg_ydlg-dlg-body.gif) repeat-x scroll center top;
+	background: url(../jive-images/layout/bg_ydlg-dlg-body.gif) repeat-x scroll center top;
 	border: 3px #000 solid;
 	border-top: 0px none;
 	padding: 10px !important;
@@ -1955,21 +1955,21 @@ div.jive-user-controls input.jive-muc-username-active {
 
 /* .ydlg-hd is the titlebar for the chat window. It is broken up into 3 sections. Center then Left & Right Corners. */
 .jivetheme-muc .ydlg .ydlg-hd {
-	background: #000000 url(jive-images/basic-dialog/hd-sprite.png) repeat-x scroll 0px -50px;
+	background: #000000 url(../jive-images/basic-dialog/hd-sprite.png) repeat-x scroll 0px -50px;
 	padding: 5px;
 	}
  .jivetheme-muc .ydlg .ydlg-hd-left {
-	background: transparent url(jive-images/basic-dialog/hd-sprite.png) no-repeat scroll 0px 0px;
+	background: transparent url(../jive-images/basic-dialog/hd-sprite.png) no-repeat scroll 0px 0px;
 	padding-left: 5px;
 	}
  .jivetheme-muc .ydlg .ydlg-hd-right {
-	background: transparent url(jive-images/basic-dialog/hd-sprite.png) no-repeat scroll right -100px;
+	background: transparent url(../jive-images/basic-dialog/hd-sprite.png) no-repeat scroll right -100px;
 	padding-right: 5px;
 	}
  .jivetheme-muc div.ydlg-hd h1 {
 	color: #FFF;
 	font-size: 100%;
-	background: url(jive-images/groupchat/logo-SparkWeb-small.png) no-repeat;
+	background: url(../jive-images/groupchat/logo-SparkWeb-small.png) no-repeat;
 	height: 17px;
 	padding-left: 20px;
 	margin-left: 5px;
@@ -1983,10 +1983,10 @@ div.jive-user-controls input.jive-muc-username-active {
 	width: 10px;
 	}
  .jivetheme-muc .ylayout-split-v {
-	background: transparent url(jive-images/basic-dialog/s-handle.gif) no-repeat center center;
+	background: transparent url(../jive-images/basic-dialog/s-handle.gif) no-repeat center center;
 }
  .jivetheme-muc .ylayout-split-h {
-	background: transparent url(jive-images/basic-dialog/e-handle.gif) no-repeat center center;
+	background: transparent url(../jive-images/basic-dialog/e-handle.gif) no-repeat center center;
 }
 
 /* All internal layout is contained inside a panel with the class ylayout-panel */
@@ -2033,7 +2033,7 @@ div.jive-user-controls input.jive-muc-username-active {
 }
 
 .jivetheme-muc div.jive-history div.consecutive {
-	padding-left: 15px;
+	margin: -10px 0px 5px 0px;
 }
 
 .jivetheme-muc div.jive-history div span.meta {
@@ -2151,51 +2151,51 @@ textarea.jive-tab-message
 }
 
 .jivetheme-muc .roster-contact-available {
-	background: url(images/im_available.png) no-repeat 5px 3px !important;
+	background: url(../images/im_available.png) no-repeat 5px 3px !important;
 }
 
 .jivetheme-muc .roster-contact-chat {
-	background: url(images/im_free_chat.png) no-repeat 5px 3px !important;
+	background: url(../images/im_free_chat.png) no-repeat 5px 3px !important;
 }
 
 .jivetheme-muc .roster-contact-composing {
-	background: url(images/message_edit.png) no-repeat 5px 3px !important;
+	background: url(../images/message_edit.png) no-repeat 5px 3px !important;
 }
 
 .jivetheme-muc .roster-contact-away {
-	background: url(images/im_away.png) no-repeat 5px 3px !important;
+	background: url(../images/im_away.png) no-repeat 5px 3px !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-xa {
-	background: url(images/im_away.png) no-repeat 5px 3px !important;
+	background: url(../images/im_away.png) no-repeat 5px 3px !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-dnd {
-	background: url(images/im_dnd.png) no-repeat 5px 3px !important;
+	background: url(../images/im_dnd.png) no-repeat 5px 3px !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-onphone {
-	background: url(images/im_onphone.png) no-repeat 5px 3px !important;
+	background: url(../images/im_onphone.png) no-repeat 5px 3px !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-onroad {
-	background: url(images/im_onroad.png) no-repeat 5px 3px !important;
+	background: url(../images/im_onroad.png) no-repeat 5px 3px !important;
 }
 
 .jivetheme-muc .roster-contact-pending {
-	background: url(images/im_pending.png) no-repeat 5px 3px !important;
+	background: url(../images/im_pending.png) no-repeat 5px 3px !important;
 }
 
 .jivetheme-muc .roster-contact-unavailable {
-	background: url(images/im_unavailable.png) no-repeat 5px 3px !important;
+	background: url(../images/im_unavailable.png) no-repeat 5px 3px !important;
     font-style: italic;
     color: #999;
 }
@@ -2203,7 +2203,7 @@ textarea.jive-tab-message
 
 /* invite menu */
 div.jive-userpane {
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left center;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left center;
 	height: 22px;
 	padding: 7px 5px;
 	position: relative;
@@ -2271,7 +2271,7 @@ div.jive-mucinvite a {
 /* tabs */
 .ytab-strip .ytab-text {padding-left: 16px;}
 .ylayout-panel .ytab-wrap {
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left bottom !important;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left bottom !important;
 }
 
 
@@ -2327,7 +2327,7 @@ div.jive-mucinvite a {
 .jive-userstatus, .jive-chat-toppane, .jive-controlpanel {
 	padding: 4px;
 	font-family: Arial,Geneva,sans-serif;
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left bottom;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left bottom;
 	position: relative;
 }
 .jive-chat-toppane p {
@@ -2360,7 +2360,7 @@ div.jive-mucinvite a {
 }
 .jive-userstatus p.jive-mystatus a span {
 	padding-right: 10px;
-	background: transparent url(images/menutri.gif) no-repeat right 50%;
+	background: transparent url(../images/menutri.gif) no-repeat right 50%;
 }
 
 div#jive-statusmenu, div#contact-conmenu, div#group-conmenu {
@@ -2410,7 +2410,7 @@ div#jive-statusmenu ul li a,
 }
 /*.jive-toppane {
 	padding: 5px 5px; 
-	background: transparent url(images/sparkbg.gif) repeat-x scroll left bottom;
+	background: transparent url(../images/sparkbg.gif) repeat-x scroll left bottom;
 }
 .jive-toppane span {padding-top: 2px;}*/
 .jive-toppane strong {font-weight: bold;} /* duh */
