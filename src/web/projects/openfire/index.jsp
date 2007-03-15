@@ -97,7 +97,7 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
 
-                <% String blogFeedRSS = "http://www.igniterealtime.org/blog/category/wildfire/feed/"; %>
+                <% String blogFeedRSS = "http://www.igniterealtime.org/blog/category/openfire/feed/"; %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->
