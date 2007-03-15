@@ -42,7 +42,7 @@
 				<div class="ignite_int_body_support">
 					
 					
-					<p>Get professional assistance for Wildfire and Spark from the service
+					<p>Get professional assistance for Openfire (formerly Wildfire) and Spark from the service
                         providers listed below, including support services, customizations,
                         and hosting.
                     </p>
@@ -52,10 +52,10 @@
 						<span class="ignite_service-provider_logo"><img src="../images/logo_jive.gif" alt="Jive Software" width="32" height="32" border="0"></span>
 						<h3>Jive Software</h3>
 						<span class="ignite_service-provider_url"><a href="http://www.jivesoftware.com">www.jivesoftware.com</a></span>
-						<p>The company behind igniterealtime.org and lead developers of Wildfire, Spark, and Smack.
-                           Jive Software sells a commercial extension to the platform, <a href="http://www.jivesoftware.com/products/wildfire/features/enterprise.jsp">Wildfire Enterprise</a>, that
+						<p>The company behind igniterealtime.org and lead developers of Openfire, Spark, and Smack.
+                           Jive Software sells a commercial extension to the platform, <a href="http://www.jivesoftware.com/products/openfire/features/enterprise.jsp">Openfire Enterprise</a>, that
                            includes support and advanced productivity features. Jive Software's professional services team adds
-                           custom new features to Wildfire and Spark and assists with application
+                           custom new features to Openfire and Spark and assists with application
                            integrations.
                         </p>
 					</div>
@@ -65,8 +65,8 @@
 						<h3>Version 2 Software</h3>
 						<span class="ignite_service-provider_url"><a href="http://www.version2software.com">www.version2software.com</a></span>
 						<p>Version 2 Software creates custom software solutions, specializing in the
-                            customization and integration of Wildfire and Spark. Version 2 Software
-                            has developed a number of Wildfire and Spark plugins for both the Ignite
+                            customization and integration of Openfire and Spark. Version 2 Software
+                            has developed a number of Openfire and Spark plugins for both the Ignite
                             Realtime community and private organizations.
                         </p>
 					</div>

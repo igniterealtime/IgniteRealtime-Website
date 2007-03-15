@@ -27,13 +27,13 @@
                 <td>
                     <xsl:choose>
                         <xsl:when test="starts-with(key, 'JM')">
-                            Wildfire
+                            Openfire (formerly Wildfire)
                         </xsl:when>
                         <xsl:when test="starts-with(key, 'SPARK')">
                             Spark
                         </xsl:when>
                         <xsl:when test="starts-with(key, 'ENT')">
-                            Wildfire Enterprise
+                            Openfire Business Edition
                         </xsl:when>
                         <xsl:when test="starts-with(key, 'SMACK')">
                             Smack

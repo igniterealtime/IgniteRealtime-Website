@@ -173,11 +173,11 @@
 					
 
                     <h4>Recent Articles</h4>
-                        <div class="articles"><a href="/support/articles/motd_plugin.jsp">Wildfire Plugin Development: Message of the Day</a></div>                        
+                        <div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>                        
                         <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
                         <div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
                         <div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
-                        <div class="articles"><a href="/support/articles/wildfire_optimization.jsp">Behind the Scenes: Wildfire Optimization</a></div>
+                        <div class="articles"><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
 
                     <h4>Whitepapers</h4>
                         <div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
@@ -205,7 +205,7 @@
 				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projects"></div>
 				<div class="ignite_sidebar_body_projects">
 					<div class="ignite_sidebar_body_project1">
-						<span><strong><a href="/projects/wildfire/index.jsp">Wildfire</a></strong> <%= Versions.getVersion("wildfire") %></span> <a href="/downloads/index.jsp#wildfire"></a>
+						<span><strong><a href="/projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="/downloads/index.jsp#openfire"></a>
 					</div>
 					<div class="ignite_sidebar_body_project2">
 						<span><strong><a href="/projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/index.jsp#spark"></a>

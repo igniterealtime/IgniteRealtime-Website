@@ -74,7 +74,7 @@ Some of the major areas of improvement over version 1.0 are:</p>
 that fails to connect and resort to sending the file by email. The usual 
 culprit is a firewall or other network setting problems.</p>
 
-<p>The combination of Spark 1.1 and the <a href="projects/wildfire/">Wildfire</a> IM
+<p>The combination of Spark 1.1 and the <a href="projects/openfire/">Openfire</a> (formerly Wildfire) IM
 server works around file transfer connection issues with a three part file 
 transfer approach. Each approach offers a different
 balance of speed and reliability -- but the key point is that the transfer
@@ -101,7 +101,7 @@ to complete the file transfer (the middle diagram on the right). A proxy
 server is efficient at transferring files, although not as fast as a peer to
 peer connection. The file transfer will work unless one of the users
 is behind a strict firewall. Proxy server support is available as an external
-component now, and will be built into the upcoming Wildfire 2.5 release.
+component now, and will be built into the upcoming Openfire 2.5 release.
 </p> 
 
 <p><b>In-Band File Transfers</b></p>

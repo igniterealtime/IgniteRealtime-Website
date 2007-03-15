@@ -12,7 +12,7 @@
 
                 // Grab the right license info
                 String license = null;
-                if (project.equals("wildfire")) {
+                if (project.equals("openfire")) {
                     license = "Open Source GPL or Commercial";
                 }
                 else if (project.equals("spark")) {
@@ -27,7 +27,7 @@
 
                 // Grab the right platform info
                 String platform = null;
-                if (project.equals("wildfire")) {
+                if (project.equals("openfire")) {
                     platform = "Windows, Linux,<br />Unix, Mac OS X";
                 }
                 else if (project.equals("spark")) {

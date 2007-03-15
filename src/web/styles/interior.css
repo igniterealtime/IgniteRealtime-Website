@@ -97,9 +97,9 @@ styles specific to the interior pages for the Ignite Real Time site.
 	padding: 0 0 0 18px;
 	float: left;
 	}
-#ignite_bigpanel h1.wildfire, 
-#ignite_smallpanel h1.wildfire {
-	background: transparent url(../images/logo_wildfire.gif) no-repeat left;
+#ignite_bigpanel h1.openfire,
+#ignite_smallpanel h1.openfire {
+	background: transparent url(../images/logo_openfire.gif) no-repeat left;
 	padding-left: 48px;
 	}
 #ignite_bigpanel h1.spark, 
@@ -334,28 +334,28 @@ img.ignite_body_image_right {
 	padding: 0 0 0 45px;
 	}
 
-.ignite_project_big img.ignite_projects_wildfire, 
+.ignite_project_big img.ignite_projects_openfire,
 .ignite_project_big img.ignite_projects_spark, 
 .ignite_project_small img.ignite_projects_asterisk, 
 .ignite_project_small img.ignite_projects_smack, 
 .ignite_project_small img.ignite_projects_xiff {
 	margin-bottom: 10px;
 	}
-.ignite_project_big a.ignite_project_wildfire, 
+.ignite_project_big a.ignite_project_openfire,
 .ignite_project_big a.ignite_project_spark {
 	display: block;
 	padding-left: 43px;
 	color: #333;
 	text-decoration: none;
 	}
-.ignite_project_big a:hover.ignite_project_wildfire, 
+.ignite_project_big a:hover.ignite_project_openfire,
 .ignite_project_big a:hover.ignite_project_spark {
 	color: #555;
 	text-decoration: underline;
 	outline: none;
 	}
-.ignite_project_big a.ignite_project_wildfire {
-	background: transparent url(../images/logo_wildfire.gif) no-repeat left;
+.ignite_project_big a.ignite_project_openfire {
+	background: transparent url(../images/logo_openfire.gif) no-repeat left;
 	}
 .ignite_project_big a.ignite_project_spark {
 	background: transparent url(../images/logo_spark.gif) no-repeat 4px 0;
@@ -481,9 +481,9 @@ img.ignite_body_image_right {
 	}
 
 
-#wildfireWindowsBtn.ignite_download_btn a, 
-#wildfireLinuxBtn.ignite_download_btn a,
-#wildfireMacBtn.ignite_download_btn a,
+#openfireWindowsBtn.ignite_download_btn a,
+#openfireLinuxBtn.ignite_download_btn a,
+#openfireMacBtn.ignite_download_btn a,
 #sparkWindowsBtn.ignite_download_btn a, 
 #sparkLinuxBtn.ignite_download_btn a, 
 #sparkMacBtn.ignite_download_btn a, 
@@ -496,9 +496,9 @@ img.ignite_body_image_right {
 	height: 43px;
 	outline: none;
 	}
-#wildfireWindowsBtn.ignite_download_btn_current a,
-#wildfireLinuxBtn.ignite_download_btn_current a,
-#wildfireMacBtn.ignite_download_btn_current a, 
+#openfireWindowsBtn.ignite_download_btn_current a,
+#openfireLinuxBtn.ignite_download_btn_current a,
+#openfireMacBtn.ignite_download_btn_current a,
 #sparkWindowsBtn.ignite_download_btn_current a, 
 #sparkLinuxBtn.ignite_download_btn_current a, 
 #sparkMacBtn.ignite_download_btn_current a, 
@@ -512,55 +512,55 @@ img.ignite_body_image_right {
 	outline: none;
 	}
 
-#wildfireWindowsBtn.ignite_download_btn a, 
+#openfireWindowsBtn.ignite_download_btn a,
 #sparkWindowsBtn.ignite_download_btn a, 
 #sparkbetaWindowsBtn.ignite_download_btn a {
 	background: transparent url(../images/ignite_dl_btn_win.gif) no-repeat;
 	}
-#wildfireWindowsBtn.ignite_download_btn a:hover, 
+#openfireWindowsBtn.ignite_download_btn a:hover,
 #sparkWindowsBtn.ignite_download_btn a:hover, 
 #sparkbetaWindowsBtn.ignite_download_btn a:hover {
 	background: transparent url(../images/ignite_dl_btn_win-over.gif) no-repeat;
 	}
-#wildfireWindowsBtn.ignite_download_btn_current a, 
+#openfireWindowsBtn.ignite_download_btn_current a,
 #sparkWindowsBtn.ignite_download_btn_current a, 
 #sparkbetaWindowsBtn.ignite_download_btn_current a {
 	background: transparent url(../images/ignite_dl_btn_win-on.gif) no-repeat;
 	}
 
-#wildfireLinuxBtn.ignite_download_btn a, 
+#openfireLinuxBtn.ignite_download_btn a,
 #sparkLinuxBtn.ignite_download_btn a, 
 #sparkbetaLinuxBtn.ignite_download_btn a {
 	background: transparent url(../images/ignite_dl_btn_linux.gif) no-repeat;
 	}
-#wildfireLinuxBtn.ignite_download_btn a:hover, 
+#openfireLinuxBtn.ignite_download_btn a:hover,
 #sparkLinuxBtn.ignite_download_btn a:hover, 
 #sparkbetaLinuxBtn.ignite_download_btn a:hover {
 	background: transparent url(../images/ignite_dl_btn_linux-over.gif) no-repeat;
 	}
-#wildfireLinuxBtn.ignite_download_btn_current a, 
+#openfireLinuxBtn.ignite_download_btn_current a,
 #sparkLinuxBtn.ignite_download_btn_current a, 
 #sparkbetaLinuxBtn.ignite_download_btn_current a {
 	background: transparent url(../images/ignite_dl_btn_linux-on.gif) no-repeat;
 	}
 
-#wildfireMacBtn.ignite_download_btn a,
+#openfireMacBtn.ignite_download_btn a,
 #sparkMacBtn.ignite_download_btn a,
 #sparkbetaMacBtn.ignite_download_btn a {
 	background: transparent url(../images/ignite_dl_btn_mac.gif) no-repeat;
 	}
-#wildfireMacBtn.ignite_download_btn a:hover,
+#openfireMacBtn.ignite_download_btn a:hover,
 #sparkMacBtn.ignite_download_btn a:hover, 
 #sparkbetaMacBtn.ignite_download_btn a:hover {
 	background: transparent url(../images/ignite_dl_btn_mac-over.gif) no-repeat;
 	}
-#wildfireMacBtn.ignite_download_btn_current a, 
+#openfireMacBtn.ignite_download_btn_current a,
 #sparkMacBtn.ignite_download_btn_current a, 
 #sparkbetaMacBtn.ignite_download_btn_current a {
 	background: transparent url(../images/ignite_dl_btn_mac-on.gif) no-repeat;
 	}
 
-#wildfireCpBtn.ignite_download_btn a,
+#openfireCpBtn.ignite_download_btn a,
 #smackCpBtn.ignite_download_btn a, 
 #xiffCpBtn.ignite_download_btn a {
 	display: block;
@@ -569,7 +569,7 @@ img.ignite_body_image_right {
 	height: 43px;
 	outline: none;
 	}
-#wildfireCpBtn.ignite_download_btn_current a,
+#openfireCpBtn.ignite_download_btn_current a,
 #smackCpBtn.ignite_download_btn_current a, 
 #xiffCpBtn.ignite_download_btn_current a {
 	display: block;
@@ -578,17 +578,17 @@ img.ignite_body_image_right {
 	height: 43px;
 	outline: none;
 	}
-#wildfireCpBtn.ignite_download_btn a,
+#openfireCpBtn.ignite_download_btn a,
 #smackCpBtn.ignite_download_btn a, 
 #xiffCpBtn.ignite_download_btn a {
 	background: transparent url(../images/ignite_dl_btn_cp.gif) no-repeat;
 	}
-#wildfireCpBtn.ignite_download_btn a:hover,
+#openfireCpBtn.ignite_download_btn a:hover,
 #smackCpBtn.ignite_download_btn a:hover, 
 #xiffCpBtn.ignite_download_btn a:hover {
 	background: transparent url(../images/ignite_dl_btn_cp-over.gif) no-repeat;
 	}
-#wildfireCpBtn.ignite_download_btn_current a,
+#openfireCpBtn.ignite_download_btn_current a,
 #smackCpBtn.ignite_download_btn_current a, 
 #xiffCpBtn.ignite_download_btn_current a {
 	background: transparent url(../images/ignite_dl_btn_cp-on.gif) no-repeat;
@@ -763,7 +763,7 @@ img.ignite_body_image_right {
 	margin: 0;
 	}
 
-/* Wildfire Plugins page table styles */
+/* Openfire Plugins page table styles */
 #plugins {
 	display: block;
 	width: 660px;
@@ -1042,8 +1042,8 @@ img.ignite_body_image_right {
 	height: 16px;
 	float: left;
 	}
-.ignite_support_projlink a.wildfire {
-	background: transparent url(../images/logo_wildfire_16x16.gif) no-repeat left;
+.ignite_support_projlink a.openfire {
+	background: transparent url(../images/logo_openfire_16x16.gif) no-repeat left;
 	}
 .ignite_support_projlink a.spark {
 	background: transparent url(../images/logo_spark_16x16.gif) no-repeat left;

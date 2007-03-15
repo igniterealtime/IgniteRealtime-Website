@@ -3,8 +3,8 @@
 <%
     String include = null;
     String project = request.getParameter("project");
-    if ("wildfire".equals(project)) {
-        include = "/projects/wildfire/screenshots.jsp";
+    if ("openfire".equals(project)) {
+        include = "/projects/openfire/screenshots.jsp";
     }
     else if ("spark".equals(project)) {
          include = "/projects/spark/screenshots.jsp";

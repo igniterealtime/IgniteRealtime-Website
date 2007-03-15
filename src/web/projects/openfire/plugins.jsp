@@ -22,7 +22,7 @@
 
 <html>
 <head>
-<title>Wildfire Plugins</title>
+<title>Openfire Plugins</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
@@ -30,7 +30,7 @@
 
 
  <%
-    String path = request.getRealPath("/projects/wildfire/plugins");
+    String path = request.getRealPath("/projects/openfire/plugins");
     File pluginDir = new File(path);
 
 
@@ -58,12 +58,12 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Wildfire</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
 			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
 			<li id="subnav03"><a href="plugins.jsp" class="ignite_subnav_current">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
@@ -80,16 +80,16 @@
 			
 				<!-- BEGIN body header -->
 				<div id="ignite_body_header">
-					<h2>Wildfire Plugins</h2>
+					<h2>Openfire Plugins</h2>
 				</div>
 				<!-- END body header -->
 				
 				
 				<div class="ignite_int_body_padding">
-					<p>Plugins extend and enhance the functionality of Wildfire. Below is a list of both 
+					<p>Plugins extend and enhance the functionality of Openfire (formerly Wildfire). Below is a list of both 
                     <a href="#opensource">open source</a> and <a href="#commercial">commercial</a>
-                    plugins available for <a href="index.jsp">Wildfire</a>. To install plugins,
-                    copy the .jar file into the <tt>plugins</tt> directory of your Wildfire installation.
+                    plugins available for <a href="index.jsp">Openfire</a>. To install plugins,
+                    copy the .jar file into the <tt>plugins</tt> directory of your Openfire installation.
                     <a href="plugins-beta.jsp">Beta plugins</a> are also available.
                     </p>
 
@@ -424,11 +424,11 @@
 		<div id="ignite_body_rightcol">
 			
             <jsp:include page="/includes/sidebar_projectlead.jsp">
-                <jsp:param name="project" value="wildfire" />
+                <jsp:param name="project" value="openfire" />
             </jsp:include>
 			
 			<jsp:include page="/includes/sidebar_snapshot.jsp">
-			    <jsp:param name="project" value="wildfire"/>
+			    <jsp:param name="project" value="openfire"/>
 			</jsp:include>
 			
 			<%@ include file="/includes/sidebar_enterprise.jspf" %>

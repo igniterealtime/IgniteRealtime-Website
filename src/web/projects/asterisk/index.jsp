@@ -53,9 +53,9 @@
 				<div id="ignite_bigpanel_content">
 					<h1 class="asterisk">Asterisk-IM <span><%= Versions.getVersion("asterisk-im") %></span></h1>
 					<p>The Asterisk-IM project integrates the <a href="http://www.asterisk.org/" target="_blank">Asterisk
-<acronym title="Private Branch eXchange -- A Phone System">PBX</acronym></a> and Wildfire XMPP 
+<acronym title="Private Branch eXchange -- A Phone System">PBX</acronym></a> and Openfire XMPP
 (Jabber) server to create a unified communication platform for telephony and instant messaging.</p>
-					<p>Asterisk-IM is easily deployed as a plugin for <a href="../wildfire/index.jsp">Wildfire</a> and is 
+					<p>Asterisk-IM is easily deployed as a plugin for <a href="../openfire/index.jsp">Openfire</a> and is
 fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read more about Asterisk-IM's <a href="arch.jsp">architecture</a> or find out more about <a href="clients.jsp">client compatability</a>.</p>
 				</div>
 				
@@ -69,7 +69,7 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 				</div>
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/wildfire/plugins.jsp">Download</a> 
+					<a href="/openfire/plugins.jsp">Download</a> 
 					<span>
 						<strong>Asterisk-IM <%= Versions.getVersion("asterisk-im") %></strong> Latest build: July 3, 2006
 					</span>

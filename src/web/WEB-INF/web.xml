@@ -80,19 +80,19 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/wildfire/plugins/*.jar</url-pattern>
+        <url-pattern>/projects/openfire/plugins/*.jar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/wildfire/plugins/*.war</url-pattern>
+        <url-pattern>/projects/openfire/plugins/*.war</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/wildfire/plugins-beta/*.jar</url-pattern>
+        <url-pattern>/projects/openfire/plugins-beta/*.jar</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/wildfire/plugins-beta/*.war</url-pattern>
+        <url-pattern>/projects/openfire/plugins-beta/*.war</url-pattern>
     </servlet-mapping>
 
     <taglib>

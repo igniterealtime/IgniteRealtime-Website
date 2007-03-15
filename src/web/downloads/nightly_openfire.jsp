@@ -40,7 +40,7 @@
 
 <html>
 <head>
-<title>Wildfire Nightly Builds</title>
+<title>Openfire Nightly Builds</title>
 <meta name="body-id" content="downloads" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
@@ -67,7 +67,7 @@
 
             <!-- BEGIN body header -->
             <div id="ignite_body_header">
-                <h1>Downloads</h1> <strong>Wildfire Nightly Builds</strong>
+                <h1>Downloads</h1> <strong>Openfire Nightly Builds</strong>
             </div>
             <!-- END body header -->
 
@@ -78,7 +78,7 @@
 
             <div>
             <p>
-            Below are nightly builds for Wildfire. Please see the <a href="index.jsp">official builds</a>
+            Below are nightly builds for Openfire (formerly Wildfire). Please see the <a href="index.jsp">official builds</a>
             page if you're looking for a specific release. Each day has 4 builds -- a GZIP and ZIP release
             for both the binary and source builds.
             </p>
@@ -98,7 +98,7 @@
 
 <%
     // Binaries
-    path = buildsPath + "/wildfire/dailybuilds/";
+    path = buildsPath + "/openfire/dailybuilds/";
     buildDir = new File(path);
     files = buildDir.listFiles(new FileFilter() {
         public boolean accept(File pathname) {
@@ -118,9 +118,9 @@
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
                         <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="/builds/wildfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
+                        <a href="/builds/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
                         <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="/builds/wildfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
+                        <a href="/builds/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>
@@ -141,7 +141,7 @@
                 </div>
 
 <%
-    path = buildsPath + "/wildfire/dailybuilds/";
+    path = buildsPath + "/openfire/dailybuilds/";
     buildDir = new File(path);
 
     // Binaries
@@ -163,9 +163,9 @@
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
                         <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="/builds/wildfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
+                        <a href="/builds/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
                         <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="/builds/wildfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
+                        <a href="/builds/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>

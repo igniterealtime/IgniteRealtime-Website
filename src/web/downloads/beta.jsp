@@ -16,7 +16,7 @@
 			<li id="subnav01"><a href="index.jsp">Releases</a></li>
 			<li id="subnav02"><a href="source.jsp">Source</a></li>
 			<li id="subnav03"><a href="beta.jsp" class="ignite_subnav_current">Beta Releases</a></li>
-            <li id="subnav04"><a href="/projects/wildfire/plugins.jsp">Wildfire Plugins</a></li>
+            <li id="subnav04"><a href="/projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
 	</div>
 
@@ -40,18 +40,18 @@
                     <p>
                         Below are links to the current <b>beta</b> releases.
 
-                        <b>Looking for Wildfire beta plugins?</b> Visit the
-                        <a href="/projects/wildfire/plugins-beta.jsp">beta plugins</a> page.
+                        <b>Looking for Openfire beta plugins?</b> Visit the
+                        <a href="/projects/openfire/plugins-beta.jsp">beta plugins</a> page.
                     </p>
                 </div>
 
              <%
-                String wildfireBetaVersion = Versions.getVersion("wildfire-beta");
-                if (wildfireBetaVersion != null) {
+                String openfireBetaVersion = Versions.getVersion("openfire-beta");
+                if (openfireBetaVersion != null) {
             %>
-                    <!-- BEGIN wildfire downloads -->
-                    <%@ include file="/includes/download-box-wildfire-beta.jspf" %>
-                    <!-- END wildfire downloads -->
+                    <!-- BEGIN openfire downloads -->
+                    <%@ include file="/includes/download-box-openfire-beta.jspf" %>
+                    <!-- END openfire downloads -->
             <%
                 }
                 String sparkBetaVersion = Versions.getVersion("spark-beta");
@@ -69,7 +69,7 @@
                     <!-- END spark downloads -->
             <%  } %>
 
-            <% if (wildfireBetaVersion == null && sparkBetaVersion == null && smackBetaVersion == null) { %>
+            <% if (openfireBetaVersion == null && sparkBetaVersion == null && smackBetaVersion == null) { %>
                 <br clear="left"/>
                 <div style="width: 100%; padding: 25px; text-align:center">
                     <strong>No beta releases currently available.</strong>

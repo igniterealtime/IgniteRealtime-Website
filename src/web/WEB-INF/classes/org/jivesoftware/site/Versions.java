@@ -22,7 +22,7 @@ import java.io.InputStream;
  * <pre>
  * &lt;?xml version="1.0"?&gt;
  * &lt;versions&gt;
- *    &lt;product name="wildfire" version="2.5.1" date="7/13/2006" /&gt;
+ *    &lt;product name="openfire" version="2.5.1" date="7/13/2006" /&gt;
  *    &lt;product name="spark" version="1.1.3" date="4/22/2005" /&gt;
 * &lt;/versions&gt;
  * </pre>

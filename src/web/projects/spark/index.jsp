@@ -57,7 +57,7 @@
 					and strong security. It also offers a great end-user experience with features like 
 					in-line spell checking, group chat room bookmarks, and tabbed conversations.</p>
 					
-					<p>Combined with the <a href="/projects/wildfire/">Wildfire</a> server,
+					<p>Combined with the <a href="/projects/openfire/">Openfire</a> server,
                         Spark is the easiest and best alternative to using un-secure public
                         IM networks. </p>
 				</div>

@@ -23,20 +23,20 @@ import java.util.jar.JarFile;
 import java.util.zip.ZipFile;
 
 /**
- * WildfireVersionChecker provides two services 1) check for updates and 2) get list of
+ * OpenfireVersionChecker provides two services 1) check for updates and 2) get list of
  * available plugins. The "check for updates" service checks if the installed version of
- * a Wildfire server or any of its plugins are old. The "Get list of available plugins"
- * service offers to Wildfire servers the list of plugins that have not been installed.
+ * a Openfire server or any of its plugins are old. The "Get list of available plugins"
+ * service offers to Openfire servers the list of plugins that have not been installed.
  *
  * @author Gaston Dombiak
  */
-public class WildfireVersionChecker {
+public class OpenfireVersionChecker {
 
     protected static DocumentFactory docFactory = DocumentFactory.getInstance();
-    //private static String WILDFIRE_PATH = "http://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/wildfire/";
-    private static String WILDFIRE_PATH = "http://www.igniterealtime.org/downloads/index.jsp";
-    private static String WILDFIRE_LOG = "http://www.igniterealtime.org/builds/wildfire/docs/latest/changelog.html";
-    private static String PLUGINS_PATH = "http://www.igniterealtime.org/projects/wildfire/plugins/";
+    //private static String OPENFIRE_PATH = "http://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
+    private static String OPENFIRE_PATH = "http://www.igniterealtime.org/downloads/index.jsp";
+    private static String OPENFIRE_LOG = "http://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html";
+    private static String PLUGINS_PATH = "http://www.igniterealtime.org/projects/openfire/plugins/";
     /**
      * Map that keeps the information specified in plugin.xml for each available plugin.
      * Key = filename, value = content of plugin.xml
@@ -49,13 +49,13 @@ public class WildfireVersionChecker {
 
 
     /**
-     * Verifies if there is a newer version of the Wildfire server. The request is specified
+     * Verifies if there is a newer version of the Openfire server. The request is specified
      * in XML format and contains the installed server version information.  The answer is
      * also specified in XML format. If a new server version is available then the answer
      * will include information about the available update. Otherwise, an empty "version"
      * element is returned.
      *
-     * @param request the XML sent by the remote wildfire installation that contains
+     * @param request the XML sent by the remote openfire installation that contains
      *        current installed server version.
      * @return an answer in XML format containing the items for which a new version is available.
      */
@@ -63,8 +63,8 @@ public class WildfireVersionChecker {
         try {
             Element xmlRequest = new SAXReader().read(new StringReader(request)).getRootElement();
             Element xmlReply = docFactory.createDocument().addElement("version");
-            // Check if there is a newer version of the wildfire server
-            compareWildfireVersion(xmlRequest, xmlReply);
+            // Check if there is a newer version of the openfire server
+            compareOpenfireVersion(xmlRequest, xmlReply);
             return xmlReply.asXML();
         } catch (Exception e) {
             e.printStackTrace();
@@ -78,7 +78,7 @@ public class WildfireVersionChecker {
      * include free and commercial plugins.
      *
      * @param pluginsPath the path where the .jar files of the plugins are located.
-     * @param request the XML sent by the remote wildfire installation that contains
+     * @param request the XML sent by the remote openfire installation that contains
      *        current installed versions.
      * @return  the list of available (i.e. not installed) plugins.
      */
@@ -100,38 +100,38 @@ public class WildfireVersionChecker {
     }
 
     /**
-     * Compares installed wildfire version against the latest release. If the installed version
+     * Compares installed openfire version against the latest release. If the installed version
      * is older than the latest release then include the url from where the latest release
      * can be downloaded and the version of the latest release.
      *
-     * @param xmlRequest original XML request sent by the remote wildfire server.
-     * @param xmlReply XML reply that may contain information about the latest wildfire release.
+     * @param xmlRequest original XML request sent by the remote openfire server.
+     * @param xmlReply XML reply that may contain information about the latest openfire release.
      */
-    private static void compareWildfireVersion(Element xmlRequest, Element xmlReply) {
-        Element currentWildfire = xmlRequest.element("wildfire");
-        if (currentWildfire != null) {
+    private static void compareOpenfireVersion(Element xmlRequest, Element xmlReply) {
+        Element currentOpenfire = xmlRequest.element("openfire");
+        if (currentOpenfire != null) {
             // Compare latest version with installed one
-            String latest = Versions.getVersion("wildfire");
-            String installed = currentWildfire.attributeValue("current");
+            String latest = Versions.getVersion("openfire");
+            String installed = currentOpenfire.attributeValue("current");
             if (installed != null && installed.compareTo(latest) < 0) {
-                String extension = currentWildfire.attributeValue("type");
-                Element latestWildfire = xmlReply.addElement("wildfire");
-                latestWildfire.addAttribute("latest", latest);
-                latestWildfire.addAttribute("changelog", WILDFIRE_LOG);
+                String extension = currentOpenfire.attributeValue("type");
+                Element latestOpenfire = xmlReply.addElement("openfire");
+                latestOpenfire.addAttribute("latest", latest);
+                latestOpenfire.addAttribute("changelog", OPENFIRE_LOG);
                 /*String version = latest.replaceAll(".", "_");
-                String fileName = WILDFIRE_PATH + "wildfire_" + version + "." + extension;
-                latestWildfire.addAttribute("url", fileName);*/
-                latestWildfire.addAttribute("url", WILDFIRE_PATH);
+                String fileName = OPENFIRE_PATH + "openfire_" + version + "." + extension;
+                latestOpenfire.addAttribute("url", fileName);*/
+                latestOpenfire.addAttribute("url", OPENFIRE_PATH);
             }
         }
     }
 
     /**
-     * Returns the list of available plugins that are not installed in the Wildfire server.
+     * Returns the list of available plugins that are not installed in the Openfire server.
      * The request contains the plugins that are installed.
      *
      * @param pluginsPath the path where the .jar files of the plugins are located.
-     * @param xmlRequest original XML request sent by the remote wildfire server.
+     * @param xmlRequest original XML request sent by the remote openfire server.
      * @param xmlReply XML reply that contains information about available plugins.
      */
     private static void availablePlugins(String pluginsPath, Element xmlRequest, Element xmlReply)

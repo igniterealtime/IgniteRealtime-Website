@@ -68,11 +68,11 @@
 					</div>
 					
 					<div class="ignite_article_excerpt">
-						<h3><a href="/support/articles/wildfire_optimization.jsp">Behind the Scenes: Wildfire Optimization</a></h3>
+						<h3><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></h3>
 						<span class="ignite_support_author">December 19, 2005, by Matt Tucker</span>
-						<p>A major priority for Wildfire is to provide the fastest and most scalable XMPP server 
+						<p>A major priority for Openfire is to provide the fastest and most scalable XMPP server
 						implementation available. The Pampero project will be the major effort over the next several 
-						months to help us achieve that goal. However... <a href="/support/articles/wildfire_optimization.jsp">Read More ></a></p>
+						months to help us achieve that goal. However... <a href="/support/articles/openfire_optimization.jsp">Read More ></a></p>
 					</div>
 					
 					

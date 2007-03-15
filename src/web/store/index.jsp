@@ -37,10 +37,10 @@
     <div style="padding-left: 40px;">
 
 
-<img src="/images/enterprise.png" alt="Wildfire Enterprise" hspace="10" vspace="10" width="200" height="197" border="0" align="right" />
+<img src="/images/enterprise.png" alt="Openfire Enterprise" hspace="10" vspace="10" width="200" height="197" border="0" align="right" />
 
 <p>
-    Interested in supporting the Open Source projects on this site? Buy a license for the Wildfire Enterprise Plug-in
+    Interested in supporting the Open Source projects on this site? Buy a license for the Openfire Enterprise Plug-in
     and you'll be doing just that without so much as a server restart.
 </p>
 
@@ -62,7 +62,7 @@
 </style>
         <div id="pricing">
             <div class="price">$0</div>
-            <div class="name">Wildfire</div>
+            <div class="name">Openfire</div>
             <div class="price">$15/user/year</div>
             <div class="name">Enterprise Plug-in</div>
         </div>

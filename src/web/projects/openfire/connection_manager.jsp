@@ -34,7 +34,7 @@
 %>
 <html>
 <head>
-<title>Wildfire Server</title>
+<title>Openfire Server</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
@@ -44,12 +44,12 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Wildfire</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
 			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp" class="ignite_subnav_current">Connection Manager Module</a></li>
             <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
@@ -66,34 +66,34 @@
 			
 				<!-- BEGIN body header -->
 				<div id="ignite_body_header">
-					<h2>Wildfire Connection Manager Module</h2><br>
+					<h2>Openfire (formerly Wildfire) Connection Manager Module</h2><br>
 				</div>
 				<!-- END body header -->
 				
 				
 				<div class="ignite_int_body_padding" style="padding-top: 5px;">
 				
-					<!-- <h2>Wildfire Connection Manager Module</h2> -->
-					<!-- <p>Provides greatly improved scalability to Wildfire.</p> -->
+					<!-- <h2>Openfire Connection Manager Module</h2> -->
+					<!-- <p>Provides greatly improved scalability to Openfire.</p> -->
 					
 					<h5>What is it?</h5><img src="/images/connection-managers.gif" width="294" height="250" alt="Connection Manager Module" class="ignite_body_image_right" />
-					<p>Each Wildfire Connection Manager module you deploy improves the scalability of  your Wildfire server by handling a portion of the client connections. It's suitable for very large installations of Wildfire (many thousand concurrent users). Download the connection manager module implementation below.</p>
+					<p>Each Openfire Connection Manager module you deploy improves the scalability of  your Openfire server by handling a portion of the client connections. It's suitable for very large installations of Openfire (many thousand concurrent users). Download the connection manager module implementation below.</p>
 					
 					<h5>How many users can each connection manager handle?</h5>
 					<p>Each connection manager should handle at least five thousand concurrent  users. Experimental support for non-blocking connections is under development, which will greatly increase the number of connections that each connection manager module can support.</p>
 					
 					<h5>Can connection managers be used with other servers?</h5>
-					<p>Yes (in theory). The connection manager protocol is being developed through the open <a href="http://www.xmpp.org/extensions/">XEP</a> process. We hope to work with other server vendors so that the entire XMPP/Jabber community supports the protocol. We also expect there will be other implementations of connection managers that will be compatible with Wildfire. For example, a connection manager written with native code may be able to achieve very high scalability on a specific platform.</p>
+					<p>Yes (in theory). The connection manager protocol is being developed through the open <a href="http://www.xmpp.org/extensions/">XEP</a> process. We hope to work with other server vendors so that the entire XMPP/Jabber community supports the protocol. We also expect there will be other implementations of connection managers that will be compatible with Openfire. For example, a connection manager written with native code may be able to achieve very high scalability on a specific platform.</p>
 					
-					<h5>Does Wildfire Connection Manager Module use the same license as Wildfire?</h5>
+					<h5>Does Openfire Connection Manager Module use the same license as Openfire?</h5>
 					<p>Yes, the module is dual-licensed under the Open Source <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> license or a comercial software license agreement available from Jive Software.</p>
 					
 					<h5>How do I get support?</h5>
-					<p>Support is available from the user community in the <a href="http://www.igniterealtime.org/forum/">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/wildfire">available</a> from Jive Software.</p>
+					<p>Support is available from the user community in the <a href="http://www.igniterealtime.org/forum/">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire">available</a> from Jive Software.</p>
 					
 					
 					<h5>Download</h5>
-					<p>Download the  release of the Wildfire connection manager module (requires Wildfire 3.0 ). Full setup and usage instructions are included in the release.</p>
+					<p>Download the  release of the Openfire connection manager module (requires Openfire 3.0 ). Full setup and usage instructions are included in the release.</p>
 					
 					<div class="ignite_download_panel ignite_download_source_panel">
 						<div class="ignite_download_panel_label">
@@ -166,11 +166,11 @@
 		<div id="ignite_body_rightcol">
 			
             <jsp:include page="/includes/sidebar_projectlead.jsp">
-                <jsp:param name="project" value="wildfire" />
+                <jsp:param name="project" value="openfire" />
             </jsp:include>
 
 			<jsp:include page="/includes/sidebar_snapshot.jsp">
-			    <jsp:param name="project" value="wildfire"/>
+			    <jsp:param name="project" value="openfire"/>
 			</jsp:include>
 			
 			<%@ include file="/includes/sidebar_enterprise.jspf" %>

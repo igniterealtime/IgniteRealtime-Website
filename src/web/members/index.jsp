@@ -108,7 +108,7 @@
 						<!-- BEGIN blog entry details -->
 						<div class="ignite_blog_entry_details">
 							<span class="ignite_blog_entry_details_tags">Tags: 
-								<a href="#">Wildfire</a>, 
+								<a href="#">Openfire</a>,
 								<a href="#">Spark</a>
 							</span>
 							<span class="ignite_blog_entry_details_comments">
@@ -223,7 +223,7 @@
 						<!-- BEGIN blog entry details -->
 						<div class="ignite_blog_entry_details">
 							<span class="ignite_blog_entry_details_tags">Tags: 
-								<a href="#">Wildfire</a>, 
+								<a href="#">Openfire</a>, 
 								<a href="#">Spark</a>
 							</span>
 							<span class="ignite_blog_entry_details_comments">

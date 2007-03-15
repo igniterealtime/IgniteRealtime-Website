@@ -13,18 +13,18 @@
     List<Screenshot> screenshots = new ArrayList<Screenshot>();
 
     screenshots.add(new Screenshot("wf_serversettings.png", "Server Settings", "Complete control over server settings: ports, SSL, and server name can all be edited from the server settings page."));
-    screenshots.add(new Screenshot("wf_langtime.png", "Language and Time Settings", "Wildfire has full i18n support - language and time zone settings are controlled through the admin console."));
+    screenshots.add(new Screenshot("wf_langtime.png", "Language and Time Settings", "Openfire has full i18n support - language and time zone settings are controlled through the admin console."));
     screenshots.add(new Screenshot("wf_security.png", "Security", "Security settings allow you to control who your users can and can't talk to .&nbsp; Client control allows you to determine which features are enabled in users' IM clients such as enabling file transfer, message broadcasting, or group chat."));
-    screenshots.add(new Screenshot("wf_audit.png", "Audit Policy", "Wildfire can audit XMPP traffic on the server and save the data to XML files.&nbsp; Audit policy settings allow control over how auditing occurs."));
+    screenshots.add(new Screenshot("wf_audit.png", "Audit Policy", "Openfire can audit XMPP traffic on the server and save the data to XML files.&nbsp; Audit policy settings allow control over how auditing occurs."));
     screenshots.add(new Screenshot("wf_sessions.png", "Sessions", "Monitor and control all active client and server sessions."));
     screenshots.add(new Screenshot("wf_sharedgroups.png", "Shared Groups", "Groups can be shared to easily pre-populate new users' rosters with the right people."));
     screenshots.add(new Screenshot("wf_roomadmin.png", "Room Administration", "Create and manage chat rooms. Options allow control over room moderation, maximum occupancy, prescence information, and more."));
     screenshots.add(new Screenshot("wf_connectionmgr.png", "Connection Manager", "Connection managers can be enabled to allow for great scalability.&nbsp; They aggregate client connections and then open a few connections to the server to transmit traffic."));
     screenshots.add(new Screenshot("wf_contentfilter.png", "Content Filter", "Content filter settings allow you to configure the server to accept, reject or mask content that you specify with the admin console.&nbsp; Optionally, rejection and content match notifications can also be enabled."));
     screenshots.add(new Screenshot("wf_offlinemsgs.png", "Offline Messages", "Messages sent to a user that if offline can be stored for later, dropped silently without notification, or bounced back to the sender.&nbsp; You can&nbsp; also specify a storage limit to allow a certain amount of information to be stored before a bounce or drop occurs."));
-    screenshots.add(new Screenshot("wf_plugins.png", "Plugins", "A host of plugins are available for functionality such as importing and exporting data and exposing presence data as a web service.Plugins can be fully administered from inside the Wildfire administration console.  Installing plugins is as easy as dropping them into the plugins directory of your Wildfire installation."));
+    screenshots.add(new Screenshot("wf_plugins.png", "Plugins", "A host of plugins are available for functionality such as importing and exporting data and exposing presence data as a web service.Plugins can be fully administered from inside the Openfire administration console.  Installing plugins is as easy as dropping them into the plugins directory of your Openfire installation."));
     screenshots.add(new Screenshot("wf_groupchatsummary.png", "Group Chat Room Summary", "The group chat room summary page allows you to view and edit current chat rooms and create new ones. "));
-    screenshots.add(new Screenshot("wf_manageupdates2.png", "Manage Updates", "Wildfire can be configured to automatically check for server or plugin updates.&nbsp; Automatic administrator notifications can also be enabled."));
+    screenshots.add(new Screenshot("wf_manageupdates2.png", "Manage Updates", "Openfire can be configured to automatically check for server or plugin updates.&nbsp; Automatic administrator notifications can also be enabled."));
     screenshots.add(new Screenshot("wf_servertoserver.png", "Server to Server", "Server to Server settings allow you to configure "));
     screenshots.add(new Screenshot("wf_gateway.png", "Gateway Settings", "Gateway settings allow you to authorize individual client applications so that only clients that have been audited for proper security are allowed on your network."));
 
@@ -33,10 +33,10 @@
 
    
     commercialScreenshots.add(new Screenshot("wf_entdash.png", "Enterprise Dashboard", "The Enterprise Dashboard provides a quick overview of community activity and aggregates real time stats into one central location."));
-    commercialScreenshots.add(new Screenshot("wf_searcharchive.png", "Search Archive", "Wildfire Enterprise has comprehensive support for archiving messages to a database, and includes a compliance tool to find message content by users, date range, and keywords.  Wildfire Enterprise also includes a lightweight archiving mode that records information about conversations (participants, date, and number of messages) without recording the actual message content. This is useful in understanding IM usage patterns, while not being as invasive to users."));
+    commercialScreenshots.add(new Screenshot("wf_searcharchive.png", "Search Archive", "Openfire Enterprise has comprehensive support for archiving messages to a database, and includes a compliance tool to find message content by users, date range, and keywords.  Openfire Enterprise also includes a lightweight archiving mode that records information about conversations (participants, date, and number of messages) without recording the actual message content. This is useful in understanding IM usage patterns, while not being as invasive to users."));
 	commercialScreenshots.add(new Screenshot("wf_reportpackets.png", "Reporting: Extensive Options", "Advanced reporting tools, which include statistics on active users, conversations, group chat rooms, packet counts and more."));
-    commercialScreenshots.add(new Screenshot("wf_report_convos.png", "Reporting: Fine-Tuned Results", "Generate reports for preset time frames or enter specific dates to narrow results. Wildfire reports can also be exported as a PDF."));
-    commercialScreenshots.add(new Screenshot("wf_clientcontrol.png", "Client Control", "Wildfire Enterprise lets you control the features that are enabled in users' IM clients (for Spark and other clients), such as enabling file transfer, message broadcasting, or group chat. You can also control the version of Spark deployed by users from inside the administration console."));
+    commercialScreenshots.add(new Screenshot("wf_report_convos.png", "Reporting: Fine-Tuned Results", "Generate reports for preset time frames or enter specific dates to narrow results. Openfire reports can also be exported as a PDF."));
+    commercialScreenshots.add(new Screenshot("wf_clientcontrol.png", "Client Control", "Openfire Enterprise lets you control the features that are enabled in users' IM clients (for Spark and other clients), such as enabling file transfer, message broadcasting, or group chat. You can also control the version of Spark deployed by users from inside the administration console."));
 
     // Directory that contains all screenshots.
     final String screenshotPath = "/images/screenshots";
@@ -98,7 +98,7 @@
 
 <html>
 <head>
-<title>Wildfire Server</title>
+<title>Openfire Server</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
@@ -108,12 +108,12 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Wildfire</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
 			<li id="subnav02"><a href="screenshots.jsp" class="ignite_subnav_current">Screenshots</a></li>
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
@@ -130,16 +130,16 @@
 			
 				<!-- BEGIN body header -->
 				<div id="ignite_body_header">
-					<h2>Wildfire Screenshots</h2>
+					<h2>Openfire Screenshots</h2>
 				</div>
 				<!-- END body header -->
 				
 				
 				<div class="ignite_int_body_padding">
-					<p>View screenshots of Wildfire and
-                        <a href="http://www.jivesoftware.com/products/im/index.jsp">Wildfire Enterprise</a> below.
+					<p>View screenshots of Openfire and
+                        <a href="http://www.jivesoftware.com/products/im/index.jsp">Openfire Enterprise</a> below.
                         Looking for more comprehensive feature information? Visit the
-                        <a href="http://www.jivesoftware.com/products/wildfire/features.jsp">feature tour</a>
+                        <a href="http://www.jivesoftware.com/products/openfire/features.jsp">feature tour</a>
                         on jivesoftware.com.</p>
 				</div>
 
@@ -231,11 +231,11 @@
 		<div id="ignite_body_rightcol">
 			
             <jsp:include page="/includes/sidebar_projectlead.jsp">
-                <jsp:param name="project" value="wildfire" />
+                <jsp:param name="project" value="openfire" />
             </jsp:include>
 			
 			<jsp:include page="/includes/sidebar_snapshot.jsp">
-			    <jsp:param name="project" value="wildfire"/>
+			    <jsp:param name="project" value="openfire"/>
 			</jsp:include>
 			
 			<%@ include file="/includes/sidebar_enterprise.jspf" %>

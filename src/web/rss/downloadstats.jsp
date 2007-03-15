@@ -39,7 +39,7 @@ An RSS feed for download statistics.
          * The data for the feed.
          */
         public static long totalDownloads = 0L;
-        public static long wildfireDownloads = 0L;
+        public static long openfireDownloads = 0L;
         public static long sparkDownloads = 0L;
         public static long smackDownloads = 0L;
         public static long xiffDownloads = 0L;
@@ -52,7 +52,7 @@ An RSS feed for download statistics.
         if ((lastUpdate + UPDATE_FREQUENCY) < System.currentTimeMillis()) {
             lastUpdate = System.currentTimeMillis();
             totalDownloads = DownloadStats.getTotalDownloads();
-            wildfireDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.wildfire);
+            openfireDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.openfire);
             sparkDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.spark);
             smackDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.smack);
             xiffDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.xiff);
@@ -83,8 +83,8 @@ An RSS feed for download statistics.
                         <td><%= NUMBER_FORMATTER.format(totalDownloads) %></td>
                         </tr>
                         <tr>
-                        <td>Wildfire</td>
-                        <td><%= NUMBER_FORMATTER.format(wildfireDownloads) %></td>
+                        <td>Openfire</td>
+                        <td><%= NUMBER_FORMATTER.format(openfireDownloads) %></td>
                         </tr>
                         <tr>
                         <td>Spark</td>
@@ -103,7 +103,7 @@ An RSS feed for download statistics.
             ]]></description>
             
             <ignite:totalDownloads><%= NUMBER_FORMATTER.format(totalDownloads) %></ignite:totalDownloads>
-            <ignite:wildfireDownloads><%= NUMBER_FORMATTER.format(wildfireDownloads) %></ignite:wildfireDownloads>
+            <ignite:openfireDownloads><%= NUMBER_FORMATTER.format(openfireDownloads) %></ignite:openfireDownloads>
             <ignite:sparkDownloads><%= NUMBER_FORMATTER.format(sparkDownloads) %></ignite:sparkDownloads>
             <ignite:smackDownloads><%= NUMBER_FORMATTER.format(smackDownloads) %></ignite:smackDownloads>
             <ignite:xiffDownloads><%= NUMBER_FORMATTER.format(xiffDownloads) %></ignite:xiffDownloads>

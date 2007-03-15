@@ -31,7 +31,7 @@ theQuote.style.visibility = 'visible';
 
 				<div id="igniteQuote1" style="display: none; visibility: hidden">
 					<div class="ignite_sidebar_body_quote">
-						<p>The interaction with talented developers and with enthusiasts from around the world makes working with Wildfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.</p>
+						<p>The interaction with talented developers and with enthusiasts from around the world makes working with Openfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.</p>
 					</div>
 					<div class="ignite_sidebar_body_attrib">
 						&ndash; <a href="#">bhenson</a> 
@@ -41,7 +41,7 @@ theQuote.style.visibility = 'visible';
 				
 				<div id="igniteQuote2" style="display: none; visibility: hidden">
 					<div class="ignite_sidebar_body_quote">
-						<p>TThe interaction with talented developers and with enthusiasts from around the world makes working with Wildfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.</p>
+						<p>TThe interaction with talented developers and with enthusiasts from around the world makes working with Openfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.</p>
 					</div>
 					<div class="ignite_sidebar_body_attrib">
 						&ndash; <a href="#">captain amazing</a> 
@@ -51,7 +51,7 @@ theQuote.style.visibility = 'visible';
 				
 				<div id="igniteQuote3" style="display: none; visibility: hidden">
 					<div class="ignite_sidebar_body_quote">
-						<p>The interaction with talented developers and with enthusiasts from around the world makes working with Wildfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.</p>
+						<p>The interaction with talented developers and with enthusiasts from around the world makes working with Openfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.</p>
 					</div>
 					<div class="ignite_sidebar_body_attrib">
 						&ndash; <a href="#">ryanvanderzanden</a> 

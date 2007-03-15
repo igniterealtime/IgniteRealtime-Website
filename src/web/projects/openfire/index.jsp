@@ -5,9 +5,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
 <head>
-<title>Wildfire Server</title>
+<title>Openfire Server</title>
 <meta name="body-id" content="projects" />
-<meta name="panel-name" content="wildfire" />
+<meta name="panel-name" content="openfire" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
 </style>
@@ -16,12 +16,12 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Wildfire</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
 			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
@@ -45,7 +45,7 @@
 			   Cookie [] cookies = request.getCookies();
 				 if (cookies != null) {
 			       for (Cookie cookie: request.getCookies()) {
-                if (cookie.getName().equals("wildfire")) { 
+                if (cookie.getName().equals("openfire")) {
 						      panelCookieSet = true;
 					      }
 				     }
@@ -53,27 +53,27 @@
 			%>
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
 				<div id="ignite_bigpanel_content">
-					<h1 class="wildfire">Wildfire <span><%= Versions.getVersion("wildfire") %></span></h1>
-					<p>Wildfire is a real time collaboration (RTC) server dual-licensed under
+					<h1 class="openfire">Openfire <span><%= Versions.getVersion("openfire") %></span></h1>
+					<p>Openfire (formerly Wildfire) is a real time collaboration (RTC) server dual-licensed under
 					the Open Source GPL and <a href="http://www.jivesoftware.com/products/im/">commercially</a>.
                     It uses the only widely adopted open protocol for instant messaging, XMPP
-                    (also called Jabber). Wildfire is incredibly easy to setup and administer, but offers
+                    (also called Jabber). Openfire is incredibly easy to setup and administer, but offers
                     rock-solid security and performance.</p>
 				</div>
 				
 				<div id="ignite_bigpanel_close">
-					<a href="#" onClick="closePanel('wildfire'); return false;"></a>
+					<a href="#" onClick="closePanel('openfire'); return false;"></a>
 				</div>
 				
 				<div id="ignite_bigpanel_screenshot">
-					<img src="/images/ignite_screenshot_wildfire3.gif" width="210" height="210" alt="" />
+					<img src="/images/ignite_screenshot_openfire3.gif" width="210" height="210" alt="" />
 					<a href="screenshots.jsp">More screens</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#wildfire">Download</a> 
+					<a href="/downloads/index.jsp#openfire">Download</a>
 					<span>
-						<strong>Wildfire <%= Versions.getVersion("wildfire") %></strong> Latest release: <%= Versions.getVersionDate("wildfire") %>
+						<strong>Openfire <%= Versions.getVersion("openfire") %></strong> Latest release: <%= Versions.getVersionDate("openfire") %>
 					</span>
 				</div>
 				
@@ -86,9 +86,9 @@
 				(same details as above for 'large panel')
 			-->
 			<div id="ignite_smallpanel" <% if (panelCookieSet) { %> style="display:block" <% } %>>
-				<h1 class="wildfire">Wildfire <span><%= Versions.getVersion("wildfire") %></span></h1>
+				<h1 class="openfire">Openfire <span><%= Versions.getVersion("openfire") %></span></h1>
 				<div id="ignite_smallpanel_open">
-					<a href="#" onClick="closePanel('wildfire'); return false;"></a>
+					<a href="#" onClick="closePanel('openfire'); return false;"></a>
 				</div>
 			</div>
 			<!-- END small panel -->
@@ -97,7 +97,7 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
 
-                <% String blogFeedRSS = "http://www.igniterealtime.org/blog/category/wildfire/feed/"; %>
+                <% String blogFeedRSS = "http://www.igniterealtime.org/blog/category/openfire/feed/"; %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->
@@ -138,7 +138,7 @@
 		<div id="ignite_body_rightcol">
         
             <jsp:include page="/includes/sidebar_projectside.jsp">
-                <jsp:param name="project" value="wildfire"/>
+                <jsp:param name="project" value="openfire"/>
             </jsp:include>
 			
 		</div>

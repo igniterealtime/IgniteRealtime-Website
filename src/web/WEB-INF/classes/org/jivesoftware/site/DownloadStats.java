@@ -199,7 +199,7 @@ public class DownloadStats extends HttpServlet {
                 // accurate download stats being collected. This number was derived by performing a linear
                 // regression from the time the project was first available until November 30, 2006.
                 switch (type) {
-                    case wildfire:
+                    case openfire:
                         count = 675774L;
                         break;
                     case spark:
@@ -247,7 +247,7 @@ public class DownloadStats extends HttpServlet {
      * Adds an entry into the pluginListing table to track all plugin listing downloads on Ignite.
      *
      * @param ipAddress the ipAddress of the user.
-     * @param product   the name of the product (ex. spark or wildfire).
+     * @param product   the name of the product (ex. spark or openfire).
      * @param os        the os making the request
      * @param type      the type of file.
      * @param context   the servlet context
@@ -317,7 +317,7 @@ public class DownloadStats extends HttpServlet {
      * Adds an entry into the DownloadInfo to track all downloads on Jivesoftware.org.
      *
      * @param ipAddress    the ipAddress of the user.
-     * @param product      the name of the product (ex. spark or wildfire).
+     * @param product      the name of the product (ex. spark or openfire).
      * @param version      the version of the product.
      * @param fileType     the type of file (suffix)
      * @param fileName     the full name of the file.

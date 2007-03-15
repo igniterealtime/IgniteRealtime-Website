@@ -1,5 +1,5 @@
 <html>
-<head><title>Wildfire Optimization</title></head>
+<head><title>Openfire Optimization</title></head>
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
 </style>
@@ -18,22 +18,22 @@
 <!-- BEGIN body area -->
 <div id="ignite_body">
 
-<h1>Behind the Scenes: Wildfire Optimization</h1>
+<h1>Behind the Scenes: Openfire Optimization</h1>
 <p>Dec. 19, 2005<br>
 <i>by Gaston Dombiak and Matt Tucker</i></p>
 
-<p>A major priority for Wildfire is to provide the fastest and most scalable 
+<p>A major priority for Openfire (formerly Wildfire) is to provide the fastest and most scalable 
 XMPP server implementation available. The 
 <a href="http://www.igniterealtime.org/forum/entry!default.jspa?categoryID=17&externalID=422">
 Pampero</a> project will be the major 
 effort over the next several months to help us achieve that goal. However, 
-one side-affect of Pampero is that the core Wildfire Server instance will 
+one side-affect of Pampero is that the core Openfire Server instance will
 need to handle and route many more packets per second. So, to prepare for 
 Pampero development, we embarked on an optimization project for the core server 
 that improved performance by at least 33%.</p>
 
-<p>All of this work was performed as we renamed the server to Wildfire from 
-Jive Messenger. What follows is the story of our quest to make Wildfire 
+<p>All of this work was performed as we renamed the server to Openfire from
+Jive Messenger. What follows is the story of our quest to make Openfire
 significantly faster vs. the previous (already fast) Jive Messenger release.</p> 
 
 <h2>Profiling Basics</h2>
@@ -145,7 +145,7 @@ later. A partial list of the optimizations:</p>
 
 <center>
 <a href="images/article_optimization_2.png">
-<img src="images/article_optimization_2_small.gif" border="0" width="350" height="272" alt="Profiling Wildfire Server 2.4.0" title="Profiling Wildfire Server 2.4.0"/>
+<img src="images/article_optimization_2_small.gif" border="0" width="350" height="272" alt="Profiling Openfire Server 2.4.0" title="Profiling Openfire Server 2.4.0"/>
 </a>
 </center>
 <br><br>
@@ -175,14 +175,14 @@ Some stats on the testing setup:</p>
 
 <center> 
 <img src="images/article_optimization_3.png" width="549" height="293" alt="Packets per second" vspace="5" /><br>
-Wildfire 2.4.0 handles 500 more packets per second than Jive Messenger 2.3.0.
+Openfire 2.4.0 handles 500 more packets per second than Jive Messenger 2.3.0.
 </center>
 
 <br><br>
  
 <center>
 <img src="images/article_optimization_4.png" width="552" height="292" alt="Login speed" vspace="5" /><br>
-Wildfire 2.4.0 improves login time vs. Jive Messenger 2.3.0 by 33%.
+Openfire 2.4.0 improves login time vs. Jive Messenger 2.3.0 by 33%.
 </center>
 
 
@@ -199,7 +199,7 @@ refactoring and new features. Until then, our focus will shift to the
 <a href="http://www.igniterealtime.org/forum/entry!default.jspa?categoryID=17&externalID=422">
 Pampero</a>
 project, which is the next big opportunity for performance improvements in 
-Wildfire.</p>
+Openfire.</p>
 
 <br/><br/><br/>
 

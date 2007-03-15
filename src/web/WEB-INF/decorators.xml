@@ -16,6 +16,7 @@
 
     <excludes>
         <pattern>/projects/wildfire/versions.jsp*</pattern>
+        <pattern>/projects/openfire/versions.jsp*</pattern>
     </excludes>
 
 </decorators>

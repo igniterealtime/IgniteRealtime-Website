@@ -78,7 +78,6 @@ openBtn = openThis+"Btn";
 closeBtn1 = closeThat+"Btn";
 closeBtn2 = closeThatToo+"Btn";
 
-
 if ($(closeThatToo) != null) {
 
 	if ($(openThis).style.display != 'none' && $(closeThat).style.display == 'none' && $(closeThatToo).style.display == 'none') {

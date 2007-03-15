@@ -29,17 +29,17 @@
 				</div>
 				<!-- END body header -->
 				
-				<!-- BEGIN project - wildfire -->
+				<!-- BEGIN project - openfire -->
 				<div class="ignite_project_big ignite_project_big_left">
 				<div class="ignite_project_type">Server</div>
 					<div class="ignite_project_content">
-						<a href="wildfire/index.jsp" class="ignite_project_wildfire">
-						<h1 class="wildfire">Wildfire <span><%= Versions.getVersion("wildfire") %></span></h1></a>
-						<p>Cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.</p> 
-						<p><a href="wildfire/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+						<a href="openfire/index.jsp" class="ignite_project_openfire">
+						<h1 class="openfire">Openfire <span><%= Versions.getVersion("openfire") %></span></h1></a>
+						<p>Openfire (formerly Wildfire) is a cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.</p> 
+						<p><a href="openfire/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
 					</div>
 				</div>
-				<!-- END project - wildfire -->
+				<!-- END project - openfire -->
 				
 				<!-- BEGIN project - spark -->
 				<div class="ignite_project_big">

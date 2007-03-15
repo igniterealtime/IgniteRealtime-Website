@@ -1,5 +1,5 @@
 <html>
-<head><title>Wildfire Plugin Development: MOTD</title></head>
+<head><title>Openfire Plugin Development: MOTD</title></head>
 <meta name="body-id" content="support"/>
 <style type="text/css" media="screen">
     @import "/styles/interior.css";
@@ -20,16 +20,16 @@
 <!-- BEGIN body area -->
 <div id="ignite_body">
 
-<h1>Wildfire Plugin Development: Message of the Day</h1>
+<h1>Openfire Plugin Development: Message of the Day</h1>
 
 <p>Feburary 12, 2007<br>
     <i>by Ryan Graham</i></p>
 
 
-<p>Plugins provide an easy and powerful way to add features to Wildfire, without having to make
+<p>Plugins provide an easy and powerful way to add features to Openfire (formerly Wildfire), without having to make
     changes directly to the source. In this and future articles,
 
-    I will go through various techniques that can be used to add features to Wildfire via plugins.
+    I will go through various techniques that can be used to add features to Openfire via plugins.
     The idea for the plugin described in this article came from
 
     requests posted on the Ignite Realtime <a href="http://www.igniterealtime.org/forum/index.jspa">forums</a>.
@@ -41,8 +41,8 @@
     usage policy or something a little bit zanier, like what you find on the lower right-hand corner
     of <a href="http://slashdot.org/">Slashdot</a>. In either
 
-    case, we can add this "Message of the Day" (MotD) feature to Wildfire without writing a lot of
-    code, while still covering a lot of Wildfire plugin related
+    case, we can add this "Message of the Day" (MotD) feature to Openfire without writing a lot of
+    code, while still covering a lot of Openfire plugin related
 
     API's, so we'll start there.</p>
 
@@ -59,10 +59,10 @@
         would suggest that you download the source so you can see it in full, as I only
         highlight various parts of the code below. I should mention that
 
-        this and all future Wildfire plugin articles will use Wildfire 3.2.x for development.
+        this and all future Openfire plugin articles will use Openfire 3.2.x for development.
         Generally, plugins don't need to be modified to work with newer
 
-        versions of Wildfire, but there were some changes between the 3.1 and 3.2 releases that
+        versions of Openfire, but there were some changes between the 3.1 and 3.2 releases that
         require some code tweaks, so, rather than start with 3.1 and then
 
         move to 3.2 we'll just start off with the latest and greatest.</p>
@@ -122,13 +122,13 @@ public void destroyPlugin() {
 
 <p>Now, while we could "hard-code" our message, it would create a bit of a maintenance issue, since
     if we ever wanted to change the message we'd have to delete the old version of the plugin from
-    Wildfire, make our change to the source, compile and package the
+    Openfire, make our change to the source, compile and package the
     plugin and then redeploy it. Instead of going through this whole process, we'll piggyback
     on the existing Jive property API. The property API provides
     a place to store various pieces of data that our plugin will use without having to work directly
     with a database or some other external configuration file.
     An additional benefit to using the property API is that you can easily view, edit and delete
-    property data via Wildfire's Admin Console. We store and
+    property data via Openfire's Admin Console. We store and
     retrieve property information programmatically through the #setProperty and #getProperty methods
     using name/value pairings. As an example, take a look at
     the #setMessage and #getMessage methods:
@@ -156,10 +156,10 @@ public String getMessage() {
 
 <p><h2>Where the Magic Happens</h2></p>
 
-<p>How is our plugin going to know when a user signs in? Fortunately for us, the Wildfire API
+<p>How is our plugin going to know when a user signs in? Fortunately for us, the Openfire API
     provides a number of listener interfaces that can be used to notify us when certain events occur
     within the server. One of these listener interfaces is the <a
-        href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/org/jivesoftware/wildfire/event/SessionEventListener.html">SessionEventListener</a>
+        href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/org/jivesoftware/openfire/event/SessionEventListener.html">SessionEventListener</a>
     interface which can be used to alert our plugin when a user signs in.
 
     Below, you'll see our MotDSessionEventListener class that implements the SessionEventListener
@@ -226,7 +226,7 @@ private class MotDSessionEventListener implements SessionEventListener {
     with wrapping that method call in a TimerTask? Well, there seems to be a slight timing issue
     with Spark in that there is a short period of time between when a user signs in and when they
     can start receiving messages. So, if we send our message immediately the user might not receive
-    it. In order to get around this issue we use Wildfire's TaskEngine to delay sending our message
+    it. In order to get around this issue we use Openfire's TaskEngine to delay sending our message
     for 5000 milliseconds (five seconds).
 </p>
 
@@ -250,7 +250,7 @@ private class MotDSessionEventListener implements SessionEventListener {
 
     what can be done with them. Next time we'll look at using a <a
 
-        href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/org/jivesoftware/wildfire/interceptor/PacketInterceptor.html">PacketInterceptor</a>
+        href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/org/jivesoftware/openfire/interceptor/PacketInterceptor.html">PacketInterceptor</a>
 
     and some of its applications.</p>
 
@@ -261,12 +261,12 @@ private class MotDSessionEventListener implements SessionEventListener {
         href="http://www.igniterealtime.org/blog/2007/01/16/so-you-want-to-write-a-plugin/">So you
     want to write a plugin</a> provides basic
 
-    instructions on setting up a Wildfire development environment.
+    instructions on setting up a Openfire development environment.
 </li>
 
 <li>
-    <a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/plugin-dev-guide.html">Plugin
-        Developer Guide</a> - A guide to writing and installing plugins for Wildfire.
+    <a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/plugin-dev-guide.html">Plugin
+        Developer Guide</a> - A guide to writing and installing plugins for Openfire.
 
 </ul>
 

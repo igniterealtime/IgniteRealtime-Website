@@ -72,11 +72,6 @@
 					<a href="#" onClick="closePanel('xiff'); return false;"></a>
 				</div>
 				
-				<!-- <div id="ignite_bigpanel_screenshot"> -->
-					<!-- <img src="/images/ignite_screenshot_wildfire.gif" width="210" height="210" alt="" /> -->
-					<!-- <a href="screenshots.jsp">More screens</a> -->
-				<!-- </div> -->
-				
 				<div id="ignite_bigpanel_download">
 					<a href="/downloads/index.jsp#xiff">Download</a> 
 					<span>

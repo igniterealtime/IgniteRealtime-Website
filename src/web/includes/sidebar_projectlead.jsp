@@ -7,7 +7,7 @@
     String avatarSrc = null;
     String profileLink = null;
     String profile = null;
-    if (project.equals("wildfire")) {
+    if (project.equals("openfire")) {
         name = "gato";
         avatarSrc = "http://www.igniterealtime.org/forum/avatar-display.jspa?avatarID=79";
         profileLink = "http://www.igniterealtime.org/forum/profile.jspa?userID=1964";
@@ -27,8 +27,8 @@
     }
     else if (project.equals("xiff")) {
         name = "nick";
-        avatarSrc = "http://www.igniterealtime.org/forum/avatar-display.jspa?avatarID=79";
-        profileLink = "http://www.igniterealtime.org/forum/profile.jspa?userID=1964";
+        avatarSrc = "http://www.igniterealtime.org/forum/avatar-display.jspa?avatarID=195";
+        profileLink = "http://www.igniterealtime.org/forum/profile.jspa?userID=11368";
         profile = "A lyma bean-loving Flash developer working on the AS3.0 port of the XIFF library.";
     }
 %>

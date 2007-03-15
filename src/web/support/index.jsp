@@ -71,11 +71,11 @@
 							</div>	
 							<div id="ignite_support_activity_articles">
 								<h4>Recent Articles</h4>
-                                <div class="articles"><a href="articles/motd_plugin.jsp">Wildfire Plugin Development: Message of the Day</a></div>
+                                <div class="articles"><a href="articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
                                 <div class="articles"><a href="articles/pubsub.jsp">All About Pubsub</a></div>
 								<div class="articles"><a href="articles/sparkplug_day.jsp">Sparkplug Day</a></div>
 								<div class="articles"><a href="articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
-								<div class="articles"><a href="articles/wildfire_optimization.jsp">Behind the Scenes: Wildfire Optimization</a></div>
+								<div class="articles"><a href="articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
 										<strong><a href="/support/articles.jsp" class="ignite_link_arrow">See all support documents</a></strong>
 							</div>
 							<div id="ignite_support_activity_documentation">
@@ -84,7 +84,7 @@
 								be found in each project page's Documentation section. The links below will take you to 
 								the documentation section inside of each project.</p>
 								<ul>
-									<li class="ignite_support_projlink"><a href="../projects/wildfire/documentation.jsp">Wildfire <%= Versions.getVersion("wildfire") %></a></li>
+									<li class="ignite_support_projlink"><a href="../projects/openfire/documentation.jsp">Openfire <%= Versions.getVersion("openfire") %></a></li>
 									<li class="ignite_support_projlink"><a href="../projects/spark/documentation.jsp">Spark <%= Versions.getVersion("spark") %></a></li>
 									<li class="ignite_support_projlink"><a href="../projects/smack/documentation.jsp">Smack API <%= Versions.getVersion("smack") %></a></li>
 									<li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>

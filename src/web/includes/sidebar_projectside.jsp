@@ -2,7 +2,7 @@
                 String project = request.getParameter("project");
                 String jiraID = "";
                 String forumID = "";
-                if ("wildfire".equals(project)) {
+                if ("openfire".equals(project)) {
                     jiraID = "10010";
                     forumID = "40";
                 }

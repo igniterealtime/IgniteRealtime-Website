@@ -46,7 +46,7 @@ please <a href="<%= "/downloadServlet?filename="+filename %>">click here</a>.
 </p>
 
 <br />
-
+<%--
 <div style="background-color:#efefef; padding: 3px;">
 
 <table border="0">
@@ -60,7 +60,7 @@ to give us feedback. </td>
 </table>
 
 </div>
-
+--%>
 
 <%--<div style="background-color:#efefef;padding:3px">--%>
 <!--<b>IM Newsletter Sign-up</b><br><br>-->

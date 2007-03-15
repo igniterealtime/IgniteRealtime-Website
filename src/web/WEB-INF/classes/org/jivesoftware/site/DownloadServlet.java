@@ -24,12 +24,12 @@ public class DownloadServlet extends HttpServlet {
      * Enumeration of possible downloads.
      */
     public enum DownloadInfo {
-        wildfire("wildfire", 0),
+        openfire("openfire", 0),
         spark("spark", 1),
         smack("smack", 2),
         xiff("xiff", 3),
         spark_update("spark_update", 4),
-        wildfire_plugin("wildfire_plugin", 5),
+        openfire_plugin("openfire_plugin", 5),
         spark_plugin("spark_plugin", 6);
 
         private int type;

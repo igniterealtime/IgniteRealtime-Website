@@ -127,7 +127,7 @@
                         <p><strong>Websites:</strong></p>
                         <p><a href="http://www.xmpp.org">XMPP.org Website</a></p>
                         <p><a href="http://planet.jabber.org">Planet Jabber Blogs</a></p>
-                        <p><a href="http://www.jivesoftware.com/products/im/index.jsp">Wildfire Enterprise Website</a></p>
+                        <p><a href="http://www.jivesoftware.com/products/openfire/index.jsp">Openfire Enterprise Website</a></p>
 
                     </div>
 				</div>
@@ -135,6 +135,26 @@
 			</div>
 			<!-- END white sidebar box 'resources' -->
 			
+            <!-- BEGIN sidebar box 'Friends of OSA' -->
+            <div class="ignite_sidebar_whitebox">
+                <div class="ignite_sidebar_top"></div>
+                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_osafriends"></div>
+                <div class="ignite_sidebar_body">
+                    <div class="ignite_sidebar_body_osafriends">
+
+                        <p>
+                            Jive Software is a friend of the
+                            <a href="http://www.opensolutionsalliance.org/">Open Solutions Alliance</a>.
+                        </p>
+
+                        <img src="/images/osa.gif" alt="Open Solutions Alliance Logo" />
+
+                    </div>
+                </div>
+                <div class="ignite_sidebar_btm"></div>
+            </div>
+            <!-- END white sidebar box 'resources' -->
+
 		</div>
 		<!-- END right column (sidebar) -->
 	

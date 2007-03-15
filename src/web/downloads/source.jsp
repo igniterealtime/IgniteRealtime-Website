@@ -8,20 +8,20 @@
     DecimalFormat formatter = new DecimalFormat("0.00");
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
 
-    // Wildfire Source
-    String wildfireVersion = Versions.getVersion("wildfire");
-    if (wildfireVersion == null) {
-        wildfireVersion = "0.0";
+    // Openfire Source
+    String openfireVersion = Versions.getVersion("openfire");
+    if (openfireVersion == null) {
+        openfireVersion = "0.0";
     }
 
-    String wildfireBasedir = buildsPath + "/wildfire";
-    String ver = wildfireVersion.replace('.', '_');
-    File wildfireSrcZip = new File(wildfireBasedir, "wildfire_src_" + ver + ".zip");
-    File wildfireSrcTarGz = new File(wildfireBasedir, "wildfire_src_" + ver + ".tar.gz");
+    String openfireBaseDir = buildsPath + "/openfire";
+    String ver = openfireVersion.replace('.', '_');
+    File openfireSrcZip = new File(openfireBaseDir, "openfire_src_" + ver + ".zip");
+    File openfireSrcTar = new File(openfireBaseDir, "openfire_src_" + ver + ".tar.gz");
 
-    String wildfireBuildDate = "UNKNOWN";
-    if (wildfireSrcZip.exists()) {
-        wildfireBuildDate = dateFormat.format(new Date(wildfireSrcZip.lastModified()));
+    String openfireBuildDate = "UNKNOWN";
+    if (openfireSrcZip.exists()) {
+        openfireBuildDate = dateFormat.format(new Date(openfireSrcZip.lastModified()));
     }
 
     // Smack Source
@@ -56,7 +56,7 @@
 			<li id="subnav01"><a href="index.jsp">Releases</a></li>
 			<li id="subnav02"><a href="source.jsp" class="ignite_subnav_current">Source</a></li>
 			<li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
-            <li id="subnav04"><a href="/projects/wildfire/plugins.jsp">Wildfire Plugins</a></li>
+            <li id="subnav04"><a href="/projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
 	</div>
 
@@ -83,23 +83,23 @@
 				
 					<div class="ignite_download_panel ignite_download_source_panel">
 						<div class="ignite_download_panel_label">
-							<h4>Wildfire Source</h4>
+							<h4>Openfire Source</h4>
 						</div>
 						<div class="ignite_download_item_odd">
 							<span class="ignite_download_item_details">
 								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= wildfireSrcZip.getName() %>"><%= wildfireSrcZip.getName() %></a>
+								<a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= openfireSrcZip.getName() %>"><%= openfireSrcZip.getName() %></a>
 							</span>
-							<span class="ignite_download_item_date"><%= wildfireBuildDate %></span>
-							<span class="ignite_download_item_size"><%= formatter.format((double)wildfireSrcZip.length()/1024.0/1024.0) %> MB</span>
+							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
+							<span class="ignite_download_item_size"><%= formatter.format((double)openfireSrcZip.length()/1024.0/1024.0) %> MB</span>
 						</div>
 						<div class="ignite_download_item_even">
 							<span class="ignite_download_item_details">
 								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= wildfireSrcTarGz.getName() %>"><%= wildfireSrcTarGz.getName() %></a>
+								<a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= openfireSrcTar.getName() %>"><%= openfireSrcTar.getName() %></a>
 							</span>
-							<span class="ignite_download_item_date"><%= wildfireBuildDate %></span>
-							<span class="ignite_download_item_size"><%= formatter.format((double)wildfireSrcTarGz.length()/1024.0/1024.0) %> MB</span>
+							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
+							<span class="ignite_download_item_size"><%= formatter.format((double)openfireSrcTar.length()/1024.0/1024.0) %> MB</span>
 						</div>
 						<div class="ignite_download_panel_label">
 							<h4>Smack Source</h4>
@@ -119,118 +119,119 @@
 							</span>
 							<span class="ignite_download_item_date"><%= smackBuildDate %></span>
 							<span class="ignite_download_item_size"><%= formatter.format((double)smackSrcTarGz.length()/1024.0/1024.0) %> MB</span>
-						</div>
-					</div>
-					
-						
-					<p>There are many ways to view the source code for the Ignite Realtime
-                        Open Source projects:</p>
-							
-					<div class="ignite_source_table">
-						<table cellpadding="0" cellspacing="0" border="0" width="100%">
-						<tbody>
-						<tr>
-						<td width="1%" rowspan="4" class="item" valign="top">
-						Browse SVN
-						</td>
-						<td width="99%">
-						Wildfire: 
-						<a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/wildfire">wildfire/trunk</a>
-						</td>
-						</tr>
-						<tr>
-						<td width="99%">
-						Spark: 
-						<a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/spark">spark/trunk</a>
-						</td>
-						</tr>
-						<tr>
-						<td width="99%">
-						Smack: 
-						<a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/smack">smack/trunk</a>
-						</td>
-						</tr>
-						<tr>
-						<td width="99%" class="last">
-						Asterisk-IM: 
-						<a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/asterisk-im">asterisk-im/trunk</a>
-						</td>
-						</tr>
-						<tr>
-						<td width="1%" rowspan="4" class="item" valign="top"">
-						SVN Access
-						</td>
-						<td width="99%">
-						Wildfire:<br>
-						<tt>svn co http://svn.igniterealtime.org/svn/repos/wildfire/trunk wildfire</tt>
-						</td>
-						</tr>
-						<tr>
-						<td width="99%">
-						Spark:<br>
-						<tt>svn co http://svn.igniterealtime.org/svn/repos/spark/trunk spark</tt>
-						</tr>
-						<tr>
-						<td width="99%">
-						Smack:<br>
-						<tt>svn co http://svn.igniterealtime.org/svn/repos/smack/trunk smack</tt>
-						</tr>
-						<tr>
-						<td width="99%" class="last">
-						Asterisk-IM:
-						<br>
-						<tt>svn co http://svn.igniterealtime.org/svn/repos/asterisk-im/trunk asterisk-im</tt>
-						</td>
-						</tr>
-						<tr>
-						<td width="1%" rowspan="3" class="item finalRow" valign="top">
-						Other
-						</td>
-						<td width="99%">
-						<a href="index.jsp">Binary Builds</a>
-						</td>
-						</tr>
-						<tr>
-						<td width="99%">
-                        <a href="nightly_wildfire.jsp">Wildfire Nightly Builds</a>
-						</td>
-						</tr>
-                        <tr>
-                        <td width="99%">
-                        <a href="nightly_smack.jsp">Smack Nightly Builds</a>
-                        </td>
+                        </div>
+                    </div>
+
+
+                <p>There are many ways to view the source code for the Ignite Realtime
+                    Open Source projects:</p>
+
+                <div class="ignite_source_table">
+                    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tbody>
+                            <tr>
+                                <td width="1%" rowspan="4" class="item" valign="top">
+                                    Browse SVN
+                                </td>
+                                <td width="99%">
+                                    Openfire:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/openfire">openfire/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="99%">
+                                    Spark:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/spark">spark/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="99%">
+                                    Smack:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/smack">smack/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="99%" class="last">
+                                    Asterisk-IM:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/asterisk-im">asterisk-im/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="1%" rowspan="4" class="item" valign="top"
+                                ">
+                                SVN Access
+                            </td>
+                            <td width="99%">
+                                Openfire:<br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/openfire/trunk openfire</tt>
+                            </td>
                         </tr>
-						</tbody>
-						</table>
-					</div>
-				
-					<h4>Bugs/Issues</h4>
-					
-					<p>To view and report bugs and issues, please view our
-					<a href="http://www.igniterealtime.org/issues/">issue tracker</a>.
-					Specific projects include:
-					<a href="http://www.igniterealtime.org/issues/browse/JM">Wildfire</a>,
-					<a href="http://www.igniterealtime.org/issues/browse/SPARK">Spark</a>,
-					<a href="http://www.igniterealtime.org/issues/browse/SMACK">Smack API</a>,
-					<a href="http://www.igniterealtime.org/issues/browse/XIFF">XIFF</a>,
-                    <a href="http://www.igniterealtime.org/issues/browse/GATE">Gateway Plugin</a>, and
-					<a href="http://www.igniterealtime.org/issues/browse/PHONE">Asterisk-IM</a>.
-					</p>
-				
-					<br>
-					<br>
-				
-			</div>
-			<!-- END body content area -->
-			
-		</div>
-		<!-- END left column (main content) -->
-		
-		<!-- BEGIN right column (sidebar) -->
-		<div id="ignite_body_rightcol">
-			
-			
-			<%@ include file="/includes/sidebar_enterprise.jspf" %>
+                        <tr>
+                            <td width="99%">
+                                Spark:<br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/spark/trunk spark</tt>
+                        </tr>
+                        <tr>
+                            <td width="99%">
+                                Smack:<br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/smack/trunk smack</tt>
+                        </tr>
+                        <tr>
+                            <td width="99%" class="last">
+                                Asterisk-IM:
+                                <br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/asterisk-im/trunk asterisk-im</tt>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="1%" rowspan="3" class="item finalRow" valign="top">
+                                Other
+                            </td>
+                            <td width="99%">
+                                <a href="index.jsp">Binary Builds</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="99%">
+                                <a href="nightly_openfire.jsp">Openfire Nightly Builds</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="99%">
+                                <a href="nightly_smack.jsp">Smack Nightly Builds</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h4>Bugs/Issues</h4>
+
+            <p>To view and report bugs and issues, please view our
+                <a href="http://www.igniterealtime.org/issues/">issue tracker</a>.
+                Specific projects include:
+                <a href="http://www.igniterealtime.org/issues/browse/JM">Openfire</a>,
+                <a href="http://www.igniterealtime.org/issues/browse/SPARK">Spark</a>,
+                <a href="http://www.igniterealtime.org/issues/browse/SMACK">Smack API</a>,
+                <a href="http://www.igniterealtime.org/issues/browse/XIFF">XIFF</a>,
+                <a href="http://www.igniterealtime.org/issues/browse/GATE">Gateway Plugin</a>, and
+                <a href="http://www.igniterealtime.org/issues/browse/PHONE">Asterisk-IM</a>.
+            </p>
+
+            <br>
+            <br>
+
+        </div>
+        <!-- END body content area -->
+
+    </div>
+    <!-- END left column (main content) -->
+
+    <!-- BEGIN right column (sidebar) -->
+    <div id="ignite_body_rightcol">
+
+
+        <%@ include file="/includes/sidebar_enterprise.jspf" %>
 			
 			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
 			

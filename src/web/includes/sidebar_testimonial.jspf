@@ -29,17 +29,17 @@
     {
         //Quotes
         Quote kinderen = new Quote();
-        kinderen.setText("The interaction with talented developers and with enthusiasts from around the world makes working with Wildfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.");
+        kinderen.setText("The interaction with talented developers and with enthusiasts from around the world makes working with Openfire and Spark very enjoyable. IgniteRealtime.org opens exciting new ways for this vibrant community to share ideas and work together.");
         kinderen.setAttribution("Guus der Kinderen, Software Architect, Nimbuzz.");
         quotes.add(kinderen);
 
         Quote gagne = new Quote();
-        gagne.setText("Wildfire really impressed me and I find it really hard to come up with a negative when it comes to this great IM server... Installation was a breeze as was setup. Working with the browser-based administrative interface is a joy. In fact, Wildfire is a beautiful, easy to use, configurable, customizable, extensible, and powerful instant messaging server.");
+        gagne.setText("Openfire really impressed me and I find it really hard to come up with a negative when it comes to this great IM server... Installation was a breeze as was setup. Working with the browser-based administrative interface is a joy. In fact, Openfire is a beautiful, easy to use, configurable, customizable, extensible, and powerful instant messaging server.");
         gagne.setAttribution("Marcel Gagn&eacute;, Sys Admin Magazine");
         quotes.add(gagne);
 		
 		Quote reiser = new Quote();
-		reiser.setText("Jive Software's Wildfire instant messaging product is one of the easiest software packages I've ever installed because there's zero learning curve. The Wildfire software can be installed in less than five minutes, or if you go out for coffee, in 15 minutes.");
+		reiser.setText("Jive Software's Openfire instant messaging product is one of the easiest software packages I've ever installed because there's zero learning curve. The Openfire software can be installed in less than five minutes, or if you go out for coffee, in 15 minutes.");
 		reiser.setAttribution("Adam Reiser, Cheese Technologist &amp; Co-founder of Pizza.Net");
 		quotes.add(reiser);
     }

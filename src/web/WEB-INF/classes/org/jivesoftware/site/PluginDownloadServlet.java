@@ -18,7 +18,7 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
 /**
- * Servlet used for downloading and capturing of data for all Wildfire and Spark plugins on Ignite.
+ * Servlet used for downloading and capturing of data for all Openfire and Spark plugins on Ignite.
  */
 public class PluginDownloadServlet extends HttpServlet {
 
@@ -28,15 +28,15 @@ public class PluginDownloadServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException
     {
-        DownloadServlet.DownloadInfo pluginType = DownloadServlet.DownloadInfo.wildfire_plugin;
-        // If path includes "/updater/sparkplugs/" then this is actually a sparkplug, not a wildfire plugin
+        DownloadServlet.DownloadInfo pluginType = DownloadServlet.DownloadInfo.openfire_plugin;
+        // If path includes "/updater/sparkplugs/" then this is actually a sparkplug, not a openfire plugin
         if (request.getRequestURI().startsWith("/updater/sparkplugs/")) {
             pluginType = DownloadServlet.DownloadInfo.spark_plugin;
         }
 
         String filename = null;
-        // Files for wildfire and spark plugins are served from different places on the file system
-        if (pluginType == DownloadServlet.DownloadInfo.wildfire_plugin) {
+        // Files for openfire and spark plugins are served from different places on the file system
+        if (pluginType == DownloadServlet.DownloadInfo.openfire_plugin) {
             ServletContext context = request.getSession().getServletContext();
             filename = context.getRealPath(request.getServletPath());
         }
@@ -172,7 +172,7 @@ public class PluginDownloadServlet extends HttpServlet {
         }
 
         // No valid cached plugin data was found so collect the data from the plugin file and cache it
-        // Fortunately the Spark and Wildfire plugins share a very similar XML structure and both contain
+        // Fortunately the Spark and Openfire plugins share a very similar XML structure and both contain
         // <plugin><version> :)
         String pluginXML = new String(getPluginFile(file, "plugin.xml"));
         SAXReader saxReader = new SAXReader();

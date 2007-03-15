@@ -30,7 +30,7 @@
 
 
 				<div class="ignite_int_body_padding">
-                    <h2 class="road">Wildfire*</h2>
+                    <h2 class="road">Openfire (formerly Wildfire)*</h2>
                     <p>
                         <div class="road-table">
                         <table width="100%">
@@ -43,7 +43,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="label">Wildfire Open Source</td>
+                                    <td class="label">Openfire Open Source</td>
                                     <td><ul>
                                         <li>NIO: greatly increased scalability</li>
                                         <li>HTTP Binding</li>
@@ -57,7 +57,7 @@
                                     </ul></td>
                                 </tr>
                                 <tr>
-                                    <td class="label">Wildfire Enterprise</td>
+                                    <td class="label">Openfire Enterprise</td>
                                     <td>
                                         <ul>
                                         <li>SIP phone (Spark, beta)</li>

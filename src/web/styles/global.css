@@ -682,6 +682,9 @@ div.ignite_sidebar_hdr_newsletter {
 div.ignite_sidebar_hdr_resources {
 	background: transparent url(../images/ignite_sidebar_hdr_resources.gif) no-repeat;
 	}
+div.ignite_sidebar_hdr_osafriends {
+	background: transparent url(../images/ignite_sidebar_hdr_osafriends.gif) no-repeat;
+	}
 div.ignite_sidebar_hdr_chat {
 	background: transparent url(../images/ignite_sidebar_hdr_chat.gif) no-repeat;
 	}
@@ -1044,6 +1047,25 @@ div.ignite_sidebar_body_resources p a:active {
 	color: #555;
 	}
 
+/* osa friends sidebar */
+div.ignite_sidebar_body_osafriends {
+	padding: 0px;
+	margin: 0px;
+	float: left;
+	}
+div.ignite_sidebar_body_osafriends p {
+	padding-bottom: 10px;
+	}
+div.ignite_sidebar_body_osafriends p strong {
+	text-transform: uppercase;
+	color: #666;
+	}
+div.ignite_sidebar_body_osafriends p a:link,
+div.ignite_sidebar_body_osafriends p a:visited,
+div.ignite_sidebar_body_osafriends p a:hover,
+div.ignite_sidebar_body_osafriends p a:active {
+	color: #555;
+	}
 
 /* chat sidebar */
 div.ignite_sidebar_body_chat {
