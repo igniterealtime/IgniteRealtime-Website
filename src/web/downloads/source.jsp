@@ -9,15 +9,15 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
 
     // Openfire Source
-    String openfireVersion = Versions.getVersion("openfire");
+    String openfireVersion = Versions.getVersion("wildfire");
     if (openfireVersion == null) {
         openfireVersion = "0.0";
     }
 
-    String openfireBaseDir = buildsPath + "/openfire";
+    String openfireBaseDir = buildsPath + "/wildfire";
     String ver = openfireVersion.replace('.', '_');
-    File openfireSrcZip = new File(openfireBaseDir, "openfire_src_" + ver + ".zip");
-    File openfireSrcTar = new File(openfireBaseDir, "openfire_src_" + ver + ".tar.gz");
+    File openfireSrcZip = new File(openfireBaseDir, "wildfire_src_" + ver + ".zip");
+    File openfireSrcTar = new File(openfireBaseDir, "wildfire_src_" + ver + ".tar.gz");
 
     String openfireBuildDate = "UNKNOWN";
     if (openfireSrcZip.exists()) {
@@ -83,12 +83,12 @@
 				
 					<div class="ignite_download_panel ignite_download_source_panel">
 						<div class="ignite_download_panel_label">
-							<h4>Openfire Source</h4>
+							<h4>Wildfire Source</h4>
 						</div>
 						<div class="ignite_download_item_odd">
 							<span class="ignite_download_item_details">
 								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= openfireSrcZip.getName() %>"><%= openfireSrcZip.getName() %></a>
+								<a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= openfireSrcZip.getName() %>"><%= openfireSrcZip.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
 							<span class="ignite_download_item_size"><%= formatter.format((double)openfireSrcZip.length()/1024.0/1024.0) %> MB</span>
@@ -96,7 +96,7 @@
 						<div class="ignite_download_item_even">
 							<span class="ignite_download_item_details">
 								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= openfireSrcTar.getName() %>"><%= openfireSrcTar.getName() %></a>
+								<a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= openfireSrcTar.getName() %>"><%= openfireSrcTar.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
 							<span class="ignite_download_item_size"><%= formatter.format((double)openfireSrcTar.length()/1024.0/1024.0) %> MB</span>
