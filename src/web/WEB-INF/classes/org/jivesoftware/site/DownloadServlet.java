@@ -156,7 +156,8 @@ public class DownloadServlet extends HttpServlet {
             }
         }
         catch (IOException e) {
-            e.printStackTrace();
+			// Ignore this one
+            /* e.printStackTrace(); */
         }
         finally {
             if (in != null) {
