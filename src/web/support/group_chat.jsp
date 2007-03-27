@@ -108,6 +108,14 @@
 					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
 					<h4>Change Log</h4>
 					<ul class="changelogentry">
+						<li class="changelogheader"> <u>March 27th, 2007</u></li>
+						<li> New appearance, and some layout changes </li>
+						<li> Fixed a status changing bug </li>
+						<li> Fixed a nickname changing bug </li>
+						<li> Fixed several potential script exploits </li>
+						<li> Should work in Microsoft Internet Explorer and Apple Safari again </li>
+					</ul>
+					<ul class="changelogentry">
 						<li class="changelogheader"> <u>March 12th, 2007</u></li>
 						<li> Improved formatting of timestamps, and added the date to the window header </li>
 						<li> Fixed image urls </li>

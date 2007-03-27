@@ -2728,7 +2728,11 @@ YAHOO.register("yahoo",YAHOO,{version:"2.2.0",build:"127"});
 
 
 function XMPPConnection(_1,_2,_3){
+if(_1.charAt(0)=="/"){
 this.binding=_1;
+}else{
+this.binding=new Poly9.URLParser(_1);
+}
 this.domain=_2;
 this.isConnected=false;
 this.isAuthenticated=false;
@@ -4298,48 +4302,46 @@ _1e3(_1ec,_1ed);
 };
 this.requestCount++;
 var _1ee;
-if(typeof Flash!="undefined"){
-_1ee=new Flash.request();
-_1ee.onload=_1e5;
-_1ee.open("POST",url);
-_1ee.send(_1e0);
-}else{
-_1ee=new Ajax.Request(url,{method:"post",postBody:_1e0,onSuccess:_1e5,onException:_1eb,onFailure:_1e8});
+var _1ef;
+if(typeof url=="string"){
+_1ee=url;
+_1ef="post";
 }
+return new Ajax.Request(_1ee,{method:"post",postBody:_1e0,onSuccess:_1e5,onException:_1eb,onFailure:_1e8});
 },reset:function(){
 this.failureState=false;
 this.pendingRequests=new Array();
-}},Integer:{randomInt:function(_1ef,_1f0,_1f1){
-_1ef=Math.floor(_1ef);
+}},Integer:{randomInt:function(_1f0,_1f1,_1f2){
 _1f0=Math.floor(_1f0);
-return (Math.floor(_1ef+((_1f0-_1ef+1)*Math.random((_1f1!=null)?_1f1:0))));
+_1f1=Math.floor(_1f1);
+return (Math.floor(_1f0+((_1f1-_1f0+1)*Math.random((_1f2!=null)?_1f2:0))));
 }},StringUtil:{randomString:function(len){
-var _1f3="";
-var _1f4=0;
-var _1f5="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var _1f4="";
+var _1f5=0;
+var _1f6="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 for(var intI=0;intI<len;intI++){
-_1f4=util.Integer.randomInt(0,(_1f5.length-1),intI);
-_1f3+=_1f5.charAt(_1f4);
+_1f5=util.Integer.randomInt(0,(_1f6.length-1),intI);
+_1f4+=_1f6.charAt(_1f5);
 }
-return _1f3;
+return _1f4;
 }}};
 var XMPP={};
 XMPP.Packet=function(){
 };
 XMPP.Packet.packetID=1;
-XMPP.Packet.prototype={idBase:util.StringUtil.randomString(5),_init:function(_1f7,from,to,_1fa){
+XMPP.Packet.prototype={idBase:util.StringUtil.randomString(5),_init:function(_1f8,from,to,_1fb){
 this.doc=Sarissa.getDomDocument();
-var _1fb=!_1fa;
-if(!_1fa){
-_1fa=this.doc.createElement(_1f7);
+var _1fc=!_1fb;
+if(!_1fb){
+_1fb=this.doc.createElement(_1f8);
 }else{
 if(!_SARISSA_IS_IE){
-_1fa=this.doc.importNode(_1fa,true);
+_1fb=this.doc.importNode(_1fb,true);
 }
 }
-this.doc.appendChild(_1fa);
+this.doc.appendChild(_1fb);
 this.rootNode=this.doc.firstChild;
-if(_1fb){
+if(_1fc){
 this.addAttributes({id:this._nextPacketID()});
 this.setFrom(from);
 this.setTo(to);
@@ -4352,19 +4354,19 @@ return this.rootNode.getAttribute("id");
 this.rootNode.setAttribute("id",id);
 },_nextPacketID:function(){
 return this.idBase+"-"+XMPP.Packet.packetID++;
-},removeAttributes:function(_1fd){
-for(var i=0;i<_1fd.length;i++){
-this.rootNode.removeAttribute(_1fd[i]);
+},removeAttributes:function(_1fe){
+for(var i=0;i<_1fe.length;i++){
+this.rootNode.removeAttribute(_1fe[i]);
 }
-},addAttributes:function(_1ff){
-for(var attr in _1ff){
-this.rootNode.setAttribute(attr,_1ff[attr]);
+},addAttributes:function(_200){
+for(var attr in _200){
+this.rootNode.setAttribute(attr,_200[attr]);
 }
-},setFrom:function(_201){
-if(!_201||_201==""){
+},setFrom:function(_202){
+if(!_202||_202==""){
 this.removeAttributes($A("from"));
 }else{
-this.addAttributes({from:_201});
+this.addAttributes({from:_202});
 }
 },getFrom:function(){
 if(this.from){
@@ -4377,12 +4379,12 @@ this.from=null;
 this.from=new XMPP.JID(from);
 }
 return this.from;
-},setTo:function(_203){
+},setTo:function(_204){
 this.to=null;
-if(!_203||_203==""){
+if(!_204||_204==""){
 this.removeAttributes($A("to"));
 }else{
-this.addAttributes({to:_203});
+this.addAttributes({to:_204});
 }
 },getTo:function(){
 if(this.to){
@@ -4395,11 +4397,11 @@ this.to=null;
 this.to=new XMPP.JID(to);
 }
 return this.to;
-},setXMLNS:function(_205){
-if(!_205||_205==""){
+},setXMLNS:function(_206){
+if(!_206||_206==""){
 this.removeAttributes($A("xmlns"));
 }else{
-this.addAttributes({xmlns:_205});
+this.addAttributes({xmlns:_206});
 }
 },toXML:function(){
 var xml=this.doc.xml?this.doc.xml:(new XMLSerializer()).serializeToString(this.doc);
@@ -4407,122 +4409,122 @@ if(xml.indexOf("<?xml version=\"1.0\"?>")>=0){
 xml=xml.substr("<?xml version=\"1.0\"?>".length);
 }
 return xml;
-},addExtension:function(_207,_208){
-if(_208&&this.doc.createElementNS){
-this.extension=this.rootNode.appendChild(this.doc.createElementNS(_208,_207));
+},addExtension:function(_208,_209){
+if(_209&&this.doc.createElementNS){
+this.extension=this.rootNode.appendChild(this.doc.createElementNS(_209,_208));
 }else{
-this.extension=this.rootNode.appendChild(this.doc.createElement(_207));
+this.extension=this.rootNode.appendChild(this.doc.createElement(_208));
 }
-if(_208){
-this.extension.setAttribute("xmlns",_208);
+if(_209){
+this.extension.setAttribute("xmlns",_209);
 }
 return this.extension;
-},addTextExtension:function(_209,_20a){
-var _20b=this.addExtension(_209);
-_20b.appendChild(this.doc.createTextNode(_20a));
-},getExtension:function(_20c,_20d){
-var _20e=this.getExtensions(_20c,_20d);
-if(!_20e||_20e.length<=0){
+},addTextExtension:function(_20a,_20b){
+var _20c=this.addExtension(_20a);
+_20c.appendChild(this.doc.createTextNode(_20b));
+},getExtension:function(_20d,_20e){
+var _20f=this.getExtensions(_20d,_20e);
+if(!_20f||_20f.length<=0){
 return null;
 }else{
-return _20e[0];
+return _20f[0];
 }
-},getExtensions:function(_20f,_210){
-if(!_20f){
-_20f="*";
+},getExtensions:function(_210,_211){
+if(!_210){
+_210="*";
 }
-var _211=this.rootNode.getElementsByTagName(_20f);
-if(_211.length<=0){
+var _212=this.rootNode.getElementsByTagName(_210);
+if(_212.length<=0){
 return new Array();
 }
-var _212=function(node){
-if(!_210||node.getAttribute("xmlns")==_210){
+var _213=function(node){
+if(!_211||node.getAttribute("xmlns")==_211){
 return node;
 }else{
 return null;
 }
 };
-return $A(_211).collect(_212).toArray().compact();
-},removeExtension:function(_214){
-var _215=this.rootNode.childNodes;
-for(var i=0;i<_215.length;i++){
-if(_215[i].tagName==_214){
-return this.rootNode.removeChild(_215[i]);
+return $A(_212).collect(_213).toArray().compact();
+},removeExtension:function(_215){
+var _216=this.rootNode.childNodes;
+for(var i=0;i<_216.length;i++){
+if(_216[i].tagName==_215){
+return this.rootNode.removeChild(_216[i]);
 }
 }
 },getError:function(){
-var _217=this.getExtension("error");
-if(_217==null){
+var _218=this.getExtension("error");
+if(_218==null){
 return null;
 }else{
-return _217.getAttribute("code");
+return _218.getAttribute("code");
 }
 }};
-XMPP.IQ=function(_218,from,to,_21b,init){
+XMPP.IQ=function(_219,from,to,_21c,init){
 if(init){
 return;
 }
-this._init("iq",from,to,_21b);
-if(!_21b){
-this.setType(_218);
+this._init("iq",from,to,_21c);
+if(!_21c){
+this.setType(_219);
 }
 };
-XMPP.IQ.prototype=Object.extend(new XMPP.Packet(),{setType:function(_21d){
-if(!_21d||_21d==""){
-_21d="get";
+XMPP.IQ.prototype=Object.extend(new XMPP.Packet(),{setType:function(_21e){
+if(!_21e||_21e==""){
+_21e="get";
 }
-this.addAttributes({type:_21d});
+this.addAttributes({type:_21e});
 },getType:function(){
 return this.rootNode.getAttribute("type");
-},setQuery:function(_21e){
-return this.addExtension("query",_21e);
+},setQuery:function(_21f){
+return this.addExtension("query",_21f);
 },getQuery:function(){
 return this.getExtension("query");
 }});
-XMPP.Registration=function(_21f,to,_221){
-this._init("iq",null,to,_221);
-if(!_221){
-this.setType(_21f);
+XMPP.Registration=function(_220,to,_222){
+this._init("iq",null,to,_222);
+if(!_222){
+this.setType(_220);
 this.setQuery("jabber:iq:register");
 }
 };
 XMPP.Registration.prototype=Object.extend(new XMPP.IQ(null,null,null,null,true),{getInstructions:function(){
-var _222=this.getExtension("instructions");
-if(!_222){
+var _223=this.getExtension("instructions");
+if(!_223){
 return null;
 }else{
-if(!_222.firstChild){
+if(!_223.firstChild){
 return "";
 }
 }
-return _222.firstChild.nodeValue;
+return _223.firstChild.nodeValue;
 },setAttributes:function(map){
 for(var attr in map){
 this.addTextExtension(attr,map[attr]);
 }
 }});
-XMPP.Presence=function(to,from,_227){
-this._init("presence",from,to,_227);
+XMPP.Presence=function(to,from,_228){
+this._init("presence",from,to,_228);
 };
-XMPP.Presence.prototype=Object.extend(new XMPP.Packet(),{setType:function(_228){
-if(!_228||_228==""||_228=="available"){
+XMPP.Presence.prototype=Object.extend(new XMPP.Packet(),{setType:function(_229){
+if(!_229||_229==""||_229=="available"){
 this.removeAttributes($A("type"));
 }else{
-this.addAttributes({type:_228});
+this.addAttributes({type:_229});
 }
 },getType:function(){
 var type=this.rootNode.getAttribute("type");
 return (type?type:"available");
-},setPriority:function(_22a){
-if(!_22a||!(_22a instanceof Number)){
+},setPriority:function(_22b){
+if(!_22b||!(_22b instanceof Number)){
 this.removeExtension("priority");
 }else{
-this.addTextExtension("priority",_22a);
+this.addTextExtension("priority",_22b);
 }
 },getPriority:function(){
-var _22b=this.getExtension("priority");
-if(_22b){
-return _22b.firstChild.nodeValue;
+var _22c=this.getExtension("priority");
+if(_22c){
+return _22c.firstChild.nodeValue;
 }else{
 return 0;
 }
@@ -4539,34 +4541,34 @@ return show.firstChild.nodeValue;
 }else{
 return null;
 }
-},setStatus:function(_22e){
-if(!_22e||_22e==""){
+},setStatus:function(_22f){
+if(!_22f||_22f==""){
 this.removeExtension("status");
 }else{
-this.addTextExtension("status",_22e);
+this.addTextExtension("status",_22f);
 }
 },getStatus:function(){
-var _22f=this.getExtension("status");
-if(_22f&&_22f.firstChild){
-return _22f.firstChild.nodeValue;
+var _230=this.getExtension("status");
+if(_230&&_230.firstChild){
+return _230.firstChild.nodeValue.escapeHTML();
 }else{
 return null;
 }
 }});
-XMPP.Message=function(_230,from,to,_233){
-if(!_230&&!from&&!to&&!_233){
+XMPP.Message=function(_231,from,to,_234){
+if(!_231&&!from&&!to&&!_234){
 return;
 }
-this._init("message",from,to,_233);
-if(!_233){
-this.setType(_230);
+this._init("message",from,to,_234);
+if(!_234){
+this.setType(_231);
 }
 };
-XMPP.Message.prototype=Object.extend(new XMPP.Packet(),{setType:function(_234){
-if(!_234||_234==""||_234=="normal"){
+XMPP.Message.prototype=Object.extend(new XMPP.Packet(),{setType:function(_235){
+if(!_235||_235==""||_235=="normal"){
 this.removeAttributes($A("type"));
 }else{
-this.addAttributes({type:_234});
+this.addAttributes({type:_235});
 }
 },getType:function(){
 var type=this.rootNode.getAttribute("type");
@@ -4574,22 +4576,22 @@ if(!type){
 type="normal";
 }
 return type;
-},setSubject:function(_236){
-if(!_236||_236==""){
+},setSubject:function(_237){
+if(!_237||_237==""){
 this.removeExtension("subject");
 }else{
-this.addTextExtension("subject",_236);
+this.addTextExtension("subject",_237);
 }
 },getSubject:function(){
-var _237=this.getExtension("subject");
-if(!_237){
+var _238=this.getExtension("subject");
+if(!_238){
 return null;
 }else{
-if(!_237.firstChild){
+if(!_238.firstChild){
 return "";
 }
 }
-return _237.firstChild.nodeValue;
+return _238.firstChild.nodeValue;
 },setBody:function(body){
 if(!body||body==""){
 this.removeExtension("body");
@@ -4601,46 +4603,46 @@ var body=this.getExtension("body");
 if(!body){
 return null;
 }
-return {body:body.firstChild.nodeValue,lang:body.getAttribute("lang")};
+return {body:body.firstChild.nodeValue.escapeHTML(),lang:body.getAttribute("lang")};
 },getBodies:function(){
-var _23a=this.getExtensions("body");
+var _23b=this.getExtensions("body");
 if(!body){
 return null;
 }
-return _23a.collect(function(body){
-return {body:body.firstChild.nodeValue,lang:body.getAttribute("lang")};
+return _23b.collect(function(body){
+return {body:body.firstChild.nodeValue.escapeHTML(),lang:body.getAttribute("lang")};
 });
-},setThread:function(_23c){
-if(!_23c||_23c==""){
+},setThread:function(_23d){
+if(!_23d||_23d==""){
 this.removeExtension("thread");
 }else{
-this.addTextExtension("thread",_23c);
+this.addTextExtension("thread",_23d);
 }
 },getThread:function(){
-var _23d=this.getExtension("thread");
-if(!_23d){
+var _23e=this.getExtension("thread");
+if(!_23e){
 return null;
 }
-return _23d.firstChild.nodeValue;
+return _23e.firstChild.nodeValue;
 }});
-org.jive.spank.roster.Packet=function(_23e,from,to,_241){
-this._init("iq",from,to,_241);
-if(!_241){
-this.setType(_23e);
+org.jive.spank.roster.Packet=function(_23f,from,to,_242){
+this._init("iq",from,to,_242);
+if(!_242){
+this.setType(_23f);
 this.setQuery("jabber:iq:roster");
 }
 };
 org.jive.spank.roster.Packet.prototype=Object.extend(new XMPP.IQ(null,null,null,null,true),{getItems:function(){
-var _242=new Array();
-var _243=this.getExtension().childNodes;
-for(var i=0;i<_243.length;i++){
-if(_243[i].tagName!="item"){
+var _243=new Array();
+var _244=this.getExtension().childNodes;
+for(var i=0;i<_244.length;i++){
+if(_244[i].tagName!="item"){
 continue;
 }
-var item=new org.jive.spank.roster.Item(_243[i].cloneNode(true));
-_242.push(item);
+var item=new org.jive.spank.roster.Item(_244[i].cloneNode(true));
+_243.push(item);
 }
-return _242;
+return _243;
 },addItem:function(jid,name){
 var item=this.doc.createElement("item");
 this.getExtension().appendChild(item);
@@ -4650,8 +4652,8 @@ item.setAttribute("name",name);
 }
 return new org.jive.spank.roster.Item(item);
 }});
-org.jive.spank.roster.Item=function(_249){
-this._element=_249;
+org.jive.spank.roster.Item=function(_24a){
+this._element=_24a;
 };
 org.jive.spank.roster.Item.prototype={getJID:function(){
 var attr=this._element.getAttribute("jid");
@@ -4666,155 +4668,155 @@ return this._element.getAttribute("name");
 return this._element.getAttribute("ask");
 },getSubscription:function(){
 return this._element.getAttribute("subscription");
-},setSubscription:function(_24b){
-this._element.setAttribute("subscription",_24b);
+},setSubscription:function(_24c){
+this._element.setAttribute("subscription",_24c);
 },getGroups:function(){
-var _24c=this._element.childNodes;
-var _24d=new Array();
-for(var i=0;i<_24c.length;i++){
-if(_24c[i].tagName=="group"&&_24c[i].firstChild){
-_24d.push(_24c[i].firstChild.nodeValue);
+var _24d=this._element.childNodes;
+var _24e=new Array();
+for(var i=0;i<_24d.length;i++){
+if(_24d[i].tagName=="group"&&_24d[i].firstChild){
+_24e.push(_24d[i].firstChild.nodeValue);
 }
 }
-return _24d;
-},addGroups:function(_24f){
-for(var i=0;i<_24f.length;i++){
-var _251=this._element.appendChild(this._element.ownerDocument.createElement("group"));
-_251.appendChild(this._element.ownerDocument.createTextNode(_24f[i]));
+return _24e;
+},addGroups:function(_250){
+for(var i=0;i<_250.length;i++){
+var _252=this._element.appendChild(this._element.ownerDocument.createElement("group"));
+_252.appendChild(this._element.ownerDocument.createTextNode(_250[i]));
 }
 }};
-org.jive.spank.muc.User=function(to,from,_254){
-this._init("message",from,to,_254);
-if(!_254){
+org.jive.spank.muc.User=function(to,from,_255){
+this._init("message",from,to,_255);
+if(!_255){
 this.addExtension("x","http://jabber.org/protocol/muc#user");
 }
 };
-org.jive.spank.muc.User.prototype=Object.extend(new XMPP.Message(),{setInvite:function(jid,_256){
+org.jive.spank.muc.User.prototype=Object.extend(new XMPP.Message(),{setInvite:function(jid,_257){
 if(!jid||!(jid instanceof XMPP.JID)){
 throw Error("Inivte must contain invitee, provide a JID");
 }
-var _257=this.doc.createElement("invite");
-this.getExtension().appendChild(_257);
-_257.setAttribute("to",jid.toString());
-if(_256){
-var _258=this.doc.createElement("reason");
-_258.appendChild(this.doc.createTextNode(_256));
-_257.appendChild(_258);
+var _258=this.doc.createElement("invite");
+this.getExtension().appendChild(_258);
+_258.setAttribute("to",jid.toString());
+if(_257){
+var _259=this.doc.createElement("reason");
+_259.appendChild(this.doc.createTextNode(_257));
+_258.appendChild(_259);
 }
 },getInvite:function(){
 var ex=this.getExtension("x");
 if(!ex){
 return null;
 }
-var _25a=ex.childNodes;
-var _25b;
-for(var i=0;i<_25a.length;i++){
-var node=_25a[i];
+var _25b=ex.childNodes;
+var _25c;
+for(var i=0;i<_25b.length;i++){
+var node=_25b[i];
 if(node.tagName=="invite"){
-_25b=node;
+_25c=node;
 break;
 }
 }
-if(!_25b){
+if(!_25c){
 return null;
 }
-var _25e=_25b.firstChild;
-if(_25e){
-_25e=_25e.firstChild.nodeValue;
+var _25f=_25c.firstChild;
+if(_25f){
+_25f=_25f.firstChild.nodeValue;
 }else{
-_25e=null;
+_25f=null;
 }
-var _25f={};
-_25f["room"]=this.getFrom();
-_25f["from"]=_25b.getAttribute("from");
-if(_25e){
-_25f["reason"]=_25e;
+var _260={};
+_260["room"]=this.getFrom();
+_260["from"]=_25c.getAttribute("from");
+if(_25f){
+_260["reason"]=_25f;
 }
-return _25f;
-},setDecline:function(jid,_261){
+return _260;
+},setDecline:function(jid,_262){
 if(!jid||!(jid instanceof XMPP.JID)){
 throw Error("Invite must contain invitee, provide a JID");
 }
-var _262=this.doc.createElement("decline");
-this.getExtension().appendChild(_262);
-_262.setAttribute("to",jid.toString());
-if(_261){
-var _263=this.doc.createElement("reason");
-_263.appendChild(this.doc.createTextNode(_261));
-_262.appendChild(_263);
+var _263=this.doc.createElement("decline");
+this.getExtension().appendChild(_263);
+_263.setAttribute("to",jid.toString());
+if(_262){
+var _264=this.doc.createElement("reason");
+_264.appendChild(this.doc.createTextNode(_262));
+_263.appendChild(_264);
 }
 },getDecline:function(){
 var ex=this.getExtension("x");
 if(!ex){
 return null;
 }
-var _265=ex.childNodes;
-var _266;
-for(var i=0;i<_265.length;i++){
-var node=_265[i];
+var _266=ex.childNodes;
+var _267;
+for(var i=0;i<_266.length;i++){
+var node=_266[i];
 if(node.tagName=="decline"){
-_266=node;
+_267=node;
 break;
 }
 }
-if(!_266){
+if(!_267){
 return null;
 }
-var _269=_266.firstChild;
-if(_269){
-_269=_269.firstChild.nodeValue;
+var _26a=_267.firstChild;
+if(_26a){
+_26a=_26a.firstChild.nodeValue;
 }else{
-_269=null;
+_26a=null;
 }
-var _26a={};
-_26a.room=this.getFrom();
-_26a.from=_266.getAttribute("from");
-if(_269){
-_26a.reason=_269;
+var _26b={};
+_26b.room=this.getFrom();
+_26b.from=_267.getAttribute("from");
+if(_26a){
+_26b.reason=_26a;
 }
-return _26a;
+return _26b;
 }});
-org.jive.spank.muc.Owner=function(_26b,to,from,_26e){
-this._init("iq",from,to,_26e);
-if(!_26e){
+org.jive.spank.muc.Owner=function(_26c,to,from,_26f){
+this._init("iq",from,to,_26f);
+if(!_26f){
 this.setQuery("http://jabber.org/protocol/muc#owner");
 }
 };
-org.jive.spank.muc.Owner.prototype=Object.extend(new XMPP.IQ(null,null,null,null,true),{setDestroy:function(_26f,jid){
-var _271=this.doc.createElement("destroy");
-this.getExtension().appendChild(_271);
+org.jive.spank.muc.Owner.prototype=Object.extend(new XMPP.IQ(null,null,null,null,true),{setDestroy:function(_270,jid){
+var _272=this.doc.createElement("destroy");
+this.getExtension().appendChild(_272);
 if(jid){
-_271.setAttribute("jid",jid.toString());
+_272.setAttribute("jid",jid.toString());
 }
-if(_26f){
-var _272=this.doc.createElement("reason");
-_272.appendChild(this.doc.createTextNode(_26f));
-_271.appendChild(_272);
+if(_270){
+var _273=this.doc.createElement("reason");
+_273.appendChild(this.doc.createTextNode(_270));
+_272.appendChild(_273);
 }
 },getDestroy:function(){
-var _273=this.getExtension().childNodes;
-var _274;
-for(var i=0;i<_273.length;i++){
-if(_273[i].tagName=="destroy"){
-_274=_273[i];
+var _274=this.getExtension().childNodes;
+var _275;
+for(var i=0;i<_274.length;i++){
+if(_274[i].tagName=="destroy"){
+_275=_274[i];
 break;
 }
 }
-if(_274){
-var jid=_274.getAttribute("jid");
-var _277;
-if(_274.firstChild){
-_277=_274.firstChild.firstChild.nodeValue;
+if(_275){
+var jid=_275.getAttribute("jid");
+var _278;
+if(_275.firstChild){
+_278=_275.firstChild.firstChild.nodeValue;
 }
-return {jid:jid,reason:_277};
+return {jid:jid,reason:_278};
 }else{
 return null;
 }
-},addItem:function(_278,jid,nick,role,_27c,_27d){
+},addItem:function(_279,jid,nick,role,_27d,_27e){
 var item=this.doc.createElement("item");
 this.getExtension().appendChild(item);
-if(_278){
-item.setAttribute("affiliation",_278);
+if(_279){
+item.setAttribute("affiliation",_279);
 }
 if(jid&&jid instanceof XMPP.JID){
 item.setAttribute("jid",jid.toString());
@@ -4825,15 +4827,15 @@ item.setAttribute("nick",nick);
 if(role){
 item.setAttribute("role",role);
 }
-if(_27c){
-var _27f=this.doc.createElement("reason");
-_27f.appendChild(this.doc.createTextNode(_27c));
-destroy.appendChild(_27f);
-}
 if(_27d){
-var _280=this.doc.createElement("actor");
-_280.setAttribute("jid",_27d);
+var _280=this.doc.createElement("reason");
+_280.appendChild(this.doc.createTextNode(_27d));
 destroy.appendChild(_280);
+}
+if(_27e){
+var _281=this.doc.createElement("actor");
+_281.setAttribute("jid",_27e);
+destroy.appendChild(_281);
 }
 }});
 XMPP.JID=function(jid){
@@ -4882,28 +4884,28 @@ return this.jid.slice(i+1,j);
 }};
 XMPP.PacketExtension=function(){
 };
-XMPP.PacketExtension.prototype={_init:function(_287,_288,_289){
+XMPP.PacketExtension.prototype={_init:function(_288,_289,_28a){
 this.doc=Sarissa.getDomDocument();
-var _28a=!_289;
-if(!_289){
-if(_288&&this.doc.createElementNS){
-_289=this.doc.createElementNS(_288,_287);
+var _28b=!_28a;
+if(!_28a){
+if(_289&&this.doc.createElementNS){
+_28a=this.doc.createElementNS(_289,_288);
 }else{
-_289=this.doc.createElement(_287);
+_28a=this.doc.createElement(_288);
 }
-if(_288){
-_289.setAttribute("xmlns",_288);
+if(_289){
+_28a.setAttribute("xmlns",_289);
 }
 }else{
 if(!_SARISSA_IS_IE){
-_289=this.doc.importNode(_289,true);
+_28a=this.doc.importNode(_28a,true);
 }
 }
-this.doc.appendChild(_289);
+this.doc.appendChild(_28a);
 this.rootNode=this.doc.firstChild;
 }};
-XMPP.XData=function(type,_28c){
-this._init("x","jabber:x:data",_28c);
+XMPP.XData=function(type,_28d){
+this._init("x","jabber:x:data",_28d);
 if(type){
 this.setType(type);
 }
@@ -4916,79 +4918,79 @@ type="form";
 }
 this.rootNode.setAttribute("type",type);
 },getFields:function(){
-var _28e=this.rootNode.childNodes;
-var _28f={};
-for(var i=0;i<_28e.length;i++){
-var _291=_28e[i];
-if(_291.tagName!="field"||_291.getAttribute("type")=="hidden"){
+var _28f=this.rootNode.childNodes;
+var _290={};
+for(var i=0;i<_28f.length;i++){
+var _292=_28f[i];
+if(_292.tagName!="field"||_292.getAttribute("type")=="hidden"){
 continue;
 }
-var _292=_291.getAttribute("var");
-var _293=_291.getAttribute("label");
-var _294=new Array();
-var _295=_291.childNodes;
-for(var j=0;j<_295.length;j++){
-if(_295[j].tagName!="value"||!_295[j].firstChild){
+var _293=_292.getAttribute("var");
+var _294=_292.getAttribute("label");
+var _295=new Array();
+var _296=_292.childNodes;
+for(var j=0;j<_296.length;j++){
+if(_296[j].tagName!="value"||!_296[j].firstChild){
 continue;
 }
-_294.push(_295[j].firstChild.nodeValue);
+_295.push(_296[j].firstChild.nodeValue);
 }
-_28f[_292]={fieldLabel:_293,values:_294};
+_290[_293]={fieldLabel:_294,values:_295};
 }
-return _28f;
+return _290;
 },getAnswerForm:function(){
-var _297=new XMPP.XData("submit");
-var _298=$A(this.rootNode.childNodes);
-_298.each(function(_299){
-if(_299.tagName!="field"||!_299.getAttribute("var")){
+var _298=new XMPP.XData("submit");
+var _299=$A(this.rootNode.childNodes);
+_299.each(function(_29a){
+if(_29a.tagName!="field"||!_29a.getAttribute("var")){
 return;
 }
-var _29a=_299.getAttribute("type")=="hidden";
-var _29b=_299.cloneNode(_29a);
+var _29b=_29a.getAttribute("type")=="hidden";
+var _29c=_29a.cloneNode(_29b);
 var node;
-if(_297.doc.importNode){
-node=_297.doc.importNode(_29b,true);
+if(_298.doc.importNode){
+node=_298.doc.importNode(_29c,true);
 }else{
-node=_29b;
+node=_29c;
 }
-_297.rootNode.appendChild(node);
+_298.rootNode.appendChild(node);
 });
-return _297;
-},setAnswer:function(_29d,_29e){
-var _29f=this.getField(_29d);
-if(!_29f){
+return _298;
+},setAnswer:function(_29e,_29f){
+var _2a0=this.getField(_29e);
+if(!_2a0){
 return;
 }
-_29e.each(function(_2a0){
-var _2a1=_29f.appendChild(this.doc.createElement("value"));
-_2a1.appendChild(this.doc.createTextNode(_2a0));
+_29f.each(function(_2a1){
+var _2a2=_2a0.appendChild(this.doc.createElement("value"));
+_2a2.appendChild(this.doc.createTextNode(_2a1));
 }.bind(this));
-},getField:function(_2a2){
-return $A(this.rootNode.childNodes).detect(function(_2a3){
-return _2a3.getAttribute("var")==_2a2;
+},getField:function(_2a3){
+return $A(this.rootNode.childNodes).detect(function(_2a4){
+return _2a4.getAttribute("var")==_2a3;
 });
 }});
-XMPP.DelayInformation=function(_2a4){
-this.element=_2a4;
+XMPP.DelayInformation=function(_2a5){
+this.element=_2a5;
 };
 XMPP.DelayInformation.prototype={getDate:function(){
-var _2a5=this.element.getAttribute("stamp");
+var _2a6=this.element.getAttribute("stamp");
 var date=new Date();
-var _2a7=_2a5.split("T");
-date.setUTCFullYear(_2a7[0].substr(0,4),_2a7[0].substr(4,2)-1,_2a7[0].substr(6,2));
-var time=_2a7[1].split(":");
+var _2a8=_2a6.split("T");
+date.setUTCFullYear(_2a8[0].substr(0,4),_2a8[0].substr(4,2)-1,_2a8[0].substr(6,2));
+var time=_2a8[1].split(":");
 date.setUTCHours(time[0],time[1],time[2]);
 return date;
 }};
-util.base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(_2a9){
-var _2aa="";
+util.base64={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(_2aa){
+var _2ab="";
 var chr1,chr2,chr3,enc1,enc2,enc3,enc4;
 var i=0;
-_2a9=util.base64._utf8_encode(_2a9);
-while(i<_2a9.length){
-chr1=_2a9.charCodeAt(i++);
-chr2=_2a9.charCodeAt(i++);
-chr3=_2a9.charCodeAt(i++);
+_2aa=util.base64._utf8_encode(_2aa);
+while(i<_2aa.length){
+chr1=_2aa.charCodeAt(i++);
+chr2=_2aa.charCodeAt(i++);
+chr3=_2aa.charCodeAt(i++);
 enc1=chr1>>2;
 enc2=((chr1&3)<<4)|(chr2>>4);
 enc3=((chr2&15)<<2)|(chr3>>6);
@@ -5000,94 +5002,135 @@ if(isNaN(chr3)){
 enc4=64;
 }
 }
-_2aa=_2aa+this._keyStr.charAt(enc1)+this._keyStr.charAt(enc2)+this._keyStr.charAt(enc3)+this._keyStr.charAt(enc4);
+_2ab=_2ab+this._keyStr.charAt(enc1)+this._keyStr.charAt(enc2)+this._keyStr.charAt(enc3)+this._keyStr.charAt(enc4);
 }
-return _2aa;
-},decode:function(_2b3){
-var _2b4="";
+return _2ab;
+},decode:function(_2b4){
+var _2b5="";
 var chr1,chr2,chr3;
 var enc1,enc2,enc3,enc4;
 var i=0;
-_2b3=_2b3.replace(/[^A-Za-z0-9\+\/\=]/g,"");
-while(i<_2b3.length){
-enc1=this._keyStr.indexOf(_2b3.charAt(i++));
-enc2=this._keyStr.indexOf(_2b3.charAt(i++));
-enc3=this._keyStr.indexOf(_2b3.charAt(i++));
-enc4=this._keyStr.indexOf(_2b3.charAt(i++));
+_2b4=_2b4.replace(/[^A-Za-z0-9\+\/\=]/g,"");
+while(i<_2b4.length){
+enc1=this._keyStr.indexOf(_2b4.charAt(i++));
+enc2=this._keyStr.indexOf(_2b4.charAt(i++));
+enc3=this._keyStr.indexOf(_2b4.charAt(i++));
+enc4=this._keyStr.indexOf(_2b4.charAt(i++));
 chr1=(enc1<<2)|(enc2>>4);
 chr2=((enc2&15)<<4)|(enc3>>2);
 chr3=((enc3&3)<<6)|enc4;
-_2b4=_2b4+String.fromCharCode(chr1);
+_2b5=_2b5+String.fromCharCode(chr1);
 if(enc3!=64){
-_2b4=_2b4+String.fromCharCode(chr2);
+_2b5=_2b5+String.fromCharCode(chr2);
 }
 if(enc4!=64){
-_2b4=_2b4+String.fromCharCode(chr3);
+_2b5=_2b5+String.fromCharCode(chr3);
 }
 }
-_2b4=util.base64._utf8_decode(_2b4);
-return _2b4;
-},_utf8_encode:function(_2bd){
-_2bd=_2bd.replace(/\r\n/g,"\n");
-var _2be="";
-for(var n=0;n<_2bd.length;n++){
-var c=_2bd.charCodeAt(n);
+_2b5=util.base64._utf8_decode(_2b5);
+return _2b5;
+},_utf8_encode:function(_2be){
+_2be=_2be.replace(/\r\n/g,"\n");
+var _2bf="";
+for(var n=0;n<_2be.length;n++){
+var c=_2be.charCodeAt(n);
 if(c<128){
-_2be+=String.fromCharCode(c);
+_2bf+=String.fromCharCode(c);
 }else{
 if((c>127)&&(c<2048)){
-_2be+=String.fromCharCode((c>>6)|192);
-_2be+=String.fromCharCode((c&63)|128);
+_2bf+=String.fromCharCode((c>>6)|192);
+_2bf+=String.fromCharCode((c&63)|128);
 }else{
-_2be+=String.fromCharCode((c>>12)|224);
-_2be+=String.fromCharCode(((c>>6)&63)|128);
-_2be+=String.fromCharCode((c&63)|128);
+_2bf+=String.fromCharCode((c>>12)|224);
+_2bf+=String.fromCharCode(((c>>6)&63)|128);
+_2bf+=String.fromCharCode((c&63)|128);
 }
 }
 }
-return _2be;
-},_utf8_decode:function(_2c1){
-var _2c2="";
+return _2bf;
+},_utf8_decode:function(_2c2){
+var _2c3="";
 var i=0;
 var c,c1,c2=0;
-while(i<_2c1.length){
-c=_2c1.charCodeAt(i);
+while(i<_2c2.length){
+c=_2c2.charCodeAt(i);
 if(c<128){
-_2c2+=String.fromCharCode(c);
+_2c3+=String.fromCharCode(c);
 i++;
 }else{
 if((c>191)&&(c<224)){
-c2=_2c1.charCodeAt(i+1);
-_2c2+=String.fromCharCode(((c&31)<<6)|(c2&63));
+c2=_2c2.charCodeAt(i+1);
+_2c3+=String.fromCharCode(((c&31)<<6)|(c2&63));
 i+=2;
 }else{
-c2=_2c1.charCodeAt(i+1);
-var c3=_2c1.charCodeAt(i+2);
-_2c2+=String.fromCharCode(((c&15)<<12)|((c2&63)<<6)|(c3&63));
+c2=_2c2.charCodeAt(i+1);
+var c3=_2c2.charCodeAt(i+2);
+_2c3+=String.fromCharCode(((c&15)<<12)|((c2&63)<<6)|(c3&63));
 i+=3;
 }
 }
 }
-return _2c2;
+return _2c3;
 }};
+if(typeof Poly9=="undefined"){
+var Poly9={};
+}
+Poly9.URLParser=function(url){
+this._fields={"Username":4,"Password":5,"Port":7,"Protocol":2,"Host":6,"Pathname":8,"URL":0,"Querystring":9,"Fragment":10};
+this._values={};
+this._regex=null;
+this.version=0.1;
+this._regex=/^((\w+):\/\/)?((\w+):?(\w+)?@)?([^\/\?:]+):?(\d+)?(\/?[^\?#]+)?\??([^#]+)?#?(\w*)/;
+for(var f in this._fields){
+this["get"+f]=this._makeGetter(f);
+}
+if(typeof url!="undefined"){
+this._parse(url);
+}
+};
+Poly9.URLParser.prototype.setURL=function(url){
+this._parse(url);
+};
+Poly9.URLParser.prototype._initValues=function(){
+for(var f in this._fields){
+this._values[f]="";
+}
+};
+Poly9.URLParser.prototype._parse=function(url){
+this._initValues();
+var r=this._regex.exec(url);
+if(!r){
+throw "DPURLParser::_parse -> Invalid URL";
+}
+for(var f in this._fields){
+if(typeof r[this._fields[f]]!="undefined"){
+this._values[f]=r[this._fields[f]];
+}
+}
+};
+Poly9.URLParser.prototype._makeGetter=function(_2d0){
+return function(){
+return this._values[_2d0];
+};
+};
 if(typeof console=="undefined"||!console.firebug){
 var console=new Object;
 console.trace=function(){
 };
 console.log=function(){
 };
-console.debug=function(_2c8){
+console.debug=function(_2d1){
 if(typeof opera!="undefined"){
-opera.postError(_2c8);
+opera.postError(_2d1);
 }
 };
 console.info=function(){
 };
 console.warn=function(){
 };
-console.error=function(_2c9){
+console.error=function(_2d2){
 if(typeof opera!="undefined"){
-opera.postError(_2c9);
+opera.postError(_2d2);
 }
 };
 console.time=function(){
@@ -17783,6 +17826,7 @@ return this.revert(el,_28);
 }();
 
 
+window.showUpperStuff="show";
 var jive={};
 jive.spank={};
 jive.spank.chat={};
@@ -17863,9 +17907,9 @@ this.notificationInterval={};
 }
 var _18={modal:false,constraintoviewport:_17,width:_f,height:_10,shadow:false,proxyDrag:true,resizable:_13,draggable:_14,minWidth:300,minHeight:300,x:x,y:y,closable:_15};
 if(_e["bottomPane"]){
-_18=$H(_18).merge({south:{autoScroll:false,initialSize:30},east:{split:true,initialSize:105,minSize:50,maxSize:200,autoScroll:false,collapsible:true},center:{autoScroll:false,autoTabs:false}});
+_18=$H(_18).merge({south:{autoScroll:false,initialSize:30},east:{split:true,initialSize:170,minSize:50,maxSize:200,autoScroll:false,collapsible:true},center:{autoScroll:false,autoTabs:false}});
 }else{
-_18=$H(_18).merge({north:{autoScroll:false,initialSize:90},east:{split:true,initialSize:105,minSize:50,maxSize:200,autoScroll:false,collapsible:true},center:{autoScroll:true,closeOnTab:true,closeontab:true,alwaysShowTabs:true,autoTabs:false}});
+_18=$H(_18).merge({north:{autoScroll:false,initialSize:500},east:{split:true,initialSize:105,minSize:50,maxSize:200,autoScroll:false,collapsible:true},center:{autoScroll:true,closeOnTab:true,closeontab:true,alwaysShowTabs:true,autoTabs:false}});
 }
 jive.spank.chat.ChatWindow.superclass.constructor.call(this,id,"Chat",_18);
 this.events={"input":true,"message":true,"nickcomplete":true,"mucdblclicked":true,"tabclosed":true,"mucinvitation":true,"changenameinmuc":true,"refreshmuclist":true,"createmuc":true};
@@ -17898,9 +17942,11 @@ var _1c="jive-tab-"+_1a.jid;
 jive.spank.chat.Template.tab.append(this.bodyId,{tabId:_1c});
 var _1d=this.dialog.getLayout();
 var _1e=new YAHOO.ext.BorderLayout(_1c+"-layout",jive.spank.chat.ChatWindow.tabConfObject);
+if(window.showUpperStuff){
 _1e.add("north",new YAHOO.ext.ContentPanel(_1c+"-toppane"));
 jive.spank.chat.Template.chat_toppane.append(_1c+"-toppane",{tabId:_1c});
 _1e.regions["north"].hide();
+}
 _1e.add("center",new YAHOO.ext.ContentPanel(_1c+"-history"));
 _1e=this._layoutTextarea(_1e,_1c,_1a.jid.toString());
 _1d.add("center",new YAHOO.ext.NestedLayoutPanel(_1e,{title:_1a.name,closable:true}));
@@ -17968,78 +18014,74 @@ delete this.tabs["mucchooser"];
 var _2e=YAHOO.util.Dom.generateId();
 jive.spank.chat.Template.mucchooser.append(this.bodyId,{tabId:_2e});
 this._wrappedFns[_2e]=[];
-var _2f=this._buildMUCChooserGrid(_2d,_2e);
-var _30=this.dialog.getLayout();
-var _31=new YAHOO.ext.BorderLayout(_2e+"-layout",jive.spank.chat.ChatWindow.chooseMUCConfObject);
-_31.add("north",new YAHOO.ext.ContentPanel(_2e+"-toppane"));
+var _2f=this.dialog.getLayout();
+var _30=new YAHOO.ext.BorderLayout(_2e+"-layout",jive.spank.chat.ChatWindow.chooseMUCConfObject);
+_30.add("north",new YAHOO.ext.ContentPanel(_2e+"-toppane"));
 jive.spank.chat.Template.muc_chooser_top.append(_2e+"-toppane",{tabId:_2e});
-getEl(_2e+"-createconf").addListener("click",this.fireEvent.createDelegate(this,["createmuc",this]));
-getEl(_2e+"-refresh").addListener("click",this.fireEvent.createDelegate(this,["refreshmuclist",this]));
-_31.add("center",new YAHOO.ext.GridPanel(_2f));
-_30.add("center",new YAHOO.ext.NestedLayoutPanel(_31,{title:"Choose a Conference",closable:true}));
-var _32=getEl(_2e+"-roomgrid").getParentByClass("yui-ext-tabitembody").id;
-var _33=this.getTabs().items[_32];
-_33.textEl.addClass("jive-muc");
-var _34=this;
-var _35=function(){
-_34.dialog.setTitle("Choose a Conference");
-};
-_33.addListener("activate",_35);
-_33.addListener("close",this._wrappedFns[_2e].each.createDelegate(this._wrappedFns[_2e],[function(_36){
-_36();
+getEl(_2e+"-createconf").addListener("click",this.fireEvent.createDelegate(this,["createmuc",this,_2e+"-layout"]));
+getEl(_2e+"-refresh").addListener("click",this.fireEvent.createDelegate(this,["refreshmuclist",this,_2e]));
+_30.add("center",new YAHOO.ext.GridPanel(this._buildMUCChooserGrid(_2d,_2e)));
+_2f.add("center",new YAHOO.ext.NestedLayoutPanel(_30,{title:"Choose a Conference",closable:true}));
+var _31=getEl(_2e+"-roomgrid").getParentByClass("yui-ext-tabitembody").id;
+var _32=this.getTabs().items[_31];
+_32.textEl.addClass("jive-muc");
+var _33=this.dialog.setTitle.createDelegate(this.dialog,["Choose a Conference"]);
+_32.addListener("activate",_33);
+_32.addListener("close",this._wrappedFns[_2e].each.createDelegate(this._wrappedFns[_2e],[function(_34){
+_34();
 }]));
-this.tabs["muc-chooser-"+_2e]={type:"muc-chooser",tab:_33};
+this.tabs["muc-chooser-"+_2e]={type:"muc-chooser",tab:_32};
 this.dialog.endUpdate();
 getEl(_2e+"-confcontrols").fitToParent();
-_35();
+_33();
 }
-},_buildMUCChooserGrid:function(_37,_38){
+},_buildMUCChooserGrid:function(_35,_36){
 if(window.jive_enable_grid){
-var _39={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
-var _3a=new YAHOO.ext.grid.SpankJSONDataModel(_39);
-var _3b=function(_3c){
-if(_3c.values){
-return _3c.values[0];
+var _37={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
+var _38=new YAHOO.ext.grid.SpankJSONDataModel(_37);
+var _39=function(_3a){
+if(_3a.values){
+return _3a.values[0];
 }else{
-return _3c;
+return _3a;
 }
 };
-_3a.addPreprocessor(1,_3b);
-_3a.addPreprocessor(2,_3b);
-_3a.loadData(_37);
-var _3d=[{header:"Name",width:240,sortable:true},{header:"Subject",width:160,sortable:true},{header:"Occupants",width:70,sortable:true}];
-var _3e=new YAHOO.ext.grid.DefaultColumnModel(_3d);
-var _3f=new YAHOO.ext.grid.Grid(_38+"-roomgrid",{dataModel:_3a,colModel:_3e,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
-_3f.render();
-this._wrappedFns[_38].push(_3f.destroy.createDelegate(_3f,[true]));
-_3f.addListener("rowdblclick",function(_40,_41,evt){
-var _43=evt.findTarget("ylayout-nested-layout").id;
-var _44=_40.getDataModel().getRow(_41)[0];
-var jid=_40.getSelectedRowId();
-this.fireEvent("mucdblclicked",this,jid,_44,_43);
+_38.addPreprocessor(1,_39);
+_38.addPreprocessor(2,_39);
+_38.loadData(_35);
+var _3b=[{header:"Name",width:240,sortable:true},{header:"Subject",width:160,sortable:true},{header:"Occupants",width:70,sortable:true}];
+var _3c=new YAHOO.ext.grid.DefaultColumnModel(_3b);
+var _3d=new YAHOO.ext.grid.Grid(_36+"-roomgrid",{dataModel:_38,colModel:_3c,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
+_3d.render();
+this._wrappedFns[_36].push(_3d.destroy.createDelegate(_3d,[true]));
+_3d.addListener("rowdblclick",function(_3e,_3f,evt){
+var _41=evt.findTarget("ylayout-nested-layout").id;
+var _42=_3e.getDataModel().getRow(_3f)[0];
+var jid=_3e.getSelectedRowId();
+this.fireEvent("mucdblclicked",this,jid,_42,_41);
 }.bind(this));
-return _3f;
+return _3d;
 }
-},preAddMUC:function(_46,_47){
-var _48="jive-tab-"+_46.jid;
-if(this.dialog.layout.regions["center"].panels.items["jive-tab-"+_46.jid+"-spinner"]){
-delete this.dialog.layout.regions["center"].panels.items["jive-tab-"+_46.jid+"-spinner"];
+},preAddMUC:function(_44,_45){
+var _46="jive-tab-"+_44.jid;
+if(this.dialog.layout.regions["center"].panels.items["jive-tab-"+_44.jid+"-spinner"]){
+delete this.dialog.layout.regions["center"].panels.items["jive-tab-"+_44.jid+"-spinner"];
 }
-jive.spank.chat.Template.spinnertab.append(this.bodyId,{tabId:_48,text:"Joining \""+_46.name+"\"..."});
-if(_47){
-this.getTabs().removeTab(_47);
+jive.spank.chat.Template.spinnertab.append(this.bodyId,{tabId:_46,text:"Joining \""+_44.name+"\"..."});
+if(_45){
+this.getTabs().removeTab(_45);
 }
-var _49=this.dialog.getLayout();
+var _47=this.dialog.getLayout();
 this.dialog.beginUpdate();
-_49.add("center",new YAHOO.ext.ContentPanel(_48+"-spinner",{title:_46.name}));
+_47.add("center",new YAHOO.ext.ContentPanel(_46+"-spinner",{title:_44.name}));
 this.dialog.endUpdate();
-var _4a=this.getTabs().items["jive-tab-"+_46.jid+"-spinner"];
-_4a.textEl.addClass("jive-muc");
-var _4b=this;
-_4a.addListener("close",function(){
-delete _4b.dialog.layout.regions["center"].panels.items["jive-tab-"+_46.jid+"-spinner"];
+var _48=this.getTabs().items["jive-tab-"+_44.jid+"-spinner"];
+_48.textEl.addClass("jive-muc");
+var _49=this;
+_48.addListener("close",function(){
+delete _49.dialog.layout.regions["center"].panels.items["jive-tab-"+_44.jid+"-spinner"];
 });
-this.tabs[_46.jid]={type:"muc-spinner",tab:_4a};
+this.tabs[_44.jid]={type:"muc-spinner",tab:_48};
 },removeMUCSpinner:function(jid){
 if(this.tabs[jid]&&this.tabs[jid].type=="muc-spinner"){
 this.dialog.beginUpdate();
@@ -18052,152 +18094,158 @@ this.dialog.hide();
 this.dialog.endUpdate();
 }
 }
-},addMUC:function(_4d,_4e,_4f){
-var _50="jive-tab-"+_4d.jid;
+},addMUC:function(_4b,_4c,_4d){
+var _4e="jive-tab-"+_4b.jid;
 this.dialog.beginUpdate();
-if(this.tabs[_4d.jid]&&this.tabs[_4d.jid].type=="muc-spinner"){
-var _51=this.tabs[_4d.jid].tab.id;
-this.getTabs().removeTab(this.tabs[_4d.jid].tab.id);
+if(this.tabs[_4b.jid]&&this.tabs[_4b.jid].type=="muc-spinner"){
+var _4f=this.tabs[_4b.jid].tab.id;
+this.getTabs().removeTab(this.tabs[_4b.jid].tab.id);
 }
-jive.spank.chat.Template.muctab.append(this.bodyId,{tabId:_50});
-var _52=this.dialog.getLayout();
-var _53=new YAHOO.ext.BorderLayout(_50+"-layout",jive.spank.chat.ChatWindow.mucConfObject);
-var _54=new YAHOO.ext.BorderLayout(_50+"-sidebarlayout",jive.spank.chat.ChatWindow.mucSidebarConfObject);
-var _55=new YAHOO.ext.ContentPanel(_50+"-controls");
-_53.add("north",_55);
-var _56=new YAHOO.ext.ContentPanel(_50+"-history");
-_53.add("center",_56);
-_53=this._layoutTextarea(_53,_50,_4d.jid.toString());
-var _57=new YAHOO.ext.ContentPanel(_50+"-occupants");
-_54.add("center",_57);
-var _58=new YAHOO.ext.NestedLayoutPanel(_54);
-_52.add("east",_58);
-var _59=new YAHOO.ext.NestedLayoutPanel(_53,{title:_4d.name,closable:true});
-_52.add("center",_59);
-_55.getEl().dom.parentNode.className+=" jive-topic";
-_56.getEl().dom.parentNode.className+=" jive-chat";
-_57.getEl().dom.parentNode.parentNode.className+=" jive-contact-list";
-_59.getEl().dom.parentNode.className+=" jive-main";
-_58.getEl().dom.parentNode.className+=" jive-sidebar";
-var _5a=_52.regions["east"].getSplitBar();
-this._wrappedFns[_50].push(_5a.destroy.createDelegate(_5a,[true]));
-var _5b=this.getTabByJID(_4d.jid);
-var _5c=function(jid,_5e,_5f,_60){
+jive.spank.chat.Template.muctab.append(this.bodyId,{tabId:_4e});
+var _50=this.dialog.getLayout();
+var _51=new YAHOO.ext.BorderLayout(_4e+"-layout",jive.spank.chat.ChatWindow.mucConfObject);
+var _52=new YAHOO.ext.BorderLayout(_4e+"-sidebarlayout",jive.spank.chat.ChatWindow.mucSidebarConfObject);
+if(window.showUpperStuff=="show"){
+var _53=new YAHOO.ext.ContentPanel(_4e+"-controls");
+_51.add("north",_53);
+}
+var _54=new YAHOO.ext.ContentPanel(_4e+"-history");
+_51.add("center",_54);
+_51=this._layoutTextarea(_51,_4e,_4b.jid.toString());
+var _55=new YAHOO.ext.ContentPanel(_4e+"-occupants");
+_52.add("center",_55);
+var _56=new YAHOO.ext.NestedLayoutPanel(_52);
+_50.add("east",_56);
+var _57=new YAHOO.ext.NestedLayoutPanel(_51,{title:_4b.name,closable:true});
+_50.add("center",_57);
+if(window.showUpperStuff=="show"){
+_53.getEl().dom.parentNode.className+=" jive-topic";
+}
+_54.getEl().dom.parentNode.className+=" jive-chat";
+_55.getEl().dom.parentNode.parentNode.className+=" jive-contact-list";
+_57.getEl().dom.parentNode.className+=" jive-main";
+_56.getEl().dom.parentNode.className+=" jive-sidebar";
+var _58=_50.regions["east"].getSplitBar();
+this._wrappedFns[_4e].push(_58.destroy.createDelegate(_58,[true]));
+var _59=this.getTabByJID(_4b.jid);
+var _5a=function(jid,_5c,_5d,_5e){
 this.clearNotification(jid);
-this.dialog.setTitle("<h1>"+_5e+"</h1>");
-this._scrollMessageHistory(_60);
-_5f.dom.parentNode.className+=" jive-message-field";
-_5f.dom.focus();
-}.bind(this,_4d.jid,_4d.name,getEl(_50+"-text"),getEl(_50+"-history"));
-_5b.addListener("activate",_5c);
+this.dialog.setTitle("<h1>"+_5c+"</h1>");
+this._scrollMessageHistory(_5e);
+_5d.dom.parentNode.className+=" jive-message-field";
+_5d.dom.focus();
+}.bind(this,_4b.jid,_4b.name,getEl(_4e+"-text"),getEl(_4e+"-history"));
+_59.addListener("activate",_5a);
 if(!this.dialog.getLayout().regions["south"]){
-_5b.addListener("close",function(){
-this._wrappedFns[_50].each(function(_61){
-_61();
+_59.addListener("close",function(){
+this._wrappedFns[_4e].each(function(_5f){
+_5f();
 });
-this.fireEvent("tabclosed",_4d,this.tabs[_4d.jid]);
-var _62=getEl(_4d.jid+"-");
-if(_62){
-_62.remove();
+this.fireEvent("tabclosed",_4b,this.tabs[_4b.jid]);
+var _60=getEl(_4b.jid+"-");
+if(_60){
+_60.remove();
 }
-delete this._wrappedFns[_50];
-delete this.tabs[_4d.jid];
-_5b.purgeListeners();
+delete this._wrappedFns[_4e];
+delete this.tabs[_4b.jid];
+_59.purgeListeners();
 }.bind(this));
-_5b.textEl.addClass("jive-muc");
+_59.textEl.addClass("jive-muc");
 }else{
-jive.spank.chat.Template.muc_subject.append(_50+"-controls",{jid:_4d.jid});
-this.tabId=_50;
-this.dialog.getLayout().regions["center"].panels.items[0].id=_50;
+jive.spank.chat.Template.muc_subject.append(_4e+"-controls",{jid:_4b.jid});
+this.tabId=_4e;
+this.dialog.getLayout().regions["center"].panels.items[0].id=_4e;
 }
-var _63=this.clearNotification.createDelegate(this,[_4d.jid]);
-_5b.el.addListener("click",_63);
-getEl(getEl(_50+"-history").dom.parentNode.id).addListener("click",_63);
-if(_4f){
-this._doMucControls(_50,_4d,_4f.contactsForAutocomp.createDelegate(_4f));
+var _61=this.clearNotification.createDelegate(this,[_4b.jid]);
+_59.el.addListener("click",_61);
+getEl(getEl(_4e+"-history").dom.parentNode.id).addListener("click",_61);
+if(_4d){
+this._doMucControls(_4e,_4b,_4d.contactsForAutocomp.createDelegate(_4d));
 }
-jive.spank.chat.Template.roster.append(_50+"-occupants",{rosterId:_50+"-roster",groups:""});
-_5b.roster=new jive.spank.roster.Roster(_50+"-roster");
-var _64={"Participants":(_4d.occupants?_4d.occupants:{})};
-_5b.roster.setRoster(_64);
-_5b.roster.render();
-_5b.roster.sortGroups();
-_5b.roster._enableBehaviors(false);
-getEl(_50+"-text").dom.focus();
+jive.spank.chat.Template.roster.append(_4e+"-occupants",{rosterId:_4e+"-roster",groups:""});
+_59.roster=new jive.spank.roster.Roster(_4e+"-roster");
+var _62={"Participants":(_4b.occupants?_4b.occupants:{})};
+_59.roster.setRoster(_62);
+_59.roster.render();
+_59.roster.sortGroups();
+_59.roster._enableBehaviors(false);
+getEl(_4e+"-text").dom.focus();
 this.dialog.endUpdate();
-_5c();
-return this.tabs[_4d.jid]={type:"muc-room",tab:_5b,roster:_5b.roster,participants:_5b.roster.groups["Participants"],room:_4d};
-},_layoutTextarea:function(_65,_66,_67){
-_65.add("south",new YAHOO.ext.ContentPanel(_66+"-text"));
-var _68=getEl(_66+"-text");
-this._wrappedFns[_66]=[];
-var _69=_65.regions["south"].getSplitBar();
-this._wrappedFns[_66].push(_69.destroy.createDelegate(_69,[true]));
-var _6a=_68.fitToParent.createDelegate(_68);
-_65.delayedListener("regionresized",_6a,100);
-this._wrappedFns[_66].push(_65.purgeListeners.createDelegate(_65));
-this.dialog.addListener("resize",_6a);
-this._wrappedFns[_66].push(this.dialog.removeListener.createDelegate(this.dialog,["resize",_6a]));
-window.setTimeout(_6a,1000);
-var _6b=_68.mon("keypress",function(evt){
+_5a();
+return this.tabs[_4b.jid]={type:"muc-room",tab:_59,roster:_59.roster,participants:_59.roster.groups["Participants"],room:_4b};
+},_layoutTextarea:function(_63,_64,_65){
+_63.add("south",new YAHOO.ext.ContentPanel(_64+"-text"));
+var _66=getEl(_64+"-text");
+this._wrappedFns[_64]=[];
+var _67=_63.regions["south"].getSplitBar();
+this._wrappedFns[_64].push(_67.destroy.createDelegate(_67,[true]));
+var _68=_66.fitToParent.createDelegate(_66);
+_63.delayedListener("regionresized",_68,100);
+this._wrappedFns[_64].push(_63.purgeListeners.createDelegate(_63));
+this.dialog.addListener("resize",_68);
+this._wrappedFns[_64].push(this.dialog.removeListener.createDelegate(this.dialog,["resize",_68]));
+window.setTimeout(_68,1000);
+var _69=_66.mon("keypress",function(evt){
 if(evt.getKey()==13&&!evt.shiftKey&&this.getMessage()!=""){
-this.fireEvent("message",_67,this.getMessage());
+this.fireEvent("message",_65,this.getMessage());
 window.setTimeout(function(){
 this.dom.value="";
-}.bind(_68),10);
+}.bind(_66),10);
 evt.preventDefault();
 }else{
 if(evt.getKey()==9){
-this.fireEvent("nickcomplete",_67,this.getMessage(),_68);
+this.fireEvent("nickcomplete",_65,this.getMessage(),_66);
 evt.preventDefault();
 }
 if(evt.getKey()==13){
 return;
 }
-this.fireEvent("input",_67);
+this.fireEvent("input",_65);
 }
 }.bind(this));
-this._wrappedFns[_66].push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,["keypress",_68,_6b]));
-_6b=_68.mon("focus",function(){
+this._wrappedFns[_64].push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,["keypress",_66,_69]));
+_69=_66.mon("focus",function(){
 var jid=this.getActiveTabJID();
 this.clearNotification(jid);
 jive.spank.chat.ChatWindow.focusedJID=jid;
 }.bind(this));
-this._wrappedFns[_66].push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,["focus",_68,_6b]));
-_6b=_68.mon("blur",function(){
+this._wrappedFns[_64].push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,["focus",_66,_69]));
+_69=_66.mon("blur",function(){
 jive.spank.chat.ChatWindow.focusedJID="";
 });
-this._wrappedFns[_66].push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,["blur",_68,_6b]));
-return _65;
-},_doMucControls:function(_6e,_6f,_70){
-jive.spank.chat.Template.muc_controls.append(_6e+"-controls",{jid:_6f.jid});
-jive.spank.chat.Template.mucinvitemenu.append(document.body,{jid:_6f.jid});
-var _71=getEl(_6f.jid+"-container");
-_71.hide();
-this._wrappedFns[_6e].push(_71.remove.createDelegate(_71));
-var _72=new jive.spank.AutoComplete(_6f.jid+"-autocomp",_6f.jid+"-autocomp-menu",new YAHOO.widget.DS_JSFunction(_70),{typeAhead:true,autoHighlight:true,minQueryLength:0,maxResultsDisplayed:20});
-_72.formatResult=function(_73,_74){
-return "<div class='roster-contact-"+_73[2]+"'>"+_73[0]+"</div>";
+this._wrappedFns[_64].push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,["blur",_66,_69]));
+return _63;
+},_doMucControls:function(_6c,_6d,_6e){
+jive.spank.chat.Template.muc_controls.append(_6c+"-controls",{jid:_6d.jid});
+jive.spank.chat.Template.mucinvitemenu.append(document.body,{jid:_6d.jid});
+var _6f=getEl(_6d.jid+"-container");
+_6f.hide();
+this._wrappedFns[_6c].push(_6f.remove.createDelegate(_6f));
+var _70=new jive.spank.AutoComplete(_6d.jid+"-autocomp",_6d.jid+"-autocomp-menu",new YAHOO.widget.DS_JSFunction(_6e),{typeAhead:true,autoHighlight:true,minQueryLength:0,maxResultsDisplayed:20});
+_70.formatResult=function(_71,_72){
+return "<div class='roster-contact-"+_71[2]+"'>"+_71[0]+"</div>";
 };
-var jid=_6f.jid;
-var _76=this;
-_72.itemSelectEvent.subscribe(function(_77,_78){
-_76.fireEvent("mucinvitation",_76,_78[2][1].toString(),jid);
+var jid=_6d.jid;
+var _74=this;
+_70.itemSelectEvent.subscribe(function(_75,_76){
+_74.fireEvent("mucinvitation",_74,_76[2][1].toString(),jid);
 getEl(jid+"-autocomp").dom.blur();
 });
-var _79=getEl(jid+"-control");
-_79.mon("click",function(_7a,_7b,_7c,_7d){
-_7a.invitee="";
-var _7e=_7b.getChildrenByTagName("input")[0];
-_7e.setWidth(_7b.getWidth()-2);
+var _77=getEl(jid+"-control");
+var _78=getEl(_6d.jid+"-autocomp-menu");
+_77.mon("click",function(_79,_7a,_7b,_7c,_7d){
+_79.invitee="";
+var _7e=_7a.getChildrenByTagName("input")[0];
 _7e.dom.value="";
-_7b.alignTo(this,"bl");
-_7b.show();
-_7b.setStyle("z-index",_76.dialog.lastZIndex+1);
+_7a.alignTo(this,"bl");
+_7d.setWidth(192);
+_7e.setWidth(192);
+_7a.show();
+_7a.setStyle("z-index",_74.dialog.lastZIndex+1);
 _7e.dom.focus();
-_72._populateList("",_7d(),_72);
-_7b.repaint();
-}.createDelegate(_79,[this,getEl(_6f.jid+"-container"),_72,_70]));
+_70._populateList("",_7c(),_70);
+_7a.repaint();
+}.createDelegate(_77,[this,getEl(_6d.jid+"-container"),_70,_6e,_78]));
 var _7f=getEl(jid+"-autocomp");
 _7f.mon("keypress",function(_80,jid,_82,evt){
 if(evt.getKey()==13){
@@ -18211,17 +18259,17 @@ _84=_80.dom.value;
 _84=_84[1].toString();
 }
 this.fireEvent("mucinvitation",this,_84,jid);
-getEl(jid+"-container").hide();
+window.setTimeout("getEl('"+jid+"-container').hide();",200);
 getEl("jive-tab-"+this.getActiveTabJID()+"-text").dom.focus();
 }
-}.bind(this,_7f,jid,_70));
+}.bind(this,_7f,jid,_6e));
 _7f.addListener("blur",function(){
 window.setTimeout("getEl('"+jid+"-container').hide();",200);
-getEl("jive-tab-"+_76.getActiveTabJID()+"-text").dom.focus();
+getEl("jive-tab-"+_74.getActiveTabJID()+"-text").dom.focus();
 });
 getEl(jid+"-changenick").addListener("click",function(){
-var _87=_76.dialog.getLayout().getRegion("south")?{x:_76.dialog.el.getX()+125,y:_76.dialog.el.getY()+140}:null;
-_76.showChangeNick(_6f,_87);
+var _87=_74.dialog.getLayout().getRegion("south")?{x:_74.dialog.el.getX()+125,y:_74.dialog.el.getY()+140}:null;
+_74.showChangeNick(_6d,_87);
 });
 },showMUCPassword:function(_88,_89,_8a){
 _89=$H(_89).merge({title:"Enter the password for '"+_88.name+"'",width:285,height:105});
@@ -18265,54 +18313,53 @@ _93.action="action";
 _93.body=" * "+_92+_93.body.replace("/me","");
 }
 var _9b=jive.spank.chat.Filter.applyAll(_93.body);
-var _9c=uniqueColorForString(_92);
-var _9d=jive.spank.chat.Template.message.append(_95.id,{from:_92,message:_9b,type:_98,mentioned:_99,consecutive:_9a,action:_93.action,time:_93.time,msgclass:_96,color:_9c});
+var _9c=jive.spank.chat.Template.message.append(_95.id,{from:_92,message:_9b,type:_98,mentioned:_99,consecutive:_9a,action:_93.action,time:_93.time,msgclass:_96,color:uniqueColorForString(_92)});
 }else{
 _95.dom.appendChild(_93.el);
 _93.callback(this);
 }
 this._scrollMessageHistory(_95);
-var _9e=jive.spank.chat.ChatWindow.focusedJID;
-if(_9e!=jid){
+var _9d=jive.spank.chat.ChatWindow.focusedJID;
+if(_9d!=jid){
 this.addNotification(jid);
 }
-},addStatusMessage:function(jid,_a0,_a1){
+},addStatusMessage:function(jid,_9f,_a0){
 delete this.previousMessageInfo;
-var _a2=getEl("jive-tab-"+jid+"-history");
-var _a3=jive.spank.chat.Template.statusMessage.append(_a2.id,{message:_a0,customClass:_a1});
-this._scrollMessageHistory(_a2);
-},_scrollMessageHistory:function(_a4){
-_a4.dom.parentNode.scrollTop=_a4.getHeight()-_a4.dom.parentNode.clientHeight;
+var _a1=getEl("jive-tab-"+jid+"-history");
+var _a2=jive.spank.chat.Template.statusMessage.append(_a1.id,{message:_9f,customClass:_a0});
+this._scrollMessageHistory(_a1);
+},_scrollMessageHistory:function(_a3){
+_a3.dom.parentNode.scrollTop=_a3.getHeight()-_a3.dom.parentNode.clientHeight;
 },addNotification:function(jid){
-var _a6=this.getTabByJID(jid);
+var _a5=this.getTabByJID(jid);
 if(typeof this.newMessages[jid]=="undefined"){
 this.newMessages[jid]=1;
 }else{
 this.newMessages[jid]++;
 }
-if(_a6&&_a6.textEl){
-_a6.textEl.addClass("jive-notify");
+if(_a5&&_a5.textEl){
+_a5.textEl.addClass("jive-notify");
 }
 if(this.notificationInterval&&!this.notificationInterval[jid]){
-var _a7=this.bodyId;
+var _a6=this.bodyId;
 this.notificationInterval=window.setInterval(function(){
-getEls("#"+_a7+" span.jive-notify").toggleClass("flashNotify");
+getEls("#"+_a6+" span.jive-notify").toggleClass("flashNotify");
 },1000);
 }else{
 getEls("#"+this.bodyId+" span.jive-notify").addClass("flashNotify");
 }
 jive.spank.notifier.doTitleNotify();
-if(_a6&&_a6.text){
-if(/ \(\d+\)$/.test(_a6.text)){
-_a6.setText(_a6.text.replace(/ \(\d+\)$/,""));
+if(_a5&&_a5.text){
+if(/ \(\d+\)$/.test(_a5.text)){
+_a5.setText(_a5.text.replace(/ \(\d+\)$/,""));
 }
-_a6.setText(_a6.text+" ("+this.newMessages[jid]+")");
+_a5.setText(_a5.text+" ("+this.newMessages[jid]+")");
 }
 },clearNotification:function(jid){
-var _a9=this.getTabByJID(jid);
-if(_a9&&_a9.textEl){
-_a9.textEl.removeClass("jive-notify").removeClass("flashNotify");
-_a9.setText(_a9.text.replace(/ \(\d+\)$/,""));
+var _a8=this.getTabByJID(jid);
+if(_a8&&_a8.textEl){
+_a8.textEl.removeClass("jive-notify").removeClass("flashNotify");
+_a8.setText(_a8.text.replace(/ \(\d+\)$/,""));
 }
 delete this.newMessages[jid];
 if(this.notificationInterval&&this.notificationInterval[jid]&&this.newMessages.properties&&this.newMessages.properties.length==0){
@@ -18321,45 +18368,48 @@ this.notificationInterval[jid]=null;
 }
 jive.spank.notifier.doTitleNotify();
 },clearAllNotifications:function(){
-var _aa=getEls("#"+this.bodyId+" span.jive-notify");
-_aa.removeClass("jive-notify");
+var _a9=getEls("#"+this.bodyId+" span.jive-notify");
+_a9.removeClass("jive-notify");
 window.clearInterval(this.notificationInterval);
 this.notificationInterval=null;
-_aa.removeClass("flashNotify");
+_a9.removeClass("flashNotify");
 this.newMessages={};
 jive.spank.notifier.doTitleNotify();
 },getMessage:function(){
-var _ab=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
-var _ac=_ab.id.split("-");
-_ac[3]="text";
-var _ad=_ac.join("-");
-return getEl(_ad).dom.value;
+var _aa=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
+var _ab=_aa.id.split("-");
+_ab[3]="text";
+var _ac=_ab.join("-");
+return getEl(_ac).dom.value;
 },getActiveTabJID:function(){
-var _ae=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
-return _ae.id.split("-")[2];
+var _ad=this.getTabs()?this.getTabs().active:this._tabIfSingleTab();
+return _ad.id.split("-")[2];
 },getTabJID:function(id){
-var _b0=this.getTabs()?this.getTabs().getTab(id):this._tabIfSingleTab();
-return _b0.id.split("-")[2];
+var _af=this.getTabs()?this.getTabs().getTab(id):this._tabIfSingleTab();
+return _af.id.split("-")[2];
 },getTabs:function(){
-var _b1=this.dialog.getLayout().regions;
-return _b1["center"].getTabs();
+var _b0=this.dialog.getLayout().regions;
+return _b0["center"].getTabs();
 },getTabByJID:function(jid){
-var _b3=this.getTabs();
-if(_b3!=null){
-var _b4=_b3.items["jive-tab-"+jid+"-layout"];
-return (typeof _b4=="undefined")?null:_b4;
+var _b2=this.getTabs();
+if(_b2!=null){
+var _b3=_b2.items["jive-tab-"+jid+"-layout"];
+if(!_b3){
+_b3=_b2.items["jive-tab-"+jid+"-spinner"];
+}
+return (typeof _b3=="undefined")?null:_b3;
 }else{
 return this._tabIfSingleTab();
 }
 },_tabIfSingleTab:function(){
 return this.dialog.getLayout().regions["center"].panels.items[0];
 },removeAllTabs:function(){
-var _b5=this.getTabs();
-if(!_b5){
+var _b4=this.getTabs();
+if(!_b4){
 return;
 }
-for(var i=_b5.getCount()-1;i>=0;i--){
-_b5.getTab(i).closeClick();
+for(var i=_b4.getCount()-1;i>=0;i--){
+_b4.getTab(i).closeClick();
 }
 delete this.tabs;
 this.tabs={};
@@ -18370,126 +18420,144 @@ delete this.tabs;
 },hide:function(){
 this.clearAllNotifications();
 jive.spank.chat.ChatWindow.superclass.hide.call(this);
-},getContactTab:function(_b7,_b8){
-if(typeof _b7=="string"){
-var jid=_b7;
-_b7={name:jid,jid:jid};
+},getContactTab:function(_b6,_b7){
+if(typeof _b6=="string"){
+var jid=_b6;
+_b6={name:jid,jid:jid};
 }
-var _ba=this.getTabs();
-var _bb;
-if(_ba){
-_bb=_ba.getTab("jive-tab-"+_b7.jid+"-layout");
+var _b9=this.getTabs();
+var _ba;
+if(_b9){
+_ba=_b9.getTab("jive-tab-"+_b6.jid+"-layout");
 }
-if(typeof _bb=="undefined"){
-this.addTab(_b7);
+if(typeof _ba=="undefined"){
+this.addTab(_b6);
 }
-if(_b8){
-this.focusContactTab(_b7);
+if(_b7){
+this.focusContactTab(_b6);
 }
-},focusContactTab:function(_bc){
-var _bd=this.getTabs();
-_bd.activate("jive-tab-"+_bc.jid+"-layout");
-var _be=getEl("jive-tab-"+_bc.jid+"-text");
-_be.dom.focus();
+},focusContactTab:function(_bb){
+var _bc=this.getTabs();
+_bc.activate("jive-tab-"+_bb.jid+"-layout");
+var _bd=getEl("jive-tab-"+_bb.jid+"-text");
+_bd.dom.focus();
 },prepUserPane:function(){
-var _bf=this.dialog.getLayout().getRegion("east").getPanel(0).getLayout();
+if(window.showUpperStuff=="show"){
+var _be=this.dialog.getLayout().getRegion("east").getPanel(0).getLayout();
 jive.spank.chat.Template.userpane.append(this.bodyId+"-toppane",{id:this.bodyId});
 this.dialog.beginUpdate();
-var _c0=new YAHOO.ext.ContentPanel(this.bodyId+"-toppane");
-_bf.add("north",_c0);
-_c0.getEl().dom.parentNode.className+=" jive-user-controls";
+var _bf=new YAHOO.ext.ContentPanel(this.bodyId+"-toppane");
+_be.add("north",_bf);
+_bf.getEl().dom.parentNode.className+=" jive-user-controls";
 this.dialog.endUpdate();
-},finalizeUserPane:function(_c1,_c2){
-jive.spank.chat.Template.userpane_loggedin.append(this.bodyId+"-message",{id:this.bodyId,uname:_c1,presence:"available"});
-var _c3=getEl(this.bodyId+"-uname");
-var _c4=function(){
-this.replaceClass("jive-muc-username","jive-muc-username-active");
-}.bind(_c3);
-var _c5=function(){
-this.replaceClass("jive-muc-username-active","jive-muc-username");
-}.bind(_c3);
-var _c6=function(evt){
-if(evt.keyCode==13||evt.type=="blur"){
-var _c8=this.tabId.split("-")[2];
-this.fireEvent("changenameinmuc",this,this.tabs[_c8].room.jid,getEl(this.bodyId+"-uname").dom.value);
-_c5();
-if(evt.keyCode==13){
+}
+},finalizeUserPane:function(_c0,_c1){
+if(window.showUpperStuff=="show"){
+jive.spank.chat.Template.userpane_loggedin.append(this.bodyId+"-message",{id:this.bodyId,uname:_c0,presence:"available"});
+var _c2=getEl(this.bodyId+"-uname");
+var _c3=getEl(this.bodyId+"-uname-edit");
+var _c4=function(evt){
+if(evt==undefined||evt.keyCode==13){
+var _c6=this.tabId.split("-")[2];
+var _c7=getEl(this.bodyId+"-uname");
+_c7.replaceClass("jive-muc-username-active","jive-muc-username");
+this.fireEvent("changenameinmuc",this,this.tabs[_c6].room.jid,_c7.dom.value);
 getEl("jive-tab-"+this.getActiveTabJID()+"-text").dom.focus();
+getEl(this.bodyId+"-uname-edit").dom.innerHTML="change";
+if(evt!=undefined){
 evt.preventDefault();
 }
 }
-};
-_c3.on("keydown",_c6.bind(this));
-_c3.on("focus",_c4);
-_c3.on("blur",_c6.bind(this));
+}.bind(this);
+var _c8=function(){
+if(this.dom.className.indexOf("jive-muc-username-active")>-1){
+_c4();
+}else{
+this.replaceClass("jive-muc-username","jive-muc-username-active");
+this.dom.focus();
+}
+}.bind(_c2);
+_c3.on("click",function(){
+this.dom.innerHTML=(this.dom.innerHTML=="change"?"ok":"change");
+_c8();
+}.bind(_c3));
+_c2.on("keydown",_c4);
 var _c9=function(_ca,_cb,_cc){
 this.dom.value=_cc;
-}.bind(_c3);
+}.bind(_c2);
 this.addListener("changenameinmuc",_c9);
-new YAHOO.widget.Tooltip("nickname-control-tooltip",{context:_c3.dom,text:"Click here to set your nickname",showDelay:200,zIndex:15000});
-if(_c2){
-var _cd=getEl(this.bodyId+"-presencecontrol");
-var _ce=function(){
-var _cf=_cd.hasClass("available")?"away":"available";
-var _d0=_cf=="available"?"away":"available";
-_cd.replaceClass(_d0,_cf);
-_cd.dom.innerHTML=_cf;
-var _d1=this.tabId.split("-")[2];
-var _d2=new XMPP.Presence();
-_d2.setMode(_cf);
-_c2.getRoom(_d1).presenceManager.sendPresence(_d2);
+var tt=new YAHOO.widget.Tooltip("nick-edit-tooltip",{context:_c3.dom,showDelay:500,zIndex:15000});
+tt.setHeader("");
+tt.setBody("<p>Click here to change your nickname</p>");
+tt.setFooter("");
+if(_c1){
+var _ce=getEl(this.bodyId+"-presencecontrol");
+var _cf=function(){
+var _d0=_ce.hasClass("available")?"away":"available";
+var _d1=_d0=="available"?"away":"available";
+_ce.replaceClass(_d1,_d0);
+_ce.dom.innerHTML=_d0;
+var _d2=this.tabId.split("-")[2];
+var _d3=new XMPP.Presence();
+_d3.setMode(_d0);
+_d3.setTo(new XMPP.JID(_d2+"/"+getEl(this.bodyId+"-uname").dom.value));
+_c1.getRoom(_d2).presenceManager.sendPresence(_d3);
 }.bind(this);
-_cd.on("click",_ce);
-new YAHOO.widget.Tooltip("presence-control-tooltip",{context:_cd.dom,text:"Click here to set your availability",showDelay:200,zIndex:15000});
+_ce.on("click",_cf);
+var tt1=new YAHOO.widget.Tooltip("presence-control-tooltip",{context:_ce.dom,showDelay:500,zIndex:15000});
+tt1.setHeader("");
+tt1.setBody("<p>Click here to change your status</p>");
+tt1.setFooter("");
 }
-},setSubject:function(_d3,_d4){
-var _d5=getEl((this.tabId?this.tabId:"jive-tab-"+_d4)+"-subject");
-if(_d5&&_d5.dom){
-_d5.dom.innerHTML=_d3;
+}
+},setSubject:function(_d5,_d6){
+var _d7=getEl((this.tabId?this.tabId:"jive-tab-"+_d6)+"-subject");
+if(_d7&&_d7.dom){
+_d7.dom.innerHTML=_d5;
 }
 }});
-jive.spank.chat.ChatWindow.getWindow=function(_d6){
-return jive.spank.chat.ChatWindow.currentWindow[_d6];
+jive.spank.chat.ChatWindow.getWindow=function(_d8){
+return jive.spank.chat.ChatWindow.currentWindow[_d8];
 };
 jive.spank.chat.ChatWindow.createWindow=function(){
-var _d7=spank.loadComponent("chat");
-jive.spank.chat.ChatWindow.currentWindow[_d7.id]=_d7;
-_d7.dialog.addListener("hide",function(){
-delete jive.spank.chat.ChatWindow.currentWindow[_d7.id];
+var _d9=spank.loadComponent("chat");
+jive.spank.chat.ChatWindow.currentWindow[_d9.id]=_d9;
+_d9.dialog.addListener("hide",function(){
+delete jive.spank.chat.ChatWindow.currentWindow[_d9.id];
 });
-return _d7;
+return _d9;
 };
-jive.spank.chat.ChatWindow.destroyWindow=function(_d8){
-if(jive.spank.chat.ChatWindow.currentWindow[_d8]){
-jive.spank.chat.ChatWindow.currentWindow[_d8].hide();
-delete jive.spank.chat.ChatWindow.currentWindow[_d8];
+jive.spank.chat.ChatWindow.destroyWindow=function(_da){
+if(jive.spank.chat.ChatWindow.currentWindow[_da]){
+jive.spank.chat.ChatWindow.currentWindow[_da].hide();
+delete jive.spank.chat.ChatWindow.currentWindow[_da];
 }
 };
 jive.spank.chat.ChatWindow.tabConfObject={north:{initialSize:72},south:{split:true,initialSize:50,minSize:50,maxSize:200,autoScroll:false,collapsible:true},center:{autoScroll:true}};
 jive.spank.chat.ChatWindow.chooseMUCConfObject={north:{initialSize:50},center:{autoScroll:true}};
-jive.spank.chat.ChatWindow.mucSidebarConfObject={north:{initialSize:38,margins:{top:0,left:0,right:0,bottom:10}},center:{initialSize:50,minSize:50,maxSize:200,autoScroll:true,collapsible:true}};
-jive.spank.chat.ChatWindow.mucConfObject={north:{initialSize:38,margins:{top:0,left:0,right:0,bottom:10}},center:{autoScroll:true},south:{split:true,initialSize:50,minSize:50,maxSize:200,autoScroll:false,collapsible:true}};
+jive.spank.chat.ChatWindow.mucSidebarConfObject={north:{initialSize:51,margins:{top:0,left:0,right:0,bottom:12}},center:{initialSize:49,minSize:50,maxSize:200,autoScroll:true,collapsible:true}};
+jive.spank.chat.ChatWindow.mucConfObject={north:{initialSize:51,margins:{top:0,left:0,right:0,bottom:12}},center:{autoScroll:true},south:{split:true,initialSize:50,minSize:50,maxSize:200,autoScroll:false,collapsible:true}};
 jive.spank.chat.ChatWindow.currentWindow={};
 jive.spank.chat.ChatWindow.focusedJID="";
 jive.spank.roster={};
-jive.spank.roster.RosterWindow=function(id,_da){
-var _db=_da["width"]?_da["width"]:310;
-var _dc=_da["height"]?_da["height"]:YAHOO.util.Dom.getViewportHeight()-40;
-var x=_da["x"]?_da["x"]:YAHOO.util.Dom.getViewportWidth()-330;
-var y=_da["y"]?_da["y"]:20;
-var _df=_da["resizable"]!="false";
-var _e0=_da["draggable"]!="false";
-var _e1=_da["closable"]!="false";
+jive.spank.roster.RosterWindow=function(id,_dc){
+var _dd=_dc["width"]?_dc["width"]:310;
+var _de=_dc["height"]?_dc["height"]:YAHOO.util.Dom.getViewportHeight()-40;
+var x=_dc["x"]?_dc["x"]:YAHOO.util.Dom.getViewportWidth()-330;
+var y=_dc["y"]?_dc["y"]:20;
+var _e1=_dc["resizable"]!="false";
+var _e2=_dc["draggable"]!="false";
+var _e3=_dc["closable"]!="false";
 this.roster=null;
 this.groups=null;
 this.controls={};
 this.controlCount=0;
-var _e2={modal:false,width:_db,height:_dc,resizable:_df,draggable:_e0,proxyDrag:true,shadow:false,minWidth:200,minHeight:150,x:x,y:y,closable:_e1,shim:false,north:{initialSize:50,autoScroll:false},center:{closeOnTab:true,alwaysShowTabs:false,autoTabs:true}};
+var _e4={modal:false,width:_dd,height:_de,resizable:_e1,draggable:_e2,proxyDrag:true,shadow:false,minWidth:200,minHeight:150,x:x,y:y,closable:_e3,shim:false,north:{initialSize:50,autoScroll:false},center:{closeOnTab:true,alwaysShowTabs:false,autoTabs:true}};
 this.events={"changestatus":true,"setstatusmsgrequest":true,"addcontact":true,"acceptsubscription":true,"denysubscription":true,"renamecontact":true,"renamegroup":true,"removecontact":true,"removegroup":true,"close":true};
-jive.spank.roster.RosterWindow.superclass.constructor.call(this,id,"Spark Web",_e2);
-var _e3=this.dialog.getLayout();
+jive.spank.roster.RosterWindow.superclass.constructor.call(this,id,"Spark Web",_e4);
+var _e5=this.dialog.getLayout();
 this.dialog.beginUpdate();
-_e3.add("north",new YAHOO.ext.ContentPanel(this.bodyId+"-toppane"));
+_e5.add("north",new YAHOO.ext.ContentPanel(this.bodyId+"-toppane"));
 this.dialog.endUpdate();
 this.dialog.close.removeAllListeners();
 this.dialog.close.addListener("click",function(){
@@ -18498,113 +18566,86 @@ this.dialog.hide();
 this.fireEvent("close",this);
 }
 }.bind(this));
-this._prepContextMenus();
 };
-YAHOO.extend(jive.spank.roster.RosterWindow,jive.spank.Window,{needsUpdate:false,addTab:function(_e4){
-var _e5=YAHOO.util.Dom.generateId();
-jive.spank.chat.Template.rostertab.append(this.bodyId,{tabId:_e5});
-var _e6=this.dialog.getLayout();
+YAHOO.extend(jive.spank.roster.RosterWindow,jive.spank.Window,{needsUpdate:false,addTab:function(_e6){
+var _e7=YAHOO.util.Dom.generateId();
+jive.spank.chat.Template.rostertab.append(this.bodyId,{tabId:_e7});
+var _e8=this.dialog.getLayout();
 this.dialog.beginUpdate();
-var _e7=new YAHOO.ext.BorderLayout(_e5+"-layout",{north:{split:false,initialSize:28,autoScroll:false},center:{autoScroll:true}});
-_e7.add("center",new YAHOO.ext.ContentPanel(_e5+"-resources"));
-jive.spank.chat.Template.roster.append(_e5+"-resources",{rosterId:"jive-roster",groups:""});
-_e7.add("north",new YAHOO.ext.ContentPanel(_e5+"-user"));
-jive.spank.chat.Template.control_panel.append(_e5+"-user",{tabId:_e5});
-this.controlPanel=_e7.regions["north"];
+var _e9=new YAHOO.ext.BorderLayout(_e7+"-layout",{north:{split:false,initialSize:28,autoScroll:false},center:{autoScroll:true}});
+_e9.add("center",new YAHOO.ext.ContentPanel(_e7+"-resources"));
+jive.spank.chat.Template.roster.append(_e7+"-resources",{rosterId:"jive-roster",groups:""});
+_e9.add("north",new YAHOO.ext.ContentPanel(_e7+"-user"));
+jive.spank.chat.Template.control_panel.append(_e7+"-user",{tabId:_e7});
+this.controlPanel=_e9.regions["north"];
 this.controlPanel.hide();
-_e6.add("center",new YAHOO.ext.NestedLayoutPanel(_e7,{title:_e4}));
+_e8.add("center",new YAHOO.ext.NestedLayoutPanel(_e9,{title:_e6}));
 this.dialog.endUpdate();
-this.tabs[_e4]=_e5;
-},_prepUserStatusPanel:function(_e8,_e9){
+this.tabs[_e6]=_e7;
+},_prepUserStatusPanel:function(_ea,_eb){
 var elm=getEl(this.bodyId+"-toppane");
-jive.spank.chat.Template.status_panel.append(elm.id,{bodyId:this.bodyId,username:_e8,status:_e9,statusName:_e9.toLowerCase()});
-var _eb=new YAHOO.widget.Menu("jive-statusmenu");
-_eb.addItems([[{text:"Free to Chat"},{text:"Available"},{text:"On The Road"},{text:"Away"},{text:"On Phone"},{text:"Do Not Disturb"}],[{text:"Set status message...",disabled:true}]]);
-_eb.render(document.body);
-var _ec=this;
-var _ed=function(_ee,_ef,_f0){
-this.fireEvent("changestatus",this,_f0);
+jive.spank.chat.Template.status_panel.append(elm.id,{bodyId:this.bodyId,username:_ea,status:_eb,statusName:_eb.toLowerCase()});
+var _ed=new YAHOO.widget.Menu("jive-statusmenu");
+_ed.addItems([[{text:"Free to Chat"},{text:"Available"},{text:"On The Road"},{text:"Away"},{text:"On Phone"},{text:"Do Not Disturb"}],[{text:"Set status message...",disabled:true}]]);
+_ed.render(document.body);
+var _ee=this;
+var _ef=function(_f0,_f1,_f2){
+this.fireEvent("changestatus",this,_f2);
 };
-var _f1=function(){
-_ec.fireEvent("setstatusmsgrequest",_ec);
+var _f3=function(){
+_ee.fireEvent("setstatusmsgrequest",_ee);
 };
-var _f2;
-var _f3=["chat","available","onroad","away","onphone","dnd"];
+var _f4;
+var _f5=["chat","available","onroad","away","onphone","dnd"];
 for(var i=0;i<6;i++){
-_f2=_eb.getItem(i);
-_f2.element.className+=" roster-contact-"+_f3[i];
-_f2.clickEvent.subscribe(_ed,_f3[i],_ec);
+_f4=_ed.getItem(i);
+_f4.element.className+=" roster-contact-"+_f5[i];
+_f4.clickEvent.subscribe(_ef,_f5[i],_ee);
 }
 getEl(this.bodyId+"-statusmenu-ctrl").addListener("click",function(){
-getEl(_eb.element).alignTo(this,"bl");
-_eb.element.style.zIndex=_ec.dialog.lastZIndex+1;
-_eb.show();
+getEl(_ed.element).alignTo(this,"bl");
+_ed.element.style.zIndex=_ee.dialog.lastZIndex+1;
+_ed.show();
 });
-var _f5=function(){
-_eb.hide();
+var _f7=function(){
+_ed.hide();
 };
-this.dialog.header.addListener("click",_f5);
-for(var _f6 in jive.spank.chat.ChatWindow.currentWindow){
-jive.spank.chat.ChatWindow.currentWindow[_f6].dialog.header.addListener("click",_f5);
+this.dialog.header.addListener("click",_f7);
+for(var _f8 in jive.spank.chat.ChatWindow.currentWindow){
+jive.spank.chat.ChatWindow.currentWindow[_f8].dialog.header.addListener("click",_f7);
 }
-},_prepContextMenus:function(){
-if(!getEl("contact-conmenu")){
-this.addMenuDiv("contact-conmenu");
-}
-this.contactMenu=new YAHOO.widget.Menu("contact-conmenu",{lazyLoad:true});
-if(this.contactMenu.getItemGroups().length==0){
-this.contactMenu.addItems([{text:"Start Chat"},{text:"Rename Contact"},{text:"Remove Contact"}]);
-this.contactMenu.render(document.body);
-}
-var _f7=this;
-var _f8=function(_f9,_fa){
-_f7.contactMenu.clickedContact.group._roster.fireEvent("contactdblclicked",_f7.contactMenu.clickedContact.group._roster,_f7.contactMenu.clickedContact);
-};
-this.contactMenu.getItem(0).clickEvent.subscribe(_f8);
-this.contactMenu.getItem(1).clickEvent.subscribe(this.showRename.createDelegate(this,[_f7.contactMenu.clickedContact]),this);
-this.contactMenu.getItem(2).clickEvent.subscribe(this.showRemove.createDelegate(this,[_f7.contactMenu.clickedContact]),this);
-if(!getEl("group-conmenu")){
-this.addMenuDiv("group-conmenu");
-}
-this.groupMenu=new YAHOO.widget.Menu("group-conmenu",{lazyLoad:true});
-if(this.groupMenu.getItemGroups().length==0){
-this.groupMenu.addItems([{text:"Rename Group"},{text:"Remove Group"}]);
-}
-this.groupMenu.render(document.body);
-this.groupMenu.getItem(0).clickEvent.subscribe(this.showGroupRename.bind(this,this.fetchClickedGroup.bind(this)));
-this.groupMenu.getItem(1).clickEvent.subscribe(this.showGroupRemove.bind(this,this.fetchClickedGroup.bind(this)));
-},setUserInfo:function(_fb,_fc){
-var _fd;
+},setUserInfo:function(_f9,_fa){
+var _fb;
 if(arguments.length>1){
-_fd=_fb;
+_fb=_f9;
 }else{
-_fd=_fb.name;
-_fc=(_fb.status?_fb.status:_fb.mode);
+_fb=_f9.name;
+_fa=(_f9.status?_f9.status:_f9.mode);
 }
-this.dialog.setTitle("Spark Web - "+_fd);
-this._prepUserStatusPanel(_fd,_fc);
-},addGroup:function(_fe,_ff){
-this.roster.addGroup(_fe,_ff);
-},addControl:function(_100,_101){
-this.controls[_100]=jive.spank.chat.Control.add(this.tabs["Contacts"]+"-controls",_100,_101);
+this.dialog.setTitle("Spark Web - "+_fb);
+this._prepUserStatusPanel(_fb,_fa);
+},addGroup:function(_fc,_fd){
+this.roster.addGroup(_fc,_fd);
+},addControl:function(_fe,_ff){
+this.controls[_fe]=jive.spank.chat.Control.add(this.tabs["Contacts"]+"-controls",_fe,_ff);
 this.controlCount++;
 if(!this.controlPanel.isVisible()){
 this.controlPanel.show();
 }
-return this.controls[_100];
-},removeControl:function(_102){
-if(this.controls[_102]){
-this.controls[_102].remove();
-delete this.controls[_102];
+return this.controls[_fe];
+},removeControl:function(_100){
+if(this.controls[_100]){
+this.controls[_100].remove();
+delete this.controls[_100];
 }
 this.controlCount--;
-},setRoster:function(_103){
-if(_103==null){
-_103=this.fakeRosterStruct;
+},setRoster:function(_101){
+if(_101==null){
+_101=this.fakeRosterStruct;
 }
 this.roster=new jive.spank.roster.Roster("jive-roster",true);
 this.groups=this.roster.groups;
-this.roster.setRoster(_103);
+this.roster.setRoster(_101);
 this.render();
 this.roster.addListener("offlinemoved",function(){
 if(!this.isUpdating){
@@ -18615,65 +18656,34 @@ this.needsUpdate=true;
 },this,1);
 },getSelectedUser:function(){
 return this.roster.getSelectedUser();
-},getContactFromID:function(_104){
-var _105=_104.split("-");
-var cJid=_105.slice(2,_105.length-1).join("");
-return jive.spank.roster.Contact.find(this,cJid,_105[_105.length-1]);
-},render:function(_107){
-var _108=this.tabs["Contacts"];
+},getContactFromID:function(_102){
+var _103=_102.split("-");
+var cJid=_103.slice(2,_103.length-1).join("");
+return jive.spank.roster.Contact.find(this,cJid,_103[_103.length-1]);
+},render:function(_105){
+var _106=this.tabs["Contacts"];
 this.roster.render();
 this.needsUpdate=false;
 this.dialog.addListener("show",this.finishDisplay,this,true);
-if(_107){
+if(_105){
 this.finishDisplay();
 }
 },finishDisplay:function(){
 this.roster.sortGroups();
 this.roster.renderOffline();
 this.roster._enableBehaviors();
-this.enableContextMenus();
-},enableContextMenus:function(){
-getEls("ul#jive-roster ul.group-list li").mon("contextmenu",function(evt){
-evt.stopEvent();
-var _10a=evt.getTarget();
-if(_10a.tagName.toLowerCase()!="li"){
-_10a=_10a.parentNode;
-}
-this.contactMenu.clickedContact=this.getContactFromID(_10a.id);
-var _10b=_10a.id;
-getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_10b).className+=" selected";
-getEl(this.contactMenu.element).moveTo(evt.getPageX(),evt.getPageY());
-this.contactMenu.element.style.zIndex=this.dialog.lastZIndex+1;
-this.contactMenu.show();
-},this,true);
-getEls("ul#jive-roster span.group-isonline em").mon("contextmenu",function(evt){
-evt.stopEvent();
-var _10d=evt.getTarget();
-this.groupMenu.clickedGroup=this.groups[_10d.innerHTML];
-getEl(this.groupMenu.element).moveTo(evt.getPageX(),evt.getPageY());
-this.groupMenu.element.style.zIndex=this.dialog.lastZIndex+1;
-this.groupMenu.show();
-},this,true);
-try{
-getEls("li#group-Offline_Group-jive-roster span.group-label em").mon("contextmenu",function(evt){
-evt.stopEvent();
-});
-}
-catch(error){
-}
-},addContact:function(_10f,_110,_111){
-this.roster.addContact(_10f,_110,_111);
+},addContact:function(_107,_108,_109){
+this.roster.addContact(_107,_108,_109);
 this.render(true);
 },removeContact:function(jid){
 this.roster.removeContact(jid);
-},changeUserStatus:function(_113,_114){
+},changeUserStatus:function(_10b,_10c){
 var menu=getEl(this.bodyId+"-statusmenu-ctrl");
-var _116={chat:"Free to Chat",available:"Available",onroad:"On Road",away:"Away",onphone:"On Phone",dnd:"Do Not Disturb"};
-menu.dom.className=menu.dom.className.replace(/roster-contact-([^ ]*)/,"roster-contact-"+_113);
-menu.getChildrenByTagName("span")[0].dom.innerHTML=(_114!=null?_114:_116[_113]);
-},changeContactStatus:function(jid,_118,_119){
-this.roster.changeContactStatus(jid,_118,_119);
+var _10e={chat:"Free to Chat",available:"Available",onroad:"On Road",away:"Away",onphone:"On Phone",dnd:"Do Not Disturb"};
+menu.dom.childNodes[0].className=menu.dom.childNodes[0].className.replace(/roster-contact-([^ ]*)/,"roster-contact-"+_10b);
+menu.getChildrenByTagName("span")[0].dom.innerHTML=(_10c!=null?_10c:_10e[_10b]);
+},changeContactStatus:function(jid,_110,_111){
+this.roster.changeContactStatus(jid,_110,_111);
 },getContactStatus:function(jid){
 return this.roster.getContactStatus(jid);
 },showAddGroup:function(){
@@ -18694,9 +18704,9 @@ getEl(addc.id+"-createcontact").addListener("click",function(){
 self.fireEvent("addcontact",self,$F(addc.id+"-addusername"),$F(addc.id+"-addnickname"),$F(addc.id+"-addcontact-group"));
 addc.dialog.hide();
 });
-},showSubscriptionRequest:function(_11f,_120){
+},showSubscriptionRequest:function(_117,_118){
 var self=this;
-var subr=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.sub_request,{title:"Allow "+(_120!=""?_120:_11f)+" to add you?",width:440,height:220,templateKeys:{jid:_11f,nick:_120}});
+var subr=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.sub_request,{title:"Allow "+(_118!=""?_118:_117)+" to add you?",width:440,height:220,templateKeys:{jid:_117,nick:_118}});
 subr.dialog.show();
 this._autocompGroups(subr,"-subrequest-group");
 getEl(subr.id+"-add").addListener("click",function(){
@@ -18705,127 +18715,127 @@ getEl(subr.id+"-jid").toggleClass("disabled");
 getEl(subr.id+"-nick").dom.disabled=getEl(subr.id+"-subrequest-group").dom.disabled=!getEl(subr.id+"-add").dom.checked;
 });
 getEl(subr.id+"-acceptsubrequest").addListener("click",function(){
-self.fireEvent("acceptsubscription",self,$F(subr.id+"-add"),_11f,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
+self.fireEvent("acceptsubscription",self,$F(subr.id+"-add"),_117,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
 subr.dialog.hide();
 });
 getEl(subr.id+"-denysubrequest").addListener("click",function(){
-self.fireEvent("denysubscription",self,$F(subr.id+"-add"),_11f,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
+self.fireEvent("denysubscription",self,$F(subr.id+"-add"),_117,$F(subr.id+"-nick"),$F(subr.id+"-subrequest-group"));
 subr.dialog.hide();
 });
-},showRename:function(_123){
-if(_123==null){
-_123=this.contactMenu.clickedContact;
+},showRename:function(_11b){
+if(_11b==null){
+_11b=this.contactMenu.clickedContact;
 }
-var _124=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.rename,{title:"Renaming '"+_123.name+"'",width:250,height:115,templateKeys:{nick:_123.name}});
-_124.dialog.show();
+var _11c=new jive.spank.chat.Dialog(self,jive.spank.chat.Template.rename,{title:"Renaming '"+_11b.name+"'",width:250,height:115,templateKeys:{nick:_11b.name}});
+_11c.dialog.show();
 var self=this;
-var _126=function(){
-var _127=(typeof _123.jid!="undefined")?"renamecontact":"renamegroup";
-self.fireEvent(_127,self,_123,$F(_124.id+"-name"));
-getEl(_124.id+"-rename").removeAllListeners();
-_124.dialog.hide();
+var _11e=function(){
+var _11f=(typeof _11b.jid!="undefined")?"renamecontact":"renamegroup";
+self.fireEvent(_11f,self,_11b,$F(_11c.id+"-name"));
+getEl(_11c.id+"-rename").removeAllListeners();
+_11c.dialog.hide();
 };
-getEl(_124.id+"-name").mon("keypress",_126.createInterceptor(function(evt){
+getEl(_11c.id+"-name").mon("keypress",_11e.createInterceptor(function(evt){
 return evt.getKey()==13;
 }));
-getEl(_124.id+"-rename").addListener("click",_126);
-},showRemove:function(_129){
-this.fireEvent("removecontact",this,this.contactMenu.clickedContact.jid.toString());
-},showGroupRename:function(_12a){
-var _12b=_12a();
-this.showRename(_12b);
+getEl(_11c.id+"-rename").addListener("click",_11e);
+},showRemove:function(_121){
+this.fireEvent("removecontact",this,_121.jid.toString());
+},showGroupRename:function(_122){
+var _123=_122();
+this.showRename(_123);
 },fetchClickedGroup:function(){
 return this.groupMenu.clickedGroup;
-},showGroupRemove:function(_12c){
-var _12d=_12c();
-var _12e=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.remove_group,{title:"Removing '"+_12d.name+"'",width:250,height:100,templateKeys:{name:_12d.name}});
-_12e.dialog.show();
+},showGroupRemove:function(_124){
+var _125=_124();
+var _126=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.remove_group,{title:"Removing '"+_125.name+"'",width:250,height:100,templateKeys:{name:_125.name}});
+_126.dialog.show();
 var self=this;
-var _130=function(){
-self.fireEvent("removegroup",self,_12d);
-getEl(_12e.id+"-remove").removeAllListeners();
-_12e.dialog.hide();
+var _128=function(){
+self.fireEvent("removegroup",self,_125);
+getEl(_126.id+"-remove").removeAllListeners();
+_126.dialog.hide();
 };
-getEl(_12e.id+"-remove").addListener("click",_130);
-},_autocompGroups:function(dlog,_132){
-var _133=dlog.id+_132;
-var _134=_133+"-menu";
+getEl(_126.id+"-remove").addListener("click",_128);
+},_autocompGroups:function(dlog,_12a){
+var _12b=dlog.id+_12a;
+var _12c=_12b+"-menu";
 var self=this;
-if(getEl(_134)==null){
-var _136=self.addMenuDiv(_134);
-_136.className="groups-ac";
+if(getEl(_12c)==null){
+var _12e=self.addMenuDiv(_12c);
+_12e.className="groups-ac";
 }
-var _137=function(_138){
-var _139=[];
+var _12f=function(_130){
+var _131=[];
 for(var g in self.roster.groups){
-_139.push(g);
+_131.push(g);
 }
-return self._prepareAutocompArray(_139,_138);
+return self._prepareAutocompArray(_131,_130);
 };
-var _13b=new jive.spank.FlatAutoComplete(_133,_134,new YAHOO.widget.DS_JSFunction(_137),{typeAhead:true,minQueryLength:0});
-_13b.formatResult=function(_13c,_13d){
-return _13c;
+var _133=new jive.spank.FlatAutoComplete(_12b,_12c,new YAHOO.widget.DS_JSFunction(_12f),{typeAhead:true,minQueryLength:0});
+_133.formatResult=function(_134,_135){
+return _134;
 };
-_13b.dataReturnEvent.subscribe(function(type,args){
+_133.dataReturnEvent.subscribe(function(type,args){
 if(args[2].length==0){
-_13b.setBody("<div class='empty'>(No matches, will create new)</div>");
+_133.setBody("<div class='empty'>(No matches, will create new)</div>");
 }
-var _140=getEl(_134);
-_140.alignTo(getEl(_133),"bl");
-_140.dom.style.zIndex=dlog.dialog.lastZIndex+1;
-_140.show();
+var _138=getEl(_12c);
+_138.alignTo(getEl(_12b),"bl");
+_138.dom.style.zIndex=dlog.dialog.lastZIndex+1;
+_138.show();
 });
-getEl(_133).addListener("blur",function(){
-getEl(_134).hide();
+getEl(_12b).addListener("blur",function(){
+getEl(_12c).hide();
 });
-getEls("#"+_134+" li").mon("mousedown",function(evt){
-getEl(_133).dom.value=evt.getTarget().innerHTML;
+getEls("#"+_12c+" li").mon("mousedown",function(evt){
+getEl(_12b).dom.value=evt.getTarget().innerHTML;
 });
 dlog.dialog.addListener("beforehide",function(){
-_13b.formatResult=Prototype.emptyFunction;
-_137=Prototype.emptyFunction;
-getEl(_134).removeAllListeners();
-getEl(_133).removeAllListeners();
-_13b.dataReturnEvent.unsubscribeAll();
-getEls("#"+_134+" li").removeAllListeners();
-getEl(_134).remove();
+_133.formatResult=Prototype.emptyFunction;
+_12f=Prototype.emptyFunction;
+getEl(_12c).removeAllListeners();
+getEl(_12b).removeAllListeners();
+_133.dataReturnEvent.unsubscribeAll();
+getEls("#"+_12c+" li").removeAllListeners();
+getEl(_12c).remove();
 });
-return _13b;
-},contactsForAutocomp:function(_142){
-var _143=this.roster;
-var _144=[];
-for(var g in _143.groups){
-_143.groups[g].contacts.each(function(_146){
-_144.push([_146.name,_146.jid,_146.status]);
+return _133;
+},contactsForAutocomp:function(_13a){
+var _13b=this.roster;
+var _13c=[];
+for(var g in _13b.groups){
+_13b.groups[g].contacts.each(function(_13e){
+_13c.push([_13e.name,_13e.jid,_13e.status]);
 });
 }
-return this._prepareAutocompArray(_144,_142);
-},_prepareAutocompArray:function(_147,_148){
-var _149=typeof _147[0]!="string";
-if(_149&&_147.length==0){
-return _147;
+return this._prepareAutocompArray(_13c,_13a);
+},_prepareAutocompArray:function(_13f,_140){
+var _141=typeof _13f[0]!="string";
+if(_141&&_13f.length==0){
+return _13f;
 }
-_147=_147.sortBy(function(_14a){
-if(_149){
-return _14a[0].toLowerCase();
+_13f=_13f.sortBy(function(_142){
+if(_141){
+return _142[0].toLowerCase();
 }else{
-return _14a.toLowerCase();
+return _142.toLowerCase();
 }
 });
-if(_147.length<2||!_148||_148==""){
-return _147;
+if(_13f.length<2||!_140||_140==""){
+return _13f;
 }else{
-var _14b=_147.partition(function(_14c){
-return (_149?_14c[0].indexOf(_148)==0:_14c.indexOf(_148)==0);
+var _143=_13f.partition(function(_144){
+return (_141?_144[0].indexOf(_140)==0:_144.indexOf(_140)==0);
 });
-return _14b[0].concat(_14b[1]);
+return _143[0].concat(_143[1]);
 }
-},addMenuDiv:function(_14d){
-var _14e=document.createElement("div");
-_14e.id=_14d;
-_14e.style.visibility="hidden";
-document.body.appendChild(_14e);
-return _14e;
+},addMenuDiv:function(_145){
+var _146=document.createElement("div");
+_146.id=_145;
+_146.style.visibility="hidden";
+document.body.appendChild(_146);
+return _146;
 },endUpdate:function(){
 if(this.needsUpdate){
 this.render(true);
@@ -18834,20 +18844,46 @@ jive.spank.roster.RosterWindow.superclass.endUpdate.call(this);
 },destroy:function(){
 jive.spank.roster.RosterWindow.superclass.destroy.call(this);
 }});
-jive.spank.chat.Dialog=function(_14f,_150,_151){
-this.parentWindow=_14f;
+jive.spank.menu={};
+jive.spank.menu.ContactContext=function(_147,_148){
+var id="contact-conmenu";
+var _14a=document.createElement("div");
+_14a.id=id;
+_14a.style.visibility="hidden";
+document.body.appendChild(_14a);
+this.menu=new YAHOO.widget.Menu(id,{lazyLoad:true});
+var _14b=[];
+_148.each(function(_14c){
+_14b.push({text:_14c.name});
+});
+this.menu.addItems(_14b);
+this.menu.render(document.body);
+for(var i=0;i<_14b.length;i++){
+this.menu.getItem(i).clickEvent.subscribe(_148[i].action);
+}
+this.dialog=_147;
+};
+jive.spank.menu.ContactContext.prototype={show:function(x,y){
+this.menu.moveTo(x,y);
+this.menu.element.style.zIndex=this.dialog.dialog.lastZIndex+1;
+this.menu.show();
+},destroy:function(){
+this.menu.destroy();
+}};
+jive.spank.chat.Dialog=function(_150,_151,_152){
+this.parentWindow=_150;
 var elm=document.createElement("div");
 this.id=elm.id=YAHOO.util.Dom.generateId();
 document.body.appendChild(elm);
-var _153=!_151.constrained;
-jive.spank.chat.Dialog.superclass.constructor.call(this,elm.id,{title:_151.title,modal:_151.modal,constraintoviewport:_153,width:_151.width,height:_151.height,shadow:true,proxyDrag:true,resizable:false,draggable:true,x:_151.x?_151.x:(YAHOO.util.Dom.getViewportWidth()/2)-(_151.width>0?(_151.width/2):0),y:_151.y?_151.y:(YAHOO.util.Dom.getViewportHeight()/2)-(_151.height>0?_151.height/2:0),closable:true});
+var _154=!_152.constrained;
+jive.spank.chat.Dialog.superclass.constructor.call(this,elm.id,{title:_152.title,modal:_152.modal,constraintoviewport:_154,width:_152.width,height:_152.height,shadow:true,proxyDrag:true,resizable:false,draggable:true,x:_152.x?_152.x:(YAHOO.util.Dom.getViewportWidth()/2)-(_152.width>0?(_152.width/2):0),y:_152.y?_152.y:(YAHOO.util.Dom.getViewportHeight()/2)-(_152.height>0?_152.height/2:0),closable:true});
 this.dialog=this;
-if(_151.templateKeys){
-var _154=_151.templateKeys;
-_154.id=this.id;
-_150.append(this.body.dom,_154);
+if(_152.templateKeys){
+var _155=_152.templateKeys;
+_155.id=this.id;
+_151.append(this.body.dom,_155);
 }else{
-_150.append(this.body.dom,{id:this.id});
+_151.append(this.body.dom,{id:this.id});
 }
 getEls("#"+this.id+" .jive-closedialog").addListener("click",this.hide.bind(this));
 this.addListener("hide",this.destroy.bind(this));
@@ -18862,38 +18898,38 @@ this.mask.remove();
 this.purgeListeners();
 }});
 jive.spank.dialog={};
-jive.spank.dialog.StartChat=function(_155){
-var _156=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.start_chat,{title:"Start a chat",width:250,height:105});
-_156.dialog.show();
-var _157=function(){
-var _158=$F(_156.id+"-jid");
-if(_158.replace(/^\s+|\s+$/g,"")!=""){
-_155(this,{jid:_158});
-getEl(_156.id+"-startbtn").removeAllListeners();
-_156.dialog.hide();
+jive.spank.dialog.StartChat=function(_156){
+var _157=new jive.spank.chat.Dialog(this,jive.spank.chat.Template.start_chat,{title:"Start a chat",width:250,height:105});
+_157.dialog.show();
+var _158=function(){
+var _159=$F(_157.id+"-jid");
+if(_159.replace(/^\s+|\s+$/g,"")!=""){
+_156(this,{jid:_159});
+getEl(_157.id+"-startbtn").removeAllListeners();
+_157.dialog.hide();
 }else{
-$(_156.id).focus();
+$(_157.id).focus();
 }
 };
-$(_156.id+"-jid").focus();
-getEl(_156.id+"-startbtn").addListener("click",_157);
+$(_157.id+"-jid").focus();
+getEl(_157.id+"-startbtn").addListener("click",_158);
 };
-jive.spank.dialog.CreateConference=function(_159,_15a){
-if(!_15a){
-_15a={};
+jive.spank.dialog.CreateConference=function(_15a,_15b){
+if(!_15b){
+_15b={};
 }
-_15a=$H(_15a).merge(this._configuration);
-jive.spank.dialog.CreateConference.superclass.constructor.call(this,_159,jive.spank.chat.Template.muccreation,_15a);
+_15b=$H(_15b).merge(this._configuration);
+jive.spank.dialog.CreateConference.superclass.constructor.call(this,_15a,jive.spank.chat.Template.muccreation,_15b);
 this.events=$H(this.events).merge({"muccreated":true});
 this.addListener("hide",this.onHide.bind(this));
 getEl(this.id+"-private").addListener("click",this._privateCheckboxListener.bind(this));
 getEl(this.id+"-createroom").addListener("click",this._createRoomListener.bind(this));
 };
 YAHOO.extend(jive.spank.dialog.CreateConference,jive.spank.chat.Dialog,{_configuration:{title:"Create a Conference",width:285,height:285},_createRoomListener:function(){
-var _15b=getEl(this.id+"-private");
-var _15c=$F(this.id+"-roompw");
-var _15d=$F(this.id+"-roomconfirm");
-if(_15b.dom.checked&&_15c!=_15d){
+var _15c=getEl(this.id+"-private");
+var _15d=$F(this.id+"-roompw");
+var _15e=$F(this.id+"-roomconfirm");
+if(_15c.dom.checked&&_15d!=_15e){
 alert("Sorry, your password and confirmation don't match.");
 $(this.id+"-roompw").select();
 return false;
@@ -18911,14 +18947,14 @@ getEl(this.id+"-private").removeAllListeners();
 getEl(this.id+"-createroom").removeAllListeners();
 }});
 if(window.jive_enable_grid){
-jive.spank.dialog.UserSearch=function(_15e,_15f,_160){
-if(!_160){
-_160={};
+jive.spank.dialog.UserSearch=function(_15f,_160,_161){
+if(!_161){
+_161={};
 }
-_160.templateKeys={instructions:"Insert your instructions here."};
-_160=$H(_160).merge(this._configuration);
-var _161=this._createTemplate(_15f);
-jive.spank.dialog.UserSearch.superclass.constructor.call(this,_15e,_161,_160);
+_161.templateKeys={instructions:"Insert your instructions here."};
+_161=$H(_161).merge(this._configuration);
+var _162=this._createTemplate(_160);
+jive.spank.dialog.UserSearch.superclass.constructor.call(this,_15f,_162,_161);
 this.events=$H(this.events).merge({"search":true});
 this.addListener("hide",this.onHide.bind(this));
 this.addListener("show",this.onShow.bind(this));
@@ -18928,38 +18964,38 @@ this.searchGrid.render();
 };
 }
 if(window.jive_enable_grid){
-YAHOO.extend(jive.spank.dialog.UserSearch,jive.spank.chat.Dialog,{_configuration:{title:"Person Search"},_template:["<div id=\"{id}-person-search\" class=\"dbody personsearch\">","<div class=\"jive-dbody-description\">","<h1>Person Search</h1>","<p>{instructions}</p>","</div>","<div class=\"\">","<fieldset>","<legend>Search Service</legend>","<p><label for=\"service\">Search Service</label>","<select name=\"selectservice\" tabindex=\"{firstTabIndex}\">","</select>","<a href=\"#\">Add Service</a>","</p>","</fieldset>","</div>","<div class=\"\">","<fieldset>","<legend>Person Search Form</legend>","{searchform}","<p class=\"buttons\"><input type=\"submit\" value=\"Search\" tabindex=\"{lastTabIndex}\"/></p>","</fieldset>","</div>","<div id=\"{id}-search-grid\" class=\"jive-grid\">","</div>","</div>"],_createTemplate:function(_162){
-_162=["<p><input name=\"Username\" type=\"checkbox\" value=\"Username\" checked","/>Username</p>","<p><label for=\"testdrop\">Test Dropdown</label>","<select id=\"testdrop\" name=\"testdrop\">","<option>test 1</option>","<option>test 2</option>","<option>test 3</option>","</select>","</p>"];
-var _163=this._template;
-var _164=_163.indexOf("{searchform}");
-_163.splice(_164,1,_162.join(""));
-return new YAHOO.ext.DomHelper.Template(_163.join(""));
+YAHOO.extend(jive.spank.dialog.UserSearch,jive.spank.chat.Dialog,{_configuration:{title:"Person Search"},_template:["<div id=\"{id}-person-search\" class=\"dbody personsearch\">","<div class=\"jive-dbody-description\">","<h1>Person Search</h1>","<p>{instructions}</p>","</div>","<div class=\"\">","<fieldset>","<legend>Search Service</legend>","<p><label for=\"service\">Search Service</label>","<select name=\"selectservice\" tabindex=\"{firstTabIndex}\">","</select>","<a href=\"#\">Add Service</a>","</p>","</fieldset>","</div>","<div class=\"\">","<fieldset>","<legend>Person Search Form</legend>","{searchform}","<p class=\"buttons\"><input type=\"submit\" value=\"Search\" tabindex=\"{lastTabIndex}\"/></p>","</fieldset>","</div>","<div id=\"{id}-search-grid\" class=\"jive-grid\">","</div>","</div>"],_createTemplate:function(_163){
+_163=["<p><input name=\"Username\" type=\"checkbox\" value=\"Username\" checked","/>Username</p>","<p><label for=\"testdrop\">Test Dropdown</label>","<select id=\"testdrop\" name=\"testdrop\">","<option>test 1</option>","<option>test 2</option>","<option>test 3</option>","</select>","</p>"];
+var _164=this._template;
+var _165=_164.indexOf("{searchform}");
+_164.splice(_165,1,_163.join(""));
+return new YAHOO.ext.DomHelper.Template(_164.join(""));
 },onHide:function(){
 this.searchGrid.destroy();
 },onShow:function(){
-var _165=getEl(this.id+"-person-search");
-var _166=Math.max(this.body.getWidth(),_165.getWidth());
+var _166=getEl(this.id+"-person-search");
+var _167=Math.max(this.body.getWidth(),_166.getWidth());
 this.resizeTo(500,500);
-},_buildSearchGrid:function(_167,_168){
-var _169={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
-var _16a=new YAHOO.ext.grid.DefaultDataModel(_167);
-var _16b=[{header:"Username",width:240,sortable:true},{header:"Name",width:160,sortable:true},{header:"E-Mail",width:70,sortable:true}];
-var _16c=new YAHOO.ext.grid.DefaultColumnModel(_16b);
-this.searchGrid=new YAHOO.ext.grid.Grid(_168,{dataModel:_16a,colModel:_16c,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
+},_buildSearchGrid:function(_168,_169){
+var _16a={fields:["name","muc#roominfo_subject","muc#roominfo_occupants"]};
+var _16b=new YAHOO.ext.grid.DefaultDataModel(_168);
+var _16c=[{header:"Username",width:240,sortable:true},{header:"Name",width:160,sortable:true},{header:"E-Mail",width:70,sortable:true}];
+var _16d=new YAHOO.ext.grid.DefaultColumnModel(_16c);
+this.searchGrid=new YAHOO.ext.grid.Grid(_169,{dataModel:_16b,colModel:_16d,selModel:new YAHOO.ext.grid.SingleSelectionModel(),monitorWindowResize:false,stripeRows:false});
 return this.searchGrid;
 }});
 }
-jive.spank.dialog.CreateAccount=function(_16d){
+jive.spank.dialog.CreateAccount=function(_16e){
 this.dialog=new jive.spank.chat.Dialog(null,jive.spank.chat.Template.create_account,{title:"Creating an account",width:250,height:180,modal:true});
-var _16e=this.dialog;
-this.nameField=getEl(_16e.id+"-name");
-this.passwordField=getEl(_16e.id+"-passwd");
-this.createButton=getEl(_16e.id+"-submit");
-this.verifyCallback=_16d;
-getEl(_16e.id+"-confirm").mon("keypress",this._doSubmit.createInterceptor(function(evt){
+var _16f=this.dialog;
+this.nameField=getEl(_16f.id+"-name");
+this.passwordField=getEl(_16f.id+"-passwd");
+this.createButton=getEl(_16f.id+"-submit");
+this.verifyCallback=_16e;
+getEl(_16f.id+"-confirm").mon("keypress",this._doSubmit.createInterceptor(function(evt){
 return evt.getKey()==13;
 }));
-getEl(_16e.id+"-submit").addListener("click",this._doSubmit.bind(this));
+getEl(_16f.id+"-submit").addListener("click",this._doSubmit.bind(this));
 this.nameField.mon("keypress",function(){
 this.dom.style.backgroundColor="#fff";
 }.bind(this.nameField));
@@ -18967,158 +19003,158 @@ this.passwordField.mon("keypress",function(){
 this.dom.style.backgroundColor="#fff";
 }.bind(this.passwordField));
 this.nameField.dom.focus();
-_16e.dialog.show();
+_16f.dialog.show();
 };
 jive.spank.dialog.CreateAccount.prototype={_doSubmit:function(){
-var _170=this.dialog;
-var _171=$(_170.id+"-error");
-$(_170.id+"-name").style.backgroundColor="#fff";
-$(_170.id+"-passwd").style.backgroundColor="#fff";
-if($F(_170.id+"-name")==""){
-$(_170.id+"-name").style.backgroundColor="#f00";
-$(_170.id+"-name").select();
+var _171=this.dialog;
+var _172=$(_171.id+"-error");
+$(_171.id+"-name").style.backgroundColor="#fff";
+$(_171.id+"-passwd").style.backgroundColor="#fff";
+if($F(_171.id+"-name")==""){
+$(_171.id+"-name").style.backgroundColor="#f00";
+$(_171.id+"-name").select();
 return false;
 }
-if($F(_170.id+"-passwd")==""){
-$(_170.id+"-passwd").style.backgroundColor="#f00";
-$(_170.id+"-passwd").select();
+if($F(_171.id+"-passwd")==""){
+$(_171.id+"-passwd").style.backgroundColor="#f00";
+$(_171.id+"-passwd").select();
 return false;
 }
-if($F(_170.id+"-passwd")!=$F(_170.id+"-confirm")){
-$(_170.id+"-passwd").style.backgroundColor="#f00";
-$(_170.id+"-passwd").select();
+if($F(_171.id+"-passwd")!=$F(_171.id+"-confirm")){
+$(_171.id+"-passwd").style.backgroundColor="#f00";
+$(_171.id+"-passwd").select();
 return false;
 }
 this.createButton.dom.disabled=true;
 this.createButton.hide();
 jive.spank.Spinner.show({x:this.createButton.getX()-10,y:this.createButton.getY()});
-this.verifyCallback({username:$F(_170.id+"-name"),password:$F(_170.id+"-passwd")});
-},verify:function(_172){
-var _173=this.dialog;
+this.verifyCallback({username:$F(_171.id+"-name"),password:$F(_171.id+"-passwd")});
+},verify:function(_173){
+var _174=this.dialog;
 if(verify){
 if(verify.name){
-$(_173.id+"-name").style.backgroundColor="#f00";
-$(_173.id+"-name").select();
+$(_174.id+"-name").style.backgroundColor="#f00";
+$(_174.id+"-name").select();
 return;
 }
 if(verify.password){
-$(_173.id+"-passwd").style.backgroundColor="#f00";
-$(_173.id+"-passwd").select();
+$(_174.id+"-passwd").style.backgroundColor="#f00";
+$(_174.id+"-passwd").select();
 return;
 }
 }
-getEl(_173.id+"-confirm").removeAllListeners();
-getEl(_173.id+"-submit").removeAllListeners();
+getEl(_174.id+"-confirm").removeAllListeners();
+getEl(_174.id+"-submit").removeAllListeners();
 this.nameField.removeAllListeners();
 this.passwordField.removeAllListeners();
 this.dialog.hide();
 }};
-jive.spank.roster.Roster=function(id,_175){
+jive.spank.roster.Roster=function(id,_176){
 this.el=getEl(id);
 this.groups={};
 this.closedgroups=[];
-this.events={"contactdblclicked":true,"offlinemoved":true};
-if(_175){
+this.events={"contactdblclicked":true,"contactrightclicked":true,"offlinemoved":true};
+if(_176){
 this.offlines="";
 this._wrappedClick=null;
 }
 };
-YAHOO.extend(jive.spank.roster.Roster,YAHOO.ext.util.Observable,{addGroup:function(_176,_177){
-if(this.groups[_176]){
-return this.groups[_176];
+YAHOO.extend(jive.spank.roster.Roster,YAHOO.ext.util.Observable,{addGroup:function(_177,_178){
+if(this.groups[_177]){
+return this.groups[_177];
 }
-this.groups[_176]=new jive.spank.roster.RosterGroup(this,_176,_177);
-this.el.insertHtml("beforeEnd",this.groups[_176].render(false));
-this.groups[_176]._enableBehaviors();
-return this.groups[_176];
-},addContact:function(_178,_179,_17a){
-var _17b=this.addGroup(_179,_17a);
-_17b.addContact(_178);
+this.groups[_177]=new jive.spank.roster.RosterGroup(this,_177,_178);
+this.el.insertHtml("beforeEnd",this.groups[_177].render(false));
+this.groups[_177]._enableBehaviors();
+return this.groups[_177];
+},addContact:function(_179,_17a,_17b){
+var _17c=this.addGroup(_17a,_17b);
+_17c.addContact(_179);
 },removeContact:function(jid){
-var _17d=this.findContact(jid);
-var grp=_17d.group;
-_17d.remove();
+var _17e=this.findContact(jid);
+var grp=_17e.group;
+_17e.remove();
 if(grp.contacts.length==0){
 grp.remove();
 }
-},setRoster:function(_17f){
-var _180;
-for(groupName in _17f){
-_180=_17f[groupName];
-this.groups[groupName]=new jive.spank.roster.RosterGroup(this,groupName,_180);
+},setRoster:function(_180){
+var _181;
+for(var _182 in _180){
+_181=_180[_182];
+this.groups[_182]=new jive.spank.roster.RosterGroup(this,_182,_181);
 }
 },render:function(){
-var _181="";
-var _182=typeof this.offlines!="undefined";
+var _183="";
+var _184=typeof this.offlines!="undefined";
 this._logClosedGroups();
 for(var g in this.groups){
-_181+=this.groups[g].render(_182);
+_183+=this.groups[g].render(_184);
 }
-this.el.dom.innerHTML=_181;
+this.el.dom.innerHTML=_183;
 return this;
 },getSelectedUser:function(){
-var _184=$$("ul#"+this.id+" ul.group-list li.selected")[0];
-var _185=_184.id.split("-");
-var _186=_185[3];
-var _187=_185[2];
-return this.findContact(_187,_186);
-},findContact:function(jid,_189){
-if(_189){
-_189=_189.replace(/[^0-9A-Za-z]/,"_");
+var _186=$$("ul#"+this.id+" ul.group-list li.selected")[0];
+var _187=_186.id.split("-");
+var _188=_187[3];
+var _189=_187[2];
+return this.findContact(_189,_188);
+},findContact:function(jid,_18b){
+if(_18b){
+_18b=_18b.replace(/[^0-9A-Za-z]/,"_");
 }
-for(var _18a in this.groups){
-if(_189&&_18a.replace(/[^0-9A-Za-z]/,"_")!=_189){
+for(var _18c in this.groups){
+if(_18b&&_18c.replace(/[^0-9A-Za-z]/,"_")!=_18b){
 continue;
 }
-var _18b=this.groups[_18a].contacts.find(function(_18c){
-return _18c.jid==jid;
+var _18d=this.groups[_18c].contacts.find(function(_18e){
+return _18e.jid==jid;
 });
-if(_18b){
-return _18b;
+if(_18d){
+return _18d;
 }
 }
 return null;
-},changeContactStatus:function(jid,_18e,_18f){
-var _190=this.findContact(jid);
-if(_190){
-_190.changeStatus(_18e,_18f);
-}
-},getContactStatus:function(jid){
+},changeContactStatus:function(jid,_190,_191){
 var _192=this.findContact(jid);
 if(_192){
-return _192.status;
+_192.changeStatus(_190,_191);
+}
+},getContactStatus:function(jid){
+var _194=this.findContact(jid);
+if(_194){
+return _194.status;
 }
 },renderOffline:function(){
-var _193=this.groups;
-var _194="";
-for(var _195 in _193){
-this.groups[_195].contacts.each(function(_196){
-if(_196.status=="unavailable"){
-_194+=_196.render();
+var _195=this.groups;
+var _196="";
+for(var _197 in _195){
+this.groups[_197].contacts.each(function(_198){
+if(_198.status=="unavailable"){
+_196+=_198.render();
 }
 });
 }
-if((_194==""||this.offlines!="")&&getEl("group-"+this.offlines)){
+if((_196==""||this.offlines!="")&&getEl("group-"+this.offlines)){
 getEl("group-"+this.offlines).remove();
 }else{
 this.offlines="Offline_Group-"+this.el.id;
 }
-if(_194!=""){
-this.el.insertHtml("beforeEnd",jive.spank.chat.Template.roster_group.applyTemplate({id:this.offlines,renderClosed:"open",online:"",groupName:"Offline Group",users:_194}));
-var _197=getEl("group-label-"+this.offlines);
-_197.unselectable();
-this._wrappedClick=_197.getChildrenByTagName("em")[0].mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
+if(_196!=""){
+this.el.insertHtml("beforeEnd",jive.spank.chat.Template.roster_group.applyTemplate({id:this.offlines,renderClosed:"open",online:"",groupName:"Offline Group",users:_196}));
+var _199=getEl("group-label-"+this.offlines);
+_199.unselectable();
+this._wrappedClick=_199.getChildrenByTagName("em")[0].mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
 jive.spank.roster.RosterGroup.sortContactHTML(this.offlines);
 }
 },sortGroups:function(){
-var _198=this.el;
-if(_198&&_198.dom!=null){
-var _199=_198.getChildrenByClassName("group");
-var _19a=_199.sortBy(function(line){
+var _19a=this.el;
+if(_19a&&_19a.dom!=null){
+var _19b=_19a.getChildrenByClassName("group");
+var _19c=_19b.sortBy(function(line){
 return line.id.split("-")[1].toLowerCase();
 });
-_19a.each(function(line){
-line.appendTo(_198.dom);
+_19c.each(function(line){
+line.appendTo(_19a.dom);
 });
 }
 for(var g in this.groups){
@@ -19126,46 +19162,50 @@ this.groups[g].sort();
 }
 },_logClosedGroups:function(){
 this.closedgroups=[];
-var _19e=this.el.getChildrenByClassName("closed");
-for(var i=0;i<_19e.length;i++){
-if(_19e[i].firstChild){
-this.closedgroups.push(_19e[i].firstChild.innerHTML);
+var _1a0=this.el.getChildrenByClassName("closed");
+for(var i=0;i<_1a0.length;i++){
+if(_1a0[i].firstChild){
+this.closedgroups.push(_1a0[i].firstChild.innerHTML);
 }
 }
-},_enableBehaviors:function(_1a0){
+},_enableBehaviors:function(_1a2){
 for(var g in this.groups){
-this.groups[g]._enableBehaviors(_1a0);
+this.groups[g]._enableBehaviors(_1a2);
 }
 }});
-jive.spank.roster.RosterGroup=function(_1a2,name,_1a4){
+jive.spank.roster.RosterGroup=function(_1a4,name,_1a6){
 this.name=name;
 this.cleanName=name.replace(/[^A-Za-z0-9]/,"_");
+this._roster=_1a4;
 this.contacts=[];
-if(_1a4){
-this._rebuildContacts(_1a4);
+if(_1a6){
+this._rebuildContacts(_1a6);
 }
-this._roster=_1a2;
 this.id=this.cleanName+"-"+this._roster.el.id;
 this._wrappedClick=null;
 };
 jive.spank.roster.RosterGroup.prototype={_rebuildContacts:function(json){
-for(var _1a6 in json){
-this.contacts.push(new jive.spank.roster.Contact(json[_1a6],this));
+for(var _1a8 in json){
+this.contacts.push(new jive.spank.roster.Contact(json[_1a8],this));
 }
-},addContact:function(_1a7){
-var _1a8=new jive.spank.roster.Contact(_1a7,this);
-this.contacts.push(_1a8);
-var _1a9="group-list-"+this.id;
-if(typeof this._roster.offlines!="undefined"&&_1a8.status=="unavailable"){
-_1a9="group-list-"+this._roster.offlines;
+},addContact:function(_1a9){
+var _1aa=new jive.spank.roster.Contact(_1a9,this);
+this.contacts.push(_1aa);
+var _1ab="group-list-"+this.id;
+if(typeof this._roster.offlines!="undefined"&&_1aa.status=="unavailable"){
+_1ab="group-list-"+this._roster.offlines;
 }
-var _1aa=uniqueColorForString(_1a8.name);
-jive.spank.chat.Template.contact.append(_1a9,{id:_1a8.id,status:_1a8.status,username:_1a8.name,color:_1aa});
+var _1ac=uniqueColorForString(_1aa.name);
+jive.spank.chat.Template.contact.append(_1ab,{id:_1aa.id,status:_1aa.status,username:_1aa.name});
 this.contacts[this.contacts.length-1]._enableBehaviors();
+this.sort();
 },removeContact:function(jid){
-var _1ac=this.getContactByJID(jid);
-if(_1ac){
-_1ac.remove();
+var _1ae=this.getContactByJID(jid);
+if(!_1ae){
+return;
+}
+if(_1ae){
+_1ae.remove();
 }
 },contactIndexByJid:function(jid){
 for(var u=this.contacts.length-1;u>=0;u--){
@@ -19175,23 +19215,23 @@ return u;
 }
 return -1;
 },getContactByJID:function(jid){
-var _1b0=this.contactIndexByJid(jid);
-if(_1b0>=0){
-return this.contacts[_1b0];
+var _1b2=this.contactIndexByJid(jid);
+if(_1b2>=0){
+return this.contacts[_1b2];
 }else{
 return null;
 }
-},render:function(_1b1){
-var _1b2="open";
-var _1b3=this._roster.closedgroups.indexOf(this.name)!=-1;
-if(_1b3){
-_1b2="closed";
+},render:function(_1b3){
+var _1b4="open";
+var _1b5=this._roster.closedgroups.indexOf(this.name)!=-1;
+if(_1b5){
+_1b4="closed";
 }
-var body=this._getMembersHtml(_1b1);
-if(body==""&&_1b1){
+var body=this._getMembersHtml(_1b3);
+if(body==""&&_1b3){
 return "";
 }
-return jive.spank.chat.Template.roster_group.applyTemplate({id:this.id,renderClosed:_1b2,online:"group-isonline",groupName:this.name,users:body,});
+return jive.spank.chat.Template.roster_group.applyTemplate({id:this.id,renderClosed:_1b4,online:"group-isonline",groupName:this.name,users:body});
 },sort:function(){
 jive.spank.roster.RosterGroup.sortContactHTML(this.id);
 },remove:function(){
@@ -19200,71 +19240,84 @@ YAHOO.ext.EventManager.removeListener(elm,"click",this._wrappedClick);
 this._wrappedClick=null;
 elm.remove();
 delete this._roster.groups[this.name];
-},_getMembersHtml:function(_1b6){
-var _1b7="";
+},_getMembersHtml:function(_1b8){
+var _1b9="";
 for(var u=0;u<this.contacts.length;u++){
-if(!_1b6||this.contacts[u].status!="unavailable"){
-_1b7+=this.contacts[u].render();
+if(!_1b8||this.contacts[u].status!="unavailable"){
+_1b9+=this.contacts[u].render();
 }
 }
-return _1b7;
-},_enableBehaviors:function(_1b9){
-if(_1b9==null){
-_1b9=true;
+return _1b9;
+},_enableBehaviors:function(_1bb){
+if(_1bb==null){
+_1bb=true;
 }
-var _1ba=getEl("group-label-"+this.id);
-if(_1ba&&_1ba.dom){
-_1ba.unselectable();
-var _1bb=_1ba.getChildrenByTagName("em")[0];
-_1bb.unselectable();
-if(_1b9){
-this._wrappedClick=_1bb.mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
+var _1bc=getEl("group-label-"+this.id);
+if(_1bc&&_1bc.dom){
+_1bc.unselectable();
+var _1bd=_1bc.getChildrenByTagName("em")[0];
+_1bd.unselectable();
+if(_1bb){
+this._wrappedClick=_1bd.mon("click",jive.spank.roster.RosterGroup.toggleGroupVisListener);
 }
 }
-for(u=this.contacts.length-1;u>=0;u--){
+for(var u=this.contacts.length-1;u>=0;u--){
 this.contacts[u]._enableBehaviors();
 }
 }};
 jive.spank.roster.RosterGroup.toggleGroupVisListener=function(evt){
 var elm=evt.getTarget().parentNode;
-var _1be=elm.parentNode.childNodes.length;
-var _1bf;
-for(var i=_1be-1;i>=0;i--){
+var _1c1=elm.parentNode.childNodes.length;
+var _1c2;
+for(var i=_1c1-1;i>=0;i--){
 if(elm.parentNode.childNodes[i].nodeName=="UL"){
-_1bf=elm.parentNode.childNodes[i];
+_1c2=elm.parentNode.childNodes[i];
 break;
 }
 }
-if(_1bf!=null){
-var _1c1=(_1bf.style.display=="none")?"block":"none";
-for(var j=_1bf.childNodes.length-1;i>=0;i--){
-if(_1bf.childNodes[j].nodeName=="LI"){
-_1bf.childNodes[j].style.display=_1c1;
+if(_1c2!=null){
+var _1c4=(_1c2.style.display=="none")?"block":"none";
+for(var j=_1c2.childNodes.length-1;i>=0;i--){
+if(_1c2.childNodes[j].nodeName=="LI"){
+_1c2.childNodes[j].style.display=_1c4;
 }
 }
-_1bf.style.display=_1c1;
+_1c2.style.display=_1c4;
 elm=getEl(elm);
-elm.removeClass(_1c1=="block"?"closed":"open");
-elm.addClass(_1c1=="block"?"open":"closed");
+elm.removeClass(_1c4=="block"?"closed":"open");
+elm.addClass(_1c4=="block"?"open":"closed");
 }
 };
 jive.spank.roster.RosterGroup.sortContactHTML=function(id){
-var _1c4=getEl("group-list-"+id);
-if(_1c4&&_1c4.dom!=null){
-var _1c5=_1c4.getChildrenByTagName("li");
-var _1c6=_1c5.sortBy(function(line){
+var _1c7=getEl("group-list-"+id);
+if(_1c7&&_1c7.dom!=null){
+var _1c8=_1c7.getChildrenByTagName("li");
+var _1c9=_1c8.sortBy(function(line){
 return line.dom.innerHTML;
 });
-_1c6.each(function(line){
-line.appendTo(_1c4.dom);
-});
+var line=null;
+for(var i=0;i<_1c9.length;i++){
+line=_1c9[i];
+if(line){
+if(line.dom.className.indexOf("even")>-1){
+if(i%2==0){
+line.replaceClass("even","odd");
+}
+}else{
+if(i%2!=0){
+line.replaceClass("odd","even");
+}
+}
+line.appendTo(_1c7.dom);
+}
+}
 }
 };
-jive.spank.roster.Contact=function(_1c9,_1ca){
-this.jid=(typeof _1c9!="string"&&_1c9.getJID)?_1c9.getJID():"fake"+Math.random()+"@jivesoftware.com";
-this.name=(_1c9.getName&&_1c9.getName()?_1c9.getName():this.jid);
-this.status=typeof _1c9!="string"&&_1c9.status?_1c9.status:_1c9.isSubscriptionPending&&_1c9.isSubscriptionPending()?"pending":"unavailable";
-this.group=_1ca;
+jive.spank.roster.Contact=function(_1cd,_1ce){
+this.jid=_1cd.getJID();
+this.name=(_1cd.getName&&_1cd.getName()?_1cd.getName():this.jid);
+this.status=typeof _1cd!="string"&&_1cd.status?_1cd.status:_1cd.isSubscriptionPending&&_1cd.isSubscriptionPending()?"pending":"unavailable";
+this.group=_1ce;
 this.id="roster-contact-"+this.jid+"-"+this.group.cleanName;
 this.currentMessage="";
 this._wrappedClick=null;
@@ -19281,72 +19334,86 @@ YAHOO.ext.EventManager.removeListener(elm,"mouseover",this._wrappedMouseOver);
 delete this._wrappedMouseOver;
 YAHOO.ext.EventManager.removeListener(elm,"mouseout",this._wrappedMouseOut);
 delete this._wrappedMouseOut;
+YAHOO.ext.EventManager.removeListener(elm,"contextmenu",this._wrappedContextMenu);
+delete this._wrappedContextMenu;
 elm.remove();
 this.group.contacts.splice(this.group.contactIndexByJid(this.jid),1);
 delete this.group;
-},changeStatus:function(_1cc,_1cd){
-_1cc=_1cc.toLowerCase();
-getEl(this.id).replaceClass("roster-contact-"+this.status,"roster-contact-"+_1cc);
-var _1ce=(this.status?this.status:"unavailable");
-var _1cf=this.status;
-this.status=_1cc;
-if(_1cf=="unavailable"||_1cc=="unavailable"){
+},changeStatus:function(_1d0,_1d1){
+_1d0=_1d0.toLowerCase();
+var _1d2=getEl(this.id).dom.childNodes[0];
+_1d2.className=_1d2.className.replace("roster-contact-"+this.status,"roster-contact-"+_1d0);
+var _1d3=(this.status?this.status:"unavailable");
+var _1d4=this.status;
+this.status=_1d0;
+if(_1d4=="unavailable"||_1d0=="unavailable"){
 this.group._roster.fireEvent("offlinemoved");
 }
-this.fireEvent("status",_1ce,_1cc);
-this._changeStatusMsg(_1cd);
-return _1ce;
+this.fireEvent("status",_1d3,_1d0);
+this._changeStatusMsg(_1d1);
+return _1d3;
 },render:function(){
-var _1d0=window.uniqueColorForString(this.name);
-return jive.spank.chat.Template.contact.applyTemplate({id:this.id,username:this.name,status:this.status,message:this.currentMessage,color:_1d0});
+return jive.spank.chat.Template.contact.applyTemplate({id:this.id,username:this.name,status:this.status,message:this.currentMessage});
 },_changeStatusMsg:function(msg){
 this.currentMessage=(!msg||msg.strip()==""?"":"- "+msg);
-var _1d2=getEl(this.id+"-msg");
-_1d2.dom.innerHTML=this.currentMessage;
+var _1d6=getEl(this.id+"-msg");
+_1d6.dom.innerHTML=this.currentMessage;
 },_enableBehaviors:function(){
 var elm=getEl(this.id);
 if(elm){
 elm.unselectable();
-this._wrappedClick=elm.mon("click",function(evt){
-var _1d5=getEl(evt.getTarget());
-var _1d6=_1d5.dom.id;
+this._wrappedClick=elm.mon("click",function(id){
+var _1d9=getEl(id);
+var _1da=_1d9.dom.id;
 getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_1d6).className+=" selected";
-});
+document.getElementById(_1da).className+=" selected";
+}.createCallback(this.id));
 var self=this;
 this._wrappedDblClick=elm.mon("dblclick",function(evt){
 evt.stopEvent();
-self.group._roster.fireEvent("contactdblclicked",self.group._roster,self);
-});
-this._wrappedMouseOver=elm.addManagedListener("mouseover",function(evt){
-var _1da=getEl(evt.getTarget());
-var _1db=_1da.dom.id;
-document.getElementById(_1db).className+=" hover";
-});
-this._wrappedMouseOut=elm.addManagedListener("mouseout",function(evt){
+this.group._roster.fireEvent("contactdblclicked",this.group._roster,this);
+},this,true);
+this._wrappedContextMenu=elm.mon("contextmenu",function(evt){
+evt.stopEvent();
+var _1de=evt.getTarget();
+if(_1de.tagName.toLowerCase()!="li"){
+_1de=_1de.parentNode;
+}
+var _1df=_1de.id;
+getEls("ul.jive-roster ul.group-list li").removeClass("selected");
+document.getElementById(_1df).className+=" selected";
+this.group._roster.fireEvent("contactrightclicked",this.group._roster,this,evt.getPageX(),evt.getPageY());
+},this,true);
+this._wrappedMouseOver=elm.addManagedListener("mouseover",function(id){
+var _1e1=getEl(id);
+var _1e2=_1e1.dom.id;
+document.getElementById(_1e2).className+=" hover";
+}.createCallback(this.id));
+this._wrappedMouseOut=elm.addManagedListener("mouseout",function(id){
+var elm=getEl(id);
 elm.removeClass("hover");
-});
+}.createCallback(this.id));
 }
 }});
-jive.spank.roster.Contact.find=function(_1dd,jid,_1df){
-var _1e0=_1dd.groups;
-for(var _1e1 in _1e0){
-if(_1df&&_1e1.replace(/[^0-9A-Za-z]/,"_")!=_1df){
+jive.spank.roster.Contact.find=function(_1e5,jid,_1e7){
+var _1e8=_1e5.groups;
+for(var _1e9 in _1e8){
+if(_1e7&&_1e9.replace(/[^0-9A-Za-z]/,"_")!=_1e7){
 continue;
 }
-var _1e2=_1e0[_1e1].contacts.find(function(_1e3){
-return _1e3.jid==jid;
+var _1ea=_1e8[_1e9].contacts.find(function(_1eb){
+return _1eb.jid==jid;
 });
-if(_1e2){
-return _1e2;
+if(_1ea){
+return _1ea;
 }
 }
 return null;
 };
-jive.spank.chat.Control=function(_1e4,_1e5,elm){
+jive.spank.chat.Control=function(_1ec,_1ed,elm){
 elm.id=elm.id||YAHOO.util.Dom.generateId();
 this.el=getEl(elm.id);
-this.el.appendTo(_1e4);
+this.el.appendTo(_1ec);
 this.el.setDisplayed("inline").unselectable();
 this.events={"click":true,"dblclick":true,"mouseover":true,"mouseout":true,"mousedown":true,"mouseup":true,"mousemove":true};
 this._wrappedListeners={};
@@ -19372,8 +19439,8 @@ self.fireEvent("mouseup",evt);
 this._wrappedListeners["mousemove"]=this.el.addManagedListener("mousemove",function(evt){
 self.fireEvent("mousemove",evt);
 });
-this.title=_1e5;
-this.panel=_1e4;
+this.title=_1ed;
+this.panel=_1ec;
 };
 YAHOO.extend(jive.spank.chat.Control,YAHOO.ext.util.Observable,{fireEvent:function(){
 if(!this.el.hasClass("jive-disabled")){
@@ -19381,8 +19448,8 @@ jive.spank.chat.Control.superclass.fireEvent.call(this,arguments[0],self,argumen
 }
 },remove:function(){
 this.purgeListeners();
-for(var _1ef in this.events){
-YAHOO.ext.EventManager.removeListener(_1ef,this.el,this._wrappedListeners[_1ef]);
+for(var _1f7 in this.events){
+YAHOO.ext.EventManager.removeListener(_1f7,this.el,this._wrappedListeners[_1f7]);
 }
 this._wrappedListeners=null;
 this.el.remove();
@@ -19393,138 +19460,136 @@ this.el.addClass("jive-disabled");
 },toggleEnabled:function(){
 this.el.toggleClass("jive-disabled");
 }});
-jive.spank.chat.Control.add=function(_1f0,_1f1,_1f2){
+jive.spank.chat.Control.add=function(_1f8,_1f9,_1fa){
 var body=document.getElementsByTagName("body")[0];
-if(typeof _1f2!="function"&&_1f2.elmId!=null){
-var _1f4=$(_1f2.elmId);
-var elm=_1f4.cloneNode(true);
-elm.id="jivectrl-"+_1f4.id;
+if(typeof _1fa!="function"&&_1fa.elmId!=null){
+var _1fc=$(_1fa.elmId);
+var elm=_1fc.cloneNode(true);
+elm.id="jivectrl-"+_1fc.id;
 elm.style.display="none";
 body.appendChild(elm);
 }else{
-if(typeof _1f2!="function"&&_1f2.imgSrc!=null){
+if(typeof _1fa!="function"&&_1fa.imgSrc!=null){
 var elm=document.createElement("a");
 elm.appendChild(document.createElement("img"));
-var _1f6=elm.id=YAHOO.util.Dom.generateId();
+var _1fe=elm.id=YAHOO.util.Dom.generateId();
 elm.className="imgbtn";
-elm.firstChild.setAttribute("src",_1f2.imgSrc);
-if(_1f2.tooltip){
-elm.setAttribute("title",_1f2.tooltip);
+elm.firstChild.setAttribute("src",_1fa.imgSrc);
+if(_1fa.tooltip){
+elm.setAttribute("title",_1fa.tooltip);
 }
 elm.setAttribute("href","#");
 body.appendChild(elm);
 }else{
-var _1f7="autobtn";
-var _1f6=YAHOO.util.Dom.generateId();
-if(typeof _1f2!="function"&&_1f2.className!=null){
-_1f7=_1f2.className;
+var _1ff="autobtn";
+var _1fe=YAHOO.util.Dom.generateId();
+if(typeof _1fa!="function"&&_1fa.className!=null){
+_1ff=_1fa.className;
 }
-jive.spank.chat.Template.control_btn.append(body,{id:_1f6,cls:_1f7,text:_1f1});
+jive.spank.chat.Template.control_btn.append(body,{id:_1fe,cls:_1ff,text:_1f9});
 }
 }
-if(typeof _1f2!="function"&&_1f2.tooltip){
-elm.setAttribute("title",_1f2.tooltip);
+if(typeof _1fa!="function"&&_1fa.tooltip){
+elm.setAttribute("title",_1fa.tooltip);
 }
-var _1f8=new jive.spank.chat.Control(getEl(_1f0),_1f1,elm);
-if(typeof _1f2=="function"){
-_1f8.addListener("click",_1f2);
+var _200=new jive.spank.chat.Control(getEl(_1f8),_1f9,elm);
+if(typeof _1fa=="function"){
+_200.addListener("click",_1fa);
 }else{
-for(var _1f9 in _1f2.events){
-_1f8.addListener(_1f9,_1f2.events[_1f9]);
+for(var _201 in _1fa.events){
+_200.addListener(_201,_1fa.events[_201]);
 }
 }
-return _1f8;
+return _200;
 };
-jive.spank.chat.CustomMessage=function(type,_1fb){
-var _1fc=new YAHOO.ext.DomHelper.Template(this.finishers[type].template.join(""));
-this.callback=this.finishers[type].callback;
-this.destroy=this.finishers[type].destroy;
-this.events=this.finishers[type].events;
-_1fb.id=_1fb.id||YAHOO.util.Dom.generateId();
+jive.spank.chat.MucInvitation=function(_202){
+var _203=new YAHOO.ext.DomHelper.Template(this.template.join(""));
+this.onDestroy=[];
+_202.id=_202.id||YAHOO.util.Dom.generateId();
 this.el=document.createElement("div");
-this.el.innerHTML=_1fc.applyTemplate(_1fb);
-this.el.id=_1fb.id;
-this.config=_1fb;
+this.el.innerHTML=_203.applyTemplate(_202);
+this.el.id=_202.id;
+this.config=_202;
 };
-YAHOO.extend(jive.spank.chat.CustomMessage,YAHOO.ext.util.Observable,{finishers:{mucinvitation:{events:{"accepted":true,"declined":true},callback:function(_1fd){
-var _1fe=this.el.id;
-var _1ff=getEl(_1fe+"-room").dom.innerHTML;
-var _200=getEl(_1fe+"-inviter").dom.innerHTML;
-getEl(_1fe+"-join").addListener("click",function(){
-this.fireEvent("accepted",_1fd,this.config);
-getEl(_1fe+"-message").dom.innerHTML="You accepted "+_200+"'s invitation to \""+_1ff+"\".";
+YAHOO.extend(jive.spank.chat.MucInvitation,YAHOO.ext.util.Observable,{events:{"accepted":true,"declined":true},callback:function(_204){
+var _205=this.el.id;
+var _206=getEl(_205+"-room").dom.innerHTML;
+var _207=getEl(_205+"-inviter").dom.innerHTML;
+var join=getEl(_205+"-join");
+var _209=join.mon("click",function(_20a,join,_20c){
+if(join.id!=_20c.getTarget().id){
+return;
+}
+this.fireEvent("accepted",_204,this.config);
+getEl(_20a+"-message").dom.innerHTML="You accepted "+_207+"'s invitation to \""+_206+"\".";
 this.destroy();
-}.bind(this));
-getEl(_1fe+"-decline").addListener("click",function(){
-this.fireEvent("declined",_1fd,this.config);
-getEl(_1fe+"-message").dom.innerHTML="You declined "+_200+"'s invitation to \""+_1ff+"\".";
+}.bind(this,_205,join));
+this.onDestroy.push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,[join,"click",_209]));
+var _20d=getEl(_205+"-decline");
+_209=_20d.mon("click",function(_20e,_20f){
+this.fireEvent("declined",_204,this.config);
+getEl(_20e+"-message").dom.innerHTML="You declined "+_207+"'s invitation to \""+_206+"\".";
 this.destroy();
-}.bind(this));
+}.bind(this,_205));
+this.onDestroy.push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,[_20d,"click",_209]));
 },destroy:function(){
-var _201=this.el.id;
-getEl(_201+"-join").removeAllListeners();
-getEl(_201+"-decline").removeAllListeners();
-getEl(_201+"-controls").remove();
+var _210=this.el.id;
+this.onDestroy.each(function(func){
+func();
+});
+getEl(_210+"-controls").remove();
 this.purgeListeners();
 delete this.config;
-},template:["<div class=\"jive-mucinvite\">","<p id=\"{id}-message\"><span id=\"{id}-inviter\">{name}</span> has invited you to","join the conference \"<span id=\"{id}-room\">{chatname}</span>\".</p>","<div id=\"{id}-controls\"><a id=\"{id}-join\" href=\"#\">Accept</a>","<a id=\"{id}-decline\" href=\"#\">Decline</a></div>","<span id=\"{id}-jid\" style=\"display: none;\">{jid}</span>","</div>"]}}});
+},template:["<div id=\"{id}-mucinvite\" class=\"jive-mucinvite\">","<p id=\"{id}-message\"><span id=\"{id}-inviter\">{name}</span> has invited you to ","join the conference \"<span id=\"{id}-room\">{chatname}</span>\".</p>","<div id=\"{id}-controls\"><a id=\"{id}-join\" href=\"#\">Accept</a>","<a id=\"{id}-decline\" href=\"#\">Decline</a></div>","</div>"]});
 if(window.jive_enable_autocomplete){
-jive.spank.AutoComplete=function(_202,_203,_204,_205){
-jive.spank.AutoComplete.superclass.constructor.call(this,_202,_203,_204,_205);
+jive.spank.AutoComplete=function(_212,_213,_214,_215){
+jive.spank.AutoComplete.superclass.constructor.call(this,_212,_213,_214,_215);
 };
 YAHOO.extend(jive.spank.AutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.AutoComplete.prototype._populateList=function(_206,_207,self){
-self.autoHighlight=(_207[0][0].indexOf(_206)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_206,_207,self);
+jive.spank.AutoComplete.prototype._populateList=function(_216,_217,self){
+self.autoHighlight=(_217[0][0].indexOf(_216)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_216,_217,self);
 };
-jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_20a){
-var _20b=v.keyCode;
-switch(_20b){
+jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_21a){
+var _21b=v.keyCode;
+switch(_21b){
 case 9:
-if(_20a.delimChar&&(_20a._nKeyCode!=_20b)){
-if(_20a._bContainerOpen){
+if(_21a.delimChar&&(_21a._nKeyCode!=_21b)){
+if(_21a._bContainerOpen){
 YAHOO.util.Event.stopEvent(v);
 }
 }
-if(_20a._oCurItem){
-_20a._selectItem(_20a._oCurItem);
+if(_21a._oCurItem){
+_21a._selectItem(_21a._oCurItem);
 }else{
-_20a._toggleContainer(false);
+_21a._toggleContainer(false);
 }
-break;
-case 13:
-if(_20a._nKeyCode!=_20b){
-if(_20a._bContainerOpen){
-YAHOO.util.Event.stopEvent(v);
-}
-}
-_20a._toggleContainer(false);
 break;
 case 27:
-_20a._toggleContainer(false);
+_21a._toggleContainer(false);
 return;
 case 39:
-_20a._jumpSelection();
+_21a._jumpSelection();
 break;
 case 38:
 YAHOO.util.Event.stopEvent(v);
-_20a._moveSelection(_20b);
+_21a._moveSelection(_21b);
 break;
 case 40:
 YAHOO.util.Event.stopEvent(v);
-_20a._moveSelection(_20b);
+_21a._moveSelection(_21b);
 break;
 default:
 break;
 }
 };
-jive.spank.FlatAutoComplete=function(_20c,_20d,_20e,_20f){
-jive.spank.FlatAutoComplete.superclass.constructor.call(this,_20c,_20d,_20e,_20f);
+jive.spank.FlatAutoComplete=function(_21c,_21d,_21e,_21f){
+jive.spank.FlatAutoComplete.superclass.constructor.call(this,_21c,_21d,_21e,_21f);
 };
 YAHOO.extend(jive.spank.FlatAutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.FlatAutoComplete.prototype._populateList=function(_210,_211,self){
-self.autoHighlight=(_211[0]&&_211[0].indexOf(_210)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_210,_211,self);
+jive.spank.FlatAutoComplete.prototype._populateList=function(_220,_221,self){
+self.autoHighlight=(_221[0]&&_221[0].indexOf(_220)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_220,_221,self);
 };
 jive.spank.FlatAutoComplete.prototype._updateValue=function(item){
 item._sResultKey=item._oResultData;
@@ -19533,23 +19598,23 @@ jive.spank.AutoComplete.superclass._updateValue.call(this,item);
 }else{
 jive.spank.AutoComplete={};
 }
-jive.spank.Spinner={show:function(_214){
-if(_214==null){
-_214={};
+jive.spank.Spinner={show:function(_224){
+if(_224==null){
+_224={};
 }
 if(!this.isShowing){
-var x=_214.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
-var y=_214.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
-var text=_214.text||"Loading...";
+var x=_224.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
+var y=_224.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
+var text=_224.text||"Loading...";
 this.template.append(document.body,{text:text});
-var _218=getEl("jive-spinner");
-if(_214.el&&_214.position){
-_218.alignTo(_214.el,_214.position);
+var _228=getEl("jive-spinner");
+if(_224.el&&_224.position){
+_228.alignTo(_224.el,_224.position);
 }else{
-_218.moveTo(x,y);
+_228.moveTo(x,y);
 }
-_218.setStyle("z-index",20000);
-_218.show();
+_228.setStyle("z-index",20000);
+_228.show();
 this.isShowing=true;
 }
 },isShowing:false,hide:function(){
@@ -19558,26 +19623,26 @@ getEl("jive-spinner").remove();
 this.isShowing=false;
 }
 },template:new YAHOO.ext.DomHelper.Template("<div style=\"visibility: hidden;\" id=\"jive-spinner\">"+"<img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>")};
-jive.spank.chat.Filter=function(name,_21a,_21b){
-this.filterPattern=_21a;
-this.filterReplacement=_21b;
+jive.spank.chat.Filter=function(name,_22a,_22b){
+this.filterPattern=_22a;
+this.filterReplacement=_22b;
 this.name=name;
 };
-jive.spank.chat.Filter.prototype.apply=function(_21c){
-return _21c.replace(this.filterPattern,this.filterReplacement);
+jive.spank.chat.Filter.prototype.apply=function(_22c){
+return _22c.replace(this.filterPattern,this.filterReplacement);
 };
-jive.spank.chat.Filter.applyAll=function(_21d){
-jive.spank.chat.Filter.registeredFilters.each(function(_21e){
-_21d=_21e.apply(_21d);
+jive.spank.chat.Filter.applyAll=function(_22d){
+jive.spank.chat.Filter.registeredFilters.each(function(_22e){
+_22d=_22e.apply(_22d);
 });
-return _21d;
+return _22d;
 };
-jive.spank.chat.Filter.add=function(name,_220,_221){
-jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_220,_221));
+jive.spank.chat.Filter.add=function(name,_230,_231){
+jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_230,_231));
 };
-jive.spank.chat.Filter.remove=function(_222){
+jive.spank.chat.Filter.remove=function(_232){
 jive.spank.chat.Filter.registeredFilters.each(function(ftr,i){
-if(ftr.name==_222){
+if(ftr.name==_232){
 delete jive.spank.chat.Filter.registeredFilters[i];
 throw $break;
 }
@@ -19594,18 +19659,18 @@ jive.spank.notifier.origTitle=null;
 jive.spank.notifier.titleMsg="";
 jive.spank.notifier.titleInterval=null;
 jive.spank.notifier.countNewMsgs=function(){
-var _226;
-var _227="";
-var _228=0;
-for(var _229 in jive.spank.chat.ChatWindow.currentWindow){
-_226=jive.spank.chat.ChatWindow.currentWindow[_229];
-for(var _22a in _226.newMessages){
-_228+=_226.newMessages[_22a];
+var _236;
+var _237="";
+var _238=0;
+for(var _239 in jive.spank.chat.ChatWindow.currentWindow){
+_236=jive.spank.chat.ChatWindow.currentWindow[_239];
+for(var _23a in _236.newMessages){
+_238+=_236.newMessages[_23a];
 }
 }
-return _228;
+return _238;
 };
-jive.spank.notifier.doTitleNotify=function(_22b){
+jive.spank.notifier.doTitleNotify=function(_23b){
 var ct=jive.spank.notifier.countNewMsgs();
 if(jive.spank.notifier.titleInterval){
 window.clearTimeout(jive.spank.notifier.titleInterval);
@@ -19629,15 +19694,15 @@ jive.spank.notifier.rotateTitle=function(){
 document.title=(document.title==jive.spank.notifier.titleMsg)?jive.spank.notifier.origTitle:jive.spank.notifier.titleMsg;
 jive.spank.notifier.titleInterval=window.setTimeout(jive.spank.notifier.rotateTitle,2000);
 };
-jive.spank.chat.Template={add_contact:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody addcontact\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"{id}-addusername\">Username:</label>","</td><td width=\"65%\">","<input type=\"text\" id=\"{id}-addusername\" value=\"\" />","</td></tr>","<tr><td><label for=\"{id}-addnickname\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-addnickname\" value=\"\" /></td></tr>","<tr><td><label for=\"{id}-addcontact-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-addcontact-group\" value=\"\" />","</td></tr>","<tr><td colspan=\"2\" align=\"center\" class=\"masterctrl\">","<input type=\"button\" class=\"btn createcontact\" id=\"{id}-createcontact\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddcontact\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),add_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"25%\" rowspan=\"2\">","</td><td width=\"75%\">","Enter new group name:<br/>","<input type=\"text\" id=\"{id}-addgroupname\" value=\"\" />","</td></tr>","<tr><td>","<input type=\"button\" class=\"btn creategroup\" id=\"{id}-creategroup\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddgroup\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),chat_toppane:new YAHOO.ext.DomHelper.Template("<div id=\"{bodyId}-topchat\" class=\"jive-chat-toppane\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4></h4>"+"<p id=\"{bodyId}-time\">Time: <span></span></p>"+"<div id=\"{bodyId}-controls\" class=\"jive-ctrlbar-topchat\"></div>"+"</div>"),contact:new YAHOO.ext.DomHelper.Template("<li id=\"{id}\" class=\"roster-contact-{status}\" style=\"color:{color};\">{username}<span id=\"{id}-msg\" class=\"msg\">{message}</span></li>"),control_btn:new YAHOO.ext.DomHelper.Template("<a href=\"#\" class=\"jive-control-btn {cls}\" id=\"{id}\">{text}</a>"),control_panel:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-controls\" class=\"jive-ctrlbar\"></div>"),create_account:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><div class=\"{id}-name-label\">Username:</div></td>","<td><input type=\"text\" id=\"{id}-name\" /></td></tr>","<td><div class=\"{id}-passwd-label\">Password:</div></td>","<td><input type=\"password\" id=\"{id}-passwd\" /></td></tr>","<td><div class=\"{id}-confirm-label\">Confirm Password:</div></td>","<td><input type=\"password\" id=\"{id}-confirm\" /></td></tr>","</table>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-submit\" value=\"Submit\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),dialog:new YAHOO.ext.DomHelper.Template("<div class=\"ydlg-hd\"><h1>{windowTitle}</h1></div>"+"<div id=\"{bodyId}\" class=\"ydlg-bd\">"+"<div id=\"{bodyId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"</div>"),message:new YAHOO.ext.DomHelper.Template("<div class=\"{type}-message from-{from} {mentioned} {consecutive} {action} {msgclass}\"><span class=\"meta\" style=\"color: {color}\"><em>({time})</em>"+"&nbsp;{from}: </span><span class=\"message-content\">{message}</span></div>"),muc_chooser_top:new YAHOO.ext.DomHelper.Template("<div class=\"dhead chooseconf\">Create or join a conference room</div>"+"<div id=\"{tabId}-confcontrols\" class=\"dbody chooseconf\">"+"<div id=\"{tabId}-createconf\" class=\"jive-invite-control\">Create a Conference</div>"+"<div id=\"{tabId}-refresh\" class=\"jive-invite-control\">Refresh List</div>"+"</div>"),muc_controls:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"+"<div class=\"muc-ctrl-frame\">"+"<div id=\"{jid}-changenick\" class=\"jive-invite-control\">Change nickname</div>"+"<div id=\"{jid}-control\" class=\"jive-invite-control\">Invite contact "+"<img align=\"absmiddle\" src=\"resources/images/menutri.gif\" height=\"4\" width=\"7\" alt=\"\" /></div>"+"</div>"),muc_subject:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"),mucchooser:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-roomgrid\"></div>"+"</div>"),muccreation:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roomname\">Room Name:</label></td>","<td><input type=\"text\" id=\"{id}-roomname\" /></td></tr>","<tr><td><label for=\"{id}-roomtopic\">Room Topic:</label></td>","<td><input type=\"text\" id=\"{id}-roomtopic\" /></td></tr>","<tr><td colspan=\"2\"><input type=\"checkbox\" id=\"{id}-permanent\" />","<label for=\"{id}-permanent\"> Make permanent</label></td></tr></table>","<div class=\"fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-private\" />"," Make private</span></p>","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roompw\" class=\"disabled\">Password:</label></td>","<td><input type=\"password\" id=\"{id}-roompw\" disabled=\"disabled\" /></td></tr>","<td><label for=\"{id}-roomconfirm\" class=\"disabled\">Confirm Password:</label></td>","<td><input type=\"password\" id=\"{id}-roomconfirm\" disabled=\"disabled\" /></td></tr>","</table></div>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-createroom\" value=\"Create\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),mucinvitemenu:new YAHOO.ext.DomHelper.Template("<div id=\"{jid}-container\" class=\"jive-invite-menu\">"+"<input id=\"{jid}-autocomp\" type=\"text\">"+"<div id=\"{jid}-autocomp-menu\"></div>"+"</div>"),mucpassword:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Enter password:</p>","<p align=\"center\"><input type=\"password\" class=\"btn\" id=\"{id}-passwd\" value=\"\" /></p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-sendsecret\" value=\"Join\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),muctab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-controls\" class=\"jive-muc-ctrl\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<div id=\"{tabId}-sidebarlayout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-sidebar-header\" class=\"jive-muc-sidebar-header\"></div>"+"<div id=\"{tabId}-occupants\" class=\"jive-muc-occupants\"></div>"+"<div id=\"{tabId}-userstatus\" class=\"jive-muc-status\"></div>"+"</div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),remove_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Are you sure you want to remove '{name}'?</p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-remove\" value=\"Yes\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"No\" /></p>","</div>"].join("")),rename:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<div style=\"text-align: center; padding: 8px;\">Rename to: ","<input type=\"text\" id=\"{id}-name\" value=\"\" /></div>","<div style=\"text-align: center;\">","<input type=\"button\" class=\"btn\" id=\"{id}-rename\" value=\"OK\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-close\" value=\"Cancel\" />","</div>","</div>"].join("")),roster:new YAHOO.ext.DomHelper.Template("<ul id=\"{rosterId}\" class=\"jive-roster\">{groups}</ul>"),roster_group:new YAHOO.ext.DomHelper.Template("<li id=\"group-{id}\" class=\"group\">"+"<span id=\"group-label-{id}\" class=\"group-label {online} {renderClosed}\"><em>{groupName}</em></span>"+"<ul id=\"group-list-{id}\" class=\"group-list\">{users}</ul>"+"</li>"),rostertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-user\" class=\"jive-controlpanel\"></div>"+"<div id=\"{tabId}-resources\"></div>"+"</div>"),spinnertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-spinner\" class=\"ylayout-inactive-content ydlg-tab jive-spinnertab\">"+"<div id=\"jive-spinner\"><img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>"+"</div>"),start_chat:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\" style=\"text-align: center;\">","<p>Enter an address:</p>","<p><input type=\"text\" id=\"{id}-jid\" /></p>","<p style=\"margin-top: 4px;\"><input type=\"button\" class=\"btn\" id=\"{id}-startbtn\" value=\"Start Chat\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),statusMessage:new YAHOO.ext.DomHelper.Template("<div class=\"status-message {customClass}\">{message}</div>"),status_panel:new YAHOO.ext.DomHelper.Template("<div class=\"jive-userstatus\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4>{username}</h4>"+"<p id=\"{bodyId}-status\" class=\"jive-mystatus\">"+"<a href=\"#\" id=\"{bodyId}-statusmenu-ctrl\" class=\"roster-contact-{statusName}\"><span>{status}</span></a></p>"+"</div>"),sub_request:new YAHOO.ext.DomHelper.Template(["<div class=\"dhead\">{nick} ({jid}) wants to add you as a contact.</div>","<div class=\"dbody fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-add\" checked=\"checked\" />"," Add user to your contacts too</span></p>","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"addusername\">Username:</label>","</td><td id=\"{id}-jid\" width=\"65%\">{jid}</td></tr>","<tr><td><label for=\"{id}-nick\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-nick\" value=\"{nick}\" /></td></tr>","<tr><td><label for=\"{id}-subrequest-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-subrequest-group\" value=\"\" />","</td></tr></table></div>","<p align=\"center\">","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-acceptsubrequest\" value=\"Allow\" />","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-denysubrequest\" value=\"Deny\" />","</p>"].join("")),tab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),userpane:new YAHOO.ext.DomHelper.Template("<span id=\"{id}-message\">{message}</span>"),userpane_loggedin:new YAHOO.ext.DomHelper.Template("<input class=\"jive-muc-username\" type=\"text\" id=\"{id}-uname\" value=\"{uname}\"></input>"+"<div class=\"jive-muc-presence-control {presence}\" id=\"{id}-presencecontrol\">{presence}</div>"),userpane_changebtn:new YAHOO.ext.DomHelper.Template("<a id=\"{id}-changenickbtn\" href=\"javascript:void(0);\">Change Nickname</a>"),userstatus:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>")};
+jive.spank.chat.Template={add_contact:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody addcontact\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"{id}-addusername\">Username:</label>","</td><td width=\"65%\">","<input type=\"text\" id=\"{id}-addusername\" value=\"\" />","</td></tr>","<tr><td><label for=\"{id}-addnickname\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-addnickname\" value=\"\" /></td></tr>","<tr><td><label for=\"{id}-addcontact-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-addcontact-group\" value=\"\" />","</td></tr>","<tr><td colspan=\"2\" align=\"center\" class=\"masterctrl\">","<input type=\"button\" class=\"btn createcontact\" id=\"{id}-createcontact\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddcontact\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),add_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"25%\" rowspan=\"2\">","</td><td width=\"75%\">","Enter new group name:<br/>","<input type=\"text\" id=\"{id}-addgroupname\" value=\"\" />","</td></tr>","<tr><td>","<input type=\"button\" class=\"btn creategroup\" id=\"{id}-creategroup\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddgroup\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),chat_toppane:new YAHOO.ext.DomHelper.Template("<div id=\"{bodyId}-topchat\" class=\"jive-chat-toppane\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4></h4>"+"<p id=\"{bodyId}-time\">Time: <span></span></p>"+"<div id=\"{bodyId}-controls\" class=\"jive-ctrlbar-topchat\"></div>"+"</div>"),contact:new YAHOO.ext.DomHelper.Template("<li id=\"{id}\" class=\"even\"><span class=\"roster-contact-{status} username\">{username}</span><span id=\"{id}-msg\" class=\"msg\">{message}</span></li>"),control_btn:new YAHOO.ext.DomHelper.Template("<a href=\"#\" class=\"jive-control-btn {cls}\" id=\"{id}\">{text}</a>"),control_panel:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-controls\" class=\"jive-ctrlbar\"></div>"),create_account:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><div class=\"{id}-name-label\">Username:</div></td>","<td><input type=\"text\" id=\"{id}-name\" /></td></tr>","<td><div class=\"{id}-passwd-label\">Password:</div></td>","<td><input type=\"password\" id=\"{id}-passwd\" /></td></tr>","<td><div class=\"{id}-confirm-label\">Confirm Password:</div></td>","<td><input type=\"password\" id=\"{id}-confirm\" /></td></tr>","</table>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-submit\" value=\"Submit\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),dialog:new YAHOO.ext.DomHelper.Template("<div class=\"ydlg-hd\"><h1>{windowTitle}</h1></div>"+"<div id=\"{bodyId}\" class=\"ydlg-bd\">"+"<div id=\"{bodyId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"</div>"+"<div class=\"ydlg-ft\"><span class=\"powered-by\">Powered By <a href=\"http://www.jivesoftware.com\" title=\"Visit Jive Software\">Jive Software</a></span></div>"),message:new YAHOO.ext.DomHelper.Template("<div class=\"{type}-message from-{from} {mentioned} {consecutive} {action} {msgclass}\"><span class=\"meta\" style=\"color: {color}\"><em>({time})</em>"+"&nbsp;{from}: </span><span class=\"message-content\">{message}</span></div>"),muc_chooser_top:new YAHOO.ext.DomHelper.Template("<div class=\"dhead chooseconf\">Create or join a conference room</div>"+"<div id=\"{tabId}-confcontrols\" class=\"dbody chooseconf\">"+"<div id=\"{tabId}-createconf\" class=\"jive-invite-control\">Create a Conference</div>"+"<div id=\"{tabId}-refresh\" class=\"jive-invite-control\">Refresh List</div>"+"</div>"),muc_controls:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"+"<div class=\"muc-ctrl-frame\">"+"<div id=\"{jid}-changenick\" class=\"jive-invite-control\">Change nickname</div>"+"<div id=\"{jid}-control\" class=\"jive-invite-control\">Invite contact "+"<img align=\"absmiddle\" src=\"resources/images/menutri.gif\" height=\"4\" width=\"7\" alt=\"\" /></div>"+"</div>"),muc_subject:new YAHOO.ext.DomHelper.Template("<p><span id=\"jive-tab-{jid}-subject\"></span></p>"),mucchooser:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-roomgrid\"></div>"+"</div>"),muccreation:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roomname\">Room Name:</label></td>","<td><input type=\"text\" id=\"{id}-roomname\" /></td></tr>","<tr><td><label for=\"{id}-roomtopic\">Room Topic:</label></td>","<td><input type=\"text\" id=\"{id}-roomtopic\" /></td></tr>","<tr><td colspan=\"2\"><input type=\"checkbox\" id=\"{id}-permanent\" />","<label for=\"{id}-permanent\"> Make permanent</label></td></tr></table>","<div class=\"fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-private\" />"," Make private</span></p>","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roompw\" class=\"disabled\">Password:</label></td>","<td><input type=\"password\" id=\"{id}-roompw\" disabled=\"disabled\" /></td></tr>","<td><label for=\"{id}-roomconfirm\" class=\"disabled\">Confirm Password:</label></td>","<td><input type=\"password\" id=\"{id}-roomconfirm\" disabled=\"disabled\" /></td></tr>","</table></div>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-createroom\" value=\"Create\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),mucinvitemenu:new YAHOO.ext.DomHelper.Template("<div id=\"{jid}-container\" class=\"jive-invite-menu\">"+"<input id=\"{jid}-autocomp\" type=\"text\">"+"<div id=\"{jid}-autocomp-menu\"></div>"+"</div>"),mucpassword:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Enter password:</p>","<p align=\"center\"><input type=\"password\" class=\"btn\" id=\"{id}-passwd\" value=\"\" /></p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-sendsecret\" value=\"Join\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),muctab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-controls\" class=\"jive-muc-ctrl\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<div id=\"{tabId}-sidebarlayout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-sidebar-header\" class=\"jive-muc-sidebar-header\"></div>"+"<div id=\"{tabId}-occupants\" class=\"jive-muc-occupants\"></div>"+"<div id=\"{tabId}-userstatus\" class=\"jive-muc-status\"></div>"+"</div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),remove_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Are you sure you want to remove '{name}'?</p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-remove\" value=\"Yes\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"No\" /></p>","</div>"].join("")),rename:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<div style=\"text-align: center; padding: 8px;\">Rename to: ","<input type=\"text\" id=\"{id}-name\" value=\"\" /></div>","<div style=\"text-align: center;\">","<input type=\"button\" class=\"btn\" id=\"{id}-rename\" value=\"OK\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-close\" value=\"Cancel\" />","</div>","</div>"].join("")),roster:new YAHOO.ext.DomHelper.Template("<ul id=\"{rosterId}\" class=\"jive-roster\">{groups}</ul>"),roster_group:new YAHOO.ext.DomHelper.Template("<li id=\"group-{id}\" class=\"group\">"+"<span id=\"group-label-{id}\" class=\"group-label {online} {renderClosed}\"><em>{groupName}</em></span>"+"<ul id=\"group-list-{id}\" class=\"group-list\">{users}</ul>"+"</li>"),rostertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-user\" class=\"jive-controlpanel\"></div>"+"<div id=\"{tabId}-resources\"></div>"+"</div>"),spinnertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-spinner\" class=\"ylayout-inactive-content ydlg-tab jive-spinnertab\">"+"<div id=\"jive-spinner\"><img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>"+"</div>"),start_chat:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\" style=\"text-align: center;\">","<p>Enter an address:</p>","<p><input type=\"text\" id=\"{id}-jid\" /></p>","<p style=\"margin-top: 4px;\"><input type=\"button\" class=\"btn\" id=\"{id}-startbtn\" value=\"Start Chat\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),statusMessage:new YAHOO.ext.DomHelper.Template("<div class=\"status-message {customClass}\">{message}</div>"),status_panel:new YAHOO.ext.DomHelper.Template("<div class=\"jive-userstatus\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4>{username}</h4>"+"<p id=\"{bodyId}-status\" class=\"jive-mystatus\">"+"<a href=\"#\" id=\"{bodyId}-statusmenu-ctrl\" class=\"roster-contact-{statusName}\"><span>{status}</span></a></p>"+"</div>"),sub_request:new YAHOO.ext.DomHelper.Template(["<div class=\"dhead\">{nick} ({jid}) wants to add you as a contact.</div>","<div class=\"dbody fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-add\" checked=\"checked\" />"," Add user to your contacts too</span></p>","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"addusername\">Username:</label>","</td><td id=\"{id}-jid\" width=\"65%\">{jid}</td></tr>","<tr><td><label for=\"{id}-nick\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-nick\" value=\"{nick}\" /></td></tr>","<tr><td><label for=\"{id}-subrequest-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-subrequest-group\" value=\"\" />","</td></tr></table></div>","<p align=\"center\">","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-acceptsubrequest\" value=\"Allow\" />","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-denysubrequest\" value=\"Deny\" />","</p>"].join("")),tab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),userpane:new YAHOO.ext.DomHelper.Template("<div id=\"{id}-message\">{message}</div>"),userpane_loggedin:new YAHOO.ext.DomHelper.Template("<div>"+"<input class=\"jive-muc-username\" type=\"text\" id=\"{id}-uname\" value=\"{uname}\"></input>"+"<a class=\"jive-muc-username-edit\" id=\"{id}-uname-edit\">change</a>"+"</div>"+"<div class=\"jive-muc-presence-control {presence}\" id=\"{id}-presencecontrol\">{presence}</div>"),userpane_changebtn:new YAHOO.ext.DomHelper.Template("<a id=\"{id}-changenickbtn\" href=\"javascript:void(0);\">Change Nickname</a>"),userstatus:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>")};
 if(window.jive_enable_grid){
-YAHOO.ext.grid.SpankJSONDataModel=function(_22d){
+YAHOO.ext.grid.SpankJSONDataModel=function(_23d){
 YAHOO.ext.grid.SpankJSONDataModel.superclass.constructor.call(this,YAHOO.ext.grid.LoadableDataModel.JSON);
-this.schema=_22d;
+this.schema=_23d;
 };
-YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_22f,_230){
-var _231=this.schema.id;
-var _232=this.schema.fields;
+YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_23f,_240){
+var _241=this.schema.id;
+var _242=this.schema.fields;
 try{
 if(this.schema.totalProperty){
 var v=parseInt(eval("data."+this.schema.totalProperty),10);
@@ -19645,7 +19710,7 @@ if(!isNaN(v)){
 this.totalCount=v;
 }
 }
-var _234=[];
+var _244=[];
 if(this.schema.root){
 var root=eval("data."+this.schema.root);
 }else{
@@ -19653,52 +19718,52 @@ var root=data;
 }
 for(var i in root){
 var node=root[i];
-var _238=[];
-_238.node=node;
-_238.id=(typeof node[_231]!="undefined"&&node[_231]!==""?node[_231]:String(i));
-for(var j=0;j<_232.length;j++){
-var val=node[_232[j]];
+var _248=[];
+_248.node=node;
+_248.id=(typeof node[_241]!="undefined"&&node[_241]!==""?node[_241]:String(i));
+for(var j=0;j<_242.length;j++){
+var val=node[_242[j]];
 if(typeof val=="undefined"){
 val="";
 }
 if(this.preprocessors[j]){
 val=this.preprocessors[j](val);
 }
-_238.push(val);
+_248.push(val);
 }
-_234.push(_238);
+_244.push(_248);
 }
-if(_230!==true){
+if(_240!==true){
 this.removeAll();
 }
-this.addRows(_234);
-if(typeof _22f=="function"){
-_22f(this,true);
+this.addRows(_244);
+if(typeof _23f=="function"){
+_23f(this,true);
 }
 this.fireLoadEvent();
 }
 catch(e){
 this.fireLoadException(e,null);
-if(typeof _22f=="function"){
-_22f(this,false);
+if(typeof _23f=="function"){
+_23f(this,false);
 }
 }
-},getRowId:function(_23b){
-return this.data[_23b].id;
+},getRowId:function(_24b){
+return this.data[_24b].id;
 }});
 }
-YAHOO.ext.Element.prototype.getParentByClass=function(_23c,_23d){
-if(_23d){
-_23d=_23d.toLowerCase();
+YAHOO.ext.Element.prototype.getParentByClass=function(_24c,_24d){
+if(_24d){
+_24d=_24d.toLowerCase();
 }
 function isMatch(el){
 if(!el){
 return false;
 }
-if(_23c&&!YAHOO.util.Dom.hasClass(el,_23c)){
+if(_24c&&!YAHOO.util.Dom.hasClass(el,_24c)){
 return false;
 }
-return !(_23d&&el.tagName.toLowerCase()!=_23d);
+return !(_24d&&el.tagName.toLowerCase()!=_24d);
 }
 var t=this.dom;
 if(!t||isMatch(t)){
@@ -19714,9 +19779,9 @@ p=p.parentNode;
 }
 return null;
 };
-YAHOO.ext.Element.prototype.setSelectable=function(_242){
-this.dom.unselectable=_242?"off":"on";
-if(!_242){
+YAHOO.ext.Element.prototype.setSelectable=function(_252){
+this.dom.unselectable=_252?"off":"on";
+if(!_252){
 this.applyStyles("-moz-user-select:none;-khtml-user-select:none;");
 }else{
 this.applyStyles("-moz-user-select:normal;-khtml-user-select:auto;");
@@ -19812,7 +19877,7 @@ this.joinChat();
 },joinChat:function(){
 this.conf=this.mucManager.createRoom(new XMPP.JID(window.jive_groupchat_config["roomName"]+"@"+window.jive_groupchat_config["mucServer"]));
 jive_prefs.load();
-this.nickname="User"+Math.floor(Math.random()*500);
+this.nickname="Guest"+Math.floor(Math.random()*500);
 this.conf.join(this.nickname,"",this,MessageHandler,this.occupantListener);
 },authenticationFailed:function(_1d,_1e){
 alert("Authentication failed: "+_1e);
@@ -19934,6 +19999,8 @@ _3d=true;
 }
 if(_3d==true){
 this.chatWindow.addStatusMessage(this.conf.jid,"Nickname collision with "+_3a+"; a _ has been appended to your nick to make it different.","muc-name-conflict-message");
+this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_3a);
+return;
 }
 this.nickname=_3a;
 if(_3b!="nosave"){
@@ -19945,7 +20012,7 @@ this.conf.changeNickname(_3a);
 this.chatWindow.addStatusMessage(this.conf.jid,window.strftime(new Date(),"%1I:%M %p"),"muc-time-message");
 window.setTimeout(this.sendTimeStamp.bind(this),300000);
 },updateDate:function(){
-window.controller.chatWindow.dialog.setTitle("Chatting in "+window.controller.conf.jid+" on "+window.strftime(new Date(),"%A, %B %e"));
+window.controller.chatWindow.dialog.setTitle("");
 var _3f=new Date();
 _3f.setMinutes(0);
 _3f.setHours(0);
@@ -19978,7 +20045,6 @@ if(!_45){
 _45=this.nickname;
 }
 _41.fireEvent("changenameinmuc",_41,this.conf.jid,_45);
-window.setTimeout(_41.addStatusMessage.bind(_41),2000,_42.jid,"Welcome to "+_42.jid+" you can change your name by clicking on it in the upper-right corner","muc-welcome-message");
 window.setTimeout(window.controller.sendTimeStamp.bind(window.controller),1000);
 },logout:function(_46){
 window.controller.conf.leave(false);

@@ -1279,8 +1279,8 @@ li.roster-contact-away a.contact-link {
 
 /* yui overrides */
 .ydlg .ydlg-dlg-body {
-	background: #e5e9ec !important;
-	padding: 4px !important;
+	background: #e5e9ec;
+	padding: 4px;
 }
 .ydlg .ydlg-bd, .ydlg .ylayout-container {
 	border-color: #aaa;
@@ -1835,15 +1835,43 @@ div.jive-spinnertab div {position: absolute; top: 185px; left: 200px;}
 }
 
 
-* {
-	}
-	
-body {
-	font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+strong {
+	font-weight: bold;
 	}
 
+/* YUI Overrides --- This will override the YUI styles from basic-dialog.css --------------------------------------------=========---------- */
+.jivetheme-muc .ydlg { /* .ydlg is the Container for the entire chat window */
+	}
+.jivetheme-muc .ydlg .ydlg-dlg-body { /* The container for everything below the titlebar */
+	background: #f7f7f7 url(jive-images/layout/bg_ydlg-dlg-body.gif) repeat-x scroll left bottom;
+	border: 1px #d8d8d8 solid;
+	border-top: 0px none;
+	padding: 0px 15px;
+	}
+ .jivetheme-muc .ylayout-panel { /* All internal layout is contained inside a panel with the class ylayout-panel */
+	border: none;
+	background: none
+}
+ .jivetheme-muc .ylayout-nested-layout .ylayout-panel-north,
+ .jivetheme-muc .ylayout-nested-layout .ylayout-panel-east,
+ .jivetheme-muc .ylayout-nested-layout .ylayout-panel-south {
+	border: none;
+}
+ .jivetheme-muc .ydlg .ydlg-bd, .ydlg .ylayout-container {
+	 border: none;
+ }
 
-/* Custom classes and IDs for Group Chat ------------------------------------------- */
+
+/* Custom classes and IDs for Group Chat --------------------------------------------------------------------------------------------------- */
+
+span.powered-by {
+	color: #666666;
+	height: 15px;
+	font-size: 10px;
+	display: block;
+	background: url(jive-images/logos/logo-jive12x10.gif) no-repeat left center;
+	padding-left: 17px;	
+	}
 
 /* Container for the chat window. Helps determine where the chat window is on page. */
 /* If fitToParent: "true" in the config js, then #groupchat-container controls where the dialog is positioned on screen as well as its size */
@@ -1852,118 +1880,139 @@ body {
 	height: 500px;
 	width: 650px;
 	margin: 15px 0px;
+	font-family: Arial, Helvetica, sans-serif;	
 }
 
-/* Topic Bar Styles */
-.jivetheme-muc .jive-topic {
-	border: 1px solid #b5b5b5;
-	height: 36;
-}
-div.jive-muc-ctrl {
-	background: url(jive-images/groupchat/bg_topic.gif);
+#groupchat-container a, #groupchat-container a:link {
+	color: #FE6F01;
+	text-decoration: underline;
+	cursor: hand;
+	cursor: pointer;	
 	}
-div.jive-muc-ctrl p {
-	font-weight: bold;
-	font-size: 12px;
-	height: 36px;
-	color: #f26522;
-	padding: 9px 0 0 5px;
+#groupchat-container a:visited {
+	color: #CB5701;
+	text-decoration: underline;
 	}
-div.jive-muc-ctrl p span {
-	color: #000000;
+#groupchat-container a:hover {
+	text-decoration: none;
 	}
-	
-/* Chat Window Styles */
-.jivetheme-muc .jive-chat { /*The main chat window */
-	background-color: #FFF;
-	border: 1px solid #b5b5b5;
-	padding: 5px 0px;
-}
+#groupchat-container a:active {
+	color: #FF9300;
+	text-decoration: underline;
+	}
 
-/* Chat Input */
-/* container */
-.jivetheme-muc .jive-message-field {
-	background-color: #FFF;
-	border: 1px solid #b5b5b5;
+/* Tooltips ------------------------------------------------------------------------------------------------------------------------------- */
+.jivetheme-muc div.yui-tt { /* Tooltip with a small pointer arrow */
+	/* background: url(jive-images/backgrounds/bg_tooltip-btm.gif) no-repeat left bottom; */
+	width: 114px;
+	/* padding: 0px 0px 5px 0px; */
+	margin: 0px;
+	z-index: 15000;
+}
+.jivetheme-muc div.yui-tt div.bd p {
+	margin: 0px 0px 0px;
 	padding: 5px;
-}
-/* message entry area */
-.jivetheme-muc textarea.jive-tab-message
-{
-    font-family: Arial,Geneva,sans-serif;
-	font-size: 1em;
-	border: none;
+	background: #FCB607 url(jive-images/backgrounds/bg-tooltip.gif) repeat-x left bottom;
+	display: block;
+	font: 10px/12px Arial, Helvetica, sans-serif;
+	-moz-border-radius: 5px;
+
 }
 
 
-/* Contact List */
-.jivetheme-muc div.jive-contact-list {
-	background-color: #FFF;
-	border: 1px solid #b5b5b5 !important;
+/* Group Chat Topic ----------------------------------------------------------------------------------------------------------------------- */
+.jivetheme-muc .jive-topic {
+	background: url(jive-images/labels/lbl-topic.gif) no-repeat left 0px;
+	margin: 10px 0 0 0;
 }
 
-/* User Controls - Username and Availability */
+div.jive-topic p {
+	height: 36px;
+	color: #000;
+	padding: 0px;
+	font: bold 16px Georgia, "Times New Roman", Times, serif;
+	padding: 8px 0 0 0;
+	}
+span.jive-topic-schedule {
+	color: #666;
+	font: normal 11px Arial, Helvetica, sans-serif;
+}
+	
+/* User Controls - Username and Availability -------------------------------------------------------------------------------------------- */
+/* The overall width of these controls should be at least the same as the intiial width set in Spank.js */
+
 div.jive-user-controls {
-	background: transparent url(jive-images/groupchat/bg_topic.gif) repeat-x scroll left bottom;
-	border: 1px solid #b5b5b5 !important;
-	padding: 5px 5px;
+	background: url(jive-images/labels/lbl-username.gif) no-repeat left 0px;
+	margin: 10px 0 0 0;
 }
 div.jive-user-controls input.jive-muc-username {
 	background: transparent;
+	font: bold 16px Georgia, "Times New Roman", Times, serif;
+	height: 20px;
+	margin: 8px 0px 0px 0px;
+	padding: 0px 0px;
+	float: left;
+	width: 135px;
+	display: block;
 	border: none;
-	font-size: .85em;
-	font-weight: bold!important;	
-	height: 14px;
-	padding: 2px 0px;
 }
 div.jive-user-controls input.jive-muc-username-active {
-	background: white;
+	border: 1px solid #b5b5b5;
+	background:#FFFFFF url(jive-images/backgrounds/bg-chatinset.gif) repeat-x left top;
+	font: bold 16px Georgia, "Times New Roman", Times, serif;
+	height: 18px;
+	margin: 8px 0px 0px 0px;
+	padding: 0px 2px;
+	float: left;
+	width: 129px;
+	display: block;
+}
+div.jive-user-controls a.jive-muc-username-edit { /* Edit link next to username */
+	width: 30px;
+	font: 9px Arial, Helvetica, sans-serif;
+	text-decoration: underline;
+	background: none;
 	border: none;
-	font-size: .85em;
-	font-weight: bold!important;	
-	height: 14px;
-	padding: 2px 4px;
+	display: block;	
+	margin: 0px;
+	padding: 15px 0px 0px 5px;
+	position: absolute;
+	right: 0px;
+	background: #F8F8F8;
 }
-#nickname-control-tooltip {
-	background: white;
-	border: 1px solid black;
-	width: 150px;
-	height: auto;
+div.jive-muc-presence-control {
+	clear: left;
+	float: left;
+	width: 160px;
+	color: #666;
+	font: normal 11px Arial, Helvetica, sans-serif;
+	padding: 0px 0px 0px 15px;
+	height: 16px;
+	line-height: 16px;
+	cursor: hand;
+	cursor: pointer;
 }
-	
-/* Presence Control */
-
-#presence-control-tooltip {
-	background: white;
-	border: 1px solid black;
-	width: 150px;
-	height: auto;
-}
-	
-/* This will override the YUI styles from basic-dialog.css and ignitechat.css */
-
-/* .ydlg is the Container for the entire chat window */
-.jivetheme-muc .ydlg {
-	padding: 0px;
+div.jive-user-controls div.available {
+	background: url(images/im_available.png) no-repeat -3px top!important;
 	}
-.jivetheme-muc .ydlg .ydlg-dlg-body { 
-	background: url(jive-images/layout/bg_ydlg-dlg-body.gif) repeat-x scroll center top;
-	border: 3px #000 solid;
-	border-top: 0px none;
-	padding: 10px !important;
+div.jive-user-controls div.away {
+	background: url(images/im_away.png) no-repeat -3px top !important;
+    font-style: italic;
+    color: #999;
 	}
-
+	
+/* Title Bar ------------------------------------------------------------------------------------------------------------------------- */
 /* .ydlg-hd is the titlebar for the chat window. It is broken up into 3 sections. Center then Left & Right Corners. */
 .jivetheme-muc .ydlg .ydlg-hd {
-	background: #000000 url(jive-images/basic-dialog/hd-sprite.png) repeat-x scroll 0px -50px;
+	background: #000;
 	padding: 5px;
 	}
  .jivetheme-muc .ydlg .ydlg-hd-left {
-	background: transparent url(jive-images/basic-dialog/hd-sprite.png) no-repeat scroll 0px 0px;
+	background: #000;
 	padding-left: 5px;
 	}
  .jivetheme-muc .ydlg .ydlg-hd-right {
-	background: transparent url(jive-images/basic-dialog/hd-sprite.png) no-repeat scroll right -100px;
+	background: #000;
 	padding-right: 5px;
 	}
  .jivetheme-muc div.ydlg-hd h1 {
@@ -1976,39 +2025,37 @@ div.jive-user-controls input.jive-muc-username-active {
 	padding-top: 2px;
 	}
 
-/* Handles for YUI layout controls ----------------------------------------------------------------- */
+/* Divider Handles (for resizing the dialogue internals) ------------------------------------------------------------------------------ */
  .jivetheme-muc .ylayout-split {
 	background: none;
-	height: 10px;
-	width: 10px;
+	height: 16px; /* Only effects vertical */
+	width: 16px; /* Only effects horizontal */
 	}
  .jivetheme-muc .ylayout-split-v {
-	background: transparent url(jive-images/basic-dialog/s-handle.gif) no-repeat center center;
+	background: transparent url(jive-images/basic-dialog/s-handle.gif) repeat-x center center;
 }
  .jivetheme-muc .ylayout-split-h {
-	background: transparent url(jive-images/basic-dialog/e-handle.gif) no-repeat center center;
+	background:transparent url(jive-images/basic-dialog/e-handle.gif) repeat-y scroll center;
+	padding:10px 0px;
+	}
+
+/* message entry area */
+.jivetheme-muc textarea.jive-tab-message
+{
+    font-family: Arial,Geneva,sans-serif;
+	font-size: 1em;
+	border: 1px solid #DCDCDC;
+	background:#FFFFFF url(jive-images/backgrounds/bg-chatinset.gif) repeat-x left top;
 }
 
-/* All internal layout is contained inside a panel with the class ylayout-panel */
- .jivetheme-muc .ylayout-panel {
-	border: none;
-	background: none
+/* The Chat Window (where all the chatting happens)  ----------------------------------------------------------==--------------------- */
+.jivetheme-muc .jive-chat { /*The main chat window */
+	border: 1px solid #DCDCDC;
+	background:#FFFFFF url(jive-images/backgrounds/bg-chatinset.gif) repeat-x left top;
 }
- .jivetheme-muc .ylayout-nested-layout .ylayout-panel-north,
- .jivetheme-muc .ylayout-nested-layout .ylayout-panel-east,
- .jivetheme-muc .ylayout-nested-layout .ylayout-panel-south {
-	border: none;
-}
- .jivetheme-muc .ydlg .ydlg-bd, .ydlg .ylayout-container {
- border: none;
- }
- 
- 
- 
-/* Messages in the main Chat Window --------------------------------------------------------------- */
+
 .jivetheme-muc div.jive-history {
-	margin: -10px 0px; /* Fixes the overflow of text dissapearing at the bottom */
-	padding: 0px;
+	margin: 0px 0px -15px; /* Fixes the overflow of text dissapearing at the bottom */
 }
 
 .jivetheme-muc div.jive-history div {
@@ -2073,135 +2120,152 @@ div.jive-user-controls input.jive-muc-username-active {
 	color: #444;
 }
 
-/* Message Entry Area --------------------------------------------------------------------- */
-textarea.jive-tab-message
-{
-    font-family: Arial,Geneva,sans-serif;
-	font-size: 1em;
-	border: none;
+
+/* The Contact List aka Roster ------------------------------------------------------------------------------------------------------------ */
+.jivetheme-muc div.jive-contact-list {
+	background-color: #EDEDED;
+	border: 1px solid #DCDCDC;
 }
-
-
-/* The contact list */
 .jivetheme-muc ul.jive-roster, div.jive-muc-occupants ul {
 	margin-left: 0;
 	padding-left: 0;
 	list-style: none;
-    font-family: Verdana,Arial,Geneva,sans-serif;
-	font-size: 1em;
+    font-family: Arial,Geneva,sans-serif;
+	font-size: 11px;
 }
 
 .jivetheme-muc ul.jive-roster span.group-label, 
-.jivetheme-muc div.jive-muc-occupants span.group-label {  /* collapsible group label */
+.jivetheme-muc div.jive-muc-occupants span.group-label {  /* Collapsable Group Labels */
 	display: block;
-	padding: 5px;
-	margin-bottom: 5px;
-	background: #F3F2F2 url(none);
+	padding: 5px 10px;
+	background: #929292 url(jive-images/backgrounds/bg_grouplabel.gif) repeat-x left top;
+	border-bottom: solid 1px #FFFFFF;
 }
 .jivetheme-muc ul.jive-roster span.group-label em, 
-.jivetheme-muc div.jive-muc-occupants span.group-label em { 
+.jivetheme-muc div.jive-muc-occupants span.group-label em { /* Group Label Name */
 	font-style: none;
-	color: #F26522;
+	color: #FFF;
 	font-weight: bold;
 	display: block;
+	font-size: 12px;
 }
-.jivetheme-muc ul.jive-roster span.group-label em {padding: 2px;}
-.jivetheme-muc div.jive-muc-occupants span.group-label em {font-size: 0.88em;}
 
 .jivetheme-muc ul.jive-roster ul.group-list li span.msg, 
-.jivetheme-muc div.jive-muc-occupants ul ul.group-list li span.msg {
-	background-color: transparent;
+.jivetheme-muc div.jive-muc-occupants ul ul.group-list li span.msg { /* Users Status Message */
 	background-image: none;
-	padding-left: 5px;
-}
-
-.jivetheme-muc ul.jive-roster ul.group-list li, 
-.jivetheme-muc div.jive-muc-occupants ul ul.group-list li {
-	display: block;
-    padding: 2px 0px 1px 25px;
-	cursor: pointer;
-}
-.jivetheme-muc ul.jive-roster ul.group-list li {
-	background-position: 11px 1px;
-	padding-left: 29px;
-}
-
-.jivetheme-muc ul.jive-roster ul.group-list li span.msg,
-.jivetheme-muc div.jive-muc-occupants ul ul.group-list li span.msg {
 	color: #999;
 	background-color: transparent;
 	display: inline;
 	border-bottom-width: 0px;
 	padding: 0px 2px;
+	display: none;
 }
 
-/* Selecting a user in the roster */
-.jivetheme-muc ul.jive-roster ul.group-list li.selected, 
-.jivetheme-muc div.jive-muc-occupants ul ul.group-list li.selected {
-	padding: 1px 0px 1px 25px !important;
-	border-top: 1px solid #BBC3D7;
-	border-bottom: 1px solid #BBC3D7;
-	background-color: #f4f8ff;
-	background-position: 5px 2px !important;
+
+/* FORMAT FOR USERS IN CONTACT LIST: 
+<li class="even/odd/hover/selected">
+	<span class="roster-contact-(status)>Username</span>
+	<span class="msg">User's message</span>
+</li>
+
+I've set it up so that the li sets the background, and the span on the username sets the status icon. - Sigler
+
+*/
+
+.jivetheme-muc ul.jive-roster ul.group-list li, 
+.jivetheme-muc div.jive-muc-occupants ul ul.group-list li {
+	display: block;
+	height: 11px;
+	cursor: pointer;
+	color: #000;
+	font-size: 11px;
+	padding: 4px 0px;
+	overflow: hidden;
+}
+
+.jivetheme-muc ul.jive-roster ul.group-list li.even, 
+.jivetheme-muc div.jive-muc-occupants ul ul.group-list li.even { /* Every even numbered contact */
+	background: #e3e3e3;
+}
+
+.jivetheme-muc ul.jive-roster ul.group-list li.odd, 
+.jivetheme-muc div.jive-muc-occupants ul ul.group-list li.odd { /* Every odd numbered contact */
 }
 
 .jivetheme-muc ul.jive-roster ul.group-list li.hover, 
-.jivetheme-muc div.jive-muc-occupants ul ul.group-list li.hover {
-	color: #F26522;
+.jivetheme-muc div.jive-muc-occupants ul ul.group-list li.hover { /* Hovering over a user in roster */
+	color: #000;
+	background: #ffc955 url(jive-images/backgrounds/bg-roster-userhighlight.gif) repeat-x center center;
+}
+
+.jivetheme-muc ul.jive-roster ul.group-list li.selected, 
+.jivetheme-muc div.jive-muc-occupants ul ul.group-list li.selected { /* Selecting a user in the roster */
+	color: #000;
+	border-top: 1px solid #FFAD04;
+	border-bottom: 1px solid #FFAD04;
+	background: #ffc955 url(jive-images/backgrounds/bg-roster-userhighlight.gif) repeat-x center center;
+	padding: 3px 0px;
+}
+
+.jivetheme-muc ul.jive-roster ul.group-list span.username, 
+.jivetheme-muc div.jive-muc-occupants ul ul.group-list span.username { /* Usernames in Roster */
+	padding: 0px 0px 0px 20px;
+	margin: 0px 0px 0px 5px;
+	line-height: 11px;
 }
 
 .jivetheme-muc .roster-contact-available {
-	background: url(images/im_available.png) no-repeat 5px 3px !important;
+	background: url(images/im_available.png) no-repeat left center!important;
 }
 
 .jivetheme-muc .roster-contact-chat {
-	background: url(images/im_free_chat.png) no-repeat 5px 3px !important;
+	background: url(images/im_free_chat.png) no-repeat !important;
 }
 
 .jivetheme-muc .roster-contact-composing {
-	background: url(images/message_edit.png) no-repeat 5px 3px !important;
+	background: url(images/message_edit.png) no-repeat !important;
 }
 
 .jivetheme-muc .roster-contact-away {
-	background: url(images/im_away.png) no-repeat 5px 3px !important;
+	background: url(images/im_away.png) no-repeat !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-xa {
-	background: url(images/im_away.png) no-repeat 5px 3px !important;
+	background: url(images/im_away.png) no-repeat !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-dnd {
-	background: url(images/im_dnd.png) no-repeat 5px 3px !important;
+	background: url(images/im_dnd.png) no-repeat !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-onphone {
-	background: url(images/im_onphone.png) no-repeat 5px 3px !important;
+	background: url(images/im_onphone.png) no-repeat !important;
     font-style: italic;
     color: #999;
 }
 
 .jivetheme-muc .roster-contact-onroad {
-	background: url(images/im_onroad.png) no-repeat 5px 3px !important;
+	background: url(images/im_onroad.png) no-repeat !important;
 }
 
 .jivetheme-muc .roster-contact-pending {
-	background: url(images/im_pending.png) no-repeat 5px 3px !important;
+	background: url(images/im_pending.png) no-repeat !important;
 }
 
 .jivetheme-muc .roster-contact-unavailable {
-	background: url(images/im_unavailable.png) no-repeat 5px 3px !important;
+	background: url(images/im_unavailable.png) no-repeat !important;
     font-style: italic;
     color: #999;
 }
 
 
-/* invite menu */
+/* Invite Menu ------------------------------------------------------------------------------------------------ */
 div.jive-userpane {
 	background: transparent url(images/sparkbg.gif) repeat-x scroll left center;
 	height: 22px;
@@ -2469,4 +2533,5 @@ input.subrequest {margin: 0px 6px; padding: 1px 4px;}
 #jive-spinner img {padding: 0px 4px;}
 div.jive-spinnertab {background-color: #e5e9ec !important; position: relative;}
 div.jive-spinnertab div {position: absolute; top: 185px; left: 200px;}
+
 
