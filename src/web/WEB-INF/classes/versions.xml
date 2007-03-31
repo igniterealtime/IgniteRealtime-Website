@@ -5,8 +5,8 @@
     <!--<product name="wildfire-beta" version="3.2.0.rc2" date="January 31, 2007" />-->
     <product name="spark" version="2.5.0" date="March 30, 2007" />
     <!--<product name="spark-beta" version="2.5.0.beta4" date="March 12, 2007" />-->
-    <product name="smack" version="2.2.1" date="June 12, 2006" />
-    <product name="smack-beta" version="3.0.0.beta3" date="March 13, 2007" />
+    <product name="smack" version="3.0.0" date="March 31, 2007" />
+    <!--<product name="smack-beta" version="3.0.0.beta3" date="March 13, 2007" />-->
     <product name="xiff" version="2.0.0-beta4" date="Oct. 25, 2005" />
     <product name="asterisk-im" version="1.1.1" date="July 3, 2006" />
     <product name="connection_manager" version="3.2.4" date="March 29, 2007" />
