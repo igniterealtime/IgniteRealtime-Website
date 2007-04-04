@@ -14,7 +14,7 @@
     String queryType = request.getParameter("type");
     String ipAddress = request.getRemoteAddr();
     String os = request.getParameter("os");
-    DownloadServlet.DownloadInfo info = DownloadServlet.DownloadInfo.wildfire;
+    DownloadServlet.DownloadInfo info = DownloadServlet.DownloadInfo.openfire;
     if ("update".equals(queryType)) {
         // Check for updates of installed plugins and server
         out.println(WildfireVersionChecker.checkVersions(request.getParameter("query")));
