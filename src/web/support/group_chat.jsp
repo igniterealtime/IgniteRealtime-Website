@@ -109,6 +109,12 @@
 					<h4>Change Log</h4>
 					<ul class="changelogentry">
 						<li class="changelogheader"> <u>March 27th, 2007</u></li>
+						<li> Fixed a bug that prevented Safari from sending messages or changing name </li>
+						<li> Fixed an issue that prevented the topic bar from showing </li>
+						<li> Improved nickname collision handling </li>
+					</ul>
+					<ul class="changelogentry">
+						<li class="changelogheader"> <u>March 27th, 2007</u></li>
 						<li> New appearance, and some layout changes </li>
 						<li> Fixed a status changing bug </li>
 						<li> Fixed a nickname changing bug </li>

@@ -19207,6 +19207,7 @@ return;
 if(_1ae){
 _1ae.remove();
 }
+this.sort();
 },contactIndexByJid:function(jid){
 for(var u=this.contacts.length-1;u>=0;u--){
 if(this.contacts[u].jid==jid){
@@ -19790,7 +19791,7 @@ return this;
 };
 
 
-jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",mucServer:"conference.localhost",server:"localhost",connectionAddress:"localhost:7080",roomName:"test"};
+jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",mucServer:"conference.localhost",server:"localhost",connectionAddress:"localhost:7080",roomName:"test",logoutOnUnload:"false"};
 var jive_prefs={data:{},load:function(){
 var _1=document.cookie.split(";");
 if(_1[0]){
@@ -19990,6 +19991,10 @@ return;
 },handleNameChange:function(_38,_39,_3a,_3b){
 var _3c=this.conf.getOccupants();
 var _3d=false;
+if(_3b!="nosave"){
+jive_prefs.data.nickname=_3a;
+jive_prefs.save();
+}
 for(var i=0;i<_3c.length;i++){
 if(_3a.toLowerCase()==_3c[i].getNick().toLowerCase()&&_3a!=this.nickname){
 _3a=_3a+"_";
@@ -19999,14 +20004,10 @@ _3d=true;
 }
 if(_3d==true){
 this.chatWindow.addStatusMessage(this.conf.jid,"Nickname collision with "+_3a+"; a _ has been appended to your nick to make it different.","muc-name-conflict-message");
-this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_3a);
+this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_3a,"nosave");
 return;
 }
 this.nickname=_3a;
-if(_3b!="nosave"){
-jive_prefs.data.nickname=_3a;
-jive_prefs.save();
-}
 this.conf.changeNickname(_3a);
 },sendTimeStamp:function(){
 this.chatWindow.addStatusMessage(this.conf.jid,window.strftime(new Date(),"%1I:%M %p"),"muc-time-message");
@@ -20029,7 +20030,11 @@ window.controller.occupantListener(_43[i]);
 }
 _41.prepUserPane();
 _41.show();
+try{
 _41.finalizeUserPane(this.nickname,this.mucManager);
+}
+catch(e){
+}
 _41.setSubject("");
 window.controller.updateDate();
 getEl(_41.tabId+"-layout").dom.parentNode.style.position="absolute";
