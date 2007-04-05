@@ -20,10 +20,6 @@
 	
 	<script type="text/javascript">
 	jive_groupchat_config = {
-		width: 1000, //Taken over by groupchat-container if fitToParent: "true" and Height and Width are specified in the CSS
-		height: 450, // Same as above
-		x: 0, // 0 centers it on the page. Setting XY coords. will absolutely position the dlg on the page, unless fitToParent: "true"
-		y: 0, // Same as above
 		constrained: "false",
 		draggable: "false",
 		resizable: "false",
@@ -34,6 +30,7 @@
 		connectionAddress: "http://www.igniterealtime.org",
 		roomName: "open_chat",
 		fitToParent: "true", // forces the dlg to find #groupchat-container and conform to its layout and size
+		createRoom: "false"
 	}
 	</script>
 	
@@ -108,7 +105,14 @@
 					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
 					<h4>Change Log</h4>
 					<ul class="changelogentry">
-						<li class="changelogheader"> <u>March 27th, 2007</u></li>
+						<li class="changelogheader"> <u>April 5th 2007</u></li>
+						<li> Hopefully fixed Safari again </li>
+						<li> Fixed an issue that would cause messages to not appear sometimes </li>
+						<li> Added support for creating rooms on the fly (not exposed on the ignite chat)</li>
+						<li> The chat no longer autoscrolls if you've scrolled up more than 100px to look at past messages </li>
+					</ul>
+					<ul class="changelogentry">
+						<li class="changelogheader"> <u>April 4th, 2007</u></li>
 						<li> Fixed a bug that prevented Safari from sending messages or changing name </li>
 						<li> Fixed an issue that prevented the topic bar from showing </li>
 						<li> Improved nickname collision handling </li>
