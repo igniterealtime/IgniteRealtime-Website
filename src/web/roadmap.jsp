@@ -37,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 3.2, Q1 2007</th>
+                                    <th>Version 3.3.x, Q2 2007</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -45,32 +45,28 @@
                                 <tr>
                                     <td class="label">Openfire Open Source</td>
                                     <td><ul>
-                                        <li>NIO: greatly increased scalability</li>
-                                        <li>HTTP Binding</li>
-                                        <li>Enhanced certificate creation and management</li>
-                                        <li>VoIP proxy for media</li>
-                                        <li>Mac OS X installer</li>
+                                        <li>Upgrade scripts for renaming</li>
+                                        <li>Better RPMs</li>
+                                        <li>Debian package support</li>
+                                        <li>Update to latest Java release</li>
                                     </ul></td>
                                     <td class="col3"><ul>
                                         <li>Personal Event PubSub (PEP)</li>
-                                        <li>VoIP STUN server support</li>
                                     </ul></td>
                                 </tr>
                                 <tr>
                                     <td class="label">Openfire Enterprise</td>
                                     <td>
                                         <ul>
-                                        <li>SIP phone (Spark, beta)</li>
-                                        <li>Outlook Integration (Spark, beta)</li>
-                                        <li>Full web client</li>
-                                        <li>Fastpath workgroup to workgroup transfer and queue to queue transfer</li>
+                                            <li>Group chat archiving</li>
+                                            <li>Full web client</li>
                                         </ul>
                                     </td>
                                     <td class="col3">
                                         <ul>
                                             <li>Clustering</li>
-                                            <li>Phonebook for softphone (Spark)</li> 
-                                            <li>Group chat archiving</li>
+                                            <li>Outlook Integration (Spark)</li>
+                                            <li>Phonebook for softphone (Spark)</li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -86,28 +82,35 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 2.5, Q1 2007</th>
+                                    <th>Version 2.5.x, Q2 2007</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="label">&nbsp;</td>
-                                    <td><ul>
-                                        <li>New look and feel</li>
-
-                                        <li>Adium emoticon pack support</li>
-                                        <li>Jingle audio</li>
-                                        <li>Java 6</li>
+                                    <td>
+                                    <ul>
+                                        <li>Update check improvements</li>
+                                        <li>Better file transfer</li>
+                                        <li>Group Chat Invite improvements</li>
+                                        <li>Better notifications when users come online</li>
+                                        <li>Improved VoIP stability</li>
+                                        <li>Kerberos SSO</li>
                                     </ul></td>
-                                    <td class="col3"><li>Adium message view theme support</li></td>
+                                    <td class="col3">
+                                        <ul>
+                                            <li>Redesigned roster window</li>
+                                            <li>Support for XEP-0115: Entity Capabilities</li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
                         </div>
                     </p>
 					
-			<p>* Plan as of Jan 22, 2007. Subject to change; we make no promises on future releases. :-)</p>
+			<p>* Plan as of April 9, 2007. Subject to change; we make no promises on future releases. :-)</p>
 
 
                 <h2>Top Ten Issues</h2>
