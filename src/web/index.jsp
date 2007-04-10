@@ -183,7 +183,8 @@
                         <div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
                         <div class="articles"><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
                         <div class="articles"><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
-					</div>
+                        <div class="articles"><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
+                    </div>
 
 					<!-- END recent discussions, news, wiki docs, and articles -->
 
