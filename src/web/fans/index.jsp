@@ -58,12 +58,9 @@
 <strong>Ignite Realtime 1</strong>
 100 x 30
 </span>
-                    <textarea cols="20" rows="3" name="ignitebutton1" wrap="off"><a
-                            href="http://www.igniterealtime.org/">
-                        <img src="http://www.igniterealtime.org/images/button-ignite-100x30.gif" border="0"
-                             alt="Ignite Realtime">
-                    </a>
-                    </textarea>
+<textarea cols="20" rows="3" name="ignitebutton1" wrap="off"><a href="http://www.igniterealtime.org/">
+<img src="http://www.igniterealtime.org/images/button-ignite-100x30.gif" border="0" alt="Ignite Realtime">
+</a></textarea>
                 </div>
                 <div class="ignite_fans_button2">
                     <img src="../images/button-ignite-105x15.gif" alt="" width="105" height="15" border="0">
@@ -71,12 +68,10 @@
 <strong>Ignite Realtime 2</strong>
 105 x 15
 </span>
-                    <textarea cols="20" rows="3" name="ignitebutton2" wrap="off"><a
-                            href="http://www.igniterealtime.org/">
-                        <img src="http://www.igniterealtime.org/images/button-ignite-105x15.gif" border="0"
-                             alt="Ignite Realtime">
-                    </a>
-                    </textarea>
+<textarea cols="20" rows="3" name="ignitebutton2" wrap="off"><a href="http://www.igniterealtime.org/">
+<img src="http://www.igniterealtime.org/images/button-ignite-105x15.gif" border="0" alt="Ignite Realtime">
+</a>
+</textarea>
                 </div>
             </td>
             <td class="ignite_fans_screenshots">
@@ -84,12 +79,10 @@
                     <img src="../images/ignite_fans_ss-ignite.gif" alt="" width="200" height="125" border="0">
                 </a>
                 <span>420 x 420 screenshot of the Ignite Realtime website home page.</span>
-                <textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a
-                        href="http://www.igniterealtime.org/">
-                    <img src="http://www.igniterealtime.org/images/screenshot-ignite-large.jpg" border="0"
-                         alt="Ignite Realtime">
-                </a>
-                </textarea>
+<textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a href="http://www.igniterealtime.org/">
+<img src="http://www.igniterealtime.org/images/screenshot-ignite-large.jpg" border="0" alt="Ignite Realtime">
+</a>
+</textarea>
             </td>
         </tr>
     </table>
@@ -117,12 +110,10 @@
 <strong>Openfire 1</strong>
 88 x 30
 </span>
-                    <textarea cols="20" rows="3" name="openfirebutton1" wrap="off"><a
-                            href="http://www.igniterealtime.org/projects/openfire/">
-                        <img src="http://www.igniterealtime.org/images/button-openfire-88x30.gif" border="0"
-                             alt="Openfire RTC Server">
-                    </a>
-                    </textarea>
+<textarea cols="20" rows="3" name="openfirebutton1" wrap="off"><a href="http://www.igniterealtime.org/projects/openfire/">
+<img src="http://www.igniterealtime.org/images/button-openfire-88x30.gif" border="0" alt="Openfire RTC Server">
+</a>
+</textarea>
                 </div>
                 <div class="ignite_fans_button2">
                     <img src="../images/button-openfire-80x15.gif" alt="" width="80" height="15" border="0">
@@ -130,12 +121,10 @@
 <strong>Openfire 2</strong>
 80 x 15
 </span>
-                    <textarea cols="20" rows="3" name="openfirebutton2" wrap="off"><a
-                            href="http://www.igniterealtime.org/projects/openfire/">
-                        <img src="http://www.igniterealtime.org/images/button-openfire-80x15.gif" border="0"
-                             alt="Openfire RTC Server">
-                    </a>
-                    </textarea>
+<textarea cols="20" rows="3" name="openfirebutton2" wrap="off"><a href="http://www.igniterealtime.org/projects/openfire/">
+<img src="http://www.igniterealtime.org/images/button-openfire-80x15.gif" border="0" alt="Openfire RTC Server">
+</a>
+</textarea>
                 </div>
             </td>
             <td class="ignite_fans_screenshots">
@@ -143,12 +132,10 @@
                     <img src="../images/ignite_fans_ss-openfire.gif" alt="" width="200" height="125" border="0">
                 </a>
                 <span>420 x 441 screenshot of the Openfire real-time communications server.</span>
-                <textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a
-                        href="http://www.igniterealtime.org/projects/openfire/">
-                    <img src="http://www.igniterealtime.org/images/screenshot-openfire-large.gif" border="0"
-                         alt="Openfire RTC Server">
-                </a>
-                </textarea>
+<textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a href="http://www.igniterealtime.org/projects/openfire/">
+<img src="http://www.igniterealtime.org/images/screenshot-openfire-large.gif" border="0" alt="Openfire RTC Server">
+</a>
+</textarea>
             </td>
         </tr>
     </table>
@@ -176,12 +163,10 @@
 <strong>Spark 1</strong>
 88 x 30
 </span>
-                    <textarea cols="20" rows="3" name="sparkbutton1" wrap="off"><a
-                            href="http://www.igniterealtime.org/projects/spark/">
-                        <img src="http://www.igniterealtime.org/images/button-spark-88x30.gif" border="0"
-                             alt="Spark RTC Client">
-                    </a>
-                    </textarea>
+<textarea cols="20" rows="3" name="sparkbutton1" wrap="off"><a href="http://www.igniterealtime.org/projects/spark/">
+<img src="http://www.igniterealtime.org/images/button-spark-88x30.gif" border="0" alt="Spark RTC Client">
+</a>
+</textarea>
                 </div>
                 <div class="ignite_fans_button2">
                     <img src="../images/button-spark-80x15.gif" alt="" width="80" height="15" border="0">
@@ -189,12 +174,10 @@
 <strong>Spark 2</strong>
 80 x 15
 </span>
-                    <textarea cols="20" rows="3" name="sparkbutton2" wrap="off"><a
-                            href="http://www.igniterealtime.org/projects/spark/">
-                        <img src="http://www.igniterealtime.org/images/button-spark-80x15.gif" border="0"
-                             alt="Spark RTC Client">
-                    </a>
-                    </textarea>
+<textarea cols="20" rows="3" name="sparkbutton2" wrap="off"><a href="http://www.igniterealtime.org/projects/spark/">
+<img src="http://www.igniterealtime.org/images/button-spark-80x15.gif" border="0" alt="Spark RTC Client">
+</a>
+</textarea>
                 </div>
             </td>
             <td class="ignite_fans_screenshots">
@@ -202,12 +185,10 @@
                     <img src="../images/ignite_fans_ss-spark.gif" alt="" width="202" height="125" border="0">
                 </a>
                 <span>376 x 393 screenshot of the chat window of the Spark real-time communications client.</span>
-                <textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a
-                        href="http://www.igniterealtime.org/projects/spark/">
-                    <img src="http://www.igniterealtime.org/images/screenshot-spark-large.gif" border="0"
-                         alt="Spark RTC Client">
-                </a>
-                </textarea>
+<textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a href="http://www.igniterealtime.org/projects/spark/">
+<img src="http://www.igniterealtime.org/images/screenshot-spark-large.gif" border="0" alt="Spark RTC Client">
+</a>
+</textarea>
             </td>
         </tr>
     </table>
