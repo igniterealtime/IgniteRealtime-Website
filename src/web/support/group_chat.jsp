@@ -105,7 +105,18 @@
 					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
 					<h4>Change Log</h4>
 					<ul class="changelogentry">
-						<li class="changelogheader"> <u>April 5th 2007</u></li>
+						<li class="changelogheader"> <u>April 11th, 2007</u></li>
+						<li> Users will now automatically be logged out when leaving the page </li>
+					</ul>
+					<ul class="changelogentry">
+						<li class="changelogheader"> <u>April 6th, 2007</u></li>
+						<li> Added help for / commands</li>
+						<li> Added /?, /help, /away, /available, and /back (first two and last two are synonyms)</li>
+						<li> Added the ability to disable commands for embedders of groupchat</li>
+						<li> The contact list is now sorted by status, then name </li>
+					</ul>
+					<ul class="changelogentry">
+						<li class="changelogheader"> <u>April 5th, 2007</u></li>
 						<li> Hopefully fixed Safari again </li>
 						<li> Fixed an issue that would cause messages to not appear sometimes </li>
 						<li> Added support for creating rooms on the fly (not exposed on the ignite chat)</li>

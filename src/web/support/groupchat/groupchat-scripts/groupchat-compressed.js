@@ -19298,12 +19298,19 @@ jive.spank.roster.RosterGroup.sortContactHTML=function(id){
 var _1ca=getEl("group-list-"+id);
 if(_1ca&&_1ca.dom!=null){
 var _1cb=_1ca.getChildrenByTagName("li");
-var _1cc=_1cb.sortBy(function(line){
-return line.dom.innerHTML;
+var _1cc=[["chat","a"],["available","a"],["onroad","c"],["away","c"],["onphone","c"],["dnd","d"]];
+var _1cd=_1cb.sortBy(function(line){
+var text=line.dom.innerHTML;
+for(var i=0;i<_1cc.length;i++){
+if(line.dom.childNodes[0].className.indexOf(_1cc[i][0])>-1){
+return _1cc[i][1]+text;
+}
+}
+return a+text;
 });
 var line=null;
-for(var i=0;i<_1cc.length;i++){
-line=_1cc[i];
+for(var i=0;i<_1cd.length;i++){
+line=_1cd[i];
 if(line){
 if(line.dom.className.indexOf("even")>-1){
 if(i%2==0){
@@ -19319,11 +19326,11 @@ line.appendTo(_1ca.dom);
 }
 }
 };
-jive.spank.roster.Contact=function(_1d0,_1d1){
-this.jid=_1d0.getJID();
-this.name=(_1d0.getName&&_1d0.getName()?_1d0.getName():this.jid);
-this.status=typeof _1d0!="string"&&_1d0.status?_1d0.status:_1d0.isSubscriptionPending&&_1d0.isSubscriptionPending()?"pending":"unavailable";
-this.group=_1d1;
+jive.spank.roster.Contact=function(_1d3,_1d4){
+this.jid=_1d3.getJID();
+this.name=(_1d3.getName&&_1d3.getName()?_1d3.getName():this.jid);
+this.status=typeof _1d3!="string"&&_1d3.status?_1d3.status:_1d3.isSubscriptionPending&&_1d3.isSubscriptionPending()?"pending":"unavailable";
+this.group=_1d4;
 this.id="roster-contact-"+this.jid+"-"+this.group.cleanName;
 this.currentMessage="";
 this._wrappedClick=null;
@@ -19345,34 +19352,37 @@ delete this._wrappedContextMenu;
 elm.remove();
 this.group.contacts.splice(this.group.contactIndexByJid(this.jid),1);
 delete this.group;
-},changeStatus:function(_1d3,_1d4){
-_1d3=_1d3.toLowerCase();
-var _1d5=getEl(this.id).dom.childNodes[0];
-_1d5.className=_1d5.className.replace("roster-contact-"+this.status,"roster-contact-"+_1d3);
-var _1d6=(this.status?this.status:"unavailable");
-var _1d7=this.status;
-this.status=_1d3;
-if(_1d7=="unavailable"||_1d3=="unavailable"){
+},changeStatus:function(_1d6,_1d7){
+_1d6=_1d6.toLowerCase();
+var _1d8=getEl(this.id).dom.childNodes[0];
+_1d8.className=_1d8.className.replace("roster-contact-"+this.status,"roster-contact-"+_1d6);
+var _1d9=(this.status?this.status:"unavailable");
+var _1da=this.status;
+this.status=_1d6;
+if(_1da=="unavailable"||_1d6=="unavailable"){
 this.group._roster.fireEvent("offlinemoved");
 }
-this.fireEvent("status",_1d6,_1d3);
-this._changeStatusMsg(_1d4);
-return _1d6;
+this.fireEvent("status",_1d9,_1d6);
+this._changeStatusMsg(_1d7);
+if(_1d6!=_1d9){
+this.group._roster.sortGroups();
+}
+return _1d9;
 },render:function(){
 return jive.spank.chat.Template.contact.applyTemplate({id:this.id,username:this.name,status:this.status,message:this.currentMessage});
 },_changeStatusMsg:function(msg){
 this.currentMessage=(!msg||msg.strip()==""?"":"- "+msg);
-var _1d9=getEl(this.id+"-msg");
-_1d9.dom.innerHTML=this.currentMessage;
+var _1dc=getEl(this.id+"-msg");
+_1dc.dom.innerHTML=this.currentMessage;
 },_enableBehaviors:function(){
 var elm=getEl(this.id);
 if(elm){
 elm.unselectable();
 this._wrappedClick=elm.mon("click",function(id){
-var _1dc=getEl(id);
-var _1dd=_1dc.dom.id;
+var _1df=getEl(id);
+var _1e0=_1df.dom.id;
 getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_1dd).className+=" selected";
+document.getElementById(_1e0).className+=" selected";
 }.createCallback(this.id));
 var self=this;
 this._wrappedDblClick=elm.mon("dblclick",function(evt){
@@ -19381,19 +19391,19 @@ this.group._roster.fireEvent("contactdblclicked",this.group._roster,this);
 },this,true);
 this._wrappedContextMenu=elm.mon("contextmenu",function(evt){
 evt.stopEvent();
-var _1e1=evt.getTarget();
-if(_1e1.tagName.toLowerCase()!="li"){
-_1e1=_1e1.parentNode;
+var _1e4=evt.getTarget();
+if(_1e4.tagName.toLowerCase()!="li"){
+_1e4=_1e4.parentNode;
 }
-var _1e2=_1e1.id;
+var _1e5=_1e4.id;
 getEls("ul.jive-roster ul.group-list li").removeClass("selected");
-document.getElementById(_1e2).className+=" selected";
+document.getElementById(_1e5).className+=" selected";
 this.group._roster.fireEvent("contactrightclicked",this.group._roster,this,evt.getPageX(),evt.getPageY());
 },this,true);
 this._wrappedMouseOver=elm.addManagedListener("mouseover",function(id){
-var _1e4=getEl(id);
-var _1e5=_1e4.dom.id;
-document.getElementById(_1e5).className+=" hover";
+var _1e7=getEl(id);
+var _1e8=_1e7.dom.id;
+document.getElementById(_1e8).className+=" hover";
 }.createCallback(this.id));
 this._wrappedMouseOut=elm.addManagedListener("mouseout",function(id){
 var elm=getEl(id);
@@ -19401,25 +19411,25 @@ elm.removeClass("hover");
 }.createCallback(this.id));
 }
 }});
-jive.spank.roster.Contact.find=function(_1e8,jid,_1ea){
-var _1eb=_1e8.groups;
-for(var _1ec in _1eb){
-if(_1ea&&_1ec.replace(/[^0-9A-Za-z]/,"_")!=_1ea){
+jive.spank.roster.Contact.find=function(_1eb,jid,_1ed){
+var _1ee=_1eb.groups;
+for(var _1ef in _1ee){
+if(_1ed&&_1ef.replace(/[^0-9A-Za-z]/,"_")!=_1ed){
 continue;
 }
-var _1ed=_1eb[_1ec].contacts.find(function(_1ee){
-return _1ee.jid==jid;
+var _1f0=_1ee[_1ef].contacts.find(function(_1f1){
+return _1f1.jid==jid;
 });
-if(_1ed){
-return _1ed;
+if(_1f0){
+return _1f0;
 }
 }
 return null;
 };
-jive.spank.chat.Control=function(_1ef,_1f0,elm){
+jive.spank.chat.Control=function(_1f2,_1f3,elm){
 elm.id=elm.id||YAHOO.util.Dom.generateId();
 this.el=getEl(elm.id);
-this.el.appendTo(_1ef);
+this.el.appendTo(_1f2);
 this.el.setDisplayed("inline").unselectable();
 this.events={"click":true,"dblclick":true,"mouseover":true,"mouseout":true,"mousedown":true,"mouseup":true,"mousemove":true};
 this._wrappedListeners={};
@@ -19445,8 +19455,8 @@ self.fireEvent("mouseup",evt);
 this._wrappedListeners["mousemove"]=this.el.addManagedListener("mousemove",function(evt){
 self.fireEvent("mousemove",evt);
 });
-this.title=_1f0;
-this.panel=_1ef;
+this.title=_1f3;
+this.panel=_1f2;
 };
 YAHOO.extend(jive.spank.chat.Control,YAHOO.ext.util.Observable,{fireEvent:function(){
 if(!this.el.hasClass("jive-disabled")){
@@ -19454,8 +19464,8 @@ jive.spank.chat.Control.superclass.fireEvent.call(this,arguments[0],self,argumen
 }
 },remove:function(){
 this.purgeListeners();
-for(var _1fa in this.events){
-YAHOO.ext.EventManager.removeListener(_1fa,this.el,this._wrappedListeners[_1fa]);
+for(var _1fd in this.events){
+YAHOO.ext.EventManager.removeListener(_1fd,this.el,this._wrappedListeners[_1fd]);
 }
 this._wrappedListeners=null;
 this.el.remove();
@@ -19466,136 +19476,136 @@ this.el.addClass("jive-disabled");
 },toggleEnabled:function(){
 this.el.toggleClass("jive-disabled");
 }});
-jive.spank.chat.Control.add=function(_1fb,_1fc,_1fd){
+jive.spank.chat.Control.add=function(_1fe,_1ff,_200){
 var body=document.getElementsByTagName("body")[0];
-if(typeof _1fd!="function"&&_1fd.elmId!=null){
-var _1ff=$(_1fd.elmId);
-var elm=_1ff.cloneNode(true);
-elm.id="jivectrl-"+_1ff.id;
+if(typeof _200!="function"&&_200.elmId!=null){
+var _202=$(_200.elmId);
+var elm=_202.cloneNode(true);
+elm.id="jivectrl-"+_202.id;
 elm.style.display="none";
 body.appendChild(elm);
 }else{
-if(typeof _1fd!="function"&&_1fd.imgSrc!=null){
+if(typeof _200!="function"&&_200.imgSrc!=null){
 var elm=document.createElement("a");
 elm.appendChild(document.createElement("img"));
-var _201=elm.id=YAHOO.util.Dom.generateId();
+var _204=elm.id=YAHOO.util.Dom.generateId();
 elm.className="imgbtn";
-elm.firstChild.setAttribute("src",_1fd.imgSrc);
-if(_1fd.tooltip){
-elm.setAttribute("title",_1fd.tooltip);
+elm.firstChild.setAttribute("src",_200.imgSrc);
+if(_200.tooltip){
+elm.setAttribute("title",_200.tooltip);
 }
 elm.setAttribute("href","#");
 body.appendChild(elm);
 }else{
-var _202="autobtn";
-var _201=YAHOO.util.Dom.generateId();
-if(typeof _1fd!="function"&&_1fd.className!=null){
-_202=_1fd.className;
+var _205="autobtn";
+var _204=YAHOO.util.Dom.generateId();
+if(typeof _200!="function"&&_200.className!=null){
+_205=_200.className;
 }
-jive.spank.chat.Template.control_btn.append(body,{id:_201,cls:_202,text:_1fc});
+jive.spank.chat.Template.control_btn.append(body,{id:_204,cls:_205,text:_1ff});
 }
 }
-if(typeof _1fd!="function"&&_1fd.tooltip){
-elm.setAttribute("title",_1fd.tooltip);
+if(typeof _200!="function"&&_200.tooltip){
+elm.setAttribute("title",_200.tooltip);
 }
-var _203=new jive.spank.chat.Control(getEl(_1fb),_1fc,elm);
-if(typeof _1fd=="function"){
-_203.addListener("click",_1fd);
+var _206=new jive.spank.chat.Control(getEl(_1fe),_1ff,elm);
+if(typeof _200=="function"){
+_206.addListener("click",_200);
 }else{
-for(var _204 in _1fd.events){
-_203.addListener(_204,_1fd.events[_204]);
+for(var _207 in _200.events){
+_206.addListener(_207,_200.events[_207]);
 }
 }
-return _203;
+return _206;
 };
-jive.spank.chat.MucInvitation=function(_205){
-var _206=new YAHOO.ext.DomHelper.Template(this.template.join(""));
+jive.spank.chat.MucInvitation=function(_208){
+var _209=new YAHOO.ext.DomHelper.Template(this.template.join(""));
 this.onDestroy=[];
-_205.id=_205.id||YAHOO.util.Dom.generateId();
+_208.id=_208.id||YAHOO.util.Dom.generateId();
 this.el=document.createElement("div");
-this.el.innerHTML=_206.applyTemplate(_205);
-this.el.id=_205.id;
-this.config=_205;
+this.el.innerHTML=_209.applyTemplate(_208);
+this.el.id=_208.id;
+this.config=_208;
 };
-YAHOO.extend(jive.spank.chat.MucInvitation,YAHOO.ext.util.Observable,{events:{"accepted":true,"declined":true},callback:function(_207){
-var _208=this.el.id;
-var _209=getEl(_208+"-room").dom.innerHTML;
-var _20a=getEl(_208+"-inviter").dom.innerHTML;
-var join=getEl(_208+"-join");
-var _20c=join.mon("click",function(_20d,join,_20f){
-if(join.id!=_20f.getTarget().id){
+YAHOO.extend(jive.spank.chat.MucInvitation,YAHOO.ext.util.Observable,{events:{"accepted":true,"declined":true},callback:function(_20a){
+var _20b=this.el.id;
+var _20c=getEl(_20b+"-room").dom.innerHTML;
+var _20d=getEl(_20b+"-inviter").dom.innerHTML;
+var join=getEl(_20b+"-join");
+var _20f=join.mon("click",function(_210,join,_212){
+if(join.id!=_212.getTarget().id){
 return;
 }
-this.fireEvent("accepted",_207,this.config);
-getEl(_20d+"-message").dom.innerHTML="You accepted "+_20a+"'s invitation to \""+_209+"\".";
+this.fireEvent("accepted",_20a,this.config);
+getEl(_210+"-message").dom.innerHTML="You accepted "+_20d+"'s invitation to \""+_20c+"\".";
 this.destroy();
-}.bind(this,_208,join));
-this.onDestroy.push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,[join,"click",_20c]));
-var _210=getEl(_208+"-decline");
-_20c=_210.mon("click",function(_211,_212){
-this.fireEvent("declined",_207,this.config);
-getEl(_211+"-message").dom.innerHTML="You declined "+_20a+"'s invitation to \""+_209+"\".";
+}.bind(this,_20b,join));
+this.onDestroy.push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,[join,"click",_20f]));
+var _213=getEl(_20b+"-decline");
+_20f=_213.mon("click",function(_214,_215){
+this.fireEvent("declined",_20a,this.config);
+getEl(_214+"-message").dom.innerHTML="You declined "+_20d+"'s invitation to \""+_20c+"\".";
 this.destroy();
-}.bind(this,_208));
-this.onDestroy.push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,[_210,"click",_20c]));
+}.bind(this,_20b));
+this.onDestroy.push(YAHOO.ext.EventManager.removeListener.createDelegate(YAHOO.ext.EventManager,[_213,"click",_20f]));
 },destroy:function(){
-var _213=this.el.id;
+var _216=this.el.id;
 this.onDestroy.each(function(func){
 func();
 });
-getEl(_213+"-controls").remove();
+getEl(_216+"-controls").remove();
 this.purgeListeners();
 delete this.config;
 },template:["<div id=\"{id}-mucinvite\" class=\"jive-mucinvite\">","<p id=\"{id}-message\"><span id=\"{id}-inviter\">{name}</span> has invited you to ","join the conference \"<span id=\"{id}-room\">{chatname}</span>\".</p>","<div id=\"{id}-controls\"><a id=\"{id}-join\" href=\"#\">Accept</a>","<a id=\"{id}-decline\" href=\"#\">Decline</a></div>","</div>"]});
 if(window.jive_enable_autocomplete){
-jive.spank.AutoComplete=function(_215,_216,_217,_218){
-jive.spank.AutoComplete.superclass.constructor.call(this,_215,_216,_217,_218);
+jive.spank.AutoComplete=function(_218,_219,_21a,_21b){
+jive.spank.AutoComplete.superclass.constructor.call(this,_218,_219,_21a,_21b);
 };
 YAHOO.extend(jive.spank.AutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.AutoComplete.prototype._populateList=function(_219,_21a,self){
-self.autoHighlight=(_21a[0][0].indexOf(_219)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_219,_21a,self);
+jive.spank.AutoComplete.prototype._populateList=function(_21c,_21d,self){
+self.autoHighlight=(_21d[0][0].indexOf(_21c)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_21c,_21d,self);
 };
-jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_21d){
-var _21e=v.keyCode;
-switch(_21e){
+jive.spank.AutoComplete.prototype._onTextboxKeyDown=function(v,_220){
+var _221=v.keyCode;
+switch(_221){
 case 9:
-if(_21d.delimChar&&(_21d._nKeyCode!=_21e)){
-if(_21d._bContainerOpen){
+if(_220.delimChar&&(_220._nKeyCode!=_221)){
+if(_220._bContainerOpen){
 YAHOO.util.Event.stopEvent(v);
 }
 }
-if(_21d._oCurItem){
-_21d._selectItem(_21d._oCurItem);
+if(_220._oCurItem){
+_220._selectItem(_220._oCurItem);
 }else{
-_21d._toggleContainer(false);
+_220._toggleContainer(false);
 }
 break;
 case 27:
-_21d._toggleContainer(false);
+_220._toggleContainer(false);
 return;
 case 39:
-_21d._jumpSelection();
+_220._jumpSelection();
 break;
 case 38:
 YAHOO.util.Event.stopEvent(v);
-_21d._moveSelection(_21e);
+_220._moveSelection(_221);
 break;
 case 40:
 YAHOO.util.Event.stopEvent(v);
-_21d._moveSelection(_21e);
+_220._moveSelection(_221);
 break;
 default:
 break;
 }
 };
-jive.spank.FlatAutoComplete=function(_21f,_220,_221,_222){
-jive.spank.FlatAutoComplete.superclass.constructor.call(this,_21f,_220,_221,_222);
+jive.spank.FlatAutoComplete=function(_222,_223,_224,_225){
+jive.spank.FlatAutoComplete.superclass.constructor.call(this,_222,_223,_224,_225);
 };
 YAHOO.extend(jive.spank.FlatAutoComplete,YAHOO.widget.AutoComplete);
-jive.spank.FlatAutoComplete.prototype._populateList=function(_223,_224,self){
-self.autoHighlight=(_224[0]&&_224[0].indexOf(_223)==0);
-jive.spank.AutoComplete.superclass._populateList.call(this,_223,_224,self);
+jive.spank.FlatAutoComplete.prototype._populateList=function(_226,_227,self){
+self.autoHighlight=(_227[0]&&_227[0].indexOf(_226)==0);
+jive.spank.AutoComplete.superclass._populateList.call(this,_226,_227,self);
 };
 jive.spank.FlatAutoComplete.prototype._updateValue=function(item){
 item._sResultKey=item._oResultData;
@@ -19604,23 +19614,23 @@ jive.spank.AutoComplete.superclass._updateValue.call(this,item);
 }else{
 jive.spank.AutoComplete={};
 }
-jive.spank.Spinner={show:function(_227){
-if(_227==null){
-_227={};
+jive.spank.Spinner={show:function(_22a){
+if(_22a==null){
+_22a={};
 }
 if(!this.isShowing){
-var x=_227.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
-var y=_227.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
-var text=_227.text||"Loading...";
+var x=_22a.x||(YAHOO.util.Dom.getViewportWidth()/2)-60;
+var y=_22a.y||(YAHOO.util.Dom.getViewportHeight()/2)-20;
+var text=_22a.text||"Loading...";
 this.template.append(document.body,{text:text});
-var _22b=getEl("jive-spinner");
-if(_227.el&&_227.position){
-_22b.alignTo(_227.el,_227.position);
+var _22e=getEl("jive-spinner");
+if(_22a.el&&_22a.position){
+_22e.alignTo(_22a.el,_22a.position);
 }else{
-_22b.moveTo(x,y);
+_22e.moveTo(x,y);
 }
-_22b.setStyle("z-index",20000);
-_22b.show();
+_22e.setStyle("z-index",20000);
+_22e.show();
 this.isShowing=true;
 }
 },isShowing:false,hide:function(){
@@ -19629,26 +19639,26 @@ getEl("jive-spinner").remove();
 this.isShowing=false;
 }
 },template:new YAHOO.ext.DomHelper.Template("<div style=\"visibility: hidden;\" id=\"jive-spinner\">"+"<img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>")};
-jive.spank.chat.Filter=function(name,_22d,_22e){
-this.filterPattern=_22d;
-this.filterReplacement=_22e;
+jive.spank.chat.Filter=function(name,_230,_231){
+this.filterPattern=_230;
+this.filterReplacement=_231;
 this.name=name;
 };
-jive.spank.chat.Filter.prototype.apply=function(_22f){
-return _22f.replace(this.filterPattern,this.filterReplacement);
+jive.spank.chat.Filter.prototype.apply=function(_232){
+return _232.replace(this.filterPattern,this.filterReplacement);
 };
-jive.spank.chat.Filter.applyAll=function(_230){
-jive.spank.chat.Filter.registeredFilters.each(function(_231){
-_230=_231.apply(_230);
+jive.spank.chat.Filter.applyAll=function(_233){
+jive.spank.chat.Filter.registeredFilters.each(function(_234){
+_233=_234.apply(_233);
 });
-return _230;
+return _233;
 };
-jive.spank.chat.Filter.add=function(name,_233,_234){
-jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_233,_234));
+jive.spank.chat.Filter.add=function(name,_236,_237){
+jive.spank.chat.Filter.registeredFilters.push(new jive.spank.chat.Filter(name,_236,_237));
 };
-jive.spank.chat.Filter.remove=function(_235){
+jive.spank.chat.Filter.remove=function(_238){
 jive.spank.chat.Filter.registeredFilters.each(function(ftr,i){
-if(ftr.name==_235){
+if(ftr.name==_238){
 delete jive.spank.chat.Filter.registeredFilters[i];
 throw $break;
 }
@@ -19665,18 +19675,18 @@ jive.spank.notifier.origTitle=null;
 jive.spank.notifier.titleMsg="";
 jive.spank.notifier.titleInterval=null;
 jive.spank.notifier.countNewMsgs=function(){
-var _239;
-var _23a="";
-var _23b=0;
-for(var _23c in jive.spank.chat.ChatWindow.currentWindow){
-_239=jive.spank.chat.ChatWindow.currentWindow[_23c];
-for(var _23d in _239.newMessages){
-_23b+=_239.newMessages[_23d];
+var _23c;
+var _23d="";
+var _23e=0;
+for(var _23f in jive.spank.chat.ChatWindow.currentWindow){
+_23c=jive.spank.chat.ChatWindow.currentWindow[_23f];
+for(var _240 in _23c.newMessages){
+_23e+=_23c.newMessages[_240];
 }
 }
-return _23b;
+return _23e;
 };
-jive.spank.notifier.doTitleNotify=function(_23e){
+jive.spank.notifier.doTitleNotify=function(_241){
 var ct=jive.spank.notifier.countNewMsgs();
 if(jive.spank.notifier.titleInterval){
 window.clearTimeout(jive.spank.notifier.titleInterval);
@@ -19702,13 +19712,13 @@ jive.spank.notifier.titleInterval=window.setTimeout(jive.spank.notifier.rotateTi
 };
 jive.spank.chat.Template={add_contact:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody addcontact\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"{id}-addusername\">Username:</label>","</td><td width=\"65%\">","<input type=\"text\" id=\"{id}-addusername\" value=\"\" />","</td></tr>","<tr><td><label for=\"{id}-addnickname\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-addnickname\" value=\"\" /></td></tr>","<tr><td><label for=\"{id}-addcontact-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-addcontact-group\" value=\"\" />","</td></tr>","<tr><td colspan=\"2\" align=\"center\" class=\"masterctrl\">","<input type=\"button\" class=\"btn createcontact\" id=\"{id}-createcontact\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddcontact\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),add_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"25%\" rowspan=\"2\">","</td><td width=\"75%\">","Enter new group name:<br/>","<input type=\"text\" id=\"{id}-addgroupname\" value=\"\" />","</td></tr>","<tr><td>","<input type=\"button\" class=\"btn creategroup\" id=\"{id}-creategroup\" value=\"Add\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-closeaddgroup\" value=\"Cancel\" />","</td></tr></table>","</div>"].join("")),chat_toppane:new YAHOO.ext.DomHelper.Template("<div id=\"{bodyId}-topchat\" class=\"jive-chat-toppane\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4></h4>"+"<p id=\"{bodyId}-time\">Time: <span></span></p>"+"<div id=\"{bodyId}-controls\" class=\"jive-ctrlbar-topchat\"></div>"+"</div>"),contact:new YAHOO.ext.DomHelper.Template("<li id=\"{id}\" class=\"even\"><span class=\"roster-contact-{status} username\">{username}</span><span id=\"{id}-msg\" class=\"msg\">{message}</span></li>"),control_btn:new YAHOO.ext.DomHelper.Template("<a href=\"#\" class=\"jive-control-btn {cls}\" id=\"{id}\">{text}</a>"),control_panel:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-controls\" class=\"jive-ctrlbar\"></div>"),create_account:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><div class=\"{id}-name-label\">Username:</div></td>","<td><input type=\"text\" id=\"{id}-name\" /></td></tr>","<td><div class=\"{id}-passwd-label\">Password:</div></td>","<td><input type=\"password\" id=\"{id}-passwd\" /></td></tr>","<td><div class=\"{id}-confirm-label\">Confirm Password:</div></td>","<td><input type=\"password\" id=\"{id}-confirm\" /></td></tr>","</table>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-submit\" value=\"Submit\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),dialog:new YAHOO.ext.DomHelper.Template("<div class=\"ydlg-hd\"><h1>{windowTitle}</h1></div>"+"<div id=\"{bodyId}\" class=\"ydlg-bd\">"+"<div id=\"{bodyId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"</div>"+"<div class=\"ydlg-ft\"><span class=\"powered-by\">Powered By <a href=\"http://www.jivesoftware.com\" title=\"Visit Jive Software\">Jive Software</a></span></div>"),message:new YAHOO.ext.DomHelper.Template("<div class=\"{type}-message from-{from} {mentioned} {consecutive} {action} {msgclass}\"><span class=\"meta\" style=\"color: {color}\"><em>({time})</em>"+"&nbsp;{from}: </span><span class=\"message-content\">{message}</span></div>"),muc_chooser_top:new YAHOO.ext.DomHelper.Template("<div class=\"dhead chooseconf\">Create or join a conference room</div>"+"<div id=\"{tabId}-confcontrols\" class=\"dbody chooseconf\">"+"<div id=\"{tabId}-createconf\" class=\"jive-invite-control\">Create a Conference</div>"+"<div id=\"{tabId}-refresh\" class=\"jive-invite-control\">Refresh List</div>"+"</div>"),muc_controls:new YAHOO.ext.DomHelper.Template("<p>Subject: <span id=\"jive-tab-{jid}-subject\"></span></p>"+"<div class=\"muc-ctrl-frame\">"+"<div id=\"{jid}-changenick\" class=\"jive-invite-control\">Change nickname</div>"+"<div id=\"{jid}-control\" class=\"jive-invite-control\">Invite contact "+"<img align=\"absmiddle\" src=\"resources/images/menutri.gif\" height=\"4\" width=\"7\" alt=\"\" /></div>"+"</div>"),muc_subject:new YAHOO.ext.DomHelper.Template("<p><span id=\"jive-tab-{jid}-subject\"></span></p>"),mucchooser:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-roomgrid\"></div>"+"</div>"),muccreation:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roomname\">Room Name:</label></td>","<td><input type=\"text\" id=\"{id}-roomname\" /></td></tr>","<tr><td><label for=\"{id}-roomtopic\">Room Topic:</label></td>","<td><input type=\"text\" id=\"{id}-roomtopic\" /></td></tr>","<tr><td colspan=\"2\"><input type=\"checkbox\" id=\"{id}-permanent\" />","<label for=\"{id}-permanent\"> Make permanent</label></td></tr></table>","<div class=\"fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-private\" />"," Make private</span></p>","<table border=\"0\" cellpadding=\"0\" cellspacing=\"4\"><tr>","<td><label for=\"{id}-roompw\" class=\"disabled\">Password:</label></td>","<td><input type=\"password\" id=\"{id}-roompw\" disabled=\"disabled\" /></td></tr>","<td><label for=\"{id}-roomconfirm\" class=\"disabled\">Confirm Password:</label></td>","<td><input type=\"password\" id=\"{id}-roomconfirm\" disabled=\"disabled\" /></td></tr>","</table></div>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-createroom\" value=\"Create\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),mucinvitemenu:new YAHOO.ext.DomHelper.Template("<div id=\"{jid}-container\" class=\"jive-invite-menu\">"+"<input id=\"{jid}-autocomp\" type=\"text\">"+"<div id=\"{jid}-autocomp-menu\"></div>"+"</div>"),mucpassword:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Enter password:</p>","<p align=\"center\"><input type=\"password\" class=\"btn\" id=\"{id}-passwd\" value=\"\" /></p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-sendsecret\" value=\"Join\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),muctab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-controls\" class=\"jive-muc-ctrl\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<div id=\"{tabId}-sidebarlayout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-sidebar-header\" class=\"jive-muc-sidebar-header\"></div>"+"<div id=\"{tabId}-occupants\" class=\"jive-muc-occupants\"></div>"+"<div id=\"{tabId}-userstatus\" class=\"jive-muc-status\"></div>"+"</div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),remove_group:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<p align=\"center\">Are you sure you want to remove '{name}'?</p>","<p align=\"center\"><input type=\"button\" class=\"btn\" id=\"{id}-remove\" value=\"Yes\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"No\" /></p>","</div>"].join("")),rename:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\">","<div style=\"text-align: center; padding: 8px;\">Rename to: ","<input type=\"text\" id=\"{id}-name\" value=\"\" /></div>","<div style=\"text-align: center;\">","<input type=\"button\" class=\"btn\" id=\"{id}-rename\" value=\"OK\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-close\" value=\"Cancel\" />","</div>","</div>"].join("")),roster:new YAHOO.ext.DomHelper.Template("<ul id=\"{rosterId}\" class=\"jive-roster\">{groups}</ul>"),roster_group:new YAHOO.ext.DomHelper.Template("<li id=\"group-{id}\" class=\"group\">"+"<span id=\"group-label-{id}\" class=\"group-label {online} {renderClosed}\"><em>{groupName}</em></span>"+"<ul id=\"group-list-{id}\" class=\"group-list\">{users}</ul>"+"</li>"),rostertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content\">"+"<div id=\"{tabId}-user\" class=\"jive-controlpanel\"></div>"+"<div id=\"{tabId}-resources\"></div>"+"</div>"),spinnertab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-spinner\" class=\"ylayout-inactive-content ydlg-tab jive-spinnertab\">"+"<div id=\"jive-spinner\"><img src=\"resources/images/progress.gif\" alt=\"\" />{text}</div>"+"</div>"),start_chat:new YAHOO.ext.DomHelper.Template(["<div class=\"dbody\" style=\"text-align: center;\">","<p>Enter an address:</p>","<p><input type=\"text\" id=\"{id}-jid\" /></p>","<p style=\"margin-top: 4px;\"><input type=\"button\" class=\"btn\" id=\"{id}-startbtn\" value=\"Start Chat\" />","<input type=\"button\" class=\"btn jive-closedialog\" id=\"{id}-cancel\" value=\"Cancel\" /></p>","</div>"].join("")),statusMessage:new YAHOO.ext.DomHelper.Template("<div class=\"status-message {customClass}\">{message}</div>"),status_panel:new YAHOO.ext.DomHelper.Template("<div class=\"jive-userstatus\">"+"<p class=\"avatar\"><img id=\"{bodyId}-avatar\" src=\"../images/sparkweb-avatar.png\" height=\"48\" width=\"48\" alt=\"\" /></p>"+"<h4>{username}</h4>"+"<p id=\"{bodyId}-status\" class=\"jive-mystatus\">"+"<a href=\"#\" id=\"{bodyId}-statusmenu-ctrl\" class=\"roster-contact-{statusName}\"><span>{status}</span></a></p>"+"</div>"),sub_request:new YAHOO.ext.DomHelper.Template(["<div class=\"dhead\">{nick} ({jid}) wants to add you as a contact.</div>","<div class=\"dbody fieldset\">","<p class=\"legend\"><span><input type=\"checkbox\" id=\"{id}-add\" checked=\"checked\" />"," Add user to your contacts too</span></p>","<table width=\"100%\" cellpadding=\"2\" cellspacing=\"0\" border=\"0\">","<tr><td width=\"35%\">","<label for=\"addusername\">Username:</label>","</td><td id=\"{id}-jid\" width=\"65%\">{jid}</td></tr>","<tr><td><label for=\"{id}-nick\">Nickname:</label>","</td><td><input type=\"text\" id=\"{id}-nick\" value=\"{nick}\" /></td></tr>","<tr><td><label for=\"{id}-subrequest-group\">Group:</label></td><td>","<input type=\"text\" id=\"{id}-subrequest-group\" value=\"\" />","</td></tr></table></div>","<p align=\"center\">","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-acceptsubrequest\" value=\"Allow\" />","<input type=\"button\" class=\"btn subrequest\" id=\"{id}-denysubrequest\" value=\"Deny\" />","</p>"].join("")),tab:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>"),userpane:new YAHOO.ext.DomHelper.Template("<div id=\"{id}-message\">{message}</div>"),userpane_loggedin:new YAHOO.ext.DomHelper.Template("<div>"+"<input class=\"jive-muc-username\" type=\"text\" id=\"{id}-uname\" value=\"{uname}\"></input>"+"<a class=\"jive-muc-username-edit\" id=\"{id}-uname-edit\">change</a>"+"</div>"+"<div class=\"jive-muc-presence-control {presence}\" id=\"{id}-presencecontrol\">{presence}</div>"),userpane_changebtn:new YAHOO.ext.DomHelper.Template("<a id=\"{id}-changenickbtn\" href=\"javascript:void(0);\">Change Nickname</a>"),userstatus:new YAHOO.ext.DomHelper.Template("<div id=\"{tabId}-layout\" class=\"ylayout-inactive-content ydlg-tab\">"+"<div id=\"{tabId}-toppane\" class=\"ydlg-bd jive-toppane\"></div>"+"<div id=\"{tabId}-history\" class=\"jive-history\"></div>"+"<textarea id=\"{tabId}-text\" class=\"jive-tab-message\"></textarea>"+"</div>")};
 if(window.jive_enable_grid){
-YAHOO.ext.grid.SpankJSONDataModel=function(_240){
+YAHOO.ext.grid.SpankJSONDataModel=function(_243){
 YAHOO.ext.grid.SpankJSONDataModel.superclass.constructor.call(this,YAHOO.ext.grid.LoadableDataModel.JSON);
-this.schema=_240;
+this.schema=_243;
 };
-YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_242,_243){
-var _244=this.schema.id;
-var _245=this.schema.fields;
+YAHOO.extendX(YAHOO.ext.grid.SpankJSONDataModel,YAHOO.ext.grid.LoadableDataModel,{loadData:function(data,_245,_246){
+var _247=this.schema.id;
+var _248=this.schema.fields;
 try{
 if(this.schema.totalProperty){
 var v=parseInt(eval("data."+this.schema.totalProperty),10);
@@ -19716,7 +19726,7 @@ if(!isNaN(v)){
 this.totalCount=v;
 }
 }
-var _247=[];
+var _24a=[];
 if(this.schema.root){
 var root=eval("data."+this.schema.root);
 }else{
@@ -19724,52 +19734,52 @@ var root=data;
 }
 for(var i in root){
 var node=root[i];
-var _24b=[];
-_24b.node=node;
-_24b.id=(typeof node[_244]!="undefined"&&node[_244]!==""?node[_244]:String(i));
-for(var j=0;j<_245.length;j++){
-var val=node[_245[j]];
+var _24e=[];
+_24e.node=node;
+_24e.id=(typeof node[_247]!="undefined"&&node[_247]!==""?node[_247]:String(i));
+for(var j=0;j<_248.length;j++){
+var val=node[_248[j]];
 if(typeof val=="undefined"){
 val="";
 }
 if(this.preprocessors[j]){
 val=this.preprocessors[j](val);
 }
-_24b.push(val);
+_24e.push(val);
 }
-_247.push(_24b);
+_24a.push(_24e);
 }
-if(_243!==true){
+if(_246!==true){
 this.removeAll();
 }
-this.addRows(_247);
-if(typeof _242=="function"){
-_242(this,true);
+this.addRows(_24a);
+if(typeof _245=="function"){
+_245(this,true);
 }
 this.fireLoadEvent();
 }
 catch(e){
 this.fireLoadException(e,null);
-if(typeof _242=="function"){
-_242(this,false);
+if(typeof _245=="function"){
+_245(this,false);
 }
 }
-},getRowId:function(_24e){
-return this.data[_24e].id;
+},getRowId:function(_251){
+return this.data[_251].id;
 }});
 }
-YAHOO.ext.Element.prototype.getParentByClass=function(_24f,_250){
-if(_250){
-_250=_250.toLowerCase();
+YAHOO.ext.Element.prototype.getParentByClass=function(_252,_253){
+if(_253){
+_253=_253.toLowerCase();
 }
 function isMatch(el){
 if(!el){
 return false;
 }
-if(_24f&&!YAHOO.util.Dom.hasClass(el,_24f)){
+if(_252&&!YAHOO.util.Dom.hasClass(el,_252)){
 return false;
 }
-return !(_250&&el.tagName.toLowerCase()!=_250);
+return !(_253&&el.tagName.toLowerCase()!=_253);
 }
 var t=this.dom;
 if(!t||isMatch(t)){
@@ -19785,9 +19795,9 @@ p=p.parentNode;
 }
 return null;
 };
-YAHOO.ext.Element.prototype.setSelectable=function(_255){
-this.dom.unselectable=_255?"off":"on";
-if(!_255){
+YAHOO.ext.Element.prototype.setSelectable=function(_258){
+this.dom.unselectable=_258?"off":"on";
+if(!_258){
 this.applyStyles("-moz-user-select:none;-khtml-user-select:none;");
 }else{
 this.applyStyles("-moz-user-select:normal;-khtml-user-select:auto;");
@@ -19796,7 +19806,7 @@ return this;
 };
 
 
-jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",mucServer:"conference.localhost",server:"localhost",connectionAddress:"localhost:7080",roomName:"test",logoutOnUnload:"false",httpBindPath:"/http-bind/",createOnLoad:"true",createRoom:"true"};
+jive_groupchat_config_defaults={width:750,height:450,x:0,y:0,fitToParent:"true",constrained:"false",draggable:"false",resizable:"true",closable:"true",bottomPane:"false",logoutOnUnload:"false",httpBindPath:"/http-bind/",createOnLoad:"true",createRoom:"true"};
 var jive_prefs={data:{},load:function(){
 var _1=document.cookie.split(";");
 if(_1[0]){
@@ -19869,7 +19879,6 @@ window.controller.chatWindow.addStatusMessage(_14,_16.body);
 controller={chatWindow:null,conf:null,connection:null,connectionSuccessful:function(_19){
 this.connection=_19;
 _19.login();
-window.onbeforeunload=_19.disconnect;
 },connectionFailed:function(_1a,_1b){
 alert("Error: "+_1b);
 },authenticationSuccessful:function(_1c){
@@ -19952,142 +19961,192 @@ _29.changeStatus(_2a);
 },sendMessage:function(jid,_2e){
 jid=new XMPP.JID(jid);
 this.completionState={index:0,completed:null,original:null};
-if(_2e.indexOf("/clear")==0){
-var _2f=this.chatWindow.dialog.getEl().dom.getElementsByClassName("jive-history")[0];
-while(_2f.firstChild){
-_2f.removeChild(_2f.firstChild);
+if(_2e.indexOf("/")==0){
+_2e=this.handleCommand(jid,_2e);
 }
-}else{
-if(_2e.indexOf("/nick")==0){
-if(_2e.length>"/nick".length+2){
-this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_2e.replace("/nick ",""));
-}
-}else{
-if(_2e.indexOf("/part")==0){
-this.logout(_2e.replace("/part ","").replace("/part",""));
-}else{
-if(_2e.indexOf("/leave")==0){
-this.logout(_2e.replace("/leave ","").replace("/leave",""));
-}else{
-var _30=org.jive.spank.x.chatstate.getManager(this.chatManager).setCurrentState("active",jid);
-this.conf.sendMessage(_2e,_30);
+if(_2e.length>0){
+var _2f=org.jive.spank.x.chatstate.getManager(this.chatManager).setCurrentState("active",jid);
+this.conf.sendMessage(_2e,_2f);
 this.chatWindow.addMessage(jid,this.nickname,{body:_2e.escapeHTML(),isLocal:true},true);
 }
+},commandHelp:function(_30){
+if(window.disabledCommands!=null&&window.disabledCommands[_30]!=null){
+return "";
 }
+switch(_30){
+case "clear":
+return "/clear clears the chat history";
+case "nick":
+return "/nick [name] changes your name to [name]";
+case "part":
+case "leave":
+return "/leave or /part leaves the chat room";
+case "away":
+return "/away [message] sets your status to away, and if a message is specified, sets your status message to [message]";
+case "available":
+case "back":
+return "/available or /back sets your status to available, and if a message is specified, sets your status message to [message]";
+default:
+return "Available commands: /clear, /nick, /part, /leave, /away, /available, /back, /?, /help. For more information type /help followed by the name of a command";
 }
+},handleCommand:function(jid,_32){
+var _33=_32.split(" ")[0].substring(1);
+if(_33.indexOf("/")==0||(window.disabledCommands!=null&&window.disabledCommands[_33]!=null)){
+return _32;
 }
-},completionState:{index:0,completed:null,original:null},completeNick:function(jid,_32,_33){
+switch(_33){
+case "clear":
+var _34=this.chatWindow.dialog.getEl().dom.getElementsByClassName("jive-history")[0];
+while(_34.firstChild){
+_34.removeChild(_34.firstChild);
+}
+break;
+case "nick":
+if(_32.length>"/nick".length+2){
+this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_32.replace("/nick ",""));
+}
+break;
+case "part":
+case "leave":
+this.logout(_32.replace("/"+_33,""));
+break;
+case "away":
+case "available":
+case "back":
+var _35=(_33=="back"||_33=="available")?"available":"away";
+var _36=new XMPP.Presence();
+_36.setMode(_35);
+_36.setTo(jid);
+_36.setStatus(_32.substring(_33.length+2));
+this.conf.presenceManager.sendPresence(_36);
+break;
+case "?":
+case "help":
+var _37=this.commandHelp(_32.substring(_33.length+2).split(" ")[0]);
+if(_37.length>0){
+this.chatWindow.addStatusMessage(this.conf.jid,_37);
+}
+break;
+default:
+this.chatWindow.addStatusMessage(this.conf.jid,"Unrecognized command: /"+_33);
+}
+return "";
+},completionState:{index:0,completed:null,original:null},completeNick:function(jid,_39,_3a){
 jid=new XMPP.JID(jid);
-var _34=this.mucManager.getRoom(jid);
-var _35=_34.getOccupants();
-var _36;
-var _37=this.completionState;
-var _38=0;
-if(_37.original==null||_37.completed!=_32){
-_37.original=_32;
+var _3b=this.mucManager.getRoom(jid);
+var _3c=_3b.getOccupants();
+var _3d;
+var _3e=this.completionState;
+var _3f=0;
+if(_3e.original==null||_3e.completed!=_39){
+_3e.original=_39;
 }
-for(var i=_37.index;i<_35.length&&_38<_35.length;i++){
-_38++;
-_37.index=i+1;
-_36=_35[i].getNick();
-if(_37.index>=_35.length){
-_37.index=0;
+for(var i=_3e.index;i<_3c.length&&_3f<_3c.length;i++){
+_3f++;
+_3e.index=i+1;
+_3d=_3c[i].getNick();
+if(_3e.index>=_3c.length){
+_3e.index=0;
 i=0;
 }
-if(_36.indexOf(_37.original)==0&&_37.original.length<_36.length){
-_37.completed=_36+": ";
-_33.dom.value=_37.completed;
-_33.dom.selectionStart=_33.dom.value.length;
-_33.dom.selectionEnd=_33.dom.value.length;
+if(_3d.indexOf(_3e.original)==0&&_3e.original.length<_3d.length){
+_3e.completed=_3d+": ";
+_3a.dom.value=_3e.completed;
+_3a.dom.selectionStart=_3a.dom.value.length;
+_3a.dom.selectionEnd=_3a.dom.value.length;
 return;
 }
 }
-},handleNameChange:function(_3a,_3b,_3c,_3d){
-var _3e=this.conf.getOccupants();
-var _3f=false;
-if(_3d!="nosave"){
-jive_prefs.data.nickname=_3c;
+},handleNameChange:function(_41,_42,_43,_44){
+var _45=this.conf.getOccupants();
+var _46=false;
+if(_44!="nosave"){
+jive_prefs.data.nickname=_43;
 jive_prefs.save();
 }
-for(var i=0;i<_3e.length;i++){
-if(_3c.toLowerCase()==_3e[i].getNick().toLowerCase()&&_3c!=this.nickname){
-_3c=_3c+"_";
+for(var i=0;i<_45.length;i++){
+if(_43.toLowerCase()==_45[i].getNick().toLowerCase()&&_43!=this.nickname){
+_43=_43+"_";
 i=0;
-_3f=true;
+_46=true;
 }
 }
-if(_3f==true){
-this.chatWindow.addStatusMessage(this.conf.jid,"Nickname collision with "+_3c+"; a _ has been appended to your nick to make it different.","muc-name-conflict-message");
-this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_3c,"nosave");
+if(_46==true){
+this.chatWindow.addStatusMessage(this.conf.jid,"Nickname collision with "+_43+"; a _ has been appended to your nick to make it different.","muc-name-conflict-message");
+this.chatWindow.fireEvent("changenameinmuc",this.chatWindow,this.conf.jid,_43,"nosave");
 return;
 }
-this.nickname=_3c;
-this.conf.changeNickname(_3c);
+this.nickname=_43;
+this.conf.changeNickname(_43);
 },sendTimeStamp:function(){
 this.chatWindow.addStatusMessage(this.conf.jid,window.strftime(new Date(),"%1I:%M %p"),"muc-time-message");
 window.setTimeout(this.sendTimeStamp.bind(this),300000);
 },updateDate:function(){
 window.controller.chatWindow.dialog.setTitle("");
-var _41=new Date();
-_41.setMinutes(0);
-_41.setHours(0);
-_41.setSeconds(5);
-_41.setDate(_41.getDate()+1);
-window.setTimeout(window.controller.updateDate,_41-new Date());
-},onSuccess:function(_42){
-var _43=window.controller.tempOnSuccess.bind(window.controller);
-_43(_42);
-},tempOnSuccess:function(_44){
-var _45=window.controller.chatWindow;
-var _46=window.controller.conf;
-_45.addMUC({name:_46.nickname,jid:_46.jid});
-var _47=_46.getOccupants();
-for(var i=0;i<_47.length;i++){
-window.controller.occupantListener(_47[i]);
+var _48=new Date();
+_48.setMinutes(0);
+_48.setHours(0);
+_48.setSeconds(5);
+_48.setDate(_48.getDate()+1);
+window.setTimeout(window.controller.updateDate,_48-new Date());
+},onSuccess:function(_49){
+var _4a=window.controller.tempOnSuccess.bind(window.controller);
+_4a(_49);
+},tempOnSuccess:function(_4b){
+var _4c=window.controller.chatWindow;
+var _4d=window.controller.conf;
+_4c.addMUC({name:_4d.nickname,jid:_4d.jid});
+var _4e=_4d.getOccupants();
+for(var i=0;i<_4e.length;i++){
+window.controller.occupantListener(_4e[i]);
 }
-_45.prepUserPane();
-_45.show();
+_4c.prepUserPane();
+_4c.show();
 try{
-_45.finalizeUserPane(this.nickname,this.mucManager);
+_4c.finalizeUserPane(this.nickname,this.mucManager);
 }
 catch(e){
 }
-_45.setSubject("");
+_4c.setSubject("");
 window.controller.updateDate();
-getEl(_45.tabId+"-layout").dom.parentNode.style.position="absolute";
+getEl(_4c.tabId+"-layout").dom.parentNode.style.position="absolute";
 enableEmoticons();
 enableAutolinking();
-_45.addListener("message",this.sendMessage.bind(this));
-_45.addListener("nickcomplete",this.completeNick.bind(this));
-_45.addListener("changenameinmuc",this.handleNameChange.bind(this));
-_45.dialog.addListener("beforeshow",this.joinChat,window.controller,true);
-_45.dialog.addListener("beforehide",this.conf.leave.bind(this.conf));
-var _49=jive_prefs.data.nickname;
-if(!_49){
-_49=this.nickname;
+_4c.addListener("message",this.sendMessage.bind(this));
+_4c.addListener("nickcomplete",this.completeNick.bind(this));
+_4c.addListener("changenameinmuc",this.handleNameChange.bind(this));
+_4c.dialog.addListener("beforeshow",this.joinChat,window.controller,true);
+_4c.dialog.addListener("beforehide",this.conf.leave.bind(this.conf));
+var _50=jive_prefs.data.nickname;
+if(!_50){
+_50=this.nickname;
 }
-_45.fireEvent("changenameinmuc",_45,this.conf.jid,_49);
+_4c.fireEvent("changenameinmuc",_4c,this.conf.jid,_50);
 window.setTimeout(window.controller.sendTimeStamp.bind(window.controller),1000);
-},logout:function(_4a){
+},logout:function(_51){
 window.controller.conf.leave(false);
-var _4b=new XMPP.Presence();
-_4b.setType("unavailable");
-window.controller.connection.logout(_4b);
+var _52=new XMPP.Presence();
+_52.setType("unavailable");
+window.controller.connection.logout(_52);
 }};
+Event.observe(window,"beforeunload",window.controller.logout,false);
 var resizeHandler=function(){
-var _4c=window.controller.chatWindow.dialog;
-_4c.beginUpdate();
-_4c.getEl().fitToParent();
-_4c.resizeTo(_4c.getEl().getWidth(),_4c.getEl().getHeight());
-var xy=YAHOO.util.Dom.getXY(_4c.getEl().dom.parentNode);
-_4c.moveTo(xy[0],xy[1]);
-_4c.endUpdate();
+var _53=window.controller.chatWindow.dialog;
+_53.beginUpdate();
+_53.getEl().fitToParent();
+_53.resizeTo(_53.getEl().getWidth(),_53.getEl().getHeight());
+var xy=YAHOO.util.Dom.getXY(_53.getEl().dom.parentNode);
+_53.moveTo(xy[0],xy[1]);
+_53.endUpdate();
 };
 var toggleTheme=function(){
 getEl(document.body,true).toggleClass("jivetheme-muc");
 };
 if(window.jive_groupchat_config["createOnLoad"]=="true"){
 YAHOO.ext.EventManager.onDocumentReady(function(){
+if(window.jive_groupchat_config["connectionAddress"]==null){
+throw "Error: You need to specify the room, server, etc... to connect to";
+}
 window.connection=new XMPPConnection(window.jive_groupchat_config["httpBindPath"],window.jive_groupchat_config["connectionAddress"],controller);
 connection.connect();
 toggleTheme();
