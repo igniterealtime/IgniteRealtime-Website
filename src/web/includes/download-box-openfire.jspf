@@ -46,8 +46,8 @@
                 <a href="source.jsp">Source Code</a>
             </span>
 
-            <h2>Wildfire <%= version %></h2>
-            <p>Wildfire (Openfire named version coming soon) is a cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.
+            <h2>Openfire <%= version %></h2>
+            <p>Openfire (formerly Wildfire) is a cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.
 			<a style="color: #666;" target="_blank" href="http://www.jivesoftware.com/company/why.jsp">Read about the name change</a>
 			</p>
 
