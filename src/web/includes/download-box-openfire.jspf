@@ -12,12 +12,12 @@
     DecimalFormat formatter = new DecimalFormat("0.00");
     String basedir = buildsPath + "/openfire";
     String ver = version.replace('.', '_');
-    File winInstaller = new File(basedir, "openfire" + ver + ".exe");
-    File zip = new File(basedir, "openfire" + ver + ".zip");
-    File rpm = new File(basedir, "openfire" + ver + ".rpm");
-    File binTarGz = new File(basedir, "openfire" + ver + ".tar.gz");
-    File dmg = new File(basedir, "openfire" + ver + ".dmg");
-    File war = new File(basedir, "openfire" + ver + ".war");
+    File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
+    File zip = new File(basedir, "openfire_" + ver + ".zip");
+    File rpm = new File(basedir, "openfire_" + ver + ".rpm");
+    File binTarGz = new File(basedir, "openfire_" + ver + ".tar.gz");
+    File dmg = new File(basedir, "openfire_" + ver + ".dmg");
+    File war = new File(basedir, "openfire_" + ver + ".war");
     File srcZip = new File(basedir, "openfire_src_" + ver + ".zip");
     File srcTarGz = new File(basedir, "openfire_src_" + ver + ".tar.gz");
 
