@@ -4,22 +4,22 @@
 <%  String path = request.getContextPath();
     String buildsPath = application.getInitParameter("builds-path");
 
-    String version = Versions.getVersion("wildfire-beta");
+    String version = Versions.getVersion("openfire-beta");
     if (version == null) {
         version = "0.0";
     }
 
     DecimalFormat formatter = new DecimalFormat("0.00");
-    String basedir = buildsPath + "/wildfire";
+    String basedir = buildsPath + "/openfire";
     String ver = version.replace('.', '_');
-    File winInstaller = new File(basedir, "wildfire_" + ver + ".exe");
-    File zip = new File(basedir, "wildfire_" + ver + ".zip");
-    File rpm = new File(basedir, "wildfire_" + ver + ".rpm");
-    File binTarGz = new File(basedir, "wildfire_" + ver + ".tar.gz");
-    File dmg = new File(basedir, "wildfire_" + ver + ".dmg");
-    File war = new File(basedir, "wildfire_" + ver + ".war");
-    File srcZip = new File(basedir, "wildfire_src_" + ver + ".zip");
-    File srcTarGz = new File(basedir, "wildfire_src_" + ver + ".tar.gz");
+    File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
+    File rpm = new File(basedir, "openfire_" + ver + ".rpm");
+    File zip = new File(basedir, "openfire_" + ver + ".zip");
+    File binTarGz = new File(basedir, "openfire_" + ver + ".tar.gz");
+    File dmg = new File(basedir, "openfire_" + ver + ".dmg");
+    File war = new File(basedir, "openfire_" + ver + ".war");
+    File srcZip = new File(basedir, "openfire_src_" + ver + ".zip");
+    File srcTarGz = new File(basedir, "openfire_src_" + ver + ".tar.gz");
 
     String buildDate = "UNKNOWN";
     if (winInstaller.exists()) {
@@ -39,14 +39,14 @@
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
                 <a href="/projects/openfire/plugins.jsp"><strong>Plugins</strong></a> |
-                <a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/README.html">Readme</a> |
-                <a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/LICENSE.html">License</a> |
-                <a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/changelog.html">Changelog</a> |
+                <a href="http://www.igniterealtime.org/builds/openfire/docs/latest/README.html">Readme</a> |
+                <a href="http://www.igniterealtime.org/builds/openfire/docs/latest/LICENSE.html">License</a> |
+                <a href="http://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html">Changelog</a> |
                 <a href="nightly_openfire.jsp">Nightly Builds</a> |
                 <a href="source.jsp">Source Code</a>
             </span>
 
-            <h2>Wildfire <%= version %></h2>
+            <h2>Openfire <%= version %></h2>
             <p>Cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.</p>
 
             <span class="ignite_download_choose">Choose your platform:</span>
@@ -60,7 +60,7 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> Includes Java JRE <b>(recommended)</b>
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> Includes Java JRE <b>(recommended)</b>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller.length()/1024.0/1024.0) %> MB</span>
@@ -68,7 +68,7 @@
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= zip.getName() %>"><%= zip.getName() %></a> Does not include Java JRE
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= zip.getName() %>"><%= zip.getName() %></a> Does not include Java JRE
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)zip.length()/1024.0/1024.0) %> MB</span>
@@ -83,7 +83,7 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_linux.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= rpm.getName() %>"><%= rpm.getName() %></a> Includes Java JRE <b>(recommended)</b>
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= rpm.getName() %>"><%= rpm.getName() %></a> Includes Java JRE <b>(recommended)</b>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)rpm.length()/1024.0/1024.0) %> MB</span>
@@ -91,7 +91,7 @@
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> No Java JRE, works on most Unix variants
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> No Java JRE, works on most Unix variants
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binTarGz.length()/1024.0/1024.0) %> MB</span>
@@ -106,7 +106,7 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=wildfire/<%= dmg.getName() %>"><%= dmg.getName() %></a>
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= dmg.getName() %>"><%= dmg.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)dmg.length()/1024.0/1024.0) %> MB</span>

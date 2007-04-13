@@ -20,7 +20,7 @@
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
@@ -50,27 +50,27 @@
 					<h3>Documentation:</h3>
 					<ul>
 					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/README.html">Readme &amp; License</a></li>
+					<a href="http://www.igniterealtime.org/builds/openfire/docs/latest/README.html">Readme &amp; License</a></li>
 					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/changelog.html">Changelog</a>
+					<a href="http://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html">Changelog</a>
 					<br>
 					<br></li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/install-guide.html">Installation Guide</a> - How to install Openfire.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/database.html">Database Installation Guide</a> -  How to setup your database for use with Openfire.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/ssl-guide.html">SSL Guide</a> - A guide to setting up Openfire's SSL secure socket support.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/ldap-guide.html">LDAP Guide</a> - A guide to setting up Openfire to work with LDAP user stores.</li>
-                    <li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/db-integration-guide.html">Custom Database Integration Guide</a> - A guide to integrating Openfire authentication, user, and group data with a custom database.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/install-guide.html">Installation Guide</a> - How to install Openfire.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/database.html">Database Installation Guide</a> -  How to setup your database for use with Openfire.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/ssl-guide.html">SSL Guide</a> - A guide to setting up Openfire's SSL secure socket support.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/ldap-guide.html">LDAP Guide</a> - A guide to setting up Openfire to work with LDAP user stores.</li>
+                    <li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/db-integration-guide.html">Custom Database Integration Guide</a> - A guide to integrating Openfire authentication, user, and group data with a custom database.</li>
 
                     </ul>
 					
 					<h3>Developer Documentation:</h3>
 					<ul>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/javadoc/index.html">JavaDocs</a> - Openfire API documentation.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/source-build.html">Building the Source</a> - Instructions for downloading and compiling the Openfire source code.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/protocol-support.html">Protocol Support</a> - Provides details on the XMPP support and JEPs that Openfire implements.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/plugin-dev-guide.html">Plugin Developer Guide</a> - A guide to writing and installing plugins for Openfire.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/translator-guide.html">Translator Guide</a> - Information for those interested in translating the admin console of Openfire into other languages.</li>
-					<li><a href="http://www.igniterealtime.org/builds/wildfire/docs/latest/documentation/database-guide.html">Database Schema Guide</a> - A tour of the Openfire database schema for developers and database administrators.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/index.html">JavaDocs</a> - Openfire API documentation.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/source-build.html">Building the Source</a> - Instructions for downloading and compiling the Openfire source code.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/protocol-support.html">Protocol Support</a> - Provides details on the XMPP support and JEPs that Openfire implements.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/plugin-dev-guide.html">Plugin Developer Guide</a> - A guide to writing and installing plugins for Openfire.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/translator-guide.html">Translator Guide</a> - Information for those interested in translating the admin console of Openfire into other languages.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/database-guide.html">Database Schema Guide</a> - A tour of the Openfire database schema for developers and database administrators.</li>
 					</ul>
 					
 					<!-- <h3>Other:</h3>
