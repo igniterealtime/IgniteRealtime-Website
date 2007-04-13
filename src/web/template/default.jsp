@@ -27,13 +27,16 @@
 	@import "/styles/global.css";
 </style>
 
+<script type="text/javascript" language="JavaScript" src="/scripts/kitchensink.js"></script>
+<script type="text/javascript" language="JavaScript" src="/scripts/ignite.js"></script>
+<script type="text/javascript" language="JavaScript" src="/scripts/groupchat_timer.js"></script>
+<!--
 <script type="text/javascript" language="JavaScript" src="/scripts/cookies.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/prototype.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/scriptaculous.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/window.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/lightbox.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/ignite.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/groupchat_timer.js"></script>
+-->
 
 <decorator:head />
 
