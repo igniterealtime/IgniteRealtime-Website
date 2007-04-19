@@ -13,6 +13,14 @@ import org.jivesoftware.site.DownloadServlet.DownloadInfo;
 import org.jivesoftware.site.DownloadStats;
 import org.jivesoftware.site.Versions;
 
+import javax.activation.MimetypesFileTypeMap;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileFilter;
@@ -23,14 +31,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import javax.servlet.ServletConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.activation.MimetypesFileTypeMap;
 
 /**
  * Provides support for global updating of the Jive Spark IM client.
@@ -87,24 +87,26 @@ public class SparkUpdateServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Handle Version Request. Only handle windows and mac version at this time.
         final String os = request.getParameter("os");
+        boolean includeBeta = request.getParameter("beta") != null;
 
         // Add check to database.
         String latestVersion = Versions.getVersion("spark");
         String currentVersion = null;
         DownloadStats.addCheckUpdate(request.getRemoteAddr(), os, currentVersion, latestVersion, DownloadInfo.spark);
 
+
         if ("windows".equals(os)) {
-            sendVersionInformation(response, ".exe");
+            sendVersionInformation(response, ".exe", includeBeta);
         }
         else if ("mac".equals(os)) {
-            sendVersionInformation(response, ".dmg");
+            sendVersionInformation(response, ".dmg", includeBeta);
         }
         else if ("linux".equals(os)) {
-            sendVersionInformation(response, ".tar.gz");
+            sendVersionInformation(response, ".tar.gz", includeBeta);
         }
     }
 
-    private void sendVersionInformation(HttpServletResponse response, final String suffix) throws IOException {
+    private void sendVersionInformation(HttpServletResponse response, final String suffix, boolean includeBeta) throws IOException {
 
         final File[] files = sparkDirectory.listFiles(new FileFilter() {
             public boolean accept(File pathname) {
@@ -112,17 +114,25 @@ public class SparkUpdateServlet extends HttpServlet {
             }
         });
 
-        List<String> fileList = new ArrayList<String>();
+        final List<String> listOfSparks = new ArrayList<String>();
         final int no = files != null ? files.length : 0;
         for (int i = 0; i < no; i++) {
-            File file = files[i];
-            fileList.add(file.getName());
+            File sparkBuild = files[i];
+            String name = sparkBuild.getName();
+            if (includeBeta) {
+                listOfSparks.add(name);
+            }
+            else {
+                if (!name.contains("beta") && !name.contains("alpha")) {
+                    listOfSparks.add(name);
+                }
+            }
         }
 
-        Collections.sort(fileList);
+        Collections.sort(listOfSparks);
 
-        int size = fileList.size();
-        String latestFile = fileList.get(size - 1);
+        int size = listOfSparks.size();
+        String latestFile = listOfSparks.get(size - 1);
 
         Version version = new Version();
         int index = latestFile.indexOf("_");
@@ -267,8 +277,6 @@ public class SparkUpdateServlet extends HttpServlet {
         int indexOfPeriod = fileName.indexOf(".");
         return fileName.substring(indexOfPeriod + 1);
     }
-
-
 
 
 }
