@@ -3,8 +3,8 @@
     <product name="wildfire" version="3.3.0" date="April 12, 2007" />
     <product name="openfire" version="3.3.0" date="April 12, 2007" />
     <!--<product name="openfire-beta" version="3.2.0.rc2" date="January 31, 2007" />-->
-    <product name="spark" version="2.5.1" date="April 12, 2007" />
-    <product name="spark-beta" version="2.5.2.beta1" date="April 20, 2007" />
+    <product name="spark" version="2.5.2" date="May 3, 2007" />
+    <!--<product name="spark-beta" version="2.5.2.beta1" date="April 20, 2007" />-->
     <product name="smack" version="3.0.2" date="May 3, 2007" />
     <!--<product name="smack-beta" version="3.0.2.beta1" date="April 21, 2007" />-->
     <product name="xiff" version="2.0.0-beta4" date="Oct. 25, 2005" />
