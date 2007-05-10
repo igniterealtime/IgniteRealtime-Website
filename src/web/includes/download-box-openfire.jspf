@@ -14,7 +14,7 @@
     String ver = version.replace('.', '_');
     File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
     File zip = new File(basedir, "openfire_" + ver + ".zip");
-    File rpm = new File(basedir, "openfire_" + ver + ".rpm");
+    File rpm = new File(basedir, "openfire-" + version + "-1.i386.rpm");
     File binTarGz = new File(basedir, "openfire_" + ver + ".tar.gz");
     File dmg = new File(basedir, "openfire_" + ver + ".dmg");
     File war = new File(basedir, "openfire_" + ver + ".war");
