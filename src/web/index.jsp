@@ -134,21 +134,21 @@
 					<h4>Featured Members</h4>
 						
 						<!-- featured member 1 -->
-						<div style="float: left;">
-						<a href="http://www.igniterealtime.org/forum/profile.jspa?userID=4739">
-							<div class="ignite_home_featured_avatar">
-							<img src="/images/avatars/ryang.png" alt="avatar" width="32" height="32" />
-							</div>
-                        ryang</a>
-						</div>
-						
-						<!-- featured member 2 -->
 						<div style="float: right;">
-						<a href="http://www.igniterealtime.org/forum/profile.jspa?userID=8189">
+						<a href="http://www.igniterealtime.org/forum/profile.jspa?userID=9231">
 							<div class="ignite_home_featured_avatar">
-							 <img src="/images/avatars/jadestorm.png" alt="avatar" width="32" height="32" />
+							 <img src="/images/avatars/it2000.png" alt="avatar" width="32" height="32" />
 							</div>
-                        jadestorm</a>
+                        it2000</a>
+						</div>
+
+                        <!-- featured member 2 -->
+                        <div style="float: left;">
+						<a href="http://www.igniterealtime.org/forum/profile.jspa?userID=8151">
+							<div class="ignite_home_featured_avatar">
+							<img src="/images/avatars/srt.png" alt="avatar" width="32" height="32" />
+							</div>
+                        srt</a>
 						</div>
 					</div>
 					<!-- END featured members -->
