@@ -97,7 +97,7 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
 
-                <% String blogFeedRSS = "http://www.igniterealtime.org/blog/category/smack/feed/"; %>
+                <% String blogFeedRSS = "http://www.igniterealtime.org/community/blogs/ignite/feeds/tags/smack"; %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->
@@ -106,12 +106,7 @@
 							Latest Blog Entries
 						</span>
 						<div style="float: right;">
-                            <%--
-                            <span id="ignite_blog_header_postlink">
-								<a href="#">Post a blog entry</a>
-							</span>
-							--%>
-							<span id="ignite_blog_header_rss">
+                            <span id="ignite_blog_header_rss">
 							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
@@ -119,11 +114,17 @@
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
-                    <c:import url="<%= blogFeedRSS %>" var="blogFeedxml" />
-                    <c:import url="/xsl/blog_feed.xsl" var="blogFeedxsl" />
-                    <x:transform xml="${blogFeedxml}" xslt="${blogFeedxsl}" />
+					<%
+					ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
+					BlogService blogService = locator.getBlogService();
+					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					bprf.setTags(new String[] {"smack"});
+					BlogPost[] posts = blogService.getBlogPosts(bprf);
+					%>
+					<jsp:include page="/includes/blogposts.jsp">
+		                <jsp:param name="posts" value="<%= posts %>" />
+           			</jsp:include>
                     </cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->

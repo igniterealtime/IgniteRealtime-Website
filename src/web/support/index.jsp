@@ -61,12 +61,23 @@
 						<div>
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
-								<% String forumRSS = "http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=11&numItems=4"; %>
-								<cache:cache time="60" key="<%= forumRSS %>">
-								<c:import url="<%=forumRSS%>" var="threadsxml" />
-								<c:import url="/xsl/threads_home.xsl" var="threadsxsl" />
-								<x:transform xml="${threadsxml}" xslt="${threadsxsl}" />
-								</cache:cache>
+								<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=11&numItems=4">
+								<%
+								ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
+								ForumService forumService = locator.getForumService();
+						  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
+								rf.setRecursive(true);
+								rf.setNumResults(4);
+								ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(11, rf);
+								for (ForumMessage message : messages) {
+								%>
+									<div class="discussion">
+										<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
+											<b><%= message.getUser().getUsername() %></b> in
+											"<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
+									</div>
+								<% } %>
+		                        </cache:cache>
 								<strong><a href="http://www.igniterealtime.org/forum/" class="ignite_link_arrow">See all support discussions</a></strong>
 							</div>	
 							<div id="ignite_support_activity_articles">

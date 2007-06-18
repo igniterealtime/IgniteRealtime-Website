@@ -89,21 +89,16 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_home_body">
 
-                <% String blogFeedRSS = "http://www.igniterealtime.org/blog/category/general/feed"; %>
+                <% String blogFeedRSS = "http://www.igniterealtime.org/community/blogs/ignite/feeds/posts"; %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_home_body_leftcol">
 					<!-- BEGIN blog header -->
 					<div id="ignite_blog_header">
 						<span id="ignite_blog_header_label">
-							Latest <a href="http://www.igniterealtime.org/blog">Blog</a> Entries
+							Latest <a href="http://www.igniterealtime.org/community/blogs/ignite">Blog</a> Entries
 						</span>
 						<div style="float: right;">
-                            <%--
-                            <span id="ignite_blog_header_postlink">
-								<a href="#">Post a blog entry</a>
-							</span>
-							--%>
-							<span id="ignite_blog_header_rss">
+                            <span id="ignite_blog_header_rss">
 							 	<a href="<%= blogFeedRSS %>"><img src="images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
@@ -112,9 +107,15 @@
 
                     <%-- Show blog feed --%>
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
-                    <c:import url="<%= blogFeedRSS %>" var="blogFeedxml" />
-                    <c:import url="/xsl/blog_feed.xsl" var="blogFeedxsl" />
-                    <x:transform xml="${blogFeedxml}" xslt="${blogFeedxsl}" />
+					<%
+					ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
+					BlogService blogService = locator.getBlogService();
+					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					BlogPost[] posts = blogService.getBlogPosts(bprf);
+					%>
+					<jsp:include page="/includes/blogposts.jsp">
+		                <jsp:param name="posts" value="<%= posts %>" />
+           			</jsp:include>
                     </cache:cache>
 				</div>
 
@@ -156,20 +157,38 @@
 					<!-- BEGIN recent discussions, news, wiki docs, and articles -->
 					<div id="ignite_home_body_recent">
 					<h4>Recent Discussions</h4>
-						<% String forumRSS = "http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=1&numItems=5"; %>
-						<cache:cache time="60" key="<%= forumRSS %>">
-						<c:import url="<%=forumRSS%>" var="threadsxml" />
-                        <c:import url="/xsl/threads_home.xsl" var="threadsxsl" />
-                        <x:transform xml="${threadsxml}" xslt="${threadsxsl}" />
+						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=1&numItems=5">
+						<%
+						ForumService forumService = locator.getForumService();
+				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
+						rf.setRecursive(true);
+						rf.setNumResults(5);
+						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(1, rf);
+						for (ForumMessage message : messages) {
+						%>
+							<div class="discussion">
+								<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
+									<b><%= message.getUser().getUsername() %></b> in
+									"<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
+							</div>
+						<% } %>
                         </cache:cache>
 											
 					<h4>Recent Releases</h4>
-						<% String newsRSS = "http://www.igniterealtime.org/forum/rss/rssmessages.jspa?forumID=45&numItems=5"; %>
-						<cache:cache time="60" key="<%= newsRSS %>">
-						<c:import url="<%=newsRSS%>" var="newsxml" />
-            <c:import url="/xsl/news.xsl" var="newsxsl" />
-            <x:transform xml="${newsxml}" xslt="${newsxsl}" />
-			      </cache:cache>
+						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?forumID=45&numItems=5">
+						<%
+				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
+						rf.setRecursive(true);
+						rf.setNumResults(5);
+						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(45, rf);
+						for (ForumMessage message : messages) {
+						%>
+							<div class="news">
+								<font color="#888888"><%= message.getCreationDate() %> - </font> 
+								<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>
+							</div>
+						<% } %>
+						</cache:cache>
 					
 
                     <h4>Recent Articles</h4>

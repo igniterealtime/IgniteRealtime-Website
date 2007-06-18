@@ -1,34 +1,29 @@
-<%@ page import="java.text.NumberFormat,
-                 org.jivesoftware.site.DownloadStats"
-%>
+<%@ page import="java.text.NumberFormat, org.jivesoftware.site.DownloadStats"%>
             <!-- BEGIN blue sidebar box '48 HOUR SNAPSHOT' -->
             <div class="ignite_sidebar_bluebox_photo">
                 <div class="ignite_sidebar_top"></div>
                 <div class="ignite_sidebar_hdr ignite_sidebar_hdr_comsnapshot"></div>
                 <div class="ignite_sidebar_body">
                     <div class="ignite_sidebar_body_stat"><span>Downloads</span> <strong><%= NumberFormat.getNumberInstance().format(DownloadStats.getTotalDownloads()) %></strong></div>
-
-                    <%--
-                    <div class="ignite_sidebar_body_stat"><span>Members</span> <strong>1,314</strong></div>
-					<div class="ignite_sidebar_body_stat"><span>Forum Posts</span> <strong>1,301,450</strong></div>
-                    --%>
-                    <% String communityStatsRSS = "http://www.igniterealtime.org/forum/rss/rsscommunitystats.jspa?countUsers=true"; %>
-                    <cache:cache time="30" key="<%= communityStatsRSS %>">
-                    <c:import url="<%= communityStatsRSS %>" var="communityStatsxml" />
-                    <c:import url="/xsl/stats_community_home.xsl" var="communityStatsxsl" />
-
-                    <x:transform xml="${communityStatsxml}" xslt="${communityStatsxsl}" />
-                    </cache:cache>
-
-
-                    <!--<div class="ignite_sidebar_body_stat"><span>Blog Entries</span> <strong>6</strong></div>-->
-                    
-                    <% String blogStatsRSS = "http://www.igniterealtime.org/blog/feed/?stats"; %>
-                    <cache:cache time="30" key="<%= blogStatsRSS %>">
-                    <c:import url="<%= blogStatsRSS %>" var="blogStatsxml" />
-                    <c:import url="/xsl/stats_blog_home.xsl" var="blogStatsxsl" />
-
-                    <x:transform xml="${blogStatsxml}" xslt="${blogStatsxsl}" />
+					<%
+					ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
+					UserService userService = locator.getUserService();
+					BlogService blogService = locator.getBlogService();
+					ForumService forumService = locator.getForumService();
+					ResultFilter rf = ResultFilter.createDefaultMessageFilter();
+					rf.setRecursive(true);
+					%>
+				
+                    <cache:cache time="30" key="http://www.igniterealtime.org/forum/rss/rsscommunitystats.jspa?countUsers=true">
+				        <div class="ignite_sidebar_body_stat"><span>Members</span> 
+							<strong><%= userService.getUserCount() %></strong>
+						</div>
+				        <div class="ignite_sidebar_body_stat"><span>Forum Posts</span> 
+							<strong><%= forumService.getMessageCountByCommunityIDAndFilter(1, rf) %></strong>
+						</div>
+					    <div class="ignite_sidebar_body_stat"><span>Blog Entries</span> 
+							<strong><%= blogService.getBlogPostCount() %></strong>
+						</div>
                     </cache:cache>
                     
                 </div>
