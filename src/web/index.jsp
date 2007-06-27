@@ -1,4 +1,5 @@
-<%@ page import="org.jivesoftware.site.Versions,com.jivesoftware.community.webservices.*"%>
+<%@ page import="org.jivesoftware.site.Versions, 
+	com.jivesoftware.community.webservices.*"%>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -159,6 +160,7 @@
 					<h4>Recent Discussions</h4>
 						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=1&numItems=5">
 						<%
+						ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
 						ForumService forumService = locator.getForumService();
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 						rf.setRecursive(true);
@@ -177,6 +179,8 @@
 					<h4>Recent Releases</h4>
 						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?forumID=45&numItems=5">
 						<%
+						ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
+						ForumService forumService = locator.getForumService();
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 						rf.setRecursive(true);
 						rf.setNumResults(5);

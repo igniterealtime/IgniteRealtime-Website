@@ -1,4 +1,4 @@
-<%@ page import="java.text.NumberFormat, org.jivesoftware.site.DownloadStats"%>
+<%@ page import="java.text.NumberFormat, org.jivesoftware.site.DownloadStats, com.jivesoftware.community.webservices.*"%>
             <!-- BEGIN blue sidebar box '48 HOUR SNAPSHOT' -->
             <div class="ignite_sidebar_bluebox_photo">
                 <div class="ignite_sidebar_top"></div>

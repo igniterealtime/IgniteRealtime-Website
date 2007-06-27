@@ -32,8 +32,8 @@
                     <p>
                         Igniterealtime is a professionally-led (from <a href="http://www.jivesoftware.com">Jive Software</a>) Open Source community composed of end-users and developers
                         around the world who are interested in applying innovative, open-standards-based Real Time
-                        Collaboration to their businesses. We’re aimed at disrupting proprietary, non-open
-                        standards-based systems and invite you to participate in what’s already one of the biggest
+                        Collaboration to their businesses. We're aimed at disrupting proprietary, non-open
+                        standards-based systems and invite you to participate in what's already one of the biggest
                         and most active Open Source communities anywhere.
                     </p>
 					
@@ -44,14 +44,14 @@
                     <p>
                         We create Open Source software because we know open, collaborative minds can improve the
                         software landscape. We believe in the potential of the XMPP protocol and we welcome ways
-                        to increase its adoption. We put tremendous value on the involvement of Igniterealtime’s
-                        developer and customer community—their continuous feedback, QA, and development efforts
+                        to increase its adoption. We put tremendous value on the involvement of Igniterealtime's
+                        developer and customer community--their continuous feedback, QA, and development efforts
                         help steer our development path.
                     </p>
 
                     <p>
-                        Our perspective is that base functionality—the core messaging aspects of RTC—should be
-                        free and Open Source. We are committed to always providing a “complete solution” as an
+                        Our perspective is that base functionality--the core messaging aspects of RTC--should be
+                        free and Open Source. We are committed to always providing a "complete solution" as an
                         OSS product, and will not hold back core features or bug fixes. To support that goal,
                         only features that support mission-critical rollouts (i.e. server clustering), embedded
                         third-party applications (non Open Source), high-end productivity features (i.e. enhanced

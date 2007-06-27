@@ -1,4 +1,4 @@
-<%@ page import="org.jivesoftware.site.Versions"%>
+<%@ page import="org.jivesoftware.site.Versions, com.jivesoftware.community.webservices.*"%>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

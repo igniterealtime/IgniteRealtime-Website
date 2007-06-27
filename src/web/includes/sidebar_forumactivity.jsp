@@ -1,3 +1,4 @@
+<%@ page import="com.jivesoftware.community.webservices.*"%>
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
@@ -11,14 +12,14 @@
 			<div class="ignite_sidebar_hdr ignite_sidebar_hdr_forum"></div>
 			<div class="ignite_sidebar_body">
 				<%
+				ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
 				ForumService forumService = locator.getForumService();
 		  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
-				rf.setCommunityID(Long.parseLong(request.getParameter("forumID")));
 				rf.setRecursive(true);
 				rf.setNumResults(5);
 				String style = "";
 				int counter = 0;
-				ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(1, rf);
+				ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(Long.parseLong(request.getParameter("forumID")), rf);
 				for (ForumMessage message : messages) {
 					counter++;
 					style = "ignite_sidebar_forum_" + (counter % 2);
