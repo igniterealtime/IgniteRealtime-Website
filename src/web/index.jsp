@@ -114,9 +114,8 @@
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
 					BlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
-					<jsp:include page="/includes/blogposts.jsp">
-						<% request.setAttribute("posts", posts); %>
-           			</jsp:include>
+					<% request.setAttribute("posts", posts); %>
+					<jsp:include page="/includes/blogposts.jsp" />
                     </cache:cache>
 				</div>
 
