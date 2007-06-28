@@ -115,7 +115,7 @@
 					BlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
 					<jsp:include page="/includes/blogposts.jsp">
-		                <jsp:param name="posts" value="<%= posts %>" />
+						<% request.setAttribute("posts", posts); %>
            			</jsp:include>
                     </cache:cache>
 				</div>
