@@ -183,7 +183,7 @@
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 						rf.setRecursive(true);
 						rf.setNumResults(5);
-						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(45, rf);
+						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(1, rf);
 						for (ForumMessage message : messages) {
 						%>
 							<div class="news">
