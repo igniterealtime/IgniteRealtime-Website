@@ -12,7 +12,7 @@
 			<div class="ignite_sidebar_hdr ignite_sidebar_hdr_forum"></div>
 			<div class="ignite_sidebar_body">
 				<%
-				ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
+				ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 				ForumService forumService = locator.getForumService();
 		  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 				rf.setRecursive(true);

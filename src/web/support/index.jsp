@@ -63,7 +63,7 @@
 								<h4>Recent Support Discussions</h4>
 								<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=11&numItems=4">
 								<%
-								ServiceLocator locator = new ServiceLocator("http://igniterealtime.org/community", "admin", "admin");
+								ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 								ForumService forumService = locator.getForumService();
 						  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 								rf.setRecursive(true);
