@@ -90,13 +90,13 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_home_body">
 
-                <% String blogFeedRSS = "http://www.igniterealtime.org/community/blogs/ignite/feeds/posts"; %>
+                <% String blogFeedRSS = "/community/blogs/ignite/feeds/posts"; %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_home_body_leftcol">
 					<!-- BEGIN blog header -->
 					<div id="ignite_blog_header">
 						<span id="ignite_blog_header_label">
-							Latest <a href="http://www.igniterealtime.org/community/blogs/ignite">Blog</a> Entries
+							Latest <a href="/community/blogs/ignite">Blog</a> Entries
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
@@ -136,18 +136,18 @@
 						
 						<!-- featured member 1 -->
 						<div style="float: right;">
-						<a href="http://www.igniterealtime.org/forum/profile.jspa?userID=9231">
+						<a href="/community/people/it2000">
 							<div class="ignite_home_featured_avatar">
-							 <img src="/images/avatars/it2000.png" alt="avatar" width="32" height="32" />
+							 <img src="/community/people/it2000/avatar/32.png" alt="avatar" width="32" height="32" />
 							</div>
                         it2000</a>
 						</div>
 
                         <!-- featured member 2 -->
                         <div style="float: left;">
-						<a href="http://www.igniterealtime.org/forum/profile.jspa?userID=8151">
+						<a href="/community/people/srt">
 							<div class="ignite_home_featured_avatar">
-							<img src="/images/avatars/srt.png" alt="avatar" width="32" height="32" />
+							<img src="/community/people/srt/avatar/32.png" alt="avatar" width="32" height="32" />
 							</div>
                         srt</a>
 						</div>

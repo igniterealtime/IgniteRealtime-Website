@@ -368,7 +368,7 @@
          <br/><br/>
          <p>To submit a plugin please send an email to
          Matt Tucker (matt at jivesoftware dot com) or send him a
-         <a href="http://www.igniterealtime.org/forum/pmpost!default.jspa?to=matt">private message</a> in the forums.
+         <a href="/community/pmpost!input.jspa?to=matt">private message</a> in the forums.
          </p>
 	 </div>
 

@@ -9,26 +9,26 @@
     String profile = null;
     if (project.equals("openfire")) {
         name = "gato";
-        avatarSrc = "http://www.igniterealtime.org/forum/avatar-display.jspa?avatarID=79";
-        profileLink = "http://www.igniterealtime.org/forum/profile.jspa?userID=1964";
+        avatarSrc = "http://www.igniterealtime.org/community/people/gato/avatar/32.png";
+        profileLink = "http://www.igniterealtime.org/community/people/gato";
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
     }
     else if (project.equals("spark")) {
         name = "ddman";
-        avatarSrc = "http://www.igniterealtime.org/forum/avatar-display.jspa?avatarID=39";
-        profileLink = "http://www.igniterealtime.org/forum/profile.jspa?userID=6166";
+        avatarSrc = "http://www.igniterealtime.org/community/people/ddman/avatar/32.png";
+        profileLink = "http://www.igniterealtime.org/community/people/gato";
         profile = "Java Swing nerd that can bench 380lb.";
     }
     else if (project.equals("smack")) {
         name = "matt";
-        avatarSrc = "http://www.igniterealtime.org/forum/avatar-display.jspa?avatarID=81";
-        profileLink = "http://www.igniterealtime.org/forum/profile.jspa?userID=3";
+        avatarSrc = "http://www.igniterealtime.org/community/people/matt/avatar/32.png";
+        profileLink = "http://www.igniterealtime.org/community/people/matt";
         profile = "\"That code doesn't have comments?! AHHH!\"";
     }
     else if (project.equals("xiff")) {
         name = "nick";
-        avatarSrc = "http://www.igniterealtime.org/forum/avatar-display.jspa?avatarID=195";
-        profileLink = "http://www.igniterealtime.org/forum/profile.jspa?userID=11368";
+        avatarSrc = "http://www.igniterealtime.org/community/people/nick/avatar/32.png";
+        profileLink = "http://www.igniterealtime.org/community/people/nick";
         profile = "A lyma bean-loving Flash developer working on the AS3.0 port of the XIFF library.";
     }
 %>

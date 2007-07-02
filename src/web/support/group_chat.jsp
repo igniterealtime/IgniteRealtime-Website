@@ -98,7 +98,7 @@
 
 					<h3>Previous Chats</h3>
 					<p>Transcripts of the weekly chats are posted in the 
-					<a href="http://www.igniterealtime.org/forum/">discussion forums</a>. Try a search for
+					<a href="http://www.igniterealtime.org/main-threads.jspa/">discussion forums</a>. Try a search for
 					"chat transcript" to find them.</p>
 					
 					<h3>About Group Chat</h3>
