@@ -32,7 +32,7 @@
     I will go through various techniques that can be used to add features to Openfire via plugins.
     The idea for the plugin described in this article came from
 
-    requests posted on the Ignite Realtime <a href="http://www.igniterealtime.org/forum/index.jspa">forums</a>.
+    requests posted on the Ignite Realtime <a href="/community/main-threads.jspa">forums</a>.
     Specifically, forum members asked for the
 
     ability to send a user some sort of welcome message each time they logged in. The message could
@@ -258,7 +258,7 @@ private class MotDSessionEventListener implements SessionEventListener {
 <a name="resources"></a><h2>Resources</h2>
 <ul>
 <li>The blog post <a
-        href="http://www.igniterealtime.org/blog/2007/01/16/so-you-want-to-write-a-plugin/">So you
+        href="/community/blogs/ignite/2007/01/16/so-you-want-to-write-a-plugin/">So you
     want to write a plugin</a> provides basic
 
     instructions on setting up a Openfire development environment.

@@ -407,7 +407,7 @@ and covers the following areas:
         <p>
 
         For technical support, please use our
-        <a href="http://www.igniterealtime.org/forum">community forums</a>.
+        <a href="/community/main-threads.jspa">community forums</a>.
         </p>
     </li>
 </ol>

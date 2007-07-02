@@ -95,7 +95,7 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
 				
-                <% String blogFeedRSS = "http://www.igniterealtime.org/community/blogs/ignite/feeds/tags/asterisk"; %>
+                <% String blogFeedRSS = "/community/blogs/ignite/feeds/tags/asterisk"; %>
 				<!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->
