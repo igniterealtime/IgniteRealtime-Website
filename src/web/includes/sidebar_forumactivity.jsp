@@ -15,6 +15,7 @@
 				ServiceLocator locator = new ServiceLocator("http://ignite/community", "webservices", "webservicesadmin");
 				ForumService forumService = locator.getForumService();
 		  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
+				rf.setSortOrder(ResultFilter.DESCENDING);
 				rf.setRecursive(true);
 				rf.setNumResults(5);
 				String style = "";
