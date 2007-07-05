@@ -4,23 +4,23 @@
                 String forumID = "";
                 if ("openfire".equals(project)) {
                     jiraID = "10010";
-                    forumID = "40";
+                    forumID = "2008";
                 }
                 else if ("spark".equals(project)) {
                     jiraID = "10060";
-                    forumID = "49";
+                    forumID = "2010";
                 }
                 else if ("smack".equals(project)) {
                     jiraID = "10011";
-                    forumID = "39";
+                    forumID = "2001";
                 }
                 else if ("xiff".equals(project)) {
                     jiraID = "10020";
-                    forumID = "46";
+                    forumID = "2004";
                 }
                 else if ("asterisk-im".equals(project)) {
                     jiraID = "10030";
-                    forumID = "47";
+                    forumID = "2009";
                 }
                 
             %>
