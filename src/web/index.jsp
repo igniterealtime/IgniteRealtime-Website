@@ -112,6 +112,7 @@
 					ServiceLocator locator = new ServiceLocator("http://ignite/community", "webservices", "webservicesadmin");
 					BlogService blogService = locator.getBlogService();
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					bprf.setNumResults(5);
 					BlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>

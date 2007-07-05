@@ -117,6 +117,7 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 					ServiceLocator locator = new ServiceLocator("http://ignite/community", "webservices", "webservicesadmin");
 					BlogService blogService = locator.getBlogService();
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					bprf.setNumResults(5);
 					bprf.setTags(new String[] {"asterisk"});
 					BlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
