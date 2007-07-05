@@ -41,9 +41,11 @@
 			    <jsp:param name="forumID" value="<%= forumID %>"/>
 			</jsp:include>
 			
+			<%--
             <jsp:include page="/includes/sidebar_issues.jsp">
 			    <jsp:param name="projectID" value="<%= jiraID %>"/>
 			</jsp:include>	
+			--%>
 			
 			<%@ include file="/includes/sidebar_enterprise.jspf" %>
 			
