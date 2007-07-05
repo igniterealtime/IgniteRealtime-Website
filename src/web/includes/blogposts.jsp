@@ -18,14 +18,14 @@ for (BlogPost post : posts) {
 				<a href="<%= post.getPermalink() %>#comments"><%= post.getCommentCount() %></a>
 			</div>
 
-            <h2><a href="<%= post.getPermalink() %>" title="<%= post.getSubject() %>"></a></h2>
+            <h2><a href="<%= post.getPermalink() %>" title="<%= post.getSubject() %>"><%= post.getSubject() %></a></h2>
 
             <!-- BEGIN blog entry author and datestamp -->
             <span class="ignite_blog_entry_author">
                 Posted by <a href="/community/people/<%= post.getUser().getUsername() %>/"><%= post.getUser().getUsername() %></a>
             </span>
             <span class="ignite_blog_entry_date">
-				May 25, 2007 <%= post.getPublishDate() %>
+		<%= com.jivesoftware.community.util.BlogUtils.getHumanFriendlyDate(post.getPublishDate()) %>		
             </span>
             <!-- END blog entry author and datestamp -->
         </div>
