@@ -116,7 +116,7 @@
                     <%-- Show blog feed --%>
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-					ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
+					ServiceLocator locator = new ServiceLocator("http://ignite/community", "webservices", "webservicesadmin");
 					BlogService blogService = locator.getBlogService();
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
 					bprf.setTags(new String[] {"openfire","wildfire"});
