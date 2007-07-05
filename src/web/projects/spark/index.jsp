@@ -121,9 +121,8 @@
 					bprf.setTags(new String[] {"spark"});
 					BlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
-					<jsp:include page="/includes/blogposts.jsp">
-		                <jsp:param name="posts" value="<%= posts %>" />
-           			</jsp:include>
+					<% request.setAttribute("posts", posts); %>
+					<jsp:include page="/includes/blogposts.jsp" />
                     </cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->

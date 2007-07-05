@@ -120,9 +120,9 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 					bprf.setTags(new String[] {"asterisk"});
 					BlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
-					<jsp:include page="/includes/blogposts.jsp">
-		                <jsp:param name="posts" value="<%= posts %>" />
-           			</jsp:include>
+					<% request.setAttribute("posts", posts); %>
+					<jsp:include page="/includes/blogposts.jsp" />
+
                     </cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->
