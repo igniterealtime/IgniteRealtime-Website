@@ -8,7 +8,7 @@ for (BlogPost post : posts) {
 	counter++;
 	style = counter % 2 == 0 ? "ignite_blog_entry ignite_blog_entry_odd" : "ignite_blog_entry";
 	%>
-	<div style="<%= style %>">
+	<div class="<%= style %>">
         <div class="ignite_blog_entry_header">
 			<img src="/community/people/<%= post.getUser().getUsername() %>/avatar/32.png" 
 				alt="<%= post.getUser().getUsername() %>"
