@@ -109,7 +109,7 @@
                     <%-- Show blog feed --%>
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-					ServiceLocator locator = new ServiceLocator("http://ignite/community", "webservices", "webservicesadmin");
+					ServiceLocator locator = new ServiceLocator("http://beta.igniterealtime.org/community", "webservices", "webservicesadmin");
 					BlogService blogService = locator.getBlogService();
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
 					bprf.setNumResults(5);
@@ -160,7 +160,7 @@
 					<h4>Recent Discussions</h4>
 						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=1&numItems=5">
 						<%
-						ServiceLocator locator = new ServiceLocator("http://ignite/community", "webservices", "webservicesadmin");
+						ServiceLocator locator = new ServiceLocator("http://beta.igniterealtime.org/community", "webservices", "webservicesadmin");
 						ForumService forumService = locator.getForumService();
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 						rf.setSortOrder(ResultFilter.DESCENDING);
@@ -180,7 +180,7 @@
 					<h4>Recent Releases</h4>
 						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?forumID=45&numItems=5">
 						<%
-						ServiceLocator locator = new ServiceLocator("http://ignite/community", "webservices", "webservicesadmin");
+						ServiceLocator locator = new ServiceLocator("http://beta.igniterealtime.org/community", "webservices", "webservicesadmin");
 						ForumService forumService = locator.getForumService();
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 						rf.setSortOrder(ResultFilter.DESCENDING);
