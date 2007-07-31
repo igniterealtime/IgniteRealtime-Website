@@ -295,7 +295,7 @@ and covers the following areas:
         </p>
         <p>
         If you have any questions about the security at Jivesoftware.com, you can 
-        <a href="http://www.jivesoftware.com/company/contact-form.jsp">send a message</a> to Customer Service.
+        <a href="http://www.jivesoftware.com/company/contact-form.jsp?source=Website-Ignite">send a message</a> to Customer Service.
         </p>
     </li>
 
@@ -402,7 +402,7 @@ and covers the following areas:
     <li>
         <h4>Contact Information</h4>
         <p>
-        Please view our <a href="http://www.jivesoftware.com/company/contact-form.jsp">contact page</a>.
+        Please view our <a href="http://www.jivesoftware.com/company/contact-form.jsp?source=Website-Ignite">contact page</a>.
         </p>
         <p>
 

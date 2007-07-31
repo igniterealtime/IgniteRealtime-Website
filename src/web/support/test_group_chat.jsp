@@ -100,7 +100,7 @@
 					
 					<h3>About Group Chat</h3>
 					<p>The web-based group chat client used on this site is powered by the group chat 
-					feature in <a href="http://www.jivesoftware.com/products/forums">Jive Forums</a>, a 
+					feature in <a href="http://www.jivesoftware.com/products/forums?source=Website-Ignite">Jive Forums</a>, a 
 					commercial product from Jive Software.</p>
 					
 					<p>&nbsp;</p>

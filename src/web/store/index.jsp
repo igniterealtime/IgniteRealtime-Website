@@ -187,9 +187,9 @@
 
 	<div id="action_buttons">
             [Each link should be an orange graphic button]<br>
-			<a href="http://www.jivesoftware.com/products/openfire/featuretour.jsp">Feature Tour</a>
-            <a href="http://www.jivesoftware.com/ecommerce/index.jsp">Buy Now</a>
-			<a href="http://www.jivesoftware.com/products/openfire/resources/openfire-oem.jsp">OEM</a>
+			<a href="http://www.jivesoftware.com/products/openfire/featuretour.jsp?source=Website-Ignite">Feature Tour</a>
+            <a href="http://www.jivesoftware.com/ecommerce/index.jsp?source=Website-Ignite">Buy Now</a>
+			<a href="http://www.jivesoftware.com/products/openfire/resources/openfire-oem.jsp?source=Website-Ignite">OEM</a>
         </div>
 
         <div id="tshirts">

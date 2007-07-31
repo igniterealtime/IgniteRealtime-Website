@@ -30,7 +30,7 @@
 					<h2 class="larger">Our Community</h2>
 					
                     <p>
-                        Igniterealtime is a professionally-led (from <a href="http://www.jivesoftware.com">Jive Software</a>) Open Source community composed of end-users and developers
+                        Igniterealtime is a professionally-led (from <a href="http://www.jivesoftware.com?source=Website-Ignite">Jive Software</a>) Open Source community composed of end-users and developers
                         around the world who are interested in applying innovative, open-standards-based Real Time
                         Collaboration to their businesses. We're aimed at disrupting proprietary, non-open
                         standards-based systems and invite you to participate in what's already one of the biggest
@@ -128,7 +128,7 @@
                         <p><strong>Websites:</strong></p>
                         <p><a href="http://www.xmpp.org">XMPP.org Website</a></p>
                         <p><a href="http://planet.jabber.org">Planet Jabber Blogs</a></p>
-                        <p><a href="http://www.jivesoftware.com/products/openfire/index.jsp">Openfire Enterprise Website</a></p>
+                        <p><a href="http://www.jivesoftware.com/products/openfire/index.jsp?source=Website-Ignite">Openfire Enterprise Website</a></p>
 
                     </div>
 				</div>

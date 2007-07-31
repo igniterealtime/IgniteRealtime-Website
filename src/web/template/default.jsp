@@ -59,7 +59,7 @@
 	<!-- BEGIN header -->
 	<div id="ignite_header">
 		<a href="/"><div id="ignite_logo"></div></a>
-		<a href="http://www.jivesoftware.com"><div id="ignite_jive"></div></a>
+		<a href="http://www.jivesoftware.com?source=Website-Ignite"><div id="ignite_jive"></div></a>
 		<div id="ignite_nav">
 			<ol>
 				<li id="nav01"><a href="/index.jsp">Home</a></li>
@@ -91,7 +91,7 @@
 	<!-- BEGIN footer -->
 	<div id="ignite_footer">
 		<div class="ignite_footer_nav"><a href="/index.jsp">Home</a> | <a href="/projects/index.jsp">Products</a> | <a href="/downloads/index.jsp">Downloads</a> | <a href="/community">Community</a> | <a href="/fans/index.jsp">Fans</a> | <a href="http://www.cafepress.com/igniterealtime">Store</a> | <a href="/support/index.jsp">Support</a> | <a href="/about/index.jsp">About</a> </div>
-		<div class="ignite_footer_copyright">&copy; <a href="http://www.jivesoftware.com/">Jive Software</a></div>
+		<div class="ignite_footer_copyright">&copy; <a href="http://www.jivesoftware.com?source=Website-Ignite">Jive Software</a></div>
 	</div>
 	<!-- END footer -->
 

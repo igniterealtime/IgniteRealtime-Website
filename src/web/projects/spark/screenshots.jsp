@@ -130,7 +130,7 @@
 				<div class="ignite_int_body_padding">
 					<p>View screenshots of Spark and commercial extensions below.
                         Looking for more comprehensive feature information? Visit the
-                        <a href="http://www.jivesoftware.com/products/spark/features.jsp">feature tour</a>
+                        <a href="http://www.jivesoftware.com/products/spark/features.jsp?source=Website-Ignite">feature tour</a>
                         on jivesoftware.com.</p>
 				</div>
 

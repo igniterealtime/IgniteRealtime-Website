@@ -39,7 +39,7 @@ for Sparkplug Day were to:
 <p>Sparkplugs dynamically extend the functionality of the Spark instant messaging client.
 They can be used to expose a search repository, tie into an organization's inventory system,
 provide queuing and routing functionality for chats (such as our 
-<a href="http://www.jivesoftware.com/products/liveassistant/">Live Assistant</a> product), or even
+<a href="http://www.jivesoftware.com/products/liveassistant/?source=Website-Ignite">Live Assistant</a> product), or even
 to let people play games against each other. By itself, IM is a powerful communication medium; but
 it can become a much more powerful tool when it's tailored to specific business purposes.</p>
 

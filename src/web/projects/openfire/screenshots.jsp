@@ -137,9 +137,9 @@
 				
 				<div class="ignite_int_body_padding">
 					<p>View screenshots of Openfire and
-                        <a href="http://www.jivesoftware.com/products/im/index.jsp">Openfire Enterprise</a> below.
+                        <a href="http://www.jivesoftware.com/products/im/index.jsp?source=Website-Ignite">Openfire Enterprise</a> below.
                         Looking for more comprehensive feature information? Visit the
-                        <a href="http://www.jivesoftware.com/products/openfire/featuretour.jsp">feature tour</a>
+                        <a href="http://www.jivesoftware.com/products/openfire/featuretour.jsp?source=Website-Ignite">feature tour</a>
                         on jivesoftware.com.</p>
 				</div>
 
