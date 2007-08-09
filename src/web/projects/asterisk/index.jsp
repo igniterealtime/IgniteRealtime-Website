@@ -114,7 +114,7 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
                     <%-- Show blog feed --%>
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-					ServiceLocator locator = new ServiceLocator("http://beta.igniterealtime.org/community", "webservices", "webservicesadmin");
+					ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 					BlogService blogService = locator.getBlogService();
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
 					bprf.setNumResults(5);
