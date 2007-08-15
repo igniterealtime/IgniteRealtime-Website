@@ -61,7 +61,7 @@
 						<div>
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
-								<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=11&numItems=4">
+								<cache:cache time="60" key="http://www.igniterealtime.org/community/community/feeds/threads?communityID=1&numItems=4">
 								<%
 								ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 								ForumService forumService = locator.getForumService();
@@ -69,7 +69,7 @@
 								rf.setSortOrder(ResultFilter.DESCENDING);
 								rf.setRecursive(true);
 								rf.setNumResults(4);
-								ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(11, rf);
+								ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(1, rf);
 								for (ForumMessage message : messages) {
 								%>
 									<div class="discussion">
