@@ -186,7 +186,7 @@
 						rf.setSortOrder(ResultFilter.DESCENDING);
 						rf.setRecursive(true);
 						rf.setNumResults(5);
-						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(1, rf);
+						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(2017, rf);
 						for (ForumMessage message : messages) {
 						%>
 							<div class="news">
