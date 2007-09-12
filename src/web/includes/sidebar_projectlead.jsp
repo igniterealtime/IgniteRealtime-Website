@@ -8,7 +8,7 @@
     String profileLink = null;
     String profile = null;
     if (project.equals("openfire")) {
-        name = "gato";
+        name = "dombiak_gaston";
         avatarSrc = "http://www.igniterealtime.org/community/people/gato/avatar/32.png";
         profileLink = "http://www.igniterealtime.org/community/people/gato";
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
