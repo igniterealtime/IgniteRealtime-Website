@@ -8,9 +8,9 @@
     String profileLink = null;
     String profile = null;
     if (project.equals("openfire")) {
-        name = "dombiak_gaston";
-        avatarSrc = "http://www.igniterealtime.org/community/people/gato/avatar/32.png";
-        profileLink = "http://www.igniterealtime.org/community/people/gato";
+        name = "gato";
+        avatarSrc = "http://www.igniterealtime.org/community/people/dombiak_gaston/avatar/32.png";
+        profileLink = "http://www.igniterealtime.org/community/people/dombiak_gaston";
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
     }
     else if (project.equals("spark")) {
