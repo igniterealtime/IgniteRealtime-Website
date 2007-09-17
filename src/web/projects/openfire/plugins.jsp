@@ -334,7 +334,7 @@
 				<br/>
 				<br/>
 				
-				<p>To submit a plugin please send an email to Matt Tucker (matt at jivesoftware dot com) or send him a <a href="/community/pmpost!input.jspa?to=matt">private message</a> in the forums.</p>
+				<p>To submit a plugin please send an email to Matt Tucker (matt at jivesoftware dot com) or send him a <a href="community/pm-post!input.jspa?to=matt">private message</a> in the forums.</p>
 				
 				<br>
 				
