@@ -152,7 +152,8 @@ public class SparkUpdateServlet extends HttpServlet {
         version.setUpdateTime(build.lastModified());
 
         // Set download url
-        version.setDownloadURL("http://www.igniterealtime.org/updater/updater?filename=" + latestFile);
+       // version.setDownloadURL("http://www.igniterealtime.org/updater/updater?filename=" + latestFile);
+        version.setDownloadURL("http://s3.amazonaws.com/jive/spark/" + latestFile);
 
         // Include the url to the change log.
         version.setChangeLogURL("http://www.igniterealtime.org/updater/changelog.jsp");
