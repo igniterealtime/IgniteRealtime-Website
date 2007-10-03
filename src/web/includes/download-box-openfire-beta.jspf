@@ -13,7 +13,7 @@
     String basedir = buildsPath + "/openfire";
     String ver = version.replace('.', '_');
     File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
-    File rpm = new File(basedir, "openfire_" + ver + ".rpm");
+    File rpm = new File(basedir, "openfire_" + ver + "-1.i386.rpm");
     File zip = new File(basedir, "openfire_" + ver + ".zip");
     File binTarGz = new File(basedir, "openfire_" + ver + ".tar.gz");
     File dmg = new File(basedir, "openfire_" + ver + ".dmg");
