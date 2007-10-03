@@ -254,6 +254,7 @@
 				<div class="ignite_sidebar_btm-g"></div>
 			</div>
 			<!-- END grey gradient sidebar box 'PROJECTS' -->
+			<%@ include file="/includes/sidebar_ofbeta.jspf" %>
 			
 			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
 			
