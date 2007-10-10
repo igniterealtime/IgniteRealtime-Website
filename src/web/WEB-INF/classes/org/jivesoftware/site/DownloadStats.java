@@ -273,19 +273,9 @@ public class DownloadStats extends HttpServlet {
             try {
                 Location location = lookupService.getLocation(ipAddress);
                 if (location != null) {
-                    Country country = location.getCountry();
-                    if (country != null) {
-                        ctry = country.getName();
-                    }
-
-                    Region region = location.getRegion();
-                    if (region != null) {
-                        state = region.getRegionName();
-                    }
-
-                    if (location.getCity() != null) {
-                        city = location.getCity();
-                    }
+                    ctry = getCountryFromLocation(ctry, location);
+                    state = getStateFromLocation(state, location);
+                    city = getCityFromLocation(city, location);
                 }
             }
             catch (Exception e) {
@@ -312,6 +302,7 @@ public class DownloadStats extends HttpServlet {
             DbConnectionManager.close(pstmt, con);
         }
     }
+
 
     /**
      * Adds an entry into the DownloadInfo to track all downloads on Jivesoftware.org.
@@ -346,19 +337,10 @@ public class DownloadStats extends HttpServlet {
             try {
                 Location location = lookupService.getLocation(ipAddress);
                 if (location != null) {
-                    Country country = location.getCountry();
-                    if (country != null) {
-                        ctry = country.getName();
-                    }
 
-                    Region region = location.getRegion();
-                    if (region != null) {
-                        state = region.getRegionName();
-                    }
-
-                    if (location.getCity() != null) {
-                        city = location.getCity();
-                    }
+                    ctry = getCountryFromLocation(ctry, location);
+                    state = getStateFromLocation(state, location);
+                    city = getCityFromLocation(city, location);
                 }
             }
             catch (Exception e) {
@@ -410,19 +392,9 @@ public class DownloadStats extends HttpServlet {
             try {
                 Location location = lookupService.getLocation(ipAddress);
                 if (location != null) {
-                    Country country = location.getCountry();
-                    if (country != null) {
-                        ctry = country.getName();
-                    }
-
-                    Region region = location.getRegion();
-                    if (region != null) {
-                        state = region.getRegionName();
-                    }
-
-                    if (location.getCity() != null) {
-                        city = location.getCity();
-                    }
+                    ctry = getCountryFromLocation(ctry, location);
+                    state = getStateFromLocation(state, location);
+                    city = getCityFromLocation(city, location);
                 }
             }
             catch (Exception e) {
@@ -459,6 +431,30 @@ public class DownloadStats extends HttpServlet {
             DbConnectionManager.close(pstmt, con);
         }
 
+    }
+
+    private static String getCityFromLocation(String city, Location location) {
+        if (location.getCity() != null) {
+            city = location.getCity();
+        }
+        return city;
+    }
+
+    private static String getStateFromLocation(String state, Location location) {
+        Region region = location.getRegion();
+        if (region != null && region.getRegionName() != null) {
+            state = region.getRegionName();
+        }
+        return state;
+    }
+
+
+    private static String getCountryFromLocation(String ctry, Location location) {
+        Country country = location.getCountry();
+        if (country != null && country.getName() != null) {
+            ctry = country.getName();
+        }
+        return ctry;
     }
 
 }
