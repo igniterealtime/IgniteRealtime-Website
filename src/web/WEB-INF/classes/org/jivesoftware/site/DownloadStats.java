@@ -28,14 +28,14 @@ public class DownloadStats extends HttpServlet {
     private static ServletConfig config;
 
     // SQL for inserting the plugin listing info
-    private static final String ADD_PLUGIN_LISTING_INFO = "insert into pluginListing (ipAddress, os, country, city," +
-            " state, product, version, time, type) values (?,?,?,?,?,?,?,?,?)";
+    private static final String ADD_PLUGIN_LISTING_INFO = "insert into pluginListing (ipAddress, os, country," +
+            " state, city, product, version, time, type) values (?,?,?,?,?,?,?,?,?)";
     // SQL for inserting the download info
     private static final String ADD_DOWNLOAD_INFO = "insert into downloadInfo (ipAddress, country, region, city, " +
             "product, version, fileType, fileName, time, type) values (?,?,?,?,?,?,?,?,?,?)";
     // SQL for inserting the update info check
     private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, " +
-            "city, state, currentVersion, latestVersion) values (?,?,?,?,?,?,?,?,?)";
+            "state, city, currentVersion, latestVersion) values (?,?,?,?,?,?,?,?,?)";
 
     // SQL for counting the total number of downloads
     private static String COUNT_TOTAL_DOWNLOADS = "SELECT count(*) FROM downloadInfo";
@@ -296,8 +296,8 @@ public class DownloadStats extends HttpServlet {
             pstmt.setString(1, ipAddress);
             pstmt.setString(2, os);
             pstmt.setString(3, ctry);
-            pstmt.setString(4, city);
-            pstmt.setString(5, state);
+            pstmt.setString(4, state);
+            pstmt.setString(5, city);
             pstmt.setString(6, product);
             pstmt.setNull(7, Types.VARCHAR);
             pstmt.setString(8, timeOfDownload);
