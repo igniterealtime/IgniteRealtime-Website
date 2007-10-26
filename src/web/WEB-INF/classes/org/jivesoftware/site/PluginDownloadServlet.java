@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
 import javax.servlet.ServletContext;
+import javax.servlet.ServletConfig;
 import javax.activation.MimetypesFileTypeMap;
 import java.io.*;
 import java.util.*;
@@ -24,6 +25,14 @@ public class PluginDownloadServlet extends HttpServlet {
 
     private static MimetypesFileTypeMap typeMap = new MimetypesFileTypeMap();
     private Map<String, PluginCacheEntry> pluginCache = Collections.synchronizedMap(new HashMap<String, PluginCacheEntry>());
+    private String pluginsPath;
+
+    public void init(ServletConfig config) throws ServletException {
+        super.init(config);
+
+        ServletContext application = config.getServletContext();
+        pluginsPath = application.getInitParameter("plugins-path");
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException
@@ -42,8 +51,6 @@ public class PluginDownloadServlet extends HttpServlet {
         }
         else {
             String buildsPath = request.getRequestURI().replace("/updater/", "");
-            ServletContext application = config.getServletContext();
-            String pluginsPath = application.getInitParameter("plugins-path");
             filename = new File(pluginsPath, buildsPath).getAbsolutePath();
         }
 
