@@ -42,7 +42,9 @@ public class PluginDownloadServlet extends HttpServlet {
         }
         else {
             String buildsPath = request.getRequestURI().replace("/updater/", "");
-            filename = new File(DownloadStats.getBuildsDirectory(), buildsPath).getAbsolutePath();
+            ServletContext application = config.getServletContext();
+            String pluginsPath = application.getInitParameter("plugins-path");
+            filename = new File(pluginsPath, buildsPath).getAbsolutePath();
         }
 
         try {

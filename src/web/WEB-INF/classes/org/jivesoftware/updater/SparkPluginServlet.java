@@ -36,7 +36,9 @@ public class SparkPluginServlet extends HttpServlet {
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
-        pluginDir = new File(DownloadStats.getBuildsDirectory(), "sparkplugs");
+        ServletContext application = config.getServletContext();
+        String pluginsPath = application.getInitParameter("plugins-path");
+        pluginDir = new File(new File(pluginsPath), "sparkplugs");
 
         // Initialize ConnectionManager with connection info from web.xml
         DbConnectionManager connectionManager = DbConnectionManager.getInstance();
