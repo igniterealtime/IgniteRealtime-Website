@@ -4,7 +4,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    File pluginDir = new File(DownloadStats.getBuildsDirectory(), "sparkplugs");
+    String pluginsPath = application.getInitParameter("plugins-path");
+    File pluginDir = new File(new File(pluginsPath), "sparkplugs");
 
     String readme = request.getParameter("readme");
     String changeLog = request.getParameter("changeLog");

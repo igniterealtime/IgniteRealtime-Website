@@ -12,6 +12,11 @@
         <param-value>/opt/j2ee/domains/igniterealtime.org/www/root/webapps/ROOT/builds</param-value>
     </context-param>
 
+    <context-param>
+        <param-name>plugins-path</param-name>
+        <param-value>/opt/j2ee/domains/igniterealtime.org/www/root/webapps/ROOT/deployment/ROOT/projects/spark</param-value>
+    </context-param>
+
     <!-- Database connection parameters -->
     <context-param>
         <param-name>dbURL</param-name>
