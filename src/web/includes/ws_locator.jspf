@@ -1,0 +1,10 @@
+<%@ page import="com.jivesoftware.community.webservices.ServiceLocator" %>
+<%! final static String KEY_LOCATOR = "serviceLocator"; %>
+<%
+    ServiceLocator locator = (ServiceLocator) application.getAttribute(KEY_LOCATOR);
+    if (locator == null){
+        //only create this once and cache in the app scope
+        locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
+        application.setAttribute(KEY_LOCATOR, locator);
+    }
+%>

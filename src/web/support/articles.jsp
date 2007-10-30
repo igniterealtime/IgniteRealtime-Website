@@ -3,6 +3,7 @@
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
 <title>Support - Articles</title>

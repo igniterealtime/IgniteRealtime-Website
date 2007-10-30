@@ -4,6 +4,7 @@
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
 <title>a real time collaboration community site</title>
@@ -109,7 +110,7 @@
                     <%-- Show blog feed --%>
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-					ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
+                    //cache the ServiceLocator in the app scope
 					BlogService blogService = locator.getBlogService();
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
 					bprf.setNumResults(5);
@@ -159,9 +160,9 @@
 					<div id="ignite_home_body_recent">
 					<h4>Recent Discussions</h4>
 						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=1&numItems=5">
-						<%
-						ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
-						ForumService forumService = locator.getForumService();
+
+                        <%
+                        ForumService forumService = locator.getForumService();
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 						rf.setSortOrder(ResultFilter.DESCENDING);
 						rf.setRecursive(true);
@@ -180,7 +181,6 @@
 					<h4>Recent Releases</h4>
 						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?forumID=45&numItems=5">
 						<%
-						ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 						ForumService forumService = locator.getForumService();
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 						rf.setSortOrder(ResultFilter.DESCENDING);

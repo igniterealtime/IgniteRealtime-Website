@@ -6,7 +6,6 @@
                 <div class="ignite_sidebar_body">
                     <div class="ignite_sidebar_body_stat"><span>Downloads</span> <strong><%= NumberFormat.getNumberInstance().format(DownloadStats.getTotalDownloads()) %></strong></div>
 					<%
-					ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 					UserService userService = locator.getUserService();
 					BlogService blogService = locator.getBlogService();
 					ForumService forumService = locator.getForumService();

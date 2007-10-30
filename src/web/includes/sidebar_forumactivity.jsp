@@ -2,6 +2,7 @@
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ include file="/includes/ws_locator.jspf" %>
 
       <% String forumRSS = "http://www.igniterealtime.org/forum/rss/rssmessages.jspa?numItems=5&forumID=" + request.getParameter("forumID"); %>
 			
@@ -12,7 +13,6 @@
 			<div class="ignite_sidebar_hdr ignite_sidebar_hdr_forum"></div>
 			<div class="ignite_sidebar_body">
 				<%
-				ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 				ForumService forumService = locator.getForumService();
 		  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 				rf.setSortOrder(ResultFilter.DESCENDING);

@@ -3,6 +3,7 @@
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
 <title>Support</title>
@@ -63,7 +64,6 @@
 								<h4>Recent Support Discussions</h4>
 								<cache:cache time="60" key="http://www.igniterealtime.org/community/community/feeds/threads?communityID=1&numItems=4">
 								<%
-								ServiceLocator locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
 								ForumService forumService = locator.getForumService();
 						  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
 								rf.setSortOrder(ResultFilter.DESCENDING);
