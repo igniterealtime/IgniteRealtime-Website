@@ -56,6 +56,7 @@
 					<br>
 					<br></li>
 					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/install-guide.html">Installation Guide</a> - How to install Openfire.</li>
+					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/upgrade-guide.html">Upgrade Guide</a> - Instructions for upgrading an existing Openfire installation.</li>
 					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/database.html">Database Installation Guide</a> -  How to setup your database for use with Openfire.</li>
 					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/ssl-guide.html">SSL Guide</a> - A guide to setting up Openfire's SSL secure socket support.</li>
 					<li><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/ldap-guide.html">LDAP Guide</a> - A guide to setting up Openfire to work with LDAP user stores.</li>
