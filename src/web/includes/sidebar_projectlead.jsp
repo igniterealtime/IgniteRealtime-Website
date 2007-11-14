@@ -14,10 +14,10 @@
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
     }
     else if (project.equals("spark")) {
-        name = "ddman";
-        avatarSrc = "http://www.igniterealtime.org/community/people/ddman/avatar/32.png";
-        profileLink = "http://www.igniterealtime.org/community/people/gato";
-        profile = "Java Swing nerd that can bench 380lb.";
+        name = "daniel";
+        avatarSrc = "http://www.igniterealtime.org/community/people/jadestorm/avatar/32.png";
+        profileLink = "http://www.igniterealtime.org/community/people/jadestorm";
+        profile = "Found in the belly of a Python muttering incoherently about gateways.";
     }
     else if (project.equals("smack")) {
         name = "matt";
