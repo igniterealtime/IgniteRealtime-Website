@@ -30,14 +30,14 @@
 
 
 				<div class="ignite_int_body_padding">
-                    <h2 class="road">Openfire (formerly Wildfire)*</h2>
+                    <h2 class="road">Openfire*</h2>
                     <p>
                         <div class="road-table">
                         <table width="100%">
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 3.3.x, Q2 2007</th>
+                                    <th>Version 3.4.x, Q4 2007</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -45,28 +45,28 @@
                                 <tr>
                                     <td class="label">Openfire Open Source</td>
                                     <td><ul>
-                                        <li>Upgrade scripts for renaming</li>
-                                        <li>Better RPMs</li>
-                                        <li>Debian package support</li>
-                                        <li>Update to latest Java release</li>
+                                        <li>Security and Certificate Management improvements</li>
+                                        <li>Add Openfire to Linux distributions</li>
+                                        <li>Create and improve native Linux installers</li>
+                                        <li>External Components improvements</li>
+                                        <li>LDAP integration improvements</li>
                                     </ul></td>
                                     <td class="col3"><ul>
-                                        <li>Personal Event PubSub (PEP)</li>
+                                        <li>NIO support for server-2-server</li>
                                     </ul></td>
                                 </tr>
                                 <tr>
                                     <td class="label">Openfire Enterprise</td>
                                     <td>
                                         <ul>
-                                            <li>Group chat archiving</li>
+                                            <li>Add Clustering support to Pubsub and PEP</li>
+                                            <li>Add Clustering support to Gateways</li>
                                             <li>Full web client</li>
                                         </ul>
                                     </td>
                                     <td class="col3">
                                         <ul>
-                                            <li>Clustering</li>
-                                            <li>Outlook Integration (Spark)</li>
-                                            <li>Phonebook for softphone (Spark)</li>
+                                            <li>Plugin distribution in the cluster</li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -74,43 +74,8 @@
                         </table>
                         </div>
                     </p>
-
-                    <h2 class="road">Spark*</h2>
-                    <p>
-                        <div class="road-table">
-                        <table width="100%">
-                            <thead>
-                                <tr>
-                                    <th class="nothing">&nbsp;</th>
-                                    <th>Version 2.5.x, Q2 2007</th>
-                                    <th>Future</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="label">&nbsp;</td>
-                                    <td>
-                                    <ul>
-                                        <li>Update check improvements</li>
-                                        <li>Better file transfer</li>
-                                        <li>Group Chat Invite improvements</li>
-                                        <li>Better notifications when users come online</li>
-                                        <li>Improved VoIP stability</li>
-                                        <li>Kerberos SSO</li>
-                                    </ul></td>
-                                    <td class="col3">
-                                        <ul>
-                                            <li>Redesigned roster window</li>
-                                            <li>Support for XEP-0115: Entity Capabilities</li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        </div>
-                    </p>
-					
-			<p>* Plan as of April 9, 2007. Subject to change; we make no promises on future releases. :-)</p>
+				
+			<p>* Plan as of November 15, 2007. Subject to change; we make no promises on future releases. :-)</p>
 
 
                 <h2>Top Ten Issues</h2>
