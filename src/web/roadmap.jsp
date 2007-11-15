@@ -37,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 3.4.x, Q4 2007</th>
+                                    <th>Version 3.4.x, Q4 2007 - Q1 2008</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
