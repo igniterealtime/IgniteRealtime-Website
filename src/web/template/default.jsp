@@ -30,6 +30,9 @@
 <script type="text/javascript" language="JavaScript" src="/scripts/kitchensink.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/ignite.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/groupchat_timer.js"></script>
+<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript' SRC='/elqNow/elqCfg.js'></SCRIPT>
+<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript' SRC='/elqNow/elqImg.js'></SCRIPT>
+    
 <!--
 <script type="text/javascript" language="JavaScript" src="/scripts/cookies.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/prototype.js"></script>
@@ -39,7 +42,7 @@
 -->
 
 <decorator:head />
-
+                                                                           
 </head>
 
 <%
@@ -54,7 +57,7 @@
 
 <!-- BEGIN page 'wrapper' -->
 <div id="ignite_wrapper">
-
+                                                              
 
 	<!-- BEGIN header -->
 	<div id="ignite_header">
