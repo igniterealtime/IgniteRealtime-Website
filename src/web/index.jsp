@@ -159,7 +159,7 @@
 					<!-- BEGIN recent discussions, news, wiki docs, and articles -->
 					<div id="ignite_home_body_recent">
 					<h4>Recent Discussions</h4>
-						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?categoryID=1&numItems=5">
+						<cache:cache time="60" key="http://www.igniterealtime.org/community/blogs/feeds/posts">
 
                         <%
                         ForumService forumService = locator.getForumService();
@@ -179,7 +179,7 @@
                         </cache:cache>
 											
 					<h4>Recent Releases</h4>
-						<cache:cache time="60" key="http://www.igniterealtime.org/forum/rss/rssmessages.jspa?forumID=45&numItems=5">
+						<cache:cache time="60" key="http://www.igniterealtime.org/community/community/feeds/allcontent?communityID=2017">
 						<%
 						ForumService forumService = locator.getForumService();
 				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
