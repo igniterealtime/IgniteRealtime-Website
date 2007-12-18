@@ -1,0 +1,3 @@
+deploy.dir=/opt/j2ee/domains/igniterealtime.org/www/root/webapps/ROOT/deployment/ROOT
+jive.home=/opt/j2ee/domains/igniterealtime.org/www/community/webapps/data/jiveHome
+overwrite=false
