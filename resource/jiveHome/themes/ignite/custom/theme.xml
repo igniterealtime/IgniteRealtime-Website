@@ -1,0 +1,22 @@
+<theme>
+
+	<!-- The name of the theme must match the name of the folder containing the theme.-->
+	<name>custom</name>
+	
+	<!-- The description of the theme  -->
+	<description>This is a sample theme that should be used as a starting point to create a custom theme</description>
+	
+	<!-- Optional: The locale of this theme. This should only be specified if all pages relating to this theme should use a specific locale. If not specified, the locale will be determined in the default manner -->
+	<!--
+		<locale>en_US</locale>
+	-->
+
+	<!-- Optional: Theme specific properties can be specified., if desired.. -->
+	<!--
+		<properties>
+			<property name="key1" value="value1"/>
+			<property name="key2" value="value2"/>
+		</properties>
+	-->
+
+</theme>
