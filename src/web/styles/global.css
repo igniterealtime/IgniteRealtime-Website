@@ -1017,6 +1017,13 @@ div.ignite_sidebar_body_newsletter input.ignite_sidebar_emailfield {
 	font-size: 8pt;
 	padding: 2px;
 	}
+div.ignite_sidebar_body_newsletter input.ignite_sidebar_namefield {
+	width: 193px;
+	margin-bottom: 4px;
+	float: left;
+	font-size: 8pt;
+	padding: 2px;
+	}
 div.ignite_sidebar_body_newsletter input.ignite_newsletter_submit {
 	width: 79px;
 	height: 24px;
