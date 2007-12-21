@@ -95,7 +95,7 @@
                     <% if (debian.exists()) { %>
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
-                            <img src="/images/icon_linux.gif" alt="" width="17" height="16" border="0">
+                            <img src="/images/icon_debian.gif" alt="" width="17" height="16" border="0">
                             <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= debian.getName() %>"><%= debian.getName() %></a> Debian package, no Java JRE
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
@@ -105,7 +105,7 @@
                     <% if (solaris.exists()) { %>
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
-                            <img src="/images/icon_linux.gif" alt="" width="17" height="16" border="0">
+                            <img src="/images/icon_solaris.gif" alt="" width="17" height="16" border="0">
                             <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= solaris.getName() %>"><%= solaris.getName() %></a> Solaris package, no Java JRE
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
