@@ -37,7 +37,18 @@
 
 
         <#include "/template/global/include/form-message.ftl" />
+<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'><!--//
+var elqPPS = '70';
+//--></SCRIPT>
+<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript' SRC='/elqNow/elqScr.js'></SCRIPT>
+<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript'><!--//
+window.onload = initPage;
 
+function initPage(){
+    if (this.GetElqCustomerGUID)
+        document.forms["accountform"].elements["elqCustomerGUID"].value = GetElqCustomerGUID();
+}
+//--></SCRIPT>
         <form action="<@ww.url action='account' includeParams='none'/>" method="post" name="accountform">
 <input type="hidden" name="elqFormName" value="Ignite-Registration">
 <input type="hidden" name="elqSiteID" value="764">
