@@ -4,13 +4,11 @@
                                 <div class="ignite_sidebar_top"></div>
                                 <div class="ignite_sidebar_hdr ignite_sidebar_hdr_newsletter"></div>
                                 <div class="ignite_sidebar_body_newsletter">
-                    <form action="http://now.eloqua.com/f.asp" method="post">
+                    <form name="igniteNewsletter" action="http://now.eloqua.com/e/f.aspx" method="post">
                       <input type="hidden" name="elqFormName" value="Ignite-NewsletterNew">
                       <input type="hidden" name="elqSiteID" value="764">
                       <input type="hidden" name="elqDefaultTargetURL" value="">
                       <input type="hidden" name="elqPost" value="">
-                      <input type="hidden" name="elqCustomerGUID" value="">
-                      <input type="hidden" name="elqCookieWrite" value="0">
                       <input type="hidden" name="name" value="">
 
                       <input type="hidden" name="formName" value="Ignite Newsletter Form">
