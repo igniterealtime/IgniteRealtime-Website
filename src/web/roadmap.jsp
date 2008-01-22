@@ -37,7 +37,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 3.4.x, Q4 2007 - Q1 2008</th>
+                                    <th>Version 3.5.x, Q1 2008 - Q2 2008</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -45,28 +45,29 @@
                                 <tr>
                                     <td class="label">Openfire Open Source</td>
                                     <td><ul>
-                                        <li>Security and Certificate Management improvements</li>
-                                        <li>Add Openfire to Linux distributions</li>
-                                        <li>Create and improve native Linux installers</li>
-                                        <li>External Components improvements</li>
+                                        <li>Use TLS and SASL for external components</li>
+                                        <li>Add audit tracking to the admin console</li>
+                                        <li>Optimize database for big installations</li>
                                         <li>LDAP integration improvements</li>
+                                        <li>Add Openfire to Linux distributions</li>
                                     </ul></td>
                                     <td class="col3"><ul>
-                                        <li>NIO support for server-2-server</li>
+                                        <li>Multi-domains support</li>
+                                        <li>File sharing in rooms</li>
                                     </ul></td>
                                 </tr>
                                 <tr>
                                     <td class="label">Openfire Enterprise</td>
                                     <td>
                                         <ul>
-                                            <li>Add Clustering support to Pubsub and PEP</li>
-                                            <li>Add Clustering support to Gateways</li>
-                                            <li>Full web client</li>
+                                            <li>Clustering support in Pubsub and PEP</li>
+                                            <li>Plugin distribution in the cluster</li>
+                                            <li>First version of SparkWeb desktop version</li>
                                         </ul>
                                     </td>
                                     <td class="col3">
                                         <ul>
-                                            <li>Plugin distribution in the cluster</li>
+                                            <li>Audio and video in SparkWeb</li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -75,7 +76,7 @@
                         </div>
                     </p>
 				
-			<p>* Plan as of November 15, 2007. Subject to change; we make no promises on future releases. :-)</p>
+			<p>* Plan as of January 23, 2008. Subject to change; we make no promises on future releases. :-)</p>
 
 
                 <h2>Top Ten Issues</h2>
