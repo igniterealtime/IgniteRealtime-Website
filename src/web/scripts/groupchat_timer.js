@@ -2,10 +2,6 @@
  * JavaScript for showing/hiding the Group Chat timer in the navbar.
  */
 function runGroupChatTimer() {
-    // All times/dates are UTC
-    var SCHEDULED_DAY = 3;
-    var SCHEDULED_HOUR = 18;
-
     // Constants
     var MINUTES_IN_HOUR = 60;
     var BLOCK = 'block';
@@ -17,6 +13,25 @@ function runGroupChatTimer() {
     var minute = now.getUTCMinutes();
     var message = "Join community group chat ";
     var show = false;
+
+    // Scheduled time is UTC
+    var SCHEDULED_DAY = 3;
+    var SCHEDULED_HOUR = 18;
+
+    // Is it DST?
+	var MAR_DATE = new Date();
+	MAR_DATE.setUTCMonth(2);
+	MAR_DATE.setUTCDate(3);
+	MAR_DATE.setUTCDate(10); //UTC 2am PST (non-DST) 
+	var NOV_DATE = new Date();
+	NOV_DATE.setUTCMonth(10);
+	NOV_DATE.setUTCDate(2);
+	NOV_DATE.setUTCDate(9); //UTC 2am PST (ON-DST)
+    if ( (now.getTime() > MAR_DATE.getTime()) && (now.getTime() < NOV_DATE.getTime()) ) {
+    	// in DST, so use UTC-1 for hour
+    	SCHEDULED_HOUR = 17;
+    }
+
 
     // Is it Wednesday?
     if (day == SCHEDULED_DAY) {
