@@ -62,12 +62,12 @@
                                         <ul>
                                             <li>Clustering support in Pubsub and PEP</li>
                                             <li>Plugin distribution in the cluster</li>
-                                            <li>First version of SparkWeb desktop version</li>
                                         </ul>
                                     </td>
                                     <td class="col3">
                                         <ul>
                                             <li>Audio and video in SparkWeb</li>
+                                            <li>SparkWeb desktop version</li>
                                         </ul>
                                     </td>
                                 </tr>
