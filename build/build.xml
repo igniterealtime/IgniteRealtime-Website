@@ -120,6 +120,7 @@
                 <include name="**/*.gif" />
                 <include name="**/*.css" />
                 <include name="**/*.pdf" />
+                <include name="**/*.js" />
                 <include name="**/*.html" />
                 <include name="**/*.png" />
                 <include name="**/*.txt" />
