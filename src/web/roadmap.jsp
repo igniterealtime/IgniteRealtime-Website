@@ -37,37 +37,41 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 3.5.x, Q1 2008 - Q2 2008</th>
+                                    <th>Version 3.6.x, Q2 2008 - Q3 2008</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td class="label">Openfire Open Source</td>
+                                    <td class="label">Openfire</td>
                                     <td><ul>
-                                        <li>Use TLS and SASL for external components</li>
-                                        <li>Add audit tracking to the admin console</li>
-                                        <li>Optimize database for big installations</li>
-                                        <li>LDAP integration improvements</li>
+                                        <li>File sharing in rooms</li>
+                                        <li>Update BOSH and improve performance</li>
+                                        <li>Simplify node installation in a cluster</li>
+                                        <li>Clustering support in Pubsub and PEP</li>
+                                        <li>Plugin distribution in the cluster</li>
                                         <li>Add Openfire to Linux distributions</li>
                                     </ul></td>
                                     <td class="col3"><ul>
                                         <li>Multi-domains support</li>
-                                        <li>File sharing in rooms</li>
+                                        <li>SparkWeb desktop version</li>
+                                        <li>Use TLS and SASL for external components</li>
                                     </ul></td>
                                 </tr>
                                 <tr>
-                                    <td class="label">Openfire Enterprise</td>
+                                    <td class="label">Clearspace integration</td>
                                     <td>
                                         <ul>
-                                            <li>Clustering support in Pubsub and PEP</li>
-                                            <li>Plugin distribution in the cluster</li>
+                                            <li>Groupchat in spaces, social groups and projects</li>
+                                            <li>Store and search on groupchat transcripts</li>
+                                            <li>Shared groups integrated with social groups</li>
+                                            <li>Simplify installation process and database sharing</li>
                                         </ul>
                                     </td>
                                     <td class="col3">
                                         <ul>
-                                            <li>Audio and video in SparkWeb</li>
-                                            <li>SparkWeb desktop version</li>
+                                            <li>One-to-one chat inside of Clearspace</li>
+                                            <li>Deploy SparkWeb with Clearspace</li>
                                         </ul>
                                     </td>
                                 </tr>
@@ -76,7 +80,7 @@
                         </div>
                     </p>
 				
-			<p>* Plan as of January 23, 2008. Subject to change; we make no promises on future releases. :-)</p>
+			<p>* Plan as of April 7, 2008. Subject to change; we make no promises on future releases. :-)</p>
 
 
                 <h2>Top Ten Issues</h2>
