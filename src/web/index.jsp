@@ -138,20 +138,20 @@
 						
 						<!-- featured member 1 -->
 						<div style="float: right;">
-						<a href="/community/people/it2000">
+						<a href="/community/people/mtstravel">
 							<div class="ignite_home_featured_avatar">
-							 <img src="/community/people/it2000/avatar/32.png" alt="avatar" width="32" height="32" />
+							 <img src="/community/people/mtstravel/avatar/32.png" alt="avatar" width="32" height="32" />
 							</div>
-                        it2000</a>
+                        mtstravel</a>
 						</div>
 
                         <!-- featured member 2 -->
                         <div style="float: left;">
-						<a href="/community/people/srt">
+						<a href="/community/people/winsrev">
 							<div class="ignite_home_featured_avatar">
-							<img src="/community/people/srt/avatar/32.png" alt="avatar" width="32" height="32" />
+							<img src="/community/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
 							</div>
-                        srt</a>
+                        winsrev</a>
 						</div>
 					</div>
 					<!-- END featured members -->
