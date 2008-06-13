@@ -4,7 +4,7 @@
     <product name="openfire" version="3.5.2" date="June 12, 2008" />
     <!--<product name="openfire-beta" version="3.5.0.rc2" date="March 11, 2008" />-->
     <product name="spark" version="2.5.8" date="November 14, 2007" />
-    <!--<product name="spark-beta" version="2.5.8.beta1" date="October 8, 2007" />-->
+    <product name="spark-beta" version="2.6.0.beta1" date="June 13, 2008" />
     <product name="smack" version="3.0.4" date="June 12, 2007" />
     <!--<product name="smack-beta" version="3.0.4.beta1" date="June 7, 2007" />-->
     <product name="xiff" version="3.0.0-beta1" date="April 2, 2008" />
