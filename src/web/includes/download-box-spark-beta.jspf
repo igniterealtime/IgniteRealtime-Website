@@ -13,6 +13,7 @@
     String basedir = buildsPath + "/spark/beta";
     File binExe = new File(basedir, "spark_" + version.replace('.','_') + ".exe");
     File binExeAlt = new File(basedir, "spark_" + version.replace('.','_') + "_online" + ".exe");
+    File debian = new File(basedir, "spark_" + version + "_all.deb");
     File binMsiAlt = new File(basedir, "spark_" + version.replace('.','_') + "_online" + ".msi");
     File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
     File binTar = new File(basedir, "spark_" + version.replace('.','_') + ".tar.gz");
@@ -71,6 +72,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binExeAlt.length()/1024.0/1024.0) %> MB</span>
                     </div>
+                    <% if (binMsi.exists() %>
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
@@ -79,6 +81,8 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binMsi.length()/1024.0/1024.0) %> MB</span>
                     </div>
+                    <% } %}
+                    <% if (binMsiAlt.exists() %>
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
@@ -87,6 +91,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binMsiAlt.length()/1024.0/1024.0) %> MB</span>
                     </div>
+                    <% } %}
                 </div>
             </div>
             <!-- END windows -->
