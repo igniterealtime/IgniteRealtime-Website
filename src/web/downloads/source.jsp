@@ -40,6 +40,22 @@
     if (smackSrcZip.exists()) {
         smackBuildDate = dateFormat.format(new Date(smackSrcZip.lastModified()));
     }
+
+    // Whack Source
+    String whackVersion = Versions.getVersion("whack");
+    if (whackVersion == null) {
+        whackVersion = "0.0";
+    }
+
+    String whackBasedir = buildsPath + "/whack";
+    String whackVer = whackVersion.replace('.', '_');
+    File whackSrcZip = new File(whackBasedir, "whack_src_" + whackVer + ".zip");
+    File whackSrcTarGz = new File(whackBasedir, "whack_src_" + whackVer + ".tar.gz");
+
+    String whackBuildDate = "UNKNOWN";
+    if (whackSrcZip.exists()) {
+        whackBuildDate = dateFormat.format(new Date(whackSrcZip.lastModified()));
+    }
 %>
 
 <html>
@@ -121,6 +137,25 @@
 							<span class="ignite_download_item_date"><%= smackBuildDate %></span>
 							<span class="ignite_download_item_size"><%= formatter.format((double)smackSrcTarGz.length()/1024.0/1024.0) %> MB</span>
                         </div>
+						<div class="ignite_download_panel_label">
+							<h4>Whack Source</h4>
+						</div>
+						<div class="ignite_download_item_odd">
+							<span class="ignite_download_item_details">
+								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
+								<a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= whackSrcZip.getName() %>"><%= whackSrcZip.getName() %></a>
+							</span>
+							<span class="ignite_download_item_date"><%= whackBuildDate %></span>
+							<span class="ignite_download_item_size"><%= formatter.format((double)whackSrcZip.length()/1024.0/1024.0) %> MB</span>
+						</div>
+						<div class="ignite_download_item_even">
+							<span class="ignite_download_item_details">
+								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
+								<a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= whackSrcTarGz.getName() %>"><%= whackSrcTarGz.getName() %></a>
+							</span>
+							<span class="ignite_download_item_date"><%= whackBuildDate %></span>
+							<span class="ignite_download_item_size"><%= formatter.format((double)whackSrcTarGz.length()/1024.0/1024.0) %> MB</span>
+                        </div>
                     </div>
 
 
@@ -147,8 +182,20 @@
                             </tr>
                             <tr>
                                 <td width="99%">
+                                    SparkWeb:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/sparkweb">sparkweb/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="99%">
                                     Smack:
                                     <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/smack">smack/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="99%">
+                                    Whack:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/whack">whack/trunk</a>
                                 </td>
                             </tr>
                             <tr>
@@ -174,8 +221,18 @@
                         </tr>
                         <tr>
                             <td width="99%">
+                                SparkWeb:<br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/sparkweb/trunk sparkweb</tt>
+                        </tr>
+                        <tr>
+                            <td width="99%">
                                 Smack:<br>
                                 <tt>svn co http://svn.igniterealtime.org/svn/repos/smack/trunk smack</tt>
+                        </tr>
+                        <tr>
+                            <td width="99%">
+                                Whack:<br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/whack/trunk whack</tt>
                         </tr>
                         <tr>
                             <td width="99%" class="last">
@@ -213,7 +270,9 @@
                 Specific projects include:
                 <a href="http://www.igniterealtime.org/issues/browse/JM">Openfire</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/SPARK">Spark</a>,
+                <a href="http://www.igniterealtime.org/issues/browse/SW">SparkWeb</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/SMACK">Smack API</a>,
+                <a href="http://www.igniterealtime.org/issues/browse/WHACK">Whack API</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/XIFF">XIFF</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/GATE">Gateway Plugin</a>, and
                 <a href="http://www.igniterealtime.org/issues/browse/PHONE">Asterisk-IM</a>.
