@@ -58,7 +58,7 @@
 				<div class="ignite_project_type">Web Client</div>
 					<div class="ignite_project_content">
 						<a href="sparkweb/index.jsp" class="ignite_project_sparkweb">
-						<h1>Spark <span><%= Versions.getVersion("sparkweb") %></span></h1></a>
+						<h1>SparkWeb <span><%= Versions.getVersion("sparkweb") %></span></h1></a>
 						<p>Web based real-time collaboration client optimized for business and organizations.</p>
 						<p><a href="sparkweb/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
 					</div>
