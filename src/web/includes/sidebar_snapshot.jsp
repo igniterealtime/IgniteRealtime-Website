@@ -18,7 +18,13 @@
                 else if (project.equals("spark")) {
                     license = "Open Source LGPL or Commercial";
                 }
+                else if (project.equals("sparkweb")) {
+                    license = "Open Source LGPL or Commercial";
+                }
                 else if (project.equals("smack")) {
+                    license = "Open Source Apache";
+                }
+                else if (project.equals("whack")) {
                     license = "Open Source Apache";
                 }
                 else if (project.equals("xiff")) {
@@ -33,7 +39,13 @@
                 else if (project.equals("spark")) {
                     platform = "Windows, Linux,<br />Unix, Mac OS X";
                 }
+                else if (project.equals("sparkweb")) {
+                    platform = "Cross-Platform";
+                }
                 else if (project.equals("smack")) {
+                    platform = "Cross-Platform";
+                }
+                else if (project.equals("whack")) {
                     platform = "Cross-Platform";
                 }
                 else if (project.equals("xiff")) {

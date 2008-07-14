@@ -10,9 +10,17 @@
                     jiraID = "10060";
                     forumID = "2010";
                 }
+                else if ("sparkweb".equals(project)) {
+                    jiraID = "10130";
+                    forumID = "2027";
+                }
                 else if ("smack".equals(project)) {
                     jiraID = "10011";
                     forumID = "2001";
+                }
+                else if ("whack".equals(project)) {
+                    jiraID = "10040";
+                    forumID = "2002";
                 }
                 else if ("xiff".equals(project)) {
                     jiraID = "10020";

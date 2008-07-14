@@ -20,7 +20,7 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Whack API</a></li>
 			<!-- <li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li> -->
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
-			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
+			<!--<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>-->
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/WHACK">Issue Tracker</a></li>
 			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/whack/docs/latest/javadoc/">JavaDocs</a></li>
 			
@@ -55,10 +55,10 @@
 				<div id="ignite_bigpanel_content" style="width: 630px;">
 					<h1 class="whack">Whack API <span><%= Versions.getVersion("whack") %></span></h1>
 					<p>
-                        Whack is an Open Source XMPP (Jabber) client library for instant messaging and presence.
+                        Whack is an Open Source XMPP (Jabber) component library for XMPP components.
                         A pure Java library, it can be embedded into your applications to create anything from
-                        a full XMPP client to simple XMPP integrations such as sending notification messages
-                        and presence-enabling devices.
+                        a full XMPP component to simple XMPP integrations such as sending intercepting and
+                        acting on certain messages.
                     </p>
 				</div>
 				

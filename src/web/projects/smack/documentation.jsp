@@ -44,7 +44,7 @@
 				<div class="ignite_int_body_padding">
 					
 					
-					<p>The current Asterisk documentation can be found below. All documentation is also distributed in each release.</p>
+					<p>The current Smack documentation can be found below. All documentation is also distributed in each release.</p>
 					
 					<h3>Documentation:</h3>
 					<ul>

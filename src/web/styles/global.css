@@ -723,7 +723,11 @@ div.ignite_sidebar_body_project1,
 div.ignite_sidebar_body_project2,
 div.ignite_sidebar_body_project3,
 div.ignite_sidebar_body_project4,
-div.ignite_sidebar_body_project5  {
+div.ignite_sidebar_body_project5,
+div.ignite_sidebar_body_project6,
+div.ignite_sidebar_body_project7,
+div.ignite_sidebar_body_project8,
+div.ignite_sidebar_body_project9  {
 	width: 200px;
 	float: left;
 	clear: both;
@@ -744,6 +748,12 @@ div.ignite_sidebar_body_project4 {
 	border-bottom: 1px solid #606060;
 	}
 div.ignite_sidebar_body_project5 {
+	border-bottom: 1px solid #606060;
+	}
+div.ignite_sidebar_body_project6 {
+	border-bottom: 1px solid #606060;
+	}
+div.ignite_sidebar_body_project7 {
 	border-bottom: none;
 	}
 div.ignite_sidebar_body_projects span {

@@ -44,16 +44,16 @@
 				<div class="ignite_int_body_padding">
 					
 					
-					<p>The current Asterisk documentation can be found below. All documentation is also distributed in each release.</p>
+					<p>The current Whack documentation can be found below. All documentation is also distributed in each release.</p>
 					
 					<h3>Documentation:</h3>
 					<ul>
-					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+					<!--<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<a href="http://www.igniterealtime.org/builds/whack/docs/latest/README.html">Readme & License</a></li>
 					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<a href="http://www.igniterealtime.org/builds/whack/docs/latest/changelog.html">Changelog</a>
 					<br>
-					<br></li>
+					<br></li>-->
 					<li><a href="http://www.igniterealtime.org/builds/whack/docs/latest/documentation/">Whack documentation</a></li>
 				
 				

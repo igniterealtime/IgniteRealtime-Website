@@ -21,7 +21,7 @@
 <title>Ignite Realtime: <decorator:title /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <meta http-equiv="Content-Language" content="en-us" />
-<meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="jive, jive software, java, open source, jive messenger, xmpp, chat, jabber, smack, xiff, asterisk" />"/>
+<meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="jive, jive software, java, open source, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, xiff, asterisk" />"/>
 
 <style type="text/css" media="screen">
 	@import "/styles/global.css";

@@ -236,18 +236,24 @@
 					<div class="ignite_sidebar_body_project2">
 						<span><strong><a href="/projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/index.jsp#spark"></a>
 					</div>
-					<%--
 					<div class="ignite_sidebar_body_project3">
+						<span><strong><a href="/projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="/downloads/index.jsp#sparkweb"></a>
+					</div>
+					<%--
+					<div class="ignite_sidebar_body_project4">
 						<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="/downloads/index.jsp#asterisk"></a>
 					</div>
 					--%>
-					<div class="ignite_sidebar_body_project4">
+					<div class="ignite_sidebar_body_project5">
 						<span><strong><a href="/projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/index.jsp#smack"></a>
 					</div>
-					<div class="ignite_sidebar_body_project4">
+					<div class="ignite_sidebar_body_project6">
+						<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>
+					</div>
+					<div class="ignite_sidebar_body_project7">
 						<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>
 					</div>
-					<div class="ignite_sidebar_body_project5" style="text-align: center;">
+					<div class="ignite_sidebar_body_project8" style="text-align: center;">
 						<strong><a href="/roadmap.jsp">Roadmap</a></strong>
 					</div>
 				</div>

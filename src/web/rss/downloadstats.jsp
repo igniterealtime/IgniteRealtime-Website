@@ -43,6 +43,8 @@ An RSS feed for download statistics.
         public static long sparkDownloads = 0L;
         public static long smackDownloads = 0L;
         public static long xiffDownloads = 0L;
+        public static long whackDownloads = 0L;
+        public static long sparkwebDownloads = 0L;
         public static String dateString = DATE_FORMATTER.format(new Date());
 
     %>
@@ -54,7 +56,9 @@ An RSS feed for download statistics.
             totalDownloads = DownloadStats.getTotalDownloads();
             openfireDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.openfire);
             sparkDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.spark);
+            sparkwebDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.sparkweb);
             smackDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.smack);
+            whackDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.whack);
             xiffDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.xiff);
             dateString = DATE_FORMATTER.format(new Date());
         }
@@ -91,8 +95,16 @@ An RSS feed for download statistics.
                         <td><%= NUMBER_FORMATTER.format(sparkDownloads) %></td>
                         </tr>
                         <tr>
+                        <td>SparkWeb</td>
+                        <td><%= NUMBER_FORMATTER.format(sparkwebDownloads) %></td>
+                        </tr>
+                        <tr>
                         <td>Smack</td>
                         <td><%= NUMBER_FORMATTER.format(smackDownloads) %></td>
+                        </tr>
+                        <tr>
+                        <td>Whack</td>
+                        <td><%= NUMBER_FORMATTER.format(whackDownloads) %></td>
                         </tr>
                         <tr>
                         <td>XIFF</td>
@@ -105,7 +117,9 @@ An RSS feed for download statistics.
             <ignite:totalDownloads><%= NUMBER_FORMATTER.format(totalDownloads) %></ignite:totalDownloads>
             <ignite:openfireDownloads><%= NUMBER_FORMATTER.format(openfireDownloads) %></ignite:openfireDownloads>
             <ignite:sparkDownloads><%= NUMBER_FORMATTER.format(sparkDownloads) %></ignite:sparkDownloads>
+            <ignite:sparkwebDownloads><%= NUMBER_FORMATTER.format(sparkwebDownloads) %></ignite:sparkwebDownloads>
             <ignite:smackDownloads><%= NUMBER_FORMATTER.format(smackDownloads) %></ignite:smackDownloads>
+            <ignite:whackDownloads><%= NUMBER_FORMATTER.format(whackDownloads) %></ignite:whackDownloads>
             <ignite:xiffDownloads><%= NUMBER_FORMATTER.format(xiffDownloads) %></ignite:xiffDownloads>
         </item>
 

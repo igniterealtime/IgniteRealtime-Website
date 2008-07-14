@@ -32,7 +32,9 @@ public class DownloadServlet extends HttpServlet {
         openfire_plugin("openfire_plugin", 5),
         spark_plugin("spark_plugin", 6),
         wildfire("wildfire", 7),
-        wildfire_plugin("wildfire_plugin", 8);
+        wildfire_plugin("wildfire_plugin", 8),
+        whack("whack", 9),
+        sparkweb("sparkweb", 10);
 
         private int type;
         private String name;
