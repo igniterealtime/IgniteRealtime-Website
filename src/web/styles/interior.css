@@ -107,6 +107,11 @@ styles specific to the interior pages for the Ignite Real Time site.
 	background: transparent url(../images/logo_spark.gif) no-repeat left;
 	padding-left: 40px;
 	}
+#ignite_bigpanel h1.sparkweb, 
+#ignite_smallpanel h1.sparkweb {
+	background: transparent url(../images/logo_sparkweb.gif) no-repeat left;
+	padding-left: 40px;
+	}
 #ignite_bigpanel h1.asterisk, 
 #ignite_smallpanel h1.asterisk {
 	background: transparent url(../images/logo_asterisk.gif) no-repeat left;
@@ -115,6 +120,11 @@ styles specific to the interior pages for the Ignite Real Time site.
 #ignite_bigpanel h1.smack, 
 #ignite_smallpanel h1.smack {
 	/*background: transparent url(../images/logo_smack.gif) no-repeat left;
+	padding-left: 35px;*/
+	}
+#ignite_bigpanel h1.whack, 
+#ignite_smallpanel h1.whack {
+	/*background: transparent url(../images/logo_whack.gif) no-repeat left;
 	padding-left: 35px;*/
 	}
 #ignite_bigpanel h1.xiff, 
@@ -336,20 +346,24 @@ img.ignite_body_image_right {
 
 .ignite_project_big img.ignite_projects_openfire,
 .ignite_project_big img.ignite_projects_spark, 
+.ignite_project_big img.ignite_projects_sparkweb, 
 .ignite_project_small img.ignite_projects_asterisk, 
 .ignite_project_small img.ignite_projects_smack, 
+.ignite_project_small img.ignite_projects_whack, 
 .ignite_project_small img.ignite_projects_xiff {
 	margin-bottom: 10px;
 	}
 .ignite_project_big a.ignite_project_openfire,
-.ignite_project_big a.ignite_project_spark {
+.ignite_project_big a.ignite_project_spark,
+.ignite_project_big a.ignite_project_sparkweb {
 	display: block;
 	padding-left: 43px;
 	color: #333;
 	text-decoration: none;
 	}
 .ignite_project_big a:hover.ignite_project_openfire,
-.ignite_project_big a:hover.ignite_project_spark {
+.ignite_project_big a:hover.ignite_project_spark,
+.ignite_project_big a:hover.ignite_project_sparkweb {
 	color: #555;
 	text-decoration: underline;
 	outline: none;
@@ -359,6 +373,9 @@ img.ignite_body_image_right {
 	}
 .ignite_project_big a.ignite_project_spark {
 	background: transparent url(../images/logo_spark.gif) no-repeat 4px 0;
+	}
+.ignite_project_big a.ignite_project_sparkweb {
+	background: transparent url(../images/logo_sparkweb.gif) no-repeat 4px 0;
 	}
 .ignite_project_big a h1 {
 	display: inline;
@@ -561,7 +578,9 @@ img.ignite_body_image_right {
 	}
 
 #openfireCpBtn.ignite_download_btn a,
+#sparkwebCpBtn.ignite_download_btn a, 
 #smackCpBtn.ignite_download_btn a, 
+#whackCpBtn.ignite_download_btn a, 
 #xiffCpBtn.ignite_download_btn a {
 	display: block;
 	float: left;
@@ -570,7 +589,9 @@ img.ignite_body_image_right {
 	outline: none;
 	}
 #openfireCpBtn.ignite_download_btn_current a,
+#sparkwebCpBtn.ignite_download_btn_current a,
 #smackCpBtn.ignite_download_btn_current a, 
+#whackCpBtn.ignite_download_btn_current a, 
 #xiffCpBtn.ignite_download_btn_current a {
 	display: block;
 	float: left;
@@ -579,17 +600,23 @@ img.ignite_body_image_right {
 	outline: none;
 	}
 #openfireCpBtn.ignite_download_btn a,
+#sparkwebCpBtn.ignite_download_btn a,
 #smackCpBtn.ignite_download_btn a, 
+#whackCpBtn.ignite_download_btn a, 
 #xiffCpBtn.ignite_download_btn a {
 	background: transparent url(../images/ignite_dl_btn_cp.gif) no-repeat;
 	}
 #openfireCpBtn.ignite_download_btn a:hover,
+#sparkwebCpBtn.ignite_download_btn a:hover,
 #smackCpBtn.ignite_download_btn a:hover, 
+#whackCpBtn.ignite_download_btn a:hover, 
 #xiffCpBtn.ignite_download_btn a:hover {
 	background: transparent url(../images/ignite_dl_btn_cp-over.gif) no-repeat;
 	}
 #openfireCpBtn.ignite_download_btn_current a,
+#sparkwebCpBtn.ignite_download_btn_current a,
 #smackCpBtn.ignite_download_btn_current a, 
+#whackCpBtn.ignite_download_btn_current a, 
 #xiffCpBtn.ignite_download_btn_current a {
 	background: transparent url(../images/ignite_dl_btn_cp-on.gif) no-repeat;
 	}
@@ -1047,6 +1074,9 @@ img.ignite_body_image_right {
 	}
 .ignite_support_projlink a.spark {
 	background: transparent url(../images/logo_spark_16x16.gif) no-repeat left;
+	}
+.ignite_support_projlink a.sparkweb {
+	background: transparent url(../images/logo_sparkweb_16x16.gif) no-repeat left;
 	}
 .ignite_support_projlink a.asterisk {
 	background: transparent url(../images/logo_asterisk_16x16.gif) no-repeat left;
