@@ -75,7 +75,7 @@
 				<div id="ignite_bigpanel_download">
 					<a href="/downloads/index.jsp#spark">Download</a> 
 					<span>
-						<strong>Spark <%= Versions.getVersion("spark") %></strong> Latest build: <%= Versions.getVersionDate("spark") 
+						<strong>Spark <%= Versions.getVersion("spark") %></strong> Latest build: <%= Versions.getVersionDate("spark") %>
 					</span>
 				</div>
 				
