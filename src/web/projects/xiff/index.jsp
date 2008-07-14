@@ -77,7 +77,7 @@
 				<div id="ignite_bigpanel_download">
 					<a href="/downloads/index.jsp#xiff">Download</a> 
 					<span>
-						<strong>XIFF API <%= Versions.getVersion("xiff") %></strong> Latest build: <%= Versions.getVersionDate("xiff")
+						<strong>XIFF API <%= Versions.getVersion("xiff") %></strong> Latest build: <%= Versions.getVersionDate("xiff") %>
 					</span>
 				</div>
 				
