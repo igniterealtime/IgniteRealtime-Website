@@ -14,10 +14,16 @@
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
     }
     else if (project.equals("spark")) {
-        name = "daniel";
-        avatarSrc = "http://www.igniterealtime.org/community/people/jadestorm/avatar/32.png";
-        profileLink = "http://www.igniterealtime.org/community/people/jadestorm";
-        profile = "Found in the belly of a Python muttering incoherently about gateways.";
+        name = "winsrev";
+        avatarSrc = "http://www.igniterealtime.org/community/people/winsrev/avatar/46.png";
+        profileLink = "http://www.igniterealtime.org/community/people/winsrev";
+        profile = "Constantly moaning, raving and getting stressed, then writing mysterious code that only works with the magic of Spark.";
+    }
+    else if (project.equals("sparkweb")) {
+        name = "DavidSmith";
+        avatarSrc = "http://www.igniterealtime.org/community/people/DavidSmith/avatar/46.png";
+        profileLink = "http://www.igniterealtime.org/community/people/DavidSmith";
+        profile = "Found on the internet arguing about UI design. Probably not a werewolf maybe.";
     }
     else if (project.equals("smack")) {
         name = "matt";
@@ -25,11 +31,17 @@
         profileLink = "http://www.igniterealtime.org/community/people/matt";
         profile = "\"That code doesn't have comments?! AHHH!\"";
     }
+    else if (project.equals("whack")) {
+        name = "gato";
+        avatarSrc = "http://www.igniterealtime.org/community/people/dombiak_gaston/avatar/32.png";
+        profileLink = "http://www.igniterealtime.org/community/people/dombiak_gaston";
+        profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
+    }
     else if (project.equals("xiff")) {
-        name = "nick";
-        avatarSrc = "http://www.igniterealtime.org/community/people/nick/avatar/32.png";
-        profileLink = "http://www.igniterealtime.org/community/people/nick";
-        profile = "A lyma bean-loving Flash developer working on the AS3.0 port of the XIFF library.";
+        name = "DavidSmith";
+        avatarSrc = "http://www.igniterealtime.org/community/people/DavidSmith/avatar/46.png";
+        profileLink = "http://www.igniterealtime.org/community/people/DavidSmith";
+        profile = "Found on the internet arguing about UI design. Probably not a werewolf maybe.";
     }
 %>
             <!-- BEGIN grey gradient sidebar box 'PROJECT LEAD' -->

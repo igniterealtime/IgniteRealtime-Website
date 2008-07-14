@@ -72,7 +72,7 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 				<div id="ignite_bigpanel_download">
 					<a href="/openfire/plugins.jsp">Download</a> 
 					<span>
-						<strong>Asterisk-IM <%= Versions.getVersion("asterisk-im") %></strong> Latest build: July 3, 2006
+						<strong>Asterisk-IM <%= Versions.getVersion("asterisk-im") %></strong> Latest build: <%= Versions.getVersionDate("asterisk-im") %>
 					</span>
 				</div>
 				

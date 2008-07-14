@@ -6,9 +6,9 @@
 <%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
-<title>Spark IM Client</title>
+<title>Whack API</title>
 <meta name="body-id" content="projects" />
-<meta name="panel-name" content="spark" />
+<meta name="panel-name" content="whack" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
 </style>
@@ -17,13 +17,14 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Spark</a></li>
-			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
-			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Whack API</a></li>
+			<!-- <li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li> -->
+			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/SPARK">Issue Tracker</a></li>
-            <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
-        </ul>
+			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/WHACK">Issue Tracker</a></li>
+			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/whack/docs/latest/javadoc/">JavaDocs</a></li>
+			
+		</ul>
 	</div>
 
 	<!-- BEGIN body area -->
@@ -44,38 +45,36 @@
 			   Cookie [] cookies = request.getCookies();
 				 if (cookies != null) {
 			       for (Cookie cookie: request.getCookies()) {
-                if (cookie.getName().equals("spark")) { 
+                if (cookie.getName().equals("whack")) { 
 						      panelCookieSet = true;
 					      }
 				     }
 			   }
 			%>
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
-				<div id="ignite_bigpanel_content">
-					<h1 class="spark">Spark <span><%= Versions.getVersion("spark") %></span></h1>
-					<p>Spark is an Open Source, cross-platform IM client optimized for businesses and 
-					organizations. It features built-in support for group chat, telephony integration, 
-					and strong security. It also offers a great end-user experience with features like 
-					in-line spell checking, group chat room bookmarks, and tabbed conversations.</p>
-					
-					<p>Combined with the <a href="/projects/openfire/">Openfire</a> server,
-                        Spark is the easiest and best alternative to using un-secure public
-                        IM networks. </p>
+				<div id="ignite_bigpanel_content" style="width: 630px;">
+					<h1 class="whack">Whack API <span><%= Versions.getVersion("whack") %></span></h1>
+					<p>
+                        Whack is an Open Source XMPP (Jabber) client library for instant messaging and presence.
+                        A pure Java library, it can be embedded into your applications to create anything from
+                        a full XMPP client to simple XMPP integrations such as sending notification messages
+                        and presence-enabling devices.
+                    </p>
 				</div>
 				
 				<div id="ignite_bigpanel_close">
-					<a href="#" onClick="closePanel('spark'); return false;"></a>
+					<a href="#" onClick="closePanel('whack'); return false;"></a>
 				</div>
 				
-				<div id="ignite_bigpanel_screenshot">
-					<img src="/images/ignite_projects_spark_ss.gif" width="210" height="210" alt="" />
-					<a href="screenshots.jsp">More screens</a>
-				</div>
+				<!-- <div id="ignite_bigpanel_screenshot"> -->
+					<!-- <img src="/images/ignite_screenshot_openfire.gif" width="210" height="210" alt="" /> -->
+					<!-- <a href="screenshots.jsp">More screens</a> -->
+				<!-- </div> -->
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#spark">Download</a> 
+					<a href="/downloads/index.jsp#whack">Download</a> 
 					<span>
-						<strong>Spark <%= Versions.getVersion("spark") %></strong> Latest build: <%= Versions.getVersionDate("spark") 
+						<strong>Whack API <%= Versions.getVersion("whack") %></strong> Latest build: <%= Versions.getVersionDate("whack") %>
 					</span>
 				</div>
 				
@@ -88,9 +87,9 @@
 				(same details as above for 'large panel')
 			-->
 			<div id="ignite_smallpanel" <% if (panelCookieSet) { %> style="display:block" <% } %>>
-				<h1 class="spark">Spark <span><%= Versions.getVersion("spark") %></span></h1>
+				<h1 class="whack">Whack API <span><%= Versions.getVersion("whack") %></span></h1>
 				<div id="ignite_smallpanel_open">
-					<a href="#" onClick="closePanel('spark'); return false;"></a>
+					<a href="#" onClick="closePanel('whack'); return false;"></a>
 				</div>
 			</div>
 			<!-- END small panel -->
@@ -98,9 +97,9 @@
 			
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
-				
-                <% String blogFeedRSS = "/community/blogs/ignite/feeds/tags/spark"; %>
-				<!-- BEGIN 'latest blog entries' column -->
+
+                <% String blogFeedRSS = "/community/blogs/ignite/feeds/tags/whack"; %>
+                <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->
 					<div id="ignite_blog_header">
@@ -114,12 +113,14 @@
 						</div>
 					</div>
 					<!-- END blog header -->
+
+                    <%-- Show blog feed --%>
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
 					BlogService blogService = locator.getBlogService();
 					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
 					bprf.setNumResults(5);
-					bprf.setTags(new String[] {"spark"});
+					bprf.setTags(new String[] {"whack"});
 					BlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
@@ -138,9 +139,9 @@
 		<div id="ignite_body_rightcol">
 			
             <jsp:include page="/includes/sidebar_projectside.jsp">
-                <jsp:param name="project" value="spark"/>
+                <jsp:param name="project" value="whack"/>
             </jsp:include>
-
+			
 		</div>
 		<!-- END right column (sidebar) -->
 	

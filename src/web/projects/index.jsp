@@ -52,6 +52,18 @@
 					</div>
 				</div>
 				<!-- END project - spark -->
+
+				<!-- BEGIN project - sparkweb -->
+				<div class="ignite_project_big">
+				<div class="ignite_project_type">Web Client</div>
+					<div class="ignite_project_content">
+						<a href="sparkweb/index.jsp" class="ignite_project_sparkweb">
+						<h1>Spark <span><%= Versions.getVersion("sparkweb") %></span></h1></a>
+						<p>Web based real-time collaboration client optimized for business and organizations.</p>
+						<p><a href="sparkweb/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+					</div>
+				</div>
+				<!-- END project - sparkweb -->
 				
 				
 				<!-- BEGIN libraries -->
@@ -70,6 +82,20 @@
 							</td>
 							<td class="ignite_project_table-link">
 								<a href="smack/index.jsp">Learn More</a>
+							</td>
+						</tr>
+						<tr class="ignite_project_table-row-odd">
+							<td class="ignite_project_table-title">
+								<a href="whack/index.jsp">Whack API</a>
+							</td>
+							<td class="ignite_project_table-description">
+								Easy to use Java XMPP component library.
+							</td>
+							<td class="ignite_project_table-version">
+								<%= Versions.getVersion("whack") %>
+							</td>
+							<td class="ignite_project_table-link">
+								<a href="whack/index.jsp">Learn More</a>
 							</td>
 						</tr>
 						<tr class="ignite_project_table-row-even">

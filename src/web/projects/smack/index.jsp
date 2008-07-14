@@ -74,7 +74,7 @@
 				<div id="ignite_bigpanel_download">
 					<a href="/downloads/index.jsp#smack">Download</a> 
 					<span>
-						<strong>Smack API <%= Versions.getVersion("smack") %></strong> Latest build: June 12, 2006
+						<strong>Smack API <%= Versions.getVersion("smack") %></strong> Latest build: <%= Versions.getVersionDate("smack") %>
 					</span>
 				</div>
 				

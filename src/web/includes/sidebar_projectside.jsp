@@ -47,5 +47,5 @@
 			</jsp:include>	
 			--%>
 			
-			<%@ include file="/includes/sidebar_enterprise.jspf" %>
+			<%--<%@ include file="/includes/sidebar_enterprise.jspf" %> -->
 			
