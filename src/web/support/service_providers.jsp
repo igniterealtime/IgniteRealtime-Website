@@ -50,18 +50,6 @@
 
 					
 					<div class="ignite_service-provider">
-						<span class="ignite_service-provider_logo"><img src="../images/logo_jive.gif" alt="Jive Software" width="32" height="32" border="0"></span>
-						<h3>Jive Software</h3>
-						<span class="ignite_service-provider_url"><a href="http://www.jivesoftware.com?source=Website-Ignite">www.jivesoftware.com</a></span>
-						<p>The company behind igniterealtime.org and lead developers of Openfire, Spark, and Smack.
-                           Jive Software sells a commercial extension to the platform, <a href="http://www.jivesoftware.com/products/openfire/features/enterprise.jsp?source=Website-Ignite">Openfire Enterprise</a>, that
-                           includes support and advanced productivity features. Jive Software's professional services team adds
-                           custom new features to Openfire and Spark and assists with application
-                           integrations.
-                        </p>
-					</div>
-					
-					<div class="ignite_service-provider">
 						<span class="ignite_service-provider_logo"><img src="../images/logo_v2_small.gif" alt="Version 2 Software" width="45" height="32" border="0"></span>
 						<h3>Version 2 Software</h3>
 						<span class="ignite_service-provider_url"><a href="http://www.version2software.com">www.version2software.com</a></span>
