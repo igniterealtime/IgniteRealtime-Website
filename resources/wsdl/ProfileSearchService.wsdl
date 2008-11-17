@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ProfileSearchService" targetNamespace="http://jivesoftware.com/clearspace/webservices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://jivesoftware.com/clearspace/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jivesoftware.com/clearspace/webservices" xmlns:tns="http://jivesoftware.com/clearspace/webservices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="ProfileSearchQuery">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="filters" nillable="true" type="tns:ProfileSearchFilter" />
+<xs:element minOccurs="0" name="keywords" type="xs:string" />
+<xs:element name="searchEmail" type="xs:boolean" />
+<xs:element name="searchName" type="xs:boolean" />
+<xs:element name="searchProfile" type="xs:boolean" />
+<xs:element name="searchUsername" type="xs:boolean" />
+<xs:element name="sort" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ProfileSearchFilter">
+<xs:sequence>
+<xs:element name="fieldID" type="xs:long" />
+<xs:element minOccurs="0" name="maxValue" type="xs:string" />
+<xs:element minOccurs="0" name="minValue" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="User">
+<xs:sequence>
+<xs:element minOccurs="0" name="creationDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="email" type="xs:string" />
+<xs:element name="emailVisible" type="xs:boolean" />
+<xs:element name="enabled" type="xs:boolean" />
+<xs:element name="ID" type="xs:long" />
+<xs:element minOccurs="0" name="modificationDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element name="nameVisible" type="xs:boolean" />
+<xs:element minOccurs="0" name="password" type="xs:string" />
+<xs:element minOccurs="0" name="username" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="Unauthorized" type="tns:Unauthorized" />
+<xs:complexType name="Unauthorized">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="CommunityNotFound" type="tns:CommunityNotFound" />
+<xs:complexType name="CommunityNotFound">
+<xs:sequence>
+<xs:element name="communityID" nillable="true" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="search" type="tns:search" />
+<xs:complexType name="search">
+<xs:sequence>
+<xs:element minOccurs="0" name="query" type="tns:ProfileSearchQuery" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="searchResponse" type="tns:searchResponse" />
+<xs:complexType name="searchResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:User" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getSimilarUserResults" type="tns:getSimilarUserResults" />
+<xs:complexType name="getSimilarUserResults">
+<xs:sequence>
+<xs:element name="groupID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getSimilarUserResultsResponse" type="tns:getSimilarUserResultsResponse" />
+<xs:complexType name="getSimilarUserResultsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:User" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="searchBounded" type="tns:searchBounded" />
+<xs:complexType name="searchBounded">
+<xs:sequence>
+<xs:element minOccurs="0" name="query" type="tns:ProfileSearchQuery" />
+<xs:element name="startIndex" type="xs:int" />
+<xs:element name="numResults" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="searchBoundedResponse" type="tns:searchBoundedResponse" />
+<xs:complexType name="searchBoundedResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:User" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isSearchEnabled" type="tns:isSearchEnabled" />
+<xs:complexType name="isSearchEnabled">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="isSearchEnabledResponse" type="tns:isSearchEnabledResponse" />
+<xs:complexType name="isSearchEnabledResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="searchBounded">
+    <wsdl:part element="tns:searchBounded" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchBoundedResponse">
+    <wsdl:part element="tns:searchBoundedResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSimilarUserResults">
+    <wsdl:part element="tns:getSimilarUserResults" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getSimilarUserResultsResponse">
+    <wsdl:part element="tns:getSimilarUserResultsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isSearchEnabled">
+    <wsdl:part element="tns:isSearchEnabled" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommunityNotFoundException">
+    <wsdl:part element="tns:CommunityNotFound" name="CommunityNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnauthorizedException">
+    <wsdl:part element="tns:Unauthorized" name="UnauthorizedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="searchResponse">
+    <wsdl:part element="tns:searchResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isSearchEnabledResponse">
+    <wsdl:part element="tns:isSearchEnabledResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="search">
+    <wsdl:part element="tns:search" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProfileSearchService">
+    <wsdl:operation name="search">
+      <wsdl:input message="tns:search" name="search">
+    </wsdl:input>
+      <wsdl:output message="tns:searchResponse" name="searchResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSimilarUserResults">
+      <wsdl:input message="tns:getSimilarUserResults" name="getSimilarUserResults">
+    </wsdl:input>
+      <wsdl:output message="tns:getSimilarUserResultsResponse" name="getSimilarUserResultsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchBounded">
+      <wsdl:input message="tns:searchBounded" name="searchBounded">
+    </wsdl:input>
+      <wsdl:output message="tns:searchBoundedResponse" name="searchBoundedResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isSearchEnabled">
+      <wsdl:input message="tns:isSearchEnabled" name="isSearchEnabled">
+    </wsdl:input>
+      <wsdl:output message="tns:isSearchEnabledResponse" name="isSearchEnabledResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProfileSearchServiceSoapBinding" type="tns:ProfileSearchService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="search">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="search">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getSimilarUserResults">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getSimilarUserResults">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getSimilarUserResultsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="searchBounded">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="searchBounded">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="searchBoundedResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isSearchEnabled">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isSearchEnabled">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isSearchEnabledResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProfileSearchService">
+    <wsdl:port binding="tns:ProfileSearchServiceSoapBinding" name="ProfileSearchServicePort">
+      <soap:address location="http://j2ee.www.igniterealtime.org-community:8080/community/rpc/soap/ProfileSearchService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

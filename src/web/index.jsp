@@ -1,6 +1,7 @@
-<%@ page import="org.jivesoftware.site.Versions, 
-	com.jivesoftware.community.webservices.*"%>
-
+<%@ page import="com.jivesoftware.clearspace.webservices.*" %>
+<%@ page import="org.jivesoftware.site.Versions" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DateFormat" %>
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
@@ -15,7 +16,6 @@
 </style>
 </head>
 <body>
-
 
 	<!-- BEGIN body area -->
 	<div id="ignite_body">
@@ -91,7 +91,7 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_home_body">
 
-                <% String blogFeedRSS = "/community/blogs/ignite/feeds/posts"; %>
+                <% String blogFeedRSS = config.getServletContext().getInitParameter("csc_baseurl")+"/blogs/ignite/feeds/posts"; %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_home_body_leftcol">
 					<!-- BEGIN blog header -->
@@ -108,17 +108,20 @@
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-                    <cache:cache time="600" key="<%= blogFeedRSS %>">
+					<cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-                    //cache the ServiceLocator in the app scope
-					BlogService blogService = locator.getBlogService();
-					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					BlogService blogService = serviceProvider.getBlogService();
+
+					BlogPostResultFilter bprf = new BlogPostResultFilter();
 					bprf.setNumResults(5);
-					BlogPost[] posts = blogService.getBlogPosts(bprf);
+                    bprf.setBlogID((long) NULL_INT);
+                    bprf.setSortField(600); // publish date
+                    bprf.setSortOrder(SORT_DESCENDING);
+                    List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />
-                    </cache:cache>
+					</cache:cache>
 				</div>
 
                 <style type="text/css"></style>
@@ -138,11 +141,11 @@
 						
 						<!-- featured member 1 -->
 						<div style="float: right;">
-						<a href="/community/people/mtstravel">
+						<a href="/community/people/sixthring">
 							<div class="ignite_home_featured_avatar">
-							 <img src="/community/people/mtstravel/avatar/32.png" alt="avatar" width="32" height="32" />
+							 <img src="/community/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
 							</div>
-                        mtstravel</a>
+                        sixthring</a>
 						</div>
 
                         <!-- featured member 2 -->
@@ -159,16 +162,17 @@
 					<!-- BEGIN recent discussions, news, wiki docs, and articles -->
 					<div id="ignite_home_body_recent">
 					<h4>Recent Discussions</h4>
-						<cache:cache time="60" key="http://www.igniterealtime.org/community/blogs/feeds/posts">
+						<cache:cache time="60" key="/community/blogs/feeds/posts">
 
                         <%
-                        ForumService forumService = locator.getForumService();
-				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
-						rf.setSortOrder(ResultFilter.DESCENDING);
-						rf.setRecursive(true);
-						rf.setNumResults(5);
-						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(1, rf);
-						for (ForumMessage message : messages) {
+						ForumService forumService1 = serviceProvider.getForumService();
+						ResultFilter rf1 = new ResultFilter();
+                        rf1.setSortField(9); // modification date
+                        rf1.setSortOrder(SORT_DESCENDING);
+						rf1.setRecursive(true);
+						rf1.setNumResults(5);
+						List<ForumMessage> messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
+						for (ForumMessage message : messages1) {
 						%>
 							<div class="discussion">
 								<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
@@ -179,18 +183,19 @@
                         </cache:cache>
 											
 					<h4>Recent Releases</h4>
-						<cache:cache time="60" key="http://www.igniterealtime.org/community/community/feeds/allcontent?communityID=2017">
+						<cache:cache time="60" key="/community/community/feeds/allcontent?communityID=2017">
 						<%
-						ForumService forumService = locator.getForumService();
-				  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
-						rf.setSortOrder(ResultFilter.DESCENDING);
-						rf.setRecursive(true);
-						rf.setNumResults(5);
-						ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(2017, rf);
-						for (ForumMessage message : messages) {
-						%>
+						ForumService forumService2 = serviceProvider.getForumService();
+						ResultFilter rf2 = new ResultFilter();
+                        rf2.setSortField(9); // modification date
+                        rf2.setSortOrder(SORT_DESCENDING);
+						rf2.setRecursive(true);
+						rf2.setNumResults(5);
+						List<ForumMessage> messages2 = forumService2.getMessagesByCommunityIDAndFilter(2017, rf2);
+						 for (ForumMessage message : messages2) {
+                        %>
 							<div class="news">
-								<font color="#888888"><%= message.getCreationDate() %> - </font> 
+								<font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(message.getCreationDate().toGregorianCalendar().getTime()) %> - </font>
 								<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>
 							</div>
 						<% } %>

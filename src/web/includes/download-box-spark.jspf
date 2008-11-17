@@ -36,8 +36,8 @@
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
                 <!-- <a href="#"><strong>Plugins</strong></a> |  -->
-                <a href="http://www.igniterealtime.org/builds/spark/docs/latest/README.html">Readme & License</a> |
-                <a href="http://www.igniterealtime.org/builds/spark/docs/latest/changelog.html">Changelog</a><!--  |
+                <a href="/builds/spark/docs/latest/README.html">Readme & License</a> |
+                <a href="/builds/spark/docs/latest/changelog.html">Changelog</a><!--  |
                 <a href="#">Nightly Builds</a> |  -->
                 <!-- <a href="#">Source Code</a> -->
             </span>

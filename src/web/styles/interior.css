@@ -207,6 +207,32 @@ styles specific to the interior pages for the Ignite Real Time site.
 	color: #ccc;
 	text-decoration: underline;
 	} 
+#ignite_bigpanel_tryitlive {
+	padding: 40px 0 0 0;
+	float: right;
+	text-align: right;
+	vertical-align: middle;
+	}
+#ignite_bigpanel_tryitlive a {
+	display: block;
+	margin: -4px 4px;
+	padding: 40px 0 0;
+	color: #000000;
+	text-decoration: none;
+	font-size: 16pt;
+	text-align: center;
+	vertical-align: middle;
+	background-color: #FCA805;
+	border: 2.0px solid #005500;
+        -moz-border-radius : 5px;
+	width: 150px;
+	height: 70px;
+	}
+#ignite_bigpanel_tryitlive a:hover {
+	color: #000000;
+	border: 2.0px solid #005500;
+	background-color: #FDC711;
+	} 
 
 #ignite_smallpanel {
 	display: none;

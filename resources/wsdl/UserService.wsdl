@@ -1,0 +1,726 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://jivesoftware.com/clearspace/webservices" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UserService" targetNamespace="http://jivesoftware.com/clearspace/webservices">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://jivesoftware.com/clearspace/webservices" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jivesoftware.com/clearspace/webservices">
+<xs:complexType name="Property">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="User">
+<xs:sequence>
+<xs:element minOccurs="0" name="creationDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+<xs:element name="emailVisible" type="xs:boolean"/>
+<xs:element name="enabled" type="xs:boolean"/>
+<xs:element name="ID" type="xs:long"/>
+<xs:element minOccurs="0" name="modificationDate" type="xs:dateTime"/>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element name="nameVisible" type="xs:boolean"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+<xs:element minOccurs="0" name="username" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="UserNotFound" type="UserNotFound"/>
+<xs:complexType name="UserNotFound">
+<xs:sequence>
+<xs:element name="username" nillable="true" type="xs:string"/>
+<xs:element name="userID" nillable="true" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="UserAlreadyExistsException" type="UserAlreadyExistsException"/>
+<xs:complexType name="UserAlreadyExistsException">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="EmailAlreadyExistsException" type="EmailAlreadyExistsException"/>
+<xs:complexType name="EmailAlreadyExistsException">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="getUserByEmailAddress" type="getUserByEmailAddress"/>
+<xs:complexType name="getUserByEmailAddress">
+<xs:sequence>
+<xs:element minOccurs="0" name="emailAddress" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserByEmailAddressResponse" type="getUserByEmailAddressResponse"/>
+<xs:complexType name="getUserByEmailAddressResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setUserProperty" type="setUserProperty"/>
+<xs:complexType name="setUserProperty">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element minOccurs="0" name="value" type="xs:string"/>
+<xs:element name="userID" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setUserPropertyResponse" type="setUserPropertyResponse"/>
+<xs:complexType name="setUserPropertyResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="updateUser" type="updateUser"/>
+<xs:complexType name="updateUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="user" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateUserResponse" type="updateUserResponse"/>
+<xs:complexType name="updateUserResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="getUsersBounded" type="getUsersBounded"/>
+<xs:complexType name="getUsersBounded">
+<xs:sequence>
+<xs:element name="startIndex" type="xs:int"/>
+<xs:element name="numResults" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsersBoundedResponse" type="getUsersBoundedResponse"/>
+<xs:complexType name="getUsersBoundedResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUser" type="getUser"/>
+<xs:complexType name="getUser">
+<xs:sequence>
+<xs:element name="userID" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserResponse" type="getUserResponse"/>
+<xs:complexType name="getUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="disableUser" type="disableUser"/>
+<xs:complexType name="disableUser">
+<xs:sequence>
+<xs:element name="userID" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="disableUserResponse" type="disableUserResponse"/>
+<xs:complexType name="disableUserResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="createUserWithUser" type="createUserWithUser"/>
+<xs:complexType name="createUserWithUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="user" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createUserWithUserResponse" type="createUserWithUserResponse"/>
+<xs:complexType name="createUserWithUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserByUsername" type="getUserByUsername"/>
+<xs:complexType name="getUserByUsername">
+<xs:sequence>
+<xs:element minOccurs="0" name="username" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserByUsernameResponse" type="getUserByUsernameResponse"/>
+<xs:complexType name="getUserByUsernameResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUsers" type="getUsers"/>
+<xs:complexType name="getUsers">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="getUsersResponse" type="getUsersResponse"/>
+<xs:complexType name="getUsersResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserNames" type="getUserNames"/>
+<xs:complexType name="getUserNames">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="getUserNamesResponse" type="getUserNamesResponse"/>
+<xs:complexType name="getUserNamesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="enableUser" type="enableUser"/>
+<xs:complexType name="enableUser">
+<xs:sequence>
+<xs:element name="userID" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="enableUserResponse" type="enableUserResponse"/>
+<xs:complexType name="enableUserResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="deleteUserProperty" type="deleteUserProperty"/>
+<xs:complexType name="deleteUserProperty">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string"/>
+<xs:element name="userID" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteUserPropertyResponse" type="deleteUserPropertyResponse"/>
+<xs:complexType name="deleteUserPropertyResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="setPassword" type="setPassword"/>
+<xs:complexType name="setPassword">
+<xs:sequence>
+<xs:element name="userID" type="xs:long"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setPasswordResponse" type="setPasswordResponse"/>
+<xs:complexType name="setPasswordResponse">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="getUserProperties" type="getUserProperties"/>
+<xs:complexType name="getUserProperties">
+<xs:sequence>
+<xs:element name="userID" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserPropertiesResponse" type="getUserPropertiesResponse"/>
+<xs:complexType name="getUserPropertiesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="Property"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserCount" type="getUserCount"/>
+<xs:complexType name="getUserCount">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="getUserCountResponse" type="getUserCountResponse"/>
+<xs:complexType name="getUserCountResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createUser" type="createUser"/>
+<xs:complexType name="createUser">
+<xs:sequence>
+<xs:element minOccurs="0" name="username" type="xs:string"/>
+<xs:element minOccurs="0" name="password" type="xs:string"/>
+<xs:element minOccurs="0" name="email" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createUserResponse" type="createUserResponse"/>
+<xs:complexType name="createUserResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="User"/>
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isReadOnly" type="isReadOnly"/>
+<xs:complexType name="isReadOnly">
+<xs:sequence/>
+</xs:complexType>
+<xs:element name="isReadOnlyResponse" type="isReadOnlyResponse"/>
+<xs:complexType name="isReadOnlyResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getUserByEmailAddress">
+    <wsdl:part element="tns:getUserByEmailAddress" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserCountResponse">
+    <wsdl:part element="tns:getUserCountResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="EmailAlreadyExistsException">
+    <wsdl:part element="tns:EmailAlreadyExistsException" name="EmailAlreadyExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserPropertyResponse">
+    <wsdl:part element="tns:deleteUserPropertyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setUserPropertyResponse">
+    <wsdl:part element="tns:setUserPropertyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disableUserResponse">
+    <wsdl:part element="tns:disableUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isReadOnlyResponse">
+    <wsdl:part element="tns:isReadOnlyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserNames">
+    <wsdl:part element="tns:getUserNames" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="enableUser">
+    <wsdl:part element="tns:enableUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUserWithUserResponse">
+    <wsdl:part element="tns:createUserWithUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersBoundedResponse">
+    <wsdl:part element="tns:getUsersBoundedResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserProperty">
+    <wsdl:part element="tns:deleteUserProperty" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUserWithUser">
+    <wsdl:part element="tns:createUserWithUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUser">
+    <wsdl:part element="tns:getUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="disableUser">
+    <wsdl:part element="tns:disableUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByUsername">
+    <wsdl:part element="tns:getUserByUsername" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByUsernameResponse">
+    <wsdl:part element="tns:getUserByUsernameResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setUserProperty">
+    <wsdl:part element="tns:setUserProperty" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUser">
+    <wsdl:part element="tns:updateUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsers">
+    <wsdl:part element="tns:getUsers" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersBounded">
+    <wsdl:part element="tns:getUsersBounded" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPasswordResponse">
+    <wsdl:part element="tns:setPasswordResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserCount">
+    <wsdl:part element="tns:getUserCount" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUser">
+    <wsdl:part element="tns:createUser" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserAlreadyExistsException">
+    <wsdl:part element="tns:UserAlreadyExistsException" name="UserAlreadyExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateUserResponse">
+    <wsdl:part element="tns:updateUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserByEmailAddressResponse">
+    <wsdl:part element="tns:getUserByEmailAddressResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserPropertiesResponse">
+    <wsdl:part element="tns:getUserPropertiesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserNamesResponse">
+    <wsdl:part element="tns:getUserNamesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUserResponse">
+    <wsdl:part element="tns:createUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserNotFoundException">
+    <wsdl:part element="tns:UserNotFound" name="UserNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUsersResponse">
+    <wsdl:part element="tns:getUsersResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="enableUserResponse">
+    <wsdl:part element="tns:enableUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserResponse">
+    <wsdl:part element="tns:getUserResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setPassword">
+    <wsdl:part element="tns:setPassword" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserProperties">
+    <wsdl:part element="tns:getUserProperties" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isReadOnly">
+    <wsdl:part element="tns:isReadOnly" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserService">
+    <wsdl:operation name="getUserByEmailAddress">
+      <wsdl:input message="tns:getUserByEmailAddress" name="getUserByEmailAddress">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserByEmailAddressResponse" name="getUserByEmailAddressResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setUserProperty">
+      <wsdl:input message="tns:setUserProperty" name="setUserProperty">
+    </wsdl:input>
+      <wsdl:output message="tns:setUserPropertyResponse" name="setUserPropertyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <wsdl:input message="tns:updateUser" name="updateUser">
+    </wsdl:input>
+      <wsdl:output message="tns:updateUserResponse" name="updateUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserAlreadyExistsException" name="UserAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersBounded">
+      <wsdl:input message="tns:getUsersBounded" name="getUsersBounded">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersBoundedResponse" name="getUsersBoundedResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <wsdl:input message="tns:getUser" name="getUser">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserResponse" name="getUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="disableUser">
+      <wsdl:input message="tns:disableUser" name="disableUser">
+    </wsdl:input>
+      <wsdl:output message="tns:disableUserResponse" name="disableUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createUserWithUser">
+      <wsdl:input message="tns:createUserWithUser" name="createUserWithUser">
+    </wsdl:input>
+      <wsdl:output message="tns:createUserWithUserResponse" name="createUserWithUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserAlreadyExistsException" name="UserAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:EmailAlreadyExistsException" name="EmailAlreadyExistsException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByUsername">
+      <wsdl:input message="tns:getUserByUsername" name="getUserByUsername">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserByUsernameResponse" name="getUserByUsernameResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <wsdl:input message="tns:getUsers" name="getUsers">
+    </wsdl:input>
+      <wsdl:output message="tns:getUsersResponse" name="getUsersResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserNames">
+      <wsdl:input message="tns:getUserNames" name="getUserNames">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserNamesResponse" name="getUserNamesResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="enableUser">
+      <wsdl:input message="tns:enableUser" name="enableUser">
+    </wsdl:input>
+      <wsdl:output message="tns:enableUserResponse" name="enableUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUserProperty">
+      <wsdl:input message="tns:deleteUserProperty" name="deleteUserProperty">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteUserPropertyResponse" name="deleteUserPropertyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setPassword">
+      <wsdl:input message="tns:setPassword" name="setPassword">
+    </wsdl:input>
+      <wsdl:output message="tns:setPasswordResponse" name="setPasswordResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserAlreadyExistsException" name="UserAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserProperties">
+      <wsdl:input message="tns:getUserProperties" name="getUserProperties">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserPropertiesResponse" name="getUserPropertiesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserCount">
+      <wsdl:input message="tns:getUserCount" name="getUserCount">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserCountResponse" name="getUserCountResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <wsdl:input message="tns:createUser" name="createUser">
+    </wsdl:input>
+      <wsdl:output message="tns:createUserResponse" name="createUserResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserAlreadyExistsException" name="UserAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:EmailAlreadyExistsException" name="EmailAlreadyExistsException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isReadOnly">
+      <wsdl:input message="tns:isReadOnly" name="isReadOnly">
+    </wsdl:input>
+      <wsdl:output message="tns:isReadOnlyResponse" name="isReadOnlyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserServiceSoapBinding" type="tns:UserService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getUserByEmailAddress">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserByEmailAddress">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserByEmailAddressResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setUserProperty">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setUserProperty">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setUserPropertyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="updateUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="updateUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException">
+        <soap:fault name="UserAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsersBounded">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUsersBounded">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersBoundedResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="disableUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="disableUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="disableUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createUserWithUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createUserWithUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createUserWithUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException">
+        <soap:fault name="UserAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EmailAlreadyExistsException">
+        <soap:fault name="EmailAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserByUsername">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserByUsername">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserByUsernameResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUsers">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUsers">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUsersResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserNames">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserNames">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserNamesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteUserProperty">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteUserProperty">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteUserPropertyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="enableUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="enableUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="enableUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserProperties">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserProperties">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserPropertiesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setPassword">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="setPassword">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="setPasswordResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException">
+        <soap:fault name="UserAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserCount">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserCount">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserCountResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="UserAlreadyExistsException">
+        <soap:fault name="UserAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="EmailAlreadyExistsException">
+        <soap:fault name="EmailAlreadyExistsException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isReadOnly">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="isReadOnly">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="isReadOnlyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserService">
+    <wsdl:port binding="tns:UserServiceSoapBinding" name="UserServicePort">
+      <soap:address location="http://eval2.jivesoftware.com/cs2testdrive/rpc/soap/UserService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

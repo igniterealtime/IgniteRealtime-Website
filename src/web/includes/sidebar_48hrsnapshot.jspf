@@ -1,27 +1,32 @@
-<%@ page import="java.text.NumberFormat, org.jivesoftware.site.DownloadStats, com.jivesoftware.community.webservices.*"%>
-            <!-- BEGIN blue sidebar box '48 HOUR SNAPSHOT' -->
+<%@ page import="java.text.NumberFormat, org.jivesoftware.site.DownloadStats"%>
+<%@ page import="com.jivesoftware.clearspace.webservices.UserService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.ForumService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.ResultFilter" %>
+<!-- BEGIN blue sidebar box '48 HOUR SNAPSHOT' -->
             <div class="ignite_sidebar_bluebox_photo">
                 <div class="ignite_sidebar_top"></div>
                 <div class="ignite_sidebar_hdr ignite_sidebar_hdr_comsnapshot"></div>
                 <div class="ignite_sidebar_body">
                     <div class="ignite_sidebar_body_stat"><span>Downloads</span> <strong><%= NumberFormat.getNumberInstance().format(DownloadStats.getTotalDownloads()) %></strong></div>
 					<%
-					UserService userService = locator.getUserService();
-					BlogService blogService = locator.getBlogService();
-					ForumService forumService = locator.getForumService();
-					ResultFilter rf = ResultFilter.createDefaultMessageFilter();
-					rf.setRecursive(true);
+                    // Ignore the errors, these are pulled from ws_locator.jspf
+                    UserService userService48 = serviceProvider.getUserService();
+					BlogService blogService48 = serviceProvider.getBlogService();
+					ForumService forumService48 = serviceProvider.getForumService();
+					ResultFilter rf48 = new ResultFilter();
+					rf48.setRecursive(true);
 					%>
 				
-                    <cache:cache time="30" key="http://www.igniterealtime.org/forum/rss/rsscommunitystats.jspa?countUsers=true">
+                    <cache:cache time="30" key="/forum/rss/rsscommunitystats.jspa?countUsers=true">
 				        <div class="ignite_sidebar_body_stat"><span>Members</span> 
-							<strong><%= userService.getUserCount() %></strong>
+							<strong><%= userService48.getUserCount() %></strong>
 						</div>
 				        <div class="ignite_sidebar_body_stat"><span>Forum Posts</span> 
-							<strong><%= forumService.getMessageCountByCommunityIDAndFilter(1, rf) %></strong>
+							<strong><%= forumService48.getMessageCountByCommunityIDAndFilter(1, rf48) %></strong>
 						</div>
 					    <div class="ignite_sidebar_body_stat"><span>Blog Entries</span> 
-							<strong><%= blogService.getBlogPostCount() %></strong>
+							<strong><%= blogService48.getBlogPostCount() %></strong>
 						</div>
                     </cache:cache>
                     

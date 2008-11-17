@@ -159,7 +159,7 @@ public String getMessage() {
 <p>How is our plugin going to know when a user signs in? Fortunately for us, the Openfire API
     provides a number of listener interfaces that can be used to notify us when certain events occur
     within the server. One of these listener interfaces is the <a
-        href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/org/jivesoftware/openfire/event/SessionEventListener.html">SessionEventListener</a>
+        href="/builds/openfire/docs/latest/documentation/javadoc/org/jivesoftware/openfire/event/SessionEventListener.html">SessionEventListener</a>
     interface which can be used to alert our plugin when a user signs in.
 
     Below, you'll see our MotDSessionEventListener class that implements the SessionEventListener
@@ -250,7 +250,7 @@ private class MotDSessionEventListener implements SessionEventListener {
 
     what can be done with them. Next time we'll look at using a <a
 
-        href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/org/jivesoftware/openfire/interceptor/PacketInterceptor.html">PacketInterceptor</a>
+        href="/builds/openfire/docs/latest/documentation/javadoc/org/jivesoftware/openfire/interceptor/PacketInterceptor.html">PacketInterceptor</a>
 
     and some of its applications.</p>
 
@@ -265,7 +265,7 @@ private class MotDSessionEventListener implements SessionEventListener {
 </li>
 
 <li>
-    <a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/plugin-dev-guide.html">Plugin
+    <a href="/builds/openfire/docs/latest/documentation/plugin-dev-guide.html">Plugin
         Developer Guide</a> - A guide to writing and installing plugins for Openfire.
 
 </ul>

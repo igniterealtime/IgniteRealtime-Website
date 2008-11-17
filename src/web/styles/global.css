@@ -87,7 +87,7 @@ hr {
 	}
 #ignite_jive {
 	width: 184px;
-	height: 11px;
+	height: 48px;
 	float: right;
 	margin: 0px;
 	padding: 13px 20px 0px 0px;
@@ -426,6 +426,9 @@ hr {
 .ignite_blog_entry_body p {
 	margin: 0px;
 	padding: 0px 0px 13px 0px;
+	}
+pre.jive_quote {
+	white-space: pre-wrap;
 	}
 .ignite_blog_entry_body img {
 	border: none;

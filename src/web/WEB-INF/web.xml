@@ -1,8 +1,13 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app
+		xmlns="http://java.sun.com/xml/ns/j2ee"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
 
-<web-app>
+http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+		version="2.4">
+
     <display-name>Ignite Realtime Website</display-name>
     <description>Website source for igniterealtime.org</description>
 
@@ -30,8 +35,20 @@
         <param-name>dbPassword</param-name>
         <param-value>k*3G@3Vm</param-value>
     </context-param>
+	<context-param>
+        <param-name>csc_baseurl</param-name>
+        <param-value>http://staging.igniterealtime.org/community</param-value>
+    </context-param>
+    <context-param>
+    	<param-name>csc_username</param-name>
+    	<param-value>webservices</param-value>
+   	</context-param>
+   	<context-param>
+   		<param-name>csc_password</param-name>
+   		<param-value>webservicesadmin</param-value>
+   	</context-param>
 
-    <filter>
+	<filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
     </filter>
@@ -111,7 +128,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/updater/sparkplugs/*.jar</url-pattern>
+        <url-pattern>/updater/sparkplugs/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UpdateServlet</servlet-name>
@@ -123,36 +140,34 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/openfire/plugins/*.jar</url-pattern>
+        <url-pattern>/projects/openfire/plugins/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/openfire/plugins/*.war</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/openfire/plugins-beta/*.jar</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PluginDownloadServlet</servlet-name>
-        <url-pattern>/projects/openfire/plugins-beta/*.war</url-pattern>
+        <url-pattern>/projects/openfire/plugins-beta/*</url-pattern>
     </servlet-mapping>
 
-    <taglib>
-        <taglib-uri>http://www.opensymphony.com/sitemesh/decorator</taglib-uri>
-        <taglib-location>/WEB-INF/classes/sitemesh-decorator.tld</taglib-location>
-    </taglib>
-    <taglib>
-        <taglib-uri>http://www.opensymphony.com/sitemesh/page</taglib-uri>
-        <taglib-location>/WEB-INF/classes/sitemesh-page.tld</taglib-location>
-    </taglib>
-    <taglib>
-        <taglib-uri>oscache</taglib-uri>
-        <taglib-location>/WEB-INF/lib/oscache.jar</taglib-location>
-    </taglib>
-    <taglib>
-        <taglib-uri>transformtags</taglib-uri>
-        <taglib-location>/WEB-INF/classes/transformtags.tld</taglib-location>
-    </taglib>
-
+	<jsp-config>
+		<!-- tag lib definitions -->
+		<taglib>
+			<taglib-uri>http://www.opensymphony.com/sitemesh/decorator</taglib-uri>
+			<taglib-location>/WEB-INF/sitemesh-decorator.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.opensymphony.com/sitemesh/page</taglib-uri>
+			<taglib-location>/WEB-INF/sitemesh-page.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>oscache</taglib-uri>
+			<taglib-location>/WEB-INF/lib/oscache.jar</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>transformtags</taglib-uri>
+			<taglib-location>/WEB-INF/transformtags.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+			<taglib-location>/WEB-INF/c.tld</taglib-location>
+		</taglib>
+	</jsp-config>
 </web-app>

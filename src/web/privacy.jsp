@@ -118,17 +118,18 @@ and covers the following areas:
         However, your profile is used solely for internal purposes, to help us improve the experience of
         our customers.  We do not share your profile with any third parties.
         </p>
-        <p>
+        
         <h4>Cookies</h4>
+        <p>
         A cookie is a small text file stored on the customer's hard drive for an extended period of
         time. The cookies can be removed by following Internet browser help file directions.  Allowing
         the Jivesoftware.com cookie to remain on your computer makes it easier for you to log in to and
         use the site.  If you reject the cookie, you may still use the site, but you will be required to verify
         your identity at various points.
         </p>
-        <p>
+        
         <h4>Log Files</h4>
-
+        <p>
         Log files record internet protocol (IP) addresses, browser types, internet service provider
         (ISP), referring/exit pages, platform type, date/time stamp, and number of clicks to analyze
         trends, administer the site, track a customer's movement in the aggregate, and gather broad

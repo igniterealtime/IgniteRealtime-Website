@@ -9,8 +9,8 @@
     String profile = null;
     if (project.equals("openfire")) {
         name = "gato";
-        avatarSrc = "http://www.igniterealtime.org/community/people/dombiak_gaston/avatar/32.png";
-        profileLink = "http://www.igniterealtime.org/community/people/dombiak_gaston";
+        avatarSrc = "/community/people/dombiak_gaston/avatar/32.png";
+        profileLink = "/community/people/dombiak_gaston";
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
     }
     else if (project.equals("spark")) {
@@ -20,15 +20,15 @@
         profile = "Constantly moaning, raving and getting stressed, then writing mysterious code that only works with the magic of Spark.";
     }
     else if (project.equals("sparkweb")) {
-        name = "DavidSmith";
-        avatarSrc = "http://www.igniterealtime.org/community/people/DavidSmith/avatar/46.png";
-        profileLink = "http://www.igniterealtime.org/community/people/DavidSmith";
-        profile = "Found on the internet arguing about UI design. Probably not a werewolf maybe.";
+        name = "ajagucki";
+        avatarSrc = "http://www.igniterealtime.org/community/people/ajagucki/avatar/46.png";
+        profileLink = "http://www.igniterealtime.org/community/people/ajagucki";
+        profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
     }
     else if (project.equals("smack")) {
         name = "matt";
-        avatarSrc = "http://www.igniterealtime.org/community/people/matt/avatar/32.png";
-        profileLink = "http://www.igniterealtime.org/community/people/matt";
+        avatarSrc = "/community/people/matt/avatar/32.png";
+        profileLink = "/community/people/matt";
         profile = "\"That code doesn't have comments?! AHHH!\"";
     }
     else if (project.equals("whack")) {
@@ -38,10 +38,10 @@
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
     }
     else if (project.equals("xiff")) {
-        name = "DavidSmith";
-        avatarSrc = "http://www.igniterealtime.org/community/people/DavidSmith/avatar/46.png";
-        profileLink = "http://www.igniterealtime.org/community/people/DavidSmith";
-        profile = "Found on the internet arguing about UI design. Probably not a werewolf maybe.";
+        name = "ajagucki";
+        avatarSrc = "http://www.igniterealtime.org/community/people/ajagucki/avatar/46.png";
+        profileLink = "http://www.igniterealtime.org/community/people/ajagucki";
+        profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
     }
 %>
             <!-- BEGIN grey gradient sidebar box 'PROJECT LEAD' -->

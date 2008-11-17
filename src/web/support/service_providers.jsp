@@ -48,7 +48,6 @@
                         and hosting.
                     </p>
 
-					
 					<div class="ignite_service-provider">
 						<span class="ignite_service-provider_logo"><img src="../images/logo_v2_small.gif" alt="Version 2 Software" width="45" height="32" border="0"></span>
 						<h3>Version 2 Software</h3>

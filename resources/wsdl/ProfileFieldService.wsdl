@@ -1,0 +1,331 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="ProfileFieldService" targetNamespace="http://jivesoftware.com/clearspace/webservices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://jivesoftware.com/clearspace/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jivesoftware.com/clearspace/webservices" xmlns:tns="http://jivesoftware.com/clearspace/webservices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="ProfileField">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="descriptions" nillable="true" type="tns:LocaleString" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="displayNames" nillable="true" type="tns:LocaleString" />
+<xs:element name="editable" type="xs:boolean" />
+<xs:element name="filterable" type="xs:boolean" />
+<xs:element name="ID" type="xs:long" />
+<xs:element name="index" type="xs:int" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="options" nillable="true" type="tns:ProfileFieldOption" />
+<xs:element name="required" type="xs:boolean" />
+<xs:element name="searchable" type="xs:boolean" />
+<xs:element name="typeID" type="xs:int" />
+<xs:element name="visible" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LocaleString">
+<xs:sequence>
+<xs:element minOccurs="0" name="locale" type="tns:Locale" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Locale">
+<xs:sequence>
+<xs:element minOccurs="0" name="countryCode" type="xs:string" />
+<xs:element minOccurs="0" name="languageCode" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ProfileFieldOption">
+<xs:sequence>
+<xs:element name="defaultOption" type="xs:boolean" />
+<xs:element name="fieldID" type="xs:long" />
+<xs:element name="index" type="xs:int" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="LocaleStringArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:LocaleString" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType final="#all" name="ProfileFieldOptionArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:ProfileFieldOption" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="editProfileFieldOptions" type="tns:editProfileFieldOptions" />
+<xs:complexType name="editProfileFieldOptions">
+<xs:sequence>
+<xs:element minOccurs="0" name="field" type="tns:ProfileField" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="editProfileFieldOptionsResponse" type="tns:editProfileFieldOptionsResponse" />
+<xs:complexType name="editProfileFieldOptionsResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getProfileField" type="tns:getProfileField" />
+<xs:complexType name="getProfileField">
+<xs:sequence>
+<xs:element name="fieldID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getProfileFieldResponse" type="tns:getProfileFieldResponse" />
+<xs:complexType name="getProfileFieldResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ProfileField" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createProfileField" type="tns:createProfileField" />
+<xs:complexType name="createProfileField">
+<xs:sequence>
+<xs:element minOccurs="0" name="field" type="tns:ProfileField" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createProfileFieldResponse" type="tns:createProfileFieldResponse" />
+<xs:complexType name="createProfileFieldResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:ProfileField" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDefaultFields" type="tns:getDefaultFields" />
+<xs:complexType name="getDefaultFields">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getDefaultFieldsResponse" type="tns:getDefaultFieldsResponse" />
+<xs:complexType name="getDefaultFieldsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ProfileField" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteProfileField" type="tns:deleteProfileField" />
+<xs:complexType name="deleteProfileField">
+<xs:sequence>
+<xs:element name="fieldID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteProfileFieldResponse" type="tns:deleteProfileFieldResponse" />
+<xs:complexType name="deleteProfileFieldResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="editProfileField" type="tns:editProfileField" />
+<xs:complexType name="editProfileField">
+<xs:sequence>
+<xs:element minOccurs="0" name="field" type="tns:ProfileField" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="editProfileFieldResponse" type="tns:editProfileFieldResponse" />
+<xs:complexType name="editProfileFieldResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="setIndex" type="tns:setIndex" />
+<xs:complexType name="setIndex">
+<xs:sequence>
+<xs:element name="fieldID" type="xs:long" />
+<xs:element name="newIndex" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setIndexResponse" type="tns:setIndexResponse" />
+<xs:complexType name="setIndexResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getProfileFields" type="tns:getProfileFields" />
+<xs:complexType name="getProfileFields">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getProfileFieldsResponse" type="tns:getProfileFieldsResponse" />
+<xs:complexType name="getProfileFieldsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ProfileField" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="editProfileFieldOptions">
+    <wsdl:part element="tns:editProfileFieldOptions" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createProfileField">
+    <wsdl:part element="tns:createProfileField" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDefaultFields">
+    <wsdl:part element="tns:getDefaultFields" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editProfileField">
+    <wsdl:part element="tns:editProfileField" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setIndexResponse">
+    <wsdl:part element="tns:setIndexResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProfileFields">
+    <wsdl:part element="tns:getProfileFields" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProfileField">
+    <wsdl:part element="tns:deleteProfileField" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDefaultFieldsResponse">
+    <wsdl:part element="tns:getDefaultFieldsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProfileField">
+    <wsdl:part element="tns:getProfileField" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProfileFieldResponse">
+    <wsdl:part element="tns:getProfileFieldResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editProfileFieldResponse">
+    <wsdl:part element="tns:editProfileFieldResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setIndex">
+    <wsdl:part element="tns:setIndex" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="editProfileFieldOptionsResponse">
+    <wsdl:part element="tns:editProfileFieldOptionsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getProfileFieldsResponse">
+    <wsdl:part element="tns:getProfileFieldsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteProfileFieldResponse">
+    <wsdl:part element="tns:deleteProfileFieldResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createProfileFieldResponse">
+    <wsdl:part element="tns:createProfileFieldResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ProfileFieldService">
+    <wsdl:operation name="editProfileFieldOptions">
+      <wsdl:input message="tns:editProfileFieldOptions" name="editProfileFieldOptions">
+    </wsdl:input>
+      <wsdl:output message="tns:editProfileFieldOptionsResponse" name="editProfileFieldOptionsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProfileField">
+      <wsdl:input message="tns:getProfileField" name="getProfileField">
+    </wsdl:input>
+      <wsdl:output message="tns:getProfileFieldResponse" name="getProfileFieldResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createProfileField">
+      <wsdl:input message="tns:createProfileField" name="createProfileField">
+    </wsdl:input>
+      <wsdl:output message="tns:createProfileFieldResponse" name="createProfileFieldResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDefaultFields">
+      <wsdl:input message="tns:getDefaultFields" name="getDefaultFields">
+    </wsdl:input>
+      <wsdl:output message="tns:getDefaultFieldsResponse" name="getDefaultFieldsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProfileField">
+      <wsdl:input message="tns:deleteProfileField" name="deleteProfileField">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteProfileFieldResponse" name="deleteProfileFieldResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="editProfileField">
+      <wsdl:input message="tns:editProfileField" name="editProfileField">
+    </wsdl:input>
+      <wsdl:output message="tns:editProfileFieldResponse" name="editProfileFieldResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setIndex">
+      <wsdl:input message="tns:setIndex" name="setIndex">
+    </wsdl:input>
+      <wsdl:output message="tns:setIndexResponse" name="setIndexResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProfileFields">
+      <wsdl:input message="tns:getProfileFields" name="getProfileFields">
+    </wsdl:input>
+      <wsdl:output message="tns:getProfileFieldsResponse" name="getProfileFieldsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ProfileFieldServiceSoapBinding" type="tns:ProfileFieldService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="editProfileFieldOptions">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="editProfileFieldOptions">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="editProfileFieldOptionsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProfileField">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getProfileField">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProfileFieldResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createProfileField">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="createProfileField">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createProfileFieldResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDefaultFields">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDefaultFields">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDefaultFieldsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteProfileField">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteProfileField">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteProfileFieldResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="editProfileField">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="editProfileField">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="editProfileFieldResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setIndex">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="setIndex">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="setIndexResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getProfileFields">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getProfileFields">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getProfileFieldsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ProfileFieldService">
+    <wsdl:port binding="tns:ProfileFieldServiceSoapBinding" name="ProfileFieldServicePort">
+      <soap:address location="http://j2ee.www.igniterealtime.org-community:8080/community/rpc/soap/ProfileFieldService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

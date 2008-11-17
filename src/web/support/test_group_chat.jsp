@@ -37,17 +37,17 @@
 	}
 	</script>
 
-	<script src="http://www.igniterealtime.org/support/groupchat/combined.compressed.js" type="text/javascript"></script>
+	<script src="/support/groupchat/combined.compressed.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/basic-dialog.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/layout.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/fonts.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/grid.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/reset-min.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/roster.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/spank.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/ignitechat.css">
- 	<link rel="stylesheet" type="text/css" href="http://www.igniterealtime.org/support/groupchat/style/jive-muc.css">
+	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/basic-dialog.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/layout.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/fonts.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/grid.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/reset-min.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/roster.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/spank.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/ignitechat.css">
+ 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/jive-muc.css">
 	
 </head>
 

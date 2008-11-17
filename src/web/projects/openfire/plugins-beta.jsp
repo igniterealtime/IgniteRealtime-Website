@@ -49,7 +49,7 @@
      @import "/styles/interior.css";
  </style>
  </head>
-
+<body>
  <div id="ignite_subnav">
      <ul>
          <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
@@ -57,7 +57,7 @@
          <li id="subnav03"><a href="plugins.jsp" class="ignite_subnav_current">Plugins</a></li>
          <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
          <li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-         <li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+         <li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
          <li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
          <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
      </ul>
@@ -367,8 +367,8 @@
 
          <br/><br/>
          <p>To submit a plugin please send an email to
-         Matt Tucker (matt at jivesoftware dot com) or send him a
-         <a href="/community/pmpost!input.jspa?to=matt">private message</a> in the forums.
+         Daniel Henninger (daniel.henninger at jivesoftware dot com) or send him a
+         <a href="/community/pmpost!input.jspa?to=jadestorm">private message</a> in the forums.
          </p>
 	 </div>
 

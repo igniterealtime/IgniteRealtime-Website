@@ -1,4 +1,8 @@
-<%@ page import="org.jivesoftware.site.Versions,com.jivesoftware.community.webservices.*"%>
+<%@ page import="org.jivesoftware.site.Versions" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogPostResultFilter" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogPost" %>
+<%@ page import="java.util.List" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -66,6 +70,9 @@
 					<img src="/images/ignite_projects_sparkweb_ss.gif" width="210" height="210" alt="" />
 					<a href="screenshots.jsp">More screens</a>
 				</div>-->
+				<div id="ignite_bigpanel_tryitlive">
+					<a href="/sparkweb/">Try it live!</a>
+				</div>
 				
 				<div id="ignite_bigpanel_download">
 					<a href="/downloads/index.jsp#sparkweb">Download</a> 
@@ -109,17 +116,20 @@
 						</div>
 					</div>
 					<!-- END blog header -->
-                    <cache:cache time="600" key="<%= blogFeedRSS %>">
+					<cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-					BlogService blogService = locator.getBlogService();
-					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					BlogService blogService = serviceProvider.getBlogService();
+					BlogPostResultFilter bprf = new BlogPostResultFilter();
 					bprf.setNumResults(5);
-					bprf.setTags(new String[] {"sparkweb"});
-					BlogPost[] posts = blogService.getBlogPosts(bprf);
+                    bprf.setBlogID((long) NULL_INT);
+                    bprf.setSortField(600); // publish date
+                    bprf.setSortOrder(SORT_DESCENDING);
+                    bprf.getTags().add("sparkweb");
+                    List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />
-                    </cache:cache>
+					</cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->
 				

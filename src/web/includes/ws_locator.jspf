@@ -1,10 +1,22 @@
-<%@ page import="com.jivesoftware.community.webservices.ServiceLocator" %>
-<%! final static String KEY_LOCATOR = "serviceLocator"; %>
+<%@ page import="javax.xml.ws.Service" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="javax.xml.namespace.QName" %>
+<%@ page import="javax.xml.ws.BindingProvider" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.ForumService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.UserService" %>
+<%@ page import="java.net.MalformedURLException" %>
+<%@ page import="org.jivesoftware.webservices.ServiceProvider" %>
+<%! final static String SERVICE_PROVIDER_KEY = "serviceProvider"; %>
+<%! final static int SORT_DESCENDING = 0; %>
+<%! final static int SORT_ASCENDING = 1; %>
+<%! final static int NULL_INT = Integer.MAX_VALUE - 123; %>
+
 <%
-    ServiceLocator locator = (ServiceLocator) application.getAttribute(KEY_LOCATOR);
-    if (locator == null){
-        //only create this once and cache in the app scope
-        locator = new ServiceLocator("http://www.igniterealtime.org/community", "webservices", "webservicesadmin");
-        application.setAttribute(KEY_LOCATOR, locator);
+    // only create this once and cache in the app scope
+    ServiceProvider serviceProvider = (ServiceProvider)application.getAttribute(SERVICE_PROVIDER_KEY);
+    if (serviceProvider == null) {
+        serviceProvider = new ServiceProvider(config);
+        application.setAttribute(SERVICE_PROVIDER_KEY, serviceProvider);
     }
 %>

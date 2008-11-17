@@ -12,7 +12,7 @@
     <property name="web.dir" value="${basedir}/src/web" />
     <property name="build.lib.dir" value="${basedir}/build/lib" />
     <property name="war.name" value="site.war" />
-    <property name="src.java.dir" value="${web.dir}/WEB-INF/classes" />
+    <property name="src.java.dir" value="${basedir}/src/java" />
     <property name="target.dir" value="${basedir}/target" />
     <property name="jspc.dest.dir" value="${target.dir}/jspc" />
     <property name="jspc.java.dest.dir" value="${target.dir}/jspc/java" />
@@ -21,6 +21,9 @@
     <property name="deploy.dir" value="${target.dir}/deploy" />
     <property name="target.classes.dir" value="${deploy.dir}/WEB-INF/classes" />
     <property name="jive.home.src" value="${basedir}/resources/jiveHome" />
+    <property name="wsdl.cs.compile" value="${target.dir}/cs-wsdl"/>
+    <property name="wsdl.cs.path" value="${basedir}/resources/wsdl"/>
+    <property name="wsdl.cs.jar.name" value="jive-wsdl-cs"/>
 
     <path id="dependencies">
         <fileset dir="${build.lib.dir}" includes="*.jar" />
@@ -30,11 +33,75 @@
         <path refid="dependencies" />
         <pathelement path="${target.classes.dir}" />
     </path>
+    <path id="wsdl.cs">
+        <path refid="dependencies" />
+        <pathelement path="${wsdl.cs.compile}"/>
+    </path>
 
     <!-- init ================================================================================== -->
     <target name="init">
-        <mkdir dir="target" />
+        <mkdir dir="${target.dir}" />
+        <mkdir dir="${wsdl.cs.compile}" />
     </target>
+
+    <target name="wsdl-clearspace" depends="init" description="Generates Clearspace code from the WSDL files">
+        <java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+            <arg value="-client"/>
+            <arg value="-d"/>
+            <arg value="${wsdl.cs.compile}"/>
+            <arg value="${wsdl.cs.path}/BlogService.wsdl"/>
+            <classpath>
+                <path refid="dependencies"/>
+            </classpath>
+        </java>
+        <java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+            <arg value="-client"/>
+            <arg value="-d"/>
+            <arg value="${wsdl.cs.compile}"/>
+            <arg value="${wsdl.cs.path}/ForumService.wsdl"/>
+            <classpath>
+                <path refid="dependencies"/>
+            </classpath>
+        </java>
+        <java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
+            <arg value="-client"/>
+            <arg value="-d"/>
+            <arg value="${wsdl.cs.compile}"/>
+            <arg value="${wsdl.cs.path}/UserService.wsdl"/>
+            <classpath>
+                <path refid="dependencies"/>
+            </classpath>
+        </java>
+    </target>
+
+    <!-- Creates a new jive specific clearspace WSDL jar -->
+    <!-- ======================================================================================= -->
+    <target name="wsdl-clearspace-jar" depends="wsdl-clearspace"
+            description="Creates a new jive-wsdl-clearspace.jar from the WSDL file">
+        <!-- compile java classes generated from the wsdl file -->
+        <copy file="${src.java.dir}/org/jivesoftware/webservices/ServiceProvider.java" todir="${wsdl.cs.compile}/org/jivesoftware/webservices/"/>
+        <javac
+                includes="com/jivesofware/**/*.java,org/jivesoftware/webservices/ServiceProvider.java"
+                destdir="${wsdl.cs.compile}"
+                includeAntRuntime="no"
+                debug="on"
+                nowarn="true"
+                source="1.5">
+            <src path="${wsdl.cs.compile}"/>
+            <classpath>
+                <path refid="dependencies"/>
+            </classpath>
+        </javac>
+
+        <!-- combine into one jar file -->
+        <jar destfile="${target.dir}/${wsdl.cs.jar.name}.jar">
+            <fileset dir="${wsdl.cs.compile}">
+                <include name="org/jivesoftware/**/*.*"/>
+                <include name="com/jivesoftware/**/*.*"/>
+            </fileset>
+        </jar>
+    </target>
+
 
     <!-- compile =============================================================================== -->
     <target name="compile" depends="init">
@@ -43,6 +110,7 @@
                 destdir="${target.classes.dir}"
                 debug="on"
                 source="1.5"
+                excludes="org/jivesoftware/webservices/**/*.java"
                 classpathref="dependencies" />
     </target>
 
@@ -89,10 +157,16 @@
 
     <!-- war =================================================================================== -->
     <target name="war" depends="jspc" description="Creates a WAR of the site.">
-        <war warfile="${target.dir}/${war.name}"
+		<copy todir="${target.classes.dir}">
+			<fileset dir="${src.java.dir}">
+				<exclude name="WEB-INF/**/*.java" />
+			</fileset>
+		</copy>
+
+		<war warfile="${target.dir}/${war.name}"
             webxml="${web.dir}/WEB-INF/web.xml"
         >
-            <classes dir="${web.dir}/WEB-INF/classes" />
+            <classes dir="${target.classes.dir}" />
             <lib dir="${web.dir}/WEB-INF/lib" includes="*.jar" />
             <fileset dir="${web.dir}">
                 <include name="**/*.*" />
@@ -100,8 +174,8 @@
                 <exclude name="**/*.iml" />
             </fileset>
             <fileset dir="${web.dir}">
-                <include name="WEB-INF/decorators.xml" />
-                <include name="WEB-INF/sitemesh.xml" />
+                <include name="WEB-INF/*.tld" />
+                <include name="WEB-INF/*.xml" />
             </fileset>
         </war>
     </target>
@@ -126,8 +200,12 @@
                 <include name="**/*.txt" />
                 <include name="**/*.jspf" />
                 <include name="**/*.xsl" />
+                <include name="**/*.xml" />
+                <include name="**/*.tld" />
                 <include name="**/*.jar" />
                 <include name="**/*.war" />
+                <include name="**/*.swf" />
+                <include name="**/*.ico" />
                 <exclude name="WEB-INF/**/*.*" />
             </fileset>
         </copy>
@@ -147,6 +225,7 @@
     <!-- clean ================================================================================= -->
     <target name="clean" description="Cleans up all build-generated output">
         <delete dir="${target.dir}" />
+        <delete dir="${wsdl.cs.compile}"/>
     </target>
 
     <!-- clean-jspc ============================================================================ -->

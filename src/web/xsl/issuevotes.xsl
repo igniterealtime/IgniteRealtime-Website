@@ -58,8 +58,8 @@
   <xsl:template match="type">
 	<xsl:choose>
 	<xsl:when test="@id='2'">
-		<IMG SRC="/images/ignite_issue-green_16x16.gif" title="New Feature">
-		<xsl:attribute name="New Feature"><xsl:value-of select="." /></xsl:attribute>
+		<IMG SRC="/images/ignite_issue-green_16x16.gif" title="NewFeature">
+		<xsl:attribute name="NewFeature"><xsl:value-of select="." /></xsl:attribute>
 		</IMG>
 	</xsl:when>
 	<xsl:when test="@id='4'">

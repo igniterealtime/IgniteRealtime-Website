@@ -25,6 +25,7 @@ a:hover {
 	width:960px;
 
 	margin: 0px auto;
+	margin-top: 13px;
 
 	}
 
@@ -190,7 +191,7 @@ a#jive-global-header-logo {
 
 	width: 184px;
 
-	height: 11px;
+	height: 48px;
 
 	float: right;
 
@@ -217,6 +218,7 @@ a#jive-global-header-logo {
 	padding: 0px;
 
 	background: #fff url(/community/themes/ignite/images/ignite_nav-bg.gif) repeat-x;
+	font-family: Arial,Helvetica,sans-serif;
 
 	}
 
@@ -301,6 +303,8 @@ a#jive-global-header-logo {
 	background-image: url(/community/themes/ignite/images/jive-x-userbar-search-bg.gif);
 
 	position: relative;
+        height: 33px;
+        background-repeat: no-repeat;
 
 }
 
@@ -308,8 +312,7 @@ a#jive-global-header-logo {
 
 #jive-userbar-search {
 
-	padding-top:16px;
-
+        padding-top: 3px;
 }
 
 #jive-userbar-search .jive-userbar-search-field {
@@ -487,44 +490,87 @@ html > body #jive-bodyhome-maincol {
 }
 
 
+.jive-sidebar-subcommunities .jive-communitylist-med a {
+	font-size: 11pt;
+	font-weight: bold;
+}
 
+ul.jive-sidebar-subcommunities li, ul.jive-sidebar-taggroups li {
+	padding: 2px 0pt 16px !important;
+}
 
+#jive-widget-content .jive-sidebar .jive-sidebar-body-polls {
+	width: 100%;
+}
 
-.jive-communitylist-sm {
+ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
+	padding: 0pt 0pt 19px 18px !important;
+}
+
+.jive-sidebar-subcommunities .jive-communitylist-med {
+	padding-top: 16px;
+}
+
+.jive-body-home #jive-body-layout-sl .jive-body-layout-s {
+	width: 310px;
+}
+
+.jive-body-home #jive-body-layout-sl .jive-body-layout-l {
+	margin: 0pt 0pt 0pt -345px;
+}
+
+.jive-body-home #jive-body-layout-sl .jive-body-layout-l .jive-widget-container-large {
+        margin-left: 345px;
+}
+
+#jive-body .jive-widget .jive-widget-header h4 {
+	font-size: 14pt;
+	color: #555555;
+}
+
+.jive-communitylist-med .jive-communitylist-sm {
 
 	background:transparent url(/community/themes/ignite/images/ignite_blog_icon_tags.gif) no-repeat scroll left center;
 
 }
 
-#jive-community-list-short ul {
-
-	margin:5px 0pt 5px 0px;
-
-	padding:0pt;
-
+#jive-widget-content .jive-widget .jive-widget-header {
+	background: none;
+	border-bottom: 1px solid #dcdcdc;
 }
 
-#jive-community-list-short ul li p {
-
-	margin: 3px 0px 10px 19px;
-
+#jive-widget-content .jive-widget {
+	border: none;
 }
+
+#jive-widget-content .jive-widget-actions .jive-widget-header {
+	border: 0px;
+}
+
+#jive-widget-content .jive-widget-actions {
+	border: 1px solid #dcdcdc;
+}
+
+#jive-body-intro {
+	margin: 5px 0;
+}
+
+.jive-communitylist-med .jive-communitylist-sm a {
+	font-weight: normal;
+	font-size: 9pt;
+}
+
 
 
 
 /* INTROS ---------------------------------------------------------- */
 
-#jive-body-intro {
-
-	padding:10px 0px 25px;
-
-}
-
-#jive-body-home #jive-body-intro-content {
+.jive-body-home #jive-body-intro h1 {
 
 	display: none;
 
 }
+
 
 #jive-body-intro-main-hdr {
 
@@ -573,8 +619,6 @@ html > body #jive-bodyhome-maincol {
 .jive-body-intro-community, .jive-body-intro-profile {
 
 	border: none 0px;
-
-	border-bottom:1px solid #D0D0D0;
 
 	-moz-border-radius: 0px;
 

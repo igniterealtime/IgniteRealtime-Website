@@ -166,7 +166,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tbody>
                             <tr>
-                                <td width="1%" rowspan="6" class="item" valign="top">
+                                <td width="1%" rowspan="7" class="item" valign="top">
                                     Browse SVN
                                 </td>
                                 <td width="99%">
@@ -188,6 +188,12 @@
                             </tr>
                             <tr>
                                 <td width="99%">
+                                    XIFF:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/xiff">xiff/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="99%">
                                     Smack:
                                     <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/smack">smack/trunk</a>
                                 </td>
@@ -205,8 +211,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="1%" rowspan="6" class="item" valign="top"
-                                ">
+                                <td width="1%" rowspan="7" class="item" valign="top">
                                 SVN Access
                             </td>
                             <td width="99%">
@@ -223,6 +228,11 @@
                             <td width="99%">
                                 SparkWeb:<br>
                                 <tt>svn co http://svn.igniterealtime.org/svn/repos/sparkweb/trunk sparkweb</tt>
+                        </tr>
+                        <tr>
+                            <td width="99%">
+                                XIFF:<br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/xiff/trunk xiff</tt>
                         </tr>
                         <tr>
                             <td width="99%">

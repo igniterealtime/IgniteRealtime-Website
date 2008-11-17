@@ -1,4 +1,6 @@
-<%@ page import="org.jivesoftware.site.Versions, com.jivesoftware.community.webservices.*"%>
+<%@ page import="org.jivesoftware.site.Versions"%>
+<%@ page import="com.jivesoftware.clearspace.webservices.*" %>
+<%@ page import="java.util.List" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -49,7 +51,7 @@
 					<!-- BEGIN search -->
 					<div id="ignite_support_search">
 						<strong>Search the community:</strong>
-						<form action="http://www.igniterealtime.org/community/search.jspa">
+						<form action="/community/search.jspa">
 						<input type="text" name="q" size="40" maxlength="100">
 						<input type="image" src="../images/ignite_support_searchbtn.gif" name="Submit" class="ignite_support_search">
 						</form>
@@ -62,15 +64,16 @@
 						<div>
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
-								<cache:cache time="60" key="http://www.igniterealtime.org/community/community/feeds/threads?communityID=1&numItems=4">
+								<cache:cache time="60" key="/community/community/feeds/threads?communityID=1&numItems=4">
 								<%
-								ForumService forumService = locator.getForumService();
-						  		ResultFilter rf = ResultFilter.createDefaultMessageFilter();
-								rf.setSortOrder(ResultFilter.DESCENDING);
-								rf.setRecursive(true);
-								rf.setNumResults(4);
-								ForumMessage[] messages = forumService.getMessagesByCommunityIDAndFilter(1, rf);
-								for (ForumMessage message : messages) {
+								ForumService forumService1 = serviceProvider.getForumService();
+						  		ResultFilter rf1 = new ResultFilter();
+                                rf1.setSortField(9); // modification date
+                                rf1.setSortOrder(SORT_DESCENDING);
+								rf1.setRecursive(true);
+								rf1.setNumResults(4);
+								List<ForumMessage> messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
+								for (ForumMessage message : messages1) {
 								%>
 									<div class="discussion">
 										<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />

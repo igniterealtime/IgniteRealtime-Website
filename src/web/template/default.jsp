@@ -76,7 +76,7 @@
 			</ol>
             <div id="ignite_nav_groupchat" class="ignite_nav_groupchat">
 				<span class="ignite_nav_groupchat-block" id="ignite_nav_groupchat-block"></span>
-				<span id="ignite_nav_groupchat_moreinfo"><a href="http://www.igniterealtime.org/support/group_chat.jsp">More Information</a></span>
+				<span id="ignite_nav_groupchat_moreinfo"><a href="/support/group_chat.jsp">More Information</a></span>
 			</div>
 		</div>
 	</div>

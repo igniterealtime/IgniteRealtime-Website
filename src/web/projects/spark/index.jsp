@@ -1,4 +1,8 @@
-<%@ page import="org.jivesoftware.site.Versions,com.jivesoftware.community.webservices.*"%>
+<%@ page import="org.jivesoftware.site.Versions"%>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogPostResultFilter" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogPost" %>
+<%@ page import="java.util.List" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -116,11 +120,14 @@
 					<!-- END blog header -->
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-					BlogService blogService = locator.getBlogService();
-					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					BlogService blogService = serviceProvider.getBlogService();
+					BlogPostResultFilter bprf = new BlogPostResultFilter();
 					bprf.setNumResults(5);
-					bprf.setTags(new String[] {"spark"});
-					BlogPost[] posts = blogService.getBlogPosts(bprf);
+                    bprf.setBlogID((long) NULL_INT);
+                    bprf.setSortField(600); // publish date
+                    bprf.setSortOrder(SORT_DESCENDING);
+                    bprf.getTags().add("spark");
+                    List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />

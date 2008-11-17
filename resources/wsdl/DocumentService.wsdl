@@ -1,0 +1,2084 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions name="DocumentService" targetNamespace="http://jivesoftware.com/clearspace/webservices" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://jivesoftware.com/clearspace/webservices" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jivesoftware.com/clearspace/webservices" xmlns:tns="http://jivesoftware.com/clearspace/webservices" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="Document">
+<xs:complexContent>
+<xs:extension base="tns:JiveObject">
+<xs:sequence>
+<xs:element name="anonymous" type="xs:boolean" />
+<xs:element name="approvalEnabled" type="xs:boolean" />
+<xs:element name="attachmentCount" type="xs:int" />
+<xs:element name="authorCount" type="xs:int" />
+<xs:element minOccurs="0" name="body" type="xs:string" />
+<xs:element name="commentStatus" type="xs:int" />
+<xs:element name="containerID" type="xs:long" />
+<xs:element name="containerType" type="xs:int" />
+<xs:element minOccurs="0" name="creationDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+<xs:element minOccurs="0" name="documentState" type="xs:string" />
+<xs:element name="documentTypeID" type="xs:long" />
+<xs:element minOccurs="0" name="expirationDate" type="xs:dateTime" />
+<xs:element name="imageCount" type="xs:int" />
+<xs:element minOccurs="0" name="language" type="xs:string" />
+<xs:element minOccurs="0" name="modificationDate" type="xs:dateTime" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="properties" nillable="true" type="tns:Property" />
+<xs:element minOccurs="0" name="subject" type="xs:string" />
+<xs:element name="textBody" type="xs:boolean" />
+<xs:element name="trackbacksEnabled" type="xs:boolean" />
+<xs:element minOccurs="0" name="unfilteredSubject" type="xs:string" />
+<xs:element name="userID" type="xs:long" />
+<xs:element name="viewCount" type="xs:int" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="JiveObject">
+<xs:sequence>
+<xs:element name="ID" type="xs:long" />
+<xs:element name="objectType" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Property">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ApprovalStatus">
+<xs:sequence>
+<xs:element name="approved" type="xs:boolean" />
+<xs:element minOccurs="0" name="approvedDate" type="xs:dateTime" />
+<xs:element name="userID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="User">
+<xs:sequence>
+<xs:element minOccurs="0" name="creationDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="email" type="xs:string" />
+<xs:element name="emailVisible" type="xs:boolean" />
+<xs:element name="enabled" type="xs:boolean" />
+<xs:element name="ID" type="xs:long" />
+<xs:element minOccurs="0" name="modificationDate" type="xs:dateTime" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element name="nameVisible" type="xs:boolean" />
+<xs:element minOccurs="0" name="password" type="xs:string" />
+<xs:element minOccurs="0" name="username" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="DocumentResultFilter">
+<xs:complexContent>
+<xs:extension base="tns:ResultFilter">
+<xs:sequence />
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ResultFilter">
+<xs:sequence>
+<xs:element minOccurs="0" name="creationDateRangeMax" type="xs:dateTime" />
+<xs:element minOccurs="0" name="creationDateRangeMin" type="xs:dateTime" />
+<xs:element minOccurs="0" name="moderationRangeMax" type="xs:int" />
+<xs:element minOccurs="0" name="moderationRangeMin" type="xs:int" />
+<xs:element minOccurs="0" name="modificationDateRangeMax" type="xs:dateTime" />
+<xs:element minOccurs="0" name="modificationDateRangeMin" type="xs:dateTime" />
+<xs:element minOccurs="0" name="numResults" type="xs:int" />
+<xs:element name="recursive" type="xs:boolean" />
+<xs:element minOccurs="0" name="resolutionDateRangeMin" type="xs:int" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="resolutionStates" nillable="true" type="xs:string" />
+<xs:element minOccurs="0" name="resolutionnDateRangeMax" type="xs:int" />
+<xs:element name="sortField" type="xs:int" />
+<xs:element name="sortOrder" type="xs:int" />
+<xs:element name="startIndex" type="xs:int" />
+<xs:element maxOccurs="unbounded" minOccurs="0" name="tags" nillable="true" type="xs:string" />
+<xs:element minOccurs="0" name="userID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Attachment">
+<xs:sequence>
+<xs:element minOccurs="0" name="contentType" type="xs:string" />
+<xs:element minOccurs="0" name="data" type="xs:base64Binary" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="BinaryBody">
+<xs:complexContent>
+<xs:extension base="tns:JiveObject">
+<xs:sequence>
+<xs:element minOccurs="0" name="contentType" type="xs:string" />
+<xs:element minOccurs="0" name="data" type="xs:base64Binary" />
+<xs:element name="downloadCount" type="xs:int" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element name="size" type="xs:long" />
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType final="#all" name="PropertyArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="tns:Property" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="DocumentObjectNotFoundException" type="tns:DocumentObjectNotFoundException" />
+<xs:complexType name="DocumentObjectNotFoundException">
+<xs:sequence>
+<xs:element name="documentDeleted" nillable="true" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="UserNotFound" type="tns:UserNotFound" />
+<xs:complexType name="UserNotFound">
+<xs:sequence>
+<xs:element name="username" nillable="true" type="xs:string" />
+<xs:element name="userID" nillable="true" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="AttachmentException" type="tns:AttachmentException" />
+<xs:complexType name="AttachmentException">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="IOException" type="tns:IOException" />
+<xs:complexType name="IOException">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="DuplicateIDException" type="tns:DuplicateIDException" />
+<xs:complexType name="DuplicateIDException">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="CommunityNotFound" type="tns:CommunityNotFound" />
+<xs:complexType name="CommunityNotFound">
+<xs:sequence>
+<xs:element name="communityID" nillable="true" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="RejectedException" type="tns:RejectedException" />
+<xs:complexType name="RejectedException">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="BinaryBodyException" type="tns:BinaryBodyException" />
+<xs:complexType name="BinaryBodyException">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="DocumentAlreadyExistsException" type="tns:DocumentAlreadyExistsException" />
+<xs:complexType name="DocumentAlreadyExistsException">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="ImageException" type="tns:ImageException" />
+<xs:complexType name="ImageException">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="Unauthorized" type="tns:Unauthorized" />
+<xs:complexType name="Unauthorized">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getImageCountByInternalDocID" type="tns:getImageCountByInternalDocID" />
+<xs:complexType name="getImageCountByInternalDocID">
+<xs:sequence>
+<xs:element name="internalDocID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImageCountByInternalDocIDResponse" type="tns:getImageCountByInternalDocIDResponse" />
+<xs:complexType name="getImageCountByInternalDocIDResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByInternalDocIDAndVersion" type="tns:getDocumentByInternalDocIDAndVersion" />
+<xs:complexType name="getDocumentByInternalDocIDAndVersion">
+<xs:sequence>
+<xs:element name="internalDocID" type="xs:long" />
+<xs:element name="version" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByInternalDocIDAndVersionResponse" type="tns:getDocumentByInternalDocIDAndVersionResponse" />
+<xs:complexType name="getDocumentByInternalDocIDAndVersionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="removeAuthor" type="tns:removeAuthor" />
+<xs:complexType name="removeAuthor">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+<xs:element name="userID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="removeAuthorResponse" type="tns:removeAuthorResponse" />
+<xs:complexType name="removeAuthorResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="addDocumentApproverOnDocument" type="tns:addDocumentApproverOnDocument" />
+<xs:complexType name="addDocumentApproverOnDocument">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+<xs:element name="userID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addDocumentApproverOnDocumentResponse" type="tns:addDocumentApproverOnDocumentResponse" />
+<xs:complexType name="addDocumentApproverOnDocumentResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="setDocumentProperty" type="tns:setDocumentProperty" />
+<xs:complexType name="setDocumentProperty">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="value" type="xs:string" />
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setDocumentPropertyResponse" type="tns:setDocumentPropertyResponse" />
+<xs:complexType name="setDocumentPropertyResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getApprovalStatusForDocument" type="tns:getApprovalStatusForDocument" />
+<xs:complexType name="getApprovalStatusForDocument">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getApprovalStatusForDocumentResponse" type="tns:getApprovalStatusForDocumentResponse" />
+<xs:complexType name="getApprovalStatusForDocumentResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ApprovalStatus" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserApprovalDocuments" type="tns:getUserApprovalDocuments" />
+<xs:complexType name="getUserApprovalDocuments">
+<xs:sequence>
+<xs:element name="userID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getUserApprovalDocumentsResponse" type="tns:getUserApprovalDocumentsResponse" />
+<xs:complexType name="getUserApprovalDocumentsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addAttachmentToDocumentByDocumentID" type="tns:addAttachmentToDocumentByDocumentID" />
+<xs:complexType name="addAttachmentToDocumentByDocumentID">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="contentType" type="xs:string" />
+<xs:element minOccurs="0" name="source" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addAttachmentToDocumentByDocumentIDResponse" type="tns:addAttachmentToDocumentByDocumentIDResponse" />
+<xs:complexType name="addAttachmentToDocumentByDocumentIDResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="deleteDocument" type="tns:deleteDocument" />
+<xs:complexType name="deleteDocument">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteDocumentResponse" type="tns:deleteDocumentResponse" />
+<xs:complexType name="deleteDocumentResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="setTrackbacksEnabled" type="tns:setTrackbacksEnabled" />
+<xs:complexType name="setTrackbacksEnabled">
+<xs:sequence>
+<xs:element name="enableTrackbacks" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setTrackbacksEnabledResponse" type="tns:setTrackbacksEnabledResponse" />
+<xs:complexType name="setTrackbacksEnabledResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getAttachmentCountByDocumentID" type="tns:getAttachmentCountByDocumentID" />
+<xs:complexType name="getAttachmentCountByDocumentID">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAttachmentCountByDocumentIDResponse" type="tns:getAttachmentCountByDocumentIDResponse" />
+<xs:complexType name="getAttachmentCountByDocumentIDResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createBinaryDocument" type="tns:createBinaryDocument" />
+<xs:complexType name="createBinaryDocument">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+<xs:element name="userID" type="xs:long" />
+<xs:element name="arg2" type="xs:long" />
+<xs:element minOccurs="0" name="arg3" type="xs:string" />
+<xs:element minOccurs="0" name="arg4" type="xs:string" />
+<xs:element minOccurs="0" name="arg5" type="xs:string" />
+<xs:element minOccurs="0" name="arg6" type="xs:string" />
+<xs:element minOccurs="0" name="arg7" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createBinaryDocumentResponse" type="tns:createBinaryDocumentResponse" />
+<xs:complexType name="createBinaryDocumentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImageCountByDocumentID" type="tns:getImageCountByDocumentID" />
+<xs:complexType name="getImageCountByDocumentID">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getImageCountByDocumentIDResponse" type="tns:getImageCountByDocumentIDResponse" />
+<xs:complexType name="getImageCountByDocumentIDResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentApproversOnDocument" type="tns:getDocumentApproversOnDocument" />
+<xs:complexType name="getDocumentApproversOnDocument">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentApproversOnDocumentResponse" type="tns:getDocumentApproversOnDocumentResponse" />
+<xs:complexType name="getDocumentApproversOnDocumentResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:User" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addImageToDocumentByInternalDocID" type="tns:addImageToDocumentByInternalDocID" />
+<xs:complexType name="addImageToDocumentByInternalDocID">
+<xs:sequence>
+<xs:element name="internalDocID" type="xs:long" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="conentType" type="xs:string" />
+<xs:element minOccurs="0" name="source" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addImageToDocumentByInternalDocIDResponse" type="tns:addImageToDocumentByInternalDocIDResponse" />
+<xs:complexType name="addImageToDocumentByInternalDocIDResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="addImageToDocumentByDocumentID" type="tns:addImageToDocumentByDocumentID" />
+<xs:complexType name="addImageToDocumentByDocumentID">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="contentType" type="xs:string" />
+<xs:element minOccurs="0" name="source" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addImageToDocumentByDocumentIDResponse" type="tns:addImageToDocumentByDocumentIDResponse" />
+<xs:complexType name="addImageToDocumentByDocumentIDResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="addAttachmentToDocumentByInternalDocID" type="tns:addAttachmentToDocumentByInternalDocID" />
+<xs:complexType name="addAttachmentToDocumentByInternalDocID">
+<xs:sequence>
+<xs:element name="internalDocID" type="xs:long" />
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element minOccurs="0" name="contentType" type="xs:string" />
+<xs:element minOccurs="0" name="source" type="xs:base64Binary" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addAttachmentToDocumentByInternalDocIDResponse" type="tns:addAttachmentToDocumentByInternalDocIDResponse" />
+<xs:complexType name="addAttachmentToDocumentByInternalDocIDResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getDocumentsByCommunityAndFilter" type="tns:getDocumentsByCommunityAndFilter" />
+<xs:complexType name="getDocumentsByCommunityAndFilter">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+<xs:element minOccurs="0" name="filter" type="tns:DocumentResultFilter" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentsByCommunityAndFilterResponse" type="tns:getDocumentsByCommunityAndFilterResponse" />
+<xs:complexType name="getDocumentsByCommunityAndFilterResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAttachmentsByDocumentID" type="tns:getAttachmentsByDocumentID" />
+<xs:complexType name="getAttachmentsByDocumentID">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAttachmentsByDocumentIDResponse" type="tns:getAttachmentsByDocumentIDResponse" />
+<xs:complexType name="getAttachmentsByDocumentIDResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Attachment" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getPopularDocumentsByCommunity" type="tns:getPopularDocumentsByCommunity" />
+<xs:complexType name="getPopularDocumentsByCommunity">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getPopularDocumentsByCommunityResponse" type="tns:getPopularDocumentsByCommunityResponse" />
+<xs:complexType name="getPopularDocumentsByCommunityResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addAuthor" type="tns:addAuthor" />
+<xs:complexType name="addAuthor">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+<xs:element name="userID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addAuthorResponse" type="tns:addAuthorResponse" />
+<xs:complexType name="addAuthorResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getBinaryDocumentContent" type="tns:getBinaryDocumentContent" />
+<xs:complexType name="getBinaryDocumentContent">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getBinaryDocumentContentResponse" type="tns:getBinaryDocumentContentResponse" />
+<xs:complexType name="getBinaryDocumentContentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:BinaryBody" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentProperty" type="tns:getDocumentProperty" />
+<xs:complexType name="getDocumentProperty">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentPropertyResponse" type="tns:getDocumentPropertyResponse" />
+<xs:complexType name="getDocumentPropertyResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAttachmentsByInternalDocID" type="tns:getAttachmentsByInternalDocID" />
+<xs:complexType name="getAttachmentsByInternalDocID">
+<xs:sequence>
+<xs:element name="internalDocID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAttachmentsByInternalDocIDResponse" type="tns:getAttachmentsByInternalDocIDResponse" />
+<xs:complexType name="getAttachmentsByInternalDocIDResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Attachment" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAttachmentCountByInternalDocID" type="tns:getAttachmentCountByInternalDocID" />
+<xs:complexType name="getAttachmentCountByInternalDocID">
+<xs:sequence>
+<xs:element name="internalDocID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAttachmentCountByInternalDocIDResponse" type="tns:getAttachmentCountByInternalDocIDResponse" />
+<xs:complexType name="getAttachmentCountByInternalDocIDResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAuthors" type="tns:getAuthors" />
+<xs:complexType name="getAuthors">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getAuthorsResponse" type="tns:getAuthorsResponse" />
+<xs:complexType name="getAuthorsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:User" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isTrackbacksEnabled" type="tns:isTrackbacksEnabled" />
+<xs:complexType name="isTrackbacksEnabled">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="isTrackbacksEnabledResponse" type="tns:isTrackbacksEnabledResponse" />
+<xs:complexType name="isTrackbacksEnabledResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="moveDocument" type="tns:moveDocument" />
+<xs:complexType name="moveDocument">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+<xs:element name="communityID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="moveDocumentResponse" type="tns:moveDocumentResponse" />
+<xs:complexType name="moveDocumentResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getDocumentApproversOnCommunity" type="tns:getDocumentApproversOnCommunity" />
+<xs:complexType name="getDocumentApproversOnCommunity">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentApproversOnCommunityResponse" type="tns:getDocumentApproversOnCommunityResponse" />
+<xs:complexType name="getDocumentApproversOnCommunityResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:User" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setCommentsEnabled" type="tns:setCommentsEnabled" />
+<xs:complexType name="setCommentsEnabled">
+<xs:sequence>
+<xs:element name="enableComments" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="setCommentsEnabledResponse" type="tns:setCommentsEnabledResponse" />
+<xs:complexType name="setCommentsEnabledResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getPopularDocuments" type="tns:getPopularDocuments" />
+<xs:complexType name="getPopularDocuments">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getPopularDocumentsResponse" type="tns:getPopularDocumentsResponse" />
+<xs:complexType name="getPopularDocumentsResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="isCommentsEnabled" type="tns:isCommentsEnabled" />
+<xs:complexType name="isCommentsEnabled">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="isCommentsEnabledResponse" type="tns:isCommentsEnabledResponse" />
+<xs:complexType name="isCommentsEnabledResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:boolean" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentsByCommunity" type="tns:getDocumentsByCommunity" />
+<xs:complexType name="getDocumentsByCommunity">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentsByCommunityResponse" type="tns:getDocumentsByCommunityResponse" />
+<xs:complexType name="getDocumentsByCommunityResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="publishDocument" type="tns:publishDocument" />
+<xs:complexType name="publishDocument">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+<xs:element name="userID" type="xs:long" />
+<xs:element name="documentTypeID" type="xs:long" />
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+<xs:element minOccurs="0" name="title" type="xs:string" />
+<xs:element minOccurs="0" name="body" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="publishDocumentResponse" type="tns:publishDocumentResponse" />
+<xs:complexType name="publishDocumentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateDocument" type="tns:updateDocument" />
+<xs:complexType name="updateDocument">
+<xs:sequence>
+<xs:element minOccurs="0" name="document" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="updateDocumentResponse" type="tns:updateDocumentResponse" />
+<xs:complexType name="updateDocumentResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="createDocument" type="tns:createDocument" />
+<xs:complexType name="createDocument">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+<xs:element name="userID" type="xs:long" />
+<xs:element name="documentTypeID" type="xs:long" />
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+<xs:element minOccurs="0" name="title" type="xs:string" />
+<xs:element minOccurs="0" name="body" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="createDocumentResponse" type="tns:createDocumentResponse" />
+<xs:complexType name="createDocumentResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addDocumentApproverOnCommunity" type="tns:addDocumentApproverOnCommunity" />
+<xs:complexType name="addDocumentApproverOnCommunity">
+<xs:sequence>
+<xs:element name="communityID" type="xs:long" />
+<xs:element name="userID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="addDocumentApproverOnCommunityResponse" type="tns:addDocumentApproverOnCommunityResponse" />
+<xs:complexType name="addDocumentApproverOnCommunityResponse">
+<xs:sequence />
+</xs:complexType>
+<xs:element name="getPopularDocumentsByLanguage" type="tns:getPopularDocumentsByLanguage" />
+<xs:complexType name="getPopularDocumentsByLanguage">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="languages" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getPopularDocumentsByLanguageResponse" type="tns:getPopularDocumentsByLanguageResponse" />
+<xs:complexType name="getPopularDocumentsByLanguageResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentProperties" type="tns:getDocumentProperties" />
+<xs:complexType name="getDocumentProperties">
+<xs:sequence>
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentPropertiesResponse" type="tns:getDocumentPropertiesResponse" />
+<xs:complexType name="getDocumentPropertiesResponse">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:Property" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByInternalDocID" type="tns:getDocumentByInternalDocID" />
+<xs:complexType name="getDocumentByInternalDocID">
+<xs:sequence>
+<xs:element name="internalDocID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByInternalDocIDResponse" type="tns:getDocumentByInternalDocIDResponse" />
+<xs:complexType name="getDocumentByInternalDocIDResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByDocumentID" type="tns:getDocumentByDocumentID" />
+<xs:complexType name="getDocumentByDocumentID">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByDocumentIDResponse" type="tns:getDocumentByDocumentIDResponse" />
+<xs:complexType name="getDocumentByDocumentIDResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByDocumentIDAndVersion" type="tns:getDocumentByDocumentIDAndVersion" />
+<xs:complexType name="getDocumentByDocumentIDAndVersion">
+<xs:sequence>
+<xs:element minOccurs="0" name="documentID" type="xs:string" />
+<xs:element name="version" type="xs:int" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="getDocumentByDocumentIDAndVersionResponse" type="tns:getDocumentByDocumentIDAndVersionResponse" />
+<xs:complexType name="getDocumentByDocumentIDAndVersionResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="tns:Document" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteDocumentProperty" type="tns:deleteDocumentProperty" />
+<xs:complexType name="deleteDocumentProperty">
+<xs:sequence>
+<xs:element minOccurs="0" name="name" type="xs:string" />
+<xs:element name="documentID" type="xs:long" />
+</xs:sequence>
+</xs:complexType>
+<xs:element name="deleteDocumentPropertyResponse" type="tns:deleteDocumentPropertyResponse" />
+<xs:complexType name="deleteDocumentPropertyResponse">
+<xs:sequence />
+</xs:complexType>
+</xs:schema>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://jaxb.dev.java.net/array" xmlns="http://jaxb.dev.java.net/array" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType final="#all" name="stringArray">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="item" nillable="true" type="xs:string" />
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="removeAuthorResponse">
+    <wsdl:part element="tns:removeAuthorResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAuthor">
+    <wsdl:part element="tns:addAuthor" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="CommunityNotFoundException">
+    <wsdl:part element="tns:CommunityNotFound" name="CommunityNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="publishDocumentResponse">
+    <wsdl:part element="tns:publishDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByInternalDocIDResponse">
+    <wsdl:part element="tns:getDocumentByInternalDocIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPopularDocumentsByCommunityResponse">
+    <wsdl:part element="tns:getPopularDocumentsByCommunityResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByDocumentIDAndVersionResponse">
+    <wsdl:part element="tns:getDocumentByDocumentIDAndVersionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentProperty">
+    <wsdl:part element="tns:getDocumentProperty" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByInternalDocIDAndVersionResponse">
+    <wsdl:part element="tns:getDocumentByInternalDocIDAndVersionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DocumentAlreadyExistsException">
+    <wsdl:part element="tns:DocumentAlreadyExistsException" name="DocumentAlreadyExistsException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentsByCommunityResponse">
+    <wsdl:part element="tns:getDocumentsByCommunityResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentApproversOnCommunityResponse">
+    <wsdl:part element="tns:getDocumentApproversOnCommunityResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateDocumentResponse">
+    <wsdl:part element="tns:updateDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeAuthor">
+    <wsdl:part element="tns:removeAuthor" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByDocumentIDResponse">
+    <wsdl:part element="tns:getDocumentByDocumentIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPopularDocumentsByLanguage">
+    <wsdl:part element="tns:getPopularDocumentsByLanguage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentsByCommunityAndFilter">
+    <wsdl:part element="tns:getDocumentsByCommunityAndFilter" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentApproversOnDocument">
+    <wsdl:part element="tns:getDocumentApproversOnDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="publishDocument">
+    <wsdl:part element="tns:publishDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="ImageException">
+    <wsdl:part element="tns:ImageException" name="ImageException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="RejectedException">
+    <wsdl:part element="tns:RejectedException" name="RejectedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAuthorsResponse">
+    <wsdl:part element="tns:getAuthorsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDocumentApproverOnDocument">
+    <wsdl:part element="tns:addDocumentApproverOnDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDocumentApproverOnDocumentResponse">
+    <wsdl:part element="tns:addDocumentApproverOnDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDocumentProperty">
+    <wsdl:part element="tns:setDocumentProperty" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentsByCommunityAndFilterResponse">
+    <wsdl:part element="tns:getDocumentsByCommunityAndFilterResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApprovalStatusForDocument">
+    <wsdl:part element="tns:getApprovalStatusForDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setTrackbacksEnabled">
+    <wsdl:part element="tns:setTrackbacksEnabled" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPopularDocuments">
+    <wsdl:part element="tns:getPopularDocuments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDocumentResponse">
+    <wsdl:part element="tns:createDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttachmentToDocumentByDocumentIDResponse">
+    <wsdl:part element="tns:addAttachmentToDocumentByDocumentIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByDocumentIDAndVersion">
+    <wsdl:part element="tns:getDocumentByDocumentIDAndVersion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UnauthorizedException">
+    <wsdl:part element="tns:Unauthorized" name="UnauthorizedException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentsByInternalDocIDResponse">
+    <wsdl:part element="tns:getAttachmentsByInternalDocIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setCommentsEnabledResponse">
+    <wsdl:part element="tns:setCommentsEnabledResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="AttachmentException">
+    <wsdl:part element="tns:AttachmentException" name="AttachmentException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentCountByInternalDocID">
+    <wsdl:part element="tns:getAttachmentCountByInternalDocID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentCountByInternalDocIDResponse">
+    <wsdl:part element="tns:getAttachmentCountByInternalDocIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getImageCountByDocumentID">
+    <wsdl:part element="tns:getImageCountByDocumentID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DuplicateIDException">
+    <wsdl:part element="tns:DuplicateIDException" name="DuplicateIDException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByInternalDocID">
+    <wsdl:part element="tns:getDocumentByInternalDocID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="BinaryBodyException">
+    <wsdl:part element="tns:BinaryBodyException" name="BinaryBodyException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getApprovalStatusForDocumentResponse">
+    <wsdl:part element="tns:getApprovalStatusForDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateDocument">
+    <wsdl:part element="tns:updateDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getImageCountByInternalDocID">
+    <wsdl:part element="tns:getImageCountByInternalDocID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isTrackbacksEnabledResponse">
+    <wsdl:part element="tns:isTrackbacksEnabledResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentsByInternalDocID">
+    <wsdl:part element="tns:getAttachmentsByInternalDocID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addImageToDocumentByInternalDocID">
+    <wsdl:part element="tns:addImageToDocumentByInternalDocID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocumentResponse">
+    <wsdl:part element="tns:deleteDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentsByDocumentIDResponse">
+    <wsdl:part element="tns:getAttachmentsByDocumentIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentsByCommunity">
+    <wsdl:part element="tns:getDocumentsByCommunity" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentPropertiesResponse">
+    <wsdl:part element="tns:getDocumentPropertiesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentApproversOnCommunity">
+    <wsdl:part element="tns:getDocumentApproversOnCommunity" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isTrackbacksEnabled">
+    <wsdl:part element="tns:isTrackbacksEnabled" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDocumentApproverOnCommunityResponse">
+    <wsdl:part element="tns:addDocumentApproverOnCommunityResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addImageToDocumentByInternalDocIDResponse">
+    <wsdl:part element="tns:addImageToDocumentByInternalDocIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getImageCountByInternalDocIDResponse">
+    <wsdl:part element="tns:getImageCountByInternalDocIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="IOException">
+    <wsdl:part element="tns:IOException" name="IOException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAuthorResponse">
+    <wsdl:part element="tns:addAuthorResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAuthors">
+    <wsdl:part element="tns:getAuthors" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserApprovalDocuments">
+    <wsdl:part element="tns:getUserApprovalDocuments" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByDocumentID">
+    <wsdl:part element="tns:getDocumentByDocumentID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="DocumentObjectNotFoundException">
+    <wsdl:part element="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentCountByDocumentID">
+    <wsdl:part element="tns:getAttachmentCountByDocumentID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addDocumentApproverOnCommunity">
+    <wsdl:part element="tns:addDocumentApproverOnCommunity" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPopularDocumentsResponse">
+    <wsdl:part element="tns:getPopularDocumentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBinaryDocumentContent">
+    <wsdl:part element="tns:getBinaryDocumentContent" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="moveDocument">
+    <wsdl:part element="tns:moveDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createDocument">
+    <wsdl:part element="tns:createDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createBinaryDocumentResponse">
+    <wsdl:part element="tns:createBinaryDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setTrackbacksEnabledResponse">
+    <wsdl:part element="tns:setTrackbacksEnabledResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttachmentToDocumentByInternalDocID">
+    <wsdl:part element="tns:addAttachmentToDocumentByInternalDocID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="moveDocumentResponse">
+    <wsdl:part element="tns:moveDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocumentProperty">
+    <wsdl:part element="tns:deleteDocumentProperty" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttachmentToDocumentByDocumentID">
+    <wsdl:part element="tns:addAttachmentToDocumentByDocumentID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getBinaryDocumentContentResponse">
+    <wsdl:part element="tns:getBinaryDocumentContentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isCommentsEnabledResponse">
+    <wsdl:part element="tns:isCommentsEnabledResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentProperties">
+    <wsdl:part element="tns:getDocumentProperties" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addImageToDocumentByDocumentIDResponse">
+    <wsdl:part element="tns:addImageToDocumentByDocumentIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentApproversOnDocumentResponse">
+    <wsdl:part element="tns:getDocumentApproversOnDocumentResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPopularDocumentsByLanguageResponse">
+    <wsdl:part element="tns:getPopularDocumentsByLanguageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="isCommentsEnabled">
+    <wsdl:part element="tns:isCommentsEnabled" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocument">
+    <wsdl:part element="tns:deleteDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createBinaryDocument">
+    <wsdl:part element="tns:createBinaryDocument" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addImageToDocumentByDocumentID">
+    <wsdl:part element="tns:addImageToDocumentByDocumentID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="UserNotFoundException">
+    <wsdl:part element="tns:UserNotFound" name="UserNotFoundException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteDocumentPropertyResponse">
+    <wsdl:part element="tns:deleteDocumentPropertyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentPropertyResponse">
+    <wsdl:part element="tns:getDocumentPropertyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentsByDocumentID">
+    <wsdl:part element="tns:getAttachmentsByDocumentID" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getPopularDocumentsByCommunity">
+    <wsdl:part element="tns:getPopularDocumentsByCommunity" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addAttachmentToDocumentByInternalDocIDResponse">
+    <wsdl:part element="tns:addAttachmentToDocumentByInternalDocIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setDocumentPropertyResponse">
+    <wsdl:part element="tns:setDocumentPropertyResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getImageCountByDocumentIDResponse">
+    <wsdl:part element="tns:getImageCountByDocumentIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getDocumentByInternalDocIDAndVersion">
+    <wsdl:part element="tns:getDocumentByInternalDocIDAndVersion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserApprovalDocumentsResponse">
+    <wsdl:part element="tns:getUserApprovalDocumentsResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAttachmentCountByDocumentIDResponse">
+    <wsdl:part element="tns:getAttachmentCountByDocumentIDResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="setCommentsEnabled">
+    <wsdl:part element="tns:setCommentsEnabled" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DocumentService">
+    <wsdl:operation name="getImageCountByInternalDocID">
+      <wsdl:input message="tns:getImageCountByInternalDocID" name="getImageCountByInternalDocID">
+    </wsdl:input>
+      <wsdl:output message="tns:getImageCountByInternalDocIDResponse" name="getImageCountByInternalDocIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByInternalDocIDAndVersion">
+      <wsdl:input message="tns:getDocumentByInternalDocIDAndVersion" name="getDocumentByInternalDocIDAndVersion">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentByInternalDocIDAndVersionResponse" name="getDocumentByInternalDocIDAndVersionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAuthor">
+      <wsdl:input message="tns:removeAuthor" name="removeAuthor">
+    </wsdl:input>
+      <wsdl:output message="tns:removeAuthorResponse" name="removeAuthorResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addDocumentApproverOnDocument">
+      <wsdl:input message="tns:addDocumentApproverOnDocument" name="addDocumentApproverOnDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:addDocumentApproverOnDocumentResponse" name="addDocumentApproverOnDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDocumentProperty">
+      <wsdl:input message="tns:setDocumentProperty" name="setDocumentProperty">
+    </wsdl:input>
+      <wsdl:output message="tns:setDocumentPropertyResponse" name="setDocumentPropertyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApprovalStatusForDocument">
+      <wsdl:input message="tns:getApprovalStatusForDocument" name="getApprovalStatusForDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:getApprovalStatusForDocumentResponse" name="getApprovalStatusForDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserApprovalDocuments">
+      <wsdl:input message="tns:getUserApprovalDocuments" name="getUserApprovalDocuments">
+    </wsdl:input>
+      <wsdl:output message="tns:getUserApprovalDocumentsResponse" name="getUserApprovalDocumentsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAttachmentToDocumentByDocumentID">
+      <wsdl:input message="tns:addAttachmentToDocumentByDocumentID" name="addAttachmentToDocumentByDocumentID">
+    </wsdl:input>
+      <wsdl:output message="tns:addAttachmentToDocumentByDocumentIDResponse" name="addAttachmentToDocumentByDocumentIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AttachmentException" name="AttachmentException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDocument">
+      <wsdl:input message="tns:deleteDocument" name="deleteDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteDocumentResponse" name="deleteDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setTrackbacksEnabled">
+      <wsdl:input message="tns:setTrackbacksEnabled" name="setTrackbacksEnabled">
+    </wsdl:input>
+      <wsdl:output message="tns:setTrackbacksEnabledResponse" name="setTrackbacksEnabledResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentCountByDocumentID">
+      <wsdl:input message="tns:getAttachmentCountByDocumentID" name="getAttachmentCountByDocumentID">
+    </wsdl:input>
+      <wsdl:output message="tns:getAttachmentCountByDocumentIDResponse" name="getAttachmentCountByDocumentIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createBinaryDocument">
+      <wsdl:input message="tns:createBinaryDocument" name="createBinaryDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:createBinaryDocumentResponse" name="createBinaryDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DuplicateIDException" name="DuplicateIDException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentAlreadyExistsException" name="DocumentAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RejectedException" name="RejectedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:IOException" name="IOException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:BinaryBodyException" name="BinaryBodyException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getImageCountByDocumentID">
+      <wsdl:input message="tns:getImageCountByDocumentID" name="getImageCountByDocumentID">
+    </wsdl:input>
+      <wsdl:output message="tns:getImageCountByDocumentIDResponse" name="getImageCountByDocumentIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentApproversOnDocument">
+      <wsdl:input message="tns:getDocumentApproversOnDocument" name="getDocumentApproversOnDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentApproversOnDocumentResponse" name="getDocumentApproversOnDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addImageToDocumentByInternalDocID">
+      <wsdl:input message="tns:addImageToDocumentByInternalDocID" name="addImageToDocumentByInternalDocID">
+    </wsdl:input>
+      <wsdl:output message="tns:addImageToDocumentByInternalDocIDResponse" name="addImageToDocumentByInternalDocIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ImageException" name="ImageException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addImageToDocumentByDocumentID">
+      <wsdl:input message="tns:addImageToDocumentByDocumentID" name="addImageToDocumentByDocumentID">
+    </wsdl:input>
+      <wsdl:output message="tns:addImageToDocumentByDocumentIDResponse" name="addImageToDocumentByDocumentIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:ImageException" name="ImageException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAttachmentToDocumentByInternalDocID">
+      <wsdl:input message="tns:addAttachmentToDocumentByInternalDocID" name="addAttachmentToDocumentByInternalDocID">
+    </wsdl:input>
+      <wsdl:output message="tns:addAttachmentToDocumentByInternalDocIDResponse" name="addAttachmentToDocumentByInternalDocIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:AttachmentException" name="AttachmentException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentsByCommunityAndFilter">
+      <wsdl:input message="tns:getDocumentsByCommunityAndFilter" name="getDocumentsByCommunityAndFilter">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentsByCommunityAndFilterResponse" name="getDocumentsByCommunityAndFilterResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentsByDocumentID">
+      <wsdl:input message="tns:getAttachmentsByDocumentID" name="getAttachmentsByDocumentID">
+    </wsdl:input>
+      <wsdl:output message="tns:getAttachmentsByDocumentIDResponse" name="getAttachmentsByDocumentIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPopularDocumentsByCommunity">
+      <wsdl:input message="tns:getPopularDocumentsByCommunity" name="getPopularDocumentsByCommunity">
+    </wsdl:input>
+      <wsdl:output message="tns:getPopularDocumentsByCommunityResponse" name="getPopularDocumentsByCommunityResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAuthor">
+      <wsdl:input message="tns:addAuthor" name="addAuthor">
+    </wsdl:input>
+      <wsdl:output message="tns:addAuthorResponse" name="addAuthorResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBinaryDocumentContent">
+      <wsdl:input message="tns:getBinaryDocumentContent" name="getBinaryDocumentContent">
+    </wsdl:input>
+      <wsdl:output message="tns:getBinaryDocumentContentResponse" name="getBinaryDocumentContentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentProperty">
+      <wsdl:input message="tns:getDocumentProperty" name="getDocumentProperty">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentPropertyResponse" name="getDocumentPropertyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentsByInternalDocID">
+      <wsdl:input message="tns:getAttachmentsByInternalDocID" name="getAttachmentsByInternalDocID">
+    </wsdl:input>
+      <wsdl:output message="tns:getAttachmentsByInternalDocIDResponse" name="getAttachmentsByInternalDocIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentCountByInternalDocID">
+      <wsdl:input message="tns:getAttachmentCountByInternalDocID" name="getAttachmentCountByInternalDocID">
+    </wsdl:input>
+      <wsdl:output message="tns:getAttachmentCountByInternalDocIDResponse" name="getAttachmentCountByInternalDocIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAuthors">
+      <wsdl:input message="tns:getAuthors" name="getAuthors">
+    </wsdl:input>
+      <wsdl:output message="tns:getAuthorsResponse" name="getAuthorsResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isTrackbacksEnabled">
+      <wsdl:input message="tns:isTrackbacksEnabled" name="isTrackbacksEnabled">
+    </wsdl:input>
+      <wsdl:output message="tns:isTrackbacksEnabledResponse" name="isTrackbacksEnabledResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="moveDocument">
+      <wsdl:input message="tns:moveDocument" name="moveDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:moveDocumentResponse" name="moveDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentApproversOnCommunity">
+      <wsdl:input message="tns:getDocumentApproversOnCommunity" name="getDocumentApproversOnCommunity">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentApproversOnCommunityResponse" name="getDocumentApproversOnCommunityResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setCommentsEnabled">
+      <wsdl:input message="tns:setCommentsEnabled" name="setCommentsEnabled">
+    </wsdl:input>
+      <wsdl:output message="tns:setCommentsEnabledResponse" name="setCommentsEnabledResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPopularDocuments">
+      <wsdl:input message="tns:getPopularDocuments" name="getPopularDocuments">
+    </wsdl:input>
+      <wsdl:output message="tns:getPopularDocumentsResponse" name="getPopularDocumentsResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isCommentsEnabled">
+      <wsdl:input message="tns:isCommentsEnabled" name="isCommentsEnabled">
+    </wsdl:input>
+      <wsdl:output message="tns:isCommentsEnabledResponse" name="isCommentsEnabledResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentsByCommunity">
+      <wsdl:input message="tns:getDocumentsByCommunity" name="getDocumentsByCommunity">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentsByCommunityResponse" name="getDocumentsByCommunityResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UnauthorizedException" name="UnauthorizedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishDocument">
+      <wsdl:input message="tns:publishDocument" name="publishDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:publishDocumentResponse" name="publishDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DuplicateIDException" name="DuplicateIDException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentAlreadyExistsException" name="DocumentAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RejectedException" name="RejectedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateDocument">
+      <wsdl:input message="tns:updateDocument" name="updateDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:updateDocumentResponse" name="updateDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentAlreadyExistsException" name="DocumentAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createDocument">
+      <wsdl:input message="tns:createDocument" name="createDocument">
+    </wsdl:input>
+      <wsdl:output message="tns:createDocumentResponse" name="createDocumentResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DuplicateIDException" name="DuplicateIDException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentAlreadyExistsException" name="DocumentAlreadyExistsException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:RejectedException" name="RejectedException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addDocumentApproverOnCommunity">
+      <wsdl:input message="tns:addDocumentApproverOnCommunity" name="addDocumentApproverOnCommunity">
+    </wsdl:input>
+      <wsdl:output message="tns:addDocumentApproverOnCommunityResponse" name="addDocumentApproverOnCommunityResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:UserNotFoundException" name="UserNotFoundException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:CommunityNotFoundException" name="CommunityNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPopularDocumentsByLanguage">
+      <wsdl:input message="tns:getPopularDocumentsByLanguage" name="getPopularDocumentsByLanguage">
+    </wsdl:input>
+      <wsdl:output message="tns:getPopularDocumentsByLanguageResponse" name="getPopularDocumentsByLanguageResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentProperties">
+      <wsdl:input message="tns:getDocumentProperties" name="getDocumentProperties">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentPropertiesResponse" name="getDocumentPropertiesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByInternalDocID">
+      <wsdl:input message="tns:getDocumentByInternalDocID" name="getDocumentByInternalDocID">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentByInternalDocIDResponse" name="getDocumentByInternalDocIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByDocumentID">
+      <wsdl:input message="tns:getDocumentByDocumentID" name="getDocumentByDocumentID">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentByDocumentIDResponse" name="getDocumentByDocumentIDResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByDocumentIDAndVersion">
+      <wsdl:input message="tns:getDocumentByDocumentIDAndVersion" name="getDocumentByDocumentIDAndVersion">
+    </wsdl:input>
+      <wsdl:output message="tns:getDocumentByDocumentIDAndVersionResponse" name="getDocumentByDocumentIDAndVersionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDocumentProperty">
+      <wsdl:input message="tns:deleteDocumentProperty" name="deleteDocumentProperty">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteDocumentPropertyResponse" name="deleteDocumentPropertyResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:DocumentObjectNotFoundException" name="DocumentObjectNotFoundException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DocumentServiceSoapBinding" type="tns:DocumentService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getImageCountByInternalDocID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getImageCountByInternalDocID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getImageCountByInternalDocIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByInternalDocIDAndVersion">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentByInternalDocIDAndVersion">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentByInternalDocIDAndVersionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addDocumentApproverOnDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addDocumentApproverOnDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addDocumentApproverOnDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeAuthor">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="removeAuthor">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeAuthorResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setDocumentProperty">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="setDocumentProperty">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="setDocumentPropertyResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getApprovalStatusForDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getApprovalStatusForDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getApprovalStatusForDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAttachmentToDocumentByDocumentID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addAttachmentToDocumentByDocumentID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addAttachmentToDocumentByDocumentIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AttachmentException">
+        <soap:fault name="AttachmentException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserApprovalDocuments">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserApprovalDocuments">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserApprovalDocumentsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentCountByDocumentID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAttachmentCountByDocumentID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAttachmentCountByDocumentIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setTrackbacksEnabled">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="setTrackbacksEnabled">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="setTrackbacksEnabledResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createBinaryDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="createBinaryDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createBinaryDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DuplicateIDException">
+        <soap:fault name="DuplicateIDException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentAlreadyExistsException">
+        <soap:fault name="DocumentAlreadyExistsException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="RejectedException">
+        <soap:fault name="RejectedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="IOException">
+        <soap:fault name="IOException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="BinaryBodyException">
+        <soap:fault name="BinaryBodyException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentApproversOnDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentApproversOnDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentApproversOnDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getImageCountByDocumentID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getImageCountByDocumentID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getImageCountByDocumentIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addImageToDocumentByInternalDocID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addImageToDocumentByInternalDocID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addImageToDocumentByInternalDocIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ImageException">
+        <soap:fault name="ImageException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAttachmentToDocumentByInternalDocID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addAttachmentToDocumentByInternalDocID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addAttachmentToDocumentByInternalDocIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="AttachmentException">
+        <soap:fault name="AttachmentException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addImageToDocumentByDocumentID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addImageToDocumentByDocumentID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addImageToDocumentByDocumentIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ImageException">
+        <soap:fault name="ImageException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentsByCommunityAndFilter">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentsByCommunityAndFilter">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentsByCommunityAndFilterResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentsByDocumentID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAttachmentsByDocumentID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAttachmentsByDocumentIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addAuthor">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addAuthor">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addAuthorResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPopularDocumentsByCommunity">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getPopularDocumentsByCommunity">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPopularDocumentsByCommunityResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getBinaryDocumentContent">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getBinaryDocumentContent">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getBinaryDocumentContentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentsByInternalDocID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAttachmentsByInternalDocID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAttachmentsByInternalDocIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentProperty">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentProperty">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentPropertyResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAttachmentCountByInternalDocID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAttachmentCountByInternalDocID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAttachmentCountByInternalDocIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAuthors">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getAuthors">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAuthorsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="isTrackbacksEnabled">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isTrackbacksEnabled">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isTrackbacksEnabledResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="moveDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="moveDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="moveDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentApproversOnCommunity">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentApproversOnCommunity">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentApproversOnCommunityResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="setCommentsEnabled">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="setCommentsEnabled">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="setCommentsEnabledResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getPopularDocuments">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getPopularDocuments">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPopularDocumentsResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isCommentsEnabled">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="isCommentsEnabled">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="isCommentsEnabledResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentsByCommunity">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentsByCommunity">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentsByCommunityResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UnauthorizedException">
+        <soap:fault name="UnauthorizedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="publishDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="publishDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="publishDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DuplicateIDException">
+        <soap:fault name="DuplicateIDException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentAlreadyExistsException">
+        <soap:fault name="DocumentAlreadyExistsException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="RejectedException">
+        <soap:fault name="RejectedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addDocumentApproverOnCommunity">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="addDocumentApproverOnCommunity">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="addDocumentApproverOnCommunityResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="createDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DuplicateIDException">
+        <soap:fault name="DuplicateIDException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentAlreadyExistsException">
+        <soap:fault name="DocumentAlreadyExistsException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="RejectedException">
+        <soap:fault name="RejectedException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="CommunityNotFoundException">
+        <soap:fault name="CommunityNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateDocument">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="updateDocument">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateDocumentResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentAlreadyExistsException">
+        <soap:fault name="DocumentAlreadyExistsException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="UserNotFoundException">
+        <soap:fault name="UserNotFoundException" use="literal" />
+      </wsdl:fault>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByInternalDocID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentByInternalDocID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentByInternalDocIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentProperties">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentProperties">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentPropertiesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getPopularDocumentsByLanguage">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getPopularDocumentsByLanguage">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getPopularDocumentsByLanguageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByDocumentID">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentByDocumentID">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentByDocumentIDResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getDocumentByDocumentIDAndVersion">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getDocumentByDocumentIDAndVersion">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getDocumentByDocumentIDAndVersionResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteDocumentProperty">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="deleteDocumentProperty">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="deleteDocumentPropertyResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DocumentObjectNotFoundException">
+        <soap:fault name="DocumentObjectNotFoundException" use="literal" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DocumentService">
+    <wsdl:port binding="tns:DocumentServiceSoapBinding" name="DocumentServicePort">
+      <soap:address location="http://j2ee.www.igniterealtime.org-community:8080/community/rpc/soap/DocumentService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,4 +1,8 @@
-<%@ page import="org.jivesoftware.site.Versions,com.jivesoftware.community.webservices.*"%>
+<%@ page import="org.jivesoftware.site.Versions"%>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogPostResultFilter" %>
+<%@ page import="com.jivesoftware.clearspace.webservices.BlogPost" %>
+<%@ page import="java.util.List" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -22,7 +26,7 @@
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/SMACK">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/smack/docs/latest/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="/builds/smack/docs/latest/javadoc/">JavaDocs</a></li>
 			
 		</ul>
 	</div>
@@ -117,11 +121,15 @@
                     <%-- Show blog feed --%>
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
-					BlogService blogService = locator.getBlogService();
-					BlogPostResultFilter bprf = BlogPostResultFilter.createDefaultFilter();
+					BlogService blogService = serviceProvider.getBlogService();
+					BlogPostResultFilter bprf = new BlogPostResultFilter();
 					bprf.setNumResults(5);
-					bprf.setTags(new String[] {"smack"});
-					BlogPost[] posts = blogService.getBlogPosts(bprf);
+                    bprf.setBlogID((long) NULL_INT);
+                    bprf.setSortField(600); // publish date
+                    bprf.setSortOrder(SORT_DESCENDING);
+                    bprf.getTags().add("smack");
+                    bprf.getTags().add("smack-api");
+                    List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />

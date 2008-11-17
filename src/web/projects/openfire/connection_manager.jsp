@@ -49,7 +49,7 @@
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp" class="ignite_subnav_current">Connection Manager Module</a></li>
             <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
@@ -89,7 +89,7 @@
 					<p>Yes, the module is dual-licensed under the Open Source <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> license or a comercial software license agreement available from Jive Software.</p>
 					
 					<h5>How do I get support?</h5>
-					<p>Support is available from the user community in the <a href="http://www.igniterealtime.org/community/main-threads.jspa">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
+					<p>Support is available from the user community in the <a href="/community/main-threads.jspa">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
 					
 					
 					<h5>Download</h5>

@@ -32,11 +32,11 @@
     List<Screenshot> commercialScreenshots = new ArrayList<Screenshot>();
 
    
-    commercialScreenshots.add(new Screenshot("wf_entdash.png", "Enterprise Dashboard", "The Enterprise Dashboard provides a quick overview of community activity and aggregates real time stats into one central location."));
-    commercialScreenshots.add(new Screenshot("wf_searcharchive.png", "Search Archive", "Openfire Enterprise has comprehensive support for archiving messages to a database, and includes a compliance tool to find message content by users, date range, and keywords.  Openfire Enterprise also includes a lightweight archiving mode that records information about conversations (participants, date, and number of messages) without recording the actual message content. This is useful in understanding IM usage patterns, while not being as invasive to users."));
+    commercialScreenshots.add(new Screenshot("wf_entdash.png", "Monitoring Dashboard", "The monitoring plugin Dashboard provides a quick overview of community activity and aggregates real time stats into one central location."));
+    commercialScreenshots.add(new Screenshot("wf_searcharchive.png", "Search Archive", "Openfire's monitoring plugin has comprehensive support for archiving messages to a database, and includes a compliance tool to find message content by users, date range, and keywords.  The plugin also includes a lightweight archiving mode that records information about conversations (participants, date, and number of messages) without recording the actual message content. This is useful in understanding IM usage patterns, while not being as invasive to users."));
 	commercialScreenshots.add(new Screenshot("wf_reportpackets.png", "Reporting: Extensive Options", "Advanced reporting tools, which include statistics on active users, conversations, group chat rooms, packet counts and more."));
     commercialScreenshots.add(new Screenshot("wf_report_convos.png", "Reporting: Fine-Tuned Results", "Generate reports for preset time frames or enter specific dates to narrow results. Openfire reports can also be exported as a PDF."));
-    commercialScreenshots.add(new Screenshot("wf_clientcontrol.png", "Client Control", "Openfire Enterprise lets you control the features that are enabled in users' IM clients (for Spark and other clients), such as enabling file transfer, message broadcasting, or group chat. You can also control the version of Spark deployed by users from inside the administration console."));
+    commercialScreenshots.add(new Screenshot("wf_clientcontrol.png", "Client Control", "Openfire client control lets you control the features that are enabled in users' IM clients (for Spark and other clients), such as enabling file transfer, message broadcasting, or group chat. You can also control the version of Spark deployed by users from inside the administration console."));
 
     // Directory that contains all screenshots.
     final String screenshotPath = "/images/screenshots";
@@ -113,7 +113,7 @@
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://www.igniterealtime.org/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
@@ -137,10 +137,7 @@
 				
 				<div class="ignite_int_body_padding">
 					<p>View screenshots of Openfire and
-                        <a href="http://www.jivesoftware.com/products/im/index.jsp?source=Website-Ignite">Openfire Enterprise</a> below.
-                        Looking for more comprehensive feature information? Visit the
-                        <a href="http://www.jivesoftware.com/products/openfire/featuretour.jsp?source=Website-Ignite">feature tour</a>
-                        on jivesoftware.com.</p>
+                        some of it's more popular plugins below.
 				</div>
 
                 <div class="ignite_body_screenshots">
@@ -185,7 +182,7 @@
                 </div>
 
                  <div class="ignite_body_screenshots ignite_body_screenshots_enterprise">
-				 <h3>Enterprise Plug-in</h3>
+				 <h3>Plug-ins</h3>
 					<table cellspacing="0" cellpadding="0">
                 <%
                     // Loop through all screenshots.
