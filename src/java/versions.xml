@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <versions>
     <!--<product name="wildfire" version="3.3.0" date="April 12, 2007" />-->
-    <product name="openfire" version="3.6.1" date="November 14, 2008" />
+    <product name="openfire" version="3.6.2" date="November 21, 2008" />
     <!--<product name="openfire-beta" version="3.5.0.rc2" date="March 11, 2008" />-->
     <product name="spark" version="2.5.8" date="November 14, 2007" />
     <product name="spark-beta" version="2.6.0.beta2" date="September 17, 2008" />
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
-    <product name="smack" version="3.0.4" date="June 12, 2007" />
-    <product name="smack-beta" version="3.1.0.beta1" date="October 30, 2008" />
+    <product name="smack" version="3.1.0" date="November 20, 2008" />
+    <!--<product name="smack-beta" version="3.1.0.beta1" date="October 30, 2008" />-->
     <product name="whack" version="1.0.0" date="July 14, 2008" />
     <product name="xiff" version="3.0.0-beta1" date="April 2, 2008" />
     <product name="asterisk-im" version="1.1.1" date="July 3, 2006" />
-    <product name="connection_manager" version="3.6.0" date="August 26, 2008" />
+    <product name="connection_manager" version="3.6.2" date="November 21, 2008" />
     <!--<product name="connection_manager-beta" version="3.5.0.rc2" date="March 11, 2008" />-->
 </versions>
