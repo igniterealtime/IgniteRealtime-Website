@@ -66,7 +66,7 @@
 		<div id="ignite_nav">
 			<ol>
 				<li id="nav01"><a href="/index.jsp">Home</a></li>
-				<li id="nav02"><a href="/projects/index.jsp">Products</a></li>
+				<li id="nav02"><a href="/projects/index.jsp">Projects</a></li>
 				<li id="nav03"><a href="/downloads/index.jsp">Downloads</a></li>
 				<li id="nav04"><a href="/community/">Community</a></li>
 				<li id="nav05"><a href="/fans/index.jsp">Fans</a></li>

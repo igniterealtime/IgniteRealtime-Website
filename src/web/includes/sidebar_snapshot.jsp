@@ -13,13 +13,13 @@
                 // Grab the right license info
                 String license = null;
                 if (project.equals("openfire")) {
-                    license = "Open Source GPL or Commercial";
+                    license = "Open Source GPL";
                 }
                 else if (project.equals("spark")) {
-                    license = "Open Source LGPL or Commercial";
+                    license = "Open Source LGPL";
                 }
                 else if (project.equals("sparkweb")) {
-                    license = "Open Source LGPL or Commercial";
+                    license = "Open Source LGPL";
                 }
                 else if (project.equals("smack")) {
                     license = "Open Source Apache";

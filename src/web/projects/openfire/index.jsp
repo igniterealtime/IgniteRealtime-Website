@@ -57,8 +57,8 @@
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
 				<div id="ignite_bigpanel_content">
 					<h1 class="openfire">Openfire <span><%= Versions.getVersion("openfire") %></span></h1>
-					<p>Openfire (formerly Wildfire) is a real time collaboration (RTC) server dual-licensed under
-					the Open Source GPL and <a href="http://www.jivesoftware.com/licenseagreement/index.jsp">commercially</a>.
+					<p>Openfire is a real time collaboration (RTC) server licensed under
+					the Open Source GPL.
                     It uses the only widely adopted open protocol for instant messaging, XMPP
                     (also called Jabber). Openfire is incredibly easy to setup and administer, but offers
                     rock-solid security and performance.</p>

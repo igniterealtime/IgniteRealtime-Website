@@ -87,7 +87,7 @@
 				
 				<div class="ignite_int_body_padding">
 					<p>Plugins extend and enhance the functionality of Openfire (formerly Wildfire). Below is a list of both 
-                    <a href="#opensource">open source</a> and <a href="#commercial">commercial</a>
+                    <a href="#opensource">open source</a> 
                     plugins available for <a href="index.jsp">Openfire</a>. To install plugins,
                     copy the .jar file into the <tt>plugins</tt> directory of your Openfire installation.
                     <a href="plugins-beta.jsp">Beta plugins</a> are also available.
@@ -334,7 +334,7 @@
 				<br/>
 				<br/>
 				
-				<p>To submit a plugin please send an email to Daniel Henninger (daniel.henninger at jivesoftware dot com) or send him a <a href="community/pm-post!input.jspa?to=jadestorm">private message</a> in the forums.</p>
+				<p>To submit a plugin please send an email to Gato Dombiak (gaston at jivesoftware dot com) or send him a <a href="community/pm-post!input.jspa?to=dombiak_gaston">private message</a> in the forums.</p>
 				
 				<br>
 				
