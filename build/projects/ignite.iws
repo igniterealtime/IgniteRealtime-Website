@@ -16,23 +16,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_48hrsnapshot.jspf" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_48hrsnapshot.jspf" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/web.xml" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_forumactivity.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_forumactivity.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/xiff/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/xiff/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/smack/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/smack/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ignite.iws" afterPath="$PROJECT_DIR$/ignite.iws" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/openfire/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/openfire/index.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ignite.ipr" afterPath="$PROJECT_DIR$/ignite.ipr" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/clearspace_community-2.5.0.beta1.jar" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/sparkweb/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/sparkweb/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/asterisk/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/asterisk/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/support/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/support/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/whack/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/whack/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/spark/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/spark/index.jsp" />
-      <change type="DELETED" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/jive-clearspace_community-webservices-2_0_0.jar" afterPath="" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/DownloadServlet.java" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/DownloadServlet.java" />
     </list>
     <ignored path="ignite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,21 +36,6 @@
     <disable_hints />
   </component>
   <component name="DebuggerManager">
-    <line_breakpoints>
-      <breakpoint url="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" line="114" class="index.jsp:114" package="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web">
-        <option name="ENABLED" value="true" />
-        <option name="LOG_ENABLED" value="false" />
-        <option name="LOG_EXPRESSION_ENABLED" value="false" />
-        <option name="SUSPEND_POLICY" value="SuspendAll" />
-        <option name="COUNT_FILTER_ENABLED" value="false" />
-        <option name="COUNT_FILTER" value="0" />
-        <option name="CONDITION_ENABLED" value="false" />
-        <option name="CLASS_FILTERS_ENABLED" value="false" />
-        <option name="INSTANCE_FILTERS_ENABLED" value="false" />
-        <option name="CONDITION" value="" />
-        <option name="LOG_MESSAGE" value="" />
-      </breakpoint>
-    </line_breakpoints>
     <breakpoint_any>
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
@@ -109,7 +79,64 @@
     <favorites_list name="ignite" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="web.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/web.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="140" column="4" selection-start="4894" selection-end="5057" vertical-scroll-proportion="2.1728723">
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+            <state />
+          </provider>
+          <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SparkUpdateServlet.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/updater/SparkUpdateServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="85" column="109" selection-start="2941" selection-end="2941" vertical-scroll-proportion="0.84029484">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DownloadServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/DownloadServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="59" column="65" selection-start="1612" selection-end="1612" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PluginDownloadServlet.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/PluginDownloadServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="97" column="83" selection-start="3845" selection-end="3845" vertical-scroll-proportion="1.4299754">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OpenfireVersionChecker.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/OpenfireVersionChecker.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="13" selection-start="982" selection-end="982" vertical-scroll-proportion="-1.8132678">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -247,209 +274,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/support" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/xiff" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/whack" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/sparkweb" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/spark" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/smack" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -509,59 +334,11 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/asterisk" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/openfire" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads" />
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/openfire/plugins" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -584,6 +361,192 @@
         </PATH_ELEMENT>
         <PATH_ELEMENT>
           <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/webservices" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/updater" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/database" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/resources" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/resources/wsdl" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Ignite" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org" />
+          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="PsiDirectory:/Users/benjamin/Projects/Jive/igniterealtime.org/resources" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -638,6 +601,18 @@
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
   </component>
   <component name="RunManager" selected="Tomcat Server.Local/Remote Tomcat">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -667,6 +642,19 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -674,17 +662,17 @@
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
+    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote">
+      <option name="WORKING_DIRECTORY" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="8080" />
+      <option name="LOCAL" value="false" />
+      <option name="OPEN_IN_BROWSER" value="true" />
+      <option name="OPEN_IN_BROWSER_URL" value="/" />
+      <option name="COMMON_VM_ARGUMENTS" value="" />
+      <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
+      <option name="BASE_DIRECTORY_NAME" value="" />
+      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
       <module name="" />
@@ -707,31 +695,6 @@
       <method>
         <option name="Make" value="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-    </configuration>
-    <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote">
-      <option name="WORKING_DIRECTORY" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="8080" />
-      <option name="LOCAL" value="false" />
-      <option name="OPEN_IN_BROWSER" value="true" />
-      <option name="OPEN_IN_BROWSER_URL" value="/" />
-      <option name="COMMON_VM_ARGUMENTS" value="" />
-      <option name="DEPLOY_TOMCAT_MANAGER" value="false" />
-      <option name="BASE_DIRECTORY_NAME" value="" />
-      <predefined_log_file id="TOMCAT_LOCALHOST_LOG_ID" enabled="true" />
     </configuration>
     <configuration default="false" name="Local/Remote Tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Remote" APPLICATION_SERVER_NAME="Tomcat 6">
       <option name="WORKING_DIRECTORY" />
@@ -810,23 +773,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="848" extended-state="0" />
-    <editor active="false" />
+    <frame x="43" y="22" width="1877" height="1178" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="0" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="13" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27658045" order="1" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2345544" order="1" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32760364" order="7" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13074712" order="2" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827586" order="0" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3270142" order="0" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="12" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="2" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.05387931" order="6" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.10770913" order="6" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17492417" order="2" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17440759" order="2" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="5" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3994253" order="4" />
@@ -848,7 +811,7 @@
     <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix build.xml to work with new src/java location as it was missing some files." />
+    <option name="LAST_COMMIT_MESSAGE" value="ok, remove logging" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -870,6 +833,11 @@
     <MESSAGE value="Fix build script to work with new location of TLD files." />
     <MESSAGE value="Update webservices jar to 2.0.0 release." />
     <MESSAGE value="Fix build.xml to work with new src/java location as it was missing some files." />
+    <MESSAGE value="add some extra logging to try to see what's happening" />
+    <MESSAGE value="add some extra logging to try to see what's happening again" />
+    <MESSAGE value="try this path change" />
+    <MESSAGE value="ok, remove logging and make path change in other location. all good." />
+    <MESSAGE value="ok, remove logging" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -930,114 +898,106 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/endpoint/EndpointImpl.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/web.xml-benjamin">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="0" selection-start="1613" selection-end="1613" vertical-scroll-proportion="0.33333334">
+        <state line="39" column="21" selection-start="1351" selection-end="1382" vertical-scroll-proportion="0.5089723">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/whack/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/interceptor/AbstractBasicInterceptorProvider.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="998" selection-end="998" vertical-scroll-proportion="0.5041322">
+        <state line="5" column="35" selection-start="322" selection-end="322" vertical-scroll-proportion="0.020689655">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/phase/PhaseManagerImpl.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/ws_locator.jspf">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="819" selection-end="819" vertical-scroll-proportion="0.5289256">
+        <state line="21" column="0" selection-start="1061" selection-end="1061" vertical-scroll-proportion="0.42352942">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/common/util/ModCountCopyOnWriteArrayList.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/build/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="459" selection-end="459" vertical-scroll-proportion="0.33333334">
+        <state line="96" column="50" selection-start="4163" selection-end="4164" vertical-scroll-proportion="-0.84428716">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/phase/PhaseChainCache.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/webservices/ServiceProvider.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="1200" selection-end="1200" vertical-scroll-proportion="0.37190083">
+        <state line="21" column="57" selection-start="681" selection-end="681" vertical-scroll-proportion="0.011940299">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/endpoint/AbstractConduitSelector.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/updater/SparkPluginServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="0" selection-start="479" selection-end="479" vertical-scroll-proportion="0.3305785">
+        <state line="53" column="51" selection-start="2035" selection-end="2035" vertical-scroll-proportion="0.41791046">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/endpoint/ClientImpl.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/PluginDownloadServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="0" selection-start="2809" selection-end="2809" vertical-scroll-proportion="0.33333334">
+        <state line="97" column="83" selection-start="3845" selection-end="3845" vertical-scroll-proportion="1.4299754">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/DownloadServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="65" selection-start="1612" selection-end="1612" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/message/StringMapImpl.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/OpenfireVersionChecker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="341" selection-end="341" vertical-scroll-proportion="0.2644628">
+        <state line="32" column="13" selection-start="982" selection-end="982" vertical-scroll-proportion="-1.8132678">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/endpoint/UpfrontConduitSelector.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/web.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="472" selection-end="472" vertical-scroll-proportion="0.36363637">
+        <state line="140" column="4" selection-start="4894" selection-end="5057" vertical-scroll-proportion="2.1728723">
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/message/AbstractWrappedMessage.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="1407" selection-end="1407" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleGeneralEditorProvider">
+        <state />
+      </provider>
+      <provider editor-type-id="com.intellij.javaee.module.view.web.viewlets.WebModuleAssemblyDescriptorReferencesProvider">
+        <state />
       </provider>
     </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/message/MessageImpl.class">
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/updater/SparkUpdateServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="1073" selection-end="1073" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/phase/PhaseInterceptorChain.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1957" selection-end="1957" vertical-scroll-proportion="0.33333334">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/jaxws/interceptors/HolderOutInterceptor.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="403" selection-end="403" vertical-scroll-proportion="0.29752067">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/service/model/OperationInfo.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="65" column="0" selection-start="3092" selection-end="3092" vertical-scroll-proportion="0.5041322">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/message/MessageContentsList.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="538" selection-end="538" vertical-scroll-proportion="0.37190083">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/lib/cxf.jar!/org/apache/cxf/helpers/CastUtils.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="748" selection-end="748" vertical-scroll-proportion="0.33333334">
+        <state line="85" column="109" selection-start="2941" selection-end="2941" vertical-scroll-proportion="0.84029484">
           <folding />
         </state>
       </provider>

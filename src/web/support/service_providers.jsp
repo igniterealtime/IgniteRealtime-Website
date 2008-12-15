@@ -68,9 +68,6 @@
                            understands the unique needs of every client and promises to deliver
                            upon those needs.
                         </p>
-                        <p>
-                            Hosting sponsorship for igniterealitme.org is provided by Contegix.
-                        </p>
                     </div>
 
 

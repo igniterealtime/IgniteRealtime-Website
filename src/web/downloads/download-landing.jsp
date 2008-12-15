@@ -75,17 +75,6 @@ to give us feedback. </td>
 <%----%>
 <br><br>
 
-<table border="0">
-    <tr>
-        <td>
-            <img src="/images/logo_contegix.gif" width="125" height="20" alt="Contegix">
-        </td>
-        <td>
-            Hosting and bandwidth generously sponsored by <a href="http://www.contegix.com">Contegix</a>.
-        </td>
-    </tr>
-</table>
-
         </div>
         <!-- END body content area -->
 
