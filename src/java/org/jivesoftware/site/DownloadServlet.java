@@ -87,10 +87,18 @@ public class DownloadServlet extends HttpServlet {
 
             String product = filename.substring(0, slash);
 
-            boolean downloadComplete = writeBytesToStream(downloadFile, response);
+            // now that we are hosting from Club Fed, need to reduce bandwidth from site itself
+            // so, have to offload downloads to S3/Cloudfront
+            // in all likelihood, our stats will be overly optimistic now since they will be counting
+            // download attempts, not completion
+            //boolean downloadComplete = writeBytesToStream(downloadFile, response);
+            boolean downloadComplete = true;
             if (downloadComplete) {
                 // Log to database
-                String ipAddress = request.getRemoteAddr();
+                String ipAddress = request.getHeader("X-FORWARDED-FOR");
+                if (ipAddress == null) {
+                    ipAddress = request.getRemoteAddr();
+                }
 
                 DownloadInfo downloadInfo = null;
                 for (DownloadInfo info : DownloadInfo.values()) {
@@ -110,6 +118,7 @@ public class DownloadServlet extends HttpServlet {
             else {
                 // Do Not Log
             }
+            response.sendRedirect(DownloadStats.getDownloadHost() + "/" + filename);
         }
         catch (IOException ioe) {
             // Ignore this sucker because it is caused by client disconnects most frequently

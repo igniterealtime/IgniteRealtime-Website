@@ -21,6 +21,13 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <param-name>plugins-path</param-name>
         <param-value>/opt/j2ee/domains/igniterealtime.org/www/root/webapps/ROOT/deployment/ROOT/projects/spark</param-value>
     </context-param>
+    
+    <!-- Hostname were our downloads are hosted. S3/Cloudfront, should almost never change. 
+         Default: http://download.igniterealtime.org Note, do not include a trailing "/". -->
+    <context-param>
+        <param-name>download-host</param-name>
+        <param-value>http://download.igniterealtime.org</param-value>
+    </context-param>
 
     <!-- Database connection parameters -->
     <context-param>

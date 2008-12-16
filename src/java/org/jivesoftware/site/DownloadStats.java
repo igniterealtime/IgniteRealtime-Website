@@ -52,6 +52,9 @@ public class DownloadStats extends HttpServlet {
 
     // A reference to the builds directory
     private static File buildsDirectory;
+    
+    // A reference to download hostname
+    private static String downloadHost;
 
     // The lookup service
     private static LookupService lookupService;
@@ -68,6 +71,7 @@ public class DownloadStats extends HttpServlet {
         catch (Exception e) {
             e.printStackTrace();
         }
+        String downloadHost = config.getServletContext().getInitParameter("download-host");
     }
 
     /**
@@ -91,6 +95,15 @@ public class DownloadStats extends HttpServlet {
      */
     public static File getBuildsDirectory() {
         return buildsDirectory;
+    }
+    
+    /**
+     * Return the "download" hostname for redirecting to S3/Cloudfront stored files.
+     * 
+     * @return the download hostname 
+     */
+    public static String getDownloadHost() {
+        return downloadHost;
     }
 
     /**
