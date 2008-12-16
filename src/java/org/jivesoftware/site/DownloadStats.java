@@ -71,7 +71,7 @@ public class DownloadStats extends HttpServlet {
         catch (Exception e) {
             e.printStackTrace();
         }
-        String downloadHost = config.getServletContext().getInitParameter("download-host");
+        downloadHost = config.getServletContext().getInitParameter("download-host");
     }
 
     /**
