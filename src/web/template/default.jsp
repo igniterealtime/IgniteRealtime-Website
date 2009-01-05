@@ -70,7 +70,6 @@
 				<li id="nav03"><a href="/downloads/index.jsp">Downloads</a></li>
 				<li id="nav04"><a href="/community/">Community</a></li>
 				<li id="nav05"><a href="/fans/index.jsp">Fans</a></li>
-				<li id="nav06"><a href="http://www.cafepress.com/igniterealtime">Store</a></li>
 				<li id="nav07"><a href="/support/index.jsp">Support</a></li>
 				<li id="nav08"><a href="/about/index.jsp">About</a></li>
 			</ol>
@@ -93,7 +92,7 @@
 	
 	<!-- BEGIN footer -->
 	<div id="ignite_footer">
-		<div class="ignite_footer_nav"><a href="/index.jsp">Home</a> | <a href="/projects/index.jsp">Products</a> | <a href="/downloads/index.jsp">Downloads</a> | <a href="/community">Community</a> | <a href="/fans/index.jsp">Fans</a> | <a href="http://www.cafepress.com/igniterealtime">Store</a> | <a href="/support/index.jsp">Support</a> | <a href="/about/index.jsp">About</a> </div>
+		<div class="ignite_footer_nav"><a href="/index.jsp">Home</a> | <a href="/projects/index.jsp">Projects</a> | <a href="/downloads/index.jsp">Downloads</a> | <a href="/community">Community</a> | <a href="/fans/index.jsp">Fans</a> | <a href="/support/index.jsp">Support</a> | <a href="/about/index.jsp">About</a> </div>
 		<div class="ignite_footer_copyright">Powered by <a href="http://www.jivesoftware.com/clearspace/?source=Website-Ignite">Clearspace</a> &copy; <a href="http://www.jivesoftware.com?source=Website-Ignite">Jive Software</a></div>
 	</div>
 	<!-- END footer -->

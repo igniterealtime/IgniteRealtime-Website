@@ -13,7 +13,6 @@
                                 <li id="nav03"><a href="/downloads/index.jsp">Downloads</a></li>
                                 <li id="nav04"><a href="/community/">Community</a></li>
                                 <li id="nav05"><a href="/fans/index.jsp">Fans</a></li>
-                                <li id="nav06"><a href="http://www.cafepress.com/igniterealtime">Store</a></li>
                                 <li id="nav07"><a href="/support/index.jsp">Support</a></li>
                                 <li id="nav08"><a href="/about/index.jsp">About</a></li>
                         </ol>
