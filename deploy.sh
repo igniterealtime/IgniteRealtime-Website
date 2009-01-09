@@ -4,4 +4,4 @@
 cd `dirname $0`
 svn up
 cd build
-ant deployjsp
+ant deployapp
