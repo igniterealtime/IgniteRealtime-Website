@@ -1,6 +1,12 @@
 /**
  * JavaScript for showing/hiding the Group Chat timer in the navbar.
  */
+
+// by default, hide the header elements
+document.getElementById('ignite_nav_groupchat-block').innerHTML = '';
+document.getElementById('ignite_nav_groupchat_moreinfo').style.display = NONE;
+document.getElementById('ignite_nav_groupchat').style.display = NONE;
+
 function runGroupChatTimer() {
     // Constants
     var MINUTES_IN_HOUR = 60;

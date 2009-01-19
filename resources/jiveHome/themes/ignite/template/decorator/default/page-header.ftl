@@ -22,6 +22,10 @@
                     <span id="ignite_nav_groupchat_moreinfo"><a href="http://www.igniterealtime.org/support/group_chat.jsp">More Information</a></span>
                 </div>
             </div>
+            <script type="text/javascript">
+                // The javascript timer for the header group chat callout
+                runGroupChatTimer();
+            </script>
         </div>
     </div>
 </#if>
