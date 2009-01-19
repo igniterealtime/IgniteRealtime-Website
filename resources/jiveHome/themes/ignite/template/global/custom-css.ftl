@@ -171,6 +171,12 @@ a:hover {
 
 }
 
+#jive-global-header {
+
+	padding:0px;
+
+}
+
 a#jive-global-header-logo {
 
 	background:transparent url(/community/themes/ignite/images/ignite_logo.gif) no-repeat scroll 0%;
