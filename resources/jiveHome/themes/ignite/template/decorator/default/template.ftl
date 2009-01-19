@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <title>${jiveContext.communityManager.rootCommunity.name}<#if page.title?exists && "" != page.title?trim>:</#if> ${page.title?default("")}</title>
 
@@ -26,7 +26,7 @@
     <script src="/scripts/groupchat_timer.js" language="JavaScript" type="text/javascript"></script>
 
 </head>
-<body id="community" class="${page.getProperty("body.class")!}" >
+<body class="${page.getProperty("body.class")!}" >
 
 <!-- IGNITE WRAPPER -->
 <div id="ignite-wrapper">
@@ -35,9 +35,11 @@
 
         <#include "/template/decorator/default/page-header.ftl" />
 
-        <#include "/template/decorator/default/page-userbar.ftl" />
+        <#if !page.getProperty("meta.nouserbar")??>
+            <#include "/template/decorator/default/page-userbar.ftl" />
+        </#if>
 
-        <#if page.getProperty("meta.nosidebar")?exists>
+        <#if page.getProperty("meta.nosidebar")??>
             <#assign bodyID = "jive-body-full" />
         </#if>
 
@@ -49,8 +51,9 @@
 
         </div>
 
-        <#include "/template/decorator/default/page-footer.ftl" />
-
+        <#if !page.getProperty("meta.nofooter")??>
+            <#include "/template/decorator/default/page-footer.ftl" />
+        </#if>
 
     </div>
 
