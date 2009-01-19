@@ -309,7 +309,7 @@ a#jive-global-header-logo {
 	background-image: url(/community/themes/ignite/images/jive-x-userbar-search-bg.gif);
 
 	position: relative;
-        height: 33px;
+        height: 32px;
         background-repeat: no-repeat;
 
 }
@@ -559,6 +559,11 @@ ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
 
 #jive-body-intro {
 	margin: 5px 0;
+	padding: 0 22px 0;
+}
+
+#jive-body-intro #jive-body-intro-content {
+	padding: 10px;
 }
 
 .jive-communitylist-med .jive-communitylist-sm a {
@@ -645,90 +650,6 @@ ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
 	margin-left:0px;
 
 }
-
-
-
-/* SIDEBARS ------------------------------------------------------- */
-
-.jive-sidebar .jive-sidebar-body {
-
-	background:#FFFFFF none repeat scroll 0%;
-
-	border:none;
-
-	font-size:8pt;
-
-	overflow:hidden;
-
-	width:202px;
-
-}
-
-.jive-sidebar .jive-sidebar-body-actions, .jive-sidebar .jive-sidebar-body-filter {
-
-	background: #FDFDFD url(/community/themes/ignite/images/jive-action-bar-bg.gif) repeat-x left top;
-
-	border:1px solid #DCDCDC;
-
-	-moz-border-radius: 10px;
-
-	width: 202px;
-
-}
-
-
-
-
-
-.jive-sidebar .jive-sidebar-body h4 {
-
-	border-bottom:1px solid #EDEDED;
-
-	font-size:11pt;
-
-	margin:0px 0px 10px;
-
-	padding:8px 10px 6px 0px;
-
-}
-
-.jive-sidebar .jive-sidebar-body ul {
-
-	padding:0px 6px 3px 0px;
-
-}
-
-.jive-sidebar .jive-sidebar-body p {
-
-	padding:2px 0px 8px;
-
-}
-
-
-
-.jive-sidebar .jive-sidebar-body-actions h4 {
-
-	border-bottom: none;
-
-	margin: 0px;
-
-	padding: 8px 10px 15px;
-
-	}
-
-.jive-sidebar .jive-sidebar-body-actions ul {
-
-	padding:0px 6px 12px 10px;
-
-}
-
-.jive-sidebar .jive-sidebar-body-actions p {
-
-	padding:2px 10px 8px;
-
-}
-
-
 
 
 
