@@ -171,7 +171,7 @@ a:hover {
 
 }
 
-#jive-global-header {
+#jive-global-header-texture {
 
 	padding:0px;
 
