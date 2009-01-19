@@ -26,7 +26,7 @@
     <script src="/scripts/groupchat_timer.js" language="JavaScript" type="text/javascript"></script>
 
 </head>
-<body class="${page.getProperty("body.class")!}" >
+<body id="community" class="${page.getProperty("body.class")!}" >
 
 <!-- IGNITE WRAPPER -->
 <div id="ignite-wrapper">
