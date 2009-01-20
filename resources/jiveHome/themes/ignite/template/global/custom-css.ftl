@@ -39,13 +39,17 @@ a:hover {
 
 }
 
+#user-bar-wrapper {
+	padding-top: 0;
+}
+
 #jive-body #jive-breadcrumb {
 
 	font-size: 9pt;
 
 	color: #999;
 
-	padding-bottom: 0px;
+	padding-bottom: 5px;
 
 	}
 
@@ -81,7 +85,17 @@ a:hover {
 
 }
 
+.jive-customize-info, .jive-customize-details {
 
+	margin-top: -24px;
+
+}
+
+#jive-overview-customize-info, #jive-overview-customize-details {
+
+	margin-top: -24px;
+
+}
 
 .jive-table-rss-link {
 
@@ -90,22 +104,6 @@ a:hover {
 	}	
 
 	
-
-.jive-content-block2-container {
-
-	-moz-border-radius: 8px;
-
-}
-
-
-
-.jive-link-privatemsg {
-
-        background-image: none;
-
-}
-
-
 
 /* MAIN CONTAINER ------------------------------------------------------------------------------------ */	
 
@@ -294,50 +292,7 @@ a#jive-global-header-logo {
 
 
 
-/* USER BAR ------------------------------------------------------------------------ */
 
-#jive-userbar {
-
-	background-image: url(/community/themes/ignite/images/jive-x-userbar-bg.gif);
-
-	}
-
-
-
-#jive-userbar-right {
-
-	background-image: url(/community/themes/ignite/images/jive-x-userbar-search-bg.gif);
-
-	position: relative;
-        height: 32px;
-        background-repeat: no-repeat;
-
-}
-
-
-
-#jive-userbar-search {
-
-        padding-top: 3px;
-}
-
-#jive-userbar-search .jive-userbar-search-field {
-
-    margin-left: 3pt;
-
-}
-
-#jive-userbar-print {
-
-	margin:21px 10px 0px 0px;
-
-}
-
-#jive-userbar-print a {
-
-    padding:0px 0pt 3px 20px;
-
-}
 
 /* COLUMNS ----------------------------------------------------------------------- */
 
@@ -356,6 +311,10 @@ a#jive-global-header-logo {
 #jive-footer {
 
 	color: #666;
+
+	padding-left: 10px;
+
+	padding-right: 10px;
 
 	text-align: left;
 
@@ -469,40 +428,14 @@ html > body #jive-bodyhome-maincol {
 
 /* COMMUNITY SIDE CONTAINER  */
 
-#jive-community-list-padding {
-
-	padding: 0px;
-
-	}
-
-.jive-community-item-content {
-
-	padding:0px;
-
-}
-
-.jive-communitylist-big {
-
-	background: none;
-
-}
-
-.jive-communitylist-big, .jive-communitylist-big-new {
-
-	height:20px;
-
-	padding:4px 0pt 2px 0px;
-
-}
-
-
-.jive-sidebar-subcommunities .jive-communitylist-med a {
+.jive-icon-list-spaces li a {
 	font-size: 11pt;
 	font-weight: bold;
 }
 
-ul.jive-sidebar-subcommunities li, ul.jive-sidebar-taggroups li {
-	padding: 2px 0pt 16px !important;
+.jive-icon-list-spaces li ul li a {
+	font-size: 9pt;
+	font-weight: normal;
 }
 
 #jive-widget-content .jive-sidebar .jive-sidebar-body-polls {
@@ -511,10 +444,6 @@ ul.jive-sidebar-subcommunities li, ul.jive-sidebar-taggroups li {
 
 ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
 	padding: 0pt 0pt 19px 18px !important;
-}
-
-.jive-sidebar-subcommunities .jive-communitylist-med {
-	padding-top: 16px;
 }
 
 .jive-body-home #jive-body-layout-sl .jive-body-layout-s {
@@ -557,8 +486,8 @@ ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
 	border: 1px solid #dcdcdc;
 }
 
-#jive-body-intro {
-	margin: 5px 0;
+#jive-body-intro.jive-body-intro-home {
+	margin: 0 0 25px;
 	padding: 0 22px 0;
 }
 
@@ -653,111 +582,6 @@ ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
 
 
 
-/* DISCUSSIONS --------------------------------------------------- */
-
-.jive-thread-post {
-
-	border: none;
-
-	-moz-border-radius: 10px;
-
-	}
-
-.jive-thread-info {
-
-	background: none;
-
-	border-bottom:1px solid #D5E3EE;
-
-	margin:2px 0px 0px;
-
-	padding:10px 5px 10px 10px;
-
-}
-
-.jive-thread-post-subject-content {
-
-	background: #D5E3EE url(/community/themes/ignite/images/jive-thread-hdr-bg.png) repeat-x left top;
-
-	clear:both;
-
-	margin:0px 0px 15px;
-
-	padding:15px;
-
-}
-
-
-
-
-
-/* BLOGS ----------------------------------------------------------- */
-
-.jive-blog-info, .jive-groupblog-info {
-
-	-moz-border-radius-topleft: 10px;
-
-	-moz-border-radius-topright: 10px;
-
-	border-top: 1px #e7f7d6 solid;
-
-	border-left: 1px #e7f7d6 solid;
-
-	border-right: 1px #e7f7d6 solid;
-
-	margin: 10px 0px 0px;
-
-}
-
-.jive-blog-post, .jive-groupblog-post {
-
-	-moz-border-radius-bottomleft: 10px;
-
-	-moz-border-radius-bottomright: 10px;
-
-	border-bottom: 1px #e7f7d6 solid;
-
-	border-left: 1px #e7f7d6 solid;
-
-	border-right: 1px #e7f7d6 solid;
-
-	width: 100%;
-
-}
-
-
-
-/* Blog Posts Page */
-
-#jive-blogpost-content .jive-blog-post, .jive-groupblog-post {
-
-	border-left: none;
-
-	border-right: none;
-
-	-moz-border-radius: 0px;
-
-	}
-
-
-
-
-
-/* DOCUMENTS -------------------------------------------------------- */
-
-.jive-wiki {
-
-	-moz-border-radius: 10px;
-
-	background: #f8f4e6 url(/community/themes/ignite/images/jive-wiki-hdr-bg.png) repeat-x left top;
-
-	}
-
-
-
-
-
-
 
 /* Group Chat Timer */
 
@@ -812,11 +636,3 @@ ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
 	padding-top: 3px;
 
     }
-
-    
-
-#jive-people-search {
-
-    padding:10px !important;
-
-}
