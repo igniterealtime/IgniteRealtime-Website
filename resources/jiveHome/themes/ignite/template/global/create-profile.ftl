@@ -49,6 +49,14 @@
         <#else>
         <form action="#" method="post" name="accountform" autocomplete="off">
         </#if>
+
+            <input type="hidden" name="elqCustomerGUID" value="">
+            <input type="hidden" name="elqCookieWrite" value="0">
+            <input type="hidden" name="elqSiteID" value="764">
+            <input type="hidden" name="elqDefaultTargetURL" value="">
+            <input type="hidden" name="elqPost" value="">
+            <input type="hidden" name="elqFormName" value="Ignite-Registration"/>
+
             <div class="jive-table jive-table-registration">
 
                 <table cellpadding="0" cellspacing="0">
