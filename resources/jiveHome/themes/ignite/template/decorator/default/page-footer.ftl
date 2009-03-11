@@ -10,7 +10,7 @@
             <a href="http://www.jivesoftware.com/poweredby/" target="_blank">
                 <@s.text name='dectr.pwrdByJiveLicense.link'>
                     <@s.param>${jiveContext.communityManager.rootCommunity.name}</@s.param>
-                    <@s.param>Clearspace</@s.param>
+                    <@s.param>${license.name?string}</@s.param> 
                     <@s.param>${license.version.versionString?string}</@s.param>
                 </@s.text>
             </a>
