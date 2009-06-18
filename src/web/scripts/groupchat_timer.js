@@ -2,10 +2,10 @@
  * JavaScript for showing/hiding the Group Chat timer in the navbar.
  */
 
-// by default, hide the header elements
-document.getElementById('ignite_nav_groupchat-block').innerHTML = '';
-document.getElementById('ignite_nav_groupchat_moreinfo').style.display = NONE;
-document.getElementById('ignite_nav_groupchat').style.display = NONE;
+// by default, header elements are hidden, so we don't need this
+//document.getElementById('ignite_nav_groupchat_block').innerHTML = '';
+//document.getElementById('ignite_nav_groupchat_moreinfo').style.display = NONE;
+//document.getElementById('ignite_nav_groupchat').style.display = NONE;
 
 function runGroupChatTimer() {
     // Constants
@@ -65,10 +65,10 @@ function runGroupChatTimer() {
     if (show) {
         document.getElementById('ignite_nav_groupchat').style.display = BLOCK;
         document.getElementById('ignite_nav_groupchat_moreinfo').style.display = BLOCK;
-        document.getElementById('ignite_nav_groupchat-block').innerHTML = message;
+        document.getElementById('ignite_nav_groupchat_block').innerHTML = message;
     }
     else {
-        document.getElementById('ignite_nav_groupchat-block').innerHTML = '';
+        document.getElementById('ignite_nav_groupchat_block').innerHTML = '';
         document.getElementById('ignite_nav_groupchat_moreinfo').style.display = NONE;
         document.getElementById('ignite_nav_groupchat').style.display = NONE;
     }

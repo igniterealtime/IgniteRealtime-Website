@@ -73,9 +73,9 @@
 				<li id="nav07"><a href="/support/index.jsp">Support</a></li>
 				<li id="nav08"><a href="/about/index.jsp">About</a></li>
 			</ol>
-            <div id="ignite_nav_groupchat" class="ignite_nav_groupchat">
-				<span class="ignite_nav_groupchat-block" id="ignite_nav_groupchat-block"></span>
-				<span id="ignite_nav_groupchat_moreinfo"><a href="/support/group_chat.jsp">More Information</a></span>
+            <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
+				<span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
+				<span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="/support/group_chat.jsp">More Information</a></span>
 			</div>
 		</div>
 	</div>
