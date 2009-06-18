@@ -49,8 +49,8 @@
             </span>
 
             <h2>Openfire <%= version %></h2>
-            <p>Openfire (formerly Wildfire) is a cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.
-			<a style="color: #666;" target="_blank" href="http://www.jivesoftware.com/company/why.jsp?source=Website-Ignite">Read about the name change</a>
+            <p>Openfire (formerly Wildfire) is a cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.<%--
+			<a style="color: #666;" target="_blank" href="http://www.jivesoftware.com/company/why.jsp?source=Website-Ignite">Read about the name change</a>--%>
 			</p>
 
             <span class="ignite_download_choose">Choose your platform:</span>
