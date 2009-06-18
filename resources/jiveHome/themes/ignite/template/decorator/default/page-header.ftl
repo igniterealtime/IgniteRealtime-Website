@@ -18,7 +18,7 @@
                     <li id="nav08"><a href="/about/index.jsp">About</a></li>
                     </ol>
                 <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
-                    <span class="ignite_nav_groupchat-block" id="ignite_nav_groupchat-block"></span>
+                    <span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
                     <span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="http://www.igniterealtime.org/support/group_chat.jsp">More Information</a></span>
                 </div>
             </div>
