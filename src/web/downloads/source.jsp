@@ -201,7 +201,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tbody>
                             <tr>
-                                <td width="1%" rowspan="7" class="item" valign="top">
+                                <td width="1%" rowspan="8" class="item" valign="top">
                                     Browse SVN
                                 </td>
                                 <td width="99%">
@@ -252,7 +252,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="1%" rowspan="7" class="item" valign="top">
+                                <td width="1%" rowspan="8" class="item" valign="top">
                                 SVN Access
                             </td>
                             <td width="99%">
