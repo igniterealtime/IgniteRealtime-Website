@@ -15,14 +15,14 @@
     }
     else if (project.equals("spark")) {
         name = "winsrev";
-        avatarSrc = "http://www.igniterealtime.org/community/people/winsrev/avatar/46.png";
-        profileLink = "http://www.igniterealtime.org/community/people/winsrev";
+        avatarSrc = "/community/people/winsrev/avatar/46.png";
+        profileLink = "/community/people/winsrev";
         profile = "Constantly moaning, raving and getting stressed, then writing mysterious code that only works with the magic of Spark.";
     }
     else if (project.equals("sparkweb")) {
         name = "ajagucki";
-        avatarSrc = "http://www.igniterealtime.org/community/people/ajagucki/avatar/46.png";
-        profileLink = "http://www.igniterealtime.org/community/people/ajagucki";
+        avatarSrc = "/community/people/ajagucki/avatar/46.png";
+        profileLink = "/community/people/ajagucki";
         profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
     }
     else if (project.equals("smack")) {
@@ -31,16 +31,22 @@
         profileLink = "/community/people/matt";
         profile = "\"That code doesn't have comments?! AHHH!\"";
     }
+    else if (project.equals("tinder")) {
+        name = "Guus";
+        avatarSrc = "/community/people/Guus/avatar/46.png";
+        profileLink = "/community/people/Guus";
+        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
+    }
     else if (project.equals("whack")) {
         name = "gato";
-        avatarSrc = "http://www.igniterealtime.org/community/people/dombiak_gaston/avatar/32.png";
-        profileLink = "http://www.igniterealtime.org/community/people/dombiak_gaston";
+        avatarSrc = "/community/people/dombiak_gaston/avatar/32.png";
+        profileLink = "/community/people/dombiak_gaston";
         profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
     }
     else if (project.equals("xiff")) {
         name = "ajagucki";
-        avatarSrc = "http://www.igniterealtime.org/community/people/ajagucki/avatar/46.png";
-        profileLink = "http://www.igniterealtime.org/community/people/ajagucki";
+        avatarSrc = "/community/people/ajagucki/avatar/46.png";
+        profileLink = "/community/people/ajagucki";
         profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
     }
 %>

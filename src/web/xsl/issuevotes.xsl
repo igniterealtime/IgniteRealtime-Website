@@ -38,6 +38,9 @@
                         <xsl:when test="starts-with(key, 'SMACK')">
                             Smack
                         </xsl:when>
+                        <xsl:when test="starts-with(key, 'TINDER')">
+                            Tinder
+                        </xsl:when>
                         <xsl:when test="starts-with(key, 'XIFF')">
                             XIFF
                         </xsl:when>

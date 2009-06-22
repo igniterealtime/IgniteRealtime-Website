@@ -252,13 +252,16 @@
 					<div class="ignite_sidebar_body_project5">
 						<span><strong><a href="/projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/index.jsp#smack"></a>
 					</div>
-					<div class="ignite_sidebar_body_project6">
-						<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>
+                    <div class="ignite_sidebar_body_project6">
+						<span><strong><a href="/projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="/downloads/index.jsp#tinder"></a>
 					</div>
 					<div class="ignite_sidebar_body_project7">
+						<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>
+					</div>
+					<div class="ignite_sidebar_body_project8">
 						<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>
 					</div>
-					<div class="ignite_sidebar_body_project8" style="text-align: center;">
+					<div class="ignite_sidebar_body_project9" style="text-align: center;">
 						<strong><a href="/roadmap.jsp">Roadmap</a></strong>
 					</div>
 				</div>

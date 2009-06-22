@@ -40,6 +40,22 @@
     if (smackSrcZip.exists()) {
         smackBuildDate = dateFormat.format(new Date(smackSrcZip.lastModified()));
     }
+    
+    // Tinder Source
+    String tinderVersion = Versions.getVersion("tinder");
+    if (tinderVersion == null) {
+        tinderVersion = "0.0";
+    }
+
+    String tinderBasedir = buildsPath + "/tinder";
+    String tinderVer = tinderVersion.replace('.', '_');
+    File tinderSrcZip = new File(tinderBasedir, "tinder_src_" + tinderVer + ".zip");
+    File tinderSrcTarGz = new File(tinderBasedir, "tinder_src_" + tinderVer + ".tar.gz");
+
+    String tinderBuildDate = "UNKNOWN";
+    if (tinderSrcZip.exists()) {
+        tinderBuildDate = dateFormat.format(new Date(tinderSrcZip.lastModified()));
+    }
 
     // Whack Source
     String whackVersion = Versions.getVersion("whack");
@@ -136,6 +152,25 @@
 							</span>
 							<span class="ignite_download_item_date"><%= smackBuildDate %></span>
 							<span class="ignite_download_item_size"><%= formatter.format((double)smackSrcTarGz.length()/1024.0/1024.0) %> MB</span>
+                        </div>
+                        <div class="ignite_download_panel_label">
+							<h4>Tinder Source</h4>
+						</div>
+						<div class="ignite_download_item_odd">
+							<span class="ignite_download_item_details">
+								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
+								<a href="<%= path %>/downloads/download-landing.jsp?file=tinder/<%= tinderSrcZip.getName() %>"><%= tinderSrcZip.getName() %></a>
+							</span>
+							<span class="ignite_download_item_date"><%= tinderBuildDate %></span>
+							<span class="ignite_download_item_size"><%= formatter.format((double)tinderSrcZip.length()/1024.0/1024.0) %> MB</span>
+						</div>
+						<div class="ignite_download_item_even">
+							<span class="ignite_download_item_details">
+								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
+								<a href="<%= path %>/downloads/download-landing.jsp?file=tinder/<%= tinderSrcTarGz.getName() %>"><%= tinderSrcTarGz.getName() %></a>
+							</span>
+							<span class="ignite_download_item_date"><%= tinderBuildDate %></span>
+							<span class="ignite_download_item_size"><%= formatter.format((double)tinderSrcTarGz.length()/1024.0/1024.0) %> MB</span>
                         </div>
 						<div class="ignite_download_panel_label">
 							<h4>Whack Source</h4>

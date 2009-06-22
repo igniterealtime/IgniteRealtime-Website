@@ -42,6 +42,7 @@ An RSS feed for download statistics.
         public static long openfireDownloads = 0L;
         public static long sparkDownloads = 0L;
         public static long smackDownloads = 0L;
+        public static long tinderDownloads = 0L;
         public static long xiffDownloads = 0L;
         public static long whackDownloads = 0L;
         public static long sparkwebDownloads = 0L;
@@ -58,6 +59,7 @@ An RSS feed for download statistics.
             sparkDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.spark);
             sparkwebDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.sparkweb);
             smackDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.smack);
+            tinderDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.tinder);
             whackDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.whack);
             xiffDownloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.xiff);
             dateString = DATE_FORMATTER.format(new Date());
@@ -103,6 +105,10 @@ An RSS feed for download statistics.
                         <td><%= NUMBER_FORMATTER.format(smackDownloads) %></td>
                         </tr>
                         <tr>
+                        <td>Tinder</td>
+                        <td><%= NUMBER_FORMATTER.format(tinderDownloads) %></td>
+                        </tr>
+                        <tr>
                         <td>Whack</td>
                         <td><%= NUMBER_FORMATTER.format(whackDownloads) %></td>
                         </tr>
@@ -119,6 +125,7 @@ An RSS feed for download statistics.
             <ignite:sparkDownloads><%= NUMBER_FORMATTER.format(sparkDownloads) %></ignite:sparkDownloads>
             <ignite:sparkwebDownloads><%= NUMBER_FORMATTER.format(sparkwebDownloads) %></ignite:sparkwebDownloads>
             <ignite:smackDownloads><%= NUMBER_FORMATTER.format(smackDownloads) %></ignite:smackDownloads>
+            <ignite:tinderDownloads><%= NUMBER_FORMATTER.format(tinderDownloads) %></ignite:tinderDownloads>
             <ignite:whackDownloads><%= NUMBER_FORMATTER.format(whackDownloads) %></ignite:whackDownloads>
             <ignite:xiffDownloads><%= NUMBER_FORMATTER.format(xiffDownloads) %></ignite:xiffDownloads>
         </item>

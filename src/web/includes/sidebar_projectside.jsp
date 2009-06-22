@@ -18,6 +18,10 @@
                     jiraID = "10011";
                     forumID = "2001";
                 }
+                else if ("tinder".equals(project)) {
+                    jiraID = "10141";
+                    forumID = "2030";
+                }
                 else if ("whack".equals(project)) {
                     jiraID = "10040";
                     forumID = "2002";
@@ -36,7 +40,7 @@
             <jsp:include page="/includes/sidebar_projectlead.jsp">
                 <jsp:param name="project" value="<%= project %>" />
             </jsp:include>
-
+                                              brb
 			<jsp:include page="/includes/sidebar_snapshot.jsp">
 			    <jsp:param name="project" value="<%= project %>"/>
 			</jsp:include>

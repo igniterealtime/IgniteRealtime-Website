@@ -64,6 +64,10 @@
 				<!-- BEGIN smack downloads -->
                 <%@ include file="/includes/download-box-smack.jspf" %>
 				<!-- END smack downloads -->
+                
+                <!-- BEGIN tinder downloads -->
+                <%@ include file="/includes/download-box-tinder.jspf" %>
+				<!-- END tinder downloads -->
 
 				<!-- BEGIN whack downloads -->
                 <%@ include file="/includes/download-box-whack.jspf" %>

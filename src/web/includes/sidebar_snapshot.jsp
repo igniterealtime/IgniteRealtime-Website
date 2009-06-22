@@ -24,6 +24,9 @@
                 else if (project.equals("smack")) {
                     license = "Open Source Apache";
                 }
+                else if (project.equals("tinder")) {
+                    license = "Open Source GPL";
+                }
                 else if (project.equals("whack")) {
                     license = "Open Source Apache";
                 }
@@ -43,6 +46,9 @@
                     platform = "Cross-Platform";
                 }
                 else if (project.equals("smack")) {
+                    platform = "Cross-Platform";
+                }
+                else if (project.equals("tinder")) {
                     platform = "Cross-Platform";
                 }
                 else if (project.equals("whack")) {

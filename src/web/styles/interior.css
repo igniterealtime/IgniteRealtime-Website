@@ -122,6 +122,11 @@ styles specific to the interior pages for the Ignite Real Time site.
 	/*background: transparent url(../images/logo_smack.gif) no-repeat left;
 	padding-left: 35px;*/
 	}
+#ignite_bigpanel h1.tinder, 
+#ignite_smallpanel h1.tinder {
+	/*background: transparent url(../images/logo_tinder.gif) no-repeat left;
+	padding-left: 35px;*/
+	}
 #ignite_bigpanel h1.whack, 
 #ignite_smallpanel h1.whack {
 	/*background: transparent url(../images/logo_whack.gif) no-repeat left;
@@ -374,7 +379,8 @@ img.ignite_body_image_right {
 .ignite_project_big img.ignite_projects_spark, 
 .ignite_project_big img.ignite_projects_sparkweb, 
 .ignite_project_small img.ignite_projects_asterisk, 
-.ignite_project_small img.ignite_projects_smack, 
+.ignite_project_small img.ignite_projects_smack,
+.ignite_project_small img.ignite_projects_tinder, 
 .ignite_project_small img.ignite_projects_whack, 
 .ignite_project_small img.ignite_projects_xiff {
 	margin-bottom: 10px;
@@ -605,7 +611,8 @@ img.ignite_body_image_right {
 
 #openfireCpBtn.ignite_download_btn a,
 #sparkwebCpBtn.ignite_download_btn a, 
-#smackCpBtn.ignite_download_btn a, 
+#smackCpBtn.ignite_download_btn a,
+#tinderCpBtn.ignite_download_btn a, 
 #whackCpBtn.ignite_download_btn a, 
 #xiffCpBtn.ignite_download_btn a {
 	display: block;
@@ -616,7 +623,8 @@ img.ignite_body_image_right {
 	}
 #openfireCpBtn.ignite_download_btn_current a,
 #sparkwebCpBtn.ignite_download_btn_current a,
-#smackCpBtn.ignite_download_btn_current a, 
+#smackCpBtn.ignite_download_btn_current a,
+#tinderCpBtn.ignite_download_btn_current a,
 #whackCpBtn.ignite_download_btn_current a, 
 #xiffCpBtn.ignite_download_btn_current a {
 	display: block;
@@ -627,21 +635,24 @@ img.ignite_body_image_right {
 	}
 #openfireCpBtn.ignite_download_btn a,
 #sparkwebCpBtn.ignite_download_btn a,
-#smackCpBtn.ignite_download_btn a, 
+#smackCpBtn.ignite_download_btn a,
+#tinderCpBtn.ignite_download_btn a,
 #whackCpBtn.ignite_download_btn a, 
 #xiffCpBtn.ignite_download_btn a {
 	background: transparent url(../images/ignite_dl_btn_cp.gif) no-repeat;
 	}
 #openfireCpBtn.ignite_download_btn a:hover,
 #sparkwebCpBtn.ignite_download_btn a:hover,
-#smackCpBtn.ignite_download_btn a:hover, 
+#smackCpBtn.ignite_download_btn a:hover,
+#tinderCpBtn.ignite_download_btn a:hover,
 #whackCpBtn.ignite_download_btn a:hover, 
 #xiffCpBtn.ignite_download_btn a:hover {
 	background: transparent url(../images/ignite_dl_btn_cp-over.gif) no-repeat;
 	}
 #openfireCpBtn.ignite_download_btn_current a,
 #sparkwebCpBtn.ignite_download_btn_current a,
-#smackCpBtn.ignite_download_btn_current a, 
+#smackCpBtn.ignite_download_btn_current a,
+#tinderCpBtn.ignite_download_btn_current a, 
 #whackCpBtn.ignite_download_btn_current a, 
 #xiffCpBtn.ignite_download_btn_current a {
 	background: transparent url(../images/ignite_dl_btn_cp-on.gif) no-repeat;
@@ -1109,6 +1120,12 @@ img.ignite_body_image_right {
 	}
 .ignite_support_projlink a.smack {
 	background: transparent url(../images/logo_smack_16x16.gif) no-repeat left;
+	}
+.ignite_support_projlink a.tinder {
+	background: transparent url(../images/logo_whack_16x16.gif) no-repeat left;
+	}
+.ignite_support_projlink a.whack {
+	background: transparent url(../images/logo_whack_16x16.gif) no-repeat left;
 	}
 .ignite_support_projlink a.xiff {
 	background: transparent url(../images/logo_xiff_16x16.gif) no-repeat left;

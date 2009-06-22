@@ -102,6 +102,7 @@
 									<li class="ignite_support_projlink"><a href="../projects/openfire/documentation.jsp">Openfire <%= Versions.getVersion("openfire") %></a></li>
 									<li class="ignite_support_projlink"><a href="../projects/spark/documentation.jsp">Spark <%= Versions.getVersion("spark") %></a></li>
 									<li class="ignite_support_projlink"><a href="../projects/smack/documentation.jsp">Smack API <%= Versions.getVersion("smack") %></a></li>
+                                    <li class="ignite_support_projlink"><a href="../projects/tinder/documentation.jsp">Smack API <%= Versions.getVersion("tinder") %></a></li>
 									<li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>
 								</ul>
 							</div>

@@ -25,7 +25,7 @@
 			
 				<!-- BEGIN body header -->
 				<div id="ignite_body_header">
-					<h1>Products</h1> <strong>Open Source Real-Time Communication</strong>
+					<h1>Projects</h1> <strong>Open Source Real-Time Communication</strong>
 				</div>
 				<!-- END body header -->
 				
@@ -82,6 +82,20 @@
 							</td>
 							<td class="ignite_project_table-link">
 								<a href="smack/index.jsp">Learn More</a>
+							</td>
+						</tr>
+                        <tr class="ignite_project_table-row-odd">
+							<td class="ignite_project_table-title">
+								<a href="tinder/index.jsp">Tinder API</a>
+							</td>
+							<td class="ignite_project_table-description">
+							A Java based XMPP library, providing an implementation for XMPP stanzas and components.
+							</td>
+							<td class="ignite_project_table-version">
+								<%= Versions.getVersion("tinder") %>
+							</td>
+							<td class="ignite_project_table-link">
+								<a href="tinder/index.jsp">Learn More</a>
 							</td>
 						</tr>
 						<tr class="ignite_project_table-row-odd">
