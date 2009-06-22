@@ -25,6 +25,7 @@
                 String style = "";
 				int counter = 0;
 				List<ForumMessage> messagesFA = forumServiceFA.getMessagesByCommunityIDAndFilter(Long.parseLong(request.getParameter("forumID")), rfFA);
+                if (null != messagesFA) {
 				for (ForumMessage message : messagesFA) {
 					counter++;
 					style = "ignite_sidebar_forum_" + (counter % 2);
@@ -37,7 +38,8 @@
 					</div>
 			   </div>
 				
-				<% } %>
+				<% }
+                } %>
 			</div>
 			<div class="ignite_sidebar_btm"></div>
 		</div>
