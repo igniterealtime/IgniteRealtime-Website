@@ -69,9 +69,9 @@
 				<!-- BEGIN libraries -->
 				<div class="ignite_project_type">Libraries</div>
 				<div class="ignite_project_table">
-					<table border cellpadding="0" cellspacing="0" border="0">
+					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
 						<tr class="ignite_project_table-row-odd">
-							<td class="ignite_project_table-title">
+							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="smack/index.jsp">Smack API</a>
 							</td>
 							<td class="ignite_project_table-description">
@@ -80,12 +80,12 @@
 							<td class="ignite_project_table-version">
 								<%= Versions.getVersion("smack") %>
 							</td>
-							<td class="ignite_project_table-link">
+							<td class="ignite_project_table-link" nowrap="nowrap">
 								<a href="smack/index.jsp">Learn More</a>
 							</td>
 						</tr>
                         <tr class="ignite_project_table-row-odd">
-							<td class="ignite_project_table-title">
+							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="tinder/index.jsp">Tinder API</a>
 							</td>
 							<td class="ignite_project_table-description">
@@ -94,12 +94,12 @@
 							<td class="ignite_project_table-version">
 								<%= Versions.getVersion("tinder") %>
 							</td>
-							<td class="ignite_project_table-link">
+							<td class="ignite_project_table-link" nowrap="nowrap">
 								<a href="tinder/index.jsp">Learn More</a>
 							</td>
 						</tr>
 						<tr class="ignite_project_table-row-odd">
-							<td class="ignite_project_table-title">
+							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="whack/index.jsp">Whack API</a>
 							</td>
 							<td class="ignite_project_table-description">
@@ -108,12 +108,12 @@
 							<td class="ignite_project_table-version">
 								<%= Versions.getVersion("whack") %>
 							</td>
-							<td class="ignite_project_table-link">
+							<td class="ignite_project_table-link" nowrap="nowrap">
 								<a href="whack/index.jsp">Learn More</a>
 							</td>
 						</tr>
 						<tr class="ignite_project_table-row-even">
-							<td class="ignite_project_table-title">
+							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="xiff/index.jsp">XIFF API</a>
 							</td>
 							<td class="ignite_project_table-description">
@@ -122,7 +122,7 @@
 							<td class="ignite_project_table-version">
 								<%= Versions.getVersion("xiff") %>
 							</td>
-							<td class="ignite_project_table-link">
+							<td class="ignite_project_table-link" nowrap="nowrap">
 								<a href="xiff/index.jsp">Learn More</a>
 							</td>
 						</tr>
