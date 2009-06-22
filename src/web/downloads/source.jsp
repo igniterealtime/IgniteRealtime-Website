@@ -235,6 +235,12 @@
                             </tr>
                             <tr>
                                 <td width="99%">
+                                    Tinder:
+                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/tinder">tinder/trunk</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="99%">
                                     Whack:
                                     <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/whack">whack/trunk</a>
                                 </td>
@@ -273,6 +279,11 @@
                             <td width="99%">
                                 Smack:<br>
                                 <tt>svn co http://svn.igniterealtime.org/svn/repos/smack/trunk smack</tt>
+                        </tr>
+                            <tr>
+                            <td width="99%">
+                                Tinder:<br>
+                                <tt>svn co http://svn.igniterealtime.org/svn/repos/tinder/trunk tinder</tt>
                         </tr>
                         <tr>
                             <td width="99%">
@@ -317,6 +328,7 @@
                 <a href="http://www.igniterealtime.org/issues/browse/SPARK">Spark</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/SW">SparkWeb</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/SMACK">Smack API</a>,
+                <a href="http://www.igniterealtime.org/issues/browse/TINDER">Tinder API</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/WHACK">Whack API</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/XIFF">XIFF</a>,
                 <a href="http://www.igniterealtime.org/issues/browse/GATE">Gateway Plugin</a>, and

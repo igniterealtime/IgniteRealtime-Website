@@ -16,32 +16,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-whack.jspf" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-whack.jspf" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-smack.jspf" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-smack.jspf" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ignite.iws" afterPath="$PROJECT_DIR$/ignite.iws" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_projectlead.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_projectlead.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ignite.ipr" afterPath="$PROJECT_DIR$/ignite.ipr" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_projectside.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_projectside.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/Ignite.iml" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/Ignite.iml" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/images/ignite_dl_tinder.png" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/support/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/support/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/xsl/issuevotes.xsl" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/xsl/issuevotes.xsl" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-tinder.jspf" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/rss/downloadstats.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/rss/downloadstats.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/DownloadServlet.java" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/DownloadServlet.java" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_snapshot.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_snapshot.jsp" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder/documentation.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/index.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/index.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/styles/interior.css" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/styles/interior.css" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/template/default.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/template/default.jsp" />
-      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/versions.xml" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/java/versions.xml" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/images/ignite_dl_whack.png" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder/index.jsp" />
       <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/source.jsp" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/source.jsp" />
-      <change type="NEW" beforePath="" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/images/ignite_dl_smack.png" />
+      <change type="MODIFICATION" beforePath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-tinder.jspf" afterPath="/Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-tinder.jspf" />
     </list>
     <ignored path="ignite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -104,10 +81,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.jsp" pinned="false" current="true" current-in-tab="true">
-        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp">
+      <file leaf-file-name="download-box-tinder.jspf" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-tinder.jspf">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="67" column="120" selection-start="2564" selection-end="2564" vertical-scroll-proportion="0.36217552">
+            <state line="38" column="88" selection-start="1741" selection-end="1741" vertical-scroll-proportion="-19.631578">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="source.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/source.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="330" column="75" selection-start="15921" selection-end="15921" vertical-scroll-proportion="2.2464359">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder/index.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="26" column="46" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-13.947369">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="documentation.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder/documentation.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="54" column="20" selection-start="1938" selection-end="2042" vertical-scroll-proportion="-26.526316">
               <folding />
             </state>
           </provider>
@@ -129,12 +133,12 @@
     <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/ws_locator.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" />
     <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_testimonial.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" />
     <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_48hrsnapshot.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/index.jsp" />
-    <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-whack.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp" />
     <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-tinder.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp" />
+    <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_enterprise.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/openfire/screenshots.jsp" />
     <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_createaccount.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/members/index.jsp" />
     <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_newsletter.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/privacy.jsp" />
     <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-smack.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp" />
-    <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_enterprise.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/openfire/screenshots.jsp" />
+    <jsp-to-context jsp-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-whack.jspf" context-file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp" />
   </component>
   <component name="ModuleEditorState">
     <option name="LAST_EDITED_MODULE_NAME" />
@@ -336,32 +340,6 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="images" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="Ignite" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="igniterealtime.org" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="web" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
           <option name="myItemId" value="downloads" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
@@ -407,13 +385,13 @@
     <property name="GoToClass.includeJavaFiles" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_Ignite/web/Web" value="/private/tmp/webExplodedDir63464tmp" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="TEMP_MODULE_EXPLODED_DIR_FOR_Ignite/web/Web" value="/private/tmp/webExplodedDir63464tmp" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="TEMP_MODULE_EXPLODED_DIR_FOR_Ignite/web/Web2" value="/private/tmp/webExplodedDir63463tmp" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="last_opened_file_path" value="/Users/benjamin/Projects/Jive/old_website2.0/src/web/WEB-INF/ftl/products/clearspace" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="last_opened_file_path" value="/Users/benjamin/Projects/Jive/old_website2.0/src/web/WEB-INF/ftl/products/clearspace" />
     <property name="RunManagerConfig.showSettingsBeforeRunnig" value="false" />
   </component>
   <component name="RunManager" selected="Tomcat Server.Local/Remote Tomcat">
@@ -592,13 +570,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="22" width="1614" height="1168" extended-state="0" />
-    <editor active="false" />
+    <frame x="52" y="22" width="1868" height="1178" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Dataflow to this" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" />
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3291866" sideWeight="0.5" order="13" side_tool="false" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17688379" sideWeight="0.81913877" order="1" side_tool="false" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13021979" sideWeight="0.8691943" order="1" side_tool="false" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33014354" sideWeight="0.5" order="7" side_tool="false" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.13074712" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" />
@@ -606,7 +584,7 @@
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.10770913" sideWeight="0.5" order="6" side_tool="false" />
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17416269" sideWeight="0.5" order="2" side_tool="false" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.124170616" sideWeight="0.5" order="2" side_tool="false" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861477" sideWeight="0.5" order="4" side_tool="false" />
@@ -636,7 +614,7 @@
     <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changing footer to force name &quot;Clearspace&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="IRW-43 - fix docs links on download" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
@@ -665,6 +643,8 @@
     <MESSAGE value="ok, remove logging" />
     <MESSAGE value="Changing footer to force name &quot;Clearspace Community&quot;." />
     <MESSAGE value="Changing footer to force name &quot;Clearspace&quot;." />
+    <MESSAGE value="IRW-43 - make side bar not NPE if no forum activity" />
+    <MESSAGE value="IRW-43 - fix docs links on download" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -732,20 +712,6 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/styles/interior.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1138" column="54" selection-start="26688" selection-end="26688" vertical-scroll-proportion="-16.038462">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/rss/downloadstats.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="111" column="59" selection-start="4710" selection-end="4710" vertical-scroll-proportion="-70.10526">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/java/org/jivesoftware/site/DownloadServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="37" column="29" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
@@ -753,30 +719,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="24" selection-start="2350" selection-end="2471" vertical-scroll-proportion="-7.736842">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/source.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="163" column="73" selection-start="6989" selection-end="6989" vertical-scroll-proportion="-6.4444447">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_projectlead.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="29" selection-start="1178" selection-end="1178" vertical-scroll-proportion="-11.315789">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_projectside.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="26" selection-start="619" selection-end="619" vertical-scroll-proportion="-10.105263">
           <folding />
         </state>
       </provider>
@@ -823,13 +768,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-tinder.jspf">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="46" selection-start="1237" selection-end="1237" vertical-scroll-proportion="0.2669963">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-whack.jspf">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="45" selection-start="1229" selection-end="1229" vertical-scroll-proportion="0.27317676">
@@ -839,7 +777,49 @@
     </entry>
     <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="67" column="120" selection-start="2564" selection-end="2564" vertical-scroll-proportion="0.36217552">
+        <state line="68" column="58" selection-start="2623" selection-end="2623" vertical-scroll-proportion="-18.368422">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_projectside.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="51" column="54" selection-start="1915" selection-end="1915" vertical-scroll-proportion="-32.210526">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/sidebar_forumactivity.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="16" selection-start="1912" selection-end="1912" vertical-scroll-proportion="-25.263159">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder/documentation.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="20" selection-start="1938" selection-end="2042" vertical-scroll-proportion="-26.526316">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/projects/tinder/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="46" selection-start="1064" selection-end="1064" vertical-scroll-proportion="-13.947369">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/includes/download-box-tinder.jspf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="88" selection-start="1741" selection-end="1741" vertical-scroll-proportion="-19.631578">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/downloads/source.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="330" column="75" selection-start="15921" selection-end="15921" vertical-scroll-proportion="2.2464359">
           <folding />
         </state>
       </provider>

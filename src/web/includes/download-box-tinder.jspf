@@ -36,7 +36,7 @@
                 <!-- <a href="#"><strong>Plugins</strong></a> |  -->
                 <a href="http://www.igniterealtime.org/community/docs/DOC-1845">Readme</a>
                 <!--<a href="/builds/tinder/docs/latest/README.html">Readme & License</a>--></li> |
-                <!-- <a href="/builds/tinder/docs/latest/changelog.html">Changelog</a> -->Initial Release - no Changelog |
+                <!-- <a href="/builds/tinder/docs/latest/changelog.html">Changelog</a> |-->
                 <%--<a href="nightly_tinder.jsp">Nightly Builds</a> |  --%>
                 <a href="source.jsp">Source Code</a>
             </span>
