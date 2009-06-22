@@ -84,7 +84,7 @@
 								<a href="smack/index.jsp">Learn More</a>
 							</td>
 						</tr>
-                        <tr class="ignite_project_table-row-odd">
+                        <tr class="ignite_project_table-row-even">
 							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="tinder/index.jsp">Tinder API</a>
 							</td>
