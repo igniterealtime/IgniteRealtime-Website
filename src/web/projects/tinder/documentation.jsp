@@ -55,7 +55,7 @@
 					<!-- <a href="/builds/tinder/docs/latest/changelog.html">Changelog</a> -->Initial Release - no Changelog
 					<br>
 					<br></li>
-					<li><a href="/builds/tinder/docs/latest/documentation/">Tinder documentation</a></li>
+					<li><!--<a href="/builds/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="/community/community/developers/tinder?view=documents">Tinder documentation</a></li>
 				
 				
 				</div>
