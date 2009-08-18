@@ -1,7 +1,9 @@
 <%@ page import="com.jivesoftware.clearspace.webservices.*" %>
 <%@ page import="org.jivesoftware.site.Versions" %>
+<%@ page import="org.jivesoftware.site.FeedManager" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.text.DateFormat" %>
+<%@ page import="com.sun.syndication.feed.synd.SyndEntry" %>
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
@@ -108,8 +110,10 @@
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-					<cache:cache time="600" key="<%= blogFeedRSS %>">
+					<%--cache:cache time="600" key="<%= blogFeedRSS %>"--%>
 					<%
+                    FeedManager feedManager = FeedManager.getInstance();
+                    List<SyndEntry> blogFeedEntries = feedManager.getBlogFeedEntries(blogFeedRSS);
 					BlogService blogService = serviceProvider.getBlogService();
 
 					BlogPostResultFilter bprf = new BlogPostResultFilter();
@@ -118,10 +122,24 @@
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
                     List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
+                    if ( (null != posts) && (null != blogFeedEntries) ) {
+                        for (BlogPost post: posts) {
+                            for (SyndEntry entry: blogFeedEntries) {
+                                if ( (null == entry.getLink()) || (null == post.getPermalink()) ) {
+                                    continue;
+                                } else {
+                                    if (entry.getLink().equals(post.getPermalink())) {
+                                        post.setBody(entry.getDescription().getValue());
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />
-					</cache:cache>
+					<%--/cache:cache--%>
 				</div>
 
                 <style type="text/css"></style>

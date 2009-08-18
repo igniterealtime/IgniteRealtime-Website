@@ -4,11 +4,9 @@ List<BlogPost> posts = (List<BlogPost>)request.getAttribute("posts");
 String style = "";
 int counter = 0;
 if (posts != null) {
-	System.out.println("Num posts="+posts.size());
+
 for (BlogPost post : posts) {
-    System.out.println("post counter="+counter);
-	System.out.println("post link="+post.getPermalink());
-	counter++;
+    counter++;
     style = counter % 2 == 0 ? "ignite_blog_entry ignite_blog_entry_odd" : "ignite_blog_entry";
 	%>
 	<div class="<%= style %>">
@@ -21,7 +19,6 @@ for (BlogPost post : posts) {
 				<a href="<%= post.getPermalink() %>#comments"><%= post.getCommentCount() %></a>
 			</div>
 
-			<% System.out.println("post subject="+post.getSubject()); %>
 			<h2><a href="<%= post.getPermalink() %>" title="<%= post.getSubject() %>"><%= post.getSubject() %></a></h2>
 
             <!-- BEGIN blog entry author and datestamp -->
@@ -29,8 +26,6 @@ for (BlogPost post : posts) {
                 Posted by <a href="/community/people/<%= post.getUser().getUsername() %>/"><%= post.getUser().getUsername() %></a>
             </span>
             <span class="ignite_blog_entry_date">
-
-		<% System.out.println("post publishdate="+org.jivesoftware.util.StringUtils.displayFriendly(post.getPublishDate().toGregorianCalendar().getTime())); %>
 
 		<%= org.jivesoftware.util.StringUtils.displayFriendly(post.getPublishDate().toGregorianCalendar().getTime()) %>
             </span>
@@ -41,8 +36,7 @@ for (BlogPost post : posts) {
 
         <!-- BEGIN blog entry body area -->
         <div class="ignite_blog_entry_body">
-			<% System.out.println("post body="+post.getBody()); %>
-			<%= post.getBody().replaceAll("<body>","").replaceAll("</body>", "").replaceAll("pre __jive_macro_name=\"quote\"", "pre class=\"jive_quote\"") %>
+			<%= post.getBody() %>
         </div>
         <!-- END blog entry body area -->
 
