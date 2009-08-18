@@ -110,7 +110,7 @@
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-					<%--cache:cache time="600" key="<%= blogFeedRSS %>"--%>
+					<cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
                     FeedManager feedManager = FeedManager.getInstance();
                     List<SyndEntry> blogFeedEntries = feedManager.getBlogFeedEntries(blogFeedRSS);
@@ -139,7 +139,7 @@
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />
-					<%--/cache:cache--%>
+					</cache:cache>
 				</div>
 
                 <style type="text/css"></style>
