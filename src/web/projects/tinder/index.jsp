@@ -131,7 +131,8 @@
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
                     bprf.getTags().add("tinder");
-                    bprf.getTags().add("tinder-api");
+                    // if the tag doesn't exist (as in this case) its presence causes filter fail
+                    //bprf.getTags().add("tinder-api");
                     List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
