@@ -70,6 +70,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binExeAlt.length()/1024.0/1024.0) %> MB</span>
                     </div>
+                    <!--
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="/images/icon_win.gif" alt="" width="17" height="16" border="0">
@@ -86,6 +87,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binMsiAlt.length()/1024.0/1024.0) %> MB</span>
                     </div>
+                    -->
                 </div>
             </div>
             <!-- END windows -->
