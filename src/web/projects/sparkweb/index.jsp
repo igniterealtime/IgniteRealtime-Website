@@ -119,13 +119,14 @@
 					<cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
 					BlogService blogService = serviceProvider.getBlogService();
-					WSResultFilter bprf = new WSResultFilter();
+					WSBlogPostResultFilter  bprf = new WSBlogPostResultFilter ();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
-                    bprf.getTags().add("sparkweb");
-                    List<WSBlogPost> posts = blogService.getBlogPosts(bprf);
+                    String[] tags = {"sparkweb"};
+                    bprf.setTags(tags);
+                    WSBlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />

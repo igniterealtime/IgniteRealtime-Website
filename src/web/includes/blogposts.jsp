@@ -1,6 +1,6 @@
 <%@ page import="com.jivesoftware.community.webservices.WSBlogPost" %>
 <%@ page import="java.util.List" %><%
-List<WSBlogPost> posts = (List<WSBlogPost>)request.getAttribute("posts");
+WSBlogPost[] posts = (WSBlogPost[])request.getAttribute("posts");
 String style = "";
 int counter = 0;
 if (posts != null) {

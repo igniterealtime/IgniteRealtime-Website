@@ -118,13 +118,14 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
 					BlogService blogService = serviceProvider.getBlogService();
-					WSResultFilter bprf = new WSResultFilter();
+					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
-                    bprf.getTags().add("asterisk");
-					List<WSBlogPost> posts = blogService.getBlogPosts(bprf);
+                    String[] tags = {"asterisk"};
+                    bprf.setTags(tags);
+					WSBlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />

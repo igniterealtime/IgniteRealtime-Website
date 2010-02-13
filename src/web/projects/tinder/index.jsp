@@ -125,15 +125,16 @@
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
 					BlogService blogService = serviceProvider.getBlogService();
-					WSResultFilter bprf = new WSResultFilter();
+					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
-                    bprf.getTags().add("tinder");
+                    String[] tags = {"tinder"};
+                    bprf.setTags(tags);
                     // if the tag doesn't exist (as in this case) its presence causes filter fail
                     //bprf.getTags().add("tinder-api");
-                    List<WSBlogPost> posts = blogService.getBlogPosts(bprf);
+                    WSBlogPost[] posts = blogService.getBlogPosts(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />
