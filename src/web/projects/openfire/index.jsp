@@ -1,5 +1,5 @@
 <%@ page import="org.jivesoftware.site.Versions"%>
-<%@ page import="com.jivesoftware.clearspace.webservices.*" %>
+<%@ page import="com.jivesoftware.community.webservices.*" %>
 <%@ page import="java.util.List" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
@@ -120,14 +120,14 @@
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
 					BlogService blogService = serviceProvider.getBlogService();
-					BlogPostResultFilter bprf = new BlogPostResultFilter();
+					WSResultFilter bprf = new WSResultFilter();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
                     bprf.getTags().add("openfire");
                     bprf.getTags().add("wildfire");
-                    List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
+                    List<WSBlogPost> posts = blogService.getBlogPosts(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />

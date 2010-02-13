@@ -1,7 +1,7 @@
 <%@ page import="org.jivesoftware.site.Versions"%>
-<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.BlogPostResultFilter" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.BlogPost" %>
+<%@ page import="com.jivesoftware.community.webservices.BlogService" %>
+<%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
+<%@ page import="com.jivesoftware.community.webservices.WSBlogPost" %>
 <%@ page import="java.util.List" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
@@ -125,7 +125,7 @@
                     <cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
 					BlogService blogService = serviceProvider.getBlogService();
-					BlogPostResultFilter bprf = new BlogPostResultFilter();
+					WSResultFilter bprf = new WSResultFilter();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
@@ -133,7 +133,7 @@
                     bprf.getTags().add("tinder");
                     // if the tag doesn't exist (as in this case) its presence causes filter fail
                     //bprf.getTags().add("tinder-api");
-                    List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
+                    List<WSBlogPost> posts = blogService.getBlogPosts(bprf);
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />

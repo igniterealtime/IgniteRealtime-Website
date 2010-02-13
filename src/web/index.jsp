@@ -1,4 +1,4 @@
-<%@ page import="com.jivesoftware.clearspace.webservices.*" %>
+<%@ page import="com.jivesoftware.community.webservices.*" %>
 <%@ page import="org.jivesoftware.site.Versions" %>
 <%@ page import="org.jivesoftware.site.FeedManager" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -116,14 +116,14 @@
                     List<SyndEntry> blogFeedEntries = feedManager.getBlogFeedEntries(blogFeedRSS);
 					BlogService blogService = serviceProvider.getBlogService();
 
-					BlogPostResultFilter bprf = new BlogPostResultFilter();
+					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
-                    List<BlogPost> posts = blogService.getBlogPostsWithFilter(bprf);
+                    WSBlogPost[] posts = blogService.getBlogPosts(bprf);
                     if ( (null != posts) && (null != blogFeedEntries) ) {
-                        for (BlogPost post: posts) {
+                        for (WSBlogPost post: posts) {
                             for (SyndEntry entry: blogFeedEntries) {
                                 if ( (null == entry.getLink()) || (null == post.getPermalink()) ) {
                                     continue;
@@ -184,13 +184,13 @@
 
                         <%
 						ForumService forumService1 = serviceProvider.getForumService();
-						ResultFilter rf1 = new ResultFilter();
+						WSResultFilter rf1 = new WSResultFilter();
                         rf1.setSortField(9); // modification date
                         rf1.setSortOrder(SORT_DESCENDING);
 						rf1.setRecursive(true);
 						rf1.setNumResults(5);
-						List<ForumMessage> messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
-						for (ForumMessage message : messages1) {
+						WSForumMessage[] messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
+						for (WSForumMessage message : messages1) {
 						%>
 							<div class="discussion">
 								<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
@@ -204,16 +204,16 @@
 						<cache:cache time="60" key="/community/community/feeds/allcontent?communityID=2017">
 						<%
 						ForumService forumService2 = serviceProvider.getForumService();
-						ResultFilter rf2 = new ResultFilter();
+						WSResultFilter rf2 = new WSResultFilter();
                         rf2.setSortField(9); // modification date
                         rf2.setSortOrder(SORT_DESCENDING);
 						rf2.setRecursive(true);
 						rf2.setNumResults(5);
-						List<ForumMessage> messages2 = forumService2.getMessagesByCommunityIDAndFilter(2017, rf2);
-						 for (ForumMessage message : messages2) {
+						WSForumMessage[] messages2 = forumService2.getMessagesByCommunityIDAndFilter(2017, rf2);
+						 for (WSForumMessage message : messages2) {
                         %>
 							<div class="news">
-								<font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(message.getCreationDate().toGregorianCalendar().getTime()) %> - </font>
+								<font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(message.getCreationDate()) %> - </font>
 								<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>
 							</div>
 						<% } %>

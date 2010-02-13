@@ -1,5 +1,5 @@
 <%@ page import="org.jivesoftware.site.Versions"%>
-<%@ page import="com.jivesoftware.clearspace.webservices.*" %>
+<%@ page import="com.jivesoftware.community.webservices.*" %>
 <%@ page import="java.util.List" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
@@ -67,13 +67,13 @@
 								<cache:cache time="60" key="/community/community/feeds/threads?communityID=1&numItems=4">
 								<%
 								ForumService forumService1 = serviceProvider.getForumService();
-						  		ResultFilter rf1 = new ResultFilter();
+						  		WSResultFilter rf1 = new WSResultFilter();
                                 rf1.setSortField(9); // modification date
                                 rf1.setSortOrder(SORT_DESCENDING);
 								rf1.setRecursive(true);
 								rf1.setNumResults(4);
-								List<ForumMessage> messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
-								for (ForumMessage message : messages1) {
+								WSForumMessage[] messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
+								for (WSForumMessage message : messages1) {
 								%>
 									<div class="discussion">
 										<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />

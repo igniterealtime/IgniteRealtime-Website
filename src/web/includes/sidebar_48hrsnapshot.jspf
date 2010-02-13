@@ -1,8 +1,8 @@
 <%@ page import="java.text.NumberFormat, org.jivesoftware.site.DownloadStats"%>
-<%@ page import="com.jivesoftware.clearspace.webservices.UserService" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.ForumService" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.ResultFilter" %>
+<%@ page import="com.jivesoftware.community.webservices.UserService" %>
+<%@ page import="com.jivesoftware.community.webservices.ForumService" %>
+<%@ page import="com.jivesoftware.community.webservices.BlogService" %>
+<%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
 <!-- BEGIN blue sidebar box '48 HOUR SNAPSHOT' -->
             <div class="ignite_sidebar_bluebox_photo">
                 <div class="ignite_sidebar_top"></div>
@@ -14,7 +14,7 @@
                     UserService userService48 = serviceProvider.getUserService();
 					BlogService blogService48 = serviceProvider.getBlogService();
 					ForumService forumService48 = serviceProvider.getForumService();
-					ResultFilter rf48 = new ResultFilter();
+					WSResultFilter rf48 = new WSResultFilter();
 					rf48.setRecursive(true);
 					%>
 				

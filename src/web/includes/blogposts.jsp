@@ -1,11 +1,11 @@
-<%@ page import="com.jivesoftware.clearspace.webservices.BlogPost" %>
+<%@ page import="com.jivesoftware.community.webservices.WSBlogPost" %>
 <%@ page import="java.util.List" %><%
-List<BlogPost> posts = (List<BlogPost>)request.getAttribute("posts"); 
+List<WSBlogPost> posts = (List<WSBlogPost>)request.getAttribute("posts");
 String style = "";
 int counter = 0;
 if (posts != null) {
 
-for (BlogPost post : posts) {
+for (WSBlogPost post : posts) {
     counter++;
     style = counter % 2 == 0 ? "ignite_blog_entry ignite_blog_entry_odd" : "ignite_blog_entry";
 	%>
@@ -27,7 +27,7 @@ for (BlogPost post : posts) {
             </span>
             <span class="ignite_blog_entry_date">
 
-		<%= org.jivesoftware.util.StringUtils.displayFriendly(post.getPublishDate().toGregorianCalendar().getTime()) %>
+		<%= org.jivesoftware.util.StringUtils.displayFriendly(post.getPublishDate()) %>
             </span>
             <!-- END blog entry author and datestamp -->
         </div>
@@ -43,10 +43,10 @@ for (BlogPost post : posts) {
         <!-- BEGIN blog entry details -->
         <div class="ignite_blog_entry_details">
             <span class="ignite_blog_entry_details_tags">Tags:
-				<% List<String> tags = post.getTags(); %>
-				<% for (int i=0; i<tags.size(); i++) { %>
+				<% String[] tags = post.getTags(); %>
+				<% for (int i=0; i<tags.length; i++) { %>
 					<% if (i > 0) { %>,<% } %> 
-					<a href="/community/blogs/ignite/tags/<%= tags.get(i) %>"><%= tags.get(i) %></a>
+					<a href="/community/blogs/ignite/tags/<%= tags[i] %>"><%= tags[i] %></a>
 				<% } %>
             </span>
             <span class="ignite_blog_entry_details_comments">

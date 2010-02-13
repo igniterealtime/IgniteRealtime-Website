@@ -2,11 +2,9 @@
 <%@ page import="java.net.URL" %>
 <%@ page import="javax.xml.namespace.QName" %>
 <%@ page import="javax.xml.ws.BindingProvider" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.BlogService" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.ForumService" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.UserService" %>
+<%@ page import="com.jivesoftware.community.webservices.*" %>
 <%@ page import="java.net.MalformedURLException" %>
-<%@ page import="org.jivesoftware.webservices.ServiceProvider" %>
+<%@ page import="org.jivesoftware.webservices.*" %>
 <%! final static String SERVICE_PROVIDER_KEY = "serviceProvider"; %>
 <%! final static int SORT_DESCENDING = 0; %>
 <%! final static int SORT_ASCENDING = 1; %>

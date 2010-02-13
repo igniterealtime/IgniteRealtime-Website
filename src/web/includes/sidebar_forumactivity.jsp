@@ -1,6 +1,6 @@
-<%@ page import="com.jivesoftware.clearspace.webservices.ForumService" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.ResultFilter" %>
-<%@ page import="com.jivesoftware.clearspace.webservices.ForumMessage" %>
+<%@ page import="com.jivesoftware.community.webservices.ForumService" %>
+<%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
+<%@ page import="com.jivesoftware.community.webservices.WSForumMessage" %>
 <%@ page import="java.util.List" %>
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -17,16 +17,16 @@
 			<div class="ignite_sidebar_body">
 				<%
 				ForumService forumServiceFA = serviceProvider.getForumService();
-                ResultFilter rfFA = new ResultFilter();
+                WSResultFilter rfFA = new WSResultFilter();
                 rfFA.setSortField(9); // modification date
                 rfFA.setSortOrder(SORT_DESCENDING);
 				rfFA.setRecursive(true);
 				rfFA.setNumResults(5);
                 String style = "";
 				int counter = 0;
-				List<ForumMessage> messagesFA = forumServiceFA.getMessagesByCommunityIDAndFilter(Long.parseLong(request.getParameter("forumID")), rfFA);
+				WSForumMessage[] messagesFA = forumServiceFA.getMessagesByCommunityIDAndFilter(Long.parseLong(request.getParameter("forumID")), rfFA);
                 if (null != messagesFA) {
-				for (ForumMessage message : messagesFA) {
+				for (WSForumMessage message : messagesFA) {
 					counter++;
 					style = "ignite_sidebar_forum_" + (counter % 2);
 				%>

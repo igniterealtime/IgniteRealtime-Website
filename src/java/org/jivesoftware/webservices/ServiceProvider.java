@@ -9,9 +9,9 @@
  */
 package org.jivesoftware.webservices;
 
-import com.jivesoftware.clearspace.webservices.ForumService;
-import com.jivesoftware.clearspace.webservices.BlogService;
-import com.jivesoftware.clearspace.webservices.UserService;
+import com.jivesoftware.community.webservices.ForumService;
+import com.jivesoftware.community.webservices.BlogService;
+import com.jivesoftware.community.webservices.UserService;
 
 import javax.xml.ws.Binding;
 import javax.xml.ws.Service;
