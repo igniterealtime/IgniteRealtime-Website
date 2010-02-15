@@ -44,6 +44,8 @@
         <mkdir dir="${wsdl.cs.compile}" />
     </target>
 
+    <!--
+    // this was replaced by an SBS client WS jar generated in custom SBS build...
     <target name="wsdl-clearspace" depends="init" description="Generates Clearspace code from the WSDL files">
         <java classname="org.apache.cxf.tools.wsdlto.WSDLToJava" fork="true">
             <arg value="-client"/>
@@ -73,12 +75,14 @@
             </classpath>
         </java>
     </target>
+    -->
 
     <!-- Creates a new jive specific clearspace WSDL jar -->
-    <!-- ======================================================================================= -->
+    <!-- =======================================================================================
+    // this was replaced by an SBS client WS jar generated in custom SBS build...
     <target name="wsdl-clearspace-jar" depends="wsdl-clearspace"
             description="Creates a new jive-wsdl-clearspace.jar from the WSDL file">
-        <!-- compile java classes generated from the wsdl file -->
+        <!-/- compile java classes generated from the wsdl file -/-/>
         <copy file="${src.java.dir}/org/jivesoftware/webservices/ServiceProvider.java" todir="${wsdl.cs.compile}/org/jivesoftware/webservices/"/>
         <javac
                 includes="com/jivesofware/**/*.java,org/jivesoftware/webservices/ServiceProvider.java"
@@ -93,7 +97,7 @@
             </classpath>
         </javac>
 
-        <!-- combine into one jar file -->
+        <!-/- combine into one jar file -/-/>
         <jar destfile="${target.dir}/${wsdl.cs.jar.name}.jar">
             <fileset dir="${wsdl.cs.compile}">
                 <include name="org/jivesoftware/**/*.*"/>
@@ -101,6 +105,7 @@
             </fileset>
         </jar>
     </target>
+    -->
 
 
     <!-- compile =============================================================================== -->
@@ -110,7 +115,6 @@
                 destdir="${target.classes.dir}"
                 debug="on"
                 source="1.5"
-                excludes="org/jivesoftware/webservices/**/*.java"
                 classpathref="dependencies" />
     </target>
 
