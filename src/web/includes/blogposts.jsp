@@ -44,9 +44,11 @@ for (WSBlogPost post : posts) {
         <div class="ignite_blog_entry_details">
             <span class="ignite_blog_entry_details_tags">Tags:
 				<% String[] tags = post.getTags(); %>
-				<% for (int i=0; i<tags.length; i++) { %>
+				<% if (null != tags) { %>
+				<% 	for (int i=0; i<tags.length; i++) { %>
 					<% if (i > 0) { %>,<% } %> 
 					<a href="/community/blogs/ignite/tags/<%= tags[i] %>"><%= tags[i] %></a>
+				<% 	} %>
 				<% } %>
             </span>
             <span class="ignite_blog_entry_details_comments">
