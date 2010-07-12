@@ -101,7 +101,7 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
 				
-                <% String blogFeedRSS = "/community/blogs/ignite/feeds/tags/sparkweb"; %>
+                <% String blogFeedRSS = "http://community.igniterealtime.org/blogs/ignite/feeds/tags/sparkweb"; %>
 				<!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->

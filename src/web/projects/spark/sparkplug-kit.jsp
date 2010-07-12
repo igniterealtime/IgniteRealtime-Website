@@ -71,7 +71,7 @@
 
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="/community/developers/spark_dev">Sparkplug Discussion Forum</a></li>
+                        <li><a href="http://community.igniterealtime.org/developers/spark_dev">Sparkplug Discussion Forum</a></li>
                     </ul>
 
                 </div>

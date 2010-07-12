@@ -368,7 +368,7 @@
          <br/><br/>
          <p>To submit a plugin please send an email to
          Daniel Henninger (daniel.henninger at jivesoftware dot com) or send him a
-         <a href="/community/pmpost!input.jspa?to=jadestorm">private message</a> in the forums.
+         <a href="http://community.igniterealtime.org/pmpost!input.jspa?to=jadestorm">private message</a> in the forums.
          </p>
 	 </div>
 

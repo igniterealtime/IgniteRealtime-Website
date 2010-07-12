@@ -49,13 +49,13 @@
 					<h3>Documentation:</h3>
 					<ul>
 					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://www.igniterealtime.org/community/docs/DOC-1845">Readme</a>
+                    <a href="http://community.igniterealtime.org/docs/DOC-1845">Readme</a>
                     <!--<a href="/builds/tinder/docs/latest/README.html">Readme & License</a>--></li>
 					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<!-- <a href="/builds/tinder/docs/latest/changelog.html">Changelog</a> -->Initial Release - no Changelog
 					<br>
 					<br></li>
-					<li><!--<a href="/builds/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="/community/community/developers/tinder?view=documents">Tinder documentation</a></li>
+					<li><!--<a href="/builds/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="http://community.igniterealtime.org/community/developers/tinder?view=documents">Tinder documentation</a></li>
 				
 				
 				</div>

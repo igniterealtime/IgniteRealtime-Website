@@ -51,7 +51,7 @@
 					<!-- BEGIN search -->
 					<div id="ignite_support_search">
 						<strong>Search the community:</strong>
-						<form action="/community/search.jspa">
+						<form action="http://community.igniterealtime.org/search.jspa">
 						<input type="text" name="q" size="40" maxlength="100">
 						<input type="image" src="../images/ignite_support_searchbtn.gif" name="Submit" class="ignite_support_search">
 						</form>
@@ -64,7 +64,7 @@
 						<div>
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
-								<cache:cache time="60" key="/community/community/feeds/threads?communityID=1&numItems=4">
+								<cache:cache time="60" key="http://community.igniterealtime.org/community/feeds/threads?communityID=1&numItems=4">
 								<%
 								ForumService forumService1 = serviceProvider.getForumService();
 						  		WSResultFilter rf1 = new WSResultFilter();
@@ -76,13 +76,13 @@
 								for (WSForumMessage message : messages1) {
 								%>
 									<div class="discussion">
-										<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
+										<img src="http://community.igniterealtime.org/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
 											<b><%= message.getUser().getUsername() %></b> in
-											"<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
+											"<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
 									</div>
 								<% } %>
 		                        </cache:cache>
-								<strong><a href="/community/main-threads.jspa" class="ignite_link_arrow">See all support discussions</a></strong>
+								<strong><a href="http://community.igniterealtime.org/main-threads.jspa" class="ignite_link_arrow">See all support discussions</a></strong>
 							</div>	
 							<div id="ignite_support_activity_articles">
 								<h4>Recent Articles</h4>
@@ -114,7 +114,7 @@
 							<p>Use the official Ignite Realtime Issue Tracker to browse projects
                                 and find issues. You may also vote for issues, see which issues are
                                 popular, and view the road map. Note: to report new issues, please
-                                post them in the <a href="/community/main-threads.jspa">forums</a>.</p>
+                                post them in the <a href="http://community.igniterealtime.org/main-threads.jspa">forums</a>.</p>
 							<strong><a href="http://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
 						</div>
 			

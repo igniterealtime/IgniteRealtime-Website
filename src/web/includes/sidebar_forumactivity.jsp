@@ -31,10 +31,10 @@
 					style = "ignite_sidebar_forum_" + (counter % 2);
 				%>
 				<div class="ignite_sidebar_forum <%= style %>">
-					<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
+					<img src="http://community.igniterealtime.org/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
 					<div>
 						<b><%= message.getUser().getUsername() %></b> in
-						"<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
+						"<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
 					</div>
 			   </div>
 				

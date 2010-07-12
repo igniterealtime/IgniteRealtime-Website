@@ -99,7 +99,7 @@
 
 					<h3>Previous Chats</h3>
 					<p>Transcripts of the weekly chats are posted in the 
-					<a href=" /community/community/support/openfire_(formerly_wildfire)_support?tagSetID=1002&view=all">discussion forums</a>. Try a search for
+					<a href=" http://community.igniterealtime.org/community/support/openfire_(formerly_wildfire)_support?tagSetID=1002&view=all">discussion forums</a>. Try a search for
 					"chat transcript" to find them.</p>
 					
 					<h3>About Group Chat</h3>
