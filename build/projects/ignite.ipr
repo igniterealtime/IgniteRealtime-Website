@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project relativePaths="false" version="4">
+<project version="4">
   <component name="AntConfiguration">
     <defaultAnt bundledAnt="true" />
-    <buildFile url="file:///Users/benjamin/Projects/Jive/igniterealtime.org/build/build.xml">
+    <buildFile url="file://$PROJECT_DIR$/../build.xml">
       <additionalClassPath />
       <antReference projectDefault="true" />
       <customJdkName value="" />
       <maximumHeapSize value="128" />
       <properties />
     </buildFile>
+  </component>
+  <component name="ArtifactManager">
+    <artifact type="exploded-war" name="Ignite:Web exploded">
+      <output-path>$PROJECT_DIR$/out/exploded/IgniteWeb</output-path>
+      <root id="root">
+        <element id="javaee-facet-resources" facet="Ignite/web/Web" />
+        <element id="directory" name="WEB-INF">
+          <element id="directory" name="classes">
+            <element id="javaee-facet-classes" facet="Ignite/web/Web" />
+          </element>
+        </element>
+      </root>
+    </artifact>
+    <artifact type="war" name="Ignite:Web">
+      <output-path>$PROJECT_DIR$/out</output-path>
+      <root id="archive" name="Web.war">
+        <element id="artifact" artifact-name="Ignite:Web exploded" />
+      </root>
+    </artifact>
   </component>
   <component name="BuildJarProjectSettings">
     <option name="BUILD_JARS_ON_MAKE" value="false" />
@@ -20,6 +39,24 @@
   <component name="CodeStyleSettingsManager">
     <option name="PER_PROJECT_SETTINGS">
       <value>
+        <ADDITIONAL_INDENT_OPTIONS fileType="groovy">
+          <option name="INDENT_SIZE" value="2" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="gsp">
+          <option name="INDENT_SIZE" value="2" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="java">
           <option name="INDENT_SIZE" value="4" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
@@ -47,8 +84,44 @@
           <option name="LABEL_INDENT_SIZE" value="0" />
           <option name="LABEL_INDENT_ABSOLUTE" value="false" />
         </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="php">
+          <option name="INDENT_SIZE" value="4" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="php">
+          <option name="INDENT_SIZE" value="4" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="sql">
+          <option name="INDENT_SIZE" value="2" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
         <ADDITIONAL_INDENT_OPTIONS fileType="xml">
           <option name="INDENT_SIZE" value="4" />
+          <option name="CONTINUATION_INDENT_SIZE" value="8" />
+          <option name="TAB_SIZE" value="4" />
+          <option name="USE_TAB_CHARACTER" value="false" />
+          <option name="SMART_TABS" value="false" />
+          <option name="LABEL_INDENT_SIZE" value="0" />
+          <option name="LABEL_INDENT_ABSOLUTE" value="false" />
+        </ADDITIONAL_INDENT_OPTIONS>
+        <ADDITIONAL_INDENT_OPTIONS fileType="yml">
+          <option name="INDENT_SIZE" value="2" />
           <option name="CONTINUATION_INDENT_SIZE" value="8" />
           <option name="TAB_SIZE" value="4" />
           <option name="USE_TAB_CHARACTER" value="false" />
@@ -62,9 +135,8 @@
   </component>
   <component name="CompilerConfiguration">
     <option name="DEFAULT_COMPILER" value="Javac" />
-    <option name="DEPLOY_AFTER_MAKE" value="0" />
     <excludeFromCompile>
-      <file url="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web" />
+      <file url="file://$PROJECT_DIR$/../../src/web" />
     </excludeFromCompile>
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />
@@ -81,6 +153,7 @@
       <entry name="?*.dtd" />
       <entry name="?*.tld" />
     </wildcardResourcePatterns>
+    <annotationProcessing enabled="false" useClasspath="true" />
   </component>
   <component name="CopyrightManager" default="">
     <module2copyright />
@@ -115,7 +188,7 @@
         <modules>
           <module name="Ignite">
             <files>
-              <file url="file:///Users/benjamin/Projects/Jive/igniterealtime.org/src/web/WEB-INF/web.xml" />
+              <file url="file://$PROJECT_DIR$/../../src/web/WEB-INF/web.xml" />
             </files>
           </module>
         </modules>
@@ -124,14 +197,11 @@
   </component>
   <component name="IdProvider" IDEtalkID="C12D29038689A157E3C451840080AB55" />
   <component name="InspectionProjectProfileManager">
-    <option name="PROJECT_PROFILE" value="Project Default" />
-    <option name="USE_PROJECT_LEVEL_SETTINGS" value="false" />
-    <scopes />
     <profiles>
       <profile version="1.0" is_locked="false">
         <option name="myName" value="Project Default" />
         <option name="myLocal" value="false" />
-        <inspection_tool class="HtmlUnknownTag" level="WARNING" enabled="true">
+        <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
           <option name="myValues">
             <value>
               <list size="6">
@@ -146,10 +216,12 @@
           </option>
           <option name="myCustomValuesEnabled" value="true" />
         </inspection_tool>
-        <inspection_tool class="JpaQlInspection" level="ERROR" enabled="false" />
+        <inspection_tool class="JpaQlInspection" enabled="false" level="ERROR" enabled_by_default="false" />
       </profile>
     </profiles>
-    <list size="0" />
+    <option name="PROJECT_PROFILE" value="Project Default" />
+    <option name="USE_PROJECT_PROFILE" value="true" />
+    <version value="1.0" />
   </component>
   <component name="JavacSettings">
     <option name="DEBUGGING_INFO" value="true" />
@@ -307,10 +379,9 @@
   <component name="ProjectDetails">
     <option name="projectName" value="ignite" />
   </component>
-  <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file:///Users/benjamin/Projects/Jive/igniterealtime.org/Ignite.iml" filepath="/Users/benjamin/Projects/Jive/igniterealtime.org/Ignite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Ignite.iml" filepath="$PROJECT_DIR$/../../Ignite.iml" />
     </modules>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_5" assert-keyword="true" jdk-15="true" project-jdk-name="1.6" project-jdk-type="JavaSDK">
@@ -333,43 +404,43 @@
   <component name="SvnBranchConfigurationManager">
     <option name="myConfigurationMap">
       <map>
-        <entry key="/Users/benjamin/Projects/Jive/igniterealtime.org">
+        <entry key="$PROJECT_DIR$/../..">
           <value>
             <SvnBranchConfiguration>
               <option name="branchMap">
                 <map>
-                  <entry key="https://svn.jivesoftware.com:443/svn/webrepos/ignite/branches">
+                  <entry key="https://svn.jivesoftware.com:443/svn/website/branches">
                     <value>
                       <list>
                         <SvnBranchItem>
                           <option name="creationDateMillis" value="1226956176644" />
                           <option name="revision" value="9048" />
-                          <option name="url" value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/branches/csc_25" />
+                          <option name="url" value="https://svn.jivesoftware.com:443/svn/website/branches/csc_25" />
                         </SvnBranchItem>
                         <SvnBranchItem>
                           <option name="creationDateMillis" value="1206682797067" />
                           <option name="revision" value="4899" />
-                          <option name="url" value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/branches/csc2_0" />
+                          <option name="url" value="https://svn.jivesoftware.com:443/svn/website/branches/csc2_0" />
                         </SvnBranchItem>
                         <SvnBranchItem>
                           <option name="creationDateMillis" value="1198020646038" />
                           <option name="revision" value="1941" />
-                          <option name="url" value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/branches/development" />
+                          <option name="url" value="https://svn.jivesoftware.com:443/svn/website/branches/development" />
                         </SvnBranchItem>
                         <SvnBranchItem>
                           <option name="creationDateMillis" value="1197933575880" />
                           <option name="revision" value="1905" />
-                          <option name="url" value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/branches/development-tmp" />
+                          <option name="url" value="https://svn.jivesoftware.com:443/svn/website/branches/development-tmp" />
                         </SvnBranchItem>
                         <SvnBranchItem>
                           <option name="creationDateMillis" value="1186507673263" />
                           <option name="revision" value="1065" />
-                          <option name="url" value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/branches/preclearspacex" />
+                          <option name="url" value="https://svn.jivesoftware.com:443/svn/website/branches/preclearspacex" />
                         </SvnBranchItem>
                       </list>
                     </value>
                   </entry>
-                  <entry key="https://svn.jivesoftware.com:443/svn/webrepos/ignite/tags">
+                  <entry key="https://svn.jivesoftware.com:443/svn/website/tags">
                     <value>
                       <list />
                     </value>
@@ -378,11 +449,11 @@
               </option>
               <option name="branchUrls">
                 <list>
-                  <option value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/branches" />
-                  <option value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/tags" />
+                  <option value="https://svn.jivesoftware.com:443/svn/website/branches" />
+                  <option value="https://svn.jivesoftware.com:443/svn/website/tags" />
                 </list>
               </option>
-              <option name="trunkUrl" value="https://svn.jivesoftware.com:443/svn/webrepos/ignite/trunk" />
+              <option name="trunkUrl" value="https://svn.jivesoftware.com:443/svn/website/trunk" />
               <option name="userinfoInUrl" value="true" />
             </SvnBranchConfiguration>
           </value>
@@ -394,7 +465,7 @@
   </component>
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="" />
-    <mapping directory="/Users/benjamin/Projects/Jive/igniterealtime.org" vcs="svn" />
+    <mapping directory="$PROJECT_DIR$/../.." vcs="svn" />
   </component>
   <component name="WebServicesPlugin" addRequiredLibraries="true" />
 </project>
