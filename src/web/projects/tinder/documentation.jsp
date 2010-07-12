@@ -19,7 +19,7 @@
 			<!-- <li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li> -->
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
-			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/TINDER">Issue Tracker</a></li>
+			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
 			<li id="subnav06"><a href="/builds/tinder/docs/latest/javadoc/">JavaDocs</a></li>
 			
 		</ul>

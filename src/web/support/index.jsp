@@ -21,7 +21,7 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Support</a></li>
 			<li id="subnav02"><a href="articles.jsp">Articles</a></li>
 			<li id="subnav03"><a href="group_chat.jsp">Group Chat</a></li>
-			<li id="subnav04"><a href="http://www.igniterealtime.org/issues/secure/Dashboard.jspa">Issue Tracker</a></li>
+			<li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
 			<li id="subnav05"><a href="service_providers.jsp">Service Providers</a></li>
 		</ul>
 	</div>
@@ -115,7 +115,7 @@
                                 and find issues. You may also vote for issues, see which issues are
                                 popular, and view the road map. Note: to report new issues, please
                                 post them in the <a href="/community/main-threads.jspa">forums</a>.</p>
-							<strong><a href="http://www.igniterealtime.org/issues" class="ignite_link_arrow">View the Issue Tracker</a></strong>
+							<strong><a href="http://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
 						</div>
 			
 					<!-- END recent support activity block -->

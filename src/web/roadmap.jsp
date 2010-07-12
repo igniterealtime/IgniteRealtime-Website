@@ -87,11 +87,11 @@
 
                 <p>Your vote counts! We prioritize work on new features and improvements based
                 on community feedback. The top ten issues (by votes) are listed below. You can also
-                view the <a href="http://www.igniterealtime.org/issues/secure/IssueNavigator.jspa?mode=hide&requestId=10310">full list</a>.</p>
-                <p>To cast your own votes, visit the <a href="http://www.igniterealtime.org/issues">issue tracker</a>,
+                view the <a href="http://issues.igniterealtime.org/secure/IssueNavigator.jspa?mode=hide&requestId=10310">full list</a>.</p>
+                <p>To cast your own votes, visit the <a href="http://issues.igniterealtime.org">issue tracker</a>,
                 login (or create an account), then click
                 to vote for an issue while viewing the issue report.</p>
-                <% String voteRSS = "http://www.igniterealtime.org/issues/secure/IssueNavigator.jspa?"+
+                <% String voteRSS = "http://issues.igniterealtime.org/secure/IssueNavigator.jspa?"+
                             "view=rss&&resolution=-1&sorter/field=issuekey&sorter/order=DESC&sorter/field=votes&sorter/order=DESC&tempMax=10&reset=true&decorator=none"; %>
                 <!-- BEGIN blue sidebar box 'LATEST ISSUES' -->
                 <div class="vote-table">
@@ -113,7 +113,7 @@
 		<div id="ignite_body_rightcol">
 
             <!-- New Issues -->
-            <% String issuesRSS = "http://www.igniterealtime.org/issues/secure/IssueNavigator.jspa?" +
+            <% String issuesRSS = "http://issues.igniterealtime.org/secure/IssueNavigator.jspa?" +
                 "view=rss&&resolution=-1&status=1&sorter/field=issuekey&sorter/order=DESC&sorter/field=created&sorter/order=DESC&tempMax=10&reset=true&decorator=none "; %>
 			<!-- BEGIN blue sidebar box 'LATEST ISSUES' -->
 			<cache:cache time="60" key="<%= issuesRSS %>">
@@ -133,7 +133,7 @@
 
             <!-- Just Fixed -->
             <!-- Just Fixed -->
-            <% issuesRSS = "http://www.igniterealtime.org/issues/secure/IssueNavigator.jspa?view=rss"+
+            <% issuesRSS = "http://issues.igniterealtime.org/secure/IssueNavigator.jspa?view=rss"+
                     "&&status=5&status=6&sorter/field=issuekey&sorter/order=DESC&sorter/field=created&sorter/order=DESC&tempMax=10&reset=true&decorator=none"; %>
             <!-- BEGIN blue sidebar box 'LATEST ISSUES' -->
             <cache:cache time="60" key="<%= issuesRSS %>">
