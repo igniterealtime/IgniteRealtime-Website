@@ -14,12 +14,12 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <!-- Path to the base builds dir. Change this for local testing. Note, do not include a trailing "/". -->
     <context-param>
         <param-name>builds-path</param-name>
-        <param-value>/opt/j2ee/domains/igniterealtime.org/www/root/webapps/ROOT/builds</param-value>
+        <param-value>/opt/j2ee/domains/igniterealtime.org/www/builds</param-value>
     </context-param>
 
     <context-param>
         <param-name>plugins-path</param-name>
-        <param-value>/opt/j2ee/domains/igniterealtime.org/www/root/webapps/ROOT/deployment/ROOT/projects/spark</param-value>
+        <param-value>/opt/j2ee/domains/igniterealtime.org/www/tomcat/webapps/ROOT/projects/spark</param-value>
     </context-param>
     
     <!-- Hostname were our downloads are hosted. S3/Cloudfront, should almost never change. 
@@ -32,7 +32,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <!-- Database connection parameters -->
     <context-param>
         <param-name>dbURL</param-name>
-        <param-value>jdbc:mysql://localhost:3306/jsorg_stats</param-value>
+        <param-value>jdbc:mysql://ignite01.private:3306/jsorg_stats</param-value>
     </context-param>
     <context-param>
         <param-name>dbUsername</param-name>
@@ -44,7 +44,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     </context-param>
 	<context-param>
         <param-name>csc_baseurl</param-name>
-        <param-value>http://staging.igniterealtime.org/community</param-value>
+        <param-value>http://community.igniterealtime.org</param-value>
     </context-param>
     <context-param>
     	<param-name>csc_username</param-name>
