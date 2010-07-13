@@ -1,10 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>${jiveContext.communityManager.rootCommunity.name}<#if page.title?exists && "" != page.title?trim>:</#if> ${page.title?default("")}</title>
+    <title>${skin.template.rootCommunityName}<#if page.title?? && "" != page.title?trim>:</#if> ${page.title!("")}</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> <#-- THIS MUST BE FIRST NODE in HEAD after TITLE -->
 
@@ -21,7 +20,7 @@
     <#include "/template/decorator/default/header-css.ftl" />
 
     <@resource.javascript id="core" output="true" />
-    <#list jiveContext.getSpringBean("javascriptURLConfigurator").pluginJavascriptSrcURLs as src >
+    <#list skin.template.pluginJavascriptSrcURLs as src >
         <script type="text/javascript" src="<@s.url value='${src}' />" ></script>
     </#list>
 
@@ -30,14 +29,10 @@
 
     ${page.head}
 
-    <link rel="stylesheet" type="text/css" href="<@resource.url value="/styles/tiny_mce3/plugins/inlinepopups/skins/clearlooks2/window.css" />" />
-
     <style type="text/css"><@s.action name='custom-css' executeResult='true' ignoreContextParams='true' /></style>
     <style type="text/css"><@s.action name='custom-css-container' executeResult='true' ignoreContextParams='true' /></style>
-    <SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript' SRC='/elqNow/elqCfg.js'></SCRIPT>
-    <SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript' SRC='/elqNow/elqImg.js'></SCRIPT>
-    <script src="/scripts/groupchat_timer.js" language="JavaScript" type="text/javascript"></script>
 
+    <script src="http://www.igniterealtime.org/scripts/groupchat_timer.js" language="JavaScript" type="text/javascript"></script>
 </head>
 <body id="community" class="${page.getProperty("body.class")!}" >
 
@@ -48,9 +43,9 @@
     <#assign bodyID = "jive-body-full" />
 </#if>
 
-<a href="#${bodyID?default('jive-body')}" class="jive-skip-nav"><@s.text name="global.skip_navigation" /></a>
+<a href="#${bodyID!('jive-body')}" class="jive-skip-nav"><@s.text name="global.skip_navigation" /></a>
 
-<#assign complianceMessagingBean = statics['com.jivesoftware.community.action.ComplianceMessagingHelper'].createComplianceMessagingBean(request, response)!/>
+<#assign complianceMessagingBean = skin.template.getComplianceMessagingBean(request, response)!/>
 <#if complianceMessagingBean?has_content>
     <div id="jive-compliance" class="${complianceMessagingBean.style!}"<#if !complianceMessagingBean.show>style="display:none"</#if>>
         <span class="jive-icon-med ${complianceMessagingBean.icon!}"></span>
@@ -63,12 +58,10 @@
         <#include "/template/decorator/default/page-header.ftl" />
 
         <#if !page.getProperty("meta.nouserbar")??>
-            <#include "/template/decorator/default/page-userbar.ftl" />
+            <#include skin.userBar.pageUserBarTemplate />
         </#if>
 
-
-
-        <div id="${bodyID?default('jive-body')}">
+        <div id="${bodyID!('jive-body')}">
 
             <#include "/template/decorator/default/page-breadcrumb.ftl" />
 
@@ -80,10 +73,7 @@
             <#include "/template/decorator/default/page-footer.ftl" />
         </#if>
 
-    </div> 
-
-</div>
-<!-- End of IGNITE WRAPPER -->
+    </div>
 
     <#include "/template/decorator/default/page-tooltips.ftl" />
 
@@ -91,9 +81,8 @@
 
     <#include "/template/decorator/default/footer-javascript.ftl" />
 
-<#if (JiveGlobals.getJiveBooleanProperty("license.beacon.enabled", false) && user.anonymous)>
-<#assign timestamp = statics['java.lang.System'].currentTimeMillis() />
-<img src="<@s.url value='/beacon' t='${timestamp?c}'/>" />
+<#if (skin.template.isLicenseBeaconEnabled(user))>
+<img src="<@s.url value='/beacon' t='${skin.template.timestamp?c}'/>" />
 </#if>
 
 </body>

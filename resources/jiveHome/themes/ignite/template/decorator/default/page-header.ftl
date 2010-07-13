@@ -1,9 +1,6 @@
 <!-- BEGIN header -->
-<#assign header = JiveGlobals.getJiveProperty("skin.default.headerHTML")!>
-<#if header != ''>
-    ${header}
-<#else>
-    <div id="jive-global-header">
+<a name="top"></a>
+    <div id="jive-global-header" class="clearfix">
         <div id="jive-global-header-texture">
             <a href="http://www.igniterealtime.org" id="jive-global-header-logo"></a>
             <a href="http://www.jivesoftware.com?source=Website-Ignite"><div id="ignite_jive"></div></a>
@@ -16,7 +13,7 @@
                     <li id="nav05"><a href="/fans/index.jsp">Fans</a></li>
                     <li id="nav07"><a href="/support/index.jsp">Support</a></li>
                     <li id="nav08"><a href="/about/index.jsp">About</a></li>
-                    </ol>
+                </ol>
                 <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
                     <span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
                     <span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="http://www.igniterealtime.org/support/group_chat.jsp">More Information</a></span>
@@ -28,5 +25,4 @@
             </script>
         </div>
     </div>
-</#if>
 <!-- END header -->
