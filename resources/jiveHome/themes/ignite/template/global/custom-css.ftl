@@ -159,7 +159,7 @@ a:hover {
 
 #jive-global-header {
 
-	background: #000000 url(/community/themes/ignite/images/ignite_hdr-bg.gif) no-repeat scroll 0%;
+	background: #000000 url(/themes/ignite/images/ignite_hdr-bg.gif) no-repeat scroll 0%;
 
 	border-bottom:medium none;
 
@@ -177,7 +177,7 @@ a:hover {
 
 a#jive-global-header-logo {
 
-	background:transparent url(/community/themes/ignite/images/ignite_logo.gif) no-repeat scroll 0%;
+	background:transparent url(/themes/ignite/images/ignite_logo.gif) no-repeat scroll 0%;
 
 	scroll 0%;
 
@@ -203,7 +203,7 @@ a#jive-global-header-logo {
 
 	padding: 13px 20px 0px 0px;
 
-	background: #000 url(/community/themes/ignite/images/ignite_hdr-jivecommunity.gif) no-repeat bottom left;
+	background: #000 url(/themes/ignite/images/ignite_hdr-jivecommunity.gif) no-repeat bottom left;
 
 	}
 
@@ -221,7 +221,7 @@ a#jive-global-header-logo {
 
 	padding: 0px;
 
-	background: #fff url(/community/themes/ignite/images/ignite_nav-bg.gif) repeat-x;
+	background: #fff url(/themes/ignite/images/ignite_nav-bg.gif) repeat-x;
 	font-family: Arial,Helvetica,sans-serif;
 
 	}
@@ -238,7 +238,7 @@ a#jive-global-header-logo {
 
 #ignite_nav ol li {
 
-	background:transparent url(/community/themes/ignite/images/ignite_nav-div.gif) no-repeat scroll right center;
+	background:transparent url(/themes/ignite/images/ignite_nav-div.gif) no-repeat scroll right center;
 
 	color:#FFFFFF;
 
@@ -274,7 +274,7 @@ a#jive-global-header-logo {
 
 #ignite_nav ol li a.ignite_nav_current, #ignite_nav ol li a.ignite_nav_current:hover {
 
-	background:transparent url(/community/themes/ignite/images/ignite_nav-on.gif) no-repeat scroll center;
+	background:transparent url(/themes/ignite/images/ignite_nav-on.gif) no-repeat scroll center;
 
 	font-weight:bold;
 
@@ -282,7 +282,7 @@ a#jive-global-header-logo {
 
 #home #nav01 a, #projects #nav02 a, #downloads #nav03 a, #forum #nav04 a, #fans #nav05 a, #store #nav06 a, #support #nav07 a, #about #nav08 a {
 
-	background:transparent url(/community/themes/ignite/images/ignite_nav-on.gif) no-repeat scroll center;
+	background:transparent url(/themes/ignite/images/ignite_nav-on.gif) no-repeat scroll center;
 
 	font-weight:bold;
 
@@ -465,7 +465,7 @@ ul.jive-sidebar-subcommunities li ul, ul.jive-sidebar-taggroups li ul {
 
 .jive-communitylist-med .jive-communitylist-sm {
 
-	background:transparent url(/community/themes/ignite/images/ignite_blog_icon_tags.gif) no-repeat scroll left center;
+	background:transparent url(/themes/ignite/images/ignite_blog_icon_tags.gif) no-repeat scroll left center;
 
 }
 
