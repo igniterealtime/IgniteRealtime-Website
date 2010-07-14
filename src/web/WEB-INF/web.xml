@@ -33,7 +33,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <!-- Database connection parameters -->
     <context-param>
         <param-name>dbURL</param-name>
-        <param-value>jdbc:mysql://ignite01.private:3306/website_stats</param-value>
+        <param-value>jdbc:mysql://ignite01.private:3306/website_stats?characterEncoding=UTF-8</param-value>
     </context-param>
     <context-param>
         <param-name>dbUsername</param-name>
