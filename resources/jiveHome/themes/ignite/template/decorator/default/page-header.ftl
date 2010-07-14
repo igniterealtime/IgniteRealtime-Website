@@ -6,13 +6,13 @@
             <a href="http://www.jivesoftware.com?source=Website-Ignite"><div id="ignite_jive"></div></a>
             <div id="ignite_nav">
                 <ol>
-                    <li id="nav01"><a href="/index.jsp">Home</a></li>
-                    <li id="nav02"><a href="/projects/index.jsp">Projects</a></li>
-                    <li id="nav03"><a href="/downloads/index.jsp">Downloads</a></li>
+                    <li id="nav01"><a href="http://www.igniterealtime.org/index.jsp">Home</a></li>
+                    <li id="nav02"><a href="http://www.igniterealtime.org/projects/index.jsp">Projects</a></li>
+                    <li id="nav03"><a href="http://www.igniterealtime.org/downloads/index.jsp">Downloads</a></li>
                     <li id="nav04"><a href="/">Community</a></li>
-                    <li id="nav05"><a href="/fans/index.jsp">Fans</a></li>
-                    <li id="nav07"><a href="/support/index.jsp">Support</a></li>
-                    <li id="nav08"><a href="/about/index.jsp">About</a></li>
+                    <li id="nav05"><a href="http://www.igniterealtime.org/fans/index.jsp">Fans</a></li>
+                    <li id="nav07"><a href="http://www.igniterealtime.org/support/index.jsp">Support</a></li>
+                    <li id="nav08"><a href="http://www.igniterealtime.org/about/index.jsp">About</a></li>
                 </ol>
                 <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
                     <span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
