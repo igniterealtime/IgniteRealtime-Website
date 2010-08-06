@@ -8,10 +8,10 @@
     String profileLink = null;
     String profile = null;
     if (project.equals("openfire")) {
-        name = "gato";
-        avatarSrc = "http://community.igniterealtime.org/people/dombiak_gaston/avatar/32.png";
-        profileLink = "http://community.igniterealtime.org/people/dombiak_gaston";
-        profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
+        name = "Guus";
+        avatarSrc = "http://community.igniterealtime.org/people/Guus/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/Guus";
+        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("spark")) {
         name = "winsrev";
@@ -38,10 +38,10 @@
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("whack")) {
-        name = "gato";
-        avatarSrc = "http://community.igniterealtime.org/people/dombiak_gaston/avatar/32.png";
-        profileLink = "http://community.igniterealtime.org/people/dombiak_gaston";
-        profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
+        name = "Guus";
+        avatarSrc = "http://community.igniterealtime.org/people/Guus/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/Guus";
+        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("xiff")) {
         name = "ajagucki";
