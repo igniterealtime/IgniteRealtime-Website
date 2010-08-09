@@ -3,6 +3,8 @@
 <%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
 <%@ page import="com.jivesoftware.community.webservices.WSBlogPost" %>
 <%@ page import="java.util.List" %>
+<%@ page import="org.jivesoftware.site.FeedManager" %>
+<%@ page import="com.sun.syndication.feed.synd.SyndEntry" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -122,19 +124,34 @@
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-                    <cache:cache time="600" key="<%= blogFeedRSS %>">
+					<cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
+                    FeedManager feedManager = FeedManager.getInstance();
+                    List<SyndEntry> blogFeedEntries = feedManager.getBlogFeedEntries(blogFeedRSS);
 					BlogService blogService = serviceProvider.getBlogService();
+
 					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
-                    String[] tags = {"tinder"};
-                    bprf.setTags(tags);
-                    // if the tag doesn't exist (as in this case) its presence causes filter fail
-                    //bprf.getTags().add("tinder-api");
+        			String[] tags = {"tinder"};
+                    bprf.setTags(tags);            
                     WSBlogPost[] posts = blogService.getBlogPosts(bprf);
+                    if ( (null != posts) && (null != blogFeedEntries) ) {
+                        for (WSBlogPost post: posts) {
+                            for (SyndEntry entry: blogFeedEntries) {
+                                if ( (null == entry.getLink()) || (null == post.getPermalink()) ) {
+                                    continue;
+                                } else {
+                                    if (entry.getLink().equals(post.getPermalink())) {
+                                        post.setBody(entry.getDescription().getValue());
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />
