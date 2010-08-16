@@ -206,49 +206,49 @@
                                 </td>
                                 <td width="99%">
                                     Openfire:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/openfire">openfire/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/openfire/trunk">openfire/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     Spark:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/spark">spark/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/spark/trunk">spark/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     SparkWeb:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/sparkweb">sparkweb/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/sparkweb/trunk">sparkweb/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     XIFF:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/xiff">xiff/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/xiff/trunk">xiff/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     Smack:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/smack">smack/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/smack/trunk">smack/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     Tinder:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/tinder">tinder/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/tinder/trunk">tinder/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     Whack:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/whack">whack/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/whack/trunk">whack/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%" class="last">
                                     Asterisk-IM:
-                                    <a href="http://fisheye.igniterealtime.org/viewrep/svn-org/asterisk-im">asterisk-im/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/asterisk-im/trunk">asterisk-im/trunk</a>
                                 </td>
                             </tr>
                             <tr>
