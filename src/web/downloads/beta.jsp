@@ -68,7 +68,7 @@
                     <!-- BEGIN smack downloads -->
                     <%@ include file="/includes/download-box-smack-beta.jspf" %>
                     <!-- END smack downloads -->
-            <%  } %>
+            <%  }
                 String xiffBetaVersion = Versions.getVersion("xiff-beta");
                 if (xiffBetaVersion != null) {
             %>
