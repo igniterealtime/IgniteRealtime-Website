@@ -8,10 +8,10 @@
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
     <product name="smack" version="3.1.0" date="November 20, 2008" />
     <!--<product name="smack-beta" version="3.1.0.beta1" date="October 30, 2008" />-->
-    <product name="tinder" version="1.2.1" date="January 3, 2010" />
+    <product name="tinder" version="1.2.2" date="August 20, 2010" />
     <product name="whack" version="1.0.0" date="July 14, 2008" />
     <product name="xiff" version="3.0.0-beta1" date="April 2, 2008" />
-    <product name="xiff-beta" version="3.0.0.beta1" date="April 2, 2008" />
+    <product name="xiff-beta" version="3.0.0-beta1" date="April 2, 2008" />
     <product name="asterisk-im" version="1.1.1" date="July 3, 2006" />
     <product name="connection_manager" version="3.6.3" date="January 8, 2009" />
     <!--<product name="connection_manager-beta" version="3.5.0.rc2" date="March 11, 2008" />-->
