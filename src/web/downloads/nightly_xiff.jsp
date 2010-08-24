@@ -108,9 +108,8 @@
     if (files != null && files.length > 0) {
         Arrays.sort(files, new FileComparator());
         boolean odd = false;
-        for (int i=0; i < (files.length / 2); i++) {
-            File file1 = files[2 * i];
-            File file2 = files[2 * i + 1];
+        for (int i=0; i < files.length; i++) {
+            File file1 = files[i];
             if (i%2 == 0) {
                 odd = !odd;
             }
