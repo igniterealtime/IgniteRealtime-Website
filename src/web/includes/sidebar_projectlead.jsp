@@ -20,10 +20,10 @@
         profile = "Constantly moaning, raving and getting stressed, then writing mysterious code that only works with the magic of Spark.";
     }
     else if (project.equals("sparkweb")) {
-        name = "ajagucki";
-        avatarSrc = "http://community.igniterealtime.org/people/ajagucki/avatar/46.png";
-        profileLink = "http://community.igniterealtime.org/people/ajagucki";
-        profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
+        name = "dele";
+        avatarSrc = "http://community.igniterealtime.org/people/dele/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/dele";
+        profile = "We don't know how he does it, but works magic every time he touches the code.";
     }
     else if (project.equals("smack")) {
         name = "matt";
@@ -44,10 +44,10 @@
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("xiff")) {
-        name = "ajagucki";
-        avatarSrc = "http://community.igniterealtime.org/people/ajagucki/avatar/46.png";
-        profileLink = "http://community.igniterealtime.org/people/ajagucki";
-        profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
+        name = "driverjase";
+        avatarSrc = "http://community.igniterealtime.org/people/driverjase/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/driverjase";
+        profile = "Flash guru extraordinaire, part-time superhero.";
     }
 %>
             <!-- BEGIN grey gradient sidebar box 'PROJECT LEAD' -->
