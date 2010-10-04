@@ -7,6 +7,8 @@
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib tagdir="/WEB-INF/tag" prefix="i" %>
+
 <%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
@@ -149,7 +151,7 @@
                     }
 					%>
 					<% request.setAttribute("posts", posts); %>
-					<jsp:include page="/includes/blogposts.jsp" />
+					<i:blogposts posts="${posts}"/>
                     </cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->
