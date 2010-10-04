@@ -148,7 +148,7 @@
                     }
 					%>
 					<% request.setAttribute("posts", posts); %>
-					<i:blogposts posts="${posts}"/>
+					<jsp:include page="/includes/blogposts.jsp" />
                     </cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->
