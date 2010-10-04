@@ -10,6 +10,8 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="i" %>
 
 <%@ include file="/includes/ws_locator.jspf" %>
+<%@ page errorPage="error404.jsp" %>
+
 <html>
 <head>
 <title>Openfire Server</title>
