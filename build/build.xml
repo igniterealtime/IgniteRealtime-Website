@@ -181,6 +181,9 @@
                 <include name="WEB-INF/*.tld" />
                 <include name="WEB-INF/*.xml" />
             </fileset>
+            <fileset dir="${web.dir}/tags">
+                <include name="WEB-INF/tags/**/*" />
+            </fileset>
         </war>
     </target>
 
