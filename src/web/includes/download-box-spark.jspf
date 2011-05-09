@@ -17,6 +17,7 @@
     File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
     File binTar = new File(basedir, "spark_" + version.replace('.','_') + ".tar.gz");
     File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
+    File rpm = new File(basedir, "spark_" + version.replace('.','_') + ".rpm");
 
     String buildDate = "UNKNOWN";
     if (binExe.exists()) {
@@ -102,6 +103,14 @@
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binTar.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="/images/icon_linux.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= rpm.getName() %>"><%= rpm.getName() %></a> RPM for Red Hat Linux and variants
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)rpm.length()/1024.0/1024.0) %> MB</span>
                     </div>
                 </div>
             </div>
