@@ -156,7 +156,7 @@ public class SparkUpdateServlet extends HttpServlet {
         //version.setDownloadURL("http://s3.amazonaws.com/jive/spark/" + latestFile);
 
         // Include the url to the change log.
-        version.setChangeLogURL("http://www.igniterealtime.org/updater/changelog.jsp");
+        version.setChangeLogURL("http://www.igniterealtime.org/builds/spark/docs/latest/changelog.html");
 
         final String xml = xstream.toXML(version);
 
