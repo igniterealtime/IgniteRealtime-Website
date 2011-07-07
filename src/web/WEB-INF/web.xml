@@ -22,12 +22,11 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <param-value>/opt/j2ee/domains/igniterealtime.org/www/tomcat/webapps/ROOT/projects/spark</param-value>
     </context-param>
     
-    <!-- Hostname were our downloads are hosted. S3/Cloudfront, should almost never change. 
+    <!-- Hostname where our downloads are hosted. S3/Cloudfront, should almost never change. 
          Default: http://download.igniterealtime.org Note, do not include a trailing "/". -->
     <context-param>
         <param-name>download-host</param-name>
-        <param-value>NONE</param-value>
-        <!-- <param-value>http://download.igniterealtime.org</param-value> -->
+        <param-value>http://download.igniterealtime.org</param-value>
     </context-param>
 
     <!-- Database connection parameters -->
