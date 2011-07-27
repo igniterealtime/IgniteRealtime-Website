@@ -64,12 +64,35 @@ public class SparkUpdateServlet extends HttpServlet {
             File file = new File(sparkDirectory, fileName);
 
             try {
-                boolean ok = writeBytesToStream(file, response);
-                if (!ok) {
+                // Check whether this file exists and is really a file
+                if (!(file.exists() && file.isFile())) {
+                    // Not a file, return 404
+                    response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                    return;
+                }
+                
+                // we need to reduce bandwidth from site itself
+                // so, have to offload downloads to S3/Cloudfront
+                // in all likelihood, our stats will be overly optimistic now since they will be counting
+                // download attempts, not completion
+                String downloadHost = DownloadStats.getDownloadHost();
+                boolean downloadComplete = false;
+                if ( (null == downloadHost) || downloadHost.trim().equals("")
+                        || downloadHost.trim().toUpperCase().equals("NONE")) {
+                    downloadComplete = writeBytesToStream(file, response);
+                } else {
+                    // must be a real hostname, no?
+                    downloadComplete = true;
+                    response.sendRedirect(downloadHost + "/spark/" + fileName);
+                }
+                if (!downloadComplete) {
                     return;
                 }
                 // Log to database
-                String ipAddress = request.getRemoteAddr();
+                String ipAddress = request.getHeader("X-FORWARDED-FOR");
+                if (ipAddress == null) {
+                    ipAddress = request.getRemoteAddr();
+                }
                 String product = "Spark";
                 String version = getVersionNumber(fileName);
                 String fileType = getFileType(fileName);

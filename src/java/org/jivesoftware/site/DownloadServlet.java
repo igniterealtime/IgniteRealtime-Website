@@ -88,7 +88,7 @@ public class DownloadServlet extends HttpServlet {
 
             String product = filename.substring(0, slash);
 
-            // now that we are hosting from Club Fed, need to reduce bandwidth from site itself
+            // we need to reduce bandwidth from site itself
             // so, have to offload downloads to S3/Cloudfront
             // in all likelihood, our stats will be overly optimistic now since they will be counting
             // download attempts, not completion
