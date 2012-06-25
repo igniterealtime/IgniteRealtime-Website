@@ -60,7 +60,7 @@
 					</div>
 
                     <div class="ignite_service-provider">
-						<span class="ignite_service-provider_logo"><img src="../images/logo_contegix.gif" alt="Contegix" width="125" height="20" border="0"></span>
+						<span class="ignite_service-provider_logo"><img src="../images/logo_contegix.gif" alt="Contegix" width="82" height="20" border="0"></span>
 						<h3>Contegix</h3>
 						<span class="ignite_service-provider_url"><a href="http://www.contegix.com">www.contegix.com</a></span>
 						<p>Contegix is a premier provider of managed hosting and advanced
