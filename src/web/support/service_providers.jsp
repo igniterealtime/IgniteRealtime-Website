@@ -6,7 +6,7 @@
 <%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
-<title>Support - Service Providers</title>
+<title>Support - Professional Partners</title>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
@@ -20,7 +20,7 @@
 			<li id="subnav02"><a href="articles.jsp">Articles</a></li>
 			<li id="subnav03"><a href="group_chat.jsp">Group Chat</a></li>
 			<li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
-			<li id="subnav05"><a href="service_providers.jsp" class="ignite_subnav_current">Service providers</a></li>
+			<li id="subnav05"><a href="service_providers.jsp" class="ignite_subnav_current">Professional Partners</a></li>
 		</ul>
 	</div>
 
@@ -35,7 +35,7 @@
 			
 				<!-- BEGIN body header -->
 				<div id="ignite_body_header">
-					<h2>Service Providers</h2>
+					<h2>Professional Partners</h2>
 				</div>
 				<!-- END body header -->
 				

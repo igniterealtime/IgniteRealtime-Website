@@ -22,7 +22,7 @@
 			<li id="subnav02"><a href="articles.jsp">Articles</a></li>
 			<li id="subnav03"><a href="group_chat.jsp">Group Chat</a></li>
 			<li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
-			<li id="subnav05"><a href="service_providers.jsp">Service Providers</a></li>
+			<li id="subnav05"><a href="service_providers.jsp">Professional Partners</a></li>
 		</ul>
 	</div>
 
@@ -43,7 +43,7 @@
 				
 				<div id="ignite_support_findprovider">
 					<img src="../images/ignite_support_profsupport.gif" alt="" width="203" height="27" border="0">
-					<p>If you need professional support or services see our <a href="service_providers.jsp">directory of service providers</a></p>
+					<p>If you need professional support or services see our <a href="service_providers.jsp">directory of professional partners</a>.</p>
 				</div>
 					
 				<div id="ignite_support_main">
