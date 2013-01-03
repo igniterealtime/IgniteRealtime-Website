@@ -16,7 +16,7 @@
                     license = "Open Source Apache";
                 }
                 else if (project.equals("spark")) {
-                    license = "Open Source LGPL";
+                    license = "Open Source Apache";
                 }
                 else if (project.equals("sparkweb")) {
                     license = "Open Source LGPL";
