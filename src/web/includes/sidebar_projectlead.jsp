@@ -26,10 +26,10 @@
         profile = "We don't know how he does it, but works magic every time he touches the code.";
     }
     else if (project.equals("smack")) {
-        name = "matt";
-        avatarSrc = "http://community.igniterealtime.org/people/matt/avatar/32.png";
-        profileLink = "http://community.igniterealtime.org/people/matt";
-        profile = "\"That code doesn't have comments?! AHHH!\"";
+        name = "Robin";
+        avatarSrc = "http://community.igniterealtime.org/people/rcollier/avatar/32.png";
+        profileLink = "http://community.igniterealtime.org/people/rcollier";
+        profile = "Coding out of an igloo in the wilds of Canada.";
     }
     else if (project.equals("tinder")) {
         name = "Guus";
