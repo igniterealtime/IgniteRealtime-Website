@@ -280,7 +280,6 @@
 						<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>
 					</div>
 					<div class="ignite_sidebar_body_project8" style="text-align: center;">
-						<strong><a href="/roadmap.jsp">Roadmap</a></strong>
 					</div>
 				</div>
 				<div class="ignite_sidebar_btm-g"></div>
