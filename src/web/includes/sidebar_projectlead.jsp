@@ -29,7 +29,7 @@
         name = "Flow";
         avatarSrc = "http://community.igniterealtime.org/people/Flow/avatar/32.png";
         profileLink = "http://community.igniterealtime.org/people/Flow";
-        profile = "Maybe I'll come up with a nice idea, but atm nothing.";
+        profile = "";
     }
     else if (project.equals("tinder")) {
         name = "Guus";
