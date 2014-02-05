@@ -134,25 +134,6 @@
 							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
 							<span class="ignite_download_item_size"><%= formatter.format((double)openfireSrcTar.length()/1024.0/1024.0) %> MB</span>
 						</div>
-						<div class="ignite_download_panel_label">
-							<h4>Smack Source</h4>
-						</div>
-						<div class="ignite_download_item_odd">
-							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= smackSrcZip.getName() %>"><%= smackSrcZip.getName() %></a>
-							</span>
-							<span class="ignite_download_item_date"><%= smackBuildDate %></span>
-							<span class="ignite_download_item_size"><%= formatter.format((double)smackSrcZip.length()/1024.0/1024.0) %> MB</span>
-						</div>
-						<div class="ignite_download_item_even">
-							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= smackSrcTarGz.getName() %>"><%= smackSrcTarGz.getName() %></a>
-							</span>
-							<span class="ignite_download_item_date"><%= smackBuildDate %></span>
-							<span class="ignite_download_item_size"><%= formatter.format((double)smackSrcTarGz.length()/1024.0/1024.0) %> MB</span>
-                        </div>
                         <div class="ignite_download_panel_label">
 							<h4>Tinder Source</h4>
 						</div>
@@ -202,6 +183,14 @@
                         <tbody>
                             <tr>
                                 <td width="1%" rowspan="8" class="item" valign="top">
+                                    Github
+                                </td>
+                                <td width="99%">
+                                    Smack: git clone https://github.com/igniterealtime/Smack.git
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="1%" rowspan="7" class="item" valign="top">
                                     Browse SVN
                                 </td>
                                 <td width="99%">
@@ -229,12 +218,6 @@
                             </tr>
                             <tr>
                                 <td width="99%">
-                                    Smack:
-                                    <a href="http://fisheye.igniterealtime.org/browse/smack/trunk">smack/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%">
                                     Tinder:
                                     <a href="http://fisheye.igniterealtime.org/browse/tinder/trunk">tinder/trunk</a>
                                 </td>
@@ -252,7 +235,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="1%" rowspan="8" class="item" valign="top">
+                                <td width="1%" rowspan="7" class="item" valign="top">
                                 SVN Access
                             </td>
                             <td width="99%">
@@ -274,11 +257,6 @@
                             <td width="99%">
                                 XIFF:<br>
                                 <tt>svn co http://svn.igniterealtime.org/svn/repos/xiff/trunk xiff</tt>
-                        </tr>
-                        <tr>
-                            <td width="99%">
-                                Smack:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/smack/trunk smack</tt>
                         </tr>
                             <tr>
                             <td width="99%">
