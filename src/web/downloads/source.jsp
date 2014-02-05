@@ -182,7 +182,7 @@
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tbody>
                             <tr>
-                                <td width="1%" rowspan="8" class="item" valign="top">
+                                <td width="1%" class="item" valign="top">
                                     Github
                                 </td>
                                 <td width="99%">
