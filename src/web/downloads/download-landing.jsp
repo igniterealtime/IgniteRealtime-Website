@@ -85,9 +85,9 @@ to give us feedback. </td>
     <div id="ignite_body_rightcol">
 
 
-        <%@ include file="/includes/sidebar_enterprise.jspf" %>
+        <%-- <%@ include file="/includes/sidebar_enterprise.jspf" %> --%>
 
-        <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
+        <%-- <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %> --%>
 
         <%--<%@ include file="/includes/sidebar_testimonial.jspf" %>--%>
 

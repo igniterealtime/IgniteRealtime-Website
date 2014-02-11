@@ -55,7 +55,7 @@ function runGroupChatTimer() {
         // Is it occurring now?
         else if (hour == SCHEDULED_HOUR) {
             // Now
-            message += '<strong><a href="/support/group_chat.jsp">Now</a></strong>';
+            message += '<strong><a href="http://www.igniterealtime.org/support/group_chat.jsp">Now</a></strong>';
             showNow = true;
             show = true;
         }

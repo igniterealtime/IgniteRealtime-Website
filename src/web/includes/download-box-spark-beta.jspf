@@ -1,7 +1,6 @@
 <%@ page import="org.jivesoftware.site.Versions, java.io.File, java.text.SimpleDateFormat, java.util.Date, java.text.DecimalFormat"%>
-<%  { %>
-
-<%  String path = request.getContextPath();
+<%  { 
+    String path = request.getContextPath();
     String buildsPath = application.getInitParameter("builds-path");
 
     String version = Versions.getVersion("spark-beta");

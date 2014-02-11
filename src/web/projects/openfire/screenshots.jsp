@@ -112,10 +112,10 @@
 			<li id="subnav02"><a href="screenshots.jsp" class="ignite_subnav_current">Screenshots</a></li>
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/JM">Issue Tracker</a></li>
+			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
 			<li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
-            <li id="subnav08"><a href="../../roadmap.jsp">Roadmap</a></li>
+            <li id="subnav08"><a href="http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
 	</div>
 

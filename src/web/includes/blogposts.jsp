@@ -11,7 +11,7 @@ for (WSBlogPost post : posts) {
 	%>
 	<div class="<%= style %>">
         <div class="ignite_blog_entry_header">
-			<img src="/community/people/<%= post.getUser().getUsername() %>/avatar/32.png" 
+			<img src="http://community.igniterealtime.org/people/<%= post.getUser().getUsername() %>/avatar/32.png" 
 				alt="<%= post.getUser().getUsername() %>"
 				width="32" height="32" />
 				
@@ -23,7 +23,7 @@ for (WSBlogPost post : posts) {
 
             <!-- BEGIN blog entry author and datestamp -->
             <span class="ignite_blog_entry_author">
-                Posted by <a href="/community/people/<%= post.getUser().getUsername() %>/"><%= post.getUser().getUsername() %></a>
+                Posted by <a href="http://community.igniterealtime.org/people/<%= post.getUser().getUsername() %>/"><%= post.getUser().getUsername() %></a>
             </span>
             <span class="ignite_blog_entry_date">
 
@@ -47,7 +47,7 @@ for (WSBlogPost post : posts) {
 				<% if (null != tags) { %>
 				<% 	for (int i=0; i<tags.length; i++) { %>
 					<% if (i > 0) { %>,<% } %> 
-					<a href="/community/blogs/ignite/tags/<%= tags[i] %>"><%= tags[i] %></a>
+					<a href="http://community.igniterealtime.org/blogs/ignite/tags/<%= tags[i] %>"><%= tags[i] %></a>
 				<% 	} %>
 				<% } %>
             </span>

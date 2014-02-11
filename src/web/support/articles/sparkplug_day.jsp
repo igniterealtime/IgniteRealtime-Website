@@ -11,7 +11,7 @@
         <li id="subnav01"><a href="../index.jsp" class="ignite_subnav_project">Support</a></li>
         <li id="subnav02"><a href="../articles.jsp" class="ignite_subnav_current">Articles</a></li>
         <li id="subnav03"><a href="../group_chat.jsp">Group Chat</a></li>
-        <li id="subnav04"><a href="http://www.igniterealtime.org/issues/secure/Dashboard.jspa">Issue Tracker</a></li>
+        <li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
         <li id="subnav05"><a href="../service_providers.jsp">Service providers</a></li>
     </ul>
 </div>

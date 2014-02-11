@@ -134,25 +134,6 @@
 							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
 							<span class="ignite_download_item_size"><%= formatter.format((double)openfireSrcTar.length()/1024.0/1024.0) %> MB</span>
 						</div>
-						<div class="ignite_download_panel_label">
-							<h4>Smack Source</h4>
-						</div>
-						<div class="ignite_download_item_odd">
-							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= smackSrcZip.getName() %>"><%= smackSrcZip.getName() %></a>
-							</span>
-							<span class="ignite_download_item_date"><%= smackBuildDate %></span>
-							<span class="ignite_download_item_size"><%= formatter.format((double)smackSrcZip.length()/1024.0/1024.0) %> MB</span>
-						</div>
-						<div class="ignite_download_item_even">
-							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
-								<a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= smackSrcTarGz.getName() %>"><%= smackSrcTarGz.getName() %></a>
-							</span>
-							<span class="ignite_download_item_date"><%= smackBuildDate %></span>
-							<span class="ignite_download_item_size"><%= formatter.format((double)smackSrcTarGz.length()/1024.0/1024.0) %> MB</span>
-                        </div>
                         <div class="ignite_download_panel_label">
 							<h4>Tinder Source</h4>
 						</div>
@@ -201,58 +182,60 @@
                     <table cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tbody>
                             <tr>
-                                <td width="1%" rowspan="8" class="item" valign="top">
+                                <td width="1%" class="item" valign="top">
+                                    Github
+                                </td>
+                                <td width="99%">
+                                    Smack: git clone https://github.com/igniterealtime/Smack.git
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="1%" rowspan="7" class="item" valign="top">
                                     Browse SVN
                                 </td>
                                 <td width="99%">
                                     Openfire:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/openfire">openfire/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/openfire/trunk">openfire/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     Spark:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/spark">spark/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/spark/trunk">spark/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     SparkWeb:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/sparkweb">sparkweb/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/sparkweb/trunk">sparkweb/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     XIFF:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/xiff">xiff/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%">
-                                    Smack:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/smack">smack/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/xiff/trunk">xiff/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     Tinder:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/tinder">tinder/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/tinder/trunk">tinder/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%">
                                     Whack:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/whack">whack/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/whack/trunk">whack/trunk</a>
                                 </td>
                             </tr>
                             <tr>
                                 <td width="99%" class="last">
                                     Asterisk-IM:
-                                    <a href="http://www.igniterealtime.org/fisheye/viewrep/svn-org/asterisk-im">asterisk-im/trunk</a>
+                                    <a href="http://fisheye.igniterealtime.org/browse/asterisk-im/trunk">asterisk-im/trunk</a>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="1%" rowspan="8" class="item" valign="top">
+                                <td width="1%" rowspan="7" class="item" valign="top">
                                 SVN Access
                             </td>
                             <td width="99%">
@@ -274,11 +257,6 @@
                             <td width="99%">
                                 XIFF:<br>
                                 <tt>svn co http://svn.igniterealtime.org/svn/repos/xiff/trunk xiff</tt>
-                        </tr>
-                        <tr>
-                            <td width="99%">
-                                Smack:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/smack/trunk smack</tt>
                         </tr>
                             <tr>
                             <td width="99%">
@@ -322,17 +300,17 @@
             <h4>Bugs/Issues</h4>
 
             <p>To view and report bugs and issues, please view our
-                <a href="http://www.igniterealtime.org/issues/">issue tracker</a>.
+                <a href="http://issues.igniterealtime.org/">issue tracker</a>.
                 Specific projects include:
-                <a href="http://www.igniterealtime.org/issues/browse/JM">Openfire</a>,
-                <a href="http://www.igniterealtime.org/issues/browse/SPARK">Spark</a>,
-                <a href="http://www.igniterealtime.org/issues/browse/SW">SparkWeb</a>,
-                <a href="http://www.igniterealtime.org/issues/browse/SMACK">Smack API</a>,
-                <a href="http://www.igniterealtime.org/issues/browse/TINDER">Tinder API</a>,
-                <a href="http://www.igniterealtime.org/issues/browse/WHACK">Whack API</a>,
-                <a href="http://www.igniterealtime.org/issues/browse/XIFF">XIFF</a>,
-                <a href="http://www.igniterealtime.org/issues/browse/GATE">Gateway Plugin</a>, and
-                <a href="http://www.igniterealtime.org/issues/browse/PHONE">Asterisk-IM</a>.
+                <a href="http://issues.igniterealtime.org/browse/JM">Openfire</a>,
+                <a href="http://issues.igniterealtime.org/browse/SPARK">Spark</a>,
+                <a href="http://issues.igniterealtime.org/browse/SW">SparkWeb</a>,
+                <a href="http://issues.igniterealtime.org/browse/SMACK">Smack API</a>,
+                <a href="http://issues.igniterealtime.org/browse/TINDER">Tinder API</a>,
+                <a href="http://issues.igniterealtime.org/browse/WHACK">Whack API</a>,
+                <a href="http://issues.igniterealtime.org/browse/XIFF">XIFF</a>,
+                <a href="http://issues.igniterealtime.org/browse/GATE">Gateway Plugin</a>, and
+                <a href="http://issues.igniterealtime.org/browse/PHONE">Asterisk-IM</a>.
             </p>
 
             <br>

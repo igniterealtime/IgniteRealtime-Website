@@ -99,7 +99,7 @@
 					<!-- BEGIN blog header -->
 					<div id="ignite_blog_header">
 						<span id="ignite_blog_header_label">
-							Latest <a href="/community/blogs/ignite">Blog</a> Entries
+							Latest <a href="http://community.igniterealtime.org/blogs/ignite">Blog</a> Entries
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
@@ -118,7 +118,7 @@
 
 					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
 					bprf.setNumResults(5);
-                    bprf.setBlogID((long) NULL_INT);
+                    bprf.setBlogID(new Long(1353)); //bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
                     WSBlogPost[] posts = blogService.getBlogPosts(bprf);
@@ -159,18 +159,18 @@
 						
 						<!-- featured member 1 -->
 						<div style="float: right;">
-						<a href="/community/people/sixthring">
+						<a href="http://community.igniterealtime.org/people/sixthring">
 							<div class="ignite_home_featured_avatar">
-							 <img src="/community/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
+							 <img src="http://community.igniterealtime.org/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
 							</div>
                         sixthring</a>
 						</div>
 
                         <!-- featured member 2 -->
                         <div style="float: left;">
-						<a href="/community/people/winsrev">
+						<a href="http://community.igniterealtime.org/people/winsrev">
 							<div class="ignite_home_featured_avatar">
-							<img src="/community/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
+							<img src="http://community.igniterealtime.org/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
 							</div>
                         winsrev</a>
 						</div>
@@ -180,7 +180,7 @@
 					<!-- BEGIN recent discussions, news, wiki docs, and articles -->
 					<div id="ignite_home_body_recent">
 					<h4>Recent Discussions</h4>
-						<cache:cache time="60" key="/community/blogs/feeds/posts">
+						<cache:cache time="60" key="http://community.igniterealtime.org/blogs/feeds/posts">
 
                         <%
 						ForumService forumService1 = serviceProvider.getForumService();
@@ -193,15 +193,15 @@
 						for (WSForumMessage message : messages1) {
 						%>
 							<div class="discussion">
-								<img src="/community/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
+								<img src="http://community.igniterealtime.org/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
 									<b><%= message.getUser().getUsername() %></b> in
-									"<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
+									"<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
 							</div>
 						<% } %>
                         </cache:cache>
 											
 					<h4>Recent Releases</h4>
-						<cache:cache time="60" key="/community/community/feeds/allcontent?communityID=2017">
+						<cache:cache time="60" key="http://community.igniterealtime.org/community/feeds/allcontent?communityID=2017">
 						<%
 						ForumService forumService2 = serviceProvider.getForumService();
 						WSResultFilter rf2 = new WSResultFilter();
@@ -214,7 +214,7 @@
                         %>
 							<div class="news">
 								<font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(message.getCreationDate()) %> - </font>
-								<a href='/community/message/<%= message.getID() %>'><%= message.getSubject() %></a>
+								<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>
 							</div>
 						<% } %>
 						</cache:cache>
@@ -280,7 +280,6 @@
 						<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>
 					</div>
 					<div class="ignite_sidebar_body_project8" style="text-align: center;">
-						<strong><a href="/roadmap.jsp">Roadmap</a></strong>
 					</div>
 				</div>
 				<div class="ignite_sidebar_btm-g"></div>

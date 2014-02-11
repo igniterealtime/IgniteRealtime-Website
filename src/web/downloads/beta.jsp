@@ -65,12 +65,22 @@
                 String smackBetaVersion = Versions.getVersion("smack-beta");
                 if (smackBetaVersion != null) {
             %>
-                    <!-- BEGIN spark downloads -->
+                    <!-- BEGIN smack downloads -->
                     <%@ include file="/includes/download-box-smack-beta.jspf" %>
-                    <!-- END spark downloads -->
+                    <!-- END smack downloads -->
+            <%  }
+                String xiffBetaVersion = Versions.getVersion("xiff-beta");
+                if (xiffBetaVersion != null) {
+            %>
+                    <!-- BEGIN xiff downloads -->
+                    <%@ include file="/includes/download-box-xiff-beta.jspf" %>
+                    <!-- END xiff downloads -->
             <%  } %>
 
-            <% if (openfireBetaVersion == null && sparkBetaVersion == null && smackBetaVersion == null) { %>
+            <% if (openfireBetaVersion == null 
+            		&& sparkBetaVersion == null 
+            		&& smackBetaVersion == null 
+            		&& xiffBetaVersion == null) { %>
                 <br clear="left"/>
                 <div style="width: 100%; padding: 25px; text-align:center">
                     <strong>No beta releases currently available.</strong>

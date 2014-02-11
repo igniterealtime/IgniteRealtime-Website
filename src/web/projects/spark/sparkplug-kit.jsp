@@ -19,7 +19,7 @@
 			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/SPARK">Issue Tracker</a></li>
+			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
             <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
 	</div>
@@ -71,7 +71,7 @@
 
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="/community/developers/spark_dev">Sparkplug Discussion Forum</a></li>
+                        <li><a href="http://community.igniterealtime.org/developers/spark_dev">Sparkplug Discussion Forum</a></li>
                     </ul>
 
                 </div>

@@ -6,7 +6,7 @@
 <%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
-<title>Support - Service Providers</title>
+<title>Support - Professional Partners</title>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
 	@import "/styles/interior.css";
@@ -19,8 +19,8 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Support</a></li>
 			<li id="subnav02"><a href="articles.jsp">Articles</a></li>
 			<li id="subnav03"><a href="group_chat.jsp">Group Chat</a></li>
-			<li id="subnav04"><a href="http://www.igniterealtime.org/issues/secure/Dashboard.jspa">Issue Tracker</a></li>
-			<li id="subnav05"><a href="service_providers.jsp" class="ignite_subnav_current">Service providers</a></li>
+			<li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
+			<li id="subnav05"><a href="service_providers.jsp" class="ignite_subnav_current">Professional Partners</a></li>
 		</ul>
 	</div>
 
@@ -35,7 +35,7 @@
 			
 				<!-- BEGIN body header -->
 				<div id="ignite_body_header">
-					<h2>Service Providers</h2>
+					<h2>Professional Partners</h2>
 				</div>
 				<!-- END body header -->
 				
@@ -60,7 +60,7 @@
 					</div>
 
                     <div class="ignite_service-provider">
-						<span class="ignite_service-provider_logo"><img src="../images/logo_contegix.gif" alt="Contegix" width="125" height="20" border="0"></span>
+						<span class="ignite_service-provider_logo"><img src="../images/logo_contegix.gif" alt="Contegix" width="82" height="20" border="0"></span>
 						<h3>Contegix</h3>
 						<span class="ignite_service-provider_url"><a href="http://www.contegix.com">www.contegix.com</a></span>
 						<p>Contegix is a premier provider of managed hosting and advanced

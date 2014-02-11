@@ -40,7 +40,7 @@
             <jsp:include page="/includes/sidebar_projectlead.jsp">
                 <jsp:param name="project" value="<%= project %>" />
             </jsp:include>
-                                              brb
+
 			<jsp:include page="/includes/sidebar_snapshot.jsp">
 			    <jsp:param name="project" value="<%= project %>"/>
 			</jsp:include>

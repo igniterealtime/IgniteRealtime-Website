@@ -56,7 +56,7 @@
 							</span>
 							--%>
 							<span id="ignite_blog_header_rss">
-							 	<a href="/community/blogs/ignite/feeds/posts"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="http://community.igniterealtime.org/blogs/ignite/feeds/posts"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>

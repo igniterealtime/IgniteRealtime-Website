@@ -8,46 +8,46 @@
     String profileLink = null;
     String profile = null;
     if (project.equals("openfire")) {
-        name = "gato";
-        avatarSrc = "/community/people/dombiak_gaston/avatar/32.png";
-        profileLink = "/community/people/dombiak_gaston";
-        profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
+        name = "Guus";
+        avatarSrc = "http://community.igniterealtime.org/people/Guus/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/Guus";
+        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("spark")) {
         name = "winsrev";
-        avatarSrc = "/community/people/winsrev/avatar/46.png";
-        profileLink = "/community/people/winsrev";
+        avatarSrc = "http://community.igniterealtime.org/people/winsrev/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/winsrev";
         profile = "Constantly moaning, raving and getting stressed, then writing mysterious code that only works with the magic of Spark.";
     }
     else if (project.equals("sparkweb")) {
-        name = "ajagucki";
-        avatarSrc = "/community/people/ajagucki/avatar/46.png";
-        profileLink = "/community/people/ajagucki";
-        profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
+        name = "dele";
+        avatarSrc = "http://community.igniterealtime.org/people/dele/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/dele";
+        profile = "We don't know how he does it, but works magic every time he touches the code.";
     }
     else if (project.equals("smack")) {
-        name = "matt";
-        avatarSrc = "/community/people/matt/avatar/32.png";
-        profileLink = "/community/people/matt";
-        profile = "\"That code doesn't have comments?! AHHH!\"";
+        name = "Flow";
+        avatarSrc = "http://community.igniterealtime.org/people/Flow/avatar/32.png";
+        profileLink = "http://community.igniterealtime.org/people/Flow";
+        profile = "";
     }
     else if (project.equals("tinder")) {
         name = "Guus";
-        avatarSrc = "/community/people/Guus/avatar/46.png";
-        profileLink = "/community/people/Guus";
+        avatarSrc = "http://community.igniterealtime.org/people/Guus/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/Guus";
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("whack")) {
-        name = "gato";
-        avatarSrc = "/community/people/dombiak_gaston/avatar/32.png";
-        profileLink = "/community/people/dombiak_gaston";
-        profile = "Found in the forests of Argentina chewing on his own leg and reading a book on concurrent programming.";
+        name = "Guus";
+        avatarSrc = "http://community.igniterealtime.org/people/Guus/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/Guus";
+        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("xiff")) {
-        name = "ajagucki";
-        avatarSrc = "/community/people/ajagucki/avatar/46.png";
-        profileLink = "/community/people/ajagucki";
-        profile = "Proof that having assassin-like code skills does not mutually exclude pure freshness.";
+        name = "driverjase";
+        avatarSrc = "http://community.igniterealtime.org/people/driverjase/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/driverjase";
+        profile = "Flash guru extraordinaire, part-time superhero.";
     }
 %>
             <!-- BEGIN grey gradient sidebar box 'PROJECT LEAD' -->

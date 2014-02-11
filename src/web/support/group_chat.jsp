@@ -59,8 +59,8 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Support</a></li>
 			<li id="subnav02"><a href="articles.jsp">Articles</a></li>
 			<li id="subnav03"><a href="group_chat.jsp" class="ignite_subnav_current">Group Chat</a></li>
-			<li id="subnav04"><a href="http://www.igniterealtime.org/issues/secure/Dashboard.jspa">Issue Tracker</a></li>
-			<li id="subnav05"><a href="service_providers.jsp">Service providers</a></li>
+			<li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
+			<li id="subnav05"><a href="service_providers.jsp">Professional Partners</a></li>
 		</ul>
 	</div>
 
@@ -99,7 +99,7 @@
 
 					<h3>Previous Chats</h3>
 					<p>Transcripts of the weekly chats are posted in the 
-					<a href=" /community/community/support/openfire_(formerly_wildfire)_support?tagSetID=1002&view=all">discussion forums</a>. Try a search for
+					<a href=" http://community.igniterealtime.org/community/support/openfire_(formerly_wildfire)_support?tagSetID=1002&view=all">discussion forums</a>. Try a search for
 					"chat transcript" to find them.</p>
 					
 					<h3>About Group Chat</h3>

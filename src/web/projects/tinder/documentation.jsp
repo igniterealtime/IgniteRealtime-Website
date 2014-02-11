@@ -19,7 +19,7 @@
 			<!-- <li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li> -->
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
-			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/TINDER">Issue Tracker</a></li>
+			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
 			<li id="subnav06"><a href="/builds/tinder/docs/latest/javadoc/">JavaDocs</a></li>
 			
 		</ul>
@@ -49,13 +49,13 @@
 					<h3>Documentation:</h3>
 					<ul>
 					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://www.igniterealtime.org/community/docs/DOC-1845">Readme</a>
+                    <a href="http://community.igniterealtime.org/docs/DOC-1845">Readme</a>
                     <!--<a href="/builds/tinder/docs/latest/README.html">Readme & License</a>--></li>
 					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<!-- <a href="/builds/tinder/docs/latest/changelog.html">Changelog</a> -->Initial Release - no Changelog
 					<br>
 					<br></li>
-					<li><!--<a href="/builds/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="/community/community/developers/tinder?view=documents">Tinder documentation</a></li>
+					<li><!--<a href="/builds/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="http://community.igniterealtime.org/community/developers/tinder?view=documents">Tinder documentation</a></li>
 				
 				
 				</div>

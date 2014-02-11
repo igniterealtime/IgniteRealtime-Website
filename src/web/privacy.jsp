@@ -408,7 +408,7 @@ and covers the following areas:
         <p>
 
         For technical support, please use our
-        <a href="/community/main-threads.jspa">community forums</a>.
+        <a href="http://community.igniterealtime.org/main-threads.jspa">community forums</a>.
         </p>
     </li>
 </ol>

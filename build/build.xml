@@ -181,6 +181,9 @@
                 <include name="WEB-INF/*.tld" />
                 <include name="WEB-INF/*.xml" />
             </fileset>
+            <fileset dir="${web.dir}">
+                <include name="WEB-INF/tags/*.*" />
+            </fileset>
         </war>
     </target>
 
@@ -238,8 +241,8 @@
     </target>
 
     <!-- csx-deploy ============================================================================ -->
-    <target name="csx-deploy" description="Deploys jiveHome files">
-        <copy todir="${jive.home}" overwrite="${overwrite}">
+    <target name="sbs-theme-deploy" description="Deploys jiveHome files">
+        <copy todir="${sbs.themes}" overwrite="${overwrite}">
             <fileset dir="${jive.home.src}"/>
         </copy>
     </target>

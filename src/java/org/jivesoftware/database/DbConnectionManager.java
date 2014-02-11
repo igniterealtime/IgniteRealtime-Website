@@ -63,12 +63,22 @@ public class DbConnectionManager {
             e.printStackTrace();
         }
 
-        String connectURI = dbString + "?user=" + username + "&password=" + password;
+        StringBuilder connectURI = new StringBuilder();
+        connectURI.append(dbString);
+        if (dbString.contains("?")) {
+            connectURI.append("&");
+        } else {
+            connectURI.append("?");
+        }
+        connectURI.append("user=");
+        connectURI.append(username);
+        connectURI.append("&password=");
+        connectURI.append(password);
 
 
         connectionPool = new GenericObjectPool(null);
 
-        ConnectionFactory connectionFactory = new DriverManagerConnectionFactory(connectURI, null);
+        ConnectionFactory connectionFactory = new DriverManagerConnectionFactory(connectURI.toString(), null);
 
         new PoolableConnectionFactory(connectionFactory, connectionPool, null, null, false, true);
 

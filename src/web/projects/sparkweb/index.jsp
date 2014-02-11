@@ -3,6 +3,8 @@
 <%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
 <%@ page import="com.jivesoftware.community.webservices.WSBlogPost" %>
 <%@ page import="java.util.List" %>
+<%@ page import="org.jivesoftware.site.FeedManager" %>
+<%@ page import="com.sun.syndication.feed.synd.SyndEntry" %>
 
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -24,7 +26,7 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">SparkWeb</a></li>
 			<!--<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>-->
 			<!--<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>-->
-			<li id="subnav05"><a href="http://www.igniterealtime.org/issues/browse/SW">Issue Tracker</a></li>
+			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SW">Issue Tracker</a></li>
             <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
         </ul>
 	</div>
@@ -101,7 +103,7 @@
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
 				
-                <% String blogFeedRSS = "/community/blogs/ignite/feeds/tags/sparkweb"; %>
+                <% String blogFeedRSS = "http://community.igniterealtime.org/blogs/ignite/feeds/tags/sparkweb"; %>
 				<!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->
@@ -116,17 +118,36 @@
 						</div>
 					</div>
 					<!-- END blog header -->
+					
+                    <%-- Show blog feed --%>
 					<cache:cache time="600" key="<%= blogFeedRSS %>">
 					<%
+                    FeedManager feedManager = FeedManager.getInstance();
+                    List<SyndEntry> blogFeedEntries = feedManager.getBlogFeedEntries(blogFeedRSS);
 					BlogService blogService = serviceProvider.getBlogService();
-					WSBlogPostResultFilter  bprf = new WSBlogPostResultFilter ();
+
+					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
 					bprf.setNumResults(5);
                     bprf.setBlogID((long) NULL_INT);
                     bprf.setSortField(600); // publish date
                     bprf.setSortOrder(SORT_DESCENDING);
-                    String[] tags = {"sparkweb"};
-                    bprf.setTags(tags);
+        			String[] tags = {"sparkweb"};
+                    bprf.setTags(tags);            
                     WSBlogPost[] posts = blogService.getBlogPosts(bprf);
+                    if ( (null != posts) && (null != blogFeedEntries) ) {
+                        for (WSBlogPost post: posts) {
+                            for (SyndEntry entry: blogFeedEntries) {
+                                if ( (null == entry.getLink()) || (null == post.getPermalink()) ) {
+                                    continue;
+                                } else {
+                                    if (entry.getLink().equals(post.getPermalink())) {
+                                        post.setBody(entry.getDescription().getValue());
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
 					%>
 					<% request.setAttribute("posts", posts); %>
 					<jsp:include page="/includes/blogposts.jsp" />
