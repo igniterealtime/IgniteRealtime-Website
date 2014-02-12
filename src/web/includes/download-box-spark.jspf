@@ -40,7 +40,7 @@
                 <!-- <a href="#"><strong>Plugins</strong></a> |  -->
                 <a href="/builds/spark/docs/latest/README.html">Readme & License</a> |
                 <a href="/builds/spark/docs/latest/changelog.html">Changelog</a>  |
-                <a href="nightly_openfire.jsp">Nightly Builds</a> |  
+                <a href="nightly_spark.jsp">Nightly Builds</a> 
                 <!-- <a href="#">Source Code</a> -->
             </span>
 
