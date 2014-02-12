@@ -44,7 +44,8 @@
                         access page. If you would like to test the latest (possibly unstable) code,
                         check out the <a href="beta.jsp">current betas</a>. Nightly builds are also maintained for the 
                         <a href="nightly_openfire.jsp">Openfire</a>,
-                        <a href="nightly_smack.jsp">Smack</a> and 
+                        <a href="nightly_smack.jsp">Smack</a>,
+                        <a href="nightly_spark.jsp">Spark</a> and 
                         <a href="nightly_xiff.jsp">XIFF</a> projects.
                     </p>
                 </div>
