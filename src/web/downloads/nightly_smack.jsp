@@ -104,9 +104,8 @@
                     if (files != null && files.length > 0) {
                         Arrays.sort(files, new FileComparator());
                         boolean odd = false;
-                        for (int i=0; i< (files.length / 2); i++) {
-                            File file1 = files[2 * i];
-                            File file2 = files[2 * i + 1];
+                        for (int i=0; i< (files.length); i++) {
+                            File file1 = files[i];
                             if (i%2 == 0) {
                                 odd = !odd;
                             }
@@ -114,16 +113,13 @@
                         <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                             <span class="ignite_download_item_details">
                                 <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                                <a href="/builds/smack/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
-                                <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                                <a href="/builds/smack/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
+                                <a href="/builds/smack/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a>
                             </span>
                             <span class="ignite_download_item_date">
                                 <%= dateFormat.format(new Date(file1.lastModified())) %>
                             </span>
                             <span class="ignite_download_item_size">
                                 <%= mbFormat.format(file1.length()/(1024.0*1024.0)) %> MB<br>
-                                <%= mbFormat.format(file2.length()/(1024.0*1024.0)) %> MB
                             </span>
                         </div>
 
