@@ -80,8 +80,7 @@
             <div>
                 <p>
                 Below are nightly builds for the Smack API. Please see the <a href="index.jsp">official builds</a>
-                page if you're looking for a specific release. Each day has 2 builds -- a GZIP and ZIP release
-                for the binary builds.
+                page if you're looking for a specific release. 
                 </p>
 
                 <p>
