@@ -243,8 +243,6 @@
                                 <td width="1%" rowspan="5" class="item" valign="top">
                                 SVN Access
                             </td>
-                        </tr>
-                        <tr>
                             <td width="99%">
                                 SparkWeb:<br>
                                 <tt>svn co http://svn.igniterealtime.org/svn/repos/sparkweb/trunk sparkweb</tt>
