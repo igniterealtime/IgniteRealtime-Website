@@ -186,7 +186,12 @@
                                     Github
                                 </td>
                                 <td width="99%">
-                                    Smack: git clone https://github.com/igniterealtime/Smack.git
+                                    <p>Openfire:<br />
+ git clone https://github.com/igniterealtime/Openfire.git</p>
+                                    <p>Smack:<br />
+ git clone https://github.com/igniterealtime/Smack.git</p>
+                                    <p>Spark:<br />
+ git clone https://github.com/igniterealtime/Spark.git</p>
                                 </td>
                             </tr>
                             <tr>
@@ -235,18 +240,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="1%" rowspan="7" class="item" valign="top">
+                                <td width="1%" rowspan="5" class="item" valign="top">
                                 SVN Access
                             </td>
-                            <td width="99%">
-                                Openfire:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/openfire/trunk openfire</tt>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="99%">
-                                Spark:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/spark/trunk spark</tt>
                         </tr>
                         <tr>
                             <td width="99%">
@@ -302,7 +298,7 @@
             <p>To view and report bugs and issues, please view our
                 <a href="http://issues.igniterealtime.org/">issue tracker</a>.
                 Specific projects include:
-                <a href="http://issues.igniterealtime.org/browse/JM">Openfire</a>,
+                <a href="http://issues.igniterealtime.org/browse/OF">Openfire</a>,
                 <a href="http://issues.igniterealtime.org/browse/SPARK">Spark</a>,
                 <a href="http://issues.igniterealtime.org/browse/SW">SparkWeb</a>,
                 <a href="http://issues.igniterealtime.org/browse/SMACK">Smack API</a>,
