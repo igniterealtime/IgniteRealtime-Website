@@ -32,7 +32,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <!-- Database connection parameters -->
     <context-param>
         <param-name>dbURL</param-name>
-        <param-value>jdbc:mysql://ignite01.private:3306/website_stats?characterEncoding=UTF-8</param-value>
+        <param-value>jdbc:mysql://localhost:3306/website_stats?characterEncoding=UTF-8</param-value>
     </context-param>
     <context-param>
         <param-name>dbUsername</param-name>
@@ -44,7 +44,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     </context-param>
 	<context-param>
         <param-name>csc_baseurl</param-name>
-        <param-value>http://community.igniterealtime.org</param-value>
+        <param-value>http://igniterealtime.jiveon.com</param-value>
     </context-param>
     <context-param>
     	<param-name>csc_username</param-name>
