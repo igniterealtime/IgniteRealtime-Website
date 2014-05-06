@@ -106,8 +106,7 @@
 		
 		<!-- BEGIN right column (sidebar) -->
 		<div id="ignite_body_rightcol">
-			
-			<%@ include file="/includes/sidebar_newsletter.jspf" %>
+
 			
 			<!-- BEGIN sidebar box 'resources' -->
 			<div class="ignite_sidebar_whitebox">
@@ -128,7 +127,6 @@
                         <p><strong>Websites:</strong></p>
                         <p><a href="http://www.xmpp.org">XMPP.org Website</a></p>
                         <p><a href="http://planet.jabber.org">Planet Jabber Blogs</a></p>
-                        <p><a href="http://www.jivesoftware.com/products/openfire/index.jsp?source=Website-Ignite">Openfire Enterprise Website</a></p>
 
                     </div>
 				</div>

@@ -427,8 +427,7 @@ and covers the following areas:
 			
 			
 			
-			
-			<%@ include file="/includes/sidebar_newsletter.jspf" %>
+
 			
 			
 		</div>

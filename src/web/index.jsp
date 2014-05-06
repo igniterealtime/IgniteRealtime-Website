@@ -130,130 +130,6 @@
 
                 <style type="text/css"></style>
                 <!-- END 'latest blog entries' column -->
-				
-				<!-- BEGIN 'in the community' column -->
-				<div id="ignite_home_body_rightcol">
-					<div id="ignite_incommunity_header">
-						<span id="ignite_incommunity_header_label">
-							In the Community
-						</span>
-					</div>
-					
-					<!-- BEGIN featured members -->
-					<div id="ignite_home_body_featured">
-					<h4>Featured Members</h4>
-						
-						<!-- featured member 1 -->
-						<div style="float: right;">
-						<a href="<%= baseUrl %>/people/sixthring">
-							<div class="ignite_home_featured_avatar">
-							 <img src="<%= baseUrl %>/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
-							</div>
-                        sixthring</a>
-						</div>
-
-                        <!-- featured member 2 -->
-                        <div style="float: left;">
-						<a href="<%= baseUrl %>/people/winsrev">
-							<div class="ignite_home_featured_avatar">
-							<img src="<%= baseUrl %>/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
-							</div>
-                        winsrev</a>
-						</div>
-					</div>
-					<!-- END featured members -->
-					
-					<!-- BEGIN recent discussions, news, wiki docs, and articles -->
-					<div id="ignite_home_body_recent">
-					<h4>Recent Discussions</h4>
-                    <%
-                        String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
-                    %>
-						<cache:cache time="5" key="<%= recentMessagesUrl %>">
-
-                    <%
-                        RestClient client = new RestClient();
-                        JSONObject result = client.get(recentMessagesUrl);
-                        JSONArray messages = result.getJSONArray("list");
-
-                        for (Object messageObject : messages) {
-                            if (! (messageObject instanceof JSONObject)) {
-                                continue;
-                                // skip non-JSONObject
-                            }
-                            JSONObject message = (JSONObject)messageObject;
-
-                            JSONObject author = message.getJSONObject("author");
-                            String authorAvatarUrl = author.getJSONObject("resources").getJSONObject("avatar").getString("ref");
-                            String authorName = author.getString("displayName");
-                            String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
-                            String subject = message.getString("subject");
-
-						%>
-							<div class="discussion">
-								<img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />
-									<b><%= authorName %></b> in
-									"<a href='<%= messageUrl %>'><%= subject %></a>"
-							</div>
-						<% } %>
-                        </cache:cache>
-											
-					<h4>Recent Releases</h4>
-                    <%
-                        String recentReleasesUrl = restBaseUrl+"/places/52391/contents?count=5&abridged=true";
-                    %>
-						<cache:cache time="5" key="<%= recentReleasesUrl %>">
-                    <%
-                        RestClient client = new RestClient();
-                        JSONObject result = client.get(recentReleasesUrl);
-                        JSONArray messages = result.getJSONArray("list");
-
-                        for (Object messageObject : messages) {
-                            if (! (messageObject instanceof JSONObject)) {
-                                continue;
-                                // skip non-JSONObject
-                            }
-                            JSONObject message = (JSONObject)messageObject;
-
-                            String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
-                            String subject = message.getString("subject");
-                            String published = message.getString("published");
-                            if (StringUtils.endsWith(published, "+0000")) {
-                                published = StringUtils.replace(published, "+0000", "+00:00");
-                            }
-                            Date datePublished = new Date();
-                            try {
-                                datePublished = javax.xml.bind.DatatypeConverter.parseDate(published).getTime();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                    %>
-							<div class="news">
-								<font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(datePublished) %> - </font>
-								<a href='<%= messageUrl %>/'><%= subject %></a>
-							</div>
-						<% } %>
-						</cache:cache>
-
-                    <h4>Recent Articles</h4>
-                        <div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>                        
-                        <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
-                        <div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
-                        <div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
-                        <div class="articles"><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
-
-                    <h4>Whitepapers</h4>
-                        <div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
-                        <div class="articles"><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
-                        <div class="articles"><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
-                        <div class="articles"><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
-                    </div>
-
-					<!-- END recent discussions, news, wiki docs, and articles -->
-
-				</div>
-				<!-- END 'in the community' column -->
-				
 			</div>
 			<!-- END home page body content area -->
 			
@@ -299,14 +175,137 @@
 				</div>
 				<div class="ignite_sidebar_btm-g"></div>
 			</div>
+
+            <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
+            <!-- BEGIN 'in the community' column -->
+            <div id="ignite_home_body_rightcol">
+
+                <div id="ignite_incommunity_header">
+                    <span id="ignite_incommunity_header_label">
+                        In the Community
+                    </span>
+                </div>
+
+                <!-- BEGIN featured members -->
+                <%-- <div id="ignite_home_body_featured">
+                <h4>Featured Members</h4>
+
+                    <!-- featured member 1 -->
+                    <div style="float: right;">
+                    <a href="<%= baseUrl %>/people/sixthring">
+                        <div class="ignite_home_featured_avatar">
+                         <img src="<%= baseUrl %>/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
+                        </div>
+                    sixthring</a>
+                    </div>
+
+                    <!-- featured member 2 -->
+                    <div style="float: left;">
+                    <a href="<%= baseUrl %>/people/winsrev">
+                        <div class="ignite_home_featured_avatar">
+                        <img src="<%= baseUrl %>/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
+                        </div>
+                    winsrev</a>
+                    </div>
+                </div>    --%>
+                <!-- END featured members -->
+
+                <!-- BEGIN recent discussions, news, wiki docs, and articles -->
+                <div id="ignite_home_body_recent">
+                <h4>Recent Discussions</h4>
+                <%
+                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
+                %>
+                    <cache:cache time="5" key="<%= recentMessagesUrl %>">
+
+                <%
+                    RestClient client = new RestClient();
+                    JSONObject result = client.get(recentMessagesUrl);
+                    JSONArray messages = result.getJSONArray("list");
+
+                    for (Object messageObject : messages) {
+                        if (! (messageObject instanceof JSONObject)) {
+                            continue;
+                            // skip non-JSONObject
+                        }
+                        JSONObject message = (JSONObject)messageObject;
+
+                        JSONObject author = message.getJSONObject("author");
+                        String authorAvatarUrl = author.getJSONObject("resources").getJSONObject("avatar").getString("ref");
+                        String authorName = author.getString("displayName");
+                        String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
+                        String subject = message.getString("subject");
+
+                    %>
+                        <div class="discussion">
+                            <img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />
+                                <b><%= authorName %></b> in
+                                "<a href='<%= messageUrl %>'><%= subject %></a>"
+                        </div>
+                    <% } %>
+                    </cache:cache>
+
+                <h4>Recent Releases</h4>
+                <%
+                    String recentReleasesUrl = restBaseUrl+"/places/52391/contents?count=5&abridged=true";
+                %>
+                    <cache:cache time="5" key="<%= recentReleasesUrl %>">
+                <%
+                    RestClient client = new RestClient();
+                    JSONObject result = client.get(recentReleasesUrl);
+                    JSONArray messages = result.getJSONArray("list");
+
+                    for (Object messageObject : messages) {
+                        if (! (messageObject instanceof JSONObject)) {
+                            continue;
+                            // skip non-JSONObject
+                        }
+                        JSONObject message = (JSONObject)messageObject;
+
+                        String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
+                        String subject = message.getString("subject");
+                        String published = message.getString("published");
+                        if (StringUtils.endsWith(published, "+0000")) {
+                            published = StringUtils.replace(published, "+0000", "+00:00");
+                        }
+                        Date datePublished = new Date();
+                        try {
+                            datePublished = javax.xml.bind.DatatypeConverter.parseDate(published).getTime();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                %>
+                        <div class="news">
+                            <font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(datePublished) %> - </font>
+                            <a href='<%= messageUrl %>/'><%= subject %></a>
+                        </div>
+                    <% } %>
+                    </cache:cache>
+
+                <h4>Recent Articles</h4>
+                    <div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
+                    <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
+                    <div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
+                    <div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
+                    <div class="articles"><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
+
+                <h4>Whitepapers</h4>
+                    <div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
+                    <div class="articles"><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
+                    <div class="articles"><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
+                    <div class="articles"><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
+                </div>
+
+                <!-- END recent discussions, news, wiki docs, and articles -->
+
+            </div>
+            <!-- END 'in the community' column -->
 			<!-- END grey gradient sidebar box 'PROJECTS' -->
-			<%--<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>--%>
-			<%----%>
-            <%--<%@ include file="/includes/sidebar_newsletter.jspf" %>--%>
-			<%----%>
-            <%--<jsp:include page="/includes/sidebar_screenshot.jsp" />--%>
-			<%----%>
-			<%--<%@ include file="/includes/sidebar_testimonial.jspf" %>--%>
+
+
+            <jsp:include page="/includes/sidebar_screenshot.jsp" />
+
+			<%@ include file="/includes/sidebar_testimonial.jspf" %>
 			
 		</div>
 		<!-- END right column (sidebar) -->

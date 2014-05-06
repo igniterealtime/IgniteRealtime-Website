@@ -208,8 +208,7 @@
     <%@ include file="/includes/sidebar_enterprise.jspf" %>
 			
 			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-			
-			<%@ include file="/includes/sidebar_newsletter.jspf" %>
+
 			
 		</div>
 		<!-- END right column (sidebar) -->

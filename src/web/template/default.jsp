@@ -30,8 +30,6 @@
 <script type="text/javascript" language="JavaScript" src="/scripts/kitchensink.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/ignite.js"></script>
 <script type="text/javascript" language="JavaScript" src="/scripts/groupchat_timer.js"></script>
-<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript' SRC='/elqNow/elqCfg.js'></SCRIPT>
-<SCRIPT TYPE='text/javascript' LANGUAGE='JavaScript' SRC='/elqNow/elqImg.js'></SCRIPT>
     
 <!--
 <script type="text/javascript" language="JavaScript" src="/scripts/cookies.js"></script>
@@ -48,6 +46,7 @@
 <%
 	String bodyID = mypage.getProperty("meta.body-id");
 	String panelName = mypage.getProperty("meta.panel-name");
+    String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
 %>
 
 <body<%= (bodyID != null) ? " id=\""+bodyID+"\"" : "" %>  onLoad="initLightbox();<%= (panelName != null) ? ";checkPanel('"+panelName+"');" : "" %>" >
@@ -67,7 +66,7 @@
 				<li id="nav01"><a href="/index.jsp">Home</a></li>
 				<li id="nav02"><a href="/projects/index.jsp">Projects</a></li>
 				<li id="nav03"><a href="/downloads/index.jsp">Downloads</a></li>
-				<li id="nav04"><a href="http://community.igniterealtime.org/">Community</a></li>
+				<li id="nav04"><a href="<%= baseUrl %>">Community</a></li>
 				<li id="nav05"><a href="/fans/index.jsp">Fans</a></li>
 				<li id="nav07"><a href="/support/index.jsp">Support</a></li>
 				<li id="nav08"><a href="/about/index.jsp">About</a></li>
@@ -91,7 +90,7 @@
 	
 	<!-- BEGIN footer -->
 	<div id="ignite_footer">
-		<div class="ignite_footer_nav"><a href="/index.jsp">Home</a> | <a href="/projects/index.jsp">Projects</a> | <a href="/downloads/index.jsp">Downloads</a> | <a href="/community">Community</a> | <a href="/fans/index.jsp">Fans</a> | <a href="/support/index.jsp">Support</a> | <a href="/about/index.jsp">About</a> </div>
+		<div class="ignite_footer_nav"><a href="/index.jsp">Home</a> | <a href="/projects/index.jsp">Projects</a> | <a href="/downloads/index.jsp">Downloads</a> | <a href="<%= baseUrl %>">Community</a> | <a href="/fans/index.jsp">Fans</a> | <a href="/support/index.jsp">Support</a> | <a href="/about/index.jsp">About</a> </div>
 		<div class="ignite_footer_copyright">Powered by <a href="http://www.jivesoftware.com/products/public-community/?source=Website-Ignite">Jive</a> &copy; <a href="http://www.jivesoftware.com?source=Website-Ignite">Jive Software</a></div>
 	</div>
 	<!-- END footer -->

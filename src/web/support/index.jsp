@@ -1,11 +1,11 @@
 <%@ page import="org.jivesoftware.site.Versions"%>
-<%@ page import="com.jivesoftware.community.webservices.*" %>
-<%@ page import="java.util.List" %>
-
+<%@ page import="org.jivesoftware.webservices.RestClient" %>
+<%@ page import="net.sf.json.JSONObject" %>
+<%@ page import="net.sf.json.JSONArray" %>
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-<%@ include file="/includes/ws_locator.jspf" %>
+
 <html>
 <head>
 <title>Support</title>
@@ -47,11 +47,16 @@
 				</div>
 					
 				<div id="ignite_support_main">
-					
+                <%
+                    String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
+                    String restBaseUrl = baseUrl+"/api/core/v3";
+                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=4";
+                    String allThreadsUrl = baseUrl+"/content?filterID=all~objecttype~objecttype[thread]";
+                %>
 					<!-- BEGIN search -->
 					<div id="ignite_support_search">
 						<strong>Search the community:</strong>
-						<form action="http://community.igniterealtime.org/search.jspa">
+						<form action="<%= baseUrl %>/search.jspa">
 						<input type="text" name="q" size="40" maxlength="100">
 						<input type="image" src="../images/ignite_support_searchbtn.gif" name="Submit" class="ignite_support_search">
 						</form>
@@ -64,25 +69,34 @@
 						<div>
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
-								<cache:cache time="60" key="http://community.igniterealtime.org/community/feeds/threads?communityID=1&numItems=4">
-								<%
-								ForumService forumService1 = serviceProvider.getForumService();
-						  		WSResultFilter rf1 = new WSResultFilter();
-                                rf1.setSortField(9); // modification date
-                                rf1.setSortOrder(SORT_DESCENDING);
-								rf1.setRecursive(true);
-								rf1.setNumResults(4);
-								WSForumMessage[] messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
-								for (WSForumMessage message : messages1) {
-								%>
-									<div class="discussion">
-										<img src="http://community.igniterealtime.org/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
-											<b><%= message.getUser().getUsername() %></b> in
-											"<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
-									</div>
-								<% } %>
-		                        </cache:cache>
-								<strong><a href="http://community.igniterealtime.org/main-threads.jspa" class="ignite_link_arrow">See all support discussions</a></strong>
+                                <cache:cache time="5" key="<%= recentMessagesUrl %>">
+                            <%
+                                RestClient client = new RestClient();
+                                JSONObject result = client.get(recentMessagesUrl);
+                                JSONArray messages = result.getJSONArray("list");
+
+                                for (Object messageObject : messages) {
+                                    if (! (messageObject instanceof JSONObject)) {
+                                        continue;
+                                        // skip non-JSONObject
+                                    }
+                                    JSONObject message = (JSONObject)messageObject;
+
+                                    JSONObject author = message.getJSONObject("author");
+                                    String authorAvatarUrl = author.getJSONObject("resources").getJSONObject("avatar").getString("ref");
+                                    String authorName = author.getString("displayName");
+                                    String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
+                                    String subject = message.getString("subject");
+
+                                %>
+                                    <div class="discussion">
+                                        <img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />
+                                            <b><%= authorName %></b> in
+                                            "<a href='<%= messageUrl %>'><%= subject %></a>"
+                                    </div>
+                                <% } %>
+                                </cache:cache>
+								<strong><a href="<%= allThreadsUrl %>" class="ignite_link_arrow">See all support discussions</a></strong>
 							</div>	
 							<div id="ignite_support_activity_articles">
 								<h4>Recent Articles</h4>
@@ -114,7 +128,7 @@
 							<p>Use the official Ignite Realtime Issue Tracker to browse projects
                                 and find issues. You may also vote for issues, see which issues are
                                 popular, and view the road map. Note: to report new issues, please
-                                post them in the <a href="http://community.igniterealtime.org/main-threads.jspa">forums</a>.</p>
+                                post them in the <a href="<%= allThreadsUrl %>">forums</a>.</p>
 							<strong><a href="http://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
 						</div>
 			
@@ -131,8 +145,6 @@
 			
 			
 			<%@ include file="/includes/sidebar_enterprise.jspf" %>
-			
-			<%@ include file="/includes/sidebar_newsletter.jspf" %>
 			
 			<%@ include file="/includes/sidebar_chat.jspf" %>		
 		</div>

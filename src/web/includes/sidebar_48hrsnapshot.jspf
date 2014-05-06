@@ -9,7 +9,7 @@
                 <div class="ignite_sidebar_hdr ignite_sidebar_hdr_comsnapshot"></div>
                 <div class="ignite_sidebar_body">
                     <div class="ignite_sidebar_body_stat"><span>Downloads</span> <strong><%= NumberFormat.getNumberInstance().format(DownloadStats.getTotalDownloads()) %></strong></div>
-					<%
+					<%--
                     // Ignore the errors, these are pulled from ws_locator.jspf
                     UserService userService48 = serviceProvider.getUserService();
 					BlogService blogService48 = serviceProvider.getBlogService();
@@ -17,19 +17,19 @@
 					WSResultFilter rf48 = new WSResultFilter();
 					rf48.setRecursive(true);
 					%>
-				
+
                     <cache:cache time="30" key="/forum/rss/rsscommunitystats.jspa?countUsers=true">
-				        <div class="ignite_sidebar_body_stat"><span>Members</span> 
+				        <div class="ignite_sidebar_body_stat"><span>Members</span>
 							<strong><%= userService48.getUserCount() %></strong>
 						</div>
-				        <div class="ignite_sidebar_body_stat"><span>Forum Posts</span> 
+				        <div class="ignite_sidebar_body_stat"><span>Forum Posts</span>
 							<strong><%= forumService48.getMessageCountByCommunityIDAndFilter(1, rf48) %></strong>
 						</div>
-					    <div class="ignite_sidebar_body_stat"><span>Blog Entries</span> 
+					    <div class="ignite_sidebar_body_stat"><span>Blog Entries</span>
 							<strong><%= blogService48.getBlogPostCount() %></strong>
 						</div>
                     </cache:cache>
-                    
+                    --%>
                 </div>
 				<div class="ignite_sidebar_btm"></div>
 			</div>
