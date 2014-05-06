@@ -68,6 +68,13 @@ hr {
 	}
 
 
+/* hack for jive8 wider images in blog posts */
+.ignite_blog_entry {
+    box-sizing: border-box;
+    -moz-box-sizing:border-box;
+    width: 100%;
+    overflow: hidden;
+}
 
 /* IGNITE header elements, including logo and navigation */
 #ignite_header {
