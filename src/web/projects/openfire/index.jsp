@@ -123,7 +123,7 @@
 					<!-- END blog header -->
 					
                     <%-- Show blog feed --%>
-					<cache:cache time="6" key="<%= blogFeedRSS %>">
+					<cache:cache time="600" key="<%= blogFeedRSS %>">
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(blogRestUrl);

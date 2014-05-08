@@ -120,7 +120,7 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 					<!-- END blog header -->
 					
                     <%-- Show blog feed --%>
-					<cache:cache time="6" key="<%= blogFeedRSS %>">
+					<cache:cache time="600" key="<%= blogFeedRSS %>">
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(blogRestUrl);

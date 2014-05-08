@@ -117,7 +117,7 @@
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-					<cache:cache time="5" key="<%= blogRestUrl %>">
+					<cache:cache time="600" key="<%= blogRestUrl %>">
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(blogRestUrl);
@@ -216,7 +216,7 @@
                 <%
                     String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
                 %>
-                    <cache:cache time="5" key="<%= recentMessagesUrl %>">
+                    <cache:cache time="60" key="<%= recentMessagesUrl %>">
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(recentMessagesUrl);
@@ -249,7 +249,7 @@
                     String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,2017)";
 
                 %>
-                    <cache:cache time="5" key="<%= recentReleasesPlace %>">
+                    <cache:cache time="60" key="<%= recentReleasesPlace %>">
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(recentReleasesPlace);

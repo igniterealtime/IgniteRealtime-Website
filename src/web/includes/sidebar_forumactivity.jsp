@@ -12,7 +12,7 @@
         String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,"+forumId+")";
     %>
 		<!-- BEGIN blue sidebar box 'RECENT DISCUSSIONS' -->
-    <cache:cache time="6" key="<%= recentReleasesPlace %>">
+    <cache:cache time="60" key="<%= recentReleasesPlace %>">
     <div class="ignite_sidebar_whitebox">
         <div class="ignite_sidebar_top"></div>
         <div class="ignite_sidebar_hdr ignite_sidebar_hdr_forum"></div>

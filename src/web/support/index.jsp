@@ -69,7 +69,7 @@
 						<div>
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
-                                <cache:cache time="5" key="<%= recentMessagesUrl %>">
+                                <cache:cache time="60" key="<%= recentMessagesUrl %>">
                             <%
                                 RestClient client = new RestClient();
                                 JSONObject result = client.get(recentMessagesUrl);
