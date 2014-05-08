@@ -1,8 +1,4 @@
 <%@ page import="java.text.NumberFormat, org.jivesoftware.site.DownloadStats"%>
-<%@ page import="com.jivesoftware.community.webservices.UserService" %>
-<%@ page import="com.jivesoftware.community.webservices.ForumService" %>
-<%@ page import="com.jivesoftware.community.webservices.BlogService" %>
-<%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
 <!-- BEGIN blue sidebar box '48 HOUR SNAPSHOT' -->
             <div class="ignite_sidebar_bluebox_photo">
                 <div class="ignite_sidebar_top"></div>
@@ -10,7 +6,7 @@
                 <div class="ignite_sidebar_body">
                     <div class="ignite_sidebar_body_stat"><span>Downloads</span> <strong><%= NumberFormat.getNumberInstance().format(DownloadStats.getTotalDownloads()) %></strong></div>
 					<%--
-                    // Ignore the errors, these are pulled from ws_locator.jspf
+                    // Jive V3 APIs do not provie user/forum/blog counts
                     UserService userService48 = serviceProvider.getUserService();
 					BlogService blogService48 = serviceProvider.getBlogService();
 					ForumService forumService48 = serviceProvider.getForumService();
