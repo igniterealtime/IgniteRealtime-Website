@@ -5,6 +5,7 @@
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
+
 <%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
@@ -92,7 +93,6 @@
 			
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_home_body">
-
             <%
                 String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
                 String restBaseUrl = baseUrl+"/api/core/v3";
@@ -217,7 +217,6 @@
                     String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
                 %>
                     <cache:cache time="5" key="<%= recentMessagesUrl %>">
-
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(recentMessagesUrl);
@@ -247,12 +246,20 @@
 
                 <h4>Recent Releases</h4>
                 <%
-                    String recentReleasesUrl = restBaseUrl+"/places/52391/contents?count=5&abridged=true";
+                    String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,2017)";
+
                 %>
-                    <cache:cache time="5" key="<%= recentReleasesUrl %>">
+                    <cache:cache time="5" key="<%= recentReleasesPlace %>">
                 <%
                     RestClient client = new RestClient();
-                    JSONObject result = client.get(recentReleasesUrl);
+                    JSONObject result = client.get(recentReleasesPlace);
+                    JSONArray placesList = result.getJSONArray("list");
+                    JSONObject place = placesList.getJSONObject(0);
+                    JSONObject placeResources = place.getJSONObject("resources");
+                    JSONObject placeContents = placeResources.getJSONObject("contents");
+                    String recentReleasesUrl = placeContents.getString("ref")+"?count=5&abridged=true";
+
+                    result = client.get(recentReleasesUrl);
                     JSONArray messages = result.getJSONArray("list");
 
                     for (Object messageObject : messages) {
