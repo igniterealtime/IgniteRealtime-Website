@@ -80,8 +80,9 @@
             <div>
             <p>
             Below are nightly builds for Openfire (formerly Wildfire). Please see the <a href="index.jsp">official builds</a>
-            page if you're looking for a specific release. Each day has 4 builds -- a GZIP and ZIP release
-            for both the binary and source builds.
+            page if you're looking for a specific release. Each day has 5 builds -- 
+            a GZIP and ZIP release for both the binary and source builds. There
+            is also a Debian (.deb) build.
             </p>
 
             <p>
@@ -109,26 +110,30 @@
     if (files != null && files.length > 0) {
         Arrays.sort(files, new FileComparator());
         boolean odd = false;
-        for (int i=0; i < (files.length / 2); i++) {
-            File file1 = files[2 * i];
-            File file2 = files[2 * i + 1];
-            if (i%2 == 0) {
+        for (int i=0; i < (files.length / 3); i++) {
+            File file1 = files[3 * i];
+            File file2 = files[3 * i + 1];
+            File file3 = files[3 * i + 2];
+            if (i%3 == 0) {
                 odd = !odd;
             }
     %>
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
-                        <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
+                        <img src="/images/icon_debian.gif" alt="" width="17" height="16" border="0">
                         <a href="/builds/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
                         <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="/builds/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
+                        <a href="/builds/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a><br>
+                        <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
+                        <a href="/builds/openfire/dailybuilds/<%= file3.getName() %>"><%= file3.getName() %></a>
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>
                     </span>
                     <span class="ignite_download_item_size">
                         <%= mbFormat.format(file1.length()/(1024.0*1024.0)) %> MB<br>
-                        <%= mbFormat.format(file2.length()/(1024.0*1024.0)) %> MB
+                        <%= mbFormat.format(file2.length()/(1024.0*1024.0)) %> MB<br>
+                        <%= mbFormat.format(file3.length()/(1024.0*1024.0)) %> MB
                     </span>
                 </div>
 
