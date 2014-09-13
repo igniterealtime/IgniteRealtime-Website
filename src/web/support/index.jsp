@@ -2,7 +2,7 @@
 <%@ page import="org.jivesoftware.webservices.RestClient" %>
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="net.sf.json.JSONArray" %>
-<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 
@@ -70,6 +70,7 @@
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
                                 <cache:cache time="60" key="<%= recentMessagesUrl %>">
+                            <% try { %>
                             <%
                                 RestClient client = new RestClient();
                                 JSONObject result = client.get(recentMessagesUrl);
@@ -95,6 +96,9 @@
                                             "<a href='<%= messageUrl %>'><%= subject %></a>"
                                     </div>
                                 <% } %>
+                            <% } catch (Exception e) { %>
+                                <cache:usecached />
+                            <% } %>
                                 </cache:cache>
 								<strong><a href="<%= allThreadsUrl %>" class="ignite_link_arrow">See all support discussions</a></strong>
 							</div>	

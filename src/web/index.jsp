@@ -6,7 +6,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
 
-<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
@@ -97,16 +97,15 @@
                 String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
                 String restBaseUrl = baseUrl+"/api/core/v3";
 
-                String blog = baseUrl +"/blogs/ignite";
-                String blogFeedRSS = blog+"/feeds/posts";
-                String blogRestUrl = restBaseUrl +"/places/52239/contents?count=5";
+                String blogUrl = baseUrl + "/blogs/ignite";
+                String blogFeedRSS = blogUrl + "/feeds/posts";
             %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_home_body_leftcol">
 					<!-- BEGIN blog header -->
 					<div id="ignite_blog_header">
 						<span id="ignite_blog_header_label">
-							Latest <a href="<%= blog %>">Blog</a> Entries
+							Latest <a href="<%= blogUrl %>">Blog</a> Entries
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
@@ -117,14 +116,25 @@
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-					<cache:cache time="600" key="<%= blogRestUrl %>">
+					<cache:cache time="600" key="<%= blogFeedRSS %>">
+                <% try { %>
                 <%
                     RestClient client = new RestClient();
-                    JSONObject result = client.get(blogRestUrl);
+                    String blogSearchUrl = restBaseUrl + "/search/places?filter=search(Ignite,Realtime,Blog)&filter=type(blog)";
+                    JSONObject result = client.get(blogSearchUrl);
+                    JSONArray results = result.getJSONArray("list");
+                    JSONObject blog = (JSONObject)results.get(0);
+                    String contentsUrl = blog.getJSONObject("resources").getJSONObject("contents").getString("ref");
+
+                    String blogRestUrl = contentsUrl + "?count=5";
+                    result = client.get(blogRestUrl);
                     JSONArray posts = result.getJSONArray("list");
                     request.setAttribute("posts", posts);
                 %>
-					<jsp:include page="/includes/blogposts.jsp" />
+                    <jsp:include page="/includes/blogposts.jsp" />
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
 					</cache:cache>
 				</div>
 
@@ -217,6 +227,7 @@
                     String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
                 %>
                     <cache:cache time="60" key="<%= recentMessagesUrl %>">
+                <% try { %>
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(recentMessagesUrl);
@@ -235,13 +246,16 @@
                         String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
                         String subject = message.getString("subject");
 
-                    %>
+                %>
                         <div class="discussion">
                             <img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />
                                 <b><%= authorName %></b> in
                                 "<a href='<%= messageUrl %>'><%= subject %></a>"
                         </div>
                     <% } %>
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
                     </cache:cache>
 
                 <h4>Recent Releases</h4>
@@ -250,6 +264,7 @@
 
                 %>
                     <cache:cache time="60" key="<%= recentReleasesPlace %>">
+                <% try { %>
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(recentReleasesPlace);
@@ -287,6 +302,9 @@
                             <a href='<%= messageUrl %>/'><%= subject %></a>
                         </div>
                     <% } %>
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
                     </cache:cache>
 
                 <h4>Recent Articles</h4>

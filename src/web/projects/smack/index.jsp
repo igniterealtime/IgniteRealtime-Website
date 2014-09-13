@@ -3,7 +3,7 @@
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="net.sf.json.JSONArray" %>
 
-<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
@@ -123,6 +123,7 @@
 
                     <%-- Show blog feed --%>
 					<cache:cache time="600" key="<%= blogFeedRSS %>">
+                <% try { %>
                 <%
                     RestClient client = new RestClient();
                     JSONObject result = client.get(blogRestUrl);
@@ -130,6 +131,9 @@
                     request.setAttribute("posts", posts);
                 %>
 					<jsp:include page="/includes/blogposts.jsp" />
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
                     </cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->

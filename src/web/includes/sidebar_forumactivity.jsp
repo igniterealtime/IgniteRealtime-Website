@@ -2,7 +2,7 @@
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="net.sf.json.JSONArray" %>
 
-<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
     <%
@@ -17,6 +17,7 @@
         <div class="ignite_sidebar_top"></div>
         <div class="ignite_sidebar_hdr ignite_sidebar_hdr_forum"></div>
         <div class="ignite_sidebar_body">
+    <% try { %>
         <%
             RestClient client = new RestClient();
             JSONObject result = client.get(recentReleasesPlace);
@@ -57,6 +58,9 @@
         <%
             }
         %>
+    <% } catch (Exception e) { %>
+        <cache:usecached />
+    <% } %>
 			</div>
 			<div class="ignite_sidebar_btm"></div>
 		</div>
