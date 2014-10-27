@@ -2,6 +2,7 @@
 <%@ page import="java.util.*, java.io.File, java.awt.image.BufferedImage, javax.imageio.ImageIO, java.awt.*, java.util.List, javax.swing.*"%>
 
 
+<%@ taglib uri="oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 
