@@ -35,7 +35,7 @@
                                         //     -> array of rooms to join after connecting
                                         autojoin: ['open_chat@conference.igniterealtime.org']
                                 },
-                                view: { resources: '../res/' }
+                                view: { resources: 'candy-1.6.0/res/' }
                         });
 
                         Candy.Core.connect();
