@@ -2,7 +2,7 @@
 <%@ page import="com.jivesoftware.community.webservices.*" %>
 <%@ page import="java.util.List" %>
 
-<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <%@ include file="/includes/ws_locator.jspf" %>
@@ -64,25 +64,38 @@
 						<div>
 							<div id="ignite_support_activity_forums">
 								<h4>Recent Support Discussions</h4>
-								<cache:cache time="60" key="http://community.igniterealtime.org/community/feeds/threads?communityID=1&numItems=4">
-								<%
-								ForumService forumService1 = serviceProvider.getForumService();
-						  		WSResultFilter rf1 = new WSResultFilter();
-                                rf1.setSortField(9); // modification date
-                                rf1.setSortOrder(SORT_DESCENDING);
-								rf1.setRecursive(true);
-								rf1.setNumResults(4);
-								WSForumMessage[] messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
-								for (WSForumMessage message : messages1) {
-								%>
-									<div class="discussion">
-										<img src="http://community.igniterealtime.org/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
-											<b><%= message.getUser().getUsername() %></b> in
-											"<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
-									</div>
-								<% } %>
-		                        </cache:cache>
-								<strong><a href="http://community.igniterealtime.org/main-threads.jspa" class="ignite_link_arrow">See all support discussions</a></strong>
+                                <cache:cache time="60" key="<%= recentMessagesUrl %>">
+                            <% try { %>
+                            <%
+                                RestClient client = new RestClient();
+                                JSONObject result = client.get(recentMessagesUrl);
+                                JSONArray messages = result.getJSONArray("list");
+
+                                for (Object messageObject : messages) {
+                                    if (! (messageObject instanceof JSONObject)) {
+                                        continue;
+                                        // skip non-JSONObject
+                                    }
+                                    JSONObject message = (JSONObject)messageObject;
+
+                                    JSONObject author = message.getJSONObject("author");
+                                    String authorAvatarUrl = author.getJSONObject("resources").getJSONObject("avatar").getString("ref");
+                                    String authorName = author.getString("displayName");
+                                    String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
+                                    String subject = message.getString("subject");
+
+                                %>
+                                    <div class="discussion">
+                                        <img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />
+                                            <b><%= authorName %></b> in
+                                            "<a href='<%= messageUrl %>'><%= subject %></a>"
+                                    </div>
+                                <% } %>
+                            <% } catch (Exception e) { %>
+                                <cache:usecached />
+                            <% } %>
+                                </cache:cache>
+								<strong><a href="<%= allThreadsUrl %>" class="ignite_link_arrow">See all support discussions</a></strong>
 							</div>	
 							<div id="ignite_support_activity_articles">
 								<h4>Recent Articles</h4>

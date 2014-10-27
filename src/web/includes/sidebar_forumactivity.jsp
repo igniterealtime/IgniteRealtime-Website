@@ -2,10 +2,30 @@
 <%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
 <%@ page import="com.jivesoftware.community.webservices.WSForumMessage" %>
 <%@ page import="java.util.List" %>
-<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-<%@ include file="/includes/ws_locator.jspf" %>
+    <%
+        String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
+        String restBaseUrl = baseUrl+"/api/core/v3";
+        String forumId = request.getParameter("forumID");
+        String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,"+forumId+")";
+    %>
+		<!-- BEGIN blue sidebar box 'RECENT DISCUSSIONS' -->
+    <cache:cache time="60" key="<%= recentReleasesPlace %>">
+    <div class="ignite_sidebar_whitebox">
+        <div class="ignite_sidebar_top"></div>
+        <div class="ignite_sidebar_hdr ignite_sidebar_hdr_forum"></div>
+        <div class="ignite_sidebar_body">
+    <% try { %>
+        <%
+            RestClient client = new RestClient();
+            JSONObject result = client.get(recentReleasesPlace);
+            JSONArray placesList = result.getJSONArray("list");
+            JSONObject place = placesList.getJSONObject(0);
+            JSONObject placeResources = place.getJSONObject("resources");
+            JSONObject placeContents = placeResources.getJSONObject("contents");
+            String recentMessagesUrl = placeContents.getString("ref")+"?filter=type(discussion)&count=5";
 
       <% String forumRSS = "/forum/rss/rssmessages.jspa?numItems=5&forumID=" + request.getParameter("forumID"); %>
 			
@@ -40,6 +60,9 @@
 				
 				<% }
                 } %>
+    <% } catch (Exception e) { %>
+        <cache:usecached />
+    <% } %>
 			</div>
 			<div class="ignite_sidebar_btm"></div>
 		</div>
