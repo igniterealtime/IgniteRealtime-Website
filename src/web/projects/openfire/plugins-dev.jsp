@@ -10,7 +10,7 @@
                  java.text.SimpleDateFormat, java.util.*"
 %>
 
- <%@ taglib uri="oscache" prefix="cache" %>
+ <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 
@@ -88,7 +88,7 @@
                  to do so by an Openfire developer.</p>
 
 <cache:cache time="60" key="dev-plugin-list">
-
+<% try { %>
 
 	<!-- <div class="contentBox"> -->
 		<div id="plugins">
@@ -365,7 +365,9 @@
         </tbody>
         </table>
         </div>
-
+<% } catch (Exception e) { %>
+<cache:usecached />
+<% } %>
  </cache:cache>
 
          <br/><br/>

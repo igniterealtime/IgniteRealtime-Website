@@ -1,6 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-<%@ include file="/includes/ws_locator.jspf" %>
 
 <html>
 <head>
@@ -208,8 +207,7 @@
     <%@ include file="/includes/sidebar_enterprise.jspf" %>
 			
 			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-			
-			<%@ include file="/includes/sidebar_newsletter.jspf" %>
+
 			
 		</div>
 		<!-- END right column (sidebar) -->

@@ -10,7 +10,7 @@
                  java.text.SimpleDateFormat, java.util.*"
 %>
 
- <%@ taglib uri="oscache" prefix="cache" %>
+ <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 
@@ -85,7 +85,7 @@
                  copy the .jar file into the <tt>plugins</tt> directory of your Openfire installation.</p>
 
 <cache:cache time="60" key="beta-plugin-list">
-
+<% try { %>
 
 	<!-- <div class="contentBox"> -->
 		<div id="plugins">
@@ -362,7 +362,9 @@
         </tbody>
         </table>
         </div>
-
+<% } catch (Exception e) { %>
+<cache:usecached />
+<% }  %>
  </cache:cache>
 
          <br/><br/>

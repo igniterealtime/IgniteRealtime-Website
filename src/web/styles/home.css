@@ -98,10 +98,9 @@ styles specific to the home page for the Ignite Real Time site.
 #ignite_home_body {
 	float: left;
 	width: 720px;
-	background: #fff url(../images/ignite_home_bodybg.gif) repeat-y;
 	}
 #ignite_home_body_leftcol {
-	width: 480px;
+	width: 100%;
 	float: left;
 	border-top: 4px solid #000;
 	}
@@ -110,6 +109,8 @@ styles specific to the home page for the Ignite Real Time site.
 	float: right;
 	font-size: 8pt;
 	border-top: 4px solid #000;
+	margin-bottom: 15px;
+    background: #fff url(../images/ignite_home_bodybg.gif) repeat-y right;
 	}
 
 

@@ -1,13 +1,14 @@
-<%@ page import="com.jivesoftware.community.webservices.*" %>
 <%@ page import="org.jivesoftware.site.Versions" %>
-<%@ page import="org.jivesoftware.site.FeedManager" %>
-<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="org.jivesoftware.webservices.RestClient" %>
+<%@ page import="net.sf.json.JSONObject" %>
+<%@ page import="net.sf.json.JSONArray" %>
+<%@ page import="org.apache.commons.lang.StringUtils" %>
+<%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
-<%@ page import="com.sun.syndication.feed.synd.SyndEntry" %>
-<%@ taglib uri="oscache" prefix="cache" %>
+
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-<%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
 <title>a real time collaboration community site</title>
@@ -92,14 +93,19 @@
 			
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_home_body">
+            <%
+                String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
+                String restBaseUrl = baseUrl+"/api/core/v3";
 
-                <% String blogFeedRSS = config.getServletContext().getInitParameter("csc_baseurl")+"/blogs/ignite/feeds/posts"; %>
+                String blogUrl = baseUrl + "/blogs/ignite";
+                String blogFeedRSS = blogUrl + "/feeds/posts";
+            %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_home_body_leftcol">
 					<!-- BEGIN blog header -->
 					<div id="ignite_blog_header">
 						<span id="ignite_blog_header_label">
-							Latest <a href="http://community.igniterealtime.org/blogs/ignite">Blog</a> Entries
+							Latest <a href="<%= blogUrl %>">Blog</a> Entries
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
@@ -111,134 +117,29 @@
 
                     <%-- Show blog feed --%>
 					<cache:cache time="600" key="<%= blogFeedRSS %>">
-					<%
-                    FeedManager feedManager = FeedManager.getInstance();
-                    List<SyndEntry> blogFeedEntries = feedManager.getBlogFeedEntries(blogFeedRSS);
-					BlogService blogService = serviceProvider.getBlogService();
+                <% try { %>
+                <%
+                    RestClient client = new RestClient();
+                    String blogSearchUrl = restBaseUrl + "/search/places?filter=search(Ignite,Realtime,Blog)&filter=type(blog)";
+                    JSONObject result = client.get(blogSearchUrl);
+                    JSONArray results = result.getJSONArray("list");
+                    JSONObject blog = (JSONObject)results.get(0);
+                    String contentsUrl = blog.getJSONObject("resources").getJSONObject("contents").getString("ref");
 
-					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
-					bprf.setNumResults(5);
-                    bprf.setBlogID(new Long(1353)); //bprf.setBlogID((long) NULL_INT);
-                    bprf.setSortField(600); // publish date
-                    bprf.setSortOrder(SORT_DESCENDING);
-                    WSBlogPost[] posts = blogService.getBlogPosts(bprf);
-                    if ( (null != posts) && (null != blogFeedEntries) ) {
-                        for (WSBlogPost post: posts) {
-                            for (SyndEntry entry: blogFeedEntries) {
-                                if ( (null == entry.getLink()) || (null == post.getPermalink()) ) {
-                                    continue;
-                                } else {
-                                    if (entry.getLink().equals(post.getPermalink())) {
-                                        post.setBody(entry.getDescription().getValue());
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-					%>
-					<% request.setAttribute("posts", posts); %>
-					<jsp:include page="/includes/blogposts.jsp" />
+                    String blogRestUrl = contentsUrl + "?count=5";
+                    result = client.get(blogRestUrl);
+                    JSONArray posts = result.getJSONArray("list");
+                    request.setAttribute("posts", posts);
+                %>
+                    <jsp:include page="/includes/blogposts.jsp" />
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
 					</cache:cache>
 				</div>
 
                 <style type="text/css"></style>
                 <!-- END 'latest blog entries' column -->
-				
-				<!-- BEGIN 'in the community' column -->
-				<div id="ignite_home_body_rightcol">
-					<div id="ignite_incommunity_header">
-						<span id="ignite_incommunity_header_label">
-							In the Community
-						</span>
-					</div>
-					
-					<!-- BEGIN featured members -->
-					<div id="ignite_home_body_featured">
-					<h4>Featured Members</h4>
-						
-						<!-- featured member 1 -->
-						<div style="float: right;">
-						<a href="http://community.igniterealtime.org/people/sixthring">
-							<div class="ignite_home_featured_avatar">
-							 <img src="http://community.igniterealtime.org/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
-							</div>
-                        sixthring</a>
-						</div>
-
-                        <!-- featured member 2 -->
-                        <div style="float: left;">
-						<a href="http://community.igniterealtime.org/people/winsrev">
-							<div class="ignite_home_featured_avatar">
-							<img src="http://community.igniterealtime.org/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
-							</div>
-                        winsrev</a>
-						</div>
-					</div>
-					<!-- END featured members -->
-					
-					<!-- BEGIN recent discussions, news, wiki docs, and articles -->
-					<div id="ignite_home_body_recent">
-					<h4>Recent Discussions</h4>
-						<cache:cache time="60" key="http://community.igniterealtime.org/blogs/feeds/posts">
-
-                        <%
-						ForumService forumService1 = serviceProvider.getForumService();
-						WSResultFilter rf1 = new WSResultFilter();
-                        rf1.setSortField(9); // modification date
-                        rf1.setSortOrder(SORT_DESCENDING);
-						rf1.setRecursive(true);
-						rf1.setNumResults(5);
-						WSForumMessage[] messages1 = forumService1.getMessagesByCommunityIDAndFilter(1, rf1);
-						for (WSForumMessage message : messages1) {
-						%>
-							<div class="discussion">
-								<img src="http://community.igniterealtime.org/people/<%= message.getUser().getUsername() %>/avatar/16.png" width="16" height="16" alt="" />
-									<b><%= message.getUser().getUsername() %></b> in
-									"<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>"
-							</div>
-						<% } %>
-                        </cache:cache>
-											
-					<h4>Recent Releases</h4>
-						<cache:cache time="60" key="http://community.igniterealtime.org/community/feeds/allcontent?communityID=2017">
-						<%
-						ForumService forumService2 = serviceProvider.getForumService();
-						WSResultFilter rf2 = new WSResultFilter();
-                        rf2.setSortField(9); // modification date
-                        rf2.setSortOrder(SORT_DESCENDING);
-						rf2.setRecursive(true);
-						rf2.setNumResults(5);
-						WSForumMessage[] messages2 = forumService2.getMessagesByCommunityIDAndFilter(2017, rf2);
-						 for (WSForumMessage message : messages2) {
-                        %>
-							<div class="news">
-								<font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(message.getCreationDate()) %> - </font>
-								<a href='http://community.igniterealtime.org/message/<%= message.getID() %>'><%= message.getSubject() %></a>
-							</div>
-						<% } %>
-						</cache:cache>
-					
-
-                    <h4>Recent Articles</h4>
-                        <div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>                        
-                        <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
-                        <div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
-                        <div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
-                        <div class="articles"><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
-
-                    <h4>Whitepapers</h4>
-                        <div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
-                        <div class="articles"><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
-                        <div class="articles"><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
-                        <div class="articles"><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
-                    </div>
-
-					<!-- END recent discussions, news, wiki docs, and articles -->
-
-				</div>
-				<!-- END 'in the community' column -->
-				
 			</div>
 			<!-- END home page body content area -->
 			
@@ -284,13 +185,151 @@
 				</div>
 				<div class="ignite_sidebar_btm-g"></div>
 			</div>
+
+            <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
+            <!-- BEGIN 'in the community' column -->
+            <div id="ignite_home_body_rightcol">
+
+                <div id="ignite_incommunity_header">
+                    <span id="ignite_incommunity_header_label">
+                        In the Community
+                    </span>
+                </div>
+
+                <!-- BEGIN featured members -->
+                <%-- <div id="ignite_home_body_featured">
+                <h4>Featured Members</h4>
+
+                    <!-- featured member 1 -->
+                    <div style="float: right;">
+                    <a href="<%= baseUrl %>/people/sixthring">
+                        <div class="ignite_home_featured_avatar">
+                         <img src="<%= baseUrl %>/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
+                        </div>
+                    sixthring</a>
+                    </div>
+
+                    <!-- featured member 2 -->
+                    <div style="float: left;">
+                    <a href="<%= baseUrl %>/people/winsrev">
+                        <div class="ignite_home_featured_avatar">
+                        <img src="<%= baseUrl %>/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
+                        </div>
+                    winsrev</a>
+                    </div>
+                </div>    --%>
+                <!-- END featured members -->
+
+                <!-- BEGIN recent discussions, news, wiki docs, and articles -->
+                <div id="ignite_home_body_recent">
+                <h4>Recent Discussions</h4>
+                <%
+                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
+                %>
+                    <cache:cache time="60" key="<%= recentMessagesUrl %>">
+                <% try { %>
+                <%
+                    RestClient client = new RestClient();
+                    JSONObject result = client.get(recentMessagesUrl);
+                    JSONArray messages = result.getJSONArray("list");
+
+                    for (Object messageObject : messages) {
+                        if (! (messageObject instanceof JSONObject)) {
+                            continue;
+                            // skip non-JSONObject
+                        }
+                        JSONObject message = (JSONObject)messageObject;
+
+                        JSONObject author = message.getJSONObject("author");
+                        String authorAvatarUrl = author.getJSONObject("resources").getJSONObject("avatar").getString("ref");
+                        String authorName = author.getString("displayName");
+                        String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
+                        String subject = message.getString("subject");
+
+                %>
+                        <div class="discussion">
+                            <img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />
+                                <b><%= authorName %></b> in
+                                "<a href='<%= messageUrl %>'><%= subject %></a>"
+                        </div>
+                    <% } %>
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
+                    </cache:cache>
+
+                <h4>Recent Releases</h4>
+                <%
+                    String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,2017)";
+
+                %>
+                    <cache:cache time="60" key="<%= recentReleasesPlace %>">
+                <% try { %>
+                <%
+                    RestClient client = new RestClient();
+                    JSONObject result = client.get(recentReleasesPlace);
+                    JSONArray placesList = result.getJSONArray("list");
+                    JSONObject place = placesList.getJSONObject(0);
+                    JSONObject placeResources = place.getJSONObject("resources");
+                    JSONObject placeContents = placeResources.getJSONObject("contents");
+                    String recentReleasesUrl = placeContents.getString("ref")+"?count=5&abridged=true";
+
+                    result = client.get(recentReleasesUrl);
+                    JSONArray messages = result.getJSONArray("list");
+
+                    for (Object messageObject : messages) {
+                        if (! (messageObject instanceof JSONObject)) {
+                            continue;
+                            // skip non-JSONObject
+                        }
+                        JSONObject message = (JSONObject)messageObject;
+
+                        String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
+                        String subject = message.getString("subject");
+                        String published = message.getString("published");
+                        if (StringUtils.endsWith(published, "+0000")) {
+                            published = StringUtils.replace(published, "+0000", "+00:00");
+                        }
+                        Date datePublished = new Date();
+                        try {
+                            datePublished = javax.xml.bind.DatatypeConverter.parseDate(published).getTime();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                %>
+                        <div class="news">
+                            <font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(datePublished) %> - </font>
+                            <a href='<%= messageUrl %>/'><%= subject %></a>
+                        </div>
+                    <% } %>
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
+                    </cache:cache>
+
+                <h4>Recent Articles</h4>
+                    <div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
+                    <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
+                    <div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
+                    <div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
+                    <div class="articles"><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
+
+                <h4>Whitepapers</h4>
+                    <div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
+                    <div class="articles"><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
+                    <div class="articles"><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
+                    <div class="articles"><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
+                </div>
+
+                <!-- END recent discussions, news, wiki docs, and articles -->
+
+            </div>
+            <!-- END 'in the community' column -->
 			<!-- END grey gradient sidebar box 'PROJECTS' -->
-			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-			
-            <%@ include file="/includes/sidebar_newsletter.jspf" %>
-			
+
+
             <jsp:include page="/includes/sidebar_screenshot.jsp" />
-			
+
 			<%@ include file="/includes/sidebar_testimonial.jspf" %>
 			
 		</div>

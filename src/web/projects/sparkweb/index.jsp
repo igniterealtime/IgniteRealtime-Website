@@ -1,15 +1,11 @@
 <%@ page import="org.jivesoftware.site.Versions" %>
-<%@ page import="com.jivesoftware.community.webservices.BlogService" %>
-<%@ page import="com.jivesoftware.community.webservices.WSResultFilter" %>
-<%@ page import="com.jivesoftware.community.webservices.WSBlogPost" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.jivesoftware.site.FeedManager" %>
-<%@ page import="com.sun.syndication.feed.synd.SyndEntry" %>
+<%@ page import="org.jivesoftware.webservices.RestClient" %>
+<%@ page import="net.sf.json.JSONObject" %>
+<%@ page import="net.sf.json.JSONArray" %>
 
-<%@ taglib uri="oscache" prefix="cache" %>
+<%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-<%@ include file="/includes/ws_locator.jspf" %>
 <html>
 <head>
 <title>SparkWeb IM Client</title>
@@ -102,8 +98,13 @@
 			
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_int_body">
-				
-                <% String blogFeedRSS = "http://community.igniterealtime.org/blogs/ignite/feeds/tags/sparkweb"; %>
+            <%
+                String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
+                String restBaseUrl = baseUrl+"/api/core/v3";
+                String chosenTag = "sparkweb";
+                String blogFeedRSS = baseUrl+"/blogs/ignite/feeds/tags/"+chosenTag;
+                String blogRestUrl = restBaseUrl +"/contents?count=5&includeBlogs=true&filter=type(post)&filter=tag("+chosenTag+")";
+            %>
 				<!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_int_body_widecol">
 					<!-- BEGIN blog header -->
@@ -121,36 +122,17 @@
 					
                     <%-- Show blog feed --%>
 					<cache:cache time="600" key="<%= blogFeedRSS %>">
-					<%
-                    FeedManager feedManager = FeedManager.getInstance();
-                    List<SyndEntry> blogFeedEntries = feedManager.getBlogFeedEntries(blogFeedRSS);
-					BlogService blogService = serviceProvider.getBlogService();
-
-					WSBlogPostResultFilter bprf = new WSBlogPostResultFilter();
-					bprf.setNumResults(5);
-                    bprf.setBlogID((long) NULL_INT);
-                    bprf.setSortField(600); // publish date
-                    bprf.setSortOrder(SORT_DESCENDING);
-        			String[] tags = {"sparkweb"};
-                    bprf.setTags(tags);            
-                    WSBlogPost[] posts = blogService.getBlogPosts(bprf);
-                    if ( (null != posts) && (null != blogFeedEntries) ) {
-                        for (WSBlogPost post: posts) {
-                            for (SyndEntry entry: blogFeedEntries) {
-                                if ( (null == entry.getLink()) || (null == post.getPermalink()) ) {
-                                    continue;
-                                } else {
-                                    if (entry.getLink().equals(post.getPermalink())) {
-                                        post.setBody(entry.getDescription().getValue());
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
-					%>
-					<% request.setAttribute("posts", posts); %>
+                <% try { %>
+                <%
+                    RestClient client = new RestClient();
+                    JSONObject result = client.get(blogRestUrl);
+                    JSONArray posts = result.getJSONArray("list");
+                    request.setAttribute("posts", posts);
+                %>
 					<jsp:include page="/includes/blogposts.jsp" />
+                <% } catch (Exception e) { %>
+                    <cache:usecached />
+                <% } %>
 					</cache:cache>
 				</div>
 				<!-- END 'latest blog entries' column -->
