@@ -17,26 +17,6 @@
 		@import "/styles/interior.css";
 	</style>
 	
-	<script type="text/javascript">
-	jive_groupchat_config = {
-		constrained: "false",
-		draggable: "false",
-		resizable: "false",
-		closable: "false",
-		bottomPane: "false",
-		mucServer: "conference.igniterealtime.org",
-		server: "http://www.igniterealtime.org",
-		connectionAddress: "http://www.igniterealtime.org",
-		roomName: "open_chat",
-		fitToParent: "true", // forces the dlg to find #groupchat-container and conform to its layout and size
-		createRoom: "false"
-	}
-	</script>
-	
-	<script src="groupchat/groupchat-scripts/groupchat-compressed.js" type="text/javascript"></script>
-
-	<link rel="stylesheet" type="text/css" href="groupchat/groupchat-style.css">
- 	
  	<style type="text/css">
  		ul.changelogentry li {
  			margin-left: 2.5em;
@@ -86,9 +66,7 @@
 					available to answer questions <b>every Wednesday at 10:00 AM PST (<%= 10 + offset %>:00 UTC/GMT)</b>
 					for one hour.</p>
 
-					<div id="groupchat-container">
-						<div id="groupchat"></div>
-					</div>
+					<iframe src="candy.jsp" style="width:100%;height:400px;"></iframe>
 					
 					<p>Alternatively, you may use any XMPP client (Spark, Exodus, Pandion, Trillian, etc) 
 					to connect to the group chat service at conference.igniterealtime.org. The chat name is
