@@ -10,6 +10,10 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 
     <display-name>Ignite Realtime Website</display-name>
     <description>Website source for igniterealtime.org</description>
+    <mime-mapping>  
+        <extension>js</extension>  
+        <mime-type>text/javascript;charset=UTF-8</mime-type>  
+    </mime-mapping>
 
     <!-- Path to the base builds dir. Change this for local testing. Note, do not include a trailing "/". -->
     <context-param>
