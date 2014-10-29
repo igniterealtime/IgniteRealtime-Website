@@ -2,6 +2,6 @@
 . /etc/profile
 . $HOME/.bash_profile
 cd `dirname $0`
-svn up
+#svn up
 cd build
 ant deployapp

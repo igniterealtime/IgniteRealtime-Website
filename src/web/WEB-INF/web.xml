@@ -40,22 +40,13 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     </context-param>
     <context-param>
         <param-name>dbPassword</param-name>
-        <param-value>k*3G@3Vm</param-value>
+        <param-value>changeme</param-value>
     </context-param>
 	<context-param>
         <param-name>csc_baseurl</param-name>
         <param-value>http://igniterealtime.jiveon.com</param-value>
     </context-param>
-    <context-param>
-    	<param-name>csc_username</param-name>
-    	<param-value>webservices</param-value>
-   	</context-param>
-   	<context-param>
-   		<param-name>csc_password</param-name>
-   		<param-value>webservicesadmin</param-value>
-   	</context-param>
-
-	<filter>
+    <filter>
         <filter-name>sitemesh</filter-name>
         <filter-class>com.opensymphony.module.sitemesh.filter.PageFilter</filter-class>
     </filter>
@@ -172,6 +163,10 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 		<taglib>
 			<taglib-uri>http://www.opensymphony.com/sitemesh/page</taglib-uri>
 			<taglib-location>/WEB-INF/sitemesh-page.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>http://www.opensymphony.com/oscache</taglib-uri>
+			<taglib-location>/WEB-INF/lib/oscache.jar</taglib-location>
 		</taglib>
 		<taglib>
 			<taglib-uri>oscache</taglib-uri>
