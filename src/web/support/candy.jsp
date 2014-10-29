@@ -1,3 +1,6 @@
+<%
+String xmppDomain = application.getInitParameter("xmpp-domain");
+%>
 <html lang="en">
 <head>
         <meta charset="utf-8">
@@ -13,12 +16,12 @@
                         Candy.init('/http-bind/', {
                                 core: {
                                         debug: false,
-                                        autojoin: ['open_chat@conference.igniterealtime.org']
+                                        autojoin: ['open_chat@conference.<%= xmppDomain %>']
                                 },
                                 view: { resources: 'candy-1.7.1/res/' }
                         });
 
-                        Candy.Core.connect('igniterealtime.org');
+                        Candy.Core.connect('<%= xmppDomain %>');
 
                 });
 

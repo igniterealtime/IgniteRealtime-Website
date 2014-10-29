@@ -16,7 +16,11 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <param-name>builds-path</param-name>
         <param-value>/opt/j2ee/domains/igniterealtime.org/www/builds</param-value>
     </context-param>
-
+    <!-- XMPP Domain of this Host -->
+    <context-param>
+        <param-name>xmpp-domain</param-name>
+        <param-value>igniterealtime.org</param-value>
+    </context-param>
     <context-param>
         <param-name>plugins-path</param-name>
         <param-value>/opt/j2ee/domains/igniterealtime.org/www/tomcat/webapps/ROOT/projects/spark</param-value>
