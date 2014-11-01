@@ -8,19 +8,32 @@
 
 package org.jivesoftware.site;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentFactory;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.*;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.Locale;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.zip.ZipFile;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentFactory;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.jivesoftware.util.Version;
 
 /**
  * OpenfireVersionChecker provides two services 1) check for updates and 2) get list of
@@ -111,16 +124,12 @@ public class OpenfireVersionChecker {
         Element currentOpenfire = xmlRequest.element("openfire");
         if (currentOpenfire != null) {
             // Compare latest version with installed one
-            String latest = Versions.getVersion("openfire");
-            String installed = currentOpenfire.attributeValue("current");
-            if (installed != null && installed.compareTo(latest) < 0) {
-                String extension = currentOpenfire.attributeValue("type");
+            Version latest = new Version(Versions.getVersion("openfire"));
+            Version installed = new Version(currentOpenfire.attributeValue("current"));
+            if (latest.isNewerThan(installed)) {
                 Element latestOpenfire = xmlReply.addElement("openfire");
-                latestOpenfire.addAttribute("latest", latest);
+                latestOpenfire.addAttribute("latest", latest.getVersionString());
                 latestOpenfire.addAttribute("changelog", OPENFIRE_LOG);
-                /*String version = latest.replaceAll(".", "_");
-                String fileName = OPENFIRE_PATH + "openfire_" + version + "." + extension;
-                latestOpenfire.addAttribute("url", fileName);*/
                 latestOpenfire.addAttribute("url", OPENFIRE_PATH);
             }
         }
