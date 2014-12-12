@@ -8,10 +8,10 @@
     String profileLink = null;
     String profile = null;
     if (project.equals("openfire")) {
-        name = "Guus";
-        avatarSrc = "http://community.igniterealtime.org/people/Guus/avatar/46.png";
-        profileLink = "http://community.igniterealtime.org/people/Guus";
-        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
+        name = "dwd";
+        avatarSrc = "http://community.igniterealtime.org/people/dwd/avatar/46.png";
+        profileLink = "http://community.igniterealtime.org/people/dwd";
+        profile = "Dave Cridland is also a member of the XMPP XSF Board.";
     }
     else if (project.equals("spark")) {
         name = "winsrev";
