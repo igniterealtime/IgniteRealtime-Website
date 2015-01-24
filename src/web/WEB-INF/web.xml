@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <web-app
-		xmlns="http://java.sun.com/xml/ns/j2ee"
-		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+        xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
 
 http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
-		version="2.4">
+        version="2.4">
 
     <display-name>Ignite Realtime Website</display-name>
     <description>Website source for igniterealtime.org</description>
-    <mime-mapping>  
-        <extension>js</extension>  
-        <mime-type>text/javascript;charset=UTF-8</mime-type>  
+    <mime-mapping>
+        <extension>js</extension>
+        <mime-type>text/javascript;charset=UTF-8</mime-type>
     </mime-mapping>
 
     <!-- Path to the base builds dir. Change this for local testing. Note, do not include a trailing "/". -->
@@ -29,8 +29,8 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <param-name>plugins-path</param-name>
         <param-value>/opt/j2ee/domains/igniterealtime.org/www/tomcat/webapps/ROOT/projects/spark</param-value>
     </context-param>
-    
-    <!-- Hostname where our downloads are hosted. S3/Cloudfront, should almost never change. 
+
+    <!-- Hostname where our downloads are hosted. S3/Cloudfront, should almost never change.
          Default: http://download.igniterealtime.org Note, do not include a trailing "/". -->
     <context-param>
         <param-name>download-host</param-name>
@@ -50,9 +50,9 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <param-name>dbPassword</param-name>
         <param-value>changeme</param-value>
     </context-param>
-	<context-param>
+    <context-param>
         <param-name>csc_baseurl</param-name>
-        <param-value>http://igniterealtime.jiveon.com</param-value>
+        <param-value>https://community.igniterealtime.org</param-value>
     </context-param>
     <filter>
         <filter-name>sitemesh</filter-name>
@@ -153,40 +153,40 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <url-pattern>/projects/openfire/plugins-beta/*</url-pattern>
     </servlet-mapping>
 
-	<error-page>
-		<error-code>403</error-code>
-		<location>/403.html</location>
-	</error-page>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/403.html</location>
+    </error-page>
 
-	<error-page>
-		<error-code>404</error-code>
-		<location>/404.html</location>
-	</error-page>
-	<jsp-config>
-		<!-- tag lib definitions -->
-		<taglib>
-			<taglib-uri>http://www.opensymphony.com/sitemesh/decorator</taglib-uri>
-			<taglib-location>/WEB-INF/sitemesh-decorator.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>http://www.opensymphony.com/sitemesh/page</taglib-uri>
-			<taglib-location>/WEB-INF/sitemesh-page.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>http://www.opensymphony.com/oscache</taglib-uri>
-			<taglib-location>/WEB-INF/lib/oscache.jar</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>oscache</taglib-uri>
-			<taglib-location>/WEB-INF/lib/oscache.jar</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>transformtags</taglib-uri>
-			<taglib-location>/WEB-INF/transformtags.tld</taglib-location>
-		</taglib>
-		<taglib>
-			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
-			<taglib-location>/WEB-INF/c.tld</taglib-location>
-		</taglib>
-	</jsp-config>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404.html</location>
+    </error-page>
+    <jsp-config>
+        <!-- tag lib definitions -->
+        <taglib>
+            <taglib-uri>http://www.opensymphony.com/sitemesh/decorator</taglib-uri>
+            <taglib-location>/WEB-INF/sitemesh-decorator.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://www.opensymphony.com/sitemesh/page</taglib-uri>
+            <taglib-location>/WEB-INF/sitemesh-page.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://www.opensymphony.com/oscache</taglib-uri>
+            <taglib-location>/WEB-INF/lib/oscache.jar</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>oscache</taglib-uri>
+            <taglib-location>/WEB-INF/lib/oscache.jar</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>transformtags</taglib-uri>
+            <taglib-location>/WEB-INF/transformtags.tld</taglib-location>
+        </taglib>
+        <taglib>
+            <taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
+            <taglib-location>/WEB-INF/c.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 </web-app>
