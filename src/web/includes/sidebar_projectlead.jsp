@@ -11,7 +11,7 @@
         name = "dwd";
         avatarSrc = "https://community.igniterealtime.org/people/dwd/avatar/46.png";
         profileLink = "https://community.igniterealtime.org/people/dwd";
-        profile = "Dave Cridland is also a member of the XMPP XSF Board.";
+        profile = "Dave Cridland is also a member of the XMPP Council, the technical steering group that approves XMPP Extension Protocols.";
     }
     else if (project.equals("spark")) {
         name = "winsrev";
@@ -29,7 +29,7 @@
         name = "Flow";
         avatarSrc = "https://community.igniterealtime.org/people/Flow/avatar/32.png";
         profileLink = "https://community.igniterealtime.org/people/Flow";
-        profile = "";
+        profile = "Florian Schmaus is also a member of the XMPP Standards Foundation.";
     }
     else if (project.equals("tinder")) {
         name = "Guus";
