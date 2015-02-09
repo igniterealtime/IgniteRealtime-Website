@@ -29,7 +29,7 @@
         name = "Flow";
         avatarSrc = "https://community.igniterealtime.org/people/Flow/avatar/32.png";
         profileLink = "https://community.igniterealtime.org/people/Flow";
-        profile = "";
+        profile = "Florian Schmaus is also a member of the XMPP Standards Foundation.";
     }
     else if (project.equals("tinder")) {
         name = "Guus";
