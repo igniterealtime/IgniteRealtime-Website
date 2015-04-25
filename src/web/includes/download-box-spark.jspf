@@ -125,7 +125,7 @@
             </div>
             <!-- END linux -->
 
-            <!-- BEGIN mac -->
+            <!-- BEGIN mac 
             <div class="ignite_download_panel" id="sparkMac" style="display: none;">
                 <div>
                     <div class="ignite_download_item_odd">
@@ -138,7 +138,7 @@
                     </div>
                 </div>
             </div>
-            <!-- END mac -->
+             END mac -->
 
         </div>
     </div>
