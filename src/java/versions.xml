@@ -2,7 +2,7 @@
 <versions>
     <!--<product name="wildfire" version="3.3.0" date="April 12, 2007" />-->
     <product name="openfire" version="3.10.0" date="April 20, 2015" />
-    <!-- <product name="openfire-beta" version="3.10.0.rc" date="April 10, 2015" /> -->
+    <product name="openfire-beta" version="3.10.1.rc" date="May 31, 2015" />
     <product name="spark" version="2.7.0" date="April 24, 2015" />
     <!-- <product name="spark-beta" version="2.6.0.rc1" date="November 22, 2010" /> -->
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
