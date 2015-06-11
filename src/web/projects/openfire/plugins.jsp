@@ -279,7 +279,11 @@
 									<tr>
 										<td width="1%">
 											<span class="plugicon">
-											<img src="plugins/cache/<%= URLEncoder.encode(pname+iconFormat, "utf-8") %>" alt="" />
+											<%  if (iconPngExists || iconGifExists) { %>
+												<img src="plugins/cache/<%= URLEncoder.encode(pname+iconFormat, "utf-8") %>" alt="" />
+											<% } else { %>
+												<img src="/images/icon_plugin.gif" width="16" height="16" alt="Plugin">
+											<% } %>
 											</span>
 										</td>
 										<td width="99%">
