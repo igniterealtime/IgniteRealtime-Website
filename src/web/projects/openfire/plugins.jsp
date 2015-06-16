@@ -171,25 +171,32 @@
                     // See if a README and changelog exist.
                     boolean readmeExists = pluginFileExists(plugins[i], "readme.html");
                     boolean changelogExists = pluginFileExists(plugins[i], "changelog.html");
-                    boolean iconExists = pluginFileExists(plugins[i], "logo_small.gif");
-										boolean licenseExists = pluginFileExists(plugins[i], "license.html");
+                    boolean iconGifExists = pluginFileExists(plugins[i], "logo_small.gif");
+                    boolean iconPngExists = pluginFileExists(plugins[i], "logo_small.png");
+					boolean licenseExists = pluginFileExists(plugins[i], "license.html");
+					String iconFormat;
+					if(iconGifExists) {
+						iconFormat = ".gif";
+					} else {
+						iconFormat = ".png";
+					}
 
                     // If the icon exists, make sure it's extracted. We can't serve up images
                     // directly from JSP so we just put them on the file system.
-                    if (iconExists) {
+                    if (iconPngExists || iconGifExists) {
                         File cache = new File(pluginDir, "cache");
                         if (!cache.exists()) {
                             cache.mkdir();
                         }
                         File pluginIcon = new File(pluginDir, "cache" + File.separator +
-                                pname + ".gif");
+                                pname + iconFormat);
                         if (!pluginIcon.exists()) {
-                            writePluginFile(plugins[i], cache, "logo_small.gif", pname + ".gif");
+                            writePluginFile(plugins[i], cache, "logo_small" + iconFormat, pname + iconFormat);
                         }
                         else {
                             if (pluginIcon.lastModified() < plugins[i].lastModified()) {
                                 pluginIcon.delete();
-                                writePluginFile(plugins[i], cache, "logo_small.gif", pname + ".gif");
+                                writePluginFile(plugins[i], cache, "logo_small" + iconFormat, pname + iconFormat);
                             } 
                         }
                     }
@@ -272,7 +279,11 @@
 									<tr>
 										<td width="1%">
 											<span class="plugicon">
-											<img src="plugins/cache/<%= URLEncoder.encode(pname, "utf-8") %>.gif" alt="" />
+											<%  if (iconPngExists || iconGifExists) { %>
+												<img src="plugins/cache/<%= URLEncoder.encode(pname+iconFormat, "utf-8") %>" alt="" />
+											<% } else { %>
+												<img src="/images/icon_plugin.gif" width="16" height="16" alt="Plugin">
+											<% } %>
 											</span>
 										</td>
 										<td width="99%">
