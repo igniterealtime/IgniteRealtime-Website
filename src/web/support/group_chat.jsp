@@ -61,10 +61,8 @@
 				<div class="ignite_int_body_support">
 					
 					
-					<p>Chat live with the community about igniterealtime.org projects. The chat
-					service is available at all times. However, project developers will specifically be 
-					available to answer questions <b>every Wednesday at 10:00 AM PST (<%= 10 + offset %>:00 UTC/GMT)</b>
-					for one hour.</p>
+<p>Chat live with the community about igniterealtime.org projects. The chat
+service is available at all times.</p>
 
 					<iframe src="candy.jsp" style="width:100%;height:400px;"></iframe>
 					
@@ -73,73 +71,9 @@
                     &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p>
 
 
-					<h3>Previous Chats</h3>
-					<p>Transcripts of the weekly chats are posted in the 
-					<a href=" http://community.igniterealtime.org/community/support/openfire_(formerly_wildfire)_support?tagSetID=1002&view=all">discussion forums</a>. Try a search for
-					"chat transcript" to find them.</p>
 					
 					<h3>About Group Chat</h3>
-					<p>The web-based group chat client used on this site is powered by a new embedded xmpp chat system based on SparkWeb.</p>
-					<h4>Change Log</h4>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>April 11th, 2007</u></li>
-						<li> Users will now automatically be logged out when leaving the page </li>
-					</ul>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>April 6th, 2007</u></li>
-						<li> Added help for / commands</li>
-						<li> Added /?, /help, /away, /available, and /back (first two and last two are synonyms)</li>
-						<li> Added the ability to disable commands for embedders of groupchat</li>
-						<li> The contact list is now sorted by status, then name </li>
-					</ul>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>April 5th, 2007</u></li>
-						<li> Hopefully fixed Safari again </li>
-						<li> Fixed an issue that would cause messages to not appear sometimes </li>
-						<li> Added support for creating rooms on the fly (not exposed on the ignite chat)</li>
-						<li> The chat no longer autoscrolls if you've scrolled up more than 100px to look at past messages </li>
-					</ul>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>April 4th, 2007</u></li>
-						<li> Fixed a bug that prevented Safari from sending messages or changing name </li>
-						<li> Fixed an issue that prevented the topic bar from showing </li>
-						<li> Improved nickname collision handling </li>
-					</ul>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>March 27th, 2007</u></li>
-						<li> New appearance, and some layout changes </li>
-						<li> Fixed a status changing bug </li>
-						<li> Fixed a nickname changing bug </li>
-						<li> Fixed several potential script exploits </li>
-						<li> Should work in Microsoft Internet Explorer and Apple Safari again </li>
-					</ul>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>March 12th, 2007</u></li>
-						<li> Improved formatting of timestamps, and added the date to the window header </li>
-						<li> Fixed image urls </li>
-						<li> Added /part and /leave commands </li>
-						<li> Added click-to-change status (available/away) </li>
-						<li> Consecutive messages from the same person are now visually combined </li>
-						<li> Usernames are now stored in a cookie </li>
-						<li> Added a tooltip on the presence change and name change controls </li>
-						<li> Automated informational messages can now be styled differently </li>
-					</ul>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>March 8th, 2007</u></li>
-						<li> Reduced code size </li>
-						<li> Added support for /me, /nick, and /clear commands from IRC </li>
-						<li> Added nickname collision prevention </li>
-						<li> Changed window title </li>
-					</ul>
-					<ul class="changelogentry">
-						<li class="changelogheader"> <u>March 7th, 2007</u></li>
-						<li> Improved tab completion of nicknames </li>
-						<li> Removed per-message time stamps in favor of an every-five-minutes time message </li>
-						<li> Messages that mention your nickname are highlighted now </li>
-						<li> Added smileys </li>
-						<li> URLs like http://www.igniterealtime.org or www.igniterealtime.org are now clickable </li>
-					</ul>
-					<p>&nbsp;</p>
+					<p>The web-based group chat client used is <a href="https://candy-chat.github.io/candy/">Candy</a>.</p>
 					
 				</div>
 			
