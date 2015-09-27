@@ -192,81 +192,6 @@
  git clone https://github.com/igniterealtime/Spark.git</p>
                                 </td>
                             </tr>
-                            <tr>
-                                <td width="1%" rowspan="7" class="item" valign="top">
-                                    Browse SVN
-                                </td>
-                                <td width="99%">
-                                    Openfire:
-                                    <a href="http://fisheye.igniterealtime.org/browse/openfire/trunk">openfire/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%">
-                                    Spark:
-                                    <a href="http://fisheye.igniterealtime.org/browse/spark/trunk">spark/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%">
-                                    SparkWeb:
-                                    <a href="http://fisheye.igniterealtime.org/browse/sparkweb/trunk">sparkweb/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%">
-                                    XIFF:
-                                    <a href="http://fisheye.igniterealtime.org/browse/xiff/trunk">xiff/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%">
-                                    Tinder:
-                                    <a href="http://fisheye.igniterealtime.org/browse/tinder/trunk">tinder/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%">
-                                    Whack:
-                                    <a href="http://fisheye.igniterealtime.org/browse/whack/trunk">whack/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="99%" class="last">
-                                    Asterisk-IM:
-                                    <a href="http://fisheye.igniterealtime.org/browse/asterisk-im/trunk">asterisk-im/trunk</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="1%" rowspan="5" class="item" valign="top">
-                                SVN Access
-                            </td>
-                            <td width="99%">
-                                SparkWeb:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/sparkweb/trunk sparkweb</tt>
-                        </tr>
-                        <tr>
-                            <td width="99%">
-                                XIFF:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/xiff/trunk xiff</tt>
-                        </tr>
-                            <tr>
-                            <td width="99%">
-                                Tinder:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/tinder/trunk tinder</tt>
-                        </tr>
-                        <tr>
-                            <td width="99%">
-                                Whack:<br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/whack/trunk whack</tt>
-                        </tr>
-                        <tr>
-                            <td width="99%" class="last">
-                                Asterisk-IM:
-                                <br>
-                                <tt>svn co http://svn.igniterealtime.org/svn/repos/asterisk-im/trunk asterisk-im</tt>
-                            </td>
-                        </tr>
                         <tr>
                             <td width="1%" rowspan="3" class="item finalRow" valign="top">
                                 Other
@@ -292,17 +217,17 @@
             <h4>Bugs/Issues</h4>
 
             <p>To view and report bugs and issues, please view our
-                <a href="http://issues.igniterealtime.org/">issue tracker</a>.
+                <a href="https://igniterealtime.org/issues/">issue tracker</a>.
                 Specific projects include:
-                <a href="http://issues.igniterealtime.org/browse/OF">Openfire</a>,
-                <a href="http://issues.igniterealtime.org/browse/SPARK">Spark</a>,
-                <a href="http://issues.igniterealtime.org/browse/SW">SparkWeb</a>,
-                <a href="http://issues.igniterealtime.org/browse/SMACK">Smack API</a>,
-                <a href="http://issues.igniterealtime.org/browse/TINDER">Tinder API</a>,
-                <a href="http://issues.igniterealtime.org/browse/WHACK">Whack API</a>,
-                <a href="http://issues.igniterealtime.org/browse/XIFF">XIFF</a>,
-                <a href="http://issues.igniterealtime.org/browse/GATE">Gateway Plugin</a>, and
-                <a href="http://issues.igniterealtime.org/browse/PHONE">Asterisk-IM</a>.
+                <a href="https://igniterealtime.org/issues/browse/OF">Openfire</a>,
+                <a href="https://igniterealtime.org/issues/browse/SPARK">Spark</a>,
+                <a href="https://igniterealtime.org/issues/browse/SW">SparkWeb</a>,
+                <a href="https://igniterealtime.org/issues/browse/SMACK">Smack API</a>,
+                <a href="https://igniterealtime.org/issues/browse/TINDER">Tinder API</a>,
+                <a href="https://igniterealtime.org/issues/browse/WHACK">Whack API</a>,
+                <a href="https://igniterealtime.org/issues/browse/XIFF">XIFF</a>,
+                <a href="https://igniterealtime.org/issues/browse/GATE">Gateway Plugin</a>, and
+                <a href="https://igniterealtime.org/issues/browse/PHONE">Asterisk-IM</a>.
             </p>
 
             <br>
