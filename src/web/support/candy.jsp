@@ -18,7 +18,8 @@ String xmppDomain = application.getInitParameter("xmpp-domain");
                                         debug: false,
                                         autojoin: ['open_chat@conference.<%= xmppDomain %>']
                                 },
-                                view: { resources: 'candy-2.1.0/res/' }
+                                view: { resources: 'candy-2.1.0/res/',
+                                        enableXHTML: true }
                         });
 
                         Candy.Core.connect('<%= xmppDomain %>');
