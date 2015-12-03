@@ -102,6 +102,7 @@
 							<td>Info</td>
 							<td>File</td>
 							<td>Version</td>
+							<td>Min Openfire Version</td>
 							<td class="pluginDate">Date</td>
 						</tr>
 			<%
@@ -154,7 +155,7 @@
 			<%  if (plugins == null || plugins.length == 0) { %>
 					<tbody>
 						<tr>
-							<td colspan="5">No plugins.</td>
+							<td colspan="6">No plugins.</td>
 						</tr>
 					</tbody>
 			<%  } %>
@@ -260,7 +261,7 @@
                         commercialShown = true;
 			%>
 						<tr>
-							<td colspan="5">
+							<td colspan="6">
 							<br/>
 							<a name="commercial"></a>
 							<br/></td>
@@ -270,6 +271,7 @@
 							<td>Info</td>
 							<td>File</td>
 							<td>Version</td>
+							<td>Min Openfire Version</td>
 							<td class="pluginDate">Date</td>
 						</tr>
 			<%          } %>
@@ -317,6 +319,9 @@
 							</td>
 							<td class="c4" align="center" nowrap>
 								<%= (pluginVersion != null ? pluginVersion.getTextTrim() : "&nbsp;") %>
+							</td>
+							<td class="c4" align="center" nowrap>
+								<%= (pluginReqVersion != null ? pluginReqVersion.getTextTrim() : "&nbsp;") %>
 							</td>
 							<td class="c5" nowrap>
                         <% if (pluginDate != null) {
