@@ -51,7 +51,7 @@
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="sparkWindowsBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkWindows','sparkLinux','sparkMac'); return false;"></a></span>
             <span id="sparkLinuxBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkLinux','sparkWindows','sparkMac'); return false;"></a></span>
-            <!-- <span id="sparkMacBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkMac','sparkWindows','sparkLinux'); return false;"></a></span> -->
+            <span id="sparkMacBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkMac','sparkWindows','sparkLinux'); return false;"></a></span>
 
             <!-- BEGIN windows -->
             <div class="ignite_download_panel" id="sparkWindows" style="display: none;">
