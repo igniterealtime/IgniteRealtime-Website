@@ -200,9 +200,8 @@ public class PluginDownloadServlet extends HttpServlet {
         String key = pluginType.getName() + file.getName();
         PluginCacheEntry pluginEntry = pluginCache.get(key);
 
-        // Return the cached result as long as the plugin file has not been modified
-        // and there is a cached entry
-        if (pluginEntry != null && pluginEntry.getLastModified() <= file.lastModified()) {
+        // Return the cached result as long as long as the entry is not older than five minutes.
+        if (pluginEntry != null && pluginEntry.getLastModified() < System.currentTimeMillis() - ( 5*60*1000 ) ) {
             return pluginEntry.getVersionNumber();
         }
 
@@ -214,7 +213,7 @@ public class PluginDownloadServlet extends HttpServlet {
         ByteArrayInputStream in = new ByteArrayInputStream(pluginXML.getBytes());
         Document doc = saxReader.read(in);
         Element pluginVersion = (Element)doc.selectSingleNode("/plugin/version");
-        pluginEntry = new PluginCacheEntry(pluginVersion.getTextTrim(), file.lastModified());
+        pluginEntry = new PluginCacheEntry(pluginVersion.getTextTrim(), System.currentTimeMillis());
         pluginCache.put(key, pluginEntry);
 
         return pluginVersion.getTextTrim();
@@ -254,7 +253,7 @@ public class PluginDownloadServlet extends HttpServlet {
     /**
      * A cache of the plugin version number is maintained for performance reasons. The cache entry contains
      * the version number of the plugin and the last modified date of the plugin file. The last modified
-     * date is used to update the cache if the plugin file has changed.
+     * date is used to periodically update the cache.
      */
     private class PluginCacheEntry {
         private String versionNumber;
@@ -275,10 +274,6 @@ public class PluginDownloadServlet extends HttpServlet {
 
         public long getLastModified() {
             return lastModified;
-        }
-
-        public void setLastModified(long lastModified) {
-            this.lastModified = lastModified;
         }
     }
 
