@@ -246,7 +246,7 @@ styles specific to the interior pages for the Ignite Real Time site.
 	padding: 0;
 	margin-bottom: 15px;
 	background: #fff url(../images/ignite_bigpanel_bg-int.gif) repeat-x;
-	background-position: 0px -20px;
+	background-position: 0 -20px;
 	overflow: hidden; 
 	}
 #ignite_smallpanel_open a {
@@ -349,7 +349,7 @@ img.ignite_body_image_right {
 	width: 341px;
 	height: 170px;
 	background: transparent url(../images/ignite_projects_bg.gif) no-repeat;
-	background-position: 0px 18px;
+	background-position: 0 18px;
 	}
 .ignite_project_big_left {
 	margin-right: 18px;
@@ -760,6 +760,73 @@ img.ignite_body_image_right {
 	border-bottom: none;
 }
 
+.ignite_body_screenshot_nav {
+	height: 20px;
+	padding: 0;
+	margin: 0;
+	}
+.ignite_body_screenshot_nav a.ignite_up {
+	float: left;
+	}
+.ignite_body_screenshot_nav a.ignite_back {
+	float: right;
+	margin-right: 10px;
+	}
+.ignite_body_screenshot_nav a.ignite_forward {
+	float: right;
+	}
+.ignite_body_screenshot_nav span.ignite_no-next {
+	font-size: 8pt; 
+	color: #ccc; 
+	float: right; 
+	padding: 2px 0 2px 4px;
+	margin-right: 10px;
+	}
+.ignite_body_screenshot_nav span.ignite_no-prev {
+	font-size: 8pt; 
+	color: #ccc; 
+	float: right; 
+	padding: 2px 4px 2px 0;
+	margin-right: 10px;
+	}
+
+.ignite_body_screenshots {	
+	float: left;
+	padding: 0 15px 15px 15px;
+	}
+.ignite_body_screenshots h3 {
+	color: #497cb3;
+	text-align: center;
+	}
+.ignite_body_screenshots table {	
+	width: 440px;
+	margin: 0;
+	}
+.ignite_body_screenshots tr td {	
+	text-align: center;
+	padding: 10px 0 10px 0;
+	}
+
+.ignite_body_screenshots a {
+	color: #666;
+	text-decoration: none;
+	font-size: 8pt;
+	}
+.ignite_body_screenshots a img {
+	border: 4px solid #fff;
+	}
+.ignite_body_screenshots a:hover img {
+	border: 4px solid #f0f0f0;
+	}
+
+.ignite_body_screenshots_enterprise {
+	background-color: #f9f9f9;
+	}
+.ignite_body_screenshots_enterprise table {	
+	width: 200px;
+	margin: 0;
+	}
+
 /* Openfire Plugins page table styles */
 #plugins {
 	display: block;
@@ -1144,6 +1211,9 @@ img.ignite_body_image_right {
 	padding: 18px 12px 15px 20px;
 	}
 
+
+
+
 .about_xmpp_supporters {
 	border: 1px solid #c1d5ea;
 	float: left;
@@ -1171,7 +1241,7 @@ img.ignite_body_image_right {
 	}
 .ignite_fans_block-hdr h2 {
 	margin:0;
-	padding: 7px 0px 5px 8px;
+	padding: 7px 0 5px 8px;
 	font-size: 12pt;
 	color: #2c609d;
 	}
@@ -1193,7 +1263,7 @@ img.ignite_body_image_right {
 	width: 200px;
 	}
 .ignite_fans_block table tr td.ignite_fans_logos img {
-	margin: 10px 0px 5px 0px;
+	margin: 10px 0 5px 0;
 	}
 .ignite_fans_block table tr td.ignite_fans_logos span {
 	width: 45px;

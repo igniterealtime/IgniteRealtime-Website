@@ -1,7 +1,7 @@
 
 body {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 9pt;
 	background-color: #fff;
@@ -23,33 +23,33 @@ a.ignite_link_arrow {
 
 h2 {
 	font-size: 11pt;
-	margin: 18px 0px 5px 0px;
-	padding: 0px;
+	margin: 18px 0 5px 0;
+	padding: 0;
 	}
 h2.larger {
 	font-size: 13pt;
-	margin: 0px;
-	padding: 15px 0px 0px 0px;
+	margin: 0;
+	padding: 15px 0 0 0;
 	}
 
 h3 {
 	font-size: 10pt;
-	margin: 18px 0px 5px 0px;
-	padding: 0px;
+	margin: 18px 0 5px 0;
+	padding: 0;
 	}
 h4 {
 	font-size: 10pt;
-	margin: 8px 0px 3px 0px;
-	padding: 0px;
+	margin: 8px 0 3px 0;
+	padding: 0;
 	}
 h5 {
 	font-size: 10pt;
-	margin: 18px 0px -8px 0px;
-	padding: 0px;
+	margin: 18px 0 -8px 0;
+	padding: 0;
 	}
 ul {
-	margin: 0px;
-	padding: 0px 0px 12px 26px;
+	margin: 0;
+	padding: 0 0 12px 26px;
 	}
 hr {
 	width: 100%;
@@ -62,8 +62,8 @@ hr {
 /* IGNITE wrapper */
 #ignite_wrapper {
 	width: 960px;
-	margin: 0px auto 0px auto;
-	padding: 0px 5px;
+	margin: 0 auto 0 auto;
+	padding: 0 5px;
 	text-align: left;
 	}
 
@@ -82,8 +82,8 @@ hr {
 	background: #fff url(../images/ignite_hdr-bg.gif) top repeat-x;
 	float: left;
 	clear: both;
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	}
 #ignite_logo {
 	width: 225px;
@@ -96,8 +96,8 @@ hr {
 	width: 184px;
 	height: 48px;
 	float: right;
-	margin: 0px;
-	padding: 13px 20px 0px 0px;
+	margin: 0;
+	padding: 13px 20px 0 0;
 	background: #000 url(../images/ignite_hdr-jivecommunity.gif) no-repeat bottom left;
 	}
 #jive-consoleTab, 
@@ -106,16 +106,16 @@ hr {
 	height: 62px;
 	float: right;
 	clear: right;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	}
 #jive-consoleTab a, 
 #jive-consoleTab-open a {
 	display: block;
 	width: 177px;
 	height: 27px;
-	margin: 35px 25px 0px 0px;
-	padding: 0px;
+	margin: 35px 25px 0 0;
+	padding: 0;
 	outline: none;
 	}
 #jive-consoleTab a {
@@ -144,8 +144,8 @@ hr {
 #jive-console-user {
 	width: 325px;
 	float: left;
-	margin: 5px 0px 10px 10px;
-	padding: 0px 0px 10px 0px;
+	margin: 5px 0 10px 10px;
+	padding: 0 0 10px 0;
 	border-right: 1px solid #dcdcdc;
 	}
 #jive-console-user-avatar {
@@ -154,7 +154,7 @@ hr {
 	float: left;
 	}
 #jive-console-user-avatar img {
-	margin: 3px 0px 0px 0px;
+	margin: 3px 0 0 0;
 	padding: 7px 7px 8px 9px;
 	background: transparent url(../images/ignite_avatar_background2.gif) no-repeat;
 	border: none;
@@ -162,30 +162,30 @@ hr {
 #jive-console-user-details {
 	width: 240px;
 	float: left;
-	padding: 10px 0px 10px 8px;
+	padding: 10px 0 10px 8px;
 	}
 #jive-console-user-details h2 {	
 	font-weight: normal;
 	font-size: 18pt;
-	margin: 0px;
-	padding: 2px 0px 12px 0px;
+	margin: 0;
+	padding: 2px 0 12px 0;
 	}
 #jive-console-content {
 	width: 180px;
 	height: 190px;
 	float: left;
-	margin: 5px 0px 10px 12px;
-	padding: 0px 12px 10px 0px;
+	margin: 5px 0 10px 12px;
+	padding: 0 12px 10px 0;
 	border-right: 1px solid #dcdcdc;
 	}
 #jive-console-content h3 {
-	margin: 0px;
-	padding: 5px 0px 10px 0px;
+	margin: 0;
+	padding: 5px 0 10px 0;
 	}
 #jive-console-content div {
 	color: #666;
 	border-bottom: 1px solid #e1e1e1;
-	padding: 5px 0px 5px 0px;
+	padding: 5px 0 5px 0;
 	}
 #jive-console-content div a {
 	color: #666;
@@ -198,7 +198,7 @@ hr {
 	background: transparent url(../images/ignite_avatar_16x16_bg.gif) no-repeat;
 	padding: 3px;
 	float: left;
-	margin: 1px 7px 0px 0px;
+	margin: 1px 7px 0 0;
 	}
 #jive-console-content div.discussion strong {
 	color: #333;
@@ -207,8 +207,8 @@ hr {
 #ignite_nav {
 	height: 48px;
 	clear: both;
-	margin: 0px 0px 0px 0px;
-	padding: 0px;
+	margin: 0 0 0 0;
+	padding: 0;
 	background: #fff url(../images/ignite_nav-bg.gif) repeat-x;
 	}
 
@@ -240,21 +240,21 @@ hr {
     }
 
 #ignite_nav ol {
-	margin: 0px 0px 0px 5px;
-	padding: 0px;
+	margin: 0 0 0 5px;
+	padding: 0;
 	list-style-type: none;
 	}
 #ignite_nav ol li {
 	float: left;
-	margin: 4px 0px 0px 0px;
-	padding: 10px 2px 10px 0px;
+	margin: 4px 0 0 0;
+	padding: 10px 2px 10px 0;
 	color: #fff;
 	font-size: 11pt;
 	background: transparent url(../images/ignite_nav-div.gif) no-repeat right;
 	}
 #ignite_nav ol li a, 
 #ignite_nav ol li a:visited  {
-	margin: 0px 0px 0px 0px;
+	margin: 0 0 0 0;
 	padding: 10px 11px 10px 11px;
 	color: #fff;
 	font-size: 11pt;
@@ -289,7 +289,7 @@ hr {
 	width: 100%;
 	float: left;
 	clear: both;
-	padding: 12px 0px 0px 0px;
+	padding: 12px 0 0 0;
 	}
 #ignite_body_full {
 	width: 960px;
@@ -312,8 +312,8 @@ hr {
 	width: 100%;
 	float: left;
 	height: 35px;
-	margin: 0px 0px 0px 0px;
-	padding: 0px;
+	margin: 0 0 0 0;
+	padding: 0;
 	background: transparent url(../images/ignite_bg_dotted.gif) repeat-x bottom;
 	}
 #ignite_blog_header {
@@ -332,7 +332,7 @@ hr {
 #ignite_blog_header_postlink a {
 	float: left;
 	margin-top: 10px;
-	padding: 0px 15px 0px 15px;
+	padding: 0 15px 0 15px;
 	background: transparent url(../images/ignite_icon_postlink.gif) no-repeat left;
 	text-transform: uppercase;
 	text-decoration: none;
@@ -366,21 +366,21 @@ hr {
 .ignite_blog_entry_header {
 	float: left;
 	width: 100%;
-	margin: 0px;
+	margin: 0;
 	padding-bottom: 15px;
 	}
 .ignite_blog_entry_header h2 {
     font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 18pt;
 	font-weight: normal;
-	margin: 0px 0px 4px 0px;
-	padding: 0px;
+	margin: 0 0 4px 0;
+	padding: 0;
 }
 .ignite_blog_entry_header img {
 	background: transparent url(../images/ignite_avatar_32x32_bg.gif) no-repeat;
 	padding: 4px;
 	float: left;
-	margin: 3px 12px 0px 0px;
+	margin: 3px 12px 0 0;
 	}
 .ignite_blog_entry_comments {
 	background: transparent url(../images/ignite_blog_icon_comment2.gif) no-repeat right;
@@ -404,8 +404,8 @@ hr {
 .ignite_blog_entry h2 {
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 17pt;
-	margin: 0px 0px 4px 0px;
-	padding: 0px;
+	margin: 0 0 4px 0;
+	padding: 0;
 	}
 .ignite_blog_entry h2 a {
     color: #000;
@@ -431,8 +431,8 @@ hr {
 	padding-bottom: 13px;
 	}
 .ignite_blog_entry_body p {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	}
 pre.jive_quote {
 	white-space: pre-wrap;
@@ -449,16 +449,16 @@ pre.jive_quote {
 	}
 .ignite_blog_entry_body blockquote {
 	background: transparent url(../images/ignite_blog_quoteimg.gif) no-repeat top left;
-	padding: 0px 0px 0px 26px;
-	margin: 5px 0px 5px 0px;
+	padding: 0 0 0 26px;
+	margin: 5px 0 5px 0;
 	color: #666;
 	}
 .ignite_blog_entry_body blockquote ul {
-	margin: 0px;
-	padding: 0px 0px 5px 25px;
+	margin: 0;
+	padding: 0 0 5px 25px;
 	}
 .ignite_blog_entry_body blockquote ul li {
-	padding: 0px 0px 4px 0px;
+	padding: 0 0 4px 0;
 	}
 .ignite_blog_entry_body a.ignite_blog_entry_continued {
 	font-weight: bold;
@@ -469,8 +469,8 @@ pre.jive_quote {
 	float: left;
 	color: #666;
 	font-size: 8pt;
-	margin: 0px;
-	padding: 7px 0px 5px 0px;
+	margin: 0;
+	padding: 7px 0 5px 0;
 	}
 	
 .ignite_blog_entry_details a {
@@ -522,8 +522,8 @@ a.ignite_up:hover {
 	width: 100%;
 	clear: both;
 	border-top: 1px solid #dcdcdc;
-	margin: 10px 0px 0px 0px;
-	padding: 5px 0px 40px 0px;
+	margin: 10px 0 0 0;
+	padding: 5px 0 40px 0;
 	font-size: 8pt;
 	color: #666;
 	}
@@ -531,7 +531,7 @@ a.ignite_up:hover {
 	float: left;
 	}
 .ignite_footer_nav a {
-	padding: 0px 5px 0px 5px;
+	padding: 0 5px 0 5px;
 	}
 .ignite_footer_copyright {
 	float: right;
@@ -708,12 +708,12 @@ div.ignite_sidebar_hdr_chat {
 /* sidebar body element styles */
 div.ignite_sidebar_body {
 	padding: 12px 12px 8px 12px;
-	margin: 0px;
+	margin: 0;
 	float: left;
 	}
 div.ignite_sidebar_body p {
-	padding: 2px 0px 8px 0px;
-	margin: 0px;
+	padding: 2px 0 8px 0;
+	margin: 0;
 	overflow: hidden;
 	}
 div.ignite_sidebar_gradbox div.ignite_sidebar_body {
@@ -725,7 +725,7 @@ div.ignite_sidebar_gradbox div.ignite_sidebar_body {
 div.ignite_sidebar_body_projects,
 div.ignite_sidebar_body_projlead {
 	padding: 4px 12px 8px 12px;
-	margin: 0px;
+	margin: 0;
 	color: #fff;
 	overflow: hidden;
 	}
@@ -741,8 +741,8 @@ div.ignite_sidebar_body_project9  {
 	width: 200px;
 	float: left;
 	clear: both;
-	padding: 3px 0px 3px 0px;
-	margin: 0px;
+	padding: 3px 0 3px 0;
+	margin: 0;
 	overflow: hidden;
 	}
 div.ignite_sidebar_body_project1 {
@@ -777,7 +777,7 @@ div.ignite_sidebar_body_projects strong a {
 	width: auto;
 	height: auto;
 	float: none;
-	margin: 0px;
+	margin: 0;
 	background: none;
 	color: #fff;
 	text-decoration: none;
@@ -786,7 +786,7 @@ div.ignite_sidebar_body_projects a {
 	width: 73px;
 	height: 16px;
 	float: right;
-	margin: 4px 0px 4px 0px;
+	margin: 4px 0 4px 0;
 	background: transparent url(../images/ignite_sidebar_btn-dl.gif) no-repeat;
 	}
 
@@ -794,12 +794,12 @@ div.ignite_sidebar_body_projects a {
 /* search sidebar */
 div.ignite_sidebar_body_search {
 	padding: 12px 12px 8px 12px;
-	margin: 0px;
+	margin: 0;
 	float: left;
 	}
 div.ignite_sidebar_body_search form {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	}
 div.ignite_sidebar_body_search input.ignite_sidebar_searchfield {
 	width: 195px;
@@ -813,8 +813,8 @@ div.ignite_sidebar_body_search input.ignite_member_search {
 	height: 24px;
 	border: none;
 	background: transparent url(../images/ignite_sidebar_searchbtn_bg.gif) no-repeat;
-	background-position: 0px 2px;
-	margin: 0px;
+	background-position: 0 2px;
+	margin: 0;
 	font-size: 9pt;
 	color: #fff;
 	text-transform: uppercase;
@@ -842,12 +842,12 @@ div.ignite_sidebar_body_quote {
 	color: #666;
 	}
 div.ignite_sidebar_body_quote p {
-	padding: 0px 4px 0px 18px;
+	padding: 0 4px 0 18px;
 	}
 div.ignite_sidebar_body_attrib {
 	float: right;
 	clear: both;
-	padding: 5px 0px 5px 0px;
+	padding: 5px 0 5px 0;
 	}
 div.ignite_sidebar_body_attrib a {
 	font-weight: bold;
@@ -862,7 +862,7 @@ div.ignite_sidebar_body_attrib img {
 
 /* project lead sidebar */
 div.ignite_sidebar_body_projlead img {
-	margin: 0px 15px 4px 0px;
+	margin: 0 15px 4px 0;
 	padding: 7px 7px 10px 9px;
 	background: transparent url(../images/ignite_avatar_background.gif) no-repeat;
 	border: none;
@@ -870,7 +870,7 @@ div.ignite_sidebar_body_projlead img {
 div.ignite_sidebar_body_projlead strong {
 	display: block;
 	font-size: 9pt;
-	padding: 2px 0px 3px 0px;
+	padding: 2px 0 3px 0;
 	}
 div.ignite_sidebar_body_projlead a {
 	color: #fff;
@@ -879,7 +879,7 @@ div.ignite_sidebar_body_projlead a {
 
 /* sub-projects sidebar entries */
 div.ignite_sidebar_subproj {
-	padding: 4px 0px 4px 0px;
+	padding: 4px 0 4px 0;
 	}
 div.ignite_sidebar_subproj a {
 	font-weight: bold;
@@ -893,7 +893,7 @@ div.ignite_sidebar_subproj img {
 
 /* Issues / Priorities sidebar entries */
 div.ignite_sidebar_issue {
-	padding: 4px 0px 4px 0px;
+	padding: 4px 0 4px 0;
 	float: left;
 	}
 div.ignite_sidebar_issue a {
@@ -934,24 +934,24 @@ div.ignite_sidebar_body_projstat {
 	width: 100%;
 	clear: both;
 	float: left;
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	border-bottom: 1px solid #dcdcdc;
 	}
 div.ignite_sidebar_body_projstat strong {
 	display: block;
 	width: 90px;
 	float: left;
-	padding: 4px 0px 4px 0px;
+	padding: 4px 0 4px 0;
 	}
 div.ignite_sidebar_body_projstat span {
 	width: 100px;
 	float: left;
-	padding: 4px 0px 4px 0px;
+	padding: 4px 0 4px 0;
 	color: #666;
 	}
 div.ignite_sidebar_body_projstat_last {
-	padding-bottom: 0px;
+	padding-bottom: 0;
 	border: none;
 	}
 
@@ -960,7 +960,7 @@ div.ignite_sidebar_body_projstat_last {
 /* forum activity sidebar entries */
 div.ignite_sidebar_forum,
 div.ignite_sidebar_newmembers {
-	padding: 4px 0px 4px 0px;
+	padding: 4px 0 4px 0;
 	float: left;
 	}
 div.ignite_sidebar_newmembers {
@@ -999,8 +999,8 @@ div.ignite_sidebar_newmembers_row {
 	float: left;
 	clear: both;
 	width: 200px;
-	padding: 3px 0px 4px 4px;
-	margin: 0px 0px 4px 0px;
+	padding: 3px 0 4px 4px;
+	margin: 0 0 4px 0;
 	border-bottom: 1px solid #dcdcdc;
 	}
 div.ignite_sidebar_newmembers_row img {
@@ -1015,19 +1015,19 @@ div.ignite_sidebar_newmembers_row div {
 
 /* newsletter sidebar */
 div.ignite_sidebar_body_newsletter {
-	padding: 8px 12px 0px 12px;
-	margin: 0px;
+	padding: 8px 12px 0 12px;
+	margin: 0;
 	float: left;
 	}
 div.ignite_sidebar_body_newsletter form {
-	margin: 0px;
-	padding: 0px;
+	margin: 0;
+	padding: 0;
 	}
 div.ignite_sidebar_body_newsletter span {
 	display: block;
 	float: left;
-	margin: 0px 0px 8px 0px;
-	padding: 0px;
+	margin: 0 0 8px 0;
+	padding: 0;
 	font-size: 7pt;
 	}
 div.ignite_sidebar_body_newsletter input.ignite_sidebar_emailfield {
@@ -1049,8 +1049,8 @@ div.ignite_sidebar_body_newsletter input.ignite_newsletter_submit {
 	height: 24px;
 	border: none;
 	background: transparent url(../images/ignite_sidebar_searchbtn_bg.gif) no-repeat;
-	background-position: 0px 2px;
-	margin: 0px 0px 5px 0px;
+	background-position: 0 2px;
+	margin: 0 0 5px 0;
 	font-size: 9pt;
 	color: #fff;
 	text-transform: uppercase;
@@ -1060,8 +1060,8 @@ div.ignite_sidebar_body_newsletter input.ignite_newsletter_submit {
 
 /* resources sidebar */
 div.ignite_sidebar_body_resources {
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	float: left;
 	}
 div.ignite_sidebar_body_resources p {
@@ -1080,8 +1080,8 @@ div.ignite_sidebar_body_resources p a:active {
 
 /* osa friends sidebar */
 div.ignite_sidebar_body_osafriends {
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	float: left;
 	}
 div.ignite_sidebar_body_osafriends p {
@@ -1100,18 +1100,18 @@ div.ignite_sidebar_body_osafriends p a:active {
 
 /* chat sidebar */
 div.ignite_sidebar_body_chat {
-	padding: 8px 12px 0px 12px;
-	margin: 0px;
+	padding: 8px 12px 0 12px;
+	margin: 0;
 	float: left;
 	}
 .ignite_sidebar_chat-upcoming {
-	margin: 0px;
-	padding: 2px 0px 12px 0px;
+	margin: 0;
+	padding: 2px 0 12px 0;
 	text-align: center;
 	}
 .ignite_sidebar_chat-upcoming p {
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	text-align: left;
 	}
 .ignite_sidebar_chat-upcoming strong {
@@ -1120,8 +1120,8 @@ div.ignite_sidebar_body_chat {
 	color: #497cb3;
 	}
 .ignite_sidebar_chat-now {
-	margin: 0px;
-	padding: 8px 0px 15px 0px;
+	margin: 0;
+	padding: 8px 0 15px 0;
 	text-align: center;
 	}
 .ignite_sidebar_chat-now a {
@@ -1138,5 +1138,5 @@ div.ignite_sidebar_body_chat {
 
 .ignite_sidebar_feature_body img {
 	background: transparent url(../images/ignite_sidebar_feature-shadow.gif) no-repeat bottom;
-	padding: 0px 5px 3px 5px;
+	padding: 0 5px 3px 5px;
 	}
