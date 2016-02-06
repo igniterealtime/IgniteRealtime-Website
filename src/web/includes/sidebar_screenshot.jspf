@@ -4,7 +4,7 @@
 				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_scrnshot"></div>
 				<div class="ignite_sidebar_body">
 					<p>
-					<img src="/images/ignite_sidebar_screenshot.gif" width="97" height="72" alt="" align="right" />
+					<img src="<%=request.getContextPath()%>/images/ignite_sidebar_screenshot.gif" width="97" height="72" alt="" align="right" />
 					<strong>Chat Window</strong><br />
 					A brief snippet here about this screen. <a href="#">See it...</a> 
 					</p>

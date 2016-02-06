@@ -12,7 +12,7 @@
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="asterisk" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -67,12 +67,12 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 				</div>
 				
 				<div id="ignite_bigpanel_screenshot">
-					<img src="/images/ignite_screenshot_asterisk.gif" width="210" height="210" alt="" />
+					<img src="../../images/ignite_screenshot_asterisk.gif" width="210" height="210" alt="" />
 					<a href="screenshots.jsp">More screens</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/openfire/plugins.jsp">Download</a> 
+					<a href="../openfire/plugins.jsp">Download</a>
 					<span>
 						<strong>Asterisk-IM <%= Versions.getVersion("asterisk-im") %></strong> Latest build: <%= Versions.getVersionDate("asterisk-im") %>
 					</span>
@@ -113,7 +113,7 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>

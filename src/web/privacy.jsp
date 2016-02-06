@@ -3,7 +3,7 @@
 <title>Privacy Policy</title>
 <!-- <meta name="body-id" content="about" /> -->
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "styles/interior.css";
 </style>
 </head>
 <body>

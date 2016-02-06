@@ -5,7 +5,7 @@
 <title>Downloads</title>
 <meta name="body-id" content="downloads" />
 <style type="text/css" media="screen">
-    @import "/styles/interior.css";
+    @import "../styles/interior.css";
 </style>
 </head>
 <body>
@@ -15,7 +15,7 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_current">Releases</a></li>
 			<li id="subnav02"><a href="source.jsp">Source</a></li>
 			<li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
-            <li id="subnav04"><a href="/projects/openfire/plugins.jsp">Openfire Plugins</a></li>
+            <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
 	</div>
 

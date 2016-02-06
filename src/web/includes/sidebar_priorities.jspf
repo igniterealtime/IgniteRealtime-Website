@@ -5,27 +5,27 @@
 				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_priorities"></div>
 				<div class="ignite_sidebar_body">
 					<div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
-						<img src="/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Wiki documentation</a>
 					</div>
 					<div class="ignite_sidebar_issue ignite_sidebar_issue_even">
-						<img src="/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Knowledgebase articles</a>
 					</div>
 					<div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
-						<img src="/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Bug fixes</a>
 					</div>
 					<div class="ignite_sidebar_issue ignite_sidebar_issue_even">
-						<img src="/images/ignite_issue-orange_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_issue-orange_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Javadocs</a>
 					</div>
 					<div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
-						<img src="/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Something else</a>
 					</div>
 					<div class="ignite_sidebar_issue ignite_sidebar_issue_even">
-						<img src="/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Something else again</a>
 					</div>
 				</div>

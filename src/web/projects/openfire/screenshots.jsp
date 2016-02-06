@@ -79,7 +79,7 @@
                     <img src="<%= screenshotPath %>/thumbnails/<%= thumbnail.getName() %> " alt="<%= screenshot.getTitle() %>" align="right" border="0">
                     </a>
                     <strong><%= screenshot.getTitle() %></strong>
-                    <br /><br /><a href="/projects/spark/screenshots.jsp">See more...</a>
+                    <br /><br /><a href="../../projects/spark/screenshots.jsp">See more...</a>
                     </p>
 				</div>
 				<div class="ignite_sidebar_feature_btm"></div>
@@ -99,7 +99,7 @@
 <title>Openfire Server</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -111,7 +111,7 @@
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="../../builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <li id="subnav08"><a href="http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
@@ -167,10 +167,10 @@
                         }
                  %>
 
-                    <td><a href="<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>" description="<%= screenshot.getDescription() %>">
-                    <img src="<%= screenshotPath %>/thumbnails/<%= thumbnail.getName() %> " alt="<%= screenshot.getTitle() %>" border="0">
+                    <td><a href="<%=request.getContextPath()%>/<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>" description="<%= screenshot.getDescription() %>">
+                    <img src="<%=request.getContextPath()%>/<%= screenshotPath %>/thumbnails/<%= thumbnail.getName() %> " alt="<%= screenshot.getTitle() %>" border="0">
 					</a><br>
-					<a href="<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>">
+					<a href="<%=request.getContextPath()%>/<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>">
                         <%= screenshot.getTitle() %>
 					</a></td>
                 <%
@@ -201,10 +201,10 @@
                         }
                  %>
                     <tr>
-                    <td><a href="<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>" description="<%= screenshot.getDescription() %>">
-                    <img src="<%= screenshotPath %>/thumbnails/<%= thumbnail.getName() %> " alt="<%= screenshot.getTitle() %>" border="0">
+                    <td><a href="<%=request.getContextPath()%>/<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>" description="<%= screenshot.getDescription() %>">
+                    <img src="<%=request.getContextPath()%>/<%= screenshotPath %>/thumbnails/<%= thumbnail.getName() %> " alt="<%= screenshot.getTitle() %>" border="0">
 					</a><br>
-					<a href="<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>">
+					<a href="<%=request.getContextPath()%>/<%= screenshotPath %>/<%= filename %>" rel="lightbox" title="<%= screenshot.getTitle() %>">
                         <%= screenshot.getTitle() %>
 					</a></td>
                     </tr>

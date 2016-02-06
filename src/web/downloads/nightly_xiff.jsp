@@ -42,7 +42,7 @@
 <title>XIFF Nightly Builds</title>
 <meta name="body-id" content="downloads" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../styles/interior.css";
 </style>
 </head>
 <body>
@@ -114,8 +114,8 @@
     %>
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
-                        <img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="/builds/xiff/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a>
+                        <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
+                        <a href="../builds/xiff/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a>
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>

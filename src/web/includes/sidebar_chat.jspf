@@ -77,13 +77,13 @@
 						<!-- BEGIN chat live now -->
                         <% if (chatInProgress) { %>
                         <div class="ignite_sidebar_chat-now">
-							<a href="/support/group_chat.jsp"></a>
+							<a href="<%=request.getContextPath()%>/support/group_chat.jsp"></a>
 						</div>
                         <% } %>
                         <!-- END chat live now -->
 
 					
-					<a href="/support/group_chat.jsp" class="ignite_link_arrow">About the community group chat</a><br>
+					<a href="<%=request.getContextPath()%>/support/group_chat.jsp" class="ignite_link_arrow">About the community group chat</a><br>
 					
 
                 </div>

@@ -4,15 +4,15 @@
 				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_subproj"></div>
 				<div class="ignite_sidebar_body">
 					<div class="ignite_sidebar_subproj">
-						<img src="/images/ignite_subproj1_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_subproj1_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Sub-project here</a>
 					</div>
 					<div class="ignite_sidebar_subproj">
-						<img src="/images/ignite_subproj2_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_subproj2_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Sub-project here</a>
 					</div>
 					<div class="ignite_sidebar_subproj">
-						<img src="/images/ignite_subproj3_16x16.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_subproj3_16x16.gif" width="16" height="16" alt="" />
 						<a href="#">Sub-project here</a>
 					</div>
 				</div>

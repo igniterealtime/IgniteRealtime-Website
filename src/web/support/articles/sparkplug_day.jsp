@@ -2,7 +2,7 @@
 <head><title>Sparkplug Day</title></head>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+    @import "../../styles/interior.css";
 </style>
 <body>
 
@@ -25,7 +25,7 @@
 
 <p>Once per quarter, the Jive Software engineering team spends a full day
 on a special project. A few weeks ago, we held Sparkplug Day to build
-out plugins for our <a href="/projects/spark/">Spark</a> instant messaging client. The goals
+out plugins for our <a href="../../projects/spark/">Spark</a> instant messaging client. The goals
 for Sparkplug Day were to:
 
 <ul>

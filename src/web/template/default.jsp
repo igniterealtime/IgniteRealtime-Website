@@ -24,19 +24,19 @@
 <meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="jive, jive software, java, open source, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, xiff, asterisk" />"/>
 
 <style type="text/css" media="screen">
-	@import "/styles/global.css";
+	@import "<%= request.getContextPath() %>/styles/global.css";
 </style>
 
-<script type="text/javascript" language="JavaScript" src="/scripts/kitchensink.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/ignite.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/groupchat_timer.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/groupchat_timer.js"></script>
     
 <!--
-<script type="text/javascript" language="JavaScript" src="/scripts/cookies.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/prototype.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/scriptaculous.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/window.js"></script>
-<script type="text/javascript" language="JavaScript" src="/scripts/lightbox.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/cookies.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/prototype.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/scriptaculous.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/window.js"></script>
+<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/lightbox.js"></script>
 -->
 
 <decorator:head />
@@ -60,20 +60,20 @@
 
 	<!-- BEGIN header -->
 	<div id="ignite_header">
-		<a href="/"><div id="ignite_logo"></div></a>
+		<a href="./"><div id="ignite_logo"></div></a>
 		<div id="ignite_nav">
 			<ol>
-				<li id="nav01"><a href="/index.jsp">Home</a></li>
-				<li id="nav02"><a href="/projects/index.jsp">Projects</a></li>
-				<li id="nav03"><a href="/downloads/index.jsp">Downloads</a></li>
+				<li id="nav01"><a href="<%= request.getContextPath() %>/index.jsp">Home</a></li>
+				<li id="nav02"><a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a></li>
+				<li id="nav03"><a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a></li>
 				<li id="nav04"><a href="<%= baseUrl %>">Community</a></li>
-				<li id="nav05"><a href="/fans/index.jsp">Fans</a></li>
-				<li id="nav07"><a href="/support/index.jsp">Support</a></li>
-				<li id="nav08"><a href="/about/index.jsp">About</a></li>
+				<li id="nav05"><a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a></li>
+				<li id="nav07"><a href="<%= request.getContextPath() %>/support/index.jsp">Support</a></li>
+				<li id="nav08"><a href="<%= request.getContextPath() %>/about/index.jsp">About</a></li>
 			</ol>
             <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
 				<span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
-				<span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="/support/group_chat.jsp">More Information</a></span>
+				<span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="<%= request.getContextPath() %>/support/group_chat.jsp">More Information</a></span>
 			</div>
 		</div>
 	</div>
@@ -90,7 +90,7 @@
 	
 	<!-- BEGIN footer -->
 	<div id="ignite_footer">
-		<div class="ignite_footer_nav"><a href="/index.jsp">Home</a> | <a href="/projects/index.jsp">Projects</a> | <a href="/downloads/index.jsp">Downloads</a> | <a href="<%= baseUrl %>">Community</a> | <a href="/fans/index.jsp">Fans</a> | <a href="/support/index.jsp">Support</a> | <a href="/about/index.jsp">About</a> </div>
+		<div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/index.jsp">Home</a> | <a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a> | <a href="<%= baseUrl %>">Community</a> | <a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a> | <a href="<%= request.getContextPath() %>/support/index.jsp">Support</a> | <a href="<%= request.getContextPath() %>/about/index.jsp">About</a> </div>
 		<div class="ignite_footer_copyright">Powered by <a href="http://www.jivesoftware.com/products/public-community/?source=Website-Ignite">Jive</a> &copy; <a href="http://www.jivesoftware.com?source=Website-Ignite">Jive Software</a></div>
 	</div>
 	<!-- END footer -->

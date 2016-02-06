@@ -4,10 +4,10 @@
     String include = null;
     String project = request.getParameter("project");
     if ("openfire".equals(project)) {
-        include = "/projects/openfire/screenshots.jsp";
+        include = "../projects/openfire/screenshots.jsp";
     }
     else if ("spark".equals(project)) {
-         include = "/projects/spark/screenshots.jsp";
+         include = "../projects/spark/screenshots.jsp";
     }
     else {
         return;

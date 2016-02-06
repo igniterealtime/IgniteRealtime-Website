@@ -36,7 +36,7 @@
 <title>Openfire Server</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -48,7 +48,7 @@
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="../../builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp" class="ignite_subnav_current">Connection Manager Module</a></li>
             <li id="subnav08"><a href="http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
@@ -75,7 +75,7 @@
 					<!-- <h2>Openfire Connection Manager Module</h2> -->
 					<!-- <p>Provides greatly improved scalability to Openfire.</p> -->
 					
-					<h5>What is it?</h5><img src="/images/connection-managers.gif" width="294" height="250" alt="Connection Manager Module" class="ignite_body_image_right" />
+					<h5>What is it?</h5><img src="../../images/connection-managers.gif" width="294" height="250" alt="Connection Manager Module" class="ignite_body_image_right" />
 					<p>Each Openfire Connection Manager module you deploy improves the scalability of  your Openfire server by handling a portion of the client connections. It's suitable for very large installations of Openfire (many thousand concurrent users). Download the connection manager module implementation below.</p>
 					
 					<h5>How many users can each connection manager handle?</h5>
@@ -100,7 +100,7 @@
 						</div>
 						<div class="ignite_download_item_odd">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
+								<img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= zip.getName() %>"><%= zip.getName() %></a> - Windows archive file
 							</span>
 							<span class="ignite_download_item_date">
@@ -112,7 +112,7 @@
 						</div>
 						<div class="ignite_download_item_even">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
+								<img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> - Unix/Linux archive file
 							</span>
 							<span class="ignite_download_item_date">
@@ -130,7 +130,7 @@
 						</div>
 						<div class="ignite_download_item_odd">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
+								<img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= srcZip.getName() %>"><%= srcZip.getName() %></a> - Windows archive file
 							</span>
 							<span class="ignite_download_item_date">
@@ -142,7 +142,7 @@
 						</div>
 						<div class="ignite_download_item_even">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0">
+								<img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= srcTarGz.getName() %>"><%= srcTarGz.getName() %></a> - Unix/Linux archive file
 							</span>
 							<span class="ignite_download_item_date">

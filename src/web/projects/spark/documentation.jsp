@@ -7,7 +7,7 @@
 <title>Spark IM Client</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -19,7 +19,7 @@
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
-            <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
+            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
         </ul>
 	</div>
 
@@ -46,10 +46,10 @@
 					
 					<h3>Documentation:</h3>
 					<ul>
-					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="/builds/spark/docs/latest/README.html">Readme &amp; License</a></li>
-					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="/builds/spark/docs/latest/changelog.html">Changelog</a>
+					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+					<a href="../../builds/spark/docs/latest/README.html">Readme &amp; License</a></li>
+					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+					<a href="../../builds/spark/docs/latest/changelog.html">Changelog</a>
 					<br>
 					<br></li>
                     </ul>
@@ -57,7 +57,7 @@
 
                     <!-- <h3>Other:</h3>
 					<ul>
-					<li><a href="/articles/index.jsp">Articles</a></li>
+					<li><a href="../../articles/index.jsp">Articles</a></li>
 					</ul> -->
 				
 				

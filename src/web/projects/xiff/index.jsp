@@ -13,7 +13,7 @@
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="xiff" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -72,7 +72,7 @@
 				</div>
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#xiff">Download</a> 
+					<a href="../../downloads/index.jsp#xiff">Download</a>
 					<span>
 						<strong>XIFF API <%= Versions.getVersion("xiff") %></strong> Latest build: <%= Versions.getVersionDate("xiff") %>
 					</span>
@@ -113,7 +113,7 @@
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>

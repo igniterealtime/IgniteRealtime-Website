@@ -7,7 +7,7 @@
 <title>Support - Professional Partners</title>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../styles/interior.css";
 </style>
 </head>
 <body>

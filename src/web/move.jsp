@@ -18,7 +18,7 @@
 <h2>JiveSoftware.org is now IgniteRealtime.org</h2>
 
 <p>
-<a href="http://www.igniterealtime.org/"><img src="/images/ignite.png" width="356" height="132" alt="IgniteRealtime" align="center" hspace="10" vspace="10" border="0" /></a>
+<a href="http://www.igniterealtime.org/"><img src="images/ignite.png" width="356" height="132" alt="IgniteRealtime" align="center" hspace="10" vspace="10" border="0" /></a>
 </p>
 
 <p>

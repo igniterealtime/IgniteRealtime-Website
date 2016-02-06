@@ -119,10 +119,10 @@ hr {
 	outline: none;
 	}
 #jive-consoleTab a {
-	background: #fff url(/images/ignite_hdr-btn_login.gif) no-repeat bottom left;
+	background: #fff url(../images/ignite_hdr-btn_login.gif) no-repeat bottom left;
 	}
 #jive-consoleTab-open a {
-	background: #fff url(/images/ignite_hdr-btn_login_open.gif) no-repeat bottom left;
+	background: #fff url(../images/ignite_hdr-btn_login_open.gif) no-repeat bottom left;
 	}
 #jive-consoleTab.jive-myToolbox a {
 	background: #fff url(../images/ignite_hdr-btn_toolbox.gif) no-repeat bottom left;
@@ -1175,11 +1175,11 @@ div.ignite_sidebar_body_chat {
 #lightbox img{ border: none; clear: both;}
 #overlay img{ border: none; }
 
-#overlay{ background-image: url(/images/lightbox_overlay.png); }
+#overlay{ background-image: url(../images/lightbox_overlay.png); }
 
 * html #overlay{
 	background-color: #333;
 	back\ground-color: transparent;
-	background-image: url(blank.gif);
+	background-image: url(../images/blank.gif);
 	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/images/lightbox_overlay.png", sizingMethod="scale");
 	}

@@ -2,7 +2,7 @@
 <head><title>IM File Transfer Made Easy</title></head>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 <body>
 
@@ -27,7 +27,7 @@
 Typically, file transfers don't work reliably (especially when firewalls are 
 involved) and the file transfer UI is non-intuitive with problems like
 pop-up dialogs and the tiresome hunt to find where a downloaded
-file disappeared to. For the 1.1 release of the <a href="/projects/spark/">Spark</a>
+file disappeared to. For the 1.1 release of the <a href="../../projects/spark/">Spark</a>
 instant messaging client, we set out to end all the frustration.</p>
 
 <p>We began our quest for better file transfer with two major goals:</p>
@@ -74,7 +74,7 @@ Some of the major areas of improvement over version 1.0 are:</p>
 that fails to connect and resort to sending the file by email. The usual 
 culprit is a firewall or other network setting problems.</p>
 
-<p>The combination of Spark 1.1 and the <a href="projects/openfire/">Openfire</a> (formerly Wildfire) IM
+<p>The combination of Spark 1.1 and the <a href="../../projects/openfire/">Openfire</a> (formerly Wildfire) IM
 server works around file transfer connection issues with a three part file 
 transfer approach. Each approach offers a different
 balance of speed and reliability -- but the key point is that the transfer

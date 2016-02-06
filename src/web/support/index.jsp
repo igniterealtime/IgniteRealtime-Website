@@ -11,7 +11,7 @@
 <title>Support</title>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../styles/interior.css";
 </style>
 </head>
 <body>
@@ -109,7 +109,7 @@
 								<div class="articles"><a href="articles/sparkplug_day.jsp">Sparkplug Day</a></div>
 								<div class="articles"><a href="articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
 								<div class="articles"><a href="articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
-										<strong><a href="/support/articles.jsp" class="ignite_link_arrow">See all support documents</a></strong>
+										<strong><a href="articles.jsp" class="ignite_link_arrow">See all support documents</a></strong>
 							</div>
 							<div id="ignite_support_activity_documentation">
 								<h4>Documentation</h4>

@@ -7,7 +7,7 @@
 <title>Spark IM Client</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -19,7 +19,7 @@
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
-            <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
+            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
         </ul>
 	</div>
 
@@ -41,7 +41,7 @@
 				
 				<div class="ignite_int_body_padding">
 					<p>
-                        Sparkplugs dynamically extend the features of the <a href="/projects/spark/">Spark</a>
+                        Sparkplugs dynamically extend the features of the <a href="../../projects/spark/">Spark</a>
                         instant messaging client.
                         Use Sparkplugs to customize Spark for your business or organization or to add an
                         innovative twist to instant messaging. The extensive plugin API allows for complete
@@ -50,8 +50,8 @@
 
                     <table>
                     <tr>
-                        <td><img src="/images/icon_zip.gif"></td>
-                        <td><a href="/builds/sparkplug_kit/sparkplug_kit_2_0_7.zip">sparkplug_kit_2_0_7.zip</a></td>
+                        <td><img src="../../images/icon_zip.gif"></td>
+                        <td><a href="../../builds/sparkplug_kit/sparkplug_kit_2_0_7.zip">sparkplug_kit_2_0_7.zip</a></td>
                         <td>11.5 MB</td>
                     </tr>
                     </table>
@@ -63,9 +63,9 @@
                     </h4>
 
                     <ul>
-                        <li><a href="/builds/sparkplug_kit/docs/latest/sparkplug_dev_guide.html">Development Guide</a></li>
-                        <li><a href="/builds/sparkplug_kit/docs/latest/api/index.html">Javadocs</a></li>
-                        <li><a href="/builds/sparkplug_kit/docs/latest/examples.jar">Source Code Examples</a></li>
+                        <li><a href="../../builds/sparkplug_kit/docs/latest/sparkplug_dev_guide.html">Development Guide</a></li>
+                        <li><a href="../../builds/sparkplug_kit/docs/latest/api/index.html">Javadocs</a></li>
+                        <li><a href="../../builds/sparkplug_kit/docs/latest/examples.jar">Source Code Examples</a></li>
                     </ul>
 
                     <h4>Resources</h4>

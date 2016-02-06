@@ -13,7 +13,7 @@
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="openfire" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -25,7 +25,7 @@
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/OF">Issue Tracker</a></li>
-			<li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="../../builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <li id="subnav08"><a href="http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
@@ -70,12 +70,12 @@
 				</div>
 				
 				<div id="ignite_bigpanel_screenshot">
-					<img src="/images/ignite_screenshot_openfire3.gif" width="210" height="210" alt="" />
+					<img src="../../images/ignite_screenshot_openfire3.gif" width="210" height="210" alt="" />
 					<a href="screenshots.jsp">More screens</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#openfire">Download</a>
+					<a href="../../downloads/index.jsp#openfire">Download</a>
 					<span>
 						<strong>Openfire <%= Versions.getVersion("openfire") %></strong> Latest release: <%= Versions.getVersionDate("openfire") %>
 					</span>
@@ -116,7 +116,7 @@
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>
