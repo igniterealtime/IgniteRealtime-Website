@@ -7,7 +7,7 @@
 <title>SparkWeb IM Client</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -18,7 +18,7 @@
 			<!--<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>-->
 			<li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SW">Issue Tracker</a></li>
-            <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
+            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
         </ul>
 	</div>
 
@@ -45,9 +45,9 @@
 					
 					<h3>Documentation:</h3>
 					<ul>
-					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<a href="http://www.igniterealtime.org/builds/sparkweb/docs/latest/README.html">Readme &amp; License</a></li>
-					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<a href="http://www.igniterealtime.org/builds/sparkweb/docs/latest/changelog.html">Changelog</a>
 					<br>
 					<br></li>
@@ -56,7 +56,7 @@
 
                     <!-- <h3>Other:</h3>
 					<ul>
-					<li><a href="/articles/index.jsp">Articles</a></li>
+					<li><a href="../../articles/index.jsp">Articles</a></li>
 					</ul> -->
 				
 				

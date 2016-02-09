@@ -12,7 +12,7 @@
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="tinder" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -24,7 +24,7 @@
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
-			<li id="subnav06"><a href="/builds/tinder/docs/latest/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="../../builds/tinder/docs/latest/javadoc/">JavaDocs</a></li>
 			
 		</ul>
 	</div>
@@ -77,7 +77,7 @@
 				<!-- </div> -->
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#tinder">Download</a> 
+					<a href="../../downloads/index.jsp#tinder">Download</a>
 					<span>
 						<strong>Tinder API <%= Versions.getVersion("tinder") %></strong> Latest build: <%= Versions.getVersionDate("tinder") %>
 					</span>
@@ -118,7 +118,7 @@
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>

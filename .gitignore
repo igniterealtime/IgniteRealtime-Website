@@ -1,1 +1,12 @@
-/target/
+# Artifacts of the build process
+target/
+
+# IDE project files (Intellij)
+.idea/
+*.iml
+out/
+
+# IDE project files (Eclipse)
+.settings/
+.classpath
+.project

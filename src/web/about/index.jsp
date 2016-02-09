@@ -3,7 +3,7 @@
 <title>About</title>
 <meta name="body-id" content="about" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../styles/interior.css";
 </style>
 </head>
 <body>
@@ -117,10 +117,10 @@
 
 						<p><strong>Whitepapers:</strong></p>
 
-						<p><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></p>
-						<p><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></p>
-						<p><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></p>
-                        <p><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></p>
+						<p><a href="jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></p>
+						<p><a href="jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></p>
+						<p><a href="jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></p>
+                        <p><a href="OpenfireScalability.pdf">Openfire Scalability Test Results</a></p>
 
                         <br/>
 

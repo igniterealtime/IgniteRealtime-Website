@@ -17,7 +17,7 @@
 <title>Download Landing</title>
 <meta name="body-id" content="downloads" />
 <style type="text/css" media="screen">
-    @import "/styles/interior.css";
+    @import "../styles/interior.css";
 </style>
 </head>
 <body>

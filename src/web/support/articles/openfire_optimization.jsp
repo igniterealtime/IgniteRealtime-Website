@@ -1,7 +1,7 @@
 <html>
 <head><title>Openfire Optimization</title></head>
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 <body>
 

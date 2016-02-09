@@ -7,7 +7,7 @@
 <title>XIFF API</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -45,10 +45,10 @@
 					
 					<h3>Documentation:</h3>
 					<ul>
-					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="/builds/xiff/docs/latest/README.html">Readme</a></li>
-					<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="/builds/xiff/docs/latest/changelog.html">Changelog</a>
+					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+					<a href="../../builds/xiff/docs/latest/README.html">Readme</a></li>
+					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+					<a href="../../builds/xiff/docs/latest/changelog.html">Changelog</a>
 					<br>
 					<br></li>
 				

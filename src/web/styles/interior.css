@@ -1391,7 +1391,7 @@ img.ignite_body_image_right {
         padding : 6px;
     }
     .road-table TH {
-        background-image : url(/images/roadmap-th.gif);
+        background-image : url(../images/roadmap-th.gif);
         background-position : bottom;
         background-repeat : repeat-x;
         padding : 4px 10px 7px 10px;
@@ -1429,7 +1429,7 @@ img.ignite_body_image_right {
         padding : 6px;
     }
     .vote-table TH {
-        background-image : url(/images/votes-th.gif);
+        background-image : url(../images/votes-th.gif);
         background-position : bottom;
         background-repeat : repeat-x;
         padding : 4px 10px 7px 10px;

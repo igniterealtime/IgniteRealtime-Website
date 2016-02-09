@@ -74,7 +74,7 @@
                     <img src="<%= screenshotPath %>/thumbnails/<%= thumbnail.getName() %> " alt="<%= screenshot.getTitle() %>" align="right" border="0">
                     </a>
                     <strong><%= screenshot.getTitle() %></strong>
-                    <br /><br /><a href="/projects/spark/screenshots.jsp">See more...</a>
+                    <br /><br /><a href="../../projects/spark/screenshots.jsp">See more...</a>
                     </p>
 				</div>
 				<div class="ignite_sidebar_feature_btm"></div>
@@ -94,7 +94,7 @@
 <title>Spark IM Client</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -106,7 +106,7 @@
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
-            <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
+            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
         </ul>
 	</div>
     

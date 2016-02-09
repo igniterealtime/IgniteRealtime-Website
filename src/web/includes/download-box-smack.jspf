@@ -28,14 +28,14 @@
     <div class="ignite_int_body_padding">
 
         <div class="ignite_downloads_logo">
-        <img src="/images/ignite_dl_smack.png" alt="" width="68" height="68" border="0">
+        <img src="<%=request.getContextPath()%>/images/ignite_dl_smack.png" alt="" width="68" height="68" border="0">
         </div>
 
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
                 <!-- <a href="#"><strong>Plugins</strong></a> |  -->
-                <a href="/builds/smack/docs/latest/README.html">Readme & License</a> |
-                <a href="/builds/smack/docs/latest/changelog.html">Changelog</a> |
+                <a href="<%=request.getContextPath()%>/builds/smack/docs/latest/README.html">Readme & License</a> |
+                <a href="<%=request.getContextPath()%>/builds/smack/docs/latest/changelog.html">Changelog</a> |
                 <a href="nightly_smack.jsp">Nightly Builds</a> |
                 <a href="source.jsp">Source Code</a>
             </span>
@@ -51,7 +51,7 @@
                 <div>
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
-                            <img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0">
+                            <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= binZip.getName() %>"><%= binZip.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
-                            <img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0">
+                            <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="<%= path %>/downloads/download-landing.jsp?file=smack/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>

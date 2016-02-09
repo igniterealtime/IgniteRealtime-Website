@@ -12,7 +12,7 @@
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="spark" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -24,7 +24,7 @@
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
-            <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
+            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
         </ul>
 	</div>
 
@@ -60,7 +60,7 @@
 					and strong security. It also offers a great end-user experience with features like 
 					in-line spell checking, group chat room bookmarks, and tabbed conversations.</p>
 					
-					<p>Combined with the <a href="/projects/openfire/">Openfire</a> server,
+					<p>Combined with the <a href="../../projects/openfire/">Openfire</a> server,
                         Spark is the easiest and best alternative to using un-secure public
                         IM networks. </p>
 				</div>
@@ -70,12 +70,12 @@
 				</div>
 				
 				<div id="ignite_bigpanel_screenshot">
-					<img src="/images/ignite_projects_spark_ss.gif" width="210" height="210" alt="" />
+					<img src="../../images/ignite_projects_spark_ss.gif" width="210" height="210" alt="" />
 					<a href="screenshots.jsp">More screens</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#spark">Download</a> 
+					<a href="../../downloads/index.jsp#spark">Download</a>
 					<span>
 						<strong>Spark <%= Versions.getVersion("spark") %></strong> Latest build: <%= Versions.getVersionDate("spark") %>
 					</span>
@@ -116,7 +116,7 @@
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>

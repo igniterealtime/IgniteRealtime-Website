@@ -53,7 +53,7 @@
 				<p>Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.</p>
 				
 					<div style="width: 150px;">
-						<a href="/about/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
+						<a href="about/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
 					</div>
 
                 </div>
@@ -155,30 +155,30 @@
 				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projects"></div>
 				<div class="ignite_sidebar_body_projects">
 					<div class="ignite_sidebar_body_project1">
-						<span><strong><a href="/projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="/downloads/index.jsp#openfire"></a>
+						<span><strong><a href="projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="downloads/index.jsp#openfire"></a>
 					</div>
 					<div class="ignite_sidebar_body_project2">
-						<span><strong><a href="/projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/index.jsp#spark"></a>
+						<span><strong><a href="projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="downloads/index.jsp#spark"></a>
 					</div>
 					<div class="ignite_sidebar_body_project3">
-						<span><strong><a href="/projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="/downloads/index.jsp#sparkweb"></a>
+						<span><strong><a href="projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="downloads/index.jsp#sparkweb"></a>
 					</div>
 					<%--
 					<div class="ignite_sidebar_body_project4">
-						<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="/downloads/index.jsp#asterisk"></a>
+						<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="downloads/index.jsp#asterisk"></a>
 					</div>
 					--%>
 					<div class="ignite_sidebar_body_project4">
-						<span><strong><a href="/projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/index.jsp#smack"></a>
+						<span><strong><a href="projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="downloads/index.jsp#smack"></a>
 					</div>
                     <div class="ignite_sidebar_body_project5">
-						<span><strong><a href="/projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="/downloads/index.jsp#tinder"></a>
+						<span><strong><a href="projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="downloads/index.jsp#tinder"></a>
 					</div>
 					<div class="ignite_sidebar_body_project6">
-						<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>
+						<span><strong><a href="projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="downloads/index.jsp#whack"></a>
 					</div>
 					<div class="ignite_sidebar_body_project7">
-						<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>
+						<span><strong><a href="projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="downloads/index.jsp#xiff"></a>
 					</div>
 					<div class="ignite_sidebar_body_project8" style="text-align: center;">
 					</div>
@@ -308,17 +308,17 @@
                     </cache:cache>
 
                 <h4>Recent Articles</h4>
-                    <div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
-                    <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
-                    <div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
-                    <div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
-                    <div class="articles"><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
+                    <div class="articles"><a href="support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
+                    <div class="articles"><a href="support/articles/pubsub.jsp">All About Pubsub</a></div>
+                    <div class="articles"><a href="support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
+                    <div class="articles"><a href="support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
+                    <div class="articles"><a href="support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
 
                 <h4>Whitepapers</h4>
-                    <div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
-                    <div class="articles"><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
-                    <div class="articles"><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
-                    <div class="articles"><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
+                    <div class="articles"><a href="about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
+                    <div class="articles"><a href="about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
+                    <div class="articles"><a href="about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
+                    <div class="articles"><a href="about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
                 </div>
 
                 <!-- END recent discussions, news, wiki docs, and articles -->

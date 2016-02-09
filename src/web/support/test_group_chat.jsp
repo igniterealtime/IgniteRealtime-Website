@@ -13,7 +13,7 @@
 <title>Support - Group Chat</title>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../styles/interior.css";
 </style>
 
 	<script type="text/javascript">
@@ -35,17 +35,17 @@
 	}
 	</script>
 
-	<script src="/support/groupchat/combined.compressed.js" type="text/javascript"></script>
+	<script src="groupchat/combined.compressed.js" type="text/javascript"></script>
 
-	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/basic-dialog.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/layout.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/fonts.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/grid.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/reset-min.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/roster.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/spank.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/ignitechat.css">
- 	<link rel="stylesheet" type="text/css" href="/support/groupchat/style/jive-muc.css">
+	<link rel="stylesheet" type="text/css" href="groupchat/style/basic-dialog.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/layout.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/fonts.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/grid.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/reset-min.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/roster.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/spank.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/ignitechat.css">
+ 	<link rel="stylesheet" type="text/css" href="groupchat/style/jive-muc.css">
 	
 </head>
 

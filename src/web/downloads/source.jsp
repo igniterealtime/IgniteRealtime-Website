@@ -77,7 +77,7 @@
 <title>Source Code</title>
 <meta name="body-id" content="downloads" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../styles/interior.css";
 </style>
 </head>
 <body>
@@ -87,7 +87,7 @@
 			<li id="subnav01"><a href="index.jsp">Releases</a></li>
 			<li id="subnav02"><a href="source.jsp" class="ignite_subnav_current">Source</a></li>
 			<li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
-            <li id="subnav04"><a href="/projects/openfire/plugins.jsp">Openfire Plugins</a></li>
+            <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
 	</div>
 
@@ -118,7 +118,7 @@
 						</div>
 						<div class="ignite_download_item_odd">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
+								<img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= openfireSrcZip.getName() %>"><%= openfireSrcZip.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
@@ -126,7 +126,7 @@
 						</div>
 						<div class="ignite_download_item_even">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
+								<img src="../images/icon_zip.gif" alt="" width="17" height="18" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= openfireSrcTar.getName() %>"><%= openfireSrcTar.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= openfireBuildDate %></span>
@@ -137,7 +137,7 @@
 						</div>
 						<div class="ignite_download_item_odd">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
+								<img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=tinder/<%= tinderSrcZip.getName() %>"><%= tinderSrcZip.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= tinderBuildDate %></span>
@@ -145,7 +145,7 @@
 						</div>
 						<div class="ignite_download_item_even">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
+								<img src="../images/icon_zip.gif" alt="" width="17" height="18" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=tinder/<%= tinderSrcTarGz.getName() %>"><%= tinderSrcTarGz.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= tinderBuildDate %></span>
@@ -156,7 +156,7 @@
 						</div>
 						<div class="ignite_download_item_odd">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="16" border="0"> 
+								<img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= whackSrcZip.getName() %>"><%= whackSrcZip.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= whackBuildDate %></span>
@@ -164,7 +164,7 @@
 						</div>
 						<div class="ignite_download_item_even">
 							<span class="ignite_download_item_details">
-								<img src="/images/icon_zip.gif" alt="" width="17" height="18" border="0"> 
+								<img src="../images/icon_zip.gif" alt="" width="17" height="18" border="0">
 								<a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= whackSrcTarGz.getName() %>"><%= whackSrcTarGz.getName() %></a>
 							</span>
 							<span class="ignite_download_item_date"><%= whackBuildDate %></span>

@@ -4,70 +4,70 @@
 				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_newestmembers"></div>
 				<div class="ignite_sidebar_newmembers">
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp2.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp2.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>matt</b></a><br>
 						Joined on August 28
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>McBurglar</b></a><br>
 						Joined on August 27
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp3.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp3.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>Neptune</b></a><br>
 						Joined on August 25
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp4.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp4.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>BlackKnight</b></a><br>
 						Joined on August 23
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp5.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp5.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>ScaryGhost</b></a><br>
 						Joined on August 23
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp2.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp2.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>matt</b></a><br>
 						Joined on August 21
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>McBurglar</b></a><br>
 						Joined on August 20
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp3.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp3.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>Neptune</b></a><br>
 						Joined on August 18
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row">
-					<img src="/images/ignite_avatar_16x16_temp4.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp4.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>BlackKnight</b></a><br>
 						Joined on August 18
 		  				</div>
 					</div>
 					<div class="ignite_sidebar_newmembers_row" style="border-bottom: none;">
-					<img src="/images/ignite_avatar_16x16_temp5.gif" width="16" height="16" alt="" />
+					<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp5.gif" width="16" height="16" alt="" />
 						<div>
 						<a href="#"><b>ScaryGhost</b></a><br>
 						Joined on August 15

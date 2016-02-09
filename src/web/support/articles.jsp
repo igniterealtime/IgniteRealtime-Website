@@ -6,7 +6,7 @@
 <title>Support - Articles</title>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../styles/interior.css";
 </style>
 </head>
 <body>
@@ -41,36 +41,36 @@
 					
 					
 					<div class="ignite_article_excerpt">
-						<h3><a href="/support/articles/pubsub.jsp">All About Pubsub</a></h3>
+						<h3><a href="articles/pubsub.jsp">All About Pubsub</a></h3>
 						<span class="ignite_support_author">April 17, 2006, by Gaston Dombiak and Matt Tucker</span>
 						<p>Publish-subscribe (pubsub) is a powerful protocol extension to XMPP. It's like RSS for 
 						instant messaging: users subscribe to an item and get notifications when it's updated. The 
 						general notification pattern that underlies the protocol... 
-						<a href="/support/articles/pubsub.jsp">Read More ></a></p>
+						<a href="articles/pubsub.jsp">Read More ></a></p>
 					</div>
 					
 					<div class="ignite_article_excerpt">
-						<h3><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></h3>
+						<h3><a href="articles/sparkplug_day.jsp">Sparkplug Day</a></h3>
 						<span class="ignite_support_author">February 7 2006, by Matt Tucker</span>
 						<p>Once per quarter, the Jive Software engineering team spends a full day on a special 
 						project. A few weeks ago, we held Sparkplug Day to build out plugins for our Spark instant 
-						messaging client. The goals for Sparkplug Day... <a href="/support/articles/sparkplug_day.jsp">Read More ></a></p>
+						messaging client. The goals for Sparkplug Day... <a href="articles/sparkplug_day.jsp">Read More ></a></p>
 					</div>
 					
 					<div class="ignite_article_excerpt">
-						<h3><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></h3>
+						<h3><a href="articles/filetransfer.jsp">IM File Transfer Made Easy</a></h3>
 						<span class="ignite_support_author">February 7, 2006, by Matt Tucker</span>
 						<p>Why do most instant messaging systems get file transfer so wrong? Typically, file 
 						transfers don't work reliably (especially when firewalls are involved) and the file transfer 
-						UI is non-intuitive with problems like... <a href="/support/articles/filetransfer.jsp">Read More ></a></p>
+						UI is non-intuitive with problems like... <a href="articles/filetransfer.jsp">Read More ></a></p>
 					</div>
 					
 					<div class="ignite_article_excerpt">
-						<h3><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></h3>
+						<h3><a href="articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></h3>
 						<span class="ignite_support_author">December 19, 2005, by Matt Tucker</span>
 						<p>A major priority for Openfire is to provide the fastest and most scalable XMPP server
 						implementation available. The Pampero project will be the major effort over the next several 
-						months to help us achieve that goal. However... <a href="/support/articles/openfire_optimization.jsp">Read More ></a></p>
+						months to help us achieve that goal. However... <a href="articles/openfire_optimization.jsp">Read More ></a></p>
 					</div>
 					
 					

@@ -5,7 +5,7 @@
 <title>Beta Downloads</title>
 <meta name="body-id" content="downloads" />
 <style type="text/css" media="screen">
-    @import "/styles/interior.css";
+    @import "../styles/interior.css";
 </style>
 </head>
 <body>
@@ -15,7 +15,7 @@
 			<li id="subnav01"><a href="index.jsp">Releases</a></li>
 			<li id="subnav02"><a href="source.jsp">Source</a></li>
 			<li id="subnav03"><a href="beta.jsp" class="ignite_subnav_current">Beta Releases</a></li>
-            <li id="subnav04"><a href="/projects/openfire/plugins.jsp">Openfire Plugins</a></li>
+            <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
 	</div>
 
@@ -40,7 +40,7 @@
                         Below are links to the current <b>beta</b> releases.
 
                         <b>Looking for Openfire beta plugins?</b> Visit the
-                        <a href="/projects/openfire/plugins-beta.jsp">beta plugins</a> page.
+                        <a href="../projects/openfire/plugins-beta.jsp">beta plugins</a> page.
                     </p>
                 </div>
 

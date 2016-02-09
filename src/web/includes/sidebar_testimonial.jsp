@@ -10,7 +10,7 @@
 					</div>
 					<div class="ignite_sidebar_body_attrib">
 						&ndash; <a href="#">bhenson</a> 
-						<img src="/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
 					</div>
 				
 				<div id="igniteQuote1" style="display: none; visibility: hidden">
@@ -19,7 +19,7 @@
 					</div>
 					<div class="ignite_sidebar_body_attrib">
 						&ndash; <a href="#">bhenson</a> 
-						<img src="/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
 					</div>
 				</div>
 				
@@ -29,7 +29,7 @@
 					</div>
 					<div class="ignite_sidebar_body_attrib">
 						&ndash; <a href="#">captain amazing</a> 
-						<img src="/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
 					</div>
 				</div>
 				
@@ -39,7 +39,7 @@
 					</div>
 					<div class="ignite_sidebar_body_attrib">
 						&ndash; <a href="#">ryanvanderzanden</a> 
-						<img src="/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
+						<img src="<%=request.getContextPath()%>/images/ignite_avatar_16x16_temp.gif" width="16" height="16" alt="" />
 					</div>
 				</div>
 				

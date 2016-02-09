@@ -24,7 +24,7 @@
 <title>Openfire Plugins</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 
 
@@ -62,9 +62,9 @@
 			<li id="subnav03"><a href="plugins.jsp" class="ignite_subnav_current">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="/builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="../../builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
-            <li id="subnav08"><a href="../../roadmap.jsp">http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel</a></li>
+            <!--<li id="subnav08"><a href="../../roadmap.jsp">http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel</a></li>-->
         </ul>
 	</div>
 
@@ -284,7 +284,7 @@
 											<%  if (iconPngExists || iconGifExists) { %>
 												<img src="plugins/cache/<%= URLEncoder.encode(pname+iconFormat, "utf-8") %>" alt="" />
 											<% } else { %>
-												<img src="/images/icon_plugin.gif" width="16" height="16" alt="Plugin">
+												<img src="../../images/icon_plugin.gif" width="16" height="16" alt="Plugin">
 											<% } %>
 											</span>
 										</td>
@@ -307,11 +307,11 @@
 							</td>
 							<td class="c2" nowrap>
 								<% if(readmeExists) { %>
-								<a href="plugins/<%= URLEncoder.encode(pname, "utf-8") %>/readme.html"><img src="/images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
+								<a href="plugins/<%= URLEncoder.encode(pname, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
 								<% } else { %>
 								&nbsp;
 								<% } if(changelogExists) { %>
-								<a href="plugins/<%= URLEncoder.encode(pname, "utf-8") %>/changelog.html"><img src="/images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
+								<a href="plugins/<%= URLEncoder.encode(pname, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
 								<% } %>
 							</td>
 							<td class="c3" nowrap>

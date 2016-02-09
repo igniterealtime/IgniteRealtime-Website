@@ -12,7 +12,7 @@
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="smack" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -24,7 +24,7 @@
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
-			<li id="subnav06"><a href="/builds/smack/docs/latest/javadoc/">JavaDocs</a></li>
+			<!-- <li id="subnav06"><a href="/builds/smack/docs/latest/javadoc/">JavaDocs</a></li> -->
 			
 		</ul>
 	</div>
@@ -74,7 +74,7 @@
 				<!-- </div> -->
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#smack">Download</a> 
+					<a href="../../downloads/index.jsp#smack">Download</a>
 					<span>
 						<strong>Smack API <%= Versions.getVersion("smack") %></strong> Latest build: <%= Versions.getVersionDate("smack") %>
 					</span>
@@ -115,7 +115,7 @@
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>

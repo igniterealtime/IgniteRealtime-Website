@@ -12,7 +12,7 @@
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="sparkweb" />
 <style type="text/css" media="screen">
-	@import "/styles/interior.css";
+	@import "../../styles/interior.css";
 </style>
 </head>
 <body>
@@ -23,7 +23,7 @@
 			<!--<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>-->
 			<!--<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>-->
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SW">Issue Tracker</a></li>
-            <li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>
+            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
         </ul>
 	</div>
 
@@ -69,11 +69,11 @@
 					<a href="screenshots.jsp">More screens</a>
 				</div>-->
 				<div id="ignite_bigpanel_tryitlive">
-					<a href="/sparkweb/">Try it live!</a>
+					<a href="../../sparkweb/">Try it live!</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">
-					<a href="/downloads/index.jsp#sparkweb">Download</a> 
+					<a href="../../downloads/index.jsp#sparkweb">Download</a>
 					<span>
 						<strong>SparkWeb <%= Versions.getVersion("sparkweb") %></strong> Latest build: <%= Versions.getVersionDate("sparkweb")  %>
 					</span>
@@ -114,7 +114,7 @@
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="/images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>
