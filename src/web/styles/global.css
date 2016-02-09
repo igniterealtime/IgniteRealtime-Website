@@ -205,12 +205,19 @@ hr {
 	}
 
 #ignite_nav {
-	height: 48px;
+	height: 41px;
 	clear: both;
 	margin: 0 0 0 0;
 	padding: 0;
-	background: #fff url(../images/ignite_nav-bg.gif) repeat-x;
-	}
+	border-top: 1px solid white;
+	box-shadow: 0 3px 3px #DDD;
+	background-color: #FDC711; /* Old browsers */
+	background: -moz-linear-gradient(top, #FDC711, #F26522); /* Firefox 3.6-15 */
+	background: -o-linear-gradient(top, #FDC711, #F26522); /* For Opera 11.1 to 12.0 */
+	background: -webkit-linear-gradient(top, #FDC711, #F26522); /* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #FDC711, #F26522); /* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FDC711', endColorstr='#F26522', GradientType=0); /* IE6-9 */
+}
 
 #ignite_nav_groupchat {
 	float: left;
@@ -250,12 +257,12 @@ hr {
 	padding: 10px 2px 10px 0;
 	color: #fff;
 	font-size: 11pt;
-	background: transparent url(../images/ignite_nav-div.gif) no-repeat right;
+	box-shadow: 1px 0 2px -1px #aa4b1d;
 	}
 #ignite_nav ol li a, 
 #ignite_nav ol li a:visited  {
 	margin: 0 0 0 0;
-	padding: 10px 11px 10px 11px;
+	padding: 10px 11px 9px 11px;
 	color: #fff;
 	font-size: 11pt;
 	text-decoration: none;
@@ -266,7 +273,12 @@ hr {
 	}
 #ignite_nav ol li a.ignite_nav_current, 
 #ignite_nav ol li a:hover.ignite_nav_current {
-	background: transparent url(../images/ignite_nav-on.gif) no-repeat center;
+	background-color: #FDC711; /* Old browsers */
+	background: -moz-linear-gradient(top, #FDC711, #F26522); /* Firefox 3.6-15 */
+	background: -o-linear-gradient(top, #FDC711, #F26522); /* For Opera 11.1 to 12.0 */
+	background: -webkit-linear-gradient(top, #FDC711, #F26522); /* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #FDC711, #F26522); /* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FDC711', endColorstr='#F26522', GradientType=0); /* IE6-9 */
 	font-weight: bold;
 	}
 /* set current page nav, define first id in body tag of each section */
@@ -278,10 +290,34 @@ hr {
 #store #nav06 a, 
 #support #nav07 a, 
 #about #nav08 a {
-	background: transparent url(../images/ignite_nav-on.gif) no-repeat center;
+	background-color: #FDC711; /* Old browsers */
+	background: -moz-linear-gradient(top, #FDC711, #F26522); /* Firefox 3.6-15 */
+	background: -o-linear-gradient(top, #FDC711, #F26522); /* For Opera 11.1 to 12.0 */
+	background: -webkit-linear-gradient(top, #FDC711, #F26522); /* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #FDC711, #F26522); /* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FDC711', endColorstr='#F26522', GradientType=0); /* IE6-9 */
 	font-weight: bold;
 	text-decoration: none;
 	}
+#home #nav01 a::after ,
+#projects #nav02 a::after ,
+#downloads #nav03 a::after ,
+#community #nav04 a::after ,
+#fans #nav05 a::after ,
+#store #nav06 a::after ,
+#support #nav07 a::after ,
+#about #nav08 a::after {
+	content: "";
+	float: left;
+	position: relative;
+	left: 50%;
+	top: 20px;
+	width: 0;
+	height: 0;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid #F5F5F5;
+}
 
 
 /* IGNITE body elements, including content and sidebar areas */
@@ -383,7 +419,6 @@ hr {
 	margin: 3px 12px 0 0;
 	}
 .ignite_blog_entry_comments {
-	background: transparent url(../images/ignite_blog_icon_comment2.gif) no-repeat right;
 	height: 28px;
 	padding-right: 4px;
 	float: right;
@@ -391,16 +426,35 @@ hr {
 .ignite_blog_entry_comments a {
 	display: block;
 	float: left;
-	padding: 6px 4px 7px 29px;
+	padding: 6px 9px 6px 26px;
 	font-weight: bold;
 	color: #fff;
-	background: transparent url(../images/ignite_blog_icon_comment1.gif) no-repeat left;
 	outline: none;
 	overflow: hidden;
-	}
+	border-width: 1px;
+	border-style: none;
+	border-radius: 5px;
+	border-color: transparent;
+
+	/*background: transparent url(../images/ignite_blog_icon_comment1.gif) no-repeat left;*/
+	background-color: #FDB711; /* Old browsers */
+	background: url(../images/ignite_blog_icon_comment_15x15_lighter.gif) 5px 6px no-repeat
+	background: url(../images/ignite_blog_icon_comment_15x15_lighter.gif) 5px 6px no-repeat, -moz-linear-gradient(top, #FDB711, #F26522); /* Firefox 3.6-15 */
+	background: url(../images/ignite_blog_icon_comment_15x15_lighter.gif) 5px 6px no-repeat, -o-linear-gradient(top, #FDB711, #F26522); /* For Opera 11.1 to 12.0 */
+	background: url(../images/ignite_blog_icon_comment_15x15_lighter.gif) 5px 6px no-repeat, -webkit-linear-gradient(top, #FDB711, #F26522); /* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
+	background: url(../images/ignite_blog_icon_comment_15x15_lighter.gif) 5px 6px no-repeat, linear-gradient(to bottom, #FDB711, #F26522); /* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FDB711', endColorstr='#F26522', GradientType=0); /* IE6-9 */
+
+}
 .ignite_blog_entry_comments a:hover {
-	background: transparent url(../images/ignite_blog_icon_comment1o.gif) no-repeat left;
-	}
+	background-color: #FDB711; /* Old browsers */
+	background: url(../images/ignite_blog_icon_comment_15x15.gif) 5px 6px no-repeat
+	background: url(../images/ignite_blog_icon_comment_15x15.gif) 5px 6px no-repeat, -moz-linear-gradient(top, #FDB711, #F26522); /* Firefox 3.6-15 */
+	background: url(../images/ignite_blog_icon_comment_15x15.gif) 5px 6px no-repeat, -o-linear-gradient(top, #FDB711, #F26522); /* For Opera 11.1 to 12.0 */
+	background: url(../images/ignite_blog_icon_comment_15x15.gif) 5px 6px no-repeat, -webkit-linear-gradient(top, #FDB711, #F26522); /* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
+	background: url(../images/ignite_blog_icon_comment_15x15.gif) 5px 6px no-repeat, linear-gradient(to bottom, #FDB711, #F26522); /* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FDB711', endColorstr='#F26522', GradientType=0); /* IE6-9 */
+		}
 .ignite_blog_entry h2 {
 	font-family: Georgia, "Times New Roman", Times, serif;
 	font-size: 17pt;
@@ -1140,3 +1194,208 @@ div.ignite_sidebar_body_chat {
 	background: transparent url(../images/ignite_sidebar_feature-shadow.gif) no-repeat bottom;
 	padding: 0 5px 3px 5px;
 	}
+
+/* All sidebars should have this class. */
+.sidebar {
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+	width: 225px;
+	padding: 0;
+	padding-top: 7px;
+	padding-bottom: 12px;
+	margin-bottom: 16px;
+}
+
+/* All sidebars should either have the light or dark class. */
+.sidebar_light {
+	color: #515151;
+	border-color: #DCDCDC;
+}
+
+.sidebar_dark {
+	color: white;
+	border-color: transparent;
+}
+
+/* Individual sidebar (blue, gray, camera should be combined with light, grad with dark) */
+.sidebar_blue {
+	background-color: #E8F0F9;
+}
+
+.sidebar_gray {
+	background-color: #F5F5F5;
+}
+
+.sidebar_camera {
+	background-image: url(../images/camera.gif);
+	background-repeat: no-repeat;
+	background-position: right bottom;
+}
+
+.sidebar_grad {
+	/* Old browsers */
+	background: #878787;
+	/* Firefox 3.6-15 */
+	background: -moz-linear-gradient(top, #878787, #383838);
+	/* For Opera 11.1 to 12.0 */
+	background: -o-linear-gradient(top, #878787, #383838);
+	/* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
+	background: -webkit-linear-gradient(top, #878787, #383838);
+	/* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
+	background: linear-gradient(to bottom, #878787, #383838);
+	/* IE6-9 */
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#878787', endColorstr='#383838', GradientType=0);
+}
+
+/* End of sidebar form and shapes, begin of sidebar content. */
+
+.sidebar h1 {
+	font-family: 'Dosis', sans-serif;
+	font-size: 1.75em;
+	text-transform: uppercase;
+	padding: 0;
+	padding-left: 12px;
+	padding-bottom: 7px;
+	margin: 0;
+	margin-bottom: 8px;
+}
+
+.sidebar_light h1 {
+	text-shadow: 1px 1px 2px white;
+	border-bottom: dotted 1px #666;
+}
+
+.sidebar_dark h1 {
+	text-shadow: 1px 1px 2px #515151;
+	border-bottom: solid 1px #676767;
+	box-shadow: 0 1px 0 #979797;
+}
+
+.sidebar_light h2 {
+	clear: both;
+	margin: 10px 0 5px 0;
+	font-size: 14pt;
+	color: #497cb3;
+}
+
+.sidebar div {
+	margin-left: 12px;
+	margin-right: 12px;
+	font-size: 8pt;
+	padding: 8px 0 8px 0;
+	line-height: 10pt;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+.sidebar div:last-child {
+	border-bottom-style: none;
+	border-bottom-width: 0;
+}
+
+.sidebar_light div {
+	border-bottom-color: #E1E1E1;
+}
+
+.sidebar_dark div {
+	border-bottom-color: #848484;
+}
+
+.sidebar_blue div {
+	color: #666;
+}
+
+.sidebar_blue div strong {
+	color: #333;
+}
+
+.sidebar_grad div strong a {
+	font-size: 11pt;
+	text-decoration: none;
+	color: white;
+}
+
+a.button_download {
+	float: right;
+	font-size: 7pt;
+	text-decoration: none;
+	background-color: #9f9f9f;
+	background-image: url(../images/download-floppy_10x10.png);
+	background-repeat: no-repeat;
+	background-position: 3px 2px;
+	color: white;
+	padding: 0 10px 0 16px;
+	border-width: 1px;
+	border-style: none;
+	border-radius: 5px;
+	border-color: #DCDCDC;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #333333;
+	border-bottom: 1px solid #333333;
+	border-left: 1px solid #CCCCCC;
+}
+
+.sidebar blockquote {
+	font-size: 8pt;
+	color: #666;
+}
+
+blockquote {
+	font-size: 8px;
+	color: #666;
+	margin: 0.25em 0;
+	padding-top: 0.25em;
+	padding-bottom: 0.25em;
+	padding-left: 30px;
+	padding-right: 6px;
+	position: relative;
+}
+
+blockquote:before {
+	font-family: Georgia, serif;
+	display: block;
+	content: "\201C";
+	font-size: 40px;
+	position: absolute;
+	left: 10px;
+	top: -5px;
+	color: green;
+}
+
+blockquote cite {
+	color: #333;
+	display: block;
+	margin-top: 5px;
+	font-style: normal;
+}
+
+blockquote cite:before {
+	content: "\2014 \2009";
+}
+
+.sidebar h4 {
+	padding: 20px 0 5px 0;
+	margin: 0 12px 0 12px;
+}
+
+.sidebar div a {
+	text-decoration: none;
+}
+
+.sidebar_light div a {
+	color: #666;
+}
+
+.sidebar div.discussion img {
+	background: transparent url( ../images/ignite_avatar_16x16_bg.gif) no-repeat;
+	padding: 3px;
+	float: left;
+	margin: 1px 7px 0 0;
+}
+
+.sidebar div.articles {
+	background: transparent url( ../images/ignite_icon_articles.gif) no-repeat left;
+	background-position: 0 9px;
+	padding-left: 18px;
+}

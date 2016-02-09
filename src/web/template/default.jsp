@@ -24,6 +24,7 @@
 <meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="jive, jive software, java, open source, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, xiff, asterisk" />"/>
 
 <style type="text/css" media="screen">
+	@import url(https://fonts.googleapis.com/css?family=Dosis:600);
 	@import "<%= request.getContextPath() %>/styles/global.css";
 </style>
 
