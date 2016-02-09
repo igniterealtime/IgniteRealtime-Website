@@ -51,18 +51,22 @@
     Quote quote = quotes.get(index);
 %>
 
-			<!-- BEGIN white sidebar box 'IN YOUR WORDS' -->
-			<div class="ignite_sidebar_whitebox">
-				<div class="ignite_sidebar_top"></div>
-				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_yourwords"></div>
-				<div class="ignite_sidebar_body">
-					<div class="ignite_sidebar_body_quote">
-						<p><%= quote.getText() %></p>
-					</div>
-					<div class="ignite_sidebar_body_attrib">
-						&ndash; <%= quote.getAttribution() %>
-					</div>
-				</div>
-				<div class="ignite_sidebar_btm"></div>
-			</div>
-			<!-- END white sidebar box 'IN YOUR WORDS' -->
+<div class="sidebar sidebar_light">
+    <h1 class="sidebar_header">In your words</h1>
+    <blockquote><%= quote.getText() %><cite><%= quote.getAttribution() %></cite></blockquote>
+</div>
+			<%--<!-- BEGIN white sidebar box 'IN YOUR WORDS' -->--%>
+			<%--<div class="ignite_sidebar_whitebox">--%>
+				<%--<div class="ignite_sidebar_top"></div>--%>
+				<%--<div class="ignite_sidebar_hdr ignite_sidebar_hdr_yourwords"></div>--%>
+				<%--<div class="ignite_sidebar_body">--%>
+					<%--<div class="ignite_sidebar_body_quote">--%>
+						<%--<p><%= quote.getText() %></p>--%>
+					<%--</div>--%>
+					<%--<div class="ignite_sidebar_body_attrib">--%>
+						<%--&ndash; <%= quote.getAttribution() %>--%>
+					<%--</div>--%>
+				<%--</div>--%>
+				<%--<div class="ignite_sidebar_btm"></div>--%>
+			<%--</div>--%>
+			<%--<!-- END white sidebar box 'IN YOUR WORDS' -->--%>

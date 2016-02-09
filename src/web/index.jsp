@@ -149,79 +149,22 @@
 		<!-- BEGIN right column (sidebar) -->
 		<div id="ignite_body_rightcol">
 			
-			<!-- BEGIN grey gradient sidebar box 'PROJECTS' -->
-			<div class="ignite_sidebar_gradbox">
-				<div class="ignite_sidebar_top-g"></div>
-				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projects"></div>
-				<div class="ignite_sidebar_body_projects">
-					<div class="ignite_sidebar_body_project1">
-						<span><strong><a href="projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="downloads/index.jsp#openfire"></a>
-					</div>
-					<div class="ignite_sidebar_body_project2">
-						<span><strong><a href="projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="downloads/index.jsp#spark"></a>
-					</div>
-					<div class="ignite_sidebar_body_project3">
-						<span><strong><a href="projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="downloads/index.jsp#sparkweb"></a>
-					</div>
-					<%--
-					<div class="ignite_sidebar_body_project4">
-						<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="downloads/index.jsp#asterisk"></a>
-					</div>
-					--%>
-					<div class="ignite_sidebar_body_project4">
-						<span><strong><a href="projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="downloads/index.jsp#smack"></a>
-					</div>
-                    <div class="ignite_sidebar_body_project5">
-						<span><strong><a href="projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="downloads/index.jsp#tinder"></a>
-					</div>
-					<div class="ignite_sidebar_body_project6">
-						<span><strong><a href="projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="downloads/index.jsp#whack"></a>
-					</div>
-					<div class="ignite_sidebar_body_project7">
-						<span><strong><a href="projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="downloads/index.jsp#xiff"></a>
-					</div>
-					<div class="ignite_sidebar_body_project8" style="text-align: center;">
-					</div>
-				</div>
-				<div class="ignite_sidebar_btm-g"></div>
+            <div class="sidebar sidebar_dark sidebar_grad">
+                <h1 class="sidebar_header">Projects</h1>
+                <div><strong><a href="projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %> <a href="downloads/index.jsp#openfire" class="button_download">Download</a></div>
+                <div><strong><a href="projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %> <a href="downloads/index.jsp#spark" class="button_download">Download</a></div>
+                <div><strong><a href="projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %> <a href="downloads/index.jsp#sparkweb" class="button_download">Download</a></div>
+                <div><strong><a href="projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %> <a href="downloads/index.jsp#smack" class="button_download">Download</a></div>
+                <div><strong><a href="projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %> <a href="downloads/index.jsp#tinder" class="button_download">Download</a></div>
+                <div><strong><a href="projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %> <a href="downloads/index.jsp#whack" class="button_download">Download</a></div>
+                <div><strong><a href="projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %> <a href="downloads/index.jsp#xiff" class="button_download">Download</a></div>
 			</div>
 
             <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-            <!-- BEGIN 'in the community' column -->
-            <div id="ignite_home_body_rightcol">
 
-                <div id="ignite_incommunity_header">
-                    <span id="ignite_incommunity_header_label">
-                        In the Community
-                    </span>
-                </div>
+            <div class="sidebar sidebar_light sidebar_gray">
+                <h1 class="sidebar_header">In the community</h1>
 
-                <!-- BEGIN featured members -->
-                <%-- <div id="ignite_home_body_featured">
-                <h4>Featured Members</h4>
-
-                    <!-- featured member 1 -->
-                    <div style="float: right;">
-                    <a href="<%= baseUrl %>/people/sixthring">
-                        <div class="ignite_home_featured_avatar">
-                         <img src="<%= baseUrl %>/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />
-                        </div>
-                    sixthring</a>
-                    </div>
-
-                    <!-- featured member 2 -->
-                    <div style="float: left;">
-                    <a href="<%= baseUrl %>/people/winsrev">
-                        <div class="ignite_home_featured_avatar">
-                        <img src="<%= baseUrl %>/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />
-                        </div>
-                    winsrev</a>
-                    </div>
-                </div>    --%>
-                <!-- END featured members -->
-
-                <!-- BEGIN recent discussions, news, wiki docs, and articles -->
-                <div id="ignite_home_body_recent">
                 <h4>Recent Discussions</h4>
                 <%
                     String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
@@ -258,54 +201,6 @@
                 <% } %>
                     </cache:cache>
 
-                <h4>Recent Releases</h4>
-                <%
-                    String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,2017)";
-
-                %>
-                    <cache:cache time="60" key="<%= recentReleasesPlace %>">
-                <% try { %>
-                <%
-                    RestClient client = new RestClient();
-                    JSONObject result = client.get(recentReleasesPlace);
-                    JSONArray placesList = result.getJSONArray("list");
-                    JSONObject place = placesList.getJSONObject(0);
-                    JSONObject placeResources = place.getJSONObject("resources");
-                    JSONObject placeContents = placeResources.getJSONObject("contents");
-                    String recentReleasesUrl = placeContents.getString("ref")+"?count=5&abridged=true";
-
-                    result = client.get(recentReleasesUrl);
-                    JSONArray messages = result.getJSONArray("list");
-
-                    for (Object messageObject : messages) {
-                        if (! (messageObject instanceof JSONObject)) {
-                            continue;
-                            // skip non-JSONObject
-                        }
-                        JSONObject message = (JSONObject)messageObject;
-
-                        String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
-                        String subject = message.getString("subject");
-                        String published = message.getString("published");
-                        if (StringUtils.endsWith(published, "+0000")) {
-                            published = StringUtils.replace(published, "+0000", "+00:00");
-                        }
-                        Date datePublished = new Date();
-                        try {
-                            datePublished = javax.xml.bind.DatatypeConverter.parseDate(published).getTime();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                %>
-                        <div class="news">
-                            <font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(datePublished) %> - </font>
-                            <a href='<%= messageUrl %>/'><%= subject %></a>
-                        </div>
-                    <% } %>
-                <% } catch (Exception e) { %>
-                    <cache:usecached />
-                <% } %>
-                    </cache:cache>
 
                 <h4>Recent Articles</h4>
                     <div class="articles"><a href="support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
@@ -321,13 +216,183 @@
                     <div class="articles"><a href="about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
                 </div>
 
-                <!-- END recent discussions, news, wiki docs, and articles -->
+            <%@ include file="/includes/sidebar_testimonial.jspf" %>
 
-            </div>
-            <!-- END 'in the community' column -->
-			<!-- END grey gradient sidebar box 'PROJECTS' -->
+            <!-- BEGIN grey gradient sidebar box 'PROJECTS' -->
+			<%--<div class="ignite_sidebar_gradbox">--%>
+				<%--<div class="ignite_sidebar_top-g"></div>--%>
+				<%--<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projects"></div>--%>
+				<%--<div class="ignite_sidebar_body_projects">--%>
+					<%--<div class="ignite_sidebar_body_project1">--%>
+						<%--<span><strong><a href="/projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="/downloads/index.jsp#openfire"></a>--%>
+					<%--</div>--%>
+					<%--<div class="ignite_sidebar_body_project2">--%>
+						<%--<span><strong><a href="/projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/index.jsp#spark"></a>--%>
+					<%--</div>--%>
+					<%--<div class="ignite_sidebar_body_project3">--%>
+						<%--<span><strong><a href="/projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="/downloads/index.jsp#sparkweb"></a>--%>
+					<%--</div>--%>
+					<%--&lt;%&ndash;--%>
+					<%--<div class="ignite_sidebar_body_project4">--%>
+						<%--<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="/downloads/index.jsp#asterisk"></a>--%>
+					<%--</div>--%>
+					<%--&ndash;%&gt;--%>
+					<%--<div class="ignite_sidebar_body_project4">--%>
+						<%--<span><strong><a href="/projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/index.jsp#smack"></a>--%>
+					<%--</div>--%>
+                    <%--<div class="ignite_sidebar_body_project5">--%>
+						<%--<span><strong><a href="/projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="/downloads/index.jsp#tinder"></a>--%>
+					<%--</div>--%>
+					<%--<div class="ignite_sidebar_body_project6">--%>
+						<%--<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>--%>
+					<%--</div>--%>
+					<%--<div class="ignite_sidebar_body_project7">--%>
+						<%--<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>--%>
+					<%--</div>--%>
+					<%--<div class="ignite_sidebar_body_project8" style="text-align: center;">--%>
+					<%--</div>--%>
+				<%--</div>--%>
+				<%--<div class="ignite_sidebar_btm-g"></div>--%>
+			<%--</div>--%>
 
-			<%@ include file="/includes/sidebar_testimonial.jspf" %>
+            <%--<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>--%>
+            <!-- BEGIN 'in the community' column -->
+            <%--<div id="ignite_home_body_rightcol">--%>
+
+                <%--</div>--%>
+
+                <%--<!-- BEGIN featured members -->--%>
+                <%--&lt;%&ndash; <div id="ignite_home_body_featured">--%>
+                <%--<h4>Featured Members</h4>--%>
+
+                    <%--<!-- featured member 1 -->--%>
+                    <%--<div style="float: right;">--%>
+                    <%--<a href="<%= baseUrl %>/people/sixthring">--%>
+                        <%--<div class="ignite_home_featured_avatar">--%>
+                         <%--<img src="<%= baseUrl %>/people/sixthring/avatar/32.png" alt="avatar" width="32" height="32" />--%>
+                        <%--</div>--%>
+                    <%--sixthring</a>--%>
+                    <%--</div>--%>
+
+                    <%--<!-- featured member 2 -->--%>
+                    <%--<div style="float: left;">--%>
+                    <%--<a href="<%= baseUrl %>/people/winsrev">--%>
+                        <%--<div class="ignite_home_featured_avatar">--%>
+                        <%--<img src="<%= baseUrl %>/people/winsrev/avatar/32.png" alt="avatar" width="32" height="32" />--%>
+                        <%--</div>--%>
+                    <%--winsrev</a>--%>
+                    <%--</div>--%>
+                <%--</div>    &ndash;%&gt;--%>
+                <%--<!-- END featured members -->--%>
+
+                <%--<!-- BEGIN recent discussions, news, wiki docs, and articles -->--%>
+                <%--<div id="ignite_home_body_recent">--%>
+                <%--<h4>Recent Discussions</h4>--%>
+                <%--<%--%>
+                    <%--String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";--%>
+                <%--%>--%>
+                    <%--<cache:cache time="60" key="<%= recentMessagesUrl %>">--%>
+                <%--<% try { %>--%>
+                <%--<%--%>
+                    <%--RestClient client = new RestClient();--%>
+                    <%--JSONObject result = client.get(recentMessagesUrl);--%>
+                    <%--JSONArray messages = result.getJSONArray("list");--%>
+
+                    <%--for (Object messageObject : messages) {--%>
+                        <%--if (! (messageObject instanceof JSONObject)) {--%>
+                            <%--continue;--%>
+                            <%--// skip non-JSONObject--%>
+                        <%--}--%>
+                        <%--JSONObject message = (JSONObject)messageObject;--%>
+
+                        <%--JSONObject author = message.getJSONObject("author");--%>
+                        <%--String authorAvatarUrl = author.getJSONObject("resources").getJSONObject("avatar").getString("ref");--%>
+                        <%--String authorName = author.getString("displayName");--%>
+                        <%--String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");--%>
+                        <%--String subject = message.getString("subject");--%>
+
+                <%--%>--%>
+                        <%--<div class="discussion">--%>
+                            <%--<img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />--%>
+                                <%--<b><%= authorName %></b> in--%>
+                                <%--"<a href='<%= messageUrl %>'><%= subject %></a>"--%>
+                        <%--</div>--%>
+                    <%--<% } %>--%>
+                <%--<% } catch (Exception e) { %>--%>
+                    <%--<cache:usecached />--%>
+                <%--<% } %>--%>
+                    <%--</cache:cache>--%>
+
+                <%--<h4>Recent Releases</h4>--%>
+                <%--<%--%>
+                    <%--String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,2017)";--%>
+
+                <%--%>--%>
+                    <%--<cache:cache time="60" key="<%= recentReleasesPlace %>">--%>
+                <%--<% try { %>--%>
+                <%--<%--%>
+                    <%--RestClient client = new RestClient();--%>
+                    <%--JSONObject result = client.get(recentReleasesPlace);--%>
+                    <%--JSONArray placesList = result.getJSONArray("list");--%>
+                    <%--JSONObject place = placesList.getJSONObject(0);--%>
+                    <%--JSONObject placeResources = place.getJSONObject("resources");--%>
+                    <%--JSONObject placeContents = placeResources.getJSONObject("contents");--%>
+                    <%--String recentReleasesUrl = placeContents.getString("ref")+"?count=5&abridged=true";--%>
+
+                    <%--result = client.get(recentReleasesUrl);--%>
+                    <%--JSONArray messages = result.getJSONArray("list");--%>
+
+                    <%--for (Object messageObject : messages) {--%>
+                        <%--if (! (messageObject instanceof JSONObject)) {--%>
+                            <%--continue;--%>
+                            <%--// skip non-JSONObject--%>
+                        <%--}--%>
+                        <%--JSONObject message = (JSONObject)messageObject;--%>
+
+                        <%--String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");--%>
+                        <%--String subject = message.getString("subject");--%>
+                        <%--String published = message.getString("published");--%>
+                        <%--if (StringUtils.endsWith(published, "+0000")) {--%>
+                            <%--published = StringUtils.replace(published, "+0000", "+00:00");--%>
+                        <%--}--%>
+                        <%--Date datePublished = new Date();--%>
+                        <%--try {--%>
+                            <%--datePublished = javax.xml.bind.DatatypeConverter.parseDate(published).getTime();--%>
+                        <%--} catch (Exception e) {--%>
+                            <%--e.printStackTrace();--%>
+                        <%--}--%>
+                <%--%>--%>
+                        <%--<div class="news">--%>
+                            <%--<font color="#888888"><%= DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.SHORT).format(datePublished) %> - </font>--%>
+                            <%--<a href='<%= messageUrl %>/'><%= subject %></a>--%>
+                        <%--</div>--%>
+                    <%--<% } %>--%>
+                <%--<% } catch (Exception e) { %>--%>
+                    <%--<cache:usecached />--%>
+                <%--<% } %>--%>
+                    <%--</cache:cache>--%>
+
+                <%--<h4>Recent Articles</h4>--%>
+                    <%--<div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>--%>
+                    <%--<div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>--%>
+                    <%--<div class="articles"><a href="/support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>--%>
+                    <%--<div class="articles"><a href="/support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>--%>
+                    <%--<div class="articles"><a href="/support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>--%>
+
+                <%--<h4>Whitepapers</h4>--%>
+                    <%--<div class="articles"><a href="/about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>--%>
+                    <%--<div class="articles"><a href="/about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>--%>
+                    <%--<div class="articles"><a href="/about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>--%>
+                    <%--<div class="articles"><a href="/about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>--%>
+                <%--</div>--%>
+
+                <%--<!-- END recent discussions, news, wiki docs, and articles -->--%>
+
+            <%--</div>--%>
+            <%--<!-- END 'in the community' column -->--%>
+			<%--<!-- END grey gradient sidebar box 'PROJECTS' -->--%>
+
+			<%--<%@ include file="/includes/sidebar_testimonial.jspf" %>--%>
 			
 		</div>
 		<!-- END right column (sidebar) -->
