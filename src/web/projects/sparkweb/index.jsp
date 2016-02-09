@@ -20,7 +20,6 @@
 	<div id="ignite_subnav">
 		<ul>
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">SparkWeb</a></li>
-			<!--<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>-->
 			<!--<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>-->
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SW">Issue Tracker</a></li>
             <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
@@ -64,10 +63,6 @@
 					<a href="#" onClick="closePanel('sparkweb'); return false;"></a>
 				</div>
 				
-				<!--<div id="ignite_bigpanel_screenshot">
-					<img src="/images/ignite_projects_sparkweb_ss.gif" width="210" height="210" alt="" />
-					<a href="screenshots.jsp">More screens</a>
-				</div>-->
 				<div id="ignite_bigpanel_tryitlive">
 					<a href="../../sparkweb/">Try it live!</a>
 				</div>

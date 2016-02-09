@@ -20,7 +20,6 @@
 	<div id="ignite_subnav">
 		<ul>
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Asterisk-IM</a></li>
-			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/PHONE">Issue Tracker</a></li>
@@ -68,7 +67,6 @@ fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read mo
 				
 				<div id="ignite_bigpanel_screenshot">
 					<img src="../../images/ignite_screenshot_asterisk.gif" width="210" height="210" alt="" />
-					<a href="screenshots.jsp">More screens</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">

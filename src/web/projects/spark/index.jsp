@@ -20,7 +20,6 @@
 	<div id="ignite_subnav">
 		<ul>
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Spark</a></li>
-			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
@@ -71,7 +70,6 @@
 				
 				<div id="ignite_bigpanel_screenshot">
 					<img src="../../images/ignite_projects_spark_ss.gif" width="210" height="210" alt="" />
-					<a href="screenshots.jsp">More screens</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">

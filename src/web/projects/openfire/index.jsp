@@ -21,7 +21,6 @@
 	<div id="ignite_subnav">
 		<ul>
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
-			<li id="subnav02"><a href="screenshots.jsp">Screenshots</a></li>
 			<li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/OF">Issue Tracker</a></li>
@@ -71,7 +70,6 @@
 				
 				<div id="ignite_bigpanel_screenshot">
 					<img src="../../images/ignite_screenshot_openfire3.gif" width="210" height="210" alt="" />
-					<a href="screenshots.jsp">More screens</a>
 				</div>
 				
 				<div id="ignite_bigpanel_download">
