@@ -327,9 +327,6 @@
             <!-- END 'in the community' column -->
 			<!-- END grey gradient sidebar box 'PROJECTS' -->
 
-
-            <jsp:include page="/includes/sidebar_screenshot.jsp" />
-
 			<%@ include file="/includes/sidebar_testimonial.jspf" %>
 			
 		</div>

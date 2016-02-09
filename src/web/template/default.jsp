@@ -36,7 +36,6 @@
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/prototype.js"></script>
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/scriptaculous.js"></script>
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/window.js"></script>
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/lightbox.js"></script>
 -->
 
 <decorator:head />
@@ -49,7 +48,7 @@
     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
 %>
 
-<body<%= (bodyID != null) ? " id=\""+bodyID+"\"" : "" %>  onLoad="initLightbox();<%= (panelName != null) ? ";checkPanel('"+panelName+"');" : "" %>" >
+<body<%= (bodyID != null) ? " id=\""+bodyID+"\"" : "" %>  onLoad="<%= (panelName != null) ? "checkPanel('"+panelName+"');" : "" %>" >
 	 
 
 
