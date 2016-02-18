@@ -1,0 +1,11 @@
+<!-- A thank you for the Open Source License provided to Igniterealtime -->
+
+<div class="sidebar sidebar_light">
+    <h1 class="sidebar_header">Special Thank You!</h1>
+    <div style="padding-left: 5px;">
+						<p>Thank you <a href="http://www.ej-technologies.com/products/install4j/overview.html">EJ Technologies</a>
+						for an open source license provided to this project
+						to help build installers to distribute.<br /><br />
+		<a href="http://www.ej-technologies.com/products/install4j/overview.html"><img src="../images/install4j_large.png" border="0" alt="Install4J"></a></p>
+	</div>
+</div>
