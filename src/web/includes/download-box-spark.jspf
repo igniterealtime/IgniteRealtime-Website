@@ -131,7 +131,7 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binDmg.getName() %>"><%= binDmg.getName() %></a> Requires OSX 10.6.7 or higher
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binDmg.getName() %>"><%= binDmg.getName() %></a> Requires OSX 10.6.7 or higher (includes Java JRE)
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binDmg.length()/1024.0/1024.0) %> MB</span>
