@@ -14,10 +14,10 @@
         profile = "Dave Cridland is also a member of the XMPP Council, the technical steering group that approves XMPP Extension Protocols.";
     }
     else if (project.equals("spark")) {
-        name = "winsrev";
-        avatarSrc = "https://community.igniterealtime.org/people/winsrev/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/winsrev";
-        profile = "Constantly moaning, raving and getting stressed, then writing mysterious code that only works with the magic of Spark.";
+        name = "wroot";
+        avatarSrc = "https://community.igniterealtime.org/people/wroot/avatar/46.png";
+        profileLink = "https://community.igniterealtime.org/people/wroot";
+        profile = "He is known to remember EVERYTHING and shamelessly remind you about promises you made and already forgot ten years ago.";
     }
     else if (project.equals("sparkweb")) {
         name = "dele";
@@ -27,7 +27,7 @@
     }
     else if (project.equals("smack")) {
         name = "Flow";
-        avatarSrc = "https://community.igniterealtime.org/people/Flow/avatar/32.png";
+        avatarSrc = "https://community.igniterealtime.org/people/Flow/avatar/46.png";
         profileLink = "https://community.igniterealtime.org/people/Flow";
         profile = "Florian Schmaus is also a member of the XMPP Standards Foundation.";
     }
