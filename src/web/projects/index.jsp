@@ -77,7 +77,7 @@
 				<!-- END project - smack -->
 				
 				
-				<!-- BEGIN libraries -->
+				<!-- BEGIN other projects -->
 				<div class="ignite_project_type">Other Projects</div>
 				<div class="ignite_project_table">
 					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -153,7 +153,7 @@
 						</tr>
 					</table>
 				</div>
-				<!-- END libraries -->
+				<!-- END other projects -->
 				
 				
 			</div>
