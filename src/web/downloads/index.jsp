@@ -57,10 +57,6 @@
                 <%@ include file="/includes/download-box-spark.jspf" %>
 				<!-- END spark downloads -->
 
-				<!-- BEGIN sparkweb downloads -->
-                <%@ include file="/includes/download-box-sparkweb.jspf" %>
-				<!-- END sparkweb downloads -->
-
 				<!-- BEGIN smack downloads -->
                 <%@ include file="/includes/download-box-smack.jspf" %>
 				<!-- END smack downloads -->
@@ -76,6 +72,10 @@
 				<!-- BEGIN xiff downloads -->
                 <%@ include file="/includes/download-box-xiff.jspf" %>
 				<!-- END xiff downloads -->
+				
+				<!-- BEGIN sparkweb downloads -->
+                <%@ include file="/includes/download-box-sparkweb.jspf" %>
+				<!-- END sparkweb downloads -->
 				
 				
 				
