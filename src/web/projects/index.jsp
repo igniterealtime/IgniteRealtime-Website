@@ -62,7 +62,7 @@
 						<p><a href="sparkweb/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
 					</div>
 				</div>
-				<!-- END project - sparkweb -->
+				END project - sparkweb -->
 				
 				<!-- BEGIN project - smack -->
 				<div class="ignite_project_big">
@@ -70,7 +70,7 @@
 					<div class="ignite_project_content">
 						<a href="smack/index.jsp" class="ignite_project_smack">
 						<h1>Smack <span><%= Versions.getVersion("smack") %></span></h1></a>
-						<p>Easy to use Java XMPP client library</p>
+						<p>Easy to use Java XMPP client library.</p>
 						<p><a href="smack/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
 					</div>
 				</div>
