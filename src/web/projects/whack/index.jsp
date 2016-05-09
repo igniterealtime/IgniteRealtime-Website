@@ -19,7 +19,7 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Whack API</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Whack</a></li>
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<!--<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>-->
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
@@ -54,7 +54,7 @@
 			%>
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
 				<div id="ignite_bigpanel_content" style="width: 630px;">
-					<h1 class="whack">Whack API <span><%= Versions.getVersion("whack") %></span></h1>
+					<h1 class="whack">Whack <span><%= Versions.getVersion("whack") %></span></h1>
 					<p>
                         Whack is an Open Source XMPP (Jabber) component library for XMPP components.
                         A pure Java library, it can be embedded into your applications to create anything from
@@ -70,7 +70,7 @@
 				<div id="ignite_bigpanel_download">
 					<a href="../../downloads/index.jsp#whack">Download</a>
 					<span>
-						<strong>Whack API <%= Versions.getVersion("whack") %></strong> Latest build: <%= Versions.getVersionDate("whack") %>
+						<strong>Whack <%= Versions.getVersion("whack") %></strong> Latest build: <%= Versions.getVersionDate("whack") %>
 					</span>
 				</div>
 				
@@ -83,7 +83,7 @@
 				(same details as above for 'large panel')
 			-->
 			<div id="ignite_smallpanel" <% if (panelCookieSet) { %> style="display:block" <% } %>>
-				<h1 class="whack">Whack API <span><%= Versions.getVersion("whack") %></span></h1>
+				<h1 class="whack">Whack <span><%= Versions.getVersion("whack") %></span></h1>
 				<div id="ignite_smallpanel_open">
 					<a href="#" onClick="closePanel('whack'); return false;"></a>
 				</div>
