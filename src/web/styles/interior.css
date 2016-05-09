@@ -119,23 +119,23 @@ styles specific to the interior pages for the Ignite Real Time site.
 	}
 #ignite_bigpanel h1.smack, 
 #ignite_smallpanel h1.smack {
-	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
-	padding-left: 35px;
+	background: transparent url(../images/logo_xmpp.png) no-repeat left;
+	padding-left: 44px;
 	}
 #ignite_bigpanel h1.tinder, 
 #ignite_smallpanel h1.tinder {
-	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
-	padding-left: 35px;
+	background: transparent url(../images/logo_xmpp.png) no-repeat left;
+	padding-left: 44px;
 	}
 #ignite_bigpanel h1.whack, 
 #ignite_smallpanel h1.whack {
-	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
-	padding-left: 35px;
+	background: transparent url(../images/logo_xmpp.png) no-repeat left;
+	padding-left: 44px;
 	}
 #ignite_bigpanel h1.xiff, 
 #ignite_smallpanel h1.xiff {
-	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
-	padding-left: 40px;
+	background: transparent url(../images/logo_xmpp.png) no-repeat left;
+	padding-left: 44px;
 	}
 
 #ignite_bigpanel_content h1 span,
@@ -376,10 +376,10 @@ img.ignite_body_image_right {
 	}
 
 .ignite_project_big img.ignite_projects_openfire,
-.ignite_project_big img.ignite_projects_spark, 
-.ignite_project_big img.ignite_projects_sparkweb, 
+.ignite_project_big img.ignite_projects_spark,
+.ignite_project_big img.ignite_projects_smack,
+.ignite_project_small img.ignite_projects_sparkweb, 
 .ignite_project_small img.ignite_projects_asterisk, 
-.ignite_project_small img.ignite_projects_smack,
 .ignite_project_small img.ignite_projects_tinder, 
 .ignite_project_small img.ignite_projects_whack, 
 .ignite_project_small img.ignite_projects_xiff {
@@ -387,7 +387,7 @@ img.ignite_body_image_right {
 	}
 .ignite_project_big a.ignite_project_openfire,
 .ignite_project_big a.ignite_project_spark,
-.ignite_project_big a.ignite_project_sparkweb {
+.ignite_project_big a.ignite_project_smack {
 	display: block;
 	padding-left: 43px;
 	color: #333;
@@ -395,7 +395,7 @@ img.ignite_body_image_right {
 	}
 .ignite_project_big a:hover.ignite_project_openfire,
 .ignite_project_big a:hover.ignite_project_spark,
-.ignite_project_big a:hover.ignite_project_sparkweb {
+.ignite_project_big a:hover.ignite_project_smack {
 	color: #555;
 	text-decoration: underline;
 	outline: none;
@@ -406,8 +406,8 @@ img.ignite_body_image_right {
 .ignite_project_big a.ignite_project_spark {
 	background: transparent url(../images/logo_spark.gif) no-repeat 4px 0;
 	}
-.ignite_project_big a.ignite_project_sparkweb {
-	background: transparent url(../images/logo_sparkweb.gif) no-repeat 4px 0;
+.ignite_project_big a.ignite_project_smack {
+	background: transparent url(../images/logo_xmpp.png) no-repeat 4px 0;
 	}
 .ignite_project_big a h1 {
 	display: inline;
