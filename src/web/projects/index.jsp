@@ -52,18 +52,6 @@
 				</div>
 				<!-- END project - spark -->
 				
-				<!-- BEGIN project - sparkweb
-				<div class="ignite_project_big">
-				<div class="ignite_project_type">Web Client</div>
-					<div class="ignite_project_content">
-						<a href="sparkweb/index.jsp" class="ignite_project_sparkweb">
-						<h1>SparkWeb <span><%= Versions.getVersion("sparkweb") %></span></h1></a>
-						<p>Web based real-time collaboration client optimized for business and organizations.</p>
-						<p><a href="sparkweb/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
-					</div>
-				</div>
-				END project - sparkweb -->
-				
 				<!-- BEGIN project - smack -->
 				<div class="ignite_project_big">
 				<div class="ignite_project_type">Client Library</div>
@@ -80,21 +68,7 @@
 				<!-- BEGIN other projects -->
 				<div class="ignite_project_type">Other Projects</div>
 				<div class="ignite_project_table">
-					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
-					<!--	<tr class="ignite_project_table-row-odd">
-							<td class="ignite_project_table-title" nowrap="nowrap">
-								<a href="smack/index.jsp">Smack API</a>
-							</td>
-							<td class="ignite_project_table-description">
-								Easy to use Java XMPP client library.
-							</td>
-							<td class="ignite_project_table-version">
-								<%= Versions.getVersion("smack") %>
-							</td>
-							<td class="ignite_project_table-link" nowrap="nowrap">
-								<a href="smack/index.jsp">Learn More</a>
-							</td>
-						</tr> -->
+					<table border cellpadding="0" cellspacing="0" border="0" width="100%"
                         			<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="tinder/index.jsp">Tinder</a>
@@ -123,9 +97,17 @@
 								<a href="whack/index.jsp">Learn More</a>
 							</td>
 						</tr>
+					</table>
+				</div>
+				<!-- END other projects -->
+				
+				<!-- BEGIN discontinued projects -->
+				<div class="ignite_project_type">Discontinued Projects</div>
+				<div class="ignite_project_table">
+					<table border cellpadding="0" cellspacing="0" border="0" width="100%"
 						<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
-								<a href="xiff/index.jsp">XIFF(discontinued)</a>
+								<a href="xiff/index.jsp">XIFF</a>
 							</td>
 							<td class="ignite_project_table-description">
 								Flash XMPP client library.
@@ -139,7 +121,7 @@
 						</tr>
 						<tr class="ignite_project_table-row-even">
 							<td class="ignite_project_table-title" nowrap="nowrap">
-								<a href="sparkweb/index.jsp">SparkWeb (discontinued)</a>
+								<a href="sparkweb/index.jsp">SparkWeb</a>
 							</td>
 							<td class="ignite_project_table-description">
 								Web based real-time collaboration client.

@@ -19,7 +19,7 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Smack API</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Smack</a></li>
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
@@ -54,7 +54,7 @@
 			%>
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
 				<div id="ignite_bigpanel_content" style="width: 630px;">
-					<h1 class="smack">Smack API <span><%= Versions.getVersion("smack") %></span></h1>
+					<h1 class="smack">Smack <span><%= Versions.getVersion("smack") %></span></h1>
 					<p>
                         Smack is an Open Source XMPP (Jabber) client library for instant messaging and presence.
                         A pure Java library, it can be embedded into your applications to create anything from
@@ -70,7 +70,7 @@
 				<div id="ignite_bigpanel_download">
 					<a href="../../downloads/index.jsp#smack">Download</a>
 					<span>
-						<strong>Smack API <%= Versions.getVersion("smack") %></strong> Latest build: <%= Versions.getVersionDate("smack") %>
+						<strong>Smack <%= Versions.getVersion("smack") %></strong> Latest build: <%= Versions.getVersionDate("smack") %>
 					</span>
 				</div>
 				
@@ -83,7 +83,7 @@
 				(same details as above for 'large panel')
 			-->
 			<div id="ignite_smallpanel" <% if (panelCookieSet) { %> style="display:block" <% } %>>
-				<h1 class="smack">Smack API <span><%= Versions.getVersion("smack") %></span></h1>
+				<h1 class="smack">Smack <span><%= Versions.getVersion("smack") %></span></h1>
 				<div id="ignite_smallpanel_open">
 					<a href="#" onClick="closePanel('smack'); return false;"></a>
 				</div>

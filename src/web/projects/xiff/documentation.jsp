@@ -14,7 +14,7 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">XIFF API</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">XIFF</a></li>
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/XIFF">Issue Tracker</a></li>
@@ -32,7 +32,7 @@
 			
 				<!-- BEGIN body header -->
 				<div id="ignite_body_header">
-					<h2 class="xiff">XIFF API Documentation</h2>
+					<h2 class="xiff">XIFF Documentation</h2>
 				</div>
 				<!-- END body header -->
 				
@@ -40,7 +40,7 @@
 				<div class="ignite_int_body_padding">
 					
 					
-					<p>The current XIFF API documentation can be found below. All documentation is also distributed in each release.</p>
+					<p>The current XIFF documentation can be found below. All documentation is also distributed in each release.</p>
 					
 					<h3>Documentation:</h3>
 					<ul>

@@ -19,7 +19,7 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Tinder API</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Tinder</a></li>
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
@@ -54,7 +54,7 @@
 			%>
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
 				<div id="ignite_bigpanel_content" style="width: 630px;">
-					<h1 class="tinder">Tinder API <span><%= Versions.getVersion("tinder") %></span></h1>
+					<h1 class="tinder">Tinder <span><%= Versions.getVersion("tinder") %></span></h1>
 					<p>
                         Tinder is a Java based XMPP library, providing an implementation for XMPP stanzas and
                         components.<br/>
@@ -73,7 +73,7 @@
 				<div id="ignite_bigpanel_download">
 					<a href="../../downloads/index.jsp#tinder">Download</a>
 					<span>
-						<strong>Tinder API <%= Versions.getVersion("tinder") %></strong> Latest build: <%= Versions.getVersionDate("tinder") %>
+						<strong>Tinder <%= Versions.getVersion("tinder") %></strong> Latest build: <%= Versions.getVersionDate("tinder") %>
 					</span>
 				</div>
 				
@@ -86,7 +86,7 @@
 				(same details as above for 'large panel')
 			-->
 			<div id="ignite_smallpanel" <% if (panelCookieSet) { %> style="display:block" <% } %>>
-				<h1 class="tinder">Tinder API <span><%= Versions.getVersion("tinder") %></span></h1>
+				<h1 class="tinder">Tinder <span><%= Versions.getVersion("tinder") %></span></h1>
 				<div id="ignite_smallpanel_open">
 					<a href="#" onClick="closePanel('tinder'); return false;"></a>
 				</div>
