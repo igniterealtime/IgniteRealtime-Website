@@ -119,23 +119,23 @@ styles specific to the interior pages for the Ignite Real Time site.
 	}
 #ignite_bigpanel h1.smack, 
 #ignite_smallpanel h1.smack {
-	/*background: transparent url(../images/logo_smack.gif) no-repeat left;
-	padding-left: 35px;*/
+	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
+	padding-left: 35px;
 	}
 #ignite_bigpanel h1.tinder, 
 #ignite_smallpanel h1.tinder {
-	/*background: transparent url(../images/logo_tinder.gif) no-repeat left;
-	padding-left: 35px;*/
+	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
+	padding-left: 35px;
 	}
 #ignite_bigpanel h1.whack, 
 #ignite_smallpanel h1.whack {
-	/*background: transparent url(../images/logo_whack.gif) no-repeat left;
-	padding-left: 35px;*/
+	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
+	padding-left: 35px;
 	}
 #ignite_bigpanel h1.xiff, 
 #ignite_smallpanel h1.xiff {
-	/*background: transparent url(../images/logo_xiff.gif) no-repeat left;
-	padding-left: 40px;*/
+	background: transparent url(../images/logo_xmpp.gif) no-repeat left;
+	padding-left: 40px;
 	}
 
 #ignite_bigpanel_content h1 span,
