@@ -20,10 +20,10 @@
         profile = "He is known to remember EVERYTHING and shamelessly remind you about promises you made and already forgot ten years ago.";
     }
     else if (project.equals("sparkweb")) {
-        name = "dele";
-        avatarSrc = "https://community.igniterealtime.org/people/dele/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/dele";
-        profile = "We don't know how he does it, but works magic every time he touches the code.";
+        name = "vacant";
+        avatarSrc = "https://community.igniterealtime.org/people/guest/avatar/46.png";
+     // profileLink = "https://community.igniterealtime.org/people/dele";
+        profile = "Nobody is working on the project currently.";
     }
     else if (project.equals("smack")) {
         name = "Flow";

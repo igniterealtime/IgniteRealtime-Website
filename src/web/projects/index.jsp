@@ -51,8 +51,8 @@
 					</div>
 				</div>
 				<!-- END project - spark -->
-
-				<!-- BEGIN project - sparkweb -->
+				
+				<!-- BEGIN project - sparkweb
 				<div class="ignite_project_big">
 				<div class="ignite_project_type">Web Client</div>
 					<div class="ignite_project_content">
@@ -62,14 +62,26 @@
 						<p><a href="sparkweb/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
 					</div>
 				</div>
-				<!-- END project - sparkweb -->
+				END project - sparkweb -->
+				
+				<!-- BEGIN project - smack -->
+				<div class="ignite_project_big">
+				<div class="ignite_project_type">Client Library</div>
+					<div class="ignite_project_content">
+						<a href="smack/index.jsp" class="ignite_project_smack">
+						<h1>Smack <span><%= Versions.getVersion("smack") %></span></h1></a>
+						<p>Easy to use Java XMPP client library.</p>
+						<p><a href="smack/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+					</div>
+				</div>
+				<!-- END project - smack -->
 				
 				
-				<!-- BEGIN libraries -->
-				<div class="ignite_project_type">Libraries</div>
+				<!-- BEGIN other projects -->
+				<div class="ignite_project_type">Other Projects</div>
 				<div class="ignite_project_table">
 					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
-						<tr class="ignite_project_table-row-odd">
+					<!--	<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="smack/index.jsp">Smack API</a>
 							</td>
@@ -82,10 +94,10 @@
 							<td class="ignite_project_table-link" nowrap="nowrap">
 								<a href="smack/index.jsp">Learn More</a>
 							</td>
-						</tr>
-                        <tr class="ignite_project_table-row-even">
+						</tr> -->
+                        			<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
-								<a href="tinder/index.jsp">Tinder API</a>
+								<a href="tinder/index.jsp">Tinder</a>
 							</td>
 							<td class="ignite_project_table-description">
 							A Java based XMPP library, providing an implementation for XMPP stanzas and components.
@@ -97,9 +109,9 @@
 								<a href="tinder/index.jsp">Learn More</a>
 							</td>
 						</tr>
-						<tr class="ignite_project_table-row-odd">
+						<tr class="ignite_project_table-row-even">
 							<td class="ignite_project_table-title" nowrap="nowrap">
-								<a href="whack/index.jsp">Whack API</a>
+								<a href="whack/index.jsp">Whack</a>
 							</td>
 							<td class="ignite_project_table-description">
 								Easy to use Java XMPP component library.
@@ -111,9 +123,9 @@
 								<a href="whack/index.jsp">Learn More</a>
 							</td>
 						</tr>
-						<tr class="ignite_project_table-row-even">
+						<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
-								<a href="xiff/index.jsp">XIFF API</a>
+								<a href="xiff/index.jsp">XIFF(discontinued)</a>
 							</td>
 							<td class="ignite_project_table-description">
 								Flash XMPP client library.
@@ -125,9 +137,23 @@
 								<a href="xiff/index.jsp">Learn More</a>
 							</td>
 						</tr>
+						<tr class="ignite_project_table-row-even">
+							<td class="ignite_project_table-title" nowrap="nowrap">
+								<a href="sparkweb/index.jsp">SparkWeb (discontinued)</a>
+							</td>
+							<td class="ignite_project_table-description">
+								Web based real-time collaboration client.
+							</td>
+							<td class="ignite_project_table-version">
+								<%= Versions.getVersion("sparkweb") %>
+							</td>
+							<td class="ignite_project_table-link" nowrap="nowrap">
+								<a href="sparkweb/index.jsp">Learn More</a>
+							</td>
+						</tr>
 					</table>
 				</div>
-				<!-- END libraries -->
+				<!-- END other projects -->
 				
 				
 			</div>
