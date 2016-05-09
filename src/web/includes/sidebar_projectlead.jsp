@@ -44,10 +44,11 @@
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("xiff")) {
-        name = "driverjase";
-        avatarSrc = "https://community.igniterealtime.org/people/driverjase/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/driverjase";
-        profile = "Flash guru extraordinaire, part-time superhero.";
+        name = "vacant";
+        avatarSrc = "https://community.igniterealtime.org/people/guest/avatar/46.png";
+     // profileLink = "https://community.igniterealtime.org/people/driverjase";
+     // profile = "Flash guru extraordinaire, part-time superhero.";
+        profile = "Nobody is working on the project currently.";
     }
 %>
             <!-- BEGIN grey gradient sidebar box 'PROJECT LEAD' -->
