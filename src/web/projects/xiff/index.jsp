@@ -20,7 +20,7 @@
 
 	<div id="ignite_subnav">
 		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">XIFF API</a></li>
+			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">XIFF</a></li>
 			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/XIFF">Issue Tracker</a></li>
@@ -53,7 +53,7 @@
 			%>
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
 				<div id="ignite_bigpanel_content" style="width: 630px;">
-					<h1 class="xiff">XIFF API <span><%= Versions.getVersion("xiff") %></span></h1>
+					<h1 class="xiff">XIFF <span><%= Versions.getVersion("xiff") %></span></h1>
 					<p>
                         XIFF is an Open Source Flash library for instant messaging and presence clients
                         using the XMPP (Jabber) protocol. XIFF includes an extension architecture that makes
@@ -73,7 +73,7 @@
 				<div id="ignite_bigpanel_download">
 					<a href="../../downloads/index.jsp#xiff">Download</a>
 					<span>
-						<strong>XIFF API <%= Versions.getVersion("xiff") %></strong> Latest build: <%= Versions.getVersionDate("xiff") %>
+						<strong>XIFF <%= Versions.getVersion("xiff") %></strong> Latest build: <%= Versions.getVersionDate("xiff") %>
 					</span>
 				</div>
 				
@@ -86,7 +86,7 @@
 				(same details as above for 'large panel')
 			-->
 			<div id="ignite_smallpanel" <% if (panelCookieSet) { %> style="display:block" <% } %>>
-				<h1 class="xiff">XIFF API <span><%= Versions.getVersion("xiff") %></span></h1>
+				<h1 class="xiff">XIFF <span><%= Versions.getVersion("xiff") %></span></h1>
 				<div id="ignite_smallpanel_open">
 					<a href="#" onClick="closePanel('xiff'); return false;"></a>
 				</div>
