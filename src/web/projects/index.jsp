@@ -68,7 +68,7 @@
 				<!-- BEGIN other projects -->
 				<div class="ignite_project_type">Other Projects</div>
 				<div class="ignite_project_table">
-					<table border cellpadding="0" cellspacing="0" border="0" width="100%"
+					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
                         			<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="tinder/index.jsp">Tinder</a>
@@ -104,7 +104,7 @@
 				<!-- BEGIN discontinued projects -->
 				<div class="ignite_project_type">Discontinued Projects</div>
 				<div class="ignite_project_table">
-					<table border cellpadding="0" cellspacing="0" border="0" width="100%"
+					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
 						<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="xiff/index.jsp">XIFF</a>
