@@ -202,7 +202,7 @@
                     </cache:cache>
 
 
-                <h4>Recent Articles</h4>
+        <!--        <h4>Recent Articles</h4>
                     <div class="articles"><a href="support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
                     <div class="articles"><a href="support/articles/pubsub.jsp">All About Pubsub</a></div>
                     <div class="articles"><a href="support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
@@ -214,7 +214,7 @@
                     <div class="articles"><a href="about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
                     <div class="articles"><a href="about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
                     <div class="articles"><a href="about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
-                </div>
+                </div> -->
 
             <%@ include file="/includes/sidebar_testimonial.jspf" %>
 
