@@ -172,8 +172,9 @@
                         </div>
                     </div>
 
+		<p>You can access the source code of all the Ignite Realtime projects on the <a href="https://github.com/igniterealtime">Github - Ignite Realtime</a></p> 
 
-                <p>There are many ways to view the source code for the Ignite Realtime
+        <!--        <p>There are many ways to view the source code for the Ignite Realtime
                     Open Source projects:</p>
 
                 <div class="ignite_source_table">
@@ -233,7 +234,7 @@
             <br>
             <br>
 
-        </div>
+        </div> -->
         <!-- END body content area -->
 
     </div>
