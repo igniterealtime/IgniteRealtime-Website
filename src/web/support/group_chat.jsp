@@ -10,7 +10,7 @@
 
 <html>
 <head>
-	<title>Support - Group Chat</title>
+	<title>Group Chat</title>
 	<meta name="body-id" content="support" />
 
 	<style type="text/css" media="screen">
@@ -32,7 +32,7 @@
 </head>
 <body>
 
-	<div id="ignite_subnav">
+<!--	<div id="ignite_subnav">
 		<ul>
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Support</a></li>
 			<li id="subnav02"><a href="articles.jsp">Articles</a></li>
@@ -40,7 +40,7 @@
 			<li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
 			<li id="subnav05"><a href="service_providers.jsp">Professional Partners</a></li>
 		</ul>
-	</div>
+	</div> -->
 
 	<!-- BEGIN body area -->
 	<div id="ignite_body">
