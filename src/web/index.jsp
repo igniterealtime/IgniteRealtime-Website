@@ -52,19 +52,19 @@
 				<h1>Open Realtime. </h1>
 				<p>Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.</p>
 				
-					<div style="width: 150px;">
+					<div style="width: 200px;">
 						<a href="about/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
 					</div>
 
                 </div>
 				
-				<div id="ignite_bigpanel_close">
+			<!--	<div id="ignite_bigpanel_close">
 					<a href="#" onClick="closePanel('home'); return false;"></a>
 				</div>
 				
 				<div id="ignite_bigpanel_screenshot">
 					<img src="images/ignite_home-circlegraph.gif" width="177" height="208" alt="" />
-				</div>
+				</div>-->
 				
 			</div>
 			<!-- END large panel -->
