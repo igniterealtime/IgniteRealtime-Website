@@ -37,7 +37,7 @@
                         and most active Open Source communities anywhere.
                     </p>
 					
-					<img src="../images/ignite_about-circlegraph.gif" alt="" width="179" height="210" border="0" align="right" style="margin-left: 10px;">
+				<!--	<img src="../images/ignite_about-circlegraph.gif" alt="" width="179" height="210" border="0" align="right" style="margin-left: 10px;"> -->
 
                     <h2 class="larger">Open Source Philosophy</h2>
 
@@ -79,10 +79,10 @@
                         Today, XMPP is used by leading companies, millions of users worldwide and
                         is the best choice for open real-time collaboration.
                     </p>
-                    <div class="about_xmpp_supporters">
+        <!--            <div class="about_xmpp_supporters">
 						<h3>Lead XMPP Supporters</h3>
 						<img src="../images/ignite_about-xmpp-logos.gif" width="309" height="174" border="0">
-					</div>
+					</div>-->
 
                     <p>
                         Open standards are critical in order to achieve a completely federated
@@ -126,6 +126,7 @@
 
                         <p><strong>Websites:</strong></p> -->
                         <p><a href="http://www.xmpp.org">XMPP.org Website</a></p>
+                        <p><a href="https://tools.ietf.org/html/rfc6120"IETF RFC 6120 - XMPP Core</a></p>
                         <p><a href="http://planet.jabber.org">Planet Jabber Blogs</a></p>
 
                     </div>
@@ -134,6 +135,7 @@
 			</div>
 			<!-- END white sidebar box 'resources' -->
 			
+			<%@ include file="/includes/sidebar_testimonial.jspf" %>
 
 		</div>
 		<!-- END right column (sidebar) -->

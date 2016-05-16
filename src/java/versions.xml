@@ -2,7 +2,7 @@
 <versions>
     <!--<product name="wildfire" version="3.3.0" date="April 12, 2007" />-->
     <product name="openfire" version="4.0.2" date="March 21, 2016" />
-    <product name="openfire-beta" version="4.0.0.beta" date="December 13, 2015" />
+    <!--<product name="openfire-beta" version="4.0.0.beta" date="December 13, 2015" /> -->
     <product name="spark" version="2.7.7" date="Apr 24, 2016" />
     <!-- <product name="spark-beta" version="2.6.0.rc1" date="November 22, 2010" /> -->
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
@@ -11,7 +11,7 @@
     <product name="tinder" version="1.2.2" date="August 20, 2010" />
     <product name="whack" version="2.0.0" date="June 22, 2015" />
     <product name="xiff" version="3.1.0" date="August 22, 2012" />
-    <product name="xiff-beta" version="3.0.0-beta1" date="April 2, 2008" />
+    <!--<product name="xiff-beta" version="3.0.0-beta1" date="April 2, 2008" />-->
     <product name="asterisk-im" version="1.1.1" date="July 3, 2006" />
     <product name="connection_manager" version="3.6.3" date="January 8, 2009" />
     <!--<product name="connection_manager-beta" version="3.5.0.rc2" date="March 11, 2008" />-->
