@@ -152,7 +152,7 @@
 			
             <!-- RANDOM SCREENSHOT HERE -->
 			
-			<%@ include file="/includes/sidebar_testimonial.jspf" %>
+	<%--		<%@ include file="/includes/sidebar_testimonial.jspf" %> --%>
 			
 			<%@ include file="/includes/sidebar_chat.jspf" %>
 			
