@@ -42,7 +42,7 @@
             </span>
 
             <h2>XIFF <%= version %></h2>
-            <p>Flash XMPP client library.</p>
+            <p>Flash XMPP client library (discontinued).</p>
 
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="xiffCpBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('xiffCp'); return false;"></a></span>

@@ -115,16 +115,16 @@
 				<div class="ignite_sidebar_body">
 					<div class="ignite_sidebar_body_resources">
 
-						<p><strong>Whitepapers:</strong></p>
+					<!--	<p><strong>Whitepapers:</strong></p>
 
 						<p><a href="jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></p>
 						<p><a href="jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></p>
 						<p><a href="jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></p>
                         <p><a href="OpenfireScalability.pdf">Openfire Scalability Test Results</a></p>
 
-                        <br/>
+                        <br/> 
 
-                        <p><strong>Websites:</strong></p>
+                        <p><strong>Websites:</strong></p> -->
                         <p><a href="http://www.xmpp.org">XMPP.org Website</a></p>
                         <p><a href="http://planet.jabber.org">Planet Jabber Blogs</a></p>
 

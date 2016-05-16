@@ -35,7 +35,7 @@
                 <!-- END body header -->
 
 
-                <div class="ignite_int_body_padding">
+        <!--        <div class="ignite_int_body_padding">
                     <p>
                         Below are links to the current releases for all projects. If you're looking for
                         source code or SVN access, please read the <a href="source.jsp">source code</a>
@@ -46,7 +46,7 @@
                         <a href="nightly_spark.jsp">Spark</a> and 
                         <a href="nightly_xiff.jsp">XIFF</a> projects.
                     </p>
-                </div>
+                </div> -->
 
 
                 <!-- BEGIN openfire downloads -->
