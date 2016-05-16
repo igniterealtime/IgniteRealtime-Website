@@ -56,7 +56,7 @@
 %>
 
 <div class="sidebar sidebar_light sidebar_blue">
-    <h1 class="sidebar_header">Chat with Developers</h1>
+    <h1 class="sidebar_header">Meet the Community</h1>
     <div class="ignite_sidebar_chat-upcoming">
         Have ideas or suggestions? Join our community group chat every Wednesday at <%= chatHour %>:00am PST (<%= chatHour + zoneOffset %>:00 UTC/GMT).<br/><br/>
         <% if (displayString.equals("In Progress Now")) { %>
