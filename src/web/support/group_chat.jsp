@@ -87,7 +87,9 @@ service is available at all times.</p>
 		<!-- BEGIN right column (sidebar) -->
 		<div id="ignite_body_rightcol">
 
-            <%@ include file="/includes/sidebar_chat.jspf" %>
+        <%--    <%@ include file="/includes/sidebar_chat.jspf" %> --%>
+        
+        	<%@ include file="/includes/sidebar_testimonial.jspf" %>
 
             <%@ include file="/includes/sidebar_enterprise.jspf" %>
 			
