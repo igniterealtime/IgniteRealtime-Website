@@ -93,7 +93,7 @@
 			
 			<%@ include file="/includes/sidebar_install4j.jspf" %>
 			
-	<%--		<%@ include file="/includes/sidebar_testimonial.jspf" %> --%>
+			<%@ include file="/includes/sidebar_testimonial.jspf" %>
 			
 		</div>
 		<!-- END right column (sidebar) -->
