@@ -392,7 +392,7 @@
             <%--<!-- END 'in the community' column -->--%>
 			<%--<!-- END grey gradient sidebar box 'PROJECTS' -->--%>
 
-			<%--<%@ include file="/includes/sidebar_testimonial.jspf" %>--%>
+			<%@ include file="/includes/sidebar_testimonial.jspf" %>
 			
 		</div>
 		<!-- END right column (sidebar) -->
