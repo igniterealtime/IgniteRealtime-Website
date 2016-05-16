@@ -167,7 +167,7 @@
 
                 <h4>Recent Discussions</h4>
                 <%
-                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
+                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=9";
                 %>
                     <cache:cache time="60" key="<%= recentMessagesUrl %>">
                 <% try { %>
@@ -216,7 +216,7 @@
                     <div class="articles"><a href="about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>
                 </div> -->
 
-            <%@ include file="/includes/sidebar_testimonial.jspf" %>
+        <%--    <%@ include file="/includes/sidebar_testimonial.jspf" %> --%>
 
             <!-- BEGIN grey gradient sidebar box 'PROJECTS' -->
 			<%--<div class="ignite_sidebar_gradbox">--%>
