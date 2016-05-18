@@ -35,7 +35,7 @@ public class DownloadStats extends HttpServlet {
             "product, version, fileType, fileName, time, type) values (?,?,?,?,?,?,?,?,?,?)";
     // SQL for inserting the update info check
     private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, " +
-            "state, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,?,?,?,?,?,?)";
+            "state, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,NOW(),?,?,?,?,?)";
 
     // SQL for counting the total number of downloads
     private static String COUNT_TOTAL_DOWNLOADS = "SELECT count(*) FROM downloadInfo";
@@ -393,8 +393,6 @@ public class DownloadStats extends HttpServlet {
             con = connectionManager.getConnection();
             pstmt = con.prepareStatement(ADD_UPDATE_INFO);
 
-            final java.sql.Date timeOfDownload = new java.sql.Date( System.currentTimeMillis() );
-
             final LookupService lookupService = DownloadStats.getLookupService();
 
             String ctry = null;
@@ -418,33 +416,32 @@ public class DownloadStats extends HttpServlet {
             pstmt.setString(1, ipAddress);
             pstmt.setString(2, os);
             pstmt.setInt(3, info.getType());
-            pstmt.setDate(4, timeOfDownload);
             if ( ctry == null ) {
-                pstmt.setNull( 5, Types.VARCHAR );
+                pstmt.setNull( 4, Types.VARCHAR );
             } else {
-                pstmt.setString( 5, ctry );
+                pstmt.setString( 4, ctry );
             }
             if ( state == null ) {
-                pstmt.setNull( 6, Types.VARCHAR );
+                pstmt.setNull( 5, Types.VARCHAR );
             } else {
-                pstmt.setString( 6, state);
+                pstmt.setString( 5, state);
             }
             if ( city == null ) {
-                pstmt.setNull( 7, Types.VARCHAR );
+                pstmt.setNull( 6, Types.VARCHAR );
             } else {
-                pstmt.setString( 7, city );
+                pstmt.setString( 6, city );
             }
             if (currentVersion == null) {
+                pstmt.setNull(7, Types.VARCHAR);
+            }
+            else {
+                pstmt.setString(7, currentVersion);
+            }
+            if (latestVersion == null) {
                 pstmt.setNull(8, Types.VARCHAR);
             }
             else {
-                pstmt.setString(8, currentVersion);
-            }
-            if (latestVersion == null) {
-                pstmt.setNull(9, Types.VARCHAR);
-            }
-            else {
-                pstmt.setString(9, latestVersion);
+                pstmt.setString(8, latestVersion);
             }
             pstmt.executeUpdate();
         }
