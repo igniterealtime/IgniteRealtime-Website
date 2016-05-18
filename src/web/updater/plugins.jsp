@@ -77,7 +77,11 @@
     buf.append("</plugins>");
 
     // Log to the database after successful output
-    String ipAddress = request.getRemoteAddr();
+    String ipAddress = request.getHeader( "X-FORWARDED-FOR" );
+    if (ipAddress == null || ipAddress.length() == 0 )
+    {
+        ipAddress = request.getRemoteAddr();
+    }
     String os = request.getParameter("os");
     // Yep, its only Spark :)
     String product = DownloadServlet.DownloadInfo.spark.getName();
