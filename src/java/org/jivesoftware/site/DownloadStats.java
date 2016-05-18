@@ -35,7 +35,7 @@ public class DownloadStats extends HttpServlet {
             "product, version, fileType, fileName, time, type) values (?,?,?,?,?,?,?,?,?,?)";
     // SQL for inserting the update info check
     private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, " +
-            "state, city, currentVersion, latestVersion) values (?,?,?,?,?,?,?,?,?)";
+            "state, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,?,?,?,?,?,?)";
 
     // SQL for counting the total number of downloads
     private static String COUNT_TOTAL_DOWNLOADS = "SELECT count(*) FROM downloadInfo";
@@ -393,13 +393,13 @@ public class DownloadStats extends HttpServlet {
             con = connectionManager.getConnection();
             pstmt = con.prepareStatement(ADD_UPDATE_INFO);
 
-            final String timeOfDownload = StringUtils.dateToMillis(new Date());
+            final java.sql.Date timeOfDownload = new java.sql.Date( System.currentTimeMillis() );
 
             final LookupService lookupService = DownloadStats.getLookupService();
 
-            String ctry = "n/a";
-            String state = "n/a";
-            String city = "n/a";
+            String ctry = null;
+            String state = null;
+            String city = null;
 
 
             try {
@@ -418,10 +418,22 @@ public class DownloadStats extends HttpServlet {
             pstmt.setString(1, ipAddress);
             pstmt.setString(2, os);
             pstmt.setInt(3, info.getType());
-            pstmt.setString(4, timeOfDownload);
-            pstmt.setString(5, ctry);
-            pstmt.setString(6, state);
-            pstmt.setString(7, city);
+            pstmt.setDate(4, timeOfDownload);
+            if ( ctry == null ) {
+                pstmt.setNull( 5, Types.VARCHAR );
+            } else {
+                pstmt.setString( 5, ctry );
+            }
+            if ( state == null ) {
+                pstmt.setNull( 6, Types.VARCHAR );
+            } else {
+                pstmt.setString( 6, state);
+            }
+            if ( city == null ) {
+                pstmt.setNull( 7, Types.VARCHAR );
+            } else {
+                pstmt.setString( 7, city );
+            }
             if (currentVersion == null) {
                 pstmt.setNull(8, Types.VARCHAR);
             }
