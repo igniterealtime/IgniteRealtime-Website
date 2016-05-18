@@ -12,7 +12,11 @@
     // Set the content type of the response
     response.setContentType("text/xml");
     String queryType = request.getParameter("type");
-    String ipAddress = request.getRemoteAddr();
+    String ipAddress = request.getHeader( "X-FORWARDED-FOR" );
+    if (ipAddress == null || ipAddress.length() == 0 )
+    {
+        ipAddress = request.getRemoteAddr();
+    }
     String os = request.getParameter("os");
     DownloadServlet.DownloadInfo info = DownloadServlet.DownloadInfo.openfire;
     if ("update".equals(queryType)) {

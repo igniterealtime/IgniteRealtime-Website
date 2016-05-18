@@ -115,7 +115,12 @@ public class SparkUpdateServlet extends HttpServlet {
         // Add check to database.
         String latestVersion = Versions.getVersion("spark");
         String currentVersion = null;
-        DownloadStats.addCheckUpdate(request.getRemoteAddr(), os, currentVersion, latestVersion, DownloadInfo.spark);
+        String ipAddress = request.getHeader( "X-FORWARDED-FOR" );
+        if (ipAddress == null || ipAddress.length() == 0 )
+        {
+            ipAddress = request.getRemoteAddr();
+        }
+        DownloadStats.addCheckUpdate(ipAddress, os, currentVersion, latestVersion, DownloadInfo.spark);
 
 
         if ("windows".equals(os)) {

@@ -105,7 +105,11 @@ public class PluginDownloadServlet extends HttpServlet {
             boolean downloadComplete = writeBytesToStream(downloadFile, response, pluginType != null);
             if (downloadComplete && (null != pluginType)) {
                 // Log to database if VALID plugin
-                String ipAddress = request.getRemoteAddr();
+                String ipAddress = request.getHeader( "X-FORWARDED-FOR" );
+                if (ipAddress == null || ipAddress.length() == 0 )
+                {
+                    ipAddress = request.getRemoteAddr();
+                };
 
 
                 String product = pluginType.getName();
