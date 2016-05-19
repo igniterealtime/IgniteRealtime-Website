@@ -1,24 +1,20 @@
 package org.jivesoftware.site;
 
+import com.maxmind.geoip.Location;
+import com.maxmind.geoip.LookupService;
 import org.jivesoftware.database.DbConnectionManager;
-import org.jivesoftware.util.StringUtils;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
-import java.util.Map;
 import java.util.Hashtable;
-import java.util.Date;
-import java.io.File;
-
-import com.maxmind.geoip.LookupService;
-import com.maxmind.geoip.Region;
-import com.maxmind.geoip.Country;
-import com.maxmind.geoip.Location;
-
-import javax.servlet.*;
-import javax.servlet.http.HttpServlet;
+import java.util.Map;
 
 /**
  * A utility class which provides download statistics for the site. It is implemented as a Servlet
@@ -28,24 +24,26 @@ public class DownloadStats extends HttpServlet {
     private static ServletConfig config;
 
     // SQL for inserting the plugin listing info
-    private static final String ADD_PLUGIN_LISTING_INFO = "insert into pluginListing (ipAddress, os, country," +
-            " state, city, product, version, time, type) values (?,?,?,?,?,?,?,?,?)";
+    private static final String ADD_PLUGIN_LISTING_INFO = "insert into pluginListing (ipAddress, os, country, region, city, product, version, time, type) values (INET_ATON(?),?,?,?,?,?,?,NOW(),?)";
+
     // SQL for inserting the download info
-    private static final String ADD_DOWNLOAD_INFO = "insert into downloadInfo (ipAddress, country, region, city, " +
-            "product, version, fileType, fileName, time, type) values (?,?,?,?,?,?,?,?,?,?)";
+    private static final String ADD_DOWNLOAD_INFO = "insert into downloadInfo (ipAddress, country, region, city, product, version, fileType, fileName, time, type) values (INET_ATON(?),?,?,?,?,?,?,?,NOW(),?)";
+
     // SQL for inserting the update info check
-    private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, " +
-            "state, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,NOW(),?,?,?,?,?)";
+    private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, region, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,NOW(),?,?,?,?,?)";
 
     // SQL for counting the total number of downloads
     private static String COUNT_TOTAL_DOWNLOADS = "SELECT count(*) FROM downloadInfo";
+
     // SQL for counting the total number of downloads for a particular download type
     private static String COUNT_TOTAL_DOWNLOADS_FOR_TYPE = "SELECT count(*) FROM downloadInfo WHERE type = ?";
 
     // Period between cache updates
     private static long CACHE_PERIOD = 30 * 60 * 1000; // 30 minutes
+
     // epoch time of the last update
     private static long lastUpdate = 0;
+
     // Using a Hashtable for synchronization
     private static Map<String, Long> counts = new Hashtable<String, Long>();
     private static final String TOTAL = "total";
@@ -266,53 +264,54 @@ public class DownloadStats extends HttpServlet {
      * @param context   the servlet context
      * @see org.jivesoftware.site.DownloadServlet.DownloadInfo
      */
-    public static void addListingToDatabase(String ipAddress, String product, String os, int type, ServletContext context) {
-
+    public static void addListingToDatabase( String ipAddress, String product, String os, int type, ServletContext context )
+    {
         final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
         Connection con = null;
         PreparedStatement pstmt = null;
-        try {
+        try
+        {
             con = connectionManager.getConnection();
-            pstmt = con.prepareStatement(ADD_PLUGIN_LISTING_INFO);
+            pstmt = con.prepareStatement( ADD_PLUGIN_LISTING_INFO );
 
-            final String timeOfDownload = StringUtils.dateToMillis(new Date());
-            final LookupService lookupService = getLookupService();
+            String country= null;
+            String region = null;
+            String city = null;
 
-            String ctry = "n/a";
-            String state = "n/a";
-            String city = "n/a";
-
-
-            try {
-                Location location = lookupService.getLocation(ipAddress);
-                if (location != null) {
-                    ctry = getCountryFromLocation(ctry, location);
-                    state = getStateFromLocation(state, location);
-                    city = getCityFromLocation(city, location);
+            try
+            {
+                Location location = getLookupService().getLocation( ipAddress );
+                if ( location != null )
+                {
+                    country = location.getCountry() == null ? null : location.getCountry().getName();
+                    region  = location.getRegion()  == null ? null : location.getRegion().getRegionName();
+                    city    = location.getCity();
                 }
             }
-            catch (Exception e) {
-                context.log("Unable to retrieve info using");
+            catch ( Exception e )
+            {
+                System.err.print( "Unable to retrieve info" );
                 e.printStackTrace();
             }
 
-            pstmt.setString(1, ipAddress);
-            pstmt.setString(2, os);
-            pstmt.setString(3, ctry);
-            pstmt.setString(4, state);
-            pstmt.setString(5, city);
-            pstmt.setString(6, product);
-            pstmt.setNull(7, Types.VARCHAR);
-            pstmt.setString(8, timeOfDownload);
-            pstmt.setInt(9, type);
+            pstmt.setString( 1, ipAddress );
+            pstmt.setString( 2, os );
+            pstmt.setString( 3, country );
+            pstmt.setString( 4, region );
+            pstmt.setString( 5, city );
+            pstmt.setString( 6, product );
+            pstmt.setNull( 7, Types.VARCHAR );
+            pstmt.setInt( 8, type );
             pstmt.executeUpdate();
         }
-        catch (Exception e) {
-            System.err.print("Unable to process spark plugin listing information for " + ipAddress);
+        catch ( Exception e )
+        {
+            System.err.print( "Unable to process spark plugin listing information for " + ipAddress );
             e.printStackTrace();
         }
-        finally {
-            DbConnectionManager.close(pstmt, con);
+        finally
+        {
+            DbConnectionManager.close( pstmt, con );
         }
     }
 
@@ -328,155 +327,109 @@ public class DownloadStats extends HttpServlet {
      * @param downloadInfo the type of file.
      * @see org.jivesoftware.site.DownloadServlet.DownloadInfo
      */
-    public static void addUpdateToDatabase(String ipAddress, String product, String version, String fileType,
-                                           String fileName, DownloadServlet.DownloadInfo downloadInfo)
+    public static void addUpdateToDatabase( String ipAddress, String product, String version, String fileType,
+                                            String fileName, DownloadServlet.DownloadInfo downloadInfo )
     {
         final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
         Connection con = null;
         PreparedStatement pstmt = null;
-        try {
+        try
+        {
             con = connectionManager.getConnection();
-            pstmt = con.prepareStatement(ADD_DOWNLOAD_INFO);
+            pstmt = con.prepareStatement( ADD_DOWNLOAD_INFO );
 
-            final String timeOfDownload = StringUtils.dateToMillis(new Date());
-
-            final LookupService lookupService = DownloadStats.getLookupService();
-
-            String ctry = "n/a";
-            String state = "n/a";
-            String city = "n/a";
-
-
-            try {
-                Location location = lookupService.getLocation(ipAddress);
-                if (location != null) {
-
-                    ctry = getCountryFromLocation(ctry, location);
-                    state = getStateFromLocation(state, location);
-                    city = getCityFromLocation(city, location);
-                }
-            }
-            catch (Exception e) {
-                System.err.print("Unable to retrieve info");
-                e.printStackTrace();
-            }
-
-            pstmt.setString(1, ipAddress);
-            pstmt.setString(2, ctry);
-            pstmt.setString(3, state);
-            pstmt.setString(4, city);
-            pstmt.setString(5, product);
-            pstmt.setString(6, version);
-            pstmt.setString(7, fileType);
-            pstmt.setString(8, fileName);
-            pstmt.setString(9, timeOfDownload);
-            pstmt.setInt(10, downloadInfo.getType());
-            pstmt.executeUpdate();
-        }
-        catch (Exception e) {
-            System.err.print("Unable to process download information for " + ipAddress);
-            e.printStackTrace();
-        }
-        finally {
-            DbConnectionManager.close(pstmt, con);
-        }
-
-    }
-
-    public static void addCheckUpdate(String ipAddress, String os, String currentVersion, String latestVersion,
-                                      DownloadServlet.DownloadInfo info)
-    {
-        final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
-        Connection con = null;
-        PreparedStatement pstmt = null;
-        try {
-            con = connectionManager.getConnection();
-            pstmt = con.prepareStatement(ADD_UPDATE_INFO);
-
-            final LookupService lookupService = DownloadStats.getLookupService();
-
-            String ctry = null;
-            String state = null;
+            String country = null;
+            String region = null;
             String city = null;
 
-
-            try {
-                Location location = lookupService.getLocation(ipAddress);
-                if (location != null) {
-                    ctry = getCountryFromLocation(ctry, location);
-                    state = getStateFromLocation(state, location);
-                    city = getCityFromLocation(city, location);
+            try
+            {
+                Location location = getLookupService().getLocation( ipAddress );
+                if ( location != null )
+                {
+                    country = location.getCountry() == null ? null : location.getCountry().getName();
+                    region  = location.getRegion()  == null ? null : location.getRegion().getRegionName();
+                    city    = location.getCity();
                 }
             }
-            catch (Exception e) {
-                System.err.print("Unable to retrieve info");
+            catch ( Exception e )
+            {
+                System.err.print( "Unable to retrieve info" );
                 e.printStackTrace();
             }
 
-            pstmt.setString(1, ipAddress);
-            pstmt.setString(2, os);
-            pstmt.setInt(3, info.getType());
-            if ( ctry == null ) {
-                pstmt.setNull( 4, Types.VARCHAR );
-            } else {
-                pstmt.setString( 4, ctry );
-            }
-            if ( state == null ) {
-                pstmt.setNull( 5, Types.VARCHAR );
-            } else {
-                pstmt.setString( 5, state);
-            }
-            if ( city == null ) {
-                pstmt.setNull( 6, Types.VARCHAR );
-            } else {
-                pstmt.setString( 6, city );
-            }
-            if (currentVersion == null) {
-                pstmt.setNull(7, Types.VARCHAR);
-            }
-            else {
-                pstmt.setString(7, currentVersion);
-            }
-            if (latestVersion == null) {
-                pstmt.setNull(8, Types.VARCHAR);
-            }
-            else {
-                pstmt.setString(8, latestVersion);
-            }
+            pstmt.setString( 1, ipAddress );
+            pstmt.setString( 2, country );
+            pstmt.setString( 3, region );
+            pstmt.setString( 4, city );
+            pstmt.setString( 5, product );
+            pstmt.setString( 6, version );
+            pstmt.setString( 7, fileType );
+            pstmt.setString( 8, fileName );
+            pstmt.setInt( 9, downloadInfo.getType() );
             pstmt.executeUpdate();
         }
-        catch (Exception e) {
-            System.err.print("Unable to process update checking information information for " + ipAddress);
+        catch ( Exception e )
+        {
+            System.err.print( "Unable to process download information for " + ipAddress );
             e.printStackTrace();
         }
-        finally {
-            DbConnectionManager.close(pstmt, con);
+        finally
+        {
+            DbConnectionManager.close( pstmt, con );
         }
 
     }
 
-    private static String getCityFromLocation(String city, Location location) {
-        if (location.getCity() != null) {
-            city = location.getCity();
+    public static void addCheckUpdate( String ipAddress, String os, String currentVersion, String latestVersion,
+                                       DownloadServlet.DownloadInfo info )
+    {
+        final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
+        Connection con = null;
+        PreparedStatement pstmt = null;
+        try
+        {
+            con = connectionManager.getConnection();
+            pstmt = con.prepareStatement( ADD_UPDATE_INFO );
+
+            String country = null;
+            String region = null;
+            String city = null;
+
+            try
+            {
+                Location location = getLookupService().getLocation( ipAddress );
+                if ( location != null )
+                {
+                    country = location.getCountry() == null ? null : location.getCountry().getName();
+                    region  = location.getRegion()  == null ? null : location.getRegion().getRegionName();
+                    city    = location.getCity();
+                }
+            }
+            catch ( Exception e )
+            {
+                System.err.print( "Unable to retrieve info" );
+                e.printStackTrace();
+            }
+
+            pstmt.setString( 1, ipAddress );
+            pstmt.setString( 2, os );
+            pstmt.setInt( 3, info.getType() );
+            pstmt.setString( 4, country );
+            pstmt.setString( 5, region );
+            pstmt.setString( 6, city );
+            pstmt.setString( 7, currentVersion );
+            pstmt.setString( 8, latestVersion );
+            pstmt.executeUpdate();
         }
-        return city;
-    }
-
-    private static String getStateFromLocation(String state, Location location) {
-        Region region = location.getRegion();
-        if (region != null && region.getRegionName() != null) {
-            state = region.getRegionName();
+        catch ( Exception e )
+        {
+            System.err.print( "Unable to process update checking information information for " + ipAddress );
+            e.printStackTrace();
         }
-        return state;
-    }
-
-
-    private static String getCountryFromLocation(String ctry, Location location) {
-        Country country = location.getCountry();
-        if (country != null && country.getName() != null) {
-            ctry = country.getName();
+        finally
+        {
+            DbConnectionManager.close( pstmt, con );
         }
-        return ctry;
     }
-
 }
