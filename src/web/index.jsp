@@ -167,7 +167,7 @@
 
                 <h4>Recent Discussions</h4>
                 <%
-                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
+                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=9";
                 %>
                     <cache:cache time="60" key="<%= recentMessagesUrl %>">
                 <% try { %>
