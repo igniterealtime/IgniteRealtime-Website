@@ -58,23 +58,23 @@
 <div class="sidebar sidebar_light sidebar_blue">
     <h1 class="sidebar_header">Meet the Community</h1>
     <div class="ignite_sidebar_chat-upcoming">
-        Have ideas or suggestions? Join our community group chat every Wednesday at <%= chatHour %>:00am PST (<%= chatHour + zoneOffset %>:00 UTC/GMT).<br/><br/>
-        <% if (displayString.equals("In Progress Now")) { %>
+        Have ideas or questions? Join our community group chat and talk with developers and users. Keep in mind that complex questions are better to discuss in the forums<br/><br/>
+    <%--<% if (displayString.equals("In Progress Now")) { %>
         The live chat session is:<br>
         <% } else { %>
         The next live chat session will begin in:<br/>
         <% } %>
-        <h2><%= displayString %></h2>
+        <h2><%= displayString %></h2>--%>
     </div>
-    <% if (chatInProgress) { %>
+<%--<% if (chatInProgress) { %>
     <div class="ignite_sidebar_chat-now">
         <a href="<%=request.getContextPath()%>/support/group_chat.jsp"></a>
     </div>
-    <% } else { %>
+    <% } else { %>--%>
     <div>
-        <a href="<%=request.getContextPath()%>/support/group_chat.jsp" class="ignite_link_arrow">About the community group chat</a>
+        <a href="<%=request.getContextPath()%>/support/group_chat.jsp" class="ignite_link_arrow">Visit the group chat page</a>
     </div>
-    <% } %>
+<%--<% } %>--%>
 </div>
 			<%--<!-- BEGIN blue sidebar box 'IGNITE DEVELOPER CHAT' -->--%>
             <%--<div class="ignite_sidebar_bluebox">--%>
