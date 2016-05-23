@@ -134,6 +134,7 @@
 			</div>
 			<!-- END white sidebar box 'resources' -->
 			
+			<%@ include file="/includes/sidebar_testimonial.jspf" %>
 
 		</div>
 		<!-- END right column (sidebar) -->
