@@ -207,6 +207,10 @@
     <%@ include file="/includes/sidebar_enterprise.jspf" %>
 			
 			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
+			
+			<%@ include file="/includes/sidebar_testimonial.jspf" %>
+			
+			<%@ include file="/includes/sidebar_chat.jspf" %>
 
 			
 		</div>
