@@ -1,8 +1,6 @@
 package org.jivesoftware.webservices;
 
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
-import net.sf.json.JSONSerializer;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
@@ -10,7 +8,9 @@ import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang.StringUtils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class RestClient {
 
@@ -31,7 +31,20 @@ public class RestClient {
 
             // Deal with the response.
             // Use caution: ensure correct character encoding and is not binary data
-            String response = new String(method.getResponseBody());
+            String response = "";
+            final InputStream is = method.getResponseBodyAsStream();
+            if ( is != null )
+            {
+                final ByteArrayOutputStream os = new ByteArrayOutputStream();
+                final byte[] buffer = new byte[ 4096 ];
+
+                int len;
+                while ( ( len = is.read( buffer ) ) > 0 )
+                {
+                    os.write( buffer, 0, len );
+                }
+                response = new String( os.toByteArray() );
+            }
             response = StringUtils.removeStart(response, "throw 'allowIllegalResourceCall is false.';");
             response = StringUtils.trim(response);
 
