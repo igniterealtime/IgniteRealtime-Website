@@ -307,7 +307,7 @@ public class WildfireVersionChecker {
                 extensionIndex = jarFile.getName().lastIndexOf(".war");
             }
             String pluginName = jarFile.getName().substring(0, extensionIndex);
-            URLClassLoader classLoader = new URLClassLoader(new URL[] { jarFile.toURL() });
+            URLClassLoader classLoader = new URLClassLoader(new URL[] { jarFile.toURI().toURL() });
             return ResourceBundle.getBundle("i18n/" + pluginName + "_i18n", locale, classLoader);
         }
         catch (Exception e) {
