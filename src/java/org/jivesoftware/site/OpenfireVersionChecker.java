@@ -77,6 +77,10 @@ public class OpenfireVersionChecker {
      * @return an answer in XML format containing the items for which a new version is available.
      */
     public static String checkVersions(String request) {
+        if (request == null || request.isEmpty() ) {
+            Log.debug( "Unable to check for updates when no version was supplied. Returning dummy result that says that everything is up to date." );
+            return "<version/>";
+        }
         try {
             Element xmlRequest = new SAXReader().read(new StringReader(request)).getRootElement();
             Element xmlReply = docFactory.createDocument().addElement("version");
@@ -99,6 +103,10 @@ public class OpenfireVersionChecker {
      * @return  the list of available (i.e. not installed) plugins.
      */
     public static String getAvailablePlugins(String pluginsPath, String request) {
+        if (request == null || request.isEmpty() ) {
+            Log.debug( "Unable to check for updates when no version was supplied. Returning dummy result that says that no more plugins are available." );
+            return "<available/>";
+        }
         try {
             Element xmlRequest = null;
             if (request != null) {
