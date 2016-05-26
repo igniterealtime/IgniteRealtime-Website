@@ -55,7 +55,7 @@ public class DownloadStats extends HttpServlet {
 
     // A reference to the builds directory
     private static File buildsDirectory;
-    
+
     // A reference to download hostname
     private static String downloadHost;
 
@@ -67,13 +67,6 @@ public class DownloadStats extends HttpServlet {
         config = servletConfig;
         String buildsPath = config.getServletContext().getInitParameter("builds-path");
         buildsDirectory = new File(buildsPath);
-        File geoDatabase = new File(buildsDirectory, "geoip.dat");
-        try {
-            lookupService = new LookupService(geoDatabase);
-        }
-        catch (Exception e) {
-            Log.error( "An exception occurred while initializing the lookup service.", e);
-        }
         downloadHost = config.getServletContext().getInitParameter("download-host");
     }
 
@@ -116,9 +109,8 @@ public class DownloadStats extends HttpServlet {
      */
     public static LookupService getLookupService() {
         if (lookupService == null || lookupService.isClosed()) {
-            File geoDatabase = new File(buildsDirectory, "geoip.dat");
             try {
-                lookupService = new LookupService(geoDatabase);
+                lookupService = new LookupService( config.getServletContext().getInitParameter("geoip-database-path") );
             }
             catch (Exception e) {
                 Log.error( "An exception occurred while obtaining the lookup service.", e);
