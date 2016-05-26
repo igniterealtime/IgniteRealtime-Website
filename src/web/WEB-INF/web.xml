@@ -15,6 +15,14 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <mime-type>text/javascript;charset=UTF-8</mime-type>
     </mime-mapping>
 
+    <!-- WEB-50: Database connection parameters are retrieved from the Tomcat context configuration (via JNDI). -->
+    <resource-ref>
+        <description>DB Connection</description>
+        <res-ref-name>jdbc/stats</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+    </resource-ref>
+
     <!-- Path to the base builds dir. Change this for local testing. Note, do not include a trailing "/". -->
     <context-param>
         <param-name>builds-path</param-name>
@@ -37,19 +45,6 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <param-value>http://download.igniterealtime.org</param-value>
     </context-param>
 
-    <!-- Database connection parameters -->
-    <context-param>
-        <param-name>dbURL</param-name>
-        <param-value>jdbc:mysql://localhost:3306/website_stats?characterEncoding=UTF-8</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbUsername</param-name>
-        <param-value>website_stats</param-value>
-    </context-param>
-    <context-param>
-        <param-name>dbPassword</param-name>
-        <param-value>changeme</param-value>
-    </context-param>
     <context-param>
         <param-name>csc_baseurl</param-name>
         <param-value>https://community.igniterealtime.org</param-value>

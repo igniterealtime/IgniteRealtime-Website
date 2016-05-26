@@ -34,16 +34,6 @@ public class SparkPluginServlet extends HttpServlet {
         ServletContext application = config.getServletContext();
         String pluginsPath = application.getInitParameter("plugins-path");
         pluginDir = new File(new File(pluginsPath), "sparkplugs");
-
-        // Initialize ConnectionManager with connection info from web.xml
-        DbConnectionManager connectionManager = DbConnectionManager.getInstance();
-
-        String datasource = config.getServletContext().getInitParameter("dbURL");
-        String dbUsername = config.getServletContext().getInitParameter("dbUsername");
-        String dbPassword = config.getServletContext().getInitParameter("dbPassword");
-        if (datasource != null) {
-            connectionManager.setupDataSource(datasource, dbUsername, dbPassword);
-        }
     }
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
