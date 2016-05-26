@@ -8,29 +8,21 @@
 
 package org.jivesoftware.database;
 
-import org.apache.commons.dbcp.ConnectionFactory;
-import org.apache.commons.dbcp.DriverManagerConnectionFactory;
-import org.apache.commons.dbcp.PoolableConnectionFactory;
-import org.apache.commons.dbcp.PoolingDataSource;
-import org.apache.commons.pool.ObjectPool;
-import org.apache.commons.pool.impl.GenericObjectPool;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-/**
- * 
- */
-public class DbConnectionManager {
-    private DataSource dataSource;
-    private ObjectPool connectionPool;
+public class DbConnectionManager
+{
+    private final DataSource dataSource;
 
     private static DbConnectionManager singleton;
-    private static final Object LOCK = new Object();
-
 
     /**
      * Returns the singleton instance of <CODE>DbConnectionManager</CODE>,
@@ -39,58 +31,32 @@ public class DbConnectionManager {
      *
      * @return the singleton instance of <Code>DbConnectionManager</CODE>
      */
-    public static DbConnectionManager getInstance() {
-        // Synchronize on LOCK to ensure that we don't end up creating
-        // two singletons.
-        synchronized (LOCK) {
-            if (null == singleton) {
-                DbConnectionManager controller = new DbConnectionManager();
-                singleton = controller;
-                return controller;
+    public static synchronized DbConnectionManager getInstance() {
+        if (null == singleton) {
+            try
+            {
+                singleton = new DbConnectionManager();
+            }
+            catch ( NamingException ex )
+            {
+                System.err.println( "Unable to instantiate a database connection manager!" );
+                ex.printStackTrace();
+                singleton = null;
             }
         }
         return singleton;
     }
 
-    public DbConnectionManager() {
-    }
+    private DbConnectionManager() throws NamingException
+    {
 
-    public void setupDataSource(String dbString, String username, String password) {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        StringBuilder connectURI = new StringBuilder();
-        connectURI.append(dbString);
-        if (dbString.contains("?")) {
-            connectURI.append("&");
-        } else {
-            connectURI.append("?");
-        }
-        connectURI.append("user=");
-        connectURI.append(username);
-        connectURI.append("&password=");
-        connectURI.append(password);
-
-
-        connectionPool = new GenericObjectPool(null);
-
-        ConnectionFactory connectionFactory = new DriverManagerConnectionFactory(connectURI.toString(), null);
-
-        new PoolableConnectionFactory(connectionFactory, connectionPool, null, null, false, true);
-
-        dataSource = new PoolingDataSource(connectionPool);
+        Context initContext = new InitialContext();
+        Context envContext  = (Context)initContext.lookup("java:/comp/env");
+        dataSource = (DataSource)envContext.lookup("jdbc/stats");
     }
 
     public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
-    }
-
-    public void returnConnection(Connection conn) throws Exception {
-        connectionPool.returnObject(conn);
     }
 
     public static void close(PreparedStatement pstmt, Connection con) {
