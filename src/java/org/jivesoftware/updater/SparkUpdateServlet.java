@@ -12,6 +12,8 @@ import com.thoughtworks.xstream.XStream;
 import org.jivesoftware.site.DownloadServlet.DownloadInfo;
 import org.jivesoftware.site.DownloadStats;
 import org.jivesoftware.site.Versions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.ServletConfig;
@@ -44,6 +46,7 @@ import java.util.List;
  * @author Derek DeMoro
  */
 public class SparkUpdateServlet extends HttpServlet {
+    private static final Logger Log = LoggerFactory.getLogger( SparkUpdateServlet.class );
     private final XStream xstream = new XStream();
     private File sparkDirectory;
 
@@ -102,7 +105,7 @@ public class SparkUpdateServlet extends HttpServlet {
                 DownloadStats.addUpdateToDatabase(ipAddress, product, version, fileType, fName, DownloadInfo.spark_update);
             }
             catch (Exception e) {
-                e.printStackTrace();
+                Log.warn( "An exception occurred while processing file '{}'.", fileName, e );
             }
         }
     }
@@ -229,7 +232,7 @@ public class SparkUpdateServlet extends HttpServlet {
             return true;
         }
         catch (IOException e) {
-            e.printStackTrace();
+            Log.warn( "An exception occurred while writing bytes to a stream from file '{}'.", clientFile, e );
         }
 
         return false;
@@ -273,7 +276,7 @@ public class SparkUpdateServlet extends HttpServlet {
             sos.close();
         }
         catch (IOException e) {
-            e.printStackTrace();
+            Log.warn( "An exception occurred while writing bytes to a stream.", e );
         }
     }
 

@@ -1,4 +1,5 @@
 <%@ page import="java.util.*" %>
+<%@ page import="org.slf4j.LoggerFactory" %>
 
 <%!
     // Constant for the session value
@@ -21,7 +22,7 @@
         try {
             index = Integer.parseInt(storedIndex);
         }
-        catch (Exception ignored) { /* ignored */ }
+        catch (Exception e) { LoggerFactory.getLogger( this.getClass() ).debug( "An exception occurred that can probably be ignored.", e); }
     }
 
     // Get the filename

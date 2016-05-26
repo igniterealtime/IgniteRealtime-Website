@@ -7,6 +7,8 @@ import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.io.InputStream;
 
 public class RestClient {
 
+    private static final Logger Log = LoggerFactory.getLogger( RestClient.class );
 
     public JSONObject get(String url) {
         JSONObject result = null;
@@ -26,7 +29,7 @@ public class RestClient {
             int statusCode = client.executeMethod(method);
 
             if (statusCode != HttpStatus.SC_OK) {
-                System.err.println("Method failed: " + method.getStatusLine());
+                Log.warn( "Method (for '{}') failed: {}", url, method.getStatusLine() );
             }
 
             // Deal with the response.
@@ -51,13 +54,10 @@ public class RestClient {
             result = JSONObject.fromObject(response);
 
         } catch (HttpException e) {
-            System.err.println("Fatal protocol violation: " + e.getMessage());
-            e.printStackTrace();
+            Log.warn( "Fatal protocol violation while querying '{}'", url, e );
         } catch (IOException e) {
-            System.err.println("Fatal transport error: " + e.getMessage());
-            e.printStackTrace();
+            Log.warn( "Fatal transport error while querying '{}'", url, e );
         } finally {
-            // Release the connection.
             method.releaseConnection();
         }
 

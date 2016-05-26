@@ -3,6 +3,8 @@ package org.jivesoftware.site;
 import com.maxmind.geoip.Location;
 import com.maxmind.geoip.LookupService;
 import org.jivesoftware.database.DbConnectionManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -21,6 +23,9 @@ import java.util.Map;
  * so that it can hook into the ServletConfig.
  */
 public class DownloadStats extends HttpServlet {
+
+    private static final Logger Log = LoggerFactory.getLogger( DownloadStats.class );
+
     private static ServletConfig config;
 
     // SQL for inserting the plugin listing info
@@ -67,7 +72,7 @@ public class DownloadStats extends HttpServlet {
             lookupService = new LookupService(geoDatabase);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.error( "An exception occurred while initializing the lookup service.", e);
         }
         downloadHost = config.getServletContext().getInitParameter("download-host");
     }
@@ -116,7 +121,7 @@ public class DownloadStats extends HttpServlet {
                 lookupService = new LookupService(geoDatabase);
             }
             catch (Exception e) {
-                e.printStackTrace();
+                Log.error( "An exception occurred while obtaining the lookup service.", e);
             }
         }
         return lookupService;
@@ -162,7 +167,7 @@ public class DownloadStats extends HttpServlet {
             try {
                 collectorThread.join();
             }
-            catch (Exception ignored) { /* ignored */ }
+            catch (Exception e) { Log.debug( "An exception occurred that can probably be ignored.", e); }
         }
     }
 
@@ -193,12 +198,11 @@ public class DownloadStats extends HttpServlet {
                 }
             }
             catch (Exception e) {
-                System.err.println("Error counting total downloads.");
-                e.printStackTrace();
+                Log.warn("Error counting total downloads.", e);
             }
             finally {
                 if (rs != null) {
-                    try { rs.close(); } catch (Exception ignored) { /* ignored */ }
+                    try { rs.close(); } catch (Exception e) { Log.debug( "An exception occurred that can probably be ignored.", e); }
                 }
                 DbConnectionManager.close(pstmt, con);
             }
@@ -240,12 +244,11 @@ public class DownloadStats extends HttpServlet {
                     if (type != null) {
                         name = type.getName();
                     }
-                    System.err.println("Error counting downloads for type " + name);
-                    e.printStackTrace();
+                    Log.warn( "Error counting downloads for type " + name, e);
                 }
                 finally {
                     if (rs != null) {
-                        try { rs.close(); } catch (Exception ignored) { /* ignored */ }
+                        try { rs.close(); } catch (Exception e) { Log.debug( "An exception occurred that can probably be ignored.", e); }
                     }
                     DbConnectionManager.close(pstmt, con);
                 }
@@ -290,8 +293,7 @@ public class DownloadStats extends HttpServlet {
             }
             catch ( Exception e )
             {
-                System.err.print( "Unable to retrieve info" );
-                e.printStackTrace();
+                Log.warn( "Unable to retrieve info", e );
             }
 
             pstmt.setString( 1, ipAddress );
@@ -306,8 +308,7 @@ public class DownloadStats extends HttpServlet {
         }
         catch ( Exception e )
         {
-            System.err.print( "Unable to process spark plugin listing information for " + ipAddress );
-            e.printStackTrace();
+            Log.warn( "Unable to process spark plugin listing information for " + ipAddress, e );
         }
         finally
         {
@@ -354,8 +355,7 @@ public class DownloadStats extends HttpServlet {
             }
             catch ( Exception e )
             {
-                System.err.print( "Unable to retrieve info" );
-                e.printStackTrace();
+                Log.warn( "Unable to retrieve info", e );
             }
 
             pstmt.setString( 1, ipAddress );
@@ -371,8 +371,7 @@ public class DownloadStats extends HttpServlet {
         }
         catch ( Exception e )
         {
-            System.err.print( "Unable to process download information for " + ipAddress );
-            e.printStackTrace();
+            Log.warn( "Unable to process download information for " + ipAddress, e );
         }
         finally
         {
@@ -408,8 +407,7 @@ public class DownloadStats extends HttpServlet {
             }
             catch ( Exception e )
             {
-                System.err.print( "Unable to retrieve info" );
-                e.printStackTrace();
+                Log.warn( "Unable to retrieve info", e );
             }
 
             pstmt.setString( 1, ipAddress );
@@ -424,8 +422,7 @@ public class DownloadStats extends HttpServlet {
         }
         catch ( Exception e )
         {
-            System.err.print( "Unable to process update checking information information for " + ipAddress );
-            e.printStackTrace();
+            Log.warn( "Unable to process update checking information information for " + ipAddress, e );
         }
         finally
         {

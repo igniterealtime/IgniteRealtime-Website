@@ -12,6 +12,8 @@ import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.URL;
@@ -31,6 +33,8 @@ import java.util.zip.ZipFile;
  * @author Gaston Dombiak
  */
 public class WildfireVersionChecker {
+
+    private static final Logger Log = LoggerFactory.getLogger( WildfireVersionChecker.class );
 
     protected static DocumentFactory docFactory = DocumentFactory.getInstance();
     //private static String WILDFIRE_PATH = "http://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/wildfire/";
@@ -67,8 +71,7 @@ public class WildfireVersionChecker {
             compareWildfireVersion(xmlRequest, xmlReply);
             return xmlReply.asXML();
         } catch (Exception e) {
-            e.printStackTrace();
-            // Return a dummy result that says that everything is up to date
+            Log.warn( "Unable to check version for '{}'. Returning dummy result that says that everything is up to date.", request, e);
             return "<version/>";
         }
     }
@@ -93,8 +96,7 @@ public class WildfireVersionChecker {
             availablePlugins(pluginsPath, xmlRequest, xmlReply);
             return xmlReply.asXML();
         } catch (Exception e) {
-            e.printStackTrace();
-            // Return a dummy result that says that no more plugins are available
+            Log.warn( "Unable to check version for '{}'. Returning dummy result that says that no more plugins are available.", request, e);
             return "<available/>";
         }
     }
@@ -309,7 +311,7 @@ public class WildfireVersionChecker {
             return ResourceBundle.getBundle("i18n/" + pluginName + "_i18n", locale, classLoader);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "Unable to get resource bundle for file '{}' (locale: '{}').", jarFile, locale, e );
             return null;
         }
     }

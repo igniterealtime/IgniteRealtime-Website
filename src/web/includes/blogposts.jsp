@@ -1,7 +1,8 @@
 <%@ page import="net.sf.json.JSONObject" %>
 <%@ page import="net.sf.json.JSONArray" %>
 <%@ page import="java.util.Date" %>
-<%@ page import="org.apache.commons.lang.StringUtils" %><%
+<%@ page import="org.apache.commons.lang.StringUtils" %>
+<%@ page import="org.slf4j.LoggerFactory" %><%
 JSONArray posts = (JSONArray)request.getAttribute("posts");
 String style = "";
 int counter = 0;
@@ -39,7 +40,7 @@ for (Object postObject : posts) {
             datePublished = javax.xml.bind.DatatypeConverter.parseDate(publishDate).getTime();
         }
     } catch (Exception e) {
-        e.printStackTrace();
+        LoggerFactory.getLogger( this.getClass() ).warn( "Unable to parse publication date.", e );
     }
     String body = StringUtils.removeEnd(StringUtils.removeStart(post.getJSONObject("content").getString("text"), "<body>"), "</body>");
     String parentUrl = post.getJSONObject("parentPlace").getString("html");

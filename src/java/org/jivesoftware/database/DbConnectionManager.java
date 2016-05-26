@@ -9,6 +9,9 @@
 package org.jivesoftware.database;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -20,6 +23,8 @@ import java.sql.SQLException;
 
 public class DbConnectionManager
 {
+    private final static Logger Log = LoggerFactory.getLogger( DbConnectionManager.class );
+
     private final DataSource dataSource;
 
     private static DbConnectionManager singleton;
@@ -39,8 +44,7 @@ public class DbConnectionManager
             }
             catch ( NamingException ex )
             {
-                System.err.println( "Unable to instantiate a database connection manager!" );
-                ex.printStackTrace();
+                Log.error( "Unable to instantiate a database connection manager!", ex );
                 singleton = null;
             }
         }
@@ -66,7 +70,7 @@ public class DbConnectionManager
             }
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "Unable to close prepared statement.", e );
         }
         try {
             if (con != null) {
@@ -74,7 +78,7 @@ public class DbConnectionManager
             }
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "Unable to close (release it back to the pool) connection.", e );
         }
     }
 
