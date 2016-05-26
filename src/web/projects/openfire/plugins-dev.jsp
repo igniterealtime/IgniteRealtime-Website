@@ -9,6 +9,7 @@
                  java.net.*,
                  java.text.SimpleDateFormat, java.util.*"
 %>
+ <%@ page import="org.slf4j.LoggerFactory" %>
 
  <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -422,7 +423,7 @@
             return ResourceBundle.getBundle("i18n/" + pluginName + "_i18n", Locale.ENGLISH, classLoader);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            LoggerFactory.getLogger( this.getClass() ).warn( "Unable to get resource bundle for file {}", jarFile, e );
             return null;
         }
     }

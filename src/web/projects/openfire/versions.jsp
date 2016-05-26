@@ -5,6 +5,7 @@
 <%@ page import="org.dom4j.io.SAXReader" %>
 <%@ page import="java.io.StringReader" %>
 <%@ page import="org.jivesoftware.site.Versions" %>
+<%@ page import="org.slf4j.LoggerFactory" %>
 
 <%
     // Get the real path where plugins are stored
@@ -30,7 +31,7 @@
             Element currentOpenfire = xmlRequest.element("openfire");
             currentVersion = currentOpenfire.attributeValue("current");
         }
-        catch (Exception e) { /* ignored */ }
+        catch (Exception e) { LoggerFactory.getLogger( this.getClass() ).debug( "An exception occurred that can probably be ignored.", e); }
 
         DownloadStats.addCheckUpdate(ipAddress, os, currentVersion, latestVersion, info);
     } else {

@@ -1,6 +1,9 @@
 
 package org.jivesoftware.site;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,6 +20,8 @@ import javax.activation.MimetypesFileTypeMap;
  * Jive Software (http://www.jivesoftware.org).
  */
 public class DownloadServlet extends HttpServlet {
+
+    private static final Logger Log = LoggerFactory.getLogger( DownloadServlet.class );
 
     private static MimetypesFileTypeMap typeMap = new MimetypesFileTypeMap();
 
@@ -76,7 +81,7 @@ public class DownloadServlet extends HttpServlet {
 
             if (downloadFile.length() == 0) {
                 // File empty, return 500
-                System.out.println("File " + downloadFile.getAbsolutePath() + " had size zero.");
+                Log.info("File " + downloadFile.getAbsolutePath() + " had size zero.");
                 response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 return;
             }
@@ -130,9 +135,10 @@ public class DownloadServlet extends HttpServlet {
         }
         catch (IOException ioe) {
             // Ignore this sucker because it is caused by client disconnects most frequently
+            Log.debug( "An exception occurred while processing file '{}'. This was likely caused by a disconnecting client.", filename, ioe);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "An exception occurred while processing file '{}'", filename, e);
         }
     }
 
@@ -172,20 +178,18 @@ public class DownloadServlet extends HttpServlet {
                 return true;
             }
             else {
-                System.out.println("Warning: download servlet only wrote " + totalWritten +
-                        " bytes out of " + fileLength + " for file " + file.getName());
+                Log.warn("Download servlet only wrote {} bytes out of {} for file {}.", totalWritten, fileLength, file.getName());;
             }
         }
-        catch (IOException e) {
-			// Ignore this one
-            /* e.printStackTrace(); */
+        catch (IOException ioe) {
+            Log.debug( "An exception occurred (which is likely safe to ignore).", ioe);
         }
         finally {
             if (in != null) {
-                try { in.close(); } catch (Exception e) { /* do nothing */ }
+                try { in.close(); } catch (Exception e) { Log.debug( "An exception occurred (which is likely safe to ignore).", e); }
             }
             if (out != null) {
-                try { out.close(); } catch (Exception e) { /* do nothing */  }
+                try { out.close(); } catch (Exception e) { Log.debug( "An exception occurred (which is likely safe to ignore).", e);  }
             }
         }
 

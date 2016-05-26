@@ -8,6 +8,9 @@
 
 package org.jivesoftware.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -34,6 +37,8 @@ import java.util.Random;
  * Utility class to peform common String manipulation algorithms.
  */
 public class StringUtils {
+
+    private static final Logger Log = LoggerFactory.getLogger( StringUtils.class );
 
     // Constants used by escapeHTMLTags
     private static final char[] QUOTE_ENCODE = "&quot;".toCharArray();
@@ -340,7 +345,7 @@ public class StringUtils {
                 digest = MessageDigest.getInstance("MD5");
             }
             catch (NoSuchAlgorithmException nsae) {
-                nsae.printStackTrace();
+                Log.warn( "Unable to create message digest to hash data.", nsae );
             }
         }
         // Now, compute hash.
@@ -348,7 +353,7 @@ public class StringUtils {
             digest.update(data.getBytes("utf-8"));
         }
         catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
+            Log.warn( "Unable to create hash data.", e );
         }
         return encodeHex(digest.digest());
     }

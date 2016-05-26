@@ -34,6 +34,8 @@ import org.dom4j.DocumentFactory;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.jivesoftware.util.Version;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * OpenfireVersionChecker provides two services 1) check for updates and 2) get list of
@@ -44,6 +46,8 @@ import org.jivesoftware.util.Version;
  * @author Gaston Dombiak
  */
 public class OpenfireVersionChecker {
+
+    private static final Logger Log = LoggerFactory.getLogger( OpenfireVersionChecker.class );
 
     protected static DocumentFactory docFactory = DocumentFactory.getInstance();
     //private static String OPENFIRE_PATH = "http://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
@@ -73,6 +77,10 @@ public class OpenfireVersionChecker {
      * @return an answer in XML format containing the items for which a new version is available.
      */
     public static String checkVersions(String request) {
+        if (request == null || request.isEmpty() ) {
+            Log.debug( "Unable to check for updates when no version was supplied. Returning dummy result that says that everything is up to date." );
+            return "<version/>";
+        }
         try {
             Element xmlRequest = new SAXReader().read(new StringReader(request)).getRootElement();
             Element xmlReply = docFactory.createDocument().addElement("version");
@@ -80,8 +88,7 @@ public class OpenfireVersionChecker {
             compareOpenfireVersion(xmlRequest, xmlReply);
             return xmlReply.asXML();
         } catch (Exception e) {
-            e.printStackTrace();
-            // Return a dummy result that says that everything is up to date
+            Log.warn( "Unable to check version for '{}'. Returning dummy result that says that everything is up to date.", request, e);
             return "<version/>";
         }
     }
@@ -96,6 +103,10 @@ public class OpenfireVersionChecker {
      * @return  the list of available (i.e. not installed) plugins.
      */
     public static String getAvailablePlugins(String pluginsPath, String request) {
+        if (request == null || request.isEmpty() ) {
+            Log.debug( "Unable to check for updates when no version was supplied. Returning dummy result that says that no more plugins are available." );
+            return "<available/>";
+        }
         try {
             Element xmlRequest = null;
             if (request != null) {
@@ -106,8 +117,7 @@ public class OpenfireVersionChecker {
             availablePlugins(pluginsPath, xmlRequest, xmlReply);
             return xmlReply.asXML();
         } catch (Exception e) {
-            e.printStackTrace();
-            // Return a dummy result that says that no more plugins are available
+            Log.warn( "Unable to check version for '{}'. Returning dummy result that says that no more plugins are available.", request, e);
             return "<available/>";
         }
     }
@@ -314,11 +324,11 @@ public class OpenfireVersionChecker {
                 extensionIndex = jarFile.getName().lastIndexOf(".war");
             }
             String pluginName = jarFile.getName().substring(0, extensionIndex);
-            URLClassLoader classLoader = new URLClassLoader(new URL[] { jarFile.toURL() });
+            URLClassLoader classLoader = new URLClassLoader(new URL[] { jarFile.toURI().toURL() });
             return ResourceBundle.getBundle("i18n/" + pluginName + "_i18n", locale, classLoader);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "Unable to get resource bundle for file '{}' (locale: '{}').", jarFile, locale, e );
             return null;
         }
     }

@@ -9,6 +9,8 @@
 package org.jivesoftware.updater;
 
 import org.jivesoftware.database.DbConnectionManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -26,6 +28,7 @@ import java.util.zip.ZipFile;
  * The SparkPluginServlet is used to send plugin logos to the Spark client.
  */
 public class SparkPluginServlet extends HttpServlet {
+    private static final Logger Log = LoggerFactory.getLogger( SparkPluginServlet.class );
     private File pluginDir;
 
     public void init(ServletConfig config) throws ServletException {
@@ -65,7 +68,7 @@ public class SparkPluginServlet extends HttpServlet {
                     write(is, response);
                 }
                 catch (Exception e) {
-                    e.printStackTrace();
+                    Log.warn( "An exception occurred while writing zip entry {}", zipEntry, e );
                 }
             }
             else {
@@ -82,7 +85,7 @@ public class SparkPluginServlet extends HttpServlet {
             write(fis, response);
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "An exception occurred sending a default icon.", e );
         }
     }
 
@@ -123,7 +126,7 @@ public class SparkPluginServlet extends HttpServlet {
             sos.close();
         }
         catch (IOException e) {
-            e.printStackTrace();
+            Log.warn( "An exception occurred while writing bytes to a stream.", e );
         }
     }
 

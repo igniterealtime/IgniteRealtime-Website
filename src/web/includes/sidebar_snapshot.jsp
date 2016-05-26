@@ -1,6 +1,7 @@
 <%@ page import="org.jivesoftware.site.*, java.text.NumberFormat" %>
+<%@ page import="org.slf4j.LoggerFactory" %>
 
-			<%
+<%
                 String project = request.getParameter("project");
 
                 long downloads = 0;
@@ -8,7 +9,7 @@
                 try {
                     downloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.valueOf(project));
                 }
-                catch (Exception ignored) { /* ignored */ }
+                catch (Exception e) { LoggerFactory.getLogger( this.getClass() ).debug( "An exception occurred that can probably be ignored.", e); }
 
                 // Grab the right license info
                 String license = null;

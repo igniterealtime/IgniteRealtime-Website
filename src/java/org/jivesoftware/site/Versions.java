@@ -11,6 +11,8 @@ package org.jivesoftware.site;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.XPP3Reader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Iterator;
 import java.io.InputStream;
@@ -31,6 +33,7 @@ import java.io.InputStream;
  */
 public class Versions {
 
+    private final static Logger Log = LoggerFactory.getLogger( Versions.class );
     private static long cacheDate;
     private static Document doc = null;
 
@@ -55,7 +58,7 @@ public class Versions {
             }
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "Unable to get version for '{}'.", name, e );
         }
         return null;
     }
@@ -82,7 +85,7 @@ public class Versions {
             }
         }
         catch (Exception e) {
-            e.printStackTrace();
+            Log.warn( "Unable to get version date for '{}'.", name, e );
         }
         return null;
     }
@@ -101,7 +104,7 @@ public class Versions {
                         in.close();
                     }
                     catch (Exception e) {
-                        e.printStackTrace();
+                        Log.warn( "Unable to close stream used to read versions.xml.", e );
                     }
                 }
             }
