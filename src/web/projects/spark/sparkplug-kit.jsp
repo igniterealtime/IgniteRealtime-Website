@@ -17,8 +17,8 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Spark</a></li>
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
-            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
+			<li id="subnav05"><a href="https://igniterealtime.org/issues/projects/SPARK/issues">Issue Tracker</a></li>
+            		<li id="subnav06"><a href="https://igniterealtime.org/issues/projects/SPARK?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page">Roadmap</a></li>
         </ul>
 	</div>
 
@@ -40,11 +40,9 @@
 				
 				<div class="ignite_int_body_padding">
 					<p>
-                        Sparkplugs dynamically extend the features of the <a href="../../projects/spark/">Spark</a>
-                        instant messaging client.
-                        Use Sparkplugs to customize Spark for your business or organization or to add an
-                        innovative twist to instant messaging. The extensive plugin API allows for complete
-                        client flexibility but is still simple and (we hope!) fun to use.
+                        Sparkplug was designed to help developers extend Spark capabilities, add various new
+                        features by using plugin API. <b>Note:</b> Sparkplug Kit hasn't been updated for more
+                        than 10 years, so it may not work well with the current Spark source code.
                     </p>
 
                     <table>
@@ -69,7 +67,7 @@
 
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="http://community.igniterealtime.org/developers/spark_dev">Sparkplug Discussion Forum</a></li>
+                        <li><a href="https://community.igniterealtime.org/community/developers/spark_dev">Spark Development Forum</a></li>
                     </ul>
 
                 </div>
