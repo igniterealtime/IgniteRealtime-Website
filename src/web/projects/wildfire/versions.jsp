@@ -1,15 +1,12 @@
-<%@ page import="org.jivesoftware.site.WildfireVersionChecker"%>
-<%@ page import="org.jivesoftware.site.DownloadServlet" %>
-<%@ page import="org.jivesoftware.site.DownloadStats" %>
 <%@ page import="org.dom4j.Element" %>
 <%@ page import="org.dom4j.io.SAXReader" %>
 <%@ page import="java.io.StringReader" %>
-<%@ page import="org.jivesoftware.site.Versions" %>
 <%@ page import="org.slf4j.LoggerFactory" %>
+<%@ page import="org.jivesoftware.site.*" %>
 
 <%
     // Get the real path where plugins are stored
-    String path = request.getRealPath("/projects/wildfire/plugins");
+    String path = request.getRealPath("/projects/openfire/plugins");
     // Set the content type of the response
     response.setContentType("text/xml");
     String queryType = request.getParameter("type");
@@ -22,9 +19,9 @@
     DownloadServlet.DownloadInfo info = DownloadServlet.DownloadInfo.openfire;
     if ("update".equals(queryType)) {
         // Check for updates of installed plugins and server
-        out.println(WildfireVersionChecker.checkVersions(request.getParameter("query")));
+        out.println(OpenfireVersionChecker.checkVersions(request.getParameter("query")));
         // Log to the database after successful output
-        String latestVersion = Versions.getVersion("wildfire");
+        String latestVersion = Versions.getVersion("openfire");
         String currentVersion = null;
         try {
             Element xmlRequest = new SAXReader().read(new StringReader(request.getParameter("query"))).getRootElement();
@@ -36,7 +33,7 @@
         DownloadStats.addCheckUpdate(ipAddress, os, currentVersion, latestVersion, info);
     } else {
         // Check for available (i.e. not installed) plugins
-        out.println(WildfireVersionChecker.getAvailablePlugins(path, request.getParameter("query")));
+        out.println(OpenfireVersionChecker.getAvailablePlugins(path, request.getParameter("query")));
         // Log to the database after successful output
         DownloadStats.addListingToDatabase(ipAddress, info.getName(), os, info.getType(),
                 getServletConfig().getServletContext());
