@@ -179,8 +179,12 @@ public class PluginDownloadServlet extends HttpServlet {
                 Log.warn("Download servlet only wrote {} bytes out of {} for file {}.", totalWritten, fileLength, file.getName());
             }
         }
-        catch (IOException e) {
-            Log.warn( "An exception occurred while attempting to write file {}.", file, e);
+        catch (IOException ioe) {
+            // Ignore this sucker because it is caused by client disconnects most frequently
+            Log.debug( "An exception occurred while processing file '{}'. This was likely caused by a disconnecting client.", file, ioe);
+        }
+        catch (Exception e) {
+            Log.warn( "An exception occurred while processing file '{}'", file, e);
         }
         finally {
             if (in != null) {
