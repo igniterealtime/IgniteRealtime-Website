@@ -131,6 +131,7 @@ public class OpenfireVersionChecker {
      * @param xmlReply XML reply that may contain information about the latest openfire release.
      */
     private static void compareOpenfireVersion(Element xmlRequest, Element xmlReply) {
+
         Element currentOpenfire = xmlRequest.element("openfire");
         if (currentOpenfire != null) {
             // Compare latest version with installed one
@@ -138,6 +139,18 @@ public class OpenfireVersionChecker {
             Version installed = new Version(currentOpenfire.attributeValue("current"));
             if (latest.isNewerThan(installed)) {
                 Element latestOpenfire = xmlReply.addElement("openfire");
+                latestOpenfire.addAttribute("latest", latest.getVersionString());
+                latestOpenfire.addAttribute("changelog", OPENFIRE_LOG);
+                latestOpenfire.addAttribute("url", OPENFIRE_PATH);
+            }
+        }
+        else
+        {
+            // WEB-54: Handle update checks for very old versions (still named 'Wildfire').
+            Element currentWildfire = xmlRequest.element("wildfire");
+            if (currentWildfire != null) {
+                Version latest = new Version(Versions.getVersion("openfire"));
+                Element latestOpenfire = xmlReply.addElement("wildfire"); // Wildfire's UpdateManager checks for this!
                 latestOpenfire.addAttribute("latest", latest.getVersionString());
                 latestOpenfire.addAttribute("changelog", OPENFIRE_LOG);
                 latestOpenfire.addAttribute("url", OPENFIRE_PATH);
