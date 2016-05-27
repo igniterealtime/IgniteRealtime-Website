@@ -22,7 +22,7 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Spark</a></li>
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
+			<li id="subnav05"><a href="https://igniterealtime.org/issues/projects/SPARK/issues">Issue Tracker</a></li>
 			<li id="subnav06"><a href="https://igniterealtime.org/issues/projects/SPARK?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page">Roadmap</a></li>
         </ul>
 	</div>
