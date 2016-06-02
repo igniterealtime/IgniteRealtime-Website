@@ -23,11 +23,6 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <res-auth>Container</res-auth>
     </resource-ref>
 
-    <!-- Path to the base builds dir. Change this for local testing. Note, do not include a trailing "/". -->
-    <context-param>
-        <param-name>builds-path</param-name>
-        <param-value>/opt/j2ee/domains/igniterealtime.org/www/builds</param-value>
-    </context-param>
     <!-- XMPP Domain of this Host -->
     <context-param>
         <param-name>xmpp-domain</param-name>
