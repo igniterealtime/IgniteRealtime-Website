@@ -346,13 +346,6 @@
 				</div>
 				<!-- END plugins -->
 				
-				<br/>
-				<br/>
-				
-				<p>To submit a plugin please send an email to Gato Dombiak (gaston at jivesoftware dot com) or send him a <a href="community/pm-post!input.jspa?to=dombiak_gaston">private message</a> in the forums.</p>
-				
-				<br>
-				
 				</div>
 				
 <%!
