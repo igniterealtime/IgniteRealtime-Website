@@ -10,8 +10,8 @@
 <%@ page import="org.jivesoftware.site.DownloadStats" %>
 
 <%
-    String pluginsPath = application.getInitParameter("plugins-path");
-    File pluginDir = new File(new File(pluginsPath), "sparkplugs");
+    String sparkPluginPath = application.getInitParameter("spark-plugins-path");
+    File pluginDir = new File(new File( sparkPluginPath ), "sparkplugs");
     File[] files = pluginDir.listFiles();
     final int no = files != null ? files.length : 0;
     StringBuffer buf = new StringBuffer();

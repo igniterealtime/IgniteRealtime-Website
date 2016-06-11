@@ -9,7 +9,8 @@
 
 <%
     // Get the real path where plugins are stored
-    String path = request.getRealPath("/projects/openfire/plugins");
+    String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-path");
+
     // Set the content type of the response
     response.setContentType("text/xml");
     String queryType = request.getParameter("type");
@@ -36,7 +37,7 @@
         DownloadStats.addCheckUpdate(ipAddress, os, currentVersion, latestVersion, info);
     } else {
         // Check for available (i.e. not installed) plugins
-        out.println(OpenfireVersionChecker.getAvailablePlugins(path, request.getParameter("query")));
+        out.println(OpenfireVersionChecker.getAvailablePlugins(openfirePluginsPath, request.getParameter("query")));
         // Log to the database after successful output
         DownloadStats.addListingToDatabase(ipAddress, info.getName(), os, info.getType(),
                 getServletConfig().getServletContext());

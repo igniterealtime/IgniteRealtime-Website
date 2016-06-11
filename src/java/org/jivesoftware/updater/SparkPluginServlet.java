@@ -35,8 +35,8 @@ public class SparkPluginServlet extends HttpServlet {
         super.init(config);
 
         ServletContext application = config.getServletContext();
-        String pluginsPath = application.getInitParameter("plugins-path");
-        pluginDir = new File(new File(pluginsPath), "sparkplugs");
+        String sparkPluginsPath = application.getInitParameter("spark-plugins-path");
+        pluginDir = new File(new File(sparkPluginsPath), "sparkplugs");
     }
 
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -28,10 +28,6 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <param-name>xmpp-domain</param-name>
         <param-value>igniterealtime.org</param-value>
     </context-param>
-    <context-param>
-        <param-name>plugins-path</param-name>
-        <param-value>/opt/j2ee/domains/igniterealtime.org/www/tomcat/webapps/ROOT/projects/spark</param-value>
-    </context-param>
 
     <!-- Hostname where our downloads are hosted. S3/Cloudfront, should almost never change.
          Default: http://download.igniterealtime.org Note, do not include a trailing "/". -->
@@ -141,6 +137,10 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     <servlet-mapping>
         <servlet-name>PluginDownloadServlet</servlet-name>
         <url-pattern>/projects/openfire/plugins-beta/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PluginDownloadServlet</servlet-name>
+        <url-pattern>/projects/openfire/plugins-dev/*</url-pattern>
     </servlet-mapping>
 
     <error-page>

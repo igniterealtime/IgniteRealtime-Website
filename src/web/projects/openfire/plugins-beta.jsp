@@ -17,8 +17,9 @@
 
 
  <%
-    String path = request.getRealPath("/projects/openfire/plugins-beta");
-    File pluginDir = new File(path);
+     String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-beta-path");
+     File pluginDir = new File(openfirePluginsPath);
+
 
 
     String pName = request.getParameter("plugin");

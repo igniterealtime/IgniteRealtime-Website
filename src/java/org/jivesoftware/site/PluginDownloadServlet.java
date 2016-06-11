@@ -1,24 +1,28 @@
 package org.jivesoftware.site;
 
-import org.dom4j.io.SAXReader;
-import org.dom4j.Element;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.activation.MimetypesFileTypeMap;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.ServletException;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletConfig;
-import javax.activation.MimetypesFileTypeMap;
 import java.io.*;
-import java.util.*;
-import java.util.zip.ZipFile;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.zip.ZipFile;
 
 /**
  * Servlet used for downloading and capturing of data for all Openfire and Spark plugins on Ignite.
@@ -29,61 +33,70 @@ public class PluginDownloadServlet extends HttpServlet {
 
     private static MimetypesFileTypeMap typeMap = new MimetypesFileTypeMap();
     private Map<String, PluginCacheEntry> pluginCache = Collections.synchronizedMap(new HashMap<String, PluginCacheEntry>());
-    private String pluginsPath;
+    private String sparkPluginsPath;
+    private String openfirePluginsPath;
+    private String openfirePluginsBetaPath;
+    private String openfirePluginsDevPath;
 
 	private String openfirePluginUri = "/projects/openfire/plugins/";
 	private String openfirePluginBetaUri = "/projects/openfire/plugins-beta/";
+    private String openfirePluginDevUri = "/projects/openfire/plugins-dev/";
 	private String sparkPluginUri = "/updater/sparkplugs/";
 	private String pluginExtensionJar = ".jar";
 	private String pluginExtensionWar = ".war";
 
-    public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) throws ServletException
+    {
         super.init(config);
 
-        ServletContext application = config.getServletContext();
-        pluginsPath = application.getInitParameter("plugins-path");
+        sparkPluginsPath        = config.getServletContext().getInitParameter("spark-plugins-path");
+        openfirePluginsPath     = config.getServletContext().getInitParameter("openfire-plugins-path");
+        openfirePluginsBetaPath = config.getServletContext().getInitParameter("openfire-plugins-beta-path");
+        openfirePluginsDevPath  = config.getServletContext().getInitParameter("openfire-plugins-dev-path");
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws
-            ServletException, IOException
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        final DownloadServlet.DownloadInfo pluginType;
+        final Path download;
 
-		DownloadServlet.DownloadInfo pluginType;
-		String filename;
+        final String requestURI = request.getRequestURI();
+        if ( !validateFilename( requestURI ) )
+        {
+            response.sendError( HttpServletResponse.SC_NOT_FOUND );
+            return;
+        }
 
-        if (request.getRequestURI().startsWith(sparkPluginUri)
-			&& ( request.getRequestURI().endsWith(pluginExtensionJar)
-				|| request.getRequestURI().endsWith(pluginExtensionWar))
-			) {
-			// If path includes "/updater/sparkplugs/" then this is actually a sparkplug
-			pluginType = DownloadServlet.DownloadInfo.spark_plugin;
-			String buildsPath = request.getRequestURI().replace("/updater/", "");
-			filename = new File(pluginsPath, buildsPath).getAbsolutePath();
+        final boolean isPlugin = requestURI.endsWith( pluginExtensionJar ) || requestURI.endsWith( pluginExtensionWar );
+        if ( requestURI.startsWith( sparkPluginUri ) )
+        {
+            pluginType = isPlugin ? DownloadServlet.DownloadInfo.spark_plugin : null;
+            download = Paths.get( sparkPluginsPath, requestURI.replace( sparkPluginUri, "" ) );
+        }
+        else if ( requestURI.startsWith( openfirePluginUri ) )
+        {
+            pluginType = isPlugin ? DownloadServlet.DownloadInfo.openfire_plugin : null;
+            download = Paths.get( openfirePluginsPath, requestURI.replace( openfirePluginUri, "" ) );
+        }
+        else if ( requestURI.startsWith( openfirePluginBetaUri ) )
+        {
+            pluginType = isPlugin ? DownloadServlet.DownloadInfo.openfire_plugin : null;
+            download = Paths.get( openfirePluginsBetaPath, requestURI.replace( openfirePluginBetaUri, "" ) );
+        }
+        else if ( requestURI.startsWith( openfirePluginDevUri ) )
+        {
+            pluginType = isPlugin ? DownloadServlet.DownloadInfo.openfire_plugin : null;
+            download = Paths.get( openfirePluginsDevPath, requestURI.replace( openfirePluginDevUri, "" ) );
+        }
+        else
+        {
+            response.sendError( HttpServletResponse.SC_NOT_FOUND );
+            return;
+        }
 
-        } else if ( (request.getRequestURI().startsWith(openfirePluginUri)
-				|| request.getRequestURI().startsWith(openfirePluginBetaUri))
-				&& ( request.getRequestURI().endsWith(pluginExtensionJar)
-				|| request.getRequestURI().endsWith(pluginExtensionWar))
-			) {
-			// Files for openfire and spark plugins are served from different places on the file system
-			pluginType = DownloadServlet.DownloadInfo.openfire_plugin;
-			ServletContext context = request.getSession().getServletContext();
-			filename = context.getRealPath(request.getRequestURI());
-
-        } else {
-			// Files that are not actually jar or war plugins
-			pluginType = null;
-			ServletContext context = request.getSession().getServletContext();
-			filename = context.getRealPath(request.getRequestURI());
-		}
-
-        try {
-            final File downloadFile = new File(filename);
-
-            if (!validateFilename(filename)) {
-                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-                return;
-            }
+        try
+        {
+            final File downloadFile = download.toFile();
 
             // Check whether this file exists and is really a file
             if (!(downloadFile.exists() && downloadFile.isFile())) {
@@ -103,10 +116,9 @@ public class PluginDownloadServlet extends HttpServlet {
                 return;
             }
 
-            int filenameIndex = filename.lastIndexOf(File.separator);
-            String nameOfFile = filename.substring(filenameIndex + 1);
+            final String nameOfFile = download.getFileName().toString();
 
-            boolean downloadComplete = writeBytesToStream(downloadFile, response, pluginType != null);
+            final boolean downloadComplete = writeBytesToStream(downloadFile, response, pluginType != null);
             if (downloadComplete && (null != pluginType)) {
                 // Log to database if VALID plugin
                 String ipAddress = request.getHeader( "X-FORWARDED-FOR" );
@@ -115,25 +127,20 @@ public class PluginDownloadServlet extends HttpServlet {
                     ipAddress = request.getRemoteAddr();
                 };
 
-
                 String product = pluginType.getName();
-
                 String version = getVersionNumber(pluginType, downloadFile);
                 String fileType = getFileType(nameOfFile);
 
                 // Log to Database
                 DownloadStats.addUpdateToDatabase(ipAddress, product, version, fileType, nameOfFile, pluginType);
             }
-            else {
-                // Do Not Log, for NON Plugin downloads
-            }
         }
         catch (IOException ioe) {
             // Ignore this sucker because it is caused by client disconnects most frequently
-            Log.debug( "An exception occurred while processing file '{}'. This was likely caused by a disconnecting client.", filename, ioe);
+            Log.debug( "An exception occurred while processing request for '{}'. This was likely caused by a disconnecting client.", download, ioe);
         }
         catch (Exception e) {
-            Log.warn( "An exception occurred while processing file '{}'", filename, e);
+            Log.warn( "An exception occurred while processing request for '{}'", download, e );
         }
     }
 
