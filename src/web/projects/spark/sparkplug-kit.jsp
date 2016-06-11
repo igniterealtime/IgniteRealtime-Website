@@ -48,7 +48,7 @@
                     <table>
                     <tr>
                         <td><img src="../../images/icon_zip.gif"></td>
-                        <td><a href="../../builds/sparkplug_kit/sparkplug_kit_2_0_7.zip">sparkplug_kit_2_0_7.zip</a></td>
+                        <td><a href="http://download.igniterealtime.org/sparkplug_kit/sparkplug_kit_2_0_7.zip">sparkplug_kit_2_0_7.zip</a></td>
                         <td>11.5 MB</td>
                     </tr>
                     </table>
@@ -60,9 +60,9 @@
                     </h4>
 
                     <ul>
-                        <li><a href="../../builds/sparkplug_kit/docs/latest/sparkplug_dev_guide.html">Development Guide</a></li>
-                        <li><a href="../../builds/sparkplug_kit/docs/latest/api/index.html">Javadocs</a></li>
-                        <li><a href="../../builds/sparkplug_kit/docs/latest/examples.jar">Source Code Examples</a></li>
+                        <li><a href="http://download.igniterealtime.org/sparkplug_kit/docs/latest/sparkplug_dev_guide.html">Development Guide</a></li>
+                        <li><a href="http://download.igniterealtime.org/sparkplug_kit/docs/latest/api/index.html">Javadocs</a></li>
+                        <li><a href="http://download.igniterealtime.org/sparkplug_kit/docs/latest/examples.jar">Source Code Examples</a></li>
                     </ul>
 
                     <h4>Resources</h4>

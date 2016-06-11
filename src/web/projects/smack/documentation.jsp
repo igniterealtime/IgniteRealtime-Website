@@ -47,12 +47,12 @@
 					<h3>Documentation:</h3>
 					<ul>
 					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="../../builds/smack/docs/latest/README.html">Readme & License</a></li>
+					<a href="http://download.igniterealtime.org/smack/docs/latest/README.html">Readme & License</a></li>
 					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="../../builds/smack/docs/latest/changelog.html">Changelog</a>
+					<a href="http://download.igniterealtime.org/smack/docs/latest/changelog.html">Changelog</a>
 					<br>
 					<br></li>
-					<li><a href="../../builds/smack/docs/latest/documentation/">Smack documentation</a></li>
+					<li><a href="http://download.igniterealtime.org/smack/docs/latest/documentation/">Smack documentation</a></li>
 				
 				
 				</div>

@@ -119,11 +119,11 @@
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
                         <img src="../images/icon_debian.gif" alt="" width="17" height="16" border="0">
-                        <a href="../builds/openfire/dailybuilds/<%= file3.getName() %>"><%= file3.getName() %></a><br>
+                        <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file3.getName() %>"><%= file3.getName() %></a><br>
                         <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="../builds/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a><br>
+                        <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a><br>
                         <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="../builds/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a>
+                        <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a>
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>
@@ -167,9 +167,9 @@
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
                         <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="../builds/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
+                        <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
                         <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="../builds/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
+                        <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>
