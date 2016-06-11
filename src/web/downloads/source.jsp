@@ -218,17 +218,17 @@
             <h4>Bugs/Issues</h4>
 
             <p>To view and report bugs and issues, please view our
-                <a href="https://igniterealtime.org/issues/">issue tracker</a>.
+                <a href="https://issues.igniterealtime.org/">issue tracker</a>.
                 Specific projects include:
-                <a href="https://igniterealtime.org/issues/browse/OF">Openfire</a>,
-                <a href="https://igniterealtime.org/issues/browse/SPARK">Spark</a>,
-                <a href="https://igniterealtime.org/issues/browse/SW">SparkWeb</a>,
-                <a href="https://igniterealtime.org/issues/browse/SMACK">Smack API</a>,
-                <a href="https://igniterealtime.org/issues/browse/TINDER">Tinder API</a>,
-                <a href="https://igniterealtime.org/issues/browse/WHACK">Whack API</a>,
-                <a href="https://igniterealtime.org/issues/browse/XIFF">XIFF</a>,
-                <a href="https://igniterealtime.org/issues/browse/GATE">Gateway Plugin</a>, and
-                <a href="https://igniterealtime.org/issues/browse/PHONE">Asterisk-IM</a>.
+                <a href="https://issues.igniterealtime.org/browse/OF">Openfire</a>,
+                <a href="https://issues.igniterealtime.org/browse/SPARK">Spark</a>,
+                <a href="https://issues.igniterealtime.org/browse/SW">SparkWeb</a>,
+                <a href="https://issues.igniterealtime.org/browse/SMACK">Smack API</a>,
+                <a href="https://issues.igniterealtime.org/browse/TINDER">Tinder API</a>,
+                <a href="https://issues.igniterealtime.org/browse/WHACK">Whack API</a>,
+                <a href="https://issues.igniterealtime.org/browse/XIFF">XIFF</a>,
+                <a href="https://issues.igniterealtime.org/browse/GATE">Gateway Plugin</a>, and
+                <a href="https://issues.igniterealtime.org/browse/PHONE">Asterisk-IM</a>.
             </p>
 
             <br>
