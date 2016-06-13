@@ -90,7 +90,7 @@
                 includeAntRuntime="no"
                 debug="on"
                 nowarn="true"
-                source="1.5">
+                source="1.8">
             <src path="${wsdl.cs.compile}"/>
             <classpath>
                 <path refid="dependencies"/>
@@ -114,7 +114,7 @@
         <javac srcdir="${src.java.dir}" 
                 destdir="${target.classes.dir}"
                 debug="on"
-                source="1.5"
+                source="1.8"
                 classpathref="dependencies" />
     </target>
 
@@ -148,7 +148,7 @@
             destdir="${jspc.classes.dest.dir}"
             includeAntRuntime="no"
             debug="on"
-            source="1.5"
+            source="1.8"
             includes="org/igniterealtime/site/**/*.java"
         >
             <src path="${jspc.java.dest.dir}" />
