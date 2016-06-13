@@ -1332,15 +1332,6 @@ strong {
 
 /* Custom classes and IDs for Group Chat --------------------------------------------------------------------------------------------------- */
 
-span.powered-by {
-	color: #666666;
-	height: 15px;
-	font-size: 10px;
-	display: block;
-	background: url(jive-images/logos/logo-jive12x10.gif) no-repeat left center;
-	padding-left: 17px;	
-	}
-
 /* Container for the chat window. Helps determine where the chat window is on page. */
 /* If fitToParent: "true" in the config js, then #groupchat-container controls where the dialog is positioned on screen as well as its size */
 #groupchat-container { 

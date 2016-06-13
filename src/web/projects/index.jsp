@@ -66,6 +66,7 @@
 				
 				
 				<!-- BEGIN other projects -->
+				<div class="ignite_project_listing">
 				<div class="ignite_project_type">Other Projects</div>
 				<div class="ignite_project_table">
 					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -99,9 +100,11 @@
 						</tr>
 					</table>
 				</div>
+				</div>
 				<!-- END other projects -->
 				
 				<!-- BEGIN discontinued projects -->
+				<div class="ignite_project_listing">
 				<div class="ignite_project_type">Discontinued Projects</div>
 				<div class="ignite_project_table">
 					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
@@ -134,6 +137,7 @@
 							</td>
 						</tr>
 					</table>
+				</div>
 				</div>
 				<!-- END other projects -->
 				

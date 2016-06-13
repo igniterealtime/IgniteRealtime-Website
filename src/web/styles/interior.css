@@ -351,6 +351,9 @@ img.ignite_body_image_right {
 	background: transparent url(../images/ignite_projects_bg.gif) no-repeat;
 	background-position: 0 18px;
 	}
+.ignite_project_listing {
+	margin-bottom: 20px;
+}
 .ignite_project_big_left {
 	margin-right: 18px;
 	}
