@@ -91,7 +91,6 @@
 	<!-- BEGIN footer -->
 	<div id="ignite_footer">
 		<div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/index.jsp">Home</a> | <a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a> | <a href="<%= baseUrl %>">Community</a> | <a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a> | <a href="<%= request.getContextPath() %>/support/group_chat.jsp">Group Chat</a> | <a href="<%= request.getContextPath() %>/about/index.jsp">About</a> </div>
-		<div class="ignite_footer_copyright">Powered by <a href="http://www.jivesoftware.com/products/public-community/?source=Website-Ignite">Jive</a> &copy; <a href="http://www.jivesoftware.com?source=Website-Ignite">Jive Software</a></div>
 	</div>
 	<!-- END footer -->
 
