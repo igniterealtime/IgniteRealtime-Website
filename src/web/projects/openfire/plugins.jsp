@@ -27,11 +27,9 @@
 <style type="text/css" media="screen">
 	@import "../../styles/interior.css";
 </style>
-
-
- <%
-    String path = request.getRealPath("/projects/openfire/plugins");
-    File pluginDir = new File(path);
+<%
+    String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-path");
+    File pluginDir = new File(openfirePluginsPath);
 
 
     String pName = request.getParameter("plugin");
@@ -62,7 +60,7 @@
 			<li id="subnav03"><a href="plugins.jsp" class="ignite_subnav_current">Plugins</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
 			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
-			<li id="subnav06"><a href="../../builds/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+			<li id="subnav06"><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
 			<li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <!--<li id="subnav08"><a href="../../roadmap.jsp">http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel</a></li>-->
         </ul>
@@ -85,8 +83,7 @@
 				
 				
 				<div class="ignite_int_body_padding">
-					<p>Plugins extend and enhance the functionality of Openfire (formerly Wildfire). Below is a list of both 
-                    <a href="#opensource">open source</a> 
+					<p>Plugins extend and enhance the functionality of Openfire (formerly Wildfire). Below is a list of
                     plugins available for <a href="index.jsp">Openfire</a>. To install plugins,
                     copy the .jar file into the <tt>plugins</tt> directory of your Openfire installation.
                     <a href="plugins-beta.jsp">Beta plugins</a> are also available.

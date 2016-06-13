@@ -17,8 +17,8 @@
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Spark</a></li>
 			<li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
 			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-			<li id="subnav05"><a href="https://igniterealtime.org/issues/projects/SPARK/issues">Issue Tracker</a></li>
-            		<li id="subnav06"><a href="https://igniterealtime.org/issues/projects/SPARK?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page">Roadmap</a></li>
+			<li id="subnav05"><a href="https://issues.igniterealtime.org/projects/SPARK/">Issue Tracker</a></li>
+            		<li id="subnav06"><a href="https://issues.igniterealtime.org/projects/SPARK?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page">Roadmap</a></li>
         </ul>
 	</div>
 
@@ -48,7 +48,7 @@
                     <table>
                     <tr>
                         <td><img src="../../images/icon_zip.gif"></td>
-                        <td><a href="../../builds/sparkplug_kit/sparkplug_kit_2_0_7.zip">sparkplug_kit_2_0_7.zip</a></td>
+                        <td><a href="http://download.igniterealtime.org/sparkplug_kit/sparkplug_kit_2_0_7.zip">sparkplug_kit_2_0_7.zip</a></td>
                         <td>11.5 MB</td>
                     </tr>
                     </table>
@@ -60,9 +60,9 @@
                     </h4>
 
                     <ul>
-                        <li><a href="../../builds/sparkplug_kit/docs/latest/sparkplug_dev_guide.html">Development Guide</a></li>
-                        <li><a href="../../builds/sparkplug_kit/docs/latest/api/index.html">Javadocs</a></li>
-                        <li><a href="../../builds/sparkplug_kit/docs/latest/examples.jar">Source Code Examples</a></li>
+                        <li><a href="http://download.igniterealtime.org/sparkplug_kit/docs/latest/sparkplug_dev_guide.html">Development Guide</a></li>
+                        <li><a href="http://download.igniterealtime.org/sparkplug_kit/docs/latest/api/index.html">Javadocs</a></li>
+                        <li><a href="http://download.igniterealtime.org/sparkplug_kit/docs/latest/examples.jar">Source Code Examples</a></li>
                     </ul>
 
                     <h4>Resources</h4>

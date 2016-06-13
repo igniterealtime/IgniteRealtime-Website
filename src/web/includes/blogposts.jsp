@@ -3,6 +3,7 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ page import="org.slf4j.LoggerFactory" %><%
+String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
 JSONArray posts = (JSONArray)request.getAttribute("posts");
 String style = "";
 int counter = 0;
@@ -43,6 +44,7 @@ for (Object postObject : posts) {
         LoggerFactory.getLogger( this.getClass() ).warn( "Unable to parse publication date.", e );
     }
     String body = StringUtils.removeEnd(StringUtils.removeStart(post.getJSONObject("content").getString("text"), "<body>"), "</body>");
+    body = body.replaceAll( "href=\"/external-link.jspa", "href=\""+baseUrl+"/external-link.jspa" );
     String parentUrl = post.getJSONObject("parentPlace").getString("html");
     String[] tags = new String[post.getJSONArray("tags").size()];
     int tagsi = 0;

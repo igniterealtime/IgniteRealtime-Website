@@ -115,7 +115,7 @@
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
                         <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="../builds/xiff/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a>
+                        <a href="http://download.igniterealtime.org/xiff/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a>
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>
