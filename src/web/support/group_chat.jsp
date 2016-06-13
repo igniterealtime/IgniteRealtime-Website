@@ -61,8 +61,12 @@
 				<div class="ignite_int_body_support">
 					
 					
-<p>Chat live with the community about igniterealtime.org projects. The chat
-service is available at all times.</p>
+					<p>Chat live with the community about igniterealtime.org projects. The chat
+					service is available at all times.</p>
+
+					<p>Feel free to ask any question you like, but please note that you're talking to volunteers, not
+					people that are paid to be readily available and answer your questions. It might take some time for
+					anyone to read your message.</p>
 
 					<iframe src="candy.jsp" style="width:100%;height:400px;"></iframe>
 					
