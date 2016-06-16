@@ -30,7 +30,7 @@
 
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/groupchat_timer.js"></script>
+<%--<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/groupchat_timer.js"></script>--%>
     
 <!--
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/cookies.js"></script>
@@ -78,10 +78,10 @@
 		</div>
 	</div>
 	<!-- END header -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     // The javascript timer for the header group chat callout
     runGroupChatTimer();
-    </script>
+    </script> -->
 
 
 
