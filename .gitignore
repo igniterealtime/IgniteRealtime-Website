@@ -1,3 +1,6 @@
+# Ignore local build config
+build/build.properties
+
 # Artifacts of the build process
 target/
 
