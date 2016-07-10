@@ -42,18 +42,15 @@
 				<div class="ignite_int_body_padding">
 					
 					
-					<p>The current Smack documentation can be found below. All documentation is also distributed in each release.</p>
+					<p>The current Smack documentation can be found below.</p>
 					
 					<h3>Documentation:</h3>
 					<ul>
-					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="http://download.igniterealtime.org/smack/docs/latest/README.html">Readme & License</a></li>
-					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<a href="http://download.igniterealtime.org/smack/docs/latest/changelog.html">Changelog</a>
-					<br>
-					<br></li>
+					<li><a href="http://download.igniterealtime.org/smack/docs/latest/README.html">Readme & License</a></li>
+					<li><a href="http://download.igniterealtime.org/smack/docs/latest/changelog.html">Changelog</a></li>
+					<li><a href="http://download.igniterealtime.org/smack/docs/latest/javadoc/">Smack Javadoc</li>
 					<li><a href="http://download.igniterealtime.org/smack/docs/latest/documentation/">Smack documentation</a></li>
-				
+				    </ul>
 				
 				</div>
 				
