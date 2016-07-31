@@ -66,7 +66,7 @@
 				<li id="nav01"><a href="<%= request.getContextPath() %>/index.jsp">Home</a></li>
 				<li id="nav02"><a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a></li>
 				<li id="nav03"><a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a></li>
-				<li id="nav04"><a href="<%= baseUrl %>">Community</a></li>
+				<li id="nav04"><a href="<%= baseUrl+"/welcome" %>">Community</a></li>
 				<li id="nav05"><a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a></li>
 				<li id="nav07"><a href="<%= request.getContextPath() %>/support/group_chat.jsp">Group Chat</a></li>
 				<li id="nav08"><a href="<%= request.getContextPath() %>/about/index.jsp">About</a></li>
