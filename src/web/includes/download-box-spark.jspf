@@ -19,6 +19,7 @@
     File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
     File rpm = new File(basedir, "spark-" + version + ".rpm");
     File rpmSrc = new File(basedir, "spark-" + version + ".src.rpm");
+    File debian = new File(basedir, "spark_" + version + "_all.deb");
 
     String buildDate = "UNKNOWN";
     if (binExe.exists()) {
@@ -120,6 +121,14 @@
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)rpmSrc.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_debian.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= debian.getName() %>"><%= debian.getName() %></a> Debian package, no Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)debian.length()/1024.0/1024.0) %> MB</span>
                     </div>
                 </div>
             </div>
