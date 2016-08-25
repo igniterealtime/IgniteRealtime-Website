@@ -19,7 +19,7 @@
     File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
     File rpm = new File(basedir, "spark-" + version + ".rpm");
     File rpmSrc = new File(basedir, "spark-" + version + ".src.rpm");
-    File debian = new File(basedir, "spark_" + version + ".deb");
+    File debian = new File(basedir, "spark_" + version.replace('.','_') + ".deb");
 
     String buildDate = "UNKNOWN";
     if (binExe.exists()) {
