@@ -23,7 +23,7 @@ var Candy = function(self, $) {
 	 */
     self.about = {
         name: "Candy",
-        version: "2.1.0"
+        version: "2.2.0"
     };
     /** Function: init
 	 * Init view & core
@@ -657,6 +657,7 @@ Candy.View = function(self, $) {
             assetsPath: this.getOptions().assets
         }, {
             tabs: Candy.View.Template.Chat.tabs,
+            mobile: Candy.View.Template.Chat.mobileIcon,
             rooms: Candy.View.Template.Chat.rooms,
             modal: Candy.View.Template.Chat.modal,
             toolbar: Candy.View.Template.Chat.toolbar
@@ -3754,6 +3755,7 @@ Candy.View.Pane = function(self, $) {
             if (Candy.Core.getOptions().disconnectWithoutTabs) {
                 Candy.Core.disconnect();
                 self.Chat.Toolbar.hide();
+                self.Chat.hideMobileIcon();
                 return;
             }
         },
@@ -3776,6 +3778,29 @@ Candy.View.Pane = function(self, $) {
                     overflow: "hidden"
                 });
             }
+        },
+        /** Function: hideMobileIcon
+     * Hide mobile roster pane icon.
+     */
+        hideMobileIcon: function() {
+            $("#mobile-roster-icon").hide();
+        },
+        /** Function: showMobileIcon
+     * Show mobile roster pane icon.
+     */
+        showMobileIcon: function() {
+            $("#mobile-roster-icon").show();
+        },
+        /** Function: clickMobileIcon
+     * Add class to 'open' roster pane (on mobile).
+     */
+        clickMobileIcon: function(e) {
+            if ($(".room-pane").is(".open")) {
+                $(".room-pane").removeClass("open");
+            } else {
+                $(".room-pane").addClass("open");
+            }
+            e.preventDefault();
         },
         /** Function: adminMessage
      * Display admin message
@@ -3894,6 +3919,7 @@ Candy.View.Pane = function(self, $) {
                 if (Candy.Util.cookieExists("candy-nostatusmessages")) {
                     $("#chat-statusmessage-control").click();
                 }
+                $(".box-shadow-icon").click(self.Chat.clickMobileIcon);
             },
             /** Function: show
        * Show toolbar.
@@ -4867,7 +4893,7 @@ Candy.View.Pane = function(self, $) {
      *   (String) roomJid - Public room jid
      *   (Candy.Core.ChatUser) user - User which changes his nick
      */
-        changeNick: function changeNick(roomJid, user) {
+        changeNick: function(roomJid, user) {
             Candy.Core.log("[View:Pane:PrivateRoom] changeNick");
             var previousPrivateRoomJid = roomJid + "/" + user.getPreviousNick(), newPrivateRoomJid = roomJid + "/" + user.getNick(), previousPrivateRoomId = Candy.Util.jidToId(previousPrivateRoomJid), newPrivateRoomId = Candy.Util.jidToId(newPrivateRoomJid), room = self.Chat.rooms[previousPrivateRoomJid], roomElement, roomTabElement;
             // it could happen that the new private room is already existing -> close it first.
@@ -4973,6 +4999,7 @@ Candy.View.Pane = function(self, $) {
             // First room, show sound control
             if (Candy.Util.isEmptyObject(self.Chat.rooms)) {
                 self.Chat.Toolbar.show();
+                self.Chat.showMobileIcon();
             }
             var roomId = Candy.Util.jidToId(roomJid);
             self.Chat.rooms[roomJid] = {
@@ -5737,9 +5764,10 @@ Candy.View.Template = function(self) {
         unreadmessages: "({{count}}) {{title}}"
     };
     self.Chat = {
-        pane: '<div id="chat-pane">{{> tabs}}{{> toolbar}}{{> rooms}}</div>{{> modal}}',
+        pane: '<div id="chat-pane">{{> tabs}}{{> mobile}}{{> toolbar}}{{> rooms}}</div>{{> modal}}',
         rooms: '<div id="chat-rooms" class="rooms"></div>',
         tabs: '<ul id="chat-tabs"></ul>',
+        mobileIcon: '<div id="mobile-roster-icon"><a class="box-shadow-icon"></a></div>',
         tab: '<li class="roomtype-{{roomType}}" data-roomjid="{{roomJid}}" data-roomtype="{{roomType}}">' + '<a href="#" class="label">{{#privateUserChat}}@{{/privateUserChat}}{{name}}</a>' + '<a href="#" class="transition"></a><a href="#" class="close">×</a>' + '<small class="unread"></small></li>',
         modal: '<div id="chat-modal"><a id="admin-message-cancel" class="close" href="#">×</a>' + '<span id="chat-modal-body"></span>' + '<img src="{{assetsPath}}img/modal-spinner.gif" id="chat-modal-spinner" />' + '</div><div id="chat-modal-overlay"></div>',
         adminMessage: '<li><small data-timestamp="{{timestamp}}">{{time}}</small><div class="adminmessage">' + '<span class="label">{{sender}}</span>' + '<span class="spacer">▸</span>{{subject}} {{{message}}}</div></li>',
@@ -6186,6 +6214,58 @@ Candy.View.Translation = {
         errorMaxOccupantsReached: 'Du kan inte ansluta till rummet "%s": Rummet är fullt.',
         antiSpamMessage: "Var god avstå från att spamma. Du har blivit blockerad för en kort stund."
     },
+    fi: {
+        status: "Status: %s",
+        statusConnecting: "Muodostetaan yhteyttä...",
+        statusConnected: "Yhdistetty",
+        statusDisconnecting: "Katkaistaan yhteyttä...",
+        statusDisconnected: "Yhteys katkaistu",
+        statusAuthfail: "Autentikointi epäonnistui",
+        roomSubject: "Otsikko:",
+        messageSubmit: "Lähetä",
+        labelUsername: "Käyttäjätunnus:",
+        labelNickname: "Nimimerkki:",
+        labelPassword: "Salasana:",
+        loginSubmit: "Kirjaudu sisään",
+        loginInvalid: "Virheellinen JID",
+        reason: "Syy:",
+        subject: "Otsikko:",
+        reasonWas: "Syy oli: %s.",
+        kickActionLabel: "Potkaise",
+        youHaveBeenKickedBy: "Nimimerkki %1$s potkaisi sinut pois huoneesta %2$s",
+        youHaveBeenKicked: "Sinut potkaistiin pois huoneesta %s",
+        banActionLabel: "Porttikielto",
+        youHaveBeenBannedBy: "Nimimerkki %2$s antoi sinulle porttikiellon huoneeseen %1$s",
+        youHaveBeenBanned: "Sinulle on annettu porttikielto huoneeseen %s",
+        privateActionLabel: "Yksityinen keskustelu",
+        ignoreActionLabel: "Hiljennä",
+        unignoreActionLabel: "Peruuta hiljennys",
+        setSubjectActionLabel: "Vaihda otsikkoa",
+        administratorMessageSubject: "Ylläpitäjä",
+        userJoinedRoom: "%s tuli huoneeseen.",
+        userLeftRoom: "%s lähti huoneesta.",
+        userHasBeenKickedFromRoom: "%s potkaistiin pois huoneesta.",
+        userHasBeenBannedFromRoom: "%s sai porttikiellon huoneeseen.",
+        userChangedNick: "%1$s vaihtoi nimimerkikseen %2$s.",
+        dateFormat: "dd.mm.yyyy",
+        timeFormat: "HH:MM:ss",
+        tooltipRole: "Ylläpitäjä",
+        tooltipIgnored: "Olet hiljentänyt tämän käyttäjän",
+        tooltipEmoticons: "Hymiöt",
+        tooltipSound: "Soita äänimerkki uusista yksityisviesteistä",
+        tooltipAutoscroll: "Automaattinen vieritys",
+        tooltipStatusmessage: "Näytä statusviestit",
+        tooltipAdministration: "Huoneen ylläpito",
+        tooltipUsercount: "Huoneen jäsenet",
+        enterRoomPassword: 'Huone "%s" on suojattu salasanalla.',
+        enterRoomPasswordSubmit: "Liity huoneeseen",
+        passwordEnteredInvalid: 'Virheelinen salasana huoneeseen "%s".',
+        nicknameConflict: "Käyttäjätunnus oli jo käytössä. Valitse jokin toinen käyttäjätunnus.",
+        errorMembersOnly: 'Et voi liittyä huoneeseen "%s": ei oikeuksia.',
+        errorMaxOccupantsReached: 'Et voi liittyä huoneeseen "%s": liian paljon jäseniä.',
+        errorAutojoinMissing: 'Parametria "autojoin" ei ole määritelty asetuksissa. Tee määrittely jatkaaksesi.',
+        antiSpamMessage: "Ethän spämmää. Sinut on nyt väliaikaisesti pistetty jäähylle."
+    },
     it: {
         status: "Stato: %s",
         statusConnecting: "Connessione...",
@@ -6543,6 +6623,58 @@ Candy.View.Translation = {
         errorMaxOccupantsReached: 'Nemůžete se připojit do místnosti "%s": Příliš mnoho uživatelů.',
         errorAutojoinMissing: "Není nastaven parametr autojoin. Nastavte jej prosím.",
         antiSpamMessage: "Nespamujte prosím. Váš účet byl na chvilku zablokován."
+    },
+    he: {
+        status: "מצב: %s",
+        statusConnecting: "כעת מתחבר...",
+        statusConnected: "מחובר",
+        statusDisconnecting: "כעת מתנתק...",
+        statusDisconnected: "מנותק",
+        statusAuthfail: "אימות נכשל",
+        roomSubject: "נושא:",
+        messageSubmit: "שלח",
+        labelUsername: "שם משתמש:",
+        labelNickname: "שם כינוי:",
+        labelPassword: "סיסמה:",
+        loginSubmit: "כניסה",
+        loginInvalid: "JID לא תקני",
+        reason: "סיבה:",
+        subject: "נושא:",
+        reasonWas: "סיבה היתה: %s.",
+        kickActionLabel: "בעט",
+        youHaveBeenKickedBy: "נבעטת מתוך %2$s על ידי %1$s",
+        youHaveBeenKicked: "נבעטת מתוך %s",
+        banActionLabel: "אסור",
+        youHaveBeenBannedBy: "נאסרת מתוך %1$s על ידי %2$s",
+        youHaveBeenBanned: "נאסרת מתוך %s",
+        privateActionLabel: "שיחה פרטית",
+        ignoreActionLabel: "התעלם",
+        unignoreActionLabel: "בטל התעלמות",
+        setSubjectActionLabel: "שנה נושא",
+        administratorMessageSubject: "מנהל",
+        userJoinedRoom: "%s נכנס(ה) לחדר.",
+        userLeftRoom: "%s עזב(ה) את החדר.",
+        userHasBeenKickedFromRoom: "%s נבעט(ה) מתוך החדר.",
+        userHasBeenBannedFromRoom: "%s נאסר(ה) מתוך החדר.",
+        userChangedNick: "%1$s מוכר(ת) כעת בתור %2$s.",
+        dateFormat: "dd.mm.yyyy",
+        timeFormat: "HH:MM:ss",
+        tooltipRole: "אחראי",
+        tooltipIgnored: "אתה מתעלם ממשתמש זה",
+        tooltipEmoticons: "רגשונים",
+        tooltipSound: "נגן צליל עבור הודעות פרטיות חדשות",
+        tooltipAutoscroll: "גלילה אוטומטית",
+        tooltipStatusmessage: "הצג הודעות מצב",
+        tooltipAdministration: "הנהלת חדר",
+        tooltipUsercount: "משתתפי חדר",
+        enterRoomPassword: 'חדר "%s" הינו מוגן סיסמה.',
+        enterRoomPasswordSubmit: "הצטרף לחדר",
+        passwordEnteredInvalid: 'סיסמה שגויה לחדר "%s".',
+        nicknameConflict: "שם משתמש כבר מצוי בשימוש. אנא בחר אחד אחר.",
+        errorMembersOnly: 'אין באפשרותך להצטרף לחדר "%s": הרשאות לקויות.',
+        errorMaxOccupantsReached: 'אין באפשרותך להצטרף לחדר "%s": יותר מדי משתתפים.',
+        errorAutojoinMissing: "לא נקבע פרמטר הצטרפות אוטומטית בתצורה. אנא הזן כזה כדי להמשיך.",
+        antiSpamMessage: "אנא אל תשלח ספאם. נחסמת למשך זמן קצר."
     }
 };
 //# sourceMappingURL=candy.bundle.map
