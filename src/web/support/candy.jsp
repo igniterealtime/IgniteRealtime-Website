@@ -26,8 +26,7 @@
                             debug: <%= Boolean.toString( debug ) %>,
                             autojoin: ['open_chat@conference.<%= xmppDomain %>']
                     },
-                    view: { resources: 'candy-2.2.0/res/',
-                            enableXHTML: true }
+                    view: { resources: 'candy-2.2.0/res/' }
             });
 
             Candy.Core.connect('<%= xmppDomain %>');
