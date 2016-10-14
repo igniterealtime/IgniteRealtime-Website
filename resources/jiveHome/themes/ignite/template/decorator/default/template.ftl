@@ -32,7 +32,6 @@
     <style type="text/css"><@s.action name='custom-css' executeResult='true' ignoreContextParams='true' /></style>
     <style type="text/css"><@s.action name='custom-css-container' executeResult='true' ignoreContextParams='true' /></style>
 
-    <script src="http://www.igniterealtime.org/scripts/groupchat_timer.js" language="JavaScript" type="text/javascript"></script>
 </head>
 <body id="community" class="${page.getProperty("body.class")!}" >
 

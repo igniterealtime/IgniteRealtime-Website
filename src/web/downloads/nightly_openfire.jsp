@@ -77,14 +77,22 @@
 
             <div>
             <p>
-            Below are nightly builds for Openfire (formerly Wildfire). Please see the <a href="index.jsp">official builds</a>
-            page if you're looking for a specific release. Each day has 5 builds -- 
-            a GZIP and ZIP release for both the binary and source builds. There
-            is also a Debian (.deb) build.
-            </p>
+            Below are nightly builds for Openfire.
+            Please see the <a href="index.jsp">official builds</a>
+            page if you're looking for a specific release. Each day has 3 builds:</p>
+            <ul>
+             <li>generic binary build in gzip compressed tar format (.tar.gz)</li>
+             <li>generic binary build in zip format (.zip)</li>
+             <li>binary build installer for Ubuntu/Debian (.deb)</li>
+            </ul>
+
+	<p>If you are looking for the latest source code, please see our
+	<a href="https://github.com/Igniterealtime/Openfire">GitHub Repository</a>.</p>
+
 
             <p>
-            Daily builds are provided for those that require early access to changes before they are officially
+            Daily builds are provided for those that require early access to
+            changes before they are officially
             released. These builds are <b>not extensively tested</b>, so most users should use
             <a href="index.jsp">official releases</a> instead.
             </p>
@@ -112,9 +120,8 @@
             File file1 = files[3 * i];
             File file2 = files[3 * i + 1];
             File file3 = files[3 * i + 2];
-            if (i%3 == 0) {
-                odd = !odd;
-            }
+            odd = !odd;
+
     %>
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
@@ -140,54 +147,8 @@
 
 <%  } %>
 
-                <div class="ignite_download_panel_label">
-                    <h4>Source Builds</h4>
-                </div>
-
-<%
-    path = buildsPath + "/openfire/dailybuilds/";
-    buildDir = new File(path);
-
-    // Binaries
-    files = buildDir.listFiles(new FileFilter() {
-        public boolean accept(File pathname) {
-            return !(pathname.getName().indexOf("_src") == -1);
-        }
-    });
-    if (files != null && files.length > 0) {
-        Arrays.sort(files, new FileComparator());
-        boolean odd = false;
-        for (int i=0; i< (files.length / 2); i++) {
-            File file1 = files[2 * i];
-            File file2 = files[2 * i + 1];
-            if (i%2 == 0) {
-                odd = !odd;
-            }
-    %>
-                <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
-                    <span class="ignite_download_item_details">
-                        <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a><br>
-                        <img src="../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                        <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a>
-                    </span>
-                    <span class="ignite_download_item_date">
-                        <%= dateFormat.format(new Date(file1.lastModified())) %>
-                    </span>
-                    <span class="ignite_download_item_size">
-                        <%= mbFormat.format(file1.length()/(1024.0*1024.0)) %> MB<br>
-                        <%= mbFormat.format(file2.length()/(1024.0*1024.0)) %> MB
-                    </span>
-                </div>
-
-    <%  } %>
-
-<%  } %>
-
-                <br>
                 <br>
                 </div>
-
         </div>
         <!-- END body content area -->
 
