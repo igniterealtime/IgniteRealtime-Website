@@ -63,7 +63,7 @@
 				</div>
 				
 				<div id="ignite_bigpanel_screenshot">
-					<img src="images/ignite_home-circlegraph.png" width="177" height="208" alt="" />
+					<img src="images/ignite_about-circlegraph.png" width="177" height="208" alt="" />
 				</div>
 				
 			</div>
