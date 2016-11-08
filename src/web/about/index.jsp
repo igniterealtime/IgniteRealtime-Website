@@ -30,14 +30,14 @@
 					<h2 class="larger">Our Community</h2>
 					
                     <p>
-                        Igniterealtime is a professionally-led (from <a href="http://www.jivesoftware.com?source=Website-Ignite">Jive Software</a>) Open Source community composed of end-users and developers
+                        Igniterealtime is an Open Source community composed of end-users, developers and service providers
                         around the world who are interested in applying innovative, open-standards-based Real Time
                         Collaboration to their businesses. We're aimed at disrupting proprietary, non-open
                         standards-based systems and invite you to participate in what's already one of the biggest
                         and most active Open Source communities anywhere.
                     </p>
 					
-					<img src="../images/ignite_about-circlegraph.gif" alt="" width="179" height="210" border="0" align="right" style="margin-left: 10px;">
+					<img src="../images/ignite_about-circlegraph.png" alt="" width="179" height="210" border="0" align="right" style="margin-left: 10px;">
 
                     <h2 class="larger">Open Source Philosophy</h2>
 
@@ -45,20 +45,8 @@
                         We create Open Source software because we know open, collaborative minds can improve the
                         software landscape. We believe in the potential of the XMPP protocol and we welcome ways
                         to increase its adoption. We put tremendous value on the involvement of Igniterealtime's
-                        developer and customer community--their continuous feedback, QA, and development efforts
+                        developer and user community--their continuous feedback, QA, and development efforts
                         help steer our development path.
-                    </p>
-
-                    <p>
-                        Our perspective is that base functionality--the core messaging aspects of RTC--should be
-                        free and Open Source. We are committed to always providing a "complete solution" as an
-                        OSS product, and will not hold back core features or bug fixes. To support that goal,
-                        only features that support mission-critical rollouts (i.e. server clustering), embedded
-                        third-party applications (non Open Source), high-end productivity features (i.e. enhanced
-                        reporting), advanced security features, or other productivity-focused features will be
-                        commercial. Revenue will only be realized through those commerical extensions, OEM licensing
-                        or support/professional services. A strong commercial market can only help support a strong
-                        Open Source community and vice versa.
                     </p>
 
                     <p>
@@ -71,7 +59,7 @@
 
 
                     <p>
-					    XMPP (also known as Jabber) is the leading open standard for presence and
+			XMPP (also known as Jabber) is the leading open standard for presence and
                         real-time messaging. Since 2004, it's been an approved standard of the IETF
                         (the same organization that standardized email and World Wide Web protocols).
                         A rich set of <a href="http://www.xmpp.org/extensions/">extensions</a> to
@@ -93,8 +81,7 @@
                     </p>
                     <p>
                         Ignite Realtime furthers XMPP through best of breed protocol implementations,
-                        development of new protocol extensions, and sponsorship of the Jabber
-                        Software Foundation through Jive Software.
+                        development of new protocol extensions, and participation to the XMPP Standards Foundation (XSF).
                     </p>
 				</div>
 			
