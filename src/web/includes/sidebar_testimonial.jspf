@@ -42,6 +42,12 @@
 		reiser.setText("Jive Software's Openfire instant messaging product is one of the easiest software packages I've ever installed because there's zero learning curve. The Openfire software can be installed in less than five minutes, or if you go out for coffee, in 15 minutes.");
 		reiser.setAttribution("Adam Reiser, Cheese Technologist &amp; Co-founder of Pizza.Net");
 		quotes.add(reiser);
+
+        Quote eh = new Quote();
+        eh.setText("At Inteno we managed to quickly create a massively scalable IoT service delivery platform using OpenFire at its core. Thanks to the extendible architecture of OpenFire, adding device management capabilities was straight forward to do.");
+        eh.setAttribution("Erik Horemans, CEO Inteno Belgium");
+        quotes.add(eh);
+
     }
 %>
 
