@@ -11,15 +11,11 @@
 
     DecimalFormat formatter = new DecimalFormat("0.00");
     String basedir = buildsPath + "/whack";
-    File binZip = new File(basedir, "whack_" + version.replace('.','_') + ".zip");
-    File binTarGz = new File(basedir, "whack_" + version.replace('.','_') + ".tar.gz");
-    File srcZip = new File(basedir, "whack_src_" + version.replace('.','_') + ".zip");
-    File srcTarGz = new File(basedir, "whack_src_" + version.replace('.','_') + ".tar.gz");
-
+    File binJar = new File(basedir, "whack_" + version.replace('.','_') + ".jar");
     String buildDate = "UNKNOWN";
-    if (binZip.exists()) {
+    if (binJar.exists()) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
-        buildDate = dateFormat.format(new Date(binZip.lastModified()));
+        buildDate = dateFormat.format(new Date(binJar.lastModified()));
     }
 %>
 
@@ -49,18 +45,10 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= binZip.getName() %>"><%= binZip.getName() %></a>
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= binJar.getName() %>"><%= binJar.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binZip.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <div class="ignite_download_item_even">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a>
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binTarGz.length()/1024.0/1024.0) %> MB</span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binJar.length()/1024.0/1024.0) %> MB</span>
                     </div>
                 </div>
             </div>
