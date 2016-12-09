@@ -33,7 +33,6 @@
     
 <!--
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/cookies.js"></script>
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/prototype.js"></script>
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/scriptaculous.js"></script>
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/window.js"></script>
 -->
