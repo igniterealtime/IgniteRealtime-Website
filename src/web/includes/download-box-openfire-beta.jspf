@@ -14,7 +14,7 @@
     String ver = version.replace('.', '_');
     String rpmversion = version.replaceFirst(".beta", "-0.2.beta");
     File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
-    File rpm32 = new File(basedir, "openfire-" + rpmversion + ".i386.rpm");
+    File rpm32 = new File(basedir, "openfire-" + rpmversion + ".i686.rpm");
     File rpmnoarch = new File(basedir, "openfire-" + rpmversion + ".noarch.rpm");
     File rpm64 = new File(basedir, "openfire-" + rpmversion + ".x86_64.rpm");
     File zip = new File(basedir, "openfire_" + ver + ".zip");
