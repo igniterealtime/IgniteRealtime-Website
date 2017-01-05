@@ -1,7 +1,4 @@
 /**
- * $Revision$
- * $Date$
- *
  * Copyright (C) 1999-2005 Jive Software. All rights reserved.
  * This software is the proprietary information of Jive Software. Use is subject to license terms.
  */
@@ -23,9 +20,6 @@ import java.util.Locale;
 import java.util.Random;
 
 /**
- * $Revision: 3531 $
- * $Date: 2006-03-08 00:34:35 -0800 (Wed, 08 Mar 2006) $
- *
  * Copyright (C) 2004-2006 Jive Software. All rights reserved.
  *
  * This software is published under the terms of the GNU Public License (GPL),
