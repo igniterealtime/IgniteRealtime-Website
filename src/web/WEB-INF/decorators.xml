@@ -1,11 +1,5 @@
 <?xml version="1.0"?>
 
-<!--
- - $RCSfile$
- - $Revision: 31343 $
- - $Date: 2006-06-20 16:19:22 -0700 (Tue, 20 Jun 2006) $
--->
-
 <decorators defaultdir="/template">
 
  	<decorator name="default" page="default.jsp">
