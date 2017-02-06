@@ -70,7 +70,7 @@
 				<div class="ignite_project_type">Other Projects</div>
 				<div class="ignite_project_table">
 					<table border cellpadding="0" cellspacing="0" border="0" width="100%">
-                        			<tr class="ignite_project_table-row-odd">
+						<tr class="ignite_project_table-row-odd">
 							<td class="ignite_project_table-title" nowrap="nowrap">
 								<a href="tinder/index.jsp">Tinder</a>
 							</td>
@@ -96,6 +96,20 @@
 							</td>
 							<td class="ignite_project_table-link" nowrap="nowrap">
 								<a href="whack/index.jsp">Learn More</a>
+							</td>
+						</tr>
+						<tr class="ignite_project_table-row-even">
+							<td class="ignite_project_table-title" nowrap="nowrap">
+								<a href="asterisk/index.jsp">Asterisk-IM</a>
+							</td>
+							<td class="ignite_project_table-description">
+								Asterisk-IM integration for Openfire.
+							</td>
+							<td class="ignite_project_table-version">
+								<%= Versions.getVersion("asterisk") %>
+							</td>
+							<td class="ignite_project_table-link" nowrap="nowrap">
+								<a href="asterisk/index.jsp">Learn More</a>
 							</td>
 						</tr>
 					</table>

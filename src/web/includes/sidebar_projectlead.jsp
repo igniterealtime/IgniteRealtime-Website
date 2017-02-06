@@ -43,7 +43,13 @@
         profileLink = "https://community.igniterealtime.org/people/Guus";
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
-    else if (project.equals("xiff")) {
+    else if (project.equals("asterisk")) {
+        name = "Marcelo";
+        avatarSrc = "https://community.igniterealtime.org/people/mhterres/avatar/46.png";
+        profileLink = "https://community.igniterealtime.org/people/mhterres";
+        profile = "Single-handedly responsible for saving the Belgian beer industry.";
+    }
+    else {
         name = "vacant";
         avatarSrc = "https://community.igniterealtime.org/people/guest/avatar/46.png";
      // profileLink = "https://community.igniterealtime.org/people/driverjase";
