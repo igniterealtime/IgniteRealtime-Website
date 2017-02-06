@@ -43,7 +43,7 @@
         profileLink = "https://community.igniterealtime.org/people/Guus";
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
-    else if (project.equals("asterisk")) {
+    else if (project.equals("asterisk-im")) {
         name = "Marcelo";
         avatarSrc = "https://community.igniterealtime.org/people/mhterres/avatar/46.png";
         profileLink = "https://community.igniterealtime.org/people/mhterres";

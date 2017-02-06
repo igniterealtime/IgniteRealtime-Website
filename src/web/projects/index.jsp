@@ -106,7 +106,7 @@
 								Asterisk-IM integration for Openfire.
 							</td>
 							<td class="ignite_project_table-version">
-								<%= Versions.getVersion("asterisk") %>
+								<%= Versions.getVersion("asterisk-im") %>
 							</td>
 							<td class="ignite_project_table-link" nowrap="nowrap">
 								<a href="asterisk/index.jsp">Learn More</a>
