@@ -41,7 +41,7 @@
 				<div class="ignite_int_body_padding">
 					
 					
-					<p>The current Spark documentation can be found below. All documentation is also distributed in each release.</p>
+					<p>The current Spark documentation can be found below. All documentation is also distributed in each release (except for the user guide, which is an online wiki page).</p>
 					
 					<h3>Documentation:</h3>
 					<ul>
@@ -49,6 +49,7 @@
 					<a href="http://download.igniterealtime.org/spark/docs/latest/README.html">Readme &amp; License</a></li>
 					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<a href="http://download.igniterealtime.org/spark/docs/latest/changelog.html">Changelog</a>
+					<li><a href="https://community.igniterealtime.org/docs/DOC-5213">User Guide (wiki)</a>
 					<br>
 					<br></li>
                     </ul>
