@@ -119,8 +119,7 @@
     %>
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
                     <span class="ignite_download_item_details">
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0">
-                        <a href="http://download.igniterealtime.org/spark/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a> (<%= mbFormat.format(file1.length()/(1024.0*1024.0)) %> MB)<br />
+                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="http://download.igniterealtime.org/spark/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a> (<%= mbFormat.format(file1.length()/(1024.0*1024.0)) %> MB)<br />
                         <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="http://download.igniterealtime.org/spark/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a> (<%= mbFormat.format(file2.length()/(1024.0*1024.0)) %> MB)<br />
                         <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="http://download.igniterealtime.org/spark/dailybuilds/<%= file3.getName() %>"><%= file3.getName() %></a> (<%= mbFormat.format(file3.length()/(1024.0*1024.0)) %> MB)<br />
                         <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="http://download.igniterealtime.org/spark/dailybuilds/<%= file4.getName() %>"><%= file4.getName() %></a> (<%= mbFormat.format(file4.length()/(1024.0*1024.0)) %> MB)<br />
