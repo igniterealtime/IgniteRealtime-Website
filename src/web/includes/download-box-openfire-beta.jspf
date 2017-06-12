@@ -14,6 +14,7 @@
     String ver = version.replace('.', '_');
     String rpmversion = version.replaceFirst(".beta", "-0.2.beta");
     File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
+    File winInstaller64 = new File(basedir, "openfire_" + ver + "_64.exe");
     File rpm32 = new File(basedir, "openfire-" + rpmversion + ".i686.rpm");
     File rpmnoarch = new File(basedir, "openfire-" + rpmversion + ".noarch.rpm");
     File rpm64 = new File(basedir, "openfire-" + rpmversion + ".x86_64.rpm");
@@ -65,12 +66,20 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> Includes Java JRE <b>(recommended)</b>
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller64.getName() %>"><%= winInstaller64.getName() %></a> Includes Java JRE 64-bit<b>(recommended)</b>
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller64.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> Includes Java JRE 32-bit
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_even">
+                    <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= zip.getName() %>"><%= zip.getName() %></a> Does not include Java JRE
