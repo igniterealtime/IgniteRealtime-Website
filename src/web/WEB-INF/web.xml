@@ -38,7 +38,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 
     <context-param>
         <param-name>csc_baseurl</param-name>
-        <param-value>https://community.igniterealtime.org</param-value>
+        <param-value>https://igniterealtime.jiveon.com</param-value>
     </context-param>
     <filter>
         <filter-name>sitemesh</filter-name>
