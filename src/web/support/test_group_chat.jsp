@@ -92,10 +92,6 @@
 					to connect to the group chat service at conference.igniterealtime.org. The chat name is
                     &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p>
 
-					<h3>Previous Chats</h3>
-					<p>Transcripts of the weekly chats are posted in the 
-					<a href="http://community.igniterealtime.org/main-threads.jspa">discussion forums</a>. Try a search for
-					"chat transcript" to find them.</p>
 					
 					<h3>About Group Chat</h3>
 					<p>The web-based group chat client used on this site is powered by the group chat 

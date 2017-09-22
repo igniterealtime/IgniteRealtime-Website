@@ -49,7 +49,7 @@
 					<a href="http://download.igniterealtime.org/spark/docs/latest/README.html">Readme &amp; License</a></li>
 					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<a href="http://download.igniterealtime.org/spark/docs/latest/changelog.html">Changelog</a>
-					<li><a href="https://community.igniterealtime.org/docs/DOC-5213">User Guide (wiki)</a>
+					<li><a href="https://discourse.igniterealtime.org/t/spark-user-guide-revised/41731">User Guide (wiki)</a>
 					<br>
 					<br></li>
                     </ul>

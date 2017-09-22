@@ -67,7 +67,7 @@
 
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="https://community.igniterealtime.org/community/developers/spark_dev">Spark Development Forum</a></li>
+                        <li><a href="https://discourse.igniterealtime.org/c/spark/spark-dev">Spark Development Forum</a></li>
                     </ul>
 
                 </div>

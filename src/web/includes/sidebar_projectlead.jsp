@@ -9,50 +9,50 @@
     String profile = null;
     if (project.equals("openfire")) {
         name = "dwd";
-        avatarSrc = "https://community.igniterealtime.org/people/dwd/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/dwd";
+        avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/d/e19b73/45.png";
+        profileLink = "https://discourse.igniterealtime.org/u/dwd";
         profile = "Dave Cridland is also a member of the XMPP Council, the technical steering group that approves XMPP Extension Protocols.";
     }
     else if (project.equals("spark")) {
         name = "wroot";
-        avatarSrc = "https://community.igniterealtime.org/people/wroot/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/wroot";
+        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/wroot/45/16_1.png";
+        profileLink = "https://discourse.igniterealtime.org/u/wroot";
         profile = "He is known to remember EVERYTHING and shamelessly remind you about promises you made and already forgot ten years ago.";
     }
     else if (project.equals("sparkweb")) {
         name = "vacant";
-        avatarSrc = "https://community.igniterealtime.org/people/guest/avatar/46.png";
-     // profileLink = "https://community.igniterealtime.org/people/dele";
+        avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/d/e19b73/45.png";
+     // profileLink = "https://discourse.igniterealtime.org/people/dele";
         profile = "Nobody is working on the project currently.";
     }
     else if (project.equals("smack")) {
         name = "Flow";
-        avatarSrc = "https://community.igniterealtime.org/people/Flow/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/Flow";
+        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/flow/45/13_1.png";
+        profileLink = "https://discourse.igniterealtime.org/u/flow";
         profile = "Florian Schmaus is also a member of the XMPP Standards Foundation.";
     }
     else if (project.equals("tinder")) {
         name = "Guus";
-        avatarSrc = "https://community.igniterealtime.org/people/Guus/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/Guus";
+        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/guus/45/15_1.png";
+        profileLink = "https://discourse.igniterealtime.org/u/guus";
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("whack")) {
         name = "Guus";
-        avatarSrc = "https://community.igniterealtime.org/people/Guus/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/Guus";
+        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/guus/45/15_1.png";
+        profileLink = "https://discourse.igniterealtime.org/u/guus";
         profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
     }
     else if (project.equals("asterisk-im")) {
         name = "Marcelo";
-        avatarSrc = "https://community.igniterealtime.org/people/mhterres/avatar/46.png";
-        profileLink = "https://community.igniterealtime.org/people/mhterres";
+        avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/m/58956e/45.png";
+        profileLink = "https://discourse.igniterealtime.org/u/mhterres";
         profile = "Single-handedly responsible for saving the Belgian beer industry.";
     }
     else {
         name = "vacant";
-        avatarSrc = "https://community.igniterealtime.org/people/guest/avatar/46.png";
-     // profileLink = "https://community.igniterealtime.org/people/driverjase";
+        avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/d/e19b73/45.png";
+     // profileLink = "https://discourse.igniterealtime.org/people/driverjase";
      // profile = "Flash guru extraordinaire, part-time superhero.";
         profile = "Nobody is working on the project currently.";
     }

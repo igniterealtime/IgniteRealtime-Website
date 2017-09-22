@@ -47,13 +47,13 @@
 					<h3>Documentation:</h3>
 					<ul>
 					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://community.igniterealtime.org/docs/DOC-1845">Readme</a>
-                    <!--<a href="http://download.igniterealtime.org/tinder/docs/latest/README.html">Readme & License</a>--></li>
+                    <a href="https://discourse.igniterealtime.org/t/introducing-tinder-an-xmpp-object-implementation-library/63975">Readme</a>
+                    <!--<a href="http://download.igniterealtime.org/tinder/docs/latest/README.html">Readme &amp; License</a>--></li>
 					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
 					<!-- <a href="http://download.igniterealtime.org/tinder/docs/latest/changelog.html">Changelog</a> -->Initial Release - no Changelog
 					<br>
 					<br></li>
-					<li><!--<a href="http://download.igniterealtime.org/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="http://community.igniterealtime.org/community/developers/tinder?view=documents">Tinder documentation</a></li>
+					<li><!--<a href="http://download.igniterealtime.org/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="https://discourse.igniterealtime.org/c/tinder-dev">Tinder documentation</a></li>
 				
 				
 				</div>
