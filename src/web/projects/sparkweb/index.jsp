@@ -53,7 +53,7 @@
 			<div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
 				<div id="ignite_bigpanel_content">
 					<h1 class="sparkweb">SparkWeb <span><%= Versions.getVersion("sparkweb") %></span></h1>
-					<p>SparkWeb is an Open Source, web-based IM client optimized for businesses and 
+					<p>SparkWeb is an Open Source, Flash based IM web client optimized for businesses and 
 					organizations. It features built-in support for group chat and strong security. It
                                         also offers a great end-user experience with features like 
 					group chat room bookmarks, and tabbed conversations.</p>
