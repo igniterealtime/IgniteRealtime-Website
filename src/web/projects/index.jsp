@@ -117,7 +117,7 @@
 				</div>
 				<!-- END other projects -->
 				
-				<!-- BEGIN discontinued projects -->
+				<!-- BEGIN discontinued projects
 				<div class="ignite_project_listing">
 				<div class="ignite_project_type">Discontinued Projects</div>
 				<div class="ignite_project_table">
@@ -153,7 +153,7 @@
 					</table>
 				</div>
 				</div>
-				<!-- END other projects -->
+				END discontinued projects -->
 				
 				
 			</div>
