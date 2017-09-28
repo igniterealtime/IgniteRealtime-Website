@@ -153,7 +153,7 @@
 					</table>
 				</div>
 				</div>
-				END other projects -->
+				END discontinued projects -->
 				
 				
 			</div>
