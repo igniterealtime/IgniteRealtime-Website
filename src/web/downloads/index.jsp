@@ -69,13 +69,13 @@
                 <%@ include file="/includes/download-box-whack.jspf" %>
 				<!-- END whack downloads -->
 				
-				<!-- BEGIN xiff downloads -->
+				<!-- BEGIN xiff downloads
                 <%@ include file="/includes/download-box-xiff.jspf" %>
-				<!-- END xiff downloads -->
+				END xiff downloads -->
 				
-				<!-- BEGIN sparkweb downloads -->
+				<!-- BEGIN sparkweb downloads
                 <%@ include file="/includes/download-box-sparkweb.jspf" %>
-				<!-- END sparkweb downloads -->
+				END sparkweb downloads -->
 				
 				
 				
