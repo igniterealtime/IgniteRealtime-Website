@@ -162,7 +162,7 @@
 
             <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
 
-            <div class="sidebar sidebar_light sidebar_gray">
+           <!-- <div class="sidebar sidebar_light sidebar_gray">
                 <h1 class="sidebar_header">In the community</h1>
 
                 <h4>Recent Discussions</h4>
@@ -199,7 +199,7 @@
                 <% } catch (Exception e) { %>
                     <cache:usecached />
                 <% } %>
-                    </cache:cache>
+                    </cache:cache> -->
 
 
         <!--        <h4>Recent Articles</h4>
