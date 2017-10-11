@@ -93,12 +93,18 @@
 </div>
 <!-- END page 'wrapper' -->
 
-<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
-</script>
-
 <script type="text/javascript">
-_uacct = "UA-73301-3";
-urchinTracker();
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//igniterealtime.org/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '2']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
 </script>
 
 </body>
