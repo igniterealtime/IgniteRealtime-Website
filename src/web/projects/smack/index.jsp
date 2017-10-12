@@ -20,11 +20,11 @@
 	<div id="ignite_subnav">
 		<ul>
 			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Smack</a></li>
-			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
-			<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
-			<!-- <li id="subnav06"><a href="/builds/smack/docs/latest/javadoc/">JavaDocs</a></li> -->
-			
+			<li id="subnav02"><a href="//igniterealtime.org/projects/smack/readme">Readme</a></li>
+			<li id="subnav03"><a href="//download.igniterealtime.org/smack/docs/latest/javadoc/">JavaDocs</a></li>
+			<li id="subnav04"><a href="//download.igniterealtime.org/smack/docs/latest/documentation/">Documentation</a></li>
+			<li id="subnav05"><a href="//download.igniterealtime.org/smack/docs/latest/changelog.html">Changelog</a></li>
+			<li id="subnav06"><a href="//issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
 		</ul>
 	</div>
 
