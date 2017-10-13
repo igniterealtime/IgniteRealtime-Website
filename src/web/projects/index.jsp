@@ -141,7 +141,7 @@
 								<a href="sparkweb/index.jsp">SparkWeb</a>
 							</td>
 							<td class="ignite_project_table-description">
-								Web based real-time collaboration client.
+								Flash based real-time collaboration web client.
 							</td>
 							<td class="ignite_project_table-version">
 								<%= Versions.getVersion("sparkweb") %>
@@ -153,7 +153,7 @@
 					</table>
 				</div>
 				</div>
-				<!-- END other projects -->
+				<!-- END discontinued projects -->
 				
 				
 			</div>
