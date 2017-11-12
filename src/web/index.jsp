@@ -5,10 +5,25 @@
 <%@ page import="org.apache.commons.lang.StringUtils" %>
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.DateFormat" %>
+<%@ page import="org.jivesoftware.site.FeedManager" %>
+<%@ page import="com.sun.syndication.feed.synd.SyndEntry" %>
 
 <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
+<%
+    String baseUrl = config.getServletContext().getInitParameter("discourse_baseurl");
+    if ( baseUrl == null || baseUrl.isEmpty() )
+    {
+        baseUrl = "https://discourse.igniterealtime.org";
+    }
+
+    request.setAttribute( "baseUrl", baseUrl );
+    request.setAttribute( "feedManager", FeedManager.getInstance() );
+    request.setAttribute( "restClient", new RestClient() );
+%>
+
 <html>
 <head>
 <title>a real time collaboration community site</title>
@@ -93,49 +108,49 @@
 			
 			<!-- BEGIN home page body content area -->
 			<div id="ignite_home_body">
-            <%
-                String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
-                String restBaseUrl = baseUrl+"/api/core/v3";
 
-                String blogUrl = baseUrl + "/blogs/ignite";
-                String blogFeedRSS = blogUrl + "/feeds/posts";
-            %>
                 <!-- BEGIN 'latest blog entries' column -->
 				<div id="ignite_home_body_leftcol">
 					<!-- BEGIN blog header -->
 					<div id="ignite_blog_header">
 						<span id="ignite_blog_header_label">
-							Latest <a href="<%= blogUrl %>">Blog</a> Entries
+							Latest <a href="${baseUrl}/c/blogs/ignite-realtime-blogs">Blog</a> Entries
 						</span>
 						<div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="<%= blogFeedRSS %>"><img src="images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+							 	<a href="${baseUrl}/c/blogs/ignite-realtime-blogs.rss"><img src="images/rss.gif" width="16" height="16" border="0" alt="" /></a>
 							</span>
 						</div>
 					</div>
 					<!-- END blog header -->
 
                     <%-- Show blog feed --%>
-					<cache:cache time="600" key="<%= blogFeedRSS %>">
-                <% try { %>
-                <%
-                    RestClient client = new RestClient();
-                    String blogSearchUrl = restBaseUrl + "/search/places?filter=search(Ignite,Realtime,Blog)&filter=type(blog)";
-                    JSONObject result = client.get(blogSearchUrl);
-                    JSONArray results = result.getJSONArray("list");
-                    JSONObject blog = (JSONObject)results.get(0);
-                    String contentsUrl = blog.getJSONObject("resources").getJSONObject("contents").getString("ref");
 
-                    String blogRestUrl = contentsUrl + "?count=5";
-                    result = client.get(blogRestUrl);
-                    JSONArray posts = result.getJSONArray("list");
-                    request.setAttribute("posts", posts);
-                %>
-                    <jsp:include page="/includes/blogposts.jsp" />
-                <% } catch (Exception e) { %>
-                    <cache:usecached />
-                <% } %>
-					</cache:cache>
+                    <cache:cache time="600" key="${baseUrl.concat('/c/blogs/ignite-realtime-blogs.rss')}">
+                        <c:forEach items="${feedManager.getItems( baseUrl, '/c/blogs/ignite-realtime-blogs.rss', 5 )}" var="item" varStatus="status">
+                            <ir:blogpost item="${item}" isOdd="${status.count % 2 != 0}"/>
+                        </c:forEach>
+                    </cache:cache>
+
+                            <%--<% try { %>--%>
+                <%--<%--%>
+                    <%--RestClient client = new RestClient();--%>
+                    <%--String blogSearchUrl = restBaseUrl + "/search/places?filter=search(Ignite,Realtime,Blog)&filter=type(blog)";--%>
+                    <%--JSONObject result = client.get(blogSearchUrl);--%>
+                    <%--JSONArray results = result.getJSONArray("list");--%>
+                    <%--JSONObject blog = (JSONObject)results.get(0);--%>
+                    <%--String contentsUrl = blog.getJSONObject("resources").getJSONObject("contents").getString("ref");--%>
+
+                    <%--String blogRestUrl = contentsUrl + "?count=5";--%>
+                    <%--result = client.get(blogRestUrl);--%>
+                    <%--JSONArray posts = result.getJSONArray("list");--%>
+                    <%--request.setAttribute("posts", posts);--%>
+                <%--%>--%>
+                    <%--<jsp:include page="/includes/blogposts.jsp" />--%>
+                <%--<% } catch (Exception e) { %>--%>
+                    <%--<cache:usecached />--%>
+                <%--<% } %>--%>
+					<%--</cache:cache>--%>
 				</div>
 
                 <style type="text/css"></style>
@@ -166,40 +181,14 @@
                 <h1 class="sidebar_header">In the community</h1>
 
                 <h4>Recent Discussions</h4>
-                <%
-                    String recentMessagesUrl = restBaseUrl +"/contents/recent?filter=type(discussion)&count=5";
-                %>
-                    <cache:cache time="60" key="<%= recentMessagesUrl %>">
-                <% try { %>
-                <%
-                    RestClient client = new RestClient();
-                    JSONObject result = client.get(recentMessagesUrl);
-                    JSONArray messages = result.getJSONArray("list");
-
-                    for (Object messageObject : messages) {
-                        if (! (messageObject instanceof JSONObject)) {
-                            continue;
-                            // skip non-JSONObject
-                        }
-                        JSONObject message = (JSONObject)messageObject;
-
-                        JSONObject author = message.getJSONObject("author");
-                        String authorAvatarUrl = author.getJSONObject("resources").getJSONObject("avatar").getString("ref");
-                        String authorName = author.getString("displayName");
-                        String messageUrl = message.getJSONObject("resources").getJSONObject("html").getString("ref");
-                        String subject = message.getString("subject");
-
-                %>
+                <cache:cache time="60" key="${baseUrl.concat('/latest.rss')}">
+                    <c:forEach items="${feedManager.getSummaryItems( baseUrl, '/latest.rss', 5 )}" var="item">
                         <div class="discussion">
-                            <img src="<%= authorAvatarUrl %>" width="16" height="16" alt="" />
-                                <b><%= authorName %></b> in
-                                "<a href='<%= messageUrl %>'><%= subject %></a>"
+                            <img src="${feedManager.getAvatarUrl(baseUrl, item, 16)}" width="16" height="16" alt="" />
+                            <b>${item.authorName}</b> in "<a href='${item.messageUrl}'>${item.subject}</a>"
                         </div>
-                    <% } %>
-                <% } catch (Exception e) { %>
-                    <cache:usecached />
-                <% } %>
-                    </cache:cache>
+                    </c:forEach>
+                </cache:cache>
 
 
         <!--        <h4>Recent Articles</h4>
@@ -214,7 +203,7 @@
                     <div class="articles"><a href="about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
                     <div class="articles"><a href="about/jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></div>
                     <div class="articles"><a href="about/OpenfireScalability.pdf">Openfire Scalability Test Results</a></div>-->
-                </div> 
+                </div>
 
             <%@ include file="/includes/sidebar_testimonial.jspf" %>
 

@@ -1,0 +1,60 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+          xmlns:ir="http://igniterealtime.org/website/tags"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes" />
+
+    <jsp:directive.attribute name="item" required="true" type="org.jivesoftware.site.FeedItem" />
+    <jsp:directive.attribute name="isOdd" required="true" type="java.lang.Boolean"/>
+
+    <jsp:body>
+        <div class="ignite_blog_entry ${isOdd ? 'ignite_blog_entry_odd' : '' }">
+            <div class="ignite_blog_entry_header">
+                <img src="${requestScope.feedManager.getAvatarUrl(requestScope.baseUrl, item, 32)}"
+                     alt="${item.authorName}"
+                     width="32" height="32" />
+
+                <div class="ignite_blog_entry_comments">
+                    <a href="${item.messageUrl}">${item.replyCount}</a>
+                </div>
+
+                <h2><a href="${item.messageUrl}" title="${fn:escapeXml(item.subject)}"><c:out value='${item.subject}'/></a></h2>
+
+                <!-- BEGIN blog entry author and datestamp -->
+                <span class="ignite_blog_entry_author">
+                Posted by <a href="https://discourse.igniterealtime.org/u/${item.authorUsername}"><c:out value="${item.authorName}"/></a>
+                </span>
+                <span class="ignite_blog_entry_date">${ir:displayFriendly(item.publishedDate)}</span>
+
+                <!-- END blog entry author and datestamp -->
+            </div>
+
+            <!-- END blog entry header area -->
+
+            <!-- BEGIN blog entry body area -->
+            <div class="ignite_blog_entry_body">
+                ${item.contents}
+            </div>
+            <!-- END blog entry body area -->
+
+            <!-- BEGIN blog entry details -->
+            <div class="ignite_blog_entry_details">
+            <span class="ignite_blog_entry_details_tags">Tags:
+                ${fn:join( item.tags, ', ' ) }
+				<!--<% if (null != tags) { %>-->
+				<!--<% 	for (int i=0; i<tags.length; i++) { %>-->
+					<!--<% if (i > 0) { %>,<% } %>-->
+					<!--<a href="<%= parentUrl %>/tags/<%= tags[i] %>"><%= tags[i] %></a>-->
+				<!--<% 	} %>-->
+				<!--<% } %>-->
+            </span>
+                <span class="ignite_blog_entry_details_comments">
+                <a href="${item.messageUrl}">${item.replyCount}</a>
+            </span>
+            </div>
+            <!-- END blog entry details-->
+        </div>
+
+    </jsp:body>
+
+</jsp:root>
