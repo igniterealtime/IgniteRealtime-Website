@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>Ignite Realtime website tag library</description>
+    <display-name>Ignite Realtime</display-name>
+    <tlib-version>1.1</tlib-version>
+    <short-name>ir</short-name>
+    <uri>http://igniterealtime.org/website/tags</uri>
+
+    <tag-file>
+        <name>blogpost</name>
+        <path>/WEB-INF/tags/blogpost.tagx</path>
+    </tag-file>
+
+    <function>
+        <name>displayFriendly</name>
+        <function-class>org.jivesoftware.util.StringUtils</function-class>
+        <function-signature>java.lang.String displayFriendly(java.util.Date)</function-signature>
+    </function>
+</taglib>

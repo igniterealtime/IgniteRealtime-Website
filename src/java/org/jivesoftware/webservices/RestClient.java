@@ -1,5 +1,6 @@
 package org.jivesoftware.webservices;
 
+import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -24,11 +25,13 @@ public class RestClient {
         HttpClient client = new HttpClient();
         HttpMethod method = new GetMethod(url);
 
-        try {
+        try
+        {
             // Execute the method.
-            int statusCode = client.executeMethod(method);
+            int statusCode = client.executeMethod( method );
 
-            if (statusCode != HttpStatus.SC_OK) {
+            if ( statusCode != HttpStatus.SC_OK )
+            {
                 Log.warn( "Method (for '{}') failed: {}", url, method.getStatusLine() );
             }
 
@@ -48,11 +51,12 @@ public class RestClient {
                 }
                 response = new String( os.toByteArray() );
             }
-            response = StringUtils.removeStart(response, "throw 'allowIllegalResourceCall is false.';");
-            response = StringUtils.trim(response);
+            response = StringUtils.removeStart( response, "throw 'allowIllegalResourceCall is false.';" );
+            response = StringUtils.trim( response );
 
-            result = JSONObject.fromObject(response);
-
+            result = JSONObject.fromObject( response );
+        } catch (JSONException e ) {
+            Log.warn( "Invalid content while querying '{}'", url, e );
         } catch (HttpException e) {
             Log.warn( "Fatal protocol violation while querying '{}'", url, e );
         } catch (IOException e) {
