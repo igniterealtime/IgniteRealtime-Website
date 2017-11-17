@@ -14,6 +14,9 @@
     String ver = version.replace('.', '_');
     String rpmversion = version.replaceFirst(".beta", "-0.2.beta");
     File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
+    File winInstaller64 = new File(basedir, "openfire_" + ver + "_x64.exe");
+    File winInstaller_jre = new File(basedir, "openfire_" + ver + "_bundledJRE.exe");
+    File winInstaller_jre64 = new File(basedir, "openfire_" + ver + "_bundledJRE_x64.exe");
     File rpm32 = new File(basedir, "openfire-" + rpmversion + ".i686.rpm");
     File rpmnoarch = new File(basedir, "openfire-" + rpmversion + ".noarch.rpm");
     File rpm64 = new File(basedir, "openfire-" + rpmversion + ".x86_64.rpm");
@@ -65,10 +68,34 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> Includes Java JRE <b>(recommended)</b>
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> 32-bit, No Java JRE
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller64.getName() %>"><%= winInstaller64.getName() %></a> 64-bit, No Java JRE <b>(recommended)</b>
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller64.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller_jre.getName() %>"><%= winInstaller_jre.getName() %></a> 32-bit, Includes 32-bit Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller_jre.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=openfire/<%= winInstaller_jre64.getName() %>"><%= winInstaller_jre64.getName() %></a> 64-bit, Includes 64-bit Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller_jre64.length()/1024.0/1024.0) %> MB</span>
                     </div>
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
