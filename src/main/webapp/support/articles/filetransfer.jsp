@@ -2,7 +2,7 @@
 <head><title>IM File Transfer Made Easy</title></head>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "../../styles/interior.css";
+    @import "../../styles/interior.css";
 </style>
 <body>
 
@@ -33,10 +33,10 @@ instant messaging client, we set out to end all the frustration.</p>
 <p>We began our quest for better file transfer with two major goals:</p>
 <ol>
     <li><b>File transfer has to "just work", every time.</b> Users should never
-		have to worry about how their network is setup or firewall configurations.</li><br>
-	<li><b>Put the "user" into file transfer usability.</b> File transfer is integral to the 
-		IM experience, so why throw up pop-up dialogs for sending and receiving files? 
-		Drag and drop should work. Overall, the feature should be a pleasure to use.</li> 
+        have to worry about how their network is setup or firewall configurations.</li><br>
+    <li><b>Put the "user" into file transfer usability.</b> File transfer is integral to the 
+        IM experience, so why throw up pop-up dialogs for sending and receiving files? 
+        Drag and drop should work. Overall, the feature should be a pleasure to use.</li> 
 </ol>
 
 
@@ -47,10 +47,10 @@ instant messaging client, we set out to end all the frustration.</p>
 Some of the major areas of improvement over version 1.0 are:</p>
 
 <ul>
-	<li>All file transfer requests and progress dialogs are embedded into the chat window. After a file is downloaded, you can double click to open it, or browse to the download folder.</li>
-	<li>Dragging files into the chat window now automatically initiates a file transfer.</li>
-	<li>If the file is an image, a thumbnail of that image will be displayed. Otherwise the proper file icon is displayed.</li>
-	<li>Pasting an image into a chat now works (Windows users, try the  [Print Screen] button on your keyboard and then [Ctrl-v] in a chat window).</li>
+    <li>All file transfer requests and progress dialogs are embedded into the chat window. After a file is downloaded, you can double click to open it, or browse to the download folder.</li>
+    <li>Dragging files into the chat window now automatically initiates a file transfer.</li>
+    <li>If the file is an image, a thumbnail of that image will be displayed. Otherwise the proper file icon is displayed.</li>
+    <li>Pasting an image into a chat now works (Windows users, try the  [Print Screen] button on your keyboard and then [Ctrl-v] in a chat window).</li>
 </ul>		 		
 
 

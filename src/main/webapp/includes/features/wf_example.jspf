@@ -1,14 +1,14 @@
-			<!-- BEGIN feature example -->
-			<div class="ignite_sidebar_feature">
-				<div class="ignite_sidebar_feature_top"></div>
-				<div class="ignite_sidebar_feature_hdr"></div>
-				<div class="ignite_sidebar_feature_body">
+            <!-- BEGIN feature example -->
+            <div class="ignite_sidebar_feature">
+                <div class="ignite_sidebar_feature_top"></div>
+                <div class="ignite_sidebar_feature_hdr"></div>
+                <div class="ignite_sidebar_feature_body">
                     <p>
                     <img src="/images/ignite_sidebar_screenshot.gif" width="97" height="72" alt="" align="right" />
                     <strong>Easy LDAP</strong><br />
                     LDAP is easy.<br /><a href="#">See it...</a>
                     </p>
-				</div>
-				<div class="ignite_sidebar_feature_btm"></div>
-			</div>
-			<!-- END feature example -->
+                </div>
+                <div class="ignite_sidebar_feature_btm"></div>
+            </div>
+            <!-- END feature example -->

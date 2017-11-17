@@ -55,18 +55,18 @@ for (Object postObject : posts) {
         }
     }
 
-	%>
-	<div class="<%= style %>">
+    %>
+    <div class="<%= style %>">
         <div class="ignite_blog_entry_header">
             <img src="<%= authorAvatarUrl %>"
-				alt="<%= authorName %>"
-				width="32" height="32" />
-				
-			<div class="ignite_blog_entry_comments">
-				<a href="<%= permalink %>#comments"><%= replyCount %></a>
-			</div>
+                alt="<%= authorName %>"
+                width="32" height="32" />
+                
+            <div class="ignite_blog_entry_comments">
+                <a href="<%= permalink %>#comments"><%= replyCount %></a>
+            </div>
 
-			<h2><a href="<%= permalink %>" title="<%= subject %>"><%= subject %></a></h2>
+            <h2><a href="<%= permalink %>" title="<%= subject %>"><%= subject %></a></h2>
 
             <!-- BEGIN blog entry author and datestamp -->
             <span class="ignite_blog_entry_author">
@@ -74,28 +74,28 @@ for (Object postObject : posts) {
             </span>
             <span class="ignite_blog_entry_date">
 
-		<%= org.jivesoftware.util.StringUtils.displayFriendly(datePublished) %>
+        <%= org.jivesoftware.util.StringUtils.displayFriendly(datePublished) %>
             </span>
             <!-- END blog entry author and datestamp -->
         </div>
-	
+    
         <!-- END blog entry header area -->
 
         <!-- BEGIN blog entry body area -->
         <div class="ignite_blog_entry_body">
-			<%= body %>
+            <%= body %>
         </div>
         <!-- END blog entry body area -->
 
         <!-- BEGIN blog entry details -->
         <div class="ignite_blog_entry_details">
             <span class="ignite_blog_entry_details_tags">Tags:
-				<% if (null != tags) { %>
-				<% 	for (int i=0; i<tags.length; i++) { %>
-					<% if (i > 0) { %>,<% } %> 
-					<a href="<%= parentUrl %>/tags/<%= tags[i] %>"><%= tags[i] %></a>
-				<% 	} %>
-				<% } %>
+                <% if (null != tags) { %>
+                <% 	for (int i=0; i<tags.length; i++) { %>
+                    <% if (i > 0) { %>,<% } %> 
+                    <a href="<%= parentUrl %>/tags/<%= tags[i] %>"><%= tags[i] %></a>
+                <% 	} %>
+                <% } %>
             </span>
             <span class="ignite_blog_entry_details_comments">
                 <a href="<%= permalink %>"><%= replyCount %></a>

@@ -1,7 +1,7 @@
 <html>
 <head><title>Openfire Optimization</title></head>
 <style type="text/css" media="screen">
-	@import "../../styles/interior.css";
+    @import "../../styles/interior.css";
 </style>
 <body>
 
@@ -49,24 +49,24 @@ to preface any optimization discussion with the principles we keep in mind
 when doing profiling and optimization work:</p>
 
 <ul>
-		<li><b>Never optimize before it's needed.</b><br> 
-		We always build code to be simple and easy to maintain. We only 
-		optimize the code when it becomes specifically clear that it's 
-		necessary.</li><br><br>
-		
-		<li><b>Clear code is better than a 0.5% performance improvement.</b><br> 
-		We don't apply a minor optimization when it will make the code much 
-		harder to understand or maintain. Over-optimization is an easy trap 
-		to fall into.</li><br><br>
-		
-		<li><b>Profilers can lie.</b><br> 
-		Profilers can sometimes give false-positives for hotspots, which can be a 
-		really tricky problem. For example, profilers often identify 
-		<tt>System.currentTimeMillis()</tt> as an expensive operation, 
-		probably because it involves a native OS call. However, if you time half a 
-		million calls to that method outside of a profiler, they're very fast. It's 
-		important to be able to do constant real-world measurements of how 
-		optimizations affect performance to keep the profiling process honest.</li><br><br>
+        <li><b>Never optimize before it's needed.</b><br> 
+        We always build code to be simple and easy to maintain. We only 
+        optimize the code when it becomes specifically clear that it's 
+        necessary.</li><br><br>
+        
+        <li><b>Clear code is better than a 0.5% performance improvement.</b><br> 
+        We don't apply a minor optimization when it will make the code much 
+        harder to understand or maintain. Over-optimization is an easy trap 
+        to fall into.</li><br><br>
+        
+        <li><b>Profilers can lie.</b><br> 
+        Profilers can sometimes give false-positives for hotspots, which can be a 
+        really tricky problem. For example, profilers often identify 
+        <tt>System.currentTimeMillis()</tt> as an expensive operation, 
+        probably because it involves a native OS call. However, if you time half a 
+        million calls to that method outside of a profiler, they're very fast. It's 
+        important to be able to do constant real-world measurements of how 
+        optimizations affect performance to keep the profiling process honest.</li><br><br>
 </ul>		 
 
 <h2>On to the Optimizations!</h2> 
@@ -100,45 +100,45 @@ optimizations were quite minor, but they all added up nicely as we'll see
 later. A partial list of the optimizations:</p> 
 
 <ul>
-		<li><b>Initialize StringBuilder objects with the proper size.</b><br> By 
-		default, a StringBuilder object can hold up to 16 characters before 
-		automatically re-sizing itself. Providing better default StringBuilder 
-		capacities in the code helped to prevent the JVM from wasting time growing 
-		and copying arrays of Strings. As an example, because we know stream 
-		headers have a size of around 500 characters, we could size that 
-		StringBuilder appropriately. <i>Note: we use StringBuilder instead of 
-		StringBuffer to avoid un-necessary synchronization.</i></li><br><br>
-		<li><b>Change the way the server was monitoring sockets.</b><br> Because the 
-		underlying TCP/IP layer doesn't always inform Java about dead sockets, 
-		it used to be possible for the server to wait forever in a socket flush 
-		or write operations. Therefore, we had added tracking logic to the 2.3 
-		release to force sockets closed if write operations took too long. 
-		Profiling told us the implementation of that feature was a bottleneck, 
-		so we optimized the monitoring algorithm.</li><br><br>
-		<li><b>Don't throw exceptions for non-exceptional behavior.</b><br> Throwing 
-		an exception in Java is fairly expensive since the JVM has to construct 
-		a full stack trace. Therefore, exceptions should not be thrown as part 
-		of normal application logic. We found a couple of places in the code 
-		base that needed to be fixed. As an example, each time a route to a 
-		client was not found a NoSuchRouteException was created. Instead of 
-		throwing an exception we changed the API to return null when a route 
-		is not found.</li><br><br>
-		<li><b>Avoid packet copying.</b><br> Packets are represented using a DOM4J 
-		XML model, so are expensive to copy. There were a few places in the 
-		code that performed unnecessary packet copying. For example, packets 
-		were being copied to add to the room history of a MUC room even when 
-		the room history was disabled (meaning the copied packet would get 
-		thrown away later without being used). Creating fewer objects also 
-		helps with garbage collection in general.</li><br><br>
-		<li><b>Fix routing table bottleneck.</b><br> The routing table was a 
-		bottleneck when many MUC clients were trying to send packets to other 
-		users at the same time. Even though the routing table operation was 
-		quite fast, it was being executed so many times that it was still a 
-		bottleneck. To use an analogy -- a single grain of sand is fairly 
-		insignificant, but enough of them together constitute a beach. The 
-		simple optimization was to store a reference to the client session 
-		with each MUCUser object instead of using the routing table to lookup 
-		the session every time it was needed.</li><br><br>
+        <li><b>Initialize StringBuilder objects with the proper size.</b><br> By 
+        default, a StringBuilder object can hold up to 16 characters before 
+        automatically re-sizing itself. Providing better default StringBuilder 
+        capacities in the code helped to prevent the JVM from wasting time growing 
+        and copying arrays of Strings. As an example, because we know stream 
+        headers have a size of around 500 characters, we could size that 
+        StringBuilder appropriately. <i>Note: we use StringBuilder instead of 
+        StringBuffer to avoid un-necessary synchronization.</i></li><br><br>
+        <li><b>Change the way the server was monitoring sockets.</b><br> Because the 
+        underlying TCP/IP layer doesn't always inform Java about dead sockets, 
+        it used to be possible for the server to wait forever in a socket flush 
+        or write operations. Therefore, we had added tracking logic to the 2.3 
+        release to force sockets closed if write operations took too long. 
+        Profiling told us the implementation of that feature was a bottleneck, 
+        so we optimized the monitoring algorithm.</li><br><br>
+        <li><b>Don't throw exceptions for non-exceptional behavior.</b><br> Throwing 
+        an exception in Java is fairly expensive since the JVM has to construct 
+        a full stack trace. Therefore, exceptions should not be thrown as part 
+        of normal application logic. We found a couple of places in the code 
+        base that needed to be fixed. As an example, each time a route to a 
+        client was not found a NoSuchRouteException was created. Instead of 
+        throwing an exception we changed the API to return null when a route 
+        is not found.</li><br><br>
+        <li><b>Avoid packet copying.</b><br> Packets are represented using a DOM4J 
+        XML model, so are expensive to copy. There were a few places in the 
+        code that performed unnecessary packet copying. For example, packets 
+        were being copied to add to the room history of a MUC room even when 
+        the room history was disabled (meaning the copied packet would get 
+        thrown away later without being used). Creating fewer objects also 
+        helps with garbage collection in general.</li><br><br>
+        <li><b>Fix routing table bottleneck.</b><br> The routing table was a 
+        bottleneck when many MUC clients were trying to send packets to other 
+        users at the same time. Even though the routing table operation was 
+        quite fast, it was being executed so many times that it was still a 
+        bottleneck. To use an analogy -- a single grain of sand is fairly 
+        insignificant, but enough of them together constitute a beach. The 
+        simple optimization was to store a reference to the client session 
+        with each MUCUser object instead of using the routing table to lookup 
+        the session every time it was needed.</li><br><br>
 </ul> 
 
 <p>After all these optimizations, the profiler picture was as follows:</p>
@@ -162,15 +162,15 @@ logging in, sending messages back and forth, and then logging out.
 Some stats on the testing setup:</p>
 
 <ul>
-	<li>140 concurrent users.</li>
+    <li>140 concurrent users.</li>
   <li>Each user sent 100 messages with a delay of 5 milliseconds 
-	(14K total messages sent).</li>
-	<li>The server installations ran on a developer notebook: Dell Inspiron 
-	9200 with a 2Ghz CPU and 2GB RAM.</li>
-	<li>MySQL as the back-end database, also running on the notebook.</li>
-	<li>JVM params: <tt>-Xms20m -Xmx128m -Xss16k -server</tt></li>
-	<li>The load testing application was written using Smack and was 
-	executed from a desktop computer running a single JVM.</li>
+    (14K total messages sent).</li>
+    <li>The server installations ran on a developer notebook: Dell Inspiron 
+    9200 with a 2Ghz CPU and 2GB RAM.</li>
+    <li>MySQL as the back-end database, also running on the notebook.</li>
+    <li>JVM params: <tt>-Xms20m -Xmx128m -Xss16k -server</tt></li>
+    <li>The load testing application was written using Smack and was 
+    executed from a desktop computer running a single JVM.</li>
 </ul>
 
 <center> 

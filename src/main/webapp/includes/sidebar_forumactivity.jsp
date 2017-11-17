@@ -11,7 +11,7 @@
         String forumId = request.getParameter("forumID");
         String recentReleasesPlace = restBaseUrl+"/places?filter=entityDescriptor(14,"+forumId+")";
     %>
-		<!-- BEGIN blue sidebar box 'RECENT DISCUSSIONS' -->
+        <!-- BEGIN blue sidebar box 'RECENT DISCUSSIONS' -->
     <cache:cache time="60" key="<%= recentReleasesPlace %>">
     <div class="ignite_sidebar_whitebox">
         <div class="ignite_sidebar_top"></div>
@@ -61,8 +61,8 @@
     <% } catch (Exception e) { %>
         <cache:usecached />
     <% } %>
-			</div>
-			<div class="ignite_sidebar_btm"></div>
-		</div>
-		</cache:cache>
-		<!-- END blue sidebar box 'RECENT DISCUSSIONS' -->
+            </div>
+            <div class="ignite_sidebar_btm"></div>
+        </div>
+        </cache:cache>
+        <!-- END blue sidebar box 'RECENT DISCUSSIONS' -->

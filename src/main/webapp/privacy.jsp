@@ -3,30 +3,30 @@
 <title>Privacy Policy</title>
 <!-- <meta name="body-id" content="about" /> -->
 <style type="text/css" media="screen">
-	@import "styles/interior.css";
+    @import "styles/interior.css";
 </style>
 </head>
 <body>
 
 
-	<!-- BEGIN body area -->
-	<div id="ignite_body">
-		
-		<!-- BEGIN left column (main content) -->
-		<div id="ignite_body_leftcol">
-			
-			<!-- BEGIN body content area -->
-			<div id="ignite_int_body">
-			
-				<!-- BEGIN body header -->
-				<div id="ignite_body_header">
-					<h1>Ignite Realtime Privacy Policy</h1>
-				</div>
-				<!-- END body header -->
-				
-				
-				<div class="ignite_int_body_padding">
-					
+    <!-- BEGIN body area -->
+    <div id="ignite_body">
+        
+        <!-- BEGIN left column (main content) -->
+        <div id="ignite_body_leftcol">
+            
+            <!-- BEGIN body content area -->
+            <div id="ignite_int_body">
+            
+                <!-- BEGIN body header -->
+                <div id="ignite_body_header">
+                    <h1>Ignite Realtime Privacy Policy</h1>
+                </div>
+                <!-- END body header -->
+                
+                
+                <div class="ignite_int_body_padding">
+                    
 
                     <p>
 We at Jive Software ("Jive" or "we") respect your individual privacy.  This privacy policy
@@ -413,28 +413,28 @@ and covers the following areas:
     </li>
 </ol>
 
-				
-				</div>
-			
-			</div>
-			<!-- END body content area -->
-			
-		</div>
-		<!-- END left column (main content) -->
-		
-		<!-- BEGIN right column (sidebar) -->
-		<div id="ignite_body_rightcol">
-			
-			
-			
+                
+                </div>
+            
+            </div>
+            <!-- END body content area -->
+            
+        </div>
+        <!-- END left column (main content) -->
+        
+        <!-- BEGIN right column (sidebar) -->
+        <div id="ignite_body_rightcol">
+            
+            
+            
 
-			
-			
-		</div>
-		<!-- END right column (sidebar) -->
-	
-	</div>
-	<!-- END body area -->
+            
+            
+        </div>
+        <!-- END right column (sidebar) -->
+    
+    </div>
+    <!-- END body area -->
 
 
 

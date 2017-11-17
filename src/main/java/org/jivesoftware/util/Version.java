@@ -65,22 +65,22 @@ public class Version implements Comparable<Version> {
      * @param source the version string
      */
     public Version(String source) {
-    	// initialize the defaults
-    	major = minor = micro = 0;
-    	status = ReleaseStatus.Release;
-    	statusVersion = -1;
-    	
-    	if (source != null) {
-        	StringTokenizer parser = new StringTokenizer(source, ".");
-    		try {
-    			major = parser.hasMoreTokens() ? Integer.parseInt(parser.nextToken()) : 0;
-    			minor = parser.hasMoreTokens() ? Integer.parseInt(parser.nextToken()) : 0;
-    			micro = parser.hasMoreTokens() ? Integer.parseInt(parser.nextToken()) : 0;
-    		}
-    		catch (NumberFormatException nfe) {
-    			// ignore bad version
-    		}
-    	}  	
+        // initialize the defaults
+        major = minor = micro = 0;
+        status = ReleaseStatus.Release;
+        statusVersion = -1;
+        
+        if (source != null) {
+            StringTokenizer parser = new StringTokenizer(source, ".");
+            try {
+                major = parser.hasMoreTokens() ? Integer.parseInt(parser.nextToken()) : 0;
+                minor = parser.hasMoreTokens() ? Integer.parseInt(parser.nextToken()) : 0;
+                micro = parser.hasMoreTokens() ? Integer.parseInt(parser.nextToken()) : 0;
+            }
+            catch (NumberFormatException nfe) {
+                // ignore bad version
+            }
+        }  	
     }
 
     /**
@@ -90,7 +90,7 @@ public class Version implements Comparable<Version> {
      * @return The version as a string
      */
     public String getVersionString() {
-    	if (versionString == null) {
+        if (versionString == null) {
             if (status != null) {
                 if (status == ReleaseStatus.Release) {
                     versionString = major + "." + minor + "." + micro;
@@ -108,8 +108,8 @@ public class Version implements Comparable<Version> {
             else {
                 versionString = major + "." + minor + "." + micro;
             }
-    		
-    	}
+            
+        }
         return versionString;
     }
 
@@ -174,7 +174,7 @@ public class Version implements Comparable<Version> {
         }
 
         @Override
-		public String toString() {
+        public String toString() {
             return status;
         }
     }
@@ -185,18 +185,18 @@ public class Version implements Comparable<Version> {
      * @param otherVersion a verion to compare against
      */
     public boolean isNewerThan(Version otherVersion) {
-    	return this.compareTo(otherVersion) > 0;
+        return this.compareTo(otherVersion) > 0;
     }
 
-	@Override
-	public int compareTo(Version that) {
-		if (that == null) {
-			return 1;
-		}
-		
-		long thisVersion = (this.getMicro()*10) + (this.getMinor()*1000) + (this.getMajor()*100000);
-		long thatVersion = (that.getMicro()*10) + (that.getMinor()*1000) + (that.getMajor()*100000);
-		
-		return thisVersion == thatVersion ? 0 : thisVersion > thatVersion ? 1 : -1;
-	}
+    @Override
+    public int compareTo(Version that) {
+        if (that == null) {
+            return 1;
+        }
+        
+        long thisVersion = (this.getMicro()*10) + (this.getMinor()*1000) + (this.getMajor()*100000);
+        long thatVersion = (that.getMicro()*10) + (that.getMinor()*1000) + (that.getMajor()*100000);
+        
+        return thisVersion == thatVersion ? 0 : thisVersion > thatVersion ? 1 : -1;
+    }
 }

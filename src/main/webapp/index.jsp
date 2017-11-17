@@ -30,99 +30,99 @@
 <meta name="body-id" content="home" />
 <meta name="panel-name" content="home" />
 <style type="text/css" media="screen">
-	@import "styles/home.css";
+    @import "styles/home.css";
 </style>
 </head>
 <body>
 
-	<!-- BEGIN body area -->
-	<div id="ignite_body">
-		
-		<!-- BEGIN left column (main content) -->
-		<div id="ignite_body_leftcol">
-			
-			<% boolean panelCookieSet = false;
-			   Cookie [] cookies = request.getCookies();
-				 if (cookies != null) {
-			       for (Cookie cookie: request.getCookies()) {
+    <!-- BEGIN body area -->
+    <div id="ignite_body">
+        
+        <!-- BEGIN left column (main content) -->
+        <div id="ignite_body_leftcol">
+            
+            <% boolean panelCookieSet = false;
+               Cookie [] cookies = request.getCookies();
+                 if (cookies != null) {
+                   for (Cookie cookie: request.getCookies()) {
                 if (cookie.getName().equals("home")) { 
-						      panelCookieSet = true;
-					      }
-				     }
-			   }
-		  %>
-			<!-- BEGIN large panel -->
-			<!-- 
-				if there is no cookie, show this panel
-				(there is an 'onload' in the decorator that runs a script from 
-				/scripts/ignite.js, may want to change that).
-				the cookie is defined by the meta 'panel-name' in the head, and
-				set with the onclick of the links below, closePanel().
-			-->
-			<div id="ignite_bigpanel" 
-				<% if (!panelCookieSet) { %>
-				style="display:block"
+                              panelCookieSet = true;
+                          }
+                     }
+               }
+          %>
+            <!-- BEGIN large panel -->
+            <!-- 
+                if there is no cookie, show this panel
+                (there is an 'onload' in the decorator that runs a script from 
+                /scripts/ignite.js, may want to change that).
+                the cookie is defined by the meta 'panel-name' in the head, and
+                set with the onclick of the links below, closePanel().
+            -->
+            <div id="ignite_bigpanel" 
+                <% if (!panelCookieSet) { %>
+                style="display:block"
         <% } %>>
-				<div id="ignite_bigpanel_content">
-				<h1>Open Realtime. </h1>
-				<p>Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.</p>
-				
-					<div style="width: 150px;">
-						<a href="about/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
-					</div>
+                <div id="ignite_bigpanel_content">
+                <h1>Open Realtime. </h1>
+                <p>Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.</p>
+                
+                    <div style="width: 150px;">
+                        <a href="about/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
+                    </div>
 
                 </div>
-				
-				<div id="ignite_bigpanel_close">
-					<a href="#" onClick="closePanel('home'); return false;"></a>
-				</div>
-				
-				<div id="ignite_bigpanel_screenshot">
-					<img src="images/ignite_about-circlegraph.png" width="177" height="208" alt="" />
-				</div>
-				
-			</div>
-			<!-- END large panel -->
-			
-			<!-- BEGIN small panel -->
-			<!-- 
-				if there is a cookie, show this panel
-				(same details as above for 'large panel')
-			-->
-			<div id="ignite_smallpanel" 
-			  <% if (panelCookieSet) { %>
-				style="display:block"
+                
+                <div id="ignite_bigpanel_close">
+                    <a href="#" onClick="closePanel('home'); return false;"></a>
+                </div>
+                
+                <div id="ignite_bigpanel_screenshot">
+                    <img src="images/ignite_about-circlegraph.png" width="177" height="208" alt="" />
+                </div>
+                
+            </div>
+            <!-- END large panel -->
+            
+            <!-- BEGIN small panel -->
+            <!-- 
+                if there is a cookie, show this panel
+                (same details as above for 'large panel')
+            -->
+            <div id="ignite_smallpanel" 
+              <% if (panelCookieSet) { %>
+                style="display:block"
         <% } %>>
-				<div id="ignite_smallpanel_content">
-					<h1>Open Realtime.</h1>
-					<!-- Ignite Real Time is the community site for Jive Software's open source
-					alternatives to enterprise instant messaging. -->
-					Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.
-				</div>
-				<div id="ignite_smallpanel_open">
-					<a href="#" onClick="closePanel('home'); return false;"></a>
-				</div>
-			</div>
-			<!-- END small panel -->
-			
-			
-			<!-- BEGIN home page body content area -->
-			<div id="ignite_home_body">
+                <div id="ignite_smallpanel_content">
+                    <h1>Open Realtime.</h1>
+                    <!-- Ignite Real Time is the community site for Jive Software's open source
+                    alternatives to enterprise instant messaging. -->
+                    Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.
+                </div>
+                <div id="ignite_smallpanel_open">
+                    <a href="#" onClick="closePanel('home'); return false;"></a>
+                </div>
+            </div>
+            <!-- END small panel -->
+            
+            
+            <!-- BEGIN home page body content area -->
+            <div id="ignite_home_body">
 
                 <!-- BEGIN 'latest blog entries' column -->
-				<div id="ignite_home_body_leftcol">
-					<!-- BEGIN blog header -->
-					<div id="ignite_blog_header">
-						<span id="ignite_blog_header_label">
-							Latest <a href="${baseUrl}/c/blogs/ignite-realtime-blogs">Blog</a> Entries
-						</span>
-						<div style="float: right;">
+                <div id="ignite_home_body_leftcol">
+                    <!-- BEGIN blog header -->
+                    <div id="ignite_blog_header">
+                        <span id="ignite_blog_header_label">
+                            Latest <a href="${baseUrl}/c/blogs/ignite-realtime-blogs">Blog</a> Entries
+                        </span>
+                        <div style="float: right;">
                             <span id="ignite_blog_header_rss">
-							 	<a href="${baseUrl}/c/blogs/ignite-realtime-blogs.rss"><img src="images/rss.gif" width="16" height="16" border="0" alt="" /></a>
-							</span>
-						</div>
-					</div>
-					<!-- END blog header -->
+                                <a href="${baseUrl}/c/blogs/ignite-realtime-blogs.rss"><img src="images/rss.gif" width="16" height="16" border="0" alt="" /></a>
+                            </span>
+                        </div>
+                    </div>
+                    <!-- END blog header -->
 
                     <%-- Show blog feed --%>
 
@@ -150,20 +150,20 @@
                 <%--<% } catch (Exception e) { %>--%>
                     <%--<cache:usecached />--%>
                 <%--<% } %>--%>
-					<%--</cache:cache>--%>
-				</div>
+                    <%--</cache:cache>--%>
+                </div>
 
                 <style type="text/css"></style>
                 <!-- END 'latest blog entries' column -->
-			</div>
-			<!-- END home page body content area -->
-			
-		</div>
-		<!-- END left column (main content) -->
-		
-		<!-- BEGIN right column (sidebar) -->
-		<div id="ignite_body_rightcol">
-			
+            </div>
+            <!-- END home page body content area -->
+            
+        </div>
+        <!-- END left column (main content) -->
+        
+        <!-- BEGIN right column (sidebar) -->
+        <div id="ignite_body_rightcol">
+            
             <div class="sidebar sidebar_dark sidebar_grad">
                 <h1 class="sidebar_header">Projects</h1>
                 <div><strong><a href="projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %> <a href="downloads/index.jsp#openfire" class="button_download">Download</a></div>
@@ -173,7 +173,7 @@
                 <div><strong><a href="projects/tinder/index.jsp">Tinder</a></strong> <%= Versions.getVersion("tinder") %> <a href="downloads/index.jsp#tinder" class="button_download">Download</a></div>
                 <div><strong><a href="projects/whack/index.jsp">Whack</a></strong> <%= Versions.getVersion("whack") %> <a href="downloads/index.jsp#whack" class="button_download">Download</a></div>
         <!--        <div><strong><a href="projects/xiff/index.jsp">XIFF</a></strong> <%= Versions.getVersion("xiff") %> <a href="downloads/index.jsp#xiff" class="button_download">Download</a></div> -->
-			</div>
+            </div>
 
             <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
 
@@ -208,41 +208,41 @@
             <%@ include file="/includes/sidebar_testimonial.jspf" %>
 
             <!-- BEGIN grey gradient sidebar box 'PROJECTS' -->
-			<%--<div class="ignite_sidebar_gradbox">--%>
-				<%--<div class="ignite_sidebar_top-g"></div>--%>
-				<%--<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projects"></div>--%>
-				<%--<div class="ignite_sidebar_body_projects">--%>
-					<%--<div class="ignite_sidebar_body_project1">--%>
-						<%--<span><strong><a href="/projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="/downloads/index.jsp#openfire"></a>--%>
-					<%--</div>--%>
-					<%--<div class="ignite_sidebar_body_project2">--%>
-						<%--<span><strong><a href="/projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/index.jsp#spark"></a>--%>
-					<%--</div>--%>
-					<%--<div class="ignite_sidebar_body_project3">--%>
-						<%--<span><strong><a href="/projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="/downloads/index.jsp#sparkweb"></a>--%>
-					<%--</div>--%>
-					<%--&lt;%&ndash;--%>
-					<%--<div class="ignite_sidebar_body_project4">--%>
-						<%--<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="/downloads/index.jsp#asterisk"></a>--%>
-					<%--</div>--%>
-					<%--&ndash;%&gt;--%>
-					<%--<div class="ignite_sidebar_body_project4">--%>
-						<%--<span><strong><a href="/projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/index.jsp#smack"></a>--%>
-					<%--</div>--%>
+            <%--<div class="ignite_sidebar_gradbox">--%>
+                <%--<div class="ignite_sidebar_top-g"></div>--%>
+                <%--<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projects"></div>--%>
+                <%--<div class="ignite_sidebar_body_projects">--%>
+                    <%--<div class="ignite_sidebar_body_project1">--%>
+                        <%--<span><strong><a href="/projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="/downloads/index.jsp#openfire"></a>--%>
+                    <%--</div>--%>
+                    <%--<div class="ignite_sidebar_body_project2">--%>
+                        <%--<span><strong><a href="/projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/index.jsp#spark"></a>--%>
+                    <%--</div>--%>
+                    <%--<div class="ignite_sidebar_body_project3">--%>
+                        <%--<span><strong><a href="/projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="/downloads/index.jsp#sparkweb"></a>--%>
+                    <%--</div>--%>
+                    <%--&lt;%&ndash;--%>
+                    <%--<div class="ignite_sidebar_body_project4">--%>
+                        <%--<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="/downloads/index.jsp#asterisk"></a>--%>
+                    <%--</div>--%>
+                    <%--&ndash;%&gt;--%>
+                    <%--<div class="ignite_sidebar_body_project4">--%>
+                        <%--<span><strong><a href="/projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/index.jsp#smack"></a>--%>
+                    <%--</div>--%>
                     <%--<div class="ignite_sidebar_body_project5">--%>
-						<%--<span><strong><a href="/projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="/downloads/index.jsp#tinder"></a>--%>
-					<%--</div>--%>
-					<%--<div class="ignite_sidebar_body_project6">--%>
-						<%--<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>--%>
-					<%--</div>--%>
-					<%--<div class="ignite_sidebar_body_project7">--%>
-						<%--<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>--%>
-					<%--</div>--%>
-					<%--<div class="ignite_sidebar_body_project8" style="text-align: center;">--%>
-					<%--</div>--%>
-				<%--</div>--%>
-				<%--<div class="ignite_sidebar_btm-g"></div>--%>
-			<%--</div>--%>
+                        <%--<span><strong><a href="/projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="/downloads/index.jsp#tinder"></a>--%>
+                    <%--</div>--%>
+                    <%--<div class="ignite_sidebar_body_project6">--%>
+                        <%--<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>--%>
+                    <%--</div>--%>
+                    <%--<div class="ignite_sidebar_body_project7">--%>
+                        <%--<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>--%>
+                    <%--</div>--%>
+                    <%--<div class="ignite_sidebar_body_project8" style="text-align: center;">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="ignite_sidebar_btm-g"></div>--%>
+            <%--</div>--%>
 
             <%--<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>--%>
             <!-- BEGIN 'in the community' column -->
@@ -379,15 +379,15 @@
 
             <%--</div>--%>
             <%--<!-- END 'in the community' column -->--%>
-			<%--<!-- END grey gradient sidebar box 'PROJECTS' -->--%>
+            <%--<!-- END grey gradient sidebar box 'PROJECTS' -->--%>
 
-			<%--<%@ include file="/includes/sidebar_testimonial.jspf" %>--%>
-			
-		</div>
-		<!-- END right column (sidebar) -->
-	
-	</div>
-	<!-- END body area -->
+            <%--<%@ include file="/includes/sidebar_testimonial.jspf" %>--%>
+            
+        </div>
+        <!-- END right column (sidebar) -->
+    
+    </div>
+    <!-- END body area -->
 
 
 

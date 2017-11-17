@@ -32,53 +32,53 @@ function thisMovie(movieName) {
 
 
 function mw_initialize() {
-	// initialize mouse wheel capturing:
-	mw_container = document.getElementById(mw_flashContainerId);
-	if (mw_container != null) {
-		if (mw_container.addEventListener) mw_container.addEventListener('DOMMouseScroll', mw_onWheelHandler, false); // Firefox
-		mw_container.onmousewheel = mw_onWheelHandler; // Safari
-	}else{
-		alert("osxmousewheel: can not find flash container div element");
-	}
+    // initialize mouse wheel capturing:
+    mw_container = document.getElementById(mw_flashContainerId);
+    if (mw_container != null) {
+        if (mw_container.addEventListener) mw_container.addEventListener('DOMMouseScroll', mw_onWheelHandler, false); // Firefox
+        mw_container.onmousewheel = mw_onWheelHandler; // Safari
+    }else{
+        alert("osxmousewheel: can not find flash container div element");
+    }
 }
 
 
 // Handler for mouse wheel event:
 function mw_onWheelHandler(event){
-	var delta = 0;
-	if (!event) event = window.event;
-	if (event.wheelDelta) {
-		// Safari
-		delta = event.wheelDelta/120;
-		if (window.opera) delta = -delta;
-	} else if (event.detail) {
-		// Firefox
-		delta = -event.detail*3;
-	}
-	
-	if (mw_keepDeltaAtPlusMinusThree) {
-		if (delta > 0) delta = 3;
-		else if (delta == 0) delta = 0;
-		else delta = -3;
-	}
-	
-	if (delta) {
-		// handle mouse events here:
-		
-		var thisMouse;
-		if ((navigator.userAgent.indexOf('Firefox') != -1) || (navigator.userAgent.indexOf('Camino') != -1)) thisMouse = {x:event.layerX, y:event.layerY};
-		else if (navigator.userAgent.indexOf('Safari') != -1) thisMouse = {x:event.offsetX, y:event.offsetY};
-		else if (navigator.userAgent.indexOf('Opera') != -1) thisMouse = {x:event.offsetX, y:event.offsetY};
-		else thisMouse = {x:event.offsetX, y:event.offsetY};
-		
-		if (thisMovie(mw_flashMovieId).dispatchExternalMouseWheelEvent) thisMovie(mw_flashMovieId).dispatchExternalMouseWheelEvent(delta, thisMouse.x, thisMouse.y);
-		else alert("osxmousewheel: ExternalInferface function dispatchExternalMouseWheelEvent not found");
-		
-	};
-	
-	// Prevent default actions caused by mouse wheel.
-	if (event.preventDefault) event.preventDefault();
-	event.returnValue = false;
+    var delta = 0;
+    if (!event) event = window.event;
+    if (event.wheelDelta) {
+        // Safari
+        delta = event.wheelDelta/120;
+        if (window.opera) delta = -delta;
+    } else if (event.detail) {
+        // Firefox
+        delta = -event.detail*3;
+    }
+    
+    if (mw_keepDeltaAtPlusMinusThree) {
+        if (delta > 0) delta = 3;
+        else if (delta == 0) delta = 0;
+        else delta = -3;
+    }
+    
+    if (delta) {
+        // handle mouse events here:
+        
+        var thisMouse;
+        if ((navigator.userAgent.indexOf('Firefox') != -1) || (navigator.userAgent.indexOf('Camino') != -1)) thisMouse = {x:event.layerX, y:event.layerY};
+        else if (navigator.userAgent.indexOf('Safari') != -1) thisMouse = {x:event.offsetX, y:event.offsetY};
+        else if (navigator.userAgent.indexOf('Opera') != -1) thisMouse = {x:event.offsetX, y:event.offsetY};
+        else thisMouse = {x:event.offsetX, y:event.offsetY};
+        
+        if (thisMovie(mw_flashMovieId).dispatchExternalMouseWheelEvent) thisMovie(mw_flashMovieId).dispatchExternalMouseWheelEvent(delta, thisMouse.x, thisMouse.y);
+        else alert("osxmousewheel: ExternalInferface function dispatchExternalMouseWheelEvent not found");
+        
+    };
+    
+    // Prevent default actions caused by mouse wheel.
+    if (event.preventDefault) event.preventDefault();
+    event.returnValue = false;
 }
 
 

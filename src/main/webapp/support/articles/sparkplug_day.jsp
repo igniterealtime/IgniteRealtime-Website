@@ -29,7 +29,7 @@ out plugins for our <a href="../../projects/spark/">Spark</a> instant messaging 
 for Sparkplug Day were to:
 
 <ul>
-	<li>Provide feedback on the Sparkplug API before it's launched with Spark 1.1.
+    <li>Provide feedback on the Sparkplug API before it's launched with Spark 1.1.
   <li>Build sample plugins for end users and other developers.
   <li>Have some fun.
 </ul></p> 

@@ -6,7 +6,7 @@
 <meta name="body-id" content="home" />
 <meta name="panel-name" content="home" />
 <style type="text/css" media="screen">
-	@import "styles/home.css";
+    @import "styles/home.css";
 </style>
 </head>
 <body>

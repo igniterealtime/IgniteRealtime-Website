@@ -2,11 +2,11 @@
 
 <decorators defaultdir="/template">
 
- 	<decorator name="default" page="default.jsp">
+    <decorator name="default" page="default.jsp">
         <pattern>*.jsp</pattern>
     </decorator>
 
- 	<decorator name="pageheader" page="pageheader.jsp" />
+    <decorator name="pageheader" page="pageheader.jsp" />
 
     <excludes>
         <pattern>/projects/wildfire/versions.jsp*</pattern>

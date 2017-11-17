@@ -1,13 +1,13 @@
-			<!-- BEGIN grey sidebar box 'FIND A MEMBER' -->
-			<div class="ignite_sidebar_greybox">
-				<div class="ignite_sidebar_top"></div>
-				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_findmember"></div>
-				<div class="ignite_sidebar_body_search">
-					<form action="" method="get">
-					<input type="text" name="searchfield" value="" class="ignite_sidebar_searchfield" />
-					<input type="submit" name="Submit" value="Search" class="ignite_member_search" />
-					</form>
-				</div>
-				<div class="ignite_sidebar_btm"></div>
-			</div>
-			<!-- END grey sidebar box 'FIND A MEMBER' -->
+            <!-- BEGIN grey sidebar box 'FIND A MEMBER' -->
+            <div class="ignite_sidebar_greybox">
+                <div class="ignite_sidebar_top"></div>
+                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_findmember"></div>
+                <div class="ignite_sidebar_body_search">
+                    <form action="" method="get">
+                    <input type="text" name="searchfield" value="" class="ignite_sidebar_searchfield" />
+                    <input type="submit" name="Submit" value="Search" class="ignite_member_search" />
+                    </form>
+                </div>
+                <div class="ignite_sidebar_btm"></div>
+            </div>
+            <!-- END grey sidebar box 'FIND A MEMBER' -->
