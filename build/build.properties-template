@@ -1,3 +1,0 @@
-deploy.dir=/opt/j2ee/domains/igniterealtime.org/www/tomcat/ROOT
-sbs.themes=/home/j2ee-website/sbs-themes
-overwrite=false
