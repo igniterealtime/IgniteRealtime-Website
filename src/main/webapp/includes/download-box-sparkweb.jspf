@@ -37,7 +37,7 @@
             </span>
 
             <h2>SparkWeb <%= version %></h2>
-            <p>Web-based real-time collaboration client (discontinued).</p>
+            <p>Flash based real-time collaboration web client (discontinued).</p>
 
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="sparkwebCpBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkwebCp'); return false;"></a></span>
