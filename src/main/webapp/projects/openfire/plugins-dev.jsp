@@ -29,7 +29,7 @@
     }
     if (plugin != null) {
         String imageDownload = request.getParameter("img");
-		if (imageDownload != null && Boolean.valueOf(imageDownload).booleanValue()) {
+        if (imageDownload != null && Boolean.valueOf(imageDownload).booleanValue()) {
             response.setContentType("image/gif");
             OutputStream resOut = response.getOutputStream();
             byte [] image = getPluginFile(plugin, "logo_small.gif");
@@ -92,10 +92,10 @@
 <cache:cache time="60" key="dev-plugin-list">
 <% try { %>
 
-	<!-- <div class="contentBox"> -->
-		<div id="plugins">
+    <!-- <div class="contentBox"> -->
+        <div id="plugins">
 
-		<a name="opensource"></a>
+        <a name="opensource"></a>
 
         <table cellpadding="3" cellspacing="0" border="0" width="100%">
             <tr class="pluginTableHeader">
@@ -191,7 +191,7 @@
                     boolean readmeExists = pluginFileExists(plugins[i], "readme.html");
                     boolean changelogExists = pluginFileExists(plugins[i], "changelog.html");
                     boolean iconExists = pluginFileExists(plugins[i], "logo_small.gif");
-										boolean licenseExists = pluginFileExists(plugins[i], "license.html");
+                                        boolean licenseExists = pluginFileExists(plugins[i], "license.html");
 
                     // If the icon exists, make sure it's extracted. We can't serve up images
                     // directly from JSP so we just put them on the file system.
@@ -240,7 +240,7 @@
                             writePluginFile(plugins[i], extractDir, "changelog.html", "changelog.html");
                         }
                     }
-										if (licenseExists) {
+                                        if (licenseExists) {
                         File extractDir = new File(pluginDir, pname);
                         if (!extractDir.exists()) {
                             extractDir.mkdir();
@@ -272,12 +272,12 @@
                         commercialShown = true;
         %>
 
-					<tr>
-					<td colspan="5">
-					<br/>
-					<a name="commercial"></a>
-					<br/></td>
-					</tr>
+                    <tr>
+                    <td colspan="5">
+                    <br/>
+                    <a name="commercial"></a>
+                    <br/></td>
+                    </tr>
                     <tr class="pluginTableHeader">
                         <td class="pluginType">
                             Developer Commercial Plugins
@@ -303,9 +303,9 @@
                         <table cellpadding="1" cellspacing="0" border="0" width="100%">
                         <tr>
                             <td width="1%">
-								<span class="plugicon">
+                                <span class="plugicon">
                                 <img src="plugins-dev/cache/<%= URLEncoder.encode(pname, "utf-8") %>.gif" alt="" />
-								</span>
+                                </span>
                             </td>
                             <td width="99%">
                                 <span class="plugname">
@@ -320,7 +320,7 @@
                                 <td colspan="2">
                                     <span class="description">
                                     <%= geti18nText(plugins[i], pluginDescription.getTextTrim()) %>
-                                	</span>
+                                    </span>
                                 </td>
                             </tr>
                         <%  } %>
@@ -372,7 +372,7 @@
 <% } %>
  </cache:cache>
 
-	 </div>
+     </div>
 
 
 

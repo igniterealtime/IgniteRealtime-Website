@@ -64,11 +64,11 @@
 
             %>
             <!-- BEGIN grey sidebar box 'SNAPSHOT' -->
-			<div class="ignite_sidebar_greybox">
-				<div class="ignite_sidebar_top"></div>
-				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_snapshot"></div>
-				<div class="ignite_sidebar_body">
-					<div class="ignite_sidebar_body_projstat"><strong>Latest Build</strong> <span><%= Versions.getVersion(project) %></span></div>
+            <div class="ignite_sidebar_greybox">
+                <div class="ignite_sidebar_top"></div>
+                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_snapshot"></div>
+                <div class="ignite_sidebar_body">
+                    <div class="ignite_sidebar_body_projstat"><strong>Latest Build</strong> <span><%= Versions.getVersion(project) %></span></div>
                     <% if (downloads != 0) { %>
                     <div class="ignite_sidebar_body_projstat"><strong>Downloads</strong> <span><%= NumberFormat.getNumberInstance().format(downloads) %></span></div>
                     <% } %>
@@ -78,7 +78,7 @@
                     <% if (platform != null) { %>
                     <div class="ignite_sidebar_body_projstat ignite_sidebar_body_projstat_last"><strong>Platforms</strong> <span><%= platform %></span></div>
                     <% } %>
-				</div>
-				<div class="ignite_sidebar_btm"></div>
-			</div>
-			<!-- END grey sidebar box 'SNAPSHOT' -->
+                </div>
+                <div class="ignite_sidebar_btm"></div>
+            </div>
+            <!-- END grey sidebar box 'SNAPSHOT' -->

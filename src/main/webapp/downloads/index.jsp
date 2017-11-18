@@ -11,13 +11,13 @@
 <body>
 
     <div id="ignite_subnav">
-		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_current">Releases</a></li>
-			<li id="subnav02"><a href="source.jsp">Source</a></li>
-			<li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
+        <ul>
+            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_current">Releases</a></li>
+            <li id="subnav02"><a href="source.jsp">Source</a></li>
+            <li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
             <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
-	</div>
+    </div>
 
     <!-- BEGIN body area -->
     <div id="ignite_body">
@@ -53,53 +53,53 @@
                 <%@ include file="/includes/download-box-openfire.jspf" %>
                 <!-- END openfire downloads -->
 
-				<!-- BEGIN spark downloads -->
+                <!-- BEGIN spark downloads -->
                 <%@ include file="/includes/download-box-spark.jspf" %>
-				<!-- END spark downloads -->
+                <!-- END spark downloads -->
 
-				<!-- BEGIN smack downloads -->
+                <!-- BEGIN smack downloads -->
                 <%@ include file="/includes/download-box-smack.jspf" %>
-				<!-- END smack downloads -->
+                <!-- END smack downloads -->
                 
                 <!-- BEGIN tinder downloads -->
                 <%@ include file="/includes/download-box-tinder.jspf" %>
-				<!-- END tinder downloads -->
+                <!-- END tinder downloads -->
 
-				<!-- BEGIN whack downloads -->
+                <!-- BEGIN whack downloads -->
                 <%@ include file="/includes/download-box-whack.jspf" %>
-				<!-- END whack downloads -->
-				
-				<!-- BEGIN xiff downloads -->
+                <!-- END whack downloads -->
+                
+                <!-- BEGIN xiff downloads -->
                 <%@ include file="/includes/download-box-xiff.jspf" %>
-				<!-- END xiff downloads -->
-				
-				<!-- BEGIN sparkweb downloads -->
+                <!-- END xiff downloads -->
+                
+                <!-- BEGIN sparkweb downloads -->
                 <%@ include file="/includes/download-box-sparkweb.jspf" %>
-				<!-- END sparkweb downloads -->
-				
-				
-				
-			</div>
-			<!-- END body content area -->
-			
-		</div>
-		<!-- END left column (main content) -->
-		
-		<!-- BEGIN right column (sidebar) -->
-		<div id="ignite_body_rightcol">
-			
-			
-			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-			
-			<%@ include file="/includes/sidebar_install4j.jspf" %>
-			
-			<%@ include file="/includes/sidebar_testimonial.jspf" %>
-			
-		</div>
-		<!-- END right column (sidebar) -->
-	
-	</div>
-	<!-- END body area -->
+                <!-- END sparkweb downloads -->
+                
+                
+                
+            </div>
+            <!-- END body content area -->
+            
+        </div>
+        <!-- END left column (main content) -->
+        
+        <!-- BEGIN right column (sidebar) -->
+        <div id="ignite_body_rightcol">
+            
+            
+            <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
+            
+            <%@ include file="/includes/sidebar_install4j.jspf" %>
+            
+            <%@ include file="/includes/sidebar_testimonial.jspf" %>
+            
+        </div>
+        <!-- END right column (sidebar) -->
+    
+    </div>
+    <!-- END body area -->
 
 
 

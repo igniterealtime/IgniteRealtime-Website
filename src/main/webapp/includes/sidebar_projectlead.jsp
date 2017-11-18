@@ -58,17 +58,17 @@
     }
 %>
             <!-- BEGIN grey gradient sidebar box 'PROJECT LEAD' -->
-			<div class="ignite_sidebar_gradbox">
-				<div class="ignite_sidebar_top-g"></div>
-				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projlead"></div>
-				<div class="ignite_sidebar_body_projlead">
-					<p>
-					<table cellpadding="0" cellspacing="0">
+            <div class="ignite_sidebar_gradbox">
+                <div class="ignite_sidebar_top-g"></div>
+                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_projlead"></div>
+                <div class="ignite_sidebar_body_projlead">
+                    <p>
+                    <table cellpadding="0" cellspacing="0">
                     <tr valign="top"><td><a href="<%= profileLink %>"><img src="<%= avatarSrc %>" alt="<%= name %>"  align="left" /></a></td>
                     <td>
                     <strong><a href="<%= profileLink %>"><%= name %></a></strong>
-					<%= profile %></td></tr></table></p>
-				</div>
-				<div class="ignite_sidebar_btm-g"></div>
-			</div>
-			<!-- END grey gradient sidebar box 'PROJECT LEAD' -->
+                    <%= profile %></td></tr></table></p>
+                </div>
+                <div class="ignite_sidebar_btm-g"></div>
+            </div>
+            <!-- END grey gradient sidebar box 'PROJECT LEAD' -->

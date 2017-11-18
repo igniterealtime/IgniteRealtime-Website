@@ -55,8 +55,8 @@
 
             <h2>Openfire <%= version %></h2>
             <p>Openfire (formerly Wildfire) is a cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.
-			<a style="color: #666;" target="_blank" href="https://discourse.igniterealtime.org/t/more-on-the-renaming-of-wildfire/68578">Read about the name change</a>
-			</p>
+            <a style="color: #666;" target="_blank" href="https://discourse.igniterealtime.org/t/more-on-the-renaming-of-wildfire/68578">Read about the name change</a>
+            </p>
 
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="openfireWindowsBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('openfireWindows','openfireLinux', 'openfireMac'); return false;"></a></span>

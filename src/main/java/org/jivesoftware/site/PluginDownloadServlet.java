@@ -38,12 +38,12 @@ public class PluginDownloadServlet extends HttpServlet {
     private String openfirePluginsBetaPath;
     private String openfirePluginsDevPath;
 
-	private String openfirePluginUri = "/projects/openfire/plugins/";
-	private String openfirePluginBetaUri = "/projects/openfire/plugins-beta/";
+    private String openfirePluginUri = "/projects/openfire/plugins/";
+    private String openfirePluginBetaUri = "/projects/openfire/plugins-beta/";
     private String openfirePluginDevUri = "/projects/openfire/plugins-dev/";
-	private String sparkPluginUri = "/updater/sparkplugs/";
-	private String pluginExtensionJar = ".jar";
-	private String pluginExtensionWar = ".war";
+    private String sparkPluginUri = "/updater/sparkplugs/";
+    private String pluginExtensionJar = ".jar";
+    private String pluginExtensionWar = ".war";
 
     public void init(ServletConfig config) throws ServletException
     {
@@ -107,12 +107,12 @@ public class PluginDownloadServlet extends HttpServlet {
 
             if (downloadFile.length() == 0) {
                 // File empty, return 500
-				if (null == pluginType) {
+                if (null == pluginType) {
                     Log.info("Plugin " + downloadFile.getAbsolutePath() + " had size zero.");
-				} else {
+                } else {
                     Log.info("File " + downloadFile.getAbsolutePath() + " had size zero.");
-				}
-				response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                }
+                response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
                 return;
             }
 
@@ -296,10 +296,10 @@ public class PluginDownloadServlet extends HttpServlet {
         }
     }
 
-	private boolean validateFilename(String filename) {
-		if (filename.indexOf("..") != -1)
-			return false;
-		
-		return true;
-	}
+    private boolean validateFilename(String filename) {
+        if (filename.indexOf("..") != -1)
+            return false;
+        
+        return true;
+    }
 }

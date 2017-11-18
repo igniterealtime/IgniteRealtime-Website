@@ -41,19 +41,19 @@
                 <jsp:param name="project" value="<%= project %>" />
             </jsp:include>
 
-			<jsp:include page="/includes/sidebar_snapshot.jsp">
-			    <jsp:param name="project" value="<%= project %>"/>
-			</jsp:include>
+            <jsp:include page="/includes/sidebar_snapshot.jsp">
+                <jsp:param name="project" value="<%= project %>"/>
+            </jsp:include>
 
-			<jsp:include page="/includes/sidebar_forumactivity.jsp">
-			    <jsp:param name="forumID" value="<%= forumID %>"/>
-			</jsp:include>
-			
-			<%--
+            <jsp:include page="/includes/sidebar_forumactivity.jsp">
+                <jsp:param name="forumID" value="<%= forumID %>"/>
+            </jsp:include>
+            
+            <%--
             <jsp:include page="/includes/sidebar_issues.jsp">
-			    <jsp:param name="projectID" value="<%= jiraID %>"/>
-			</jsp:include>	
-			--%>
-			
-			<%--<%@ include file="/includes/sidebar_enterprise.jspf" %> --%>
-			
+                <jsp:param name="projectID" value="<%= jiraID %>"/>
+            </jsp:include>	
+            --%>
+            
+            <%--<%@ include file="/includes/sidebar_enterprise.jspf" %> --%>
+            

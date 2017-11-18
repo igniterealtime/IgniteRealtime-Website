@@ -7,80 +7,80 @@
 <title>Tinder API</title>
 <meta name="body-id" content="projects" />
 <style type="text/css" media="screen">
-	@import "../../styles/interior.css";
+    @import "../../styles/interior.css";
 </style>
 </head>
 <body>
 
-	<div id="ignite_subnav">
-		<ul>
-			<li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Tinder</a></li>
-			<!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
-			<li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
-			<li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
-			<li id="subnav06"><a href="http://download.igniterealtime.org/tinder/docs/latest/javadoc/">JavaDocs</a></li>
-			
-		</ul>
-	</div>
+    <div id="ignite_subnav">
+        <ul>
+            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Tinder</a></li>
+            <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
+            <li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
+            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
+            <li id="subnav06"><a href="http://download.igniterealtime.org/tinder/docs/latest/javadoc/">JavaDocs</a></li>
+            
+        </ul>
+    </div>
 
-	<!-- BEGIN body area -->
-	<div id="ignite_body">
-		
-		<!-- BEGIN left column (main content) -->
-		<div id="ignite_body_leftcol">
-			
-			<!-- BEGIN body content area -->
-			<div id="ignite_int_body">
-			
-				<!-- BEGIN body header -->
-				<div id="ignite_body_header">
-					<h2>Tinder Documentation</h2>
-				</div>
-				<!-- END body header -->
-				
-				
-				<div class="ignite_int_body_padding">
-					
-					
-					<p>The current Tinder documentation can be found below. All documentation is also distributed in each release.</p>
-					
-					<h3>Documentation:</h3>
-					<ul>
-					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+    <!-- BEGIN body area -->
+    <div id="ignite_body">
+        
+        <!-- BEGIN left column (main content) -->
+        <div id="ignite_body_leftcol">
+            
+            <!-- BEGIN body content area -->
+            <div id="ignite_int_body">
+            
+                <!-- BEGIN body header -->
+                <div id="ignite_body_header">
+                    <h2>Tinder Documentation</h2>
+                </div>
+                <!-- END body header -->
+                
+                
+                <div class="ignite_int_body_padding">
+                    
+                    
+                    <p>The current Tinder documentation can be found below. All documentation is also distributed in each release.</p>
+                    
+                    <h3>Documentation:</h3>
+                    <ul>
+                    <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
                     <a href="https://discourse.igniterealtime.org/t/introducing-tinder-an-xmpp-object-implementation-library/63975">Readme</a>
                     <!--<a href="http://download.igniterealtime.org/tinder/docs/latest/README.html">Readme &amp; License</a>--></li>
-					<li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-					<!-- <a href="http://download.igniterealtime.org/tinder/docs/latest/changelog.html">Changelog</a> -->Initial Release - no Changelog
-					<br>
-					<br></li>
-					<li><!--<a href="http://download.igniterealtime.org/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="https://discourse.igniterealtime.org/c/tinder-dev">Tinder documentation</a></li>
-				
-				
-				</div>
-				
-				
-			</div>
-			<!-- END body content area -->
-			
-		</div>
-		<!-- END left column (main content) -->
-		
-		<!-- BEGIN right column (sidebar) -->
-		<div id="ignite_body_rightcol">
-			
+                    <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
+                    <!-- <a href="http://download.igniterealtime.org/tinder/docs/latest/changelog.html">Changelog</a> -->Initial Release - no Changelog
+                    <br>
+                    <br></li>
+                    <li><!--<a href="http://download.igniterealtime.org/tinder/docs/latest/documentation/">Tinder documentation</a>--> <a href="https://discourse.igniterealtime.org/c/tinder-dev">Tinder documentation</a></li>
+                
+                
+                </div>
+                
+                
+            </div>
+            <!-- END body content area -->
+            
+        </div>
+        <!-- END left column (main content) -->
+        
+        <!-- BEGIN right column (sidebar) -->
+        <div id="ignite_body_rightcol">
+            
             <jsp:include page="/includes/sidebar_projectlead.jsp">
                 <jsp:param name="project" value="tinder" />
             </jsp:include>
 
-			<jsp:include page="/includes/sidebar_snapshot.jsp">
-			    <jsp:param name="project" value="tinder"/>
-			</jsp:include>
-			
-		</div>
-		<!-- END right column (sidebar) -->
-	
-	</div>
-	<!-- END body area -->
+            <jsp:include page="/includes/sidebar_snapshot.jsp">
+                <jsp:param name="project" value="tinder"/>
+            </jsp:include>
+            
+        </div>
+        <!-- END right column (sidebar) -->
+    
+    </div>
+    <!-- END body area -->
 
 
 

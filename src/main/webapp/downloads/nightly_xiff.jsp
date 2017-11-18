@@ -42,18 +42,18 @@
 <title>XIFF Nightly Builds</title>
 <meta name="body-id" content="downloads" />
 <style type="text/css" media="screen">
-	@import "../styles/interior.css";
+    @import "../styles/interior.css";
 </style>
 </head>
 <body>
 
     <div id="ignite_subnav">
-		<ul>
-			<li id="subnav01"><a href="index.jsp">Releases</a></li>
-			<li id="subnav02"><a href="source.jsp">Source</a></li>
-			<li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
-		</ul>
-	</div>
+        <ul>
+            <li id="subnav01"><a href="index.jsp">Releases</a></li>
+            <li id="subnav02"><a href="source.jsp">Source</a></li>
+            <li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
+        </ul>
+    </div>
 
 <!-- BEGIN body area -->
 <div id="ignite_body">

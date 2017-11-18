@@ -1,34 +1,34 @@
-			
-			<!-- BEGIN blue sidebar box 'PRIORITIES' -->
-			<div class="ignite_sidebar_whitebox">
-				<div class="ignite_sidebar_top"></div>
-				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_priorities"></div>
-				<div class="ignite_sidebar_body">
-					<div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
-						<img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
-						<a href="#">Wiki documentation</a>
-					</div>
-					<div class="ignite_sidebar_issue ignite_sidebar_issue_even">
-						<img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
-						<a href="#">Knowledgebase articles</a>
-					</div>
-					<div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
-						<img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
-						<a href="#">Bug fixes</a>
-					</div>
-					<div class="ignite_sidebar_issue ignite_sidebar_issue_even">
-						<img src="<%=request.getContextPath()%>/images/ignite_issue-orange_16x16.gif" width="16" height="16" alt="" />
-						<a href="#">Javadocs</a>
-					</div>
-					<div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
-						<img src="<%=request.getContextPath()%>/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
-						<a href="#">Something else</a>
-					</div>
-					<div class="ignite_sidebar_issue ignite_sidebar_issue_even">
-						<img src="<%=request.getContextPath()%>/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
-						<a href="#">Something else again</a>
-					</div>
-				</div>
-				<div class="ignite_sidebar_btm"></div>
-			</div>
-			<!-- END blue sidebar box 'PRIORITIES' -->
+            
+            <!-- BEGIN blue sidebar box 'PRIORITIES' -->
+            <div class="ignite_sidebar_whitebox">
+                <div class="ignite_sidebar_top"></div>
+                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_priorities"></div>
+                <div class="ignite_sidebar_body">
+                    <div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
+                        <img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
+                        <a href="#">Wiki documentation</a>
+                    </div>
+                    <div class="ignite_sidebar_issue ignite_sidebar_issue_even">
+                        <img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
+                        <a href="#">Knowledgebase articles</a>
+                    </div>
+                    <div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
+                        <img src="<%=request.getContextPath()%>/images/ignite_issue-red_16x16.gif" width="16" height="16" alt="" />
+                        <a href="#">Bug fixes</a>
+                    </div>
+                    <div class="ignite_sidebar_issue ignite_sidebar_issue_even">
+                        <img src="<%=request.getContextPath()%>/images/ignite_issue-orange_16x16.gif" width="16" height="16" alt="" />
+                        <a href="#">Javadocs</a>
+                    </div>
+                    <div class="ignite_sidebar_issue ignite_sidebar_issue_odd">
+                        <img src="<%=request.getContextPath()%>/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
+                        <a href="#">Something else</a>
+                    </div>
+                    <div class="ignite_sidebar_issue ignite_sidebar_issue_even">
+                        <img src="<%=request.getContextPath()%>/images/ignite_issue-green_16x16.gif" width="16" height="16" alt="" />
+                        <a href="#">Something else again</a>
+                    </div>
+                </div>
+                <div class="ignite_sidebar_btm"></div>
+            </div>
+            <!-- END blue sidebar box 'PRIORITIES' -->

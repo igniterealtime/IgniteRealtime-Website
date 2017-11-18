@@ -3,7 +3,7 @@
 <head><title>All About Pubsub</title></head>
 <meta name="body-id" content="support" />
 <style type="text/css" media="screen">
-	@import "../../styles/interior.css";
+    @import "../../styles/interior.css";
 </style>
 <body>
 
@@ -53,16 +53,16 @@ implemented in <a href="../../projects/openfire/">Openfire</a> (formerly Wildfir
 objects in the pubsub service are called "nodes", which users subscribe and 
 publish to. Nodes are hierarchical (tree structure) and come in two types:
 <ul>
-		<li>Leaf node: a node that contains published items.
-		<li>Collection node: a node that contains other nodes.
+        <li>Leaf node: a node that contains published items.
+        <li>Collection node: a node that contains other nodes.
 </ul>
 </p>
 
 <p>So, when a user subscribes to a node, that node is either: <ul>
-			<li>A leaf node, and notifications are sent when new items are published 
-						to the node.
-			<li>A collection node, and notifications are made on addition/removal of 
-						child nodes or when new items are published to child nodes.
+            <li>A leaf node, and notifications are sent when new items are published 
+                        to the node.
+            <li>A collection node, and notifications are made on addition/removal of 
+                        child nodes or when new items are published to child nodes.
 </ul></p>
 
 <p>The diagram at right shows both collection and leaf nodes. There is always
@@ -78,21 +78,21 @@ is allowed to publish items to the node.</p>
 
 <p>Access models options are:<ul>
     <li><b>Open</b>: anyone may subscribe and retrieve items.
-		<li><b>Authorize</b>: subscription requests must be approved by an owner 
-		and only subscribers may retrieve items.
+        <li><b>Authorize</b>: subscription requests must be approved by an owner 
+        and only subscribers may retrieve items.
     <li><b>Whitelist</b>: only those on a whitelist may subscribe and retrieve items.
     <li><b>Presence</b>: entities that are subscribed to the node owner's presence 
-		may subscribe to the node and retrieve items from the node.
+        may subscribe to the node and retrieve items from the node.
     <li><b>Roster</b>: entities that are subscribed to the node owner's presence and in 
-		the specified roster group(s) may subscribe to the node and retrieve items 
-		from the node.
+        the specified roster group(s) may subscribe to the node and retrieve items 
+        from the node.
 </ul>
 </p>
 
 <p>Publisher model options are:<ul>
     <li><b>Open</b>: anyone may publish items to the node.
     <li><b>Publishers</b>: owners and publishers are allowed to publish items to the node.
-		<li><b>Subscribers</b>: owners, publishers and subscribers are allowed to publish items to the node.
+        <li><b>Subscribers</b>: owners, publishers and subscribers are allowed to publish items to the node.
 </ul></p>
  
 <h3>Subscribing to Nodes</h3>
@@ -150,14 +150,14 @@ notification; the framework is powerful enough to support a number of
 interesting collaboration use cases such as:
 
 <ul>
-		<li>File storage and sharing: users could share files to common spaces and
+        <li>File storage and sharing: users could share files to common spaces and
         be notified when files are added, deleted, or updated. Pubsub permissions
-				could be used for rich control over who's allowed to create and read files. 
-		<li>Whiteboards: a whiteboard could be represented as a node. Users could 
-		    collaboratively modify the whiteboard and see changes reflected in 
-				real-time.
-		<li>Auction and trading systems: pubsub could be used to distribute the 
-		    changing prices of equities to interested parties. 
+                could be used for rich control over who's allowed to create and read files. 
+        <li>Whiteboards: a whiteboard could be represented as a node. Users could 
+            collaboratively modify the whiteboard and see changes reflected in 
+                real-time.
+        <li>Auction and trading systems: pubsub could be used to distribute the 
+            changing prices of equities to interested parties. 
 </ul>
 
 Have your own ideas about how pubsub can be used? We're looking forward to

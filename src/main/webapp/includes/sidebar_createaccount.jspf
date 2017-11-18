@@ -1,17 +1,17 @@
-			<!-- BEGIN white sidebar box 'CREATE AN ACCOUNT' -->
-			<div class="ignite_sidebar_whitebox">
-				<div class="ignite_sidebar_top"></div>
-				<div class="ignite_sidebar_hdr ignite_sidebar_hdr_createaccount"></div>
-				<div class="ignite_sidebar_body">
-					
-					<p>Don't have an account? Create one today and dive into the 
-					Ignite Real Time community forums.
+            <!-- BEGIN white sidebar box 'CREATE AN ACCOUNT' -->
+            <div class="ignite_sidebar_whitebox">
+                <div class="ignite_sidebar_top"></div>
+                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_createaccount"></div>
+                <div class="ignite_sidebar_body">
+                    
+                    <p>Don't have an account? Create one today and dive into the 
+                    Ignite Real Time community forums.
                 <%
                     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
                 %>
                     <a href="<%= baseUrl %>/create-account.jspa"><strong>Create your account.</strong></a>
                     </p>
-				</div>
-				<div class="ignite_sidebar_btm"></div>
-			</div>
-			<!-- END white sidebar box 'CREATE AN ACCOUNT' -->
+                </div>
+                <div class="ignite_sidebar_btm"></div>
+            </div>
+            <!-- END white sidebar box 'CREATE AN ACCOUNT' -->

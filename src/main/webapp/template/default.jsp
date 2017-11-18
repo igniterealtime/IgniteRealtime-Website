@@ -21,8 +21,8 @@
 <meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="jive, jive software, java, open source, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, xiff, asterisk" />"/>
 
 <style type="text/css" media="screen">
-	@import url(https://fonts.googleapis.com/css?family=Dosis:600);
-	@import "<%= request.getContextPath() %>/styles/global.css";
+    @import url(https://fonts.googleapis.com/css?family=Dosis:600);
+    @import "<%= request.getContextPath() %>/styles/global.css";
 </style>
 
 <script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
@@ -39,13 +39,13 @@
 </head>
 
 <%
-	String bodyID = mypage.getProperty("meta.body-id");
-	String panelName = mypage.getProperty("meta.panel-name");
+    String bodyID = mypage.getProperty("meta.body-id");
+    String panelName = mypage.getProperty("meta.panel-name");
     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
 %>
 
 <body<%= (bodyID != null) ? " id=\""+bodyID+"\"" : "" %>  onLoad="<%= (panelName != null) ? "checkPanel('"+panelName+"');" : "" %>" >
-	 
+     
 
 
 
@@ -53,26 +53,26 @@
 <div id="ignite_wrapper">
                                                               
 
-	<!-- BEGIN header -->
-	<div id="ignite_header">
-		<a href="./"><div id="ignite_logo"></div></a>
-		<div id="ignite_nav">
-			<ol>
-				<li id="nav01"><a href="<%= request.getContextPath() %>/index.jsp">Home</a></li>
-				<li id="nav02"><a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a></li>
-				<li id="nav03"><a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a></li>
-				<li id="nav04"><a href="https://discourse.igniterealtime.org">Community</a></li>
-				<li id="nav05"><a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a></li>
-				<li id="nav07"><a href="<%= request.getContextPath() %>/support/group_chat.jsp">Group Chat</a></li>
-				<li id="nav08"><a href="<%= request.getContextPath() %>/about/index.jsp">About</a></li>
-			</ol>
+    <!-- BEGIN header -->
+    <div id="ignite_header">
+        <a href="./"><div id="ignite_logo"></div></a>
+        <div id="ignite_nav">
+            <ol>
+                <li id="nav01"><a href="<%= request.getContextPath() %>/index.jsp">Home</a></li>
+                <li id="nav02"><a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a></li>
+                <li id="nav03"><a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a></li>
+                <li id="nav04"><a href="https://discourse.igniterealtime.org">Community</a></li>
+                <li id="nav05"><a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a></li>
+                <li id="nav07"><a href="<%= request.getContextPath() %>/support/group_chat.jsp">Group Chat</a></li>
+                <li id="nav08"><a href="<%= request.getContextPath() %>/about/index.jsp">About</a></li>
+            </ol>
         <!--    <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
-				<span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
-				<span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="<%= request.getContextPath() %>/support/group_chat.jsp">More Information</a></span>
-			</div> -->
-		</div>
-	</div>
-	<!-- END header -->
+                <span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
+                <span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="<%= request.getContextPath() %>/support/group_chat.jsp">More Information</a></span>
+            </div> -->
+        </div>
+    </div>
+    <!-- END header -->
     <!-- <script type="text/javascript">
     // The javascript timer for the header group chat callout
     runGroupChatTimer();
@@ -80,14 +80,14 @@
 
 
 
-	<decorator:body />
+    <decorator:body />
 
-	
-	<!-- BEGIN footer -->
-	<div id="ignite_footer">
-		<div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/index.jsp">Home</a> | <a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a> | <a href="https://discourse.igniterealtime.org">Community</a> | <a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a> | <a href="<%= request.getContextPath() %>/support/group_chat.jsp">Group Chat</a> | <a href="<%= request.getContextPath() %>/about/index.jsp">About</a> </div>
-	</div>
-	<!-- END footer -->
+    
+    <!-- BEGIN footer -->
+    <div id="ignite_footer">
+        <div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/index.jsp">Home</a> | <a href="<%= request.getContextPath() %>/projects/index.jsp">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/index.jsp">Downloads</a> | <a href="https://discourse.igniterealtime.org">Community</a> | <a href="<%= request.getContextPath() %>/fans/index.jsp">Fans</a> | <a href="<%= request.getContextPath() %>/support/group_chat.jsp">Group Chat</a> | <a href="<%= request.getContextPath() %>/about/index.jsp">About</a> </div>
+    </div>
+    <!-- END footer -->
 
 
 </div>

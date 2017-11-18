@@ -205,19 +205,19 @@
 <div id="ignite_body_rightcol">
 
     <%@ include file="/includes/sidebar_enterprise.jspf" %>
-			
-			<%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-			
-			<%@ include file="/includes/sidebar_testimonial.jspf" %>
-			
-			<%@ include file="/includes/sidebar_chat.jspf" %>
+            
+            <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
+            
+            <%@ include file="/includes/sidebar_testimonial.jspf" %>
+            
+            <%@ include file="/includes/sidebar_chat.jspf" %>
 
-			
-		</div>
-		<!-- END right column (sidebar) -->
-	
-	</div>
-	<!-- END body area -->
+            
+        </div>
+        <!-- END right column (sidebar) -->
+    
+    </div>
+    <!-- END body area -->
 
 
 
