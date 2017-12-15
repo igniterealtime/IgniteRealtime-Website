@@ -42,7 +42,7 @@ public class Versions {
      * Returns the product information for all products defined in <tt>versions.xml</tt>. Note that this method call
      * uses cached data.
      *
-     * @return A list of product names (never null).
+     * @return A list of product names (never null, but possibly empty).
      */
     public static synchronized Map<String, Product> getProducts()
     {
@@ -50,20 +50,21 @@ public class Versions {
         {
             try ( InputStream in = Versions.class.getClassLoader().getResourceAsStream("/versions.xml") )
             {
-                final Iterator iter = new XPP3Reader().read(in).getRootElement().elementIterator("product");
-
                 final Map<String, Product> update = new HashMap<>();
-                while (iter.hasNext())
-                {
-                    final Element element = (Element)iter.next();
 
-                    final String name    = element.attributeValue("name");
-                    final String version = element.attributeValue("version");
-                    final String date    = element.attributeValue("date");
+                if (in != null) {
+                    final Iterator iter = new XPP3Reader().read(in).getRootElement().elementIterator("product");
+                    while (iter.hasNext()) {
+                        final Element element = (Element) iter.next();
 
-                    final Product product = new Product( name, version, date );
+                        final String name = element.attributeValue("name");
+                        final String version = element.attributeValue("version");
+                        final String date = element.attributeValue("date");
 
-                    update.put( name, product );
+                        final Product product = new Product(name, version, date);
+
+                        update.put(name, product);
+                    }
                 }
 
                 products = update; // Replace old values with new ones.
@@ -86,7 +87,7 @@ public class Versions {
      */
     public static synchronized String getVersion(String name)
     {
-        final Product product = getProducts().get( name );
+            final Product product = getProducts().get( name );
         if ( product == null )
         {
             Log.warn( "Unable to get version for '{}'.", name );

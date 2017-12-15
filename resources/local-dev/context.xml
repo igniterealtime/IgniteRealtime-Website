@@ -1,0 +1,25 @@
+<Context>
+    <!-- WEB-53: File location of Maxmind GeoIp Database -->
+    <Parameter name="geoip-database-path" value="/staticfiles/builds/GeoLiteCity.dat"/>
+
+    <!-- WEB-56: Path to the base builds dir. Note, do not include a trailing "/". -->
+    <Parameter name="builds-path" value="/staticfiles/builds"/>
+
+    <!-- WEB-57: Path to the base builds dir. Note, do not include a trailing "/". -->
+    <Parameter name="spark-plugins-path"         value="/staticfiles/builds/spark/plugins"/>
+    <Parameter name="openfire-plugins-path"      value="/staticfiles/builds/openfire/plugins"/>
+    <Parameter name="openfire-plugins-beta-path" value="/staticfiles/builds/openfire/plugins-beta"/>
+    <Parameter name="openfire-plugins-dev-path"  value="/staticfiles/builds/openfire/plugins-dev "/>
+
+    <!-- WEB-50: JNDI datasource for the database that the website uses to collect statistics.
+    <Resource
+        name="jdbc/stats"
+        auth="Container"
+        factory="org.apache.commons.dbcp.BasicDataSourceFactory"
+        type="javax.sql.DataSource"
+        username="tomcat-website"
+        password="FOOBAR"
+        driverClassName="com.mysql.jdbc.Driver"
+        url="jdbc:mysql://website-stats.c3b9l2v435jr.eu-central-1.rds.amazonaws.com:3306/stats?characterEncoding=UTF-8"
+    /> -->
+</Context>
