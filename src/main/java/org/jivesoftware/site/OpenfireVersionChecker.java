@@ -61,6 +61,11 @@ public class OpenfireVersionChecker {
      */
     private static long lastPluginDate;
 
+    /**
+     * Keeps track of the last time the pluginsInfo data was refreshed.
+     */
+    private static long lastRefresh;
+
 
     /**
      * Verifies if there is a newer version of the Openfire server. The request is specified
@@ -276,10 +281,11 @@ public class OpenfireVersionChecker {
         for (File file : plugins) {
             latestPlugin = latestPlugin < file.lastModified() ? file.lastModified() : latestPlugin;
         }
-        // Update cache of plugins versions (if first time or a plugin has been updated)
-        if (pluginsInfo == null || latestPlugin > lastPluginDate) {
+        // Update cache of plugins versions (if first time or a plugin has been updated, or cache contains old data)
+        if (pluginsInfo == null || latestPlugin > lastPluginDate || lastRefresh + (1000*60*60*24) < System.currentTimeMillis()) {
             pluginsInfo = new ConcurrentHashMap<String, Document>();
             lastPluginDate = latestPlugin;
+            lastRefresh = System.currentTimeMillis();
             for (File file : plugins) {
                 String x1 = new String(getPluginFile(file, "plugin.xml"));
                 Document doc1 = (new SAXReader()).read(new ByteArrayInputStream(x1.getBytes()));
