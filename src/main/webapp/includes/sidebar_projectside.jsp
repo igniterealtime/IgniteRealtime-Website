@@ -45,11 +45,11 @@
                 <jsp:param name="project" value="<%= project %>"/>
             </jsp:include>
 
-			<!--
+			<%--
             <jsp:include page="/includes/sidebar_forumactivity.jsp">
                 <jsp:param name="forumID" value="<%= forumID %>"/>
             </jsp:include>
-			-->
+			--%>
             
             <%--
             <jsp:include page="/includes/sidebar_issues.jsp">
