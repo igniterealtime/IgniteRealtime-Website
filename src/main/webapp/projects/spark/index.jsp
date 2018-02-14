@@ -96,48 +96,6 @@
             <!-- END small panel -->
             
             
-            <!-- BEGIN home page body content area -->
-            <div id="ignite_int_body">
-            <%
-                String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
-                String restBaseUrl = baseUrl+"/api/core/v3";
-                String chosenTag = "spark";
-                String blogFeedRSS = baseUrl+"/blogs/ignite/feeds/tags/"+chosenTag;
-                String blogRestUrl = restBaseUrl +"/contents?count=5&includeBlogs=true&filter=type(post)&filter=tag("+chosenTag+")";
-            %>
-                <!-- BEGIN 'latest blog entries' column -->
-                <div id="ignite_int_body_widecol">
-                    <!-- BEGIN blog header -->
-                    <div id="ignite_blog_header">
-                        <span id="ignite_blog_header_label">
-                            Latest Blog Entries
-                        </span>
-                        <div style="float: right;">
-                            <span id="ignite_blog_header_rss">
-                                <a href="<%= blogFeedRSS %>"><img src="../../images/rss.gif" width="16" height="16" border="0" alt="" /></a>
-                            </span>
-                        </div>
-                    </div>
-                    <!-- END blog header -->
-                    <cache:cache time="600" key="<%= blogFeedRSS %>">
-                <% try { %>
-                <%
-                    RestClient client = new RestClient();
-                    JSONObject result = client.get(blogRestUrl);
-                    JSONArray posts = result.getJSONArray("list");
-                    request.setAttribute("posts", posts);
-                %>
-                    <jsp:include page="/includes/blogposts.jsp" />
-                <% } catch (Exception e) { %>
-                    <cache:usecached />
-                <% } %>
-                    </cache:cache>
-                </div>
-                <!-- END 'latest blog entries' column -->
-                
-            </div>
-            <!-- END home page body content area -->
-            
         </div>
         <!-- END left column (main content) -->
         

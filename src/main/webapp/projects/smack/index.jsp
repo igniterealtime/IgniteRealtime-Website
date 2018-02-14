@@ -90,7 +90,10 @@
                 </div>
             </div>
             <!-- END small panel -->
-        
+
+        </div>
+        <!-- END left column (main content) -->
+
         <!-- BEGIN right column (sidebar) -->
         <div id="ignite_body_rightcol">
             
