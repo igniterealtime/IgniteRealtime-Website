@@ -52,15 +52,15 @@
                     <br>
                     <br></li>
                     <li><a href="https://discourse.igniterealtime.org/t/spark-user-guide-revised/41731">User Guide (wiki)</a></li>
-                    <li><a href="http://download.igniterealtime.org/spark/docs/latest/documentation/install-guide.html">Installation and Configuration Guide</a></li>
+                    <li><a href="https://discourse.igniterealtime.org/t/developer-and-administrator-guide">Developer and Administrator Guide</a></li>
                     </ul>
 
 
-                    <h3>Developer Documentation:</h3>
+                    <!--<h3>Developer Documentation:</h3>
                     <ul>
                     <li><a href="http://download.igniterealtime.org/spark/docs/latest/documentation/ide-eclipse-setup.html">Setup Eclipse IDE with the source</a></li>
                     <li><a href="http://download.igniterealtime.org/spark/docs/latest/documentation/ide-intellij-setup.html">Setup IntelliJ IDE with the source</a></li>
-                    </ul>
+                    </ul>-->
                 
                 
                 
