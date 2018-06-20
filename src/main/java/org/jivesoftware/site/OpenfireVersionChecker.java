@@ -48,9 +48,9 @@ public class OpenfireVersionChecker {
 
     protected static DocumentFactory docFactory = DocumentFactory.getInstance();
     //private static String OPENFIRE_PATH = "http://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
-    private static String OPENFIRE_PATH = "http://www.igniterealtime.org/downloads/index.jsp";
-    private static String OPENFIRE_LOG = "http://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html";
-    private static String PLUGINS_PATH = "http://www.igniterealtime.org/projects/openfire/plugins/";
+    private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/index.jsp";
+    private static String OPENFIRE_LOG = "https://download.igniterealtime.org/openfire/docs/latest/changelog.html";
+    private static String PLUGINS_PATH = "https://www.igniterealtime.org/projects/openfire/plugins/";
     /**
      * Map that keeps the information specified in plugin.xml for each available plugin.
      * Key = filename, value = content of plugin.xml
