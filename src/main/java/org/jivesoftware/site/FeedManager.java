@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -50,7 +51,7 @@ public class FeedManager {
         } catch (Exception e) {
             Log.warn("Problem getting Community Blog RSS feed '{}'.", baseUrl + "/" + feedUrl, e);
         }
-        return null;
+        return Collections.emptyList();
     }
 
     public List<SummaryFeedItem> getItems( String baseUrl, String feedUrl, int max )
