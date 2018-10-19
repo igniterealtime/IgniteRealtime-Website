@@ -48,7 +48,7 @@ public class Versions {
     {
         if (products.isEmpty() || cacheDate + 60000 < System.currentTimeMillis())
         {
-            try ( InputStream in = Versions.class.getClassLoader().getResourceAsStream("/versions.xml") )
+            try ( InputStream in = Versions.class.getResourceAsStream("/versions.xml") )
             {
                 final Iterator iter = new XPP3Reader().read(in).getRootElement().elementIterator("product");
 
