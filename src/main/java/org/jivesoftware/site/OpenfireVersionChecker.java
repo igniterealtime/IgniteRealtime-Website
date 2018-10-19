@@ -161,8 +161,7 @@ public class OpenfireVersionChecker {
     }
 
     /**
-     * Returns the list of available plugins that are not installed in the Openfire server.
-     * The request contains the plugins that are installed.
+     * Returns the list of available plugins.
      *
      * @param pluginsPath the path where the .jar files of the plugins are located.
      * @param xmlRequest original XML request sent by the remote openfire server.
