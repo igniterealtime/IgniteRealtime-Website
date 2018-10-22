@@ -132,25 +132,7 @@
                             Element n2 = (Element)doc2.selectSingleNode("/plugin/name");
                             String name1 = (n1 == null ? f1.getName() : geti18nText(f1, n1.getTextTrim()));
                             String name2 = (n2 == null ? f2.getName() : geti18nText(f2, n2.getTextTrim()));
-                            Element lic1 = (Element)doc1.selectSingleNode("/plugin/licenseType");
-                            Element lic2 = (Element)doc2.selectSingleNode("/plugin/licenseType");
-                            String license1 = (lic1 == null ? "gpl" : lic1.getTextTrim());
-                            String license2 = (lic2 == null ? "gpl" : lic2.getTextTrim());
-                            // Sort by license first.
-                            if (license1.equals(license2)) {
-                                return name1.toLowerCase().compareTo(name2.toLowerCase());
-                            }
-                            else {
-                                if (license1.equals("commercial")) {
-                                    return 1;
-                                }
-                                else if (license2.equals("commercial")) {
-                                    return -1;
-                                }
-                                else {
-                                    return 0;
-                                }
-                            }
+                            return name1.toLowerCase().compareTo(name2.toLowerCase());
                         }
                         catch (Exception e) {
                             return 0;
@@ -176,7 +158,6 @@
 
         <%  DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
             SimpleDateFormat parser = new SimpleDateFormat("MM/dd/yyyy");
-            boolean commercialShown = false;
             for (int i=0; plugins!=null && i<plugins.length; i++) {
                 String pluginXML = new String(getPluginFile(plugins[i], "plugin.xml"));
                 if (pluginXML != null) {
@@ -264,35 +245,7 @@
                     Element pluginDate = (Element)doc.selectSingleNode("/plugin/date");
                     Element pluginLicense = (Element)doc.selectSingleNode("/plugin/licenseType");
                     String licenseType = (pluginLicense == null ? "gpl" : pluginLicense.getTextTrim());
-                    if (licenseType.equals("commercial") && !commercialShown) {
-                        commercialShown = true;
         %>
-
-                    <tr>
-                    <td colspan="5">
-                    <br/>
-                    <a name="commercial"></a>
-                    <br/></td>
-                    </tr>
-                    <tr class="pluginTableHeader">
-                        <td class="pluginType">
-                            Beta Commercial Plugins
-                        </td>
-                        <td>
-                            Info
-                        </td>
-                        <td>
-                            File
-                        </td>
-                        <td>
-                            Version
-                        </td>
-                        <td class="pluginDate">
-                            Date
-                        </td>
-                    </tr>
-
-        <%          } %>
 
                 <tr valign="middle">
                     <td class="c1">

@@ -96,8 +96,7 @@ public class OpenfireVersionChecker {
     }
 
     /**
-     * Returns the list of available (i.e. not installed) plugins. The answer will
-     * include free and commercial plugins.
+     * Returns the list of available (i.e. not installed) plugins.
      *
      * @param pluginsPath the path where the .jar files of the plugins are located.
      * @param request the XML sent by the remote openfire installation that contains
