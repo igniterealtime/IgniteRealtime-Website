@@ -19,26 +19,6 @@
  <%
      String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-dev-path");
      File pluginDir = new File(openfirePluginsPath);
-
-
-
-    String pName = request.getParameter("plugin");
-    File plugin = null;
-    if (pName != null) {
-        plugin = new File(pluginDir, pName);
-    }
-    if (plugin != null) {
-        String imageDownload = request.getParameter("img");
-        if (imageDownload != null && Boolean.valueOf(imageDownload).booleanValue()) {
-            response.setContentType("image/gif");
-            OutputStream resOut = response.getOutputStream();
-            byte [] image = getPluginFile(plugin, "logo_small.gif");
-            resOut.write(image);
-            resOut.close();
-            return;
-        }
-    }
-
 %>
 
 
