@@ -152,75 +152,6 @@
                     boolean changelogExists = pluginFileExists(plugins[i], "changelog.html");
                     boolean iconGifExists = pluginFileExists(plugins[i], "logo_small.gif");
                     boolean iconPngExists = pluginFileExists(plugins[i], "logo_small.png");
-                    boolean licenseExists = pluginFileExists(plugins[i], "license.html");
-                    String iconFormat;
-                    if(iconGifExists) {
-                        iconFormat = ".gif";
-                    } else {
-                        iconFormat = ".png";
-                    }
-
-                    // If the icon exists, make sure it's extracted. We can't serve up images
-                    // directly from JSP so we just put them on the file system.
-                    if (iconPngExists || iconGifExists) {
-                        File cache = new File(pluginDir, "cache");
-                        if (!cache.exists()) {
-                            cache.mkdir();
-                        }
-                        File pluginIcon = new File(pluginDir, "cache" + File.separator +
-                                pname + iconFormat);
-                        if (!pluginIcon.exists()) {
-                            writePluginFile(plugins[i], cache, "logo_small" + iconFormat, pname + iconFormat);
-                        }
-                        else {
-                            if (pluginIcon.lastModified() < plugins[i].lastModified()) {
-                                pluginIcon.delete();
-                                writePluginFile(plugins[i], cache, "logo_small" + iconFormat, pname + iconFormat);
-                            } 
-                        }
-                    }
-                    if (readmeExists) {
-                        File extractDir = new File(pluginDir, pname);
-                        if (!extractDir.exists()) {
-                            extractDir.mkdir();
-                        }
-                        File readme = new File(extractDir, "readme.html");
-                        if (!readme.exists()) {
-                            writePluginFile(plugins[i], extractDir, "readme.html", "readme.html");
-                        }
-                        else if (plugins[i].lastModified() > readme.lastModified()) {
-                            readme.delete();
-                            writePluginFile(plugins[i], extractDir, "readme.html", "readme.html");
-                        }
-                    }
-                    if (changelogExists) {
-                        File extractDir = new File(pluginDir, pname);
-                        if (!extractDir.exists()) {
-                            extractDir.mkdir();
-                        }
-                        File changelog = new File(extractDir, "changelog.html");
-                        if (!changelog.exists()) {
-                            writePluginFile(plugins[i], extractDir, "changelog.html", "changelog.html");
-                        }
-                        else if (plugins[i].lastModified() > changelog.lastModified()) {
-                            changelog.delete();
-                            writePluginFile(plugins[i], extractDir, "changelog.html", "changelog.html");
-                        }
-                    }
-                                        if (licenseExists) {
-                        File extractDir = new File(pluginDir, pname);
-                        if (!extractDir.exists()) {
-                            extractDir.mkdir();
-                        }
-                        File license = new File(extractDir, "LICENSE.html");
-                        if (!license.exists()) {
-                            writePluginFile(plugins[i], extractDir, "license.html", "LICENSE.html");
-                        }
-                        else if (plugins[i].lastModified() > license.lastModified()) {
-                            license.delete();
-                            writePluginFile(plugins[i], extractDir, "license.html", "LICENSE.html");
-                        }
-                    }
 
                     // Parse the XML
                     SAXReader saxReader = new SAXReader();
@@ -242,8 +173,10 @@
                                     <tr>
                                         <td width="1%">
                                             <span class="plugicon">
-                                            <%  if (iconPngExists || iconGifExists) { %>
-                                                <img src="plugins/cache/<%= URLEncoder.encode(pname+iconFormat, "utf-8") %>" alt="" />
+                                            <% if (iconPngExists) { %>
+                                                <img src="plugins/<%= URLEncoder.encode(pname, "utf-8") %>/logo_small.png" alt="" />
+                                            <% } else if (iconGifExists) { %>
+                                                <img src="plugins/<%= URLEncoder.encode(pname, "utf-8") %>/logo_small.gif" alt="" />
                                             <% } else { %>
                                                 <img src="../../images/icon_plugin.gif" width="16" height="16" alt="Plugin">
                                             <% } %>
