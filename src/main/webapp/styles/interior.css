@@ -875,6 +875,7 @@ img.ignite_body_image_right {
 }
 #plugins table tbody tr td.c2 {
     width: 42px;
+    padding: 0 2px;
 }
 #plugins table tbody tr td.c3 {
 }

@@ -93,33 +93,7 @@
             </tr>
 
         <%
-            File[] plugins = pluginDir.listFiles(new FilenameFilter() {
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(".jar") || name.endsWith(".war");
-                }
-            });
-            if (plugins != null) {
-                Arrays.sort(plugins, new Comparator() {
-                    public int compare(Object o1, Object o2) {
-                        File f1 = (File)o1;
-                        File f2 = (File)o2;
-                        try {
-                            String x1 = new String(getPluginFile(f1, "plugin.xml"));
-                            String x2 = new String(getPluginFile(f2, "plugin.xml"));
-                            Document doc1 = (new SAXReader()).read(new ByteArrayInputStream(x1.getBytes()));
-                            Document doc2 = (new SAXReader()).read(new ByteArrayInputStream(x2.getBytes()));
-                            Element n1 = (Element)doc1.selectSingleNode("/plugin/name");
-                            Element n2 = (Element)doc2.selectSingleNode("/plugin/name");
-                            String name1 = (n1 == null ? f1.getName() : geti18nText(f1, n1.getTextTrim()));
-                            String name2 = (n2 == null ? f2.getName() : geti18nText(f2, n2.getTextTrim()));
-                            return name1.toLowerCase().compareTo(name2.toLowerCase());
-                        }
-                        catch (Exception e) {
-                            return 0;
-                        }
-                    }
-                });
-            }
+            File[] plugins = PluginDownloadServlet.getPlugins( pluginDir );
         %>
 
         <%  if (plugins == null || plugins.length == 0) { %>
@@ -246,79 +220,6 @@
  </cache:cache>
  
      </div>
-
-
-
-<%!
-    private byte[] getPluginFile(File jarFile, String name) throws IOException {
-        ZipFile zipFile = new JarFile(jarFile);
-        for (Enumeration e=zipFile.entries(); e.hasMoreElements(); ) {
-            JarEntry entry = (JarEntry)e.nextElement();
-            if (name.equals(entry.getName().toLowerCase())) {
-                InputStream in = new BufferedInputStream(zipFile.getInputStream(entry));
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                byte[] b = new byte[512];
-                int len = 0;
-                while ((len=in.read(b)) != -1) {
-                    out.write(b,0,len);
-                }
-                out.flush();
-                out.close();
-                return out.toByteArray();
-            }
-        }
-        return null;
-    }
-%>
-<%!
-    public String geti18nText(File jarFile, String key) {
-        if (key == null) {
-            return null;
-        }
-        // Look for the key symbol:
-        if (key.indexOf("${") == 0 && key.indexOf("}") == key.length()-1) {
-            ResourceBundle bundle = getResourceBundle(jarFile);
-            if (bundle != null) {
-                return bundle.getString(key.substring(2, key.length()-1));
-            }
-        }
-        return key;
-    }
-%>
-<%!
-    private ResourceBundle getResourceBundle(File jarFile) {
-        try {
-            String pluginName = jarFile.getName().substring(0, jarFile.getName().lastIndexOf(".jar"));
-            URLClassLoader classLoader = new URLClassLoader(new URL[] { jarFile.toURL() });
-            return ResourceBundle.getBundle("i18n/" + pluginName + "_i18n", Locale.ENGLISH, classLoader);
-        }
-        catch (Exception e) {
-            LoggerFactory.getLogger( this.getClass() ).warn( "Unable to get resource bundle for file {}", jarFile, e );
-            return null;
-        }
-    }
-%>
-<%!
-    private boolean pluginFileExists(File jarFile, String name) throws IOException {
-        ZipFile zipFile = new JarFile(jarFile);
-        for (Enumeration e=zipFile.entries(); e.hasMoreElements(); ) {
-            JarEntry entry = (JarEntry)e.nextElement();
-            if (name.equals(entry.getName().toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-%>
-<%!
-    private void writePluginFile(File jarFile, File destination, String fileName, String destinationName) throws IOException {
-        byte [] fileBytes = getPluginFile(jarFile, fileName);
-        File file = new File(destination, destinationName);
-        FileOutputStream out = new FileOutputStream(file);
-        out.write(fileBytes);
-        out.close();
-    }
-%>
 
              </div>
              <!-- END body content area -->

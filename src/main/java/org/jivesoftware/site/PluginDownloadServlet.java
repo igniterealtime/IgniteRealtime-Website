@@ -14,15 +14,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URL;
+import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Collections;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
+import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
@@ -35,33 +34,30 @@ public class PluginDownloadServlet extends HttpServlet {
 
     private static MimetypesFileTypeMap typeMap = new MimetypesFileTypeMap();
     private Map<String, PluginCacheEntry> pluginCache = Collections.synchronizedMap( new HashMap<>());
-    private String sparkPluginsPath;
-    private String openfirePluginsPath;
-    private String openfirePluginsBetaPath;
-    private String openfirePluginsDevPath;
 
-    private String openfirePluginUri = "/projects/openfire/plugins/";
-    private String openfirePluginBetaUri = "/projects/openfire/plugins-beta/";
-    private String openfirePluginDevUri = "/projects/openfire/plugins-dev/";
-    private String sparkPluginUri = "/updater/sparkplugs/";
+    private PluginManager pluginManager;
+    private static String openfirePluginUri = "/projects/openfire/plugins/";
+    private static String openfirePluginBetaUri = "/projects/openfire/plugins-beta/";
+    private static String openfirePluginDevUri = "/projects/openfire/plugins-dev/";
+    private static String sparkPluginUri = "/updater/sparkplugs/";
 
+    @Override
     public void init(ServletConfig config) throws ServletException
     {
         super.init(config);
 
-        sparkPluginsPath        = config.getServletContext().getInitParameter("spark-plugins-path");
-        openfirePluginsPath     = config.getServletContext().getInitParameter("openfire-plugins-path");
-        openfirePluginsBetaPath = config.getServletContext().getInitParameter("openfire-plugins-beta-path");
-        openfirePluginsDevPath  = config.getServletContext().getInitParameter("openfire-plugins-dev-path");
+        pluginManager = new PluginManager();
+        pluginManager.init( config );
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException
+    @Override
+    public void destroy()
     {
-        final String pluginName;
-        final DownloadServlet.DownloadInfo pluginType;
-        final Path plugin;
-        final String requestedFile;
+        pluginManager.destroy();
+    }
 
+    public void doGet( HttpServletRequest request, HttpServletResponse response) throws IOException
+    {
         final String requestURI = request.getRequestURI();
         if ( !validateFilename( requestURI ) )
         {
@@ -69,43 +65,25 @@ public class PluginDownloadServlet extends HttpServlet {
             return;
         }
 
-        final boolean isPlugin = requestURI.endsWith( ".jar" );
-        if ( requestURI.startsWith( sparkPluginUri ) )
-        {
-            pluginName = requestURI.substring( sparkPluginUri.length(), requestURI.indexOf( isPlugin ? "." : "/" , sparkPluginUri.length() + 1) );
-            pluginType = isPlugin ? DownloadServlet.DownloadInfo.spark_plugin : null;
-            plugin = Paths.get( sparkPluginsPath, pluginName + ".jar" );
-            requestedFile = isPlugin ? null : requestURI.replace( sparkPluginUri + pluginName + "/", "" );
-        }
-        else if ( requestURI.startsWith( openfirePluginUri ) )
-        {
-            pluginName = requestURI.substring( openfirePluginUri.length(), requestURI.indexOf( isPlugin ? "." : "/" , openfirePluginUri.length() + 1) );
-            pluginType = isPlugin ? DownloadServlet.DownloadInfo.openfire_plugin : null;
-            plugin = Paths.get( openfirePluginsPath, pluginName + ".jar" );
-            requestedFile = isPlugin ? null : requestURI.replace( openfirePluginUri + pluginName + "/", "" );
-        }
-        else if ( requestURI.startsWith( openfirePluginBetaUri ) )
-        {
-            pluginName = requestURI.substring( openfirePluginBetaUri.length(), requestURI.indexOf( isPlugin ? "." : "/" , openfirePluginBetaUri.length() + 1) );
-            pluginType = isPlugin ? DownloadServlet.DownloadInfo.openfire_plugin : null;
-            plugin = Paths.get( openfirePluginsBetaPath, pluginName + ".jar" );
-            requestedFile = isPlugin ? null : requestURI.replace( openfirePluginBetaUri + pluginName + "/", "" );
-        }
-        else if ( requestURI.startsWith( openfirePluginDevUri ) )
-        {
-            pluginName = requestURI.substring( openfirePluginDevUri.length(), requestURI.indexOf( isPlugin ? "." : "/" , openfirePluginDevUri.length() + 1) );
-            pluginType = isPlugin ? DownloadServlet.DownloadInfo.openfire_plugin : null;
-            plugin = Paths.get( openfirePluginsDevPath, pluginName + ".jar" );
-            requestedFile = isPlugin ? null : requestURI.replace( openfirePluginDevUri + pluginName + "/", "" );
-        }
-        else
-        {
-            response.sendError( HttpServletResponse.SC_NOT_FOUND );
-            return;
-        }
+        // Expected URL format:
+
+        // Old style, should always point to latest release.
+        // for plugins:
+        //   <path>/pluginname.jar
+        // for files that are part of plugins:
+        //   <path>/pluginname/<file>
+        //
+        // New style:
+        // for plugins:
+        //   <path>/<version>/pluginname.jar
+        // for files that are part of plugins:
+        //   <path>/version>/pluginname/<file>
+        final ParsedRequest parsedRequest = parse( requestURI );
+
+        final Path plugin = pluginManager.findPluginFile( parsedRequest );
 
         // Check whether this plugin exists and really is a file.
-        if ( !Files.exists( plugin ) || !Files.isRegularFile( plugin ) )
+        if ( plugin == null || !Files.exists( plugin ) || !Files.isRegularFile( plugin ) )
         {
             // Not a file, return 404
             Log.info( "File {} does not exist (or is not a regular file).", plugin );
@@ -122,15 +100,15 @@ public class PluginDownloadServlet extends HttpServlet {
         }
         try
         {
-            if ( !isPlugin )
+            if ( parsedRequest.forFileInPlugin )
             {
                 // This is a request for a file that is stored in a plugin.
-                doGetPluginFile( request, response, plugin, requestedFile );
+                doGetPluginFile( request, response, plugin, parsedRequest );
             }
             else
             {
                 // This is a request for a file itself is a plugin.
-                doGetPlugin( request, response, plugin, pluginType );
+                doGetPlugin( request, response, plugin, parsedRequest );
             }
         }
         catch (IOException ioe)
@@ -151,13 +129,13 @@ public class PluginDownloadServlet extends HttpServlet {
      * @param request The HTTP request.
      * @param response The HTTP response.
      * @param plugin The plugin archive file.
-     * @param requestedFile The file name of the requested archive entry.
+     * @param parsedRequest Metadata of the request.
      */
-    protected void doGetPluginFile( HttpServletRequest request, HttpServletResponse response, Path plugin, String requestedFile ) throws IOException
+    protected void doGetPluginFile( HttpServletRequest request, HttpServletResponse response, Path plugin, ParsedRequest parsedRequest ) throws IOException
     {
         try ( final JarFile jarFile = new JarFile( plugin.toFile() ) )
         {
-            try (final InputStream inputStream = getUncompressedEntryFromArchive( jarFile, requestedFile ) )
+            try (final InputStream inputStream = getUncompressedEntryFromArchive( jarFile, parsedRequest.fileInPluginName) )
             {
                 // Check if the plugin file contains the file that's requested.
                 if ( inputStream == null )
@@ -166,7 +144,7 @@ public class PluginDownloadServlet extends HttpServlet {
                 }
                 else
                 {
-                    writeBytesToStream( requestedFile, inputStream, response, false );
+                    writeBytesToStream( parsedRequest.fileInPluginName, inputStream, response, false );
                 }
             }
         }
@@ -179,17 +157,23 @@ public class PluginDownloadServlet extends HttpServlet {
      * @param request The HTTP request.
      * @param response The HTTP response.
      * @param plugin The plugin archive file.
-     * @param pluginType the type of the plugin.
+     * @param parsedRequest Metadata of the request.
      */
-    protected void doGetPlugin( HttpServletRequest request, HttpServletResponse response, Path plugin, DownloadServlet.DownloadInfo pluginType ) throws IOException, DocumentException
+    protected void doGetPlugin( HttpServletRequest request, HttpServletResponse response, Path plugin, ParsedRequest parsedRequest ) throws IOException, DocumentException
     {
         boolean downloadComplete = false;
         try ( InputStream inputStream = Files.newInputStream( plugin ) )
         {
-            downloadComplete = writeBytesToStream( plugin.toString(), inputStream, response, pluginType != null );
+            String fileName = parsedRequest.pluginName;
+            String assemblyFileName = plugin.getFileName().toString();
+            int dot = assemblyFileName.lastIndexOf( '.' );
+            if (dot != -1) {
+                fileName += assemblyFileName.substring( dot );
+            }
+            downloadComplete = writeBytesToStream( fileName, inputStream, response, parsedRequest.product != null );
         }
 
-        if ( downloadComplete && (null != pluginType) )
+        if ( downloadComplete && (parsedRequest.product != null) )
         {
             // Log to database if VALID plugin
             String ipAddress = request.getHeader( "X-FORWARDED-FOR" );
@@ -198,12 +182,13 @@ public class PluginDownloadServlet extends HttpServlet {
                 ipAddress = request.getRemoteAddr();
             }
 
-            String product = pluginType.getName();
-            String version = getVersionNumber( pluginType, plugin );
+            // TODO: what value for version should we use: the one in the Maven pom, or in the plugin.xml?
+            String product = parsedRequest.product.getName();
+            String version = getVersionNumber( parsedRequest.product, plugin );
             String fileType = getFileType( plugin.getFileName().toString() );
 
             // Log to Database
-            DownloadStats.addUpdateToDatabase( ipAddress, product, version, fileType, plugin.getFileName().toString(), pluginType );
+            DownloadStats.addUpdateToDatabase( ipAddress, product, version, fileType, plugin.getFileName().toString(), parsedRequest.product );
         }
     }
 
@@ -221,7 +206,7 @@ public class PluginDownloadServlet extends HttpServlet {
         String contentType = typeMap.getContentType(fileName.toLowerCase());
         response.setContentType(contentType);
         if (isAttachment) {
-            response.setHeader("Content-Disposition", "attachment; filename=" + fileName);
+            response.setHeader("Content-Disposition", "attachment; filename=" + fileName );
         }
 
         try ( final OutputStream out = response.getOutputStream() )
@@ -271,16 +256,30 @@ public class PluginDownloadServlet extends HttpServlet {
         // No valid cached plugin data was found so collect the data from the plugin file and cache it
         // Fortunately the Spark and Openfire plugins share a very similar XML structure and both contain
         // <plugin><version> :)
-        try ( final JarFile archive = new JarFile( file.toFile() );
-              final InputStream in = getUncompressedEntryFromArchive( archive, "plugin.xml" ) )
+        final String result = getMetadataFromPlugin( file, "/plugin/version" );
+        pluginEntry = new PluginCacheEntry(result, System.currentTimeMillis());
+        pluginCache.put(key, pluginEntry);
+
+        return result;
+    }
+
+    public static String getMetadataFromPlugin( Path file, String propertyPath ) throws IOException, DocumentException
+    {
+        try ( final JarFile archive = new JarFile( file.toFile() ) )
+        {
+            return getMetadataFromPlugin( archive, propertyPath );
+        }
+    }
+
+    public static String getMetadataFromPlugin( ZipFile archive, String propertyPath ) throws IOException, DocumentException
+    {
+        try ( final InputStream in = getUncompressedEntryFromArchive( archive, "plugin.xml" ) )
         {
             final SAXReader saxReader = new SAXReader();
             final Document doc = saxReader.read(in);
-            final Element pluginVersion = (Element)doc.selectSingleNode("/plugin/version");
-            pluginEntry = new PluginCacheEntry(pluginVersion.getTextTrim(), System.currentTimeMillis());
-            pluginCache.put(key, pluginEntry);
+            final Element element = (Element)doc.selectSingleNode( propertyPath );
 
-            return pluginVersion.getTextTrim();
+            return element == null ? null : element.getTextTrim();
         }
     }
 
@@ -323,7 +322,7 @@ public class PluginDownloadServlet extends HttpServlet {
         return -1;
     }
 
-    public InputStream getUncompressedEntryFromArchive( ZipFile archive, String entryName ) throws IOException {
+    public static InputStream getUncompressedEntryFromArchive( ZipFile archive, String entryName ) throws IOException {
         final Enumeration<? extends ZipEntry> entries = archive.entries();
         while ( entries.hasMoreElements() )
         {
@@ -388,5 +387,364 @@ public class PluginDownloadServlet extends HttpServlet {
             return false;
         
         return true;
+    }
+
+    public static String geti18nText(File jarFile, String key) {
+        if (key == null) {
+            return null;
+        }
+        // Look for the key symbol:
+        if (key.indexOf("${") == 0 && key.indexOf("}") == key.length()-1) {
+            ResourceBundle bundle = getResourceBundle(jarFile);
+            if (bundle != null) {
+                return bundle.getString(key.substring(2, key.length()-1));
+            }
+        }
+        return key;
+    }
+
+    private static ResourceBundle getResourceBundle(File jarFile) {
+        try {
+            String pluginName = jarFile.getName().substring(0, jarFile.getName().lastIndexOf(".jar"));
+            URLClassLoader classLoader = new URLClassLoader(new URL[] { jarFile.toURL() });
+            return ResourceBundle.getBundle("i18n/" + pluginName + "_i18n", Locale.ENGLISH, classLoader);
+        }
+        catch (Exception e) {
+            Log.warn( "Unable to get resource bundle for file {}", jarFile, e );
+            return null;
+        }
+    }
+
+    /**
+     * Returns all plugin files in a directory, ordered by name.
+     *
+     * @param pluginDir The directory
+     * @return An array of plugin files.
+     */
+    public static File[] getPlugins11( File pluginDir )
+    {
+        File[] plugins = pluginDir.listFiles( ( dir, name ) -> name.endsWith( ".jar") || name.endsWith( ".war") );
+
+        if (plugins != null) {
+            Arrays.sort( plugins, ( f1, f2 ) -> {
+                try {
+                    String n1 = getMetadataFromPlugin( f1.toPath(), "/plugin/name" );
+                    String n2 = getMetadataFromPlugin( f2.toPath(), "/plugin/name" );
+                    String name1 = (n1 == null ? f1.getName() : geti18nText(f1, n1));
+                    String name2 = (n2 == null ? f2.getName() : geti18nText(f2, n2));
+                    return name1.toLowerCase().compareTo(name2.toLowerCase());
+                }
+                catch (Exception e) {
+                    return 0;
+                }
+            } );
+        }
+
+        return plugins;
+    }
+
+    // FIXME move to pluginmanager
+    public static List<PluginManager.Metadata> getPlugins( File pluginDir ) throws IOException
+    {
+        return Files.walk( pluginDir.toPath() )
+            .filter( Files::isRegularFile )
+            .filter( path -> path.getFileName().toString().toLowerCase().endsWith( "-plugin-assembly.jar" ) )
+            .map( ( Path mavenFile ) -> {
+                try
+                {
+                    return new PluginManager.Metadata( mavenFile );
+                }
+                catch ( IOException | DocumentException e )
+                {
+                    e.printStackTrace();
+                }
+                return null;
+            } )
+            .filter( Objects::nonNull )
+            .sorted( ( f1, f2 ) -> {
+                try {
+                    String n1 = f1.humanReadableName;
+                    String n2 = f2.humanReadableName;
+                    String name1 = (n1 == null ? f1.pluginFileName : geti18nText(f1.mavenFile.toFile(), n1));
+                    String name2 = (n2 == null ? f2.pluginFileName : geti18nText(f2.mavenFile.toFile(), n2));
+                    return name1.toLowerCase().compareTo(name2.toLowerCase());
+                }
+                catch (Exception e) {
+                    return 0;
+                }
+            } )
+            .collect( Collectors.toList() );
+    }
+
+    // Old style, should always point to latest release.
+    // for plugins:
+    //   <path>/pluginname.jar
+    // for files that are part of plugins:
+    //   <path>/pluginname/<file>
+    //
+    // New style:
+    // for plugins:
+    //   <path>/<version>/pluginname.jar
+    // for files that are part of plugins:
+    //   <path>/version>/pluginname/<file>
+    protected static ParsedRequest parse( final String uri )
+    {
+        final boolean isPlugin = parseIsPlugin( uri );
+        final DownloadServlet.DownloadInfo product = parseProduct( uri );
+        final ReleaseTrack releaseTrack = parseReleaseTrack( uri );
+        final String pluginName = parsePluginName( uri );
+        final String pluginVersion = parsePluginVersion( uri );
+        final String fileInPluginName = parseFileInPluginName( uri );
+
+        if ( isPlugin )
+        {
+            return new ParsedRequest( product, pluginName, pluginVersion, releaseTrack );
+        }
+        else
+        {
+            return new ParsedRequest( product, pluginName, pluginVersion, releaseTrack, fileInPluginName );
+        }
+    }
+
+    static boolean parseIsPlugin( final String uri )
+    {
+        return uri.endsWith( ".jar" );
+    }
+
+    static DownloadServlet.DownloadInfo parseProduct( final String uri )
+    {
+        if ( uri.startsWith( sparkPluginUri ) )
+        {
+            return DownloadServlet.DownloadInfo.spark_plugin;
+        }
+        else if ( uri.startsWith( openfirePluginUri ) )
+        {
+            return DownloadServlet.DownloadInfo.openfire_plugin;
+        }
+        else if ( uri.startsWith( openfirePluginBetaUri ) )
+        {
+            return DownloadServlet.DownloadInfo.openfire_plugin;
+        }
+        else if ( uri.startsWith( openfirePluginDevUri ) )
+        {
+            return DownloadServlet.DownloadInfo.openfire_plugin;
+        }
+        else
+        {
+            throw new IllegalArgumentException( "Cannot parse product from request URI: " + uri );
+        }
+    }
+
+    static ReleaseTrack parseReleaseTrack( final String uri )
+    {
+        if ( uri.startsWith( sparkPluginUri ) )
+        {
+            return ReleaseTrack.RELEASE;
+        }
+        else if ( uri.startsWith( openfirePluginUri ) )
+        {
+            return ReleaseTrack.RELEASE;
+        }
+        else if ( uri.startsWith( openfirePluginBetaUri ) )
+        {
+            return ReleaseTrack.BETA_RELEASE;
+        }
+        else if ( uri.startsWith( openfirePluginDevUri ) )
+        {
+            return ReleaseTrack.DEV_RELEASE;
+        }
+        else
+        {
+            throw new IllegalArgumentException( "Cannot parse release track from request URI: " + uri );
+        }
+    }
+
+    static String parsePluginName( final String uri )
+    {
+        if ( parseIsPlugin( uri ) )
+        {
+            //  <path>/pluginname.jar or <path>/<version>/pluginname.jar
+            // 'text between the last slash and the last dot'.
+            final int lastSlash = uri.lastIndexOf( '/' );
+            final int lastDot =  uri.lastIndexOf( '.' );
+            return uri.substring( lastSlash + 1, lastDot );
+        }
+        else
+        {
+            // <path>/pluginname/<file> or <path>/version>/pluginname/<file>
+            // 'text between the last two slashes'
+            final int lastSlash = uri.lastIndexOf( '/' );
+            final int startSlash = uri.lastIndexOf( '/', lastSlash - 1 );
+            return uri.substring( startSlash + 1, lastSlash );
+        }
+    }
+
+    static String parsePluginVersion( final String uri )
+    {
+        // Expected input is either 'old style' or 'new style':
+        //
+        // Old style, should always point to latest release.
+        // for plugins:
+        //   <path>/pluginname.jar
+        // for files that are part of plugins:
+        //   <path>/pluginname/<file>
+        //
+        // New style:
+        // for plugins:
+        //   <path>/<version>/pluginname.jar
+        // for files that are part of plugins:
+        //   <path>/version>/pluginname/<file>
+
+        // Remove 'path'
+        String result;
+        if ( uri.startsWith( sparkPluginUri ) )
+        {
+            result = uri.substring( sparkPluginUri.length() );
+        }
+        else if ( uri.startsWith( openfirePluginUri ) )
+        {
+            result = uri.substring( openfirePluginUri.length() );
+        }
+        else if ( uri.startsWith( openfirePluginBetaUri ) )
+        {
+            result = uri.substring( openfirePluginBetaUri.length() );
+        }
+        else if ( uri.startsWith( openfirePluginDevUri ) )
+        {
+            result = uri.substring( openfirePluginDevUri.length() );
+        }
+        else
+        {
+            throw new IllegalArgumentException( "Cannot parse product from request URI: " + uri );
+        }
+
+        // Strip any leading slashes, in case the URI didn't include them.
+        while ( result.startsWith( "/" ) )
+        {
+            result = result.substring( 1 );
+        }
+
+        // When the next text equals the plugin name, then there's no version in this URI.
+        final String pluginName = parsePluginName( uri );
+        if ( result.startsWith( pluginName ) )
+        {
+            return null;
+        }
+
+        // Otherwise, the version is from the start up until the next slash.
+        final int nextSlash = result.indexOf( '/' );
+        return result.substring( 0, nextSlash );
+    }
+
+    static String parseFileInPluginName( String uri )
+    {
+        if ( parseIsPlugin( uri ) )
+        {
+            return null;
+        }
+
+        // TODO: Support files that are not in the root of the plugin archive (allow slashes)
+
+        // Everything after the last slash.
+        final int lastSlash = uri.lastIndexOf( '/' );
+        return uri.substring( lastSlash + 1 );
+    }
+
+    public enum ReleaseTrack
+    {
+        /**
+         * General purpose, stable release (eg: 1.0.0).
+         */
+        RELEASE,
+
+        /**
+         * General purpose, unstable pre-release (eg: 1.0.0-alpha).
+         */
+        ALPHA_RELEASE,
+
+        /**
+         * General purpose, unstable pre-release (eg: 1.0.0-beta).
+         */
+        BETA_RELEASE,
+
+        /**
+         * Special-purpose release (eg: 1.0.0).
+         */
+        DEV_RELEASE
+    }
+
+    static class ParsedRequest
+    {
+        /**
+         * For which product is this a request (eg: Openfire)
+         */
+        public final DownloadServlet.DownloadInfo product;
+
+        /**
+         * The canonical name of the plugin (eg 'bookmarks')
+         *
+         * Cannot be null or empty.
+         */
+        public final String pluginName;
+
+        /**
+         * The version of the plugin (eg: 1.0.0).
+         *
+         * Can include the "-SNAPSHOT" postfix, which is interpreted as a request
+         * for a build that's not necessarily stable, repeatable.
+         *
+         * Can be null, which is interpreted as 'latest, stable/non-SNAPSHOT release'.
+         */
+        public final String pluginVersion;
+
+        /**
+         * Is this a request for a 'normal' release, or a Dev, Beta or Alpha release?
+         */
+        public final ReleaseTrack releaseTrack;
+
+        /**
+         * Is this a request for a file that itself is a plugin (eg: bookmarks.jar)?
+         *
+         * Note: this is always the inverse of {@link #forFileInPlugin}.
+         */
+        public final boolean forPlugin;
+
+        /**
+         * Is this a request for a file that is part of a plugin (eg: readme.html)?
+         *
+         * Note: this is always the inverse of {@link #forPlugin}.
+         */
+        public final boolean forFileInPlugin;
+
+        /**
+         * If this is a request for a file that's part of a plugin, then this
+         * field holds the name of the file. It will be null otherwise.
+         */
+        public final String fileInPluginName;
+
+
+
+        public ParsedRequest( final DownloadServlet.DownloadInfo product, final String pluginName, final String pluginVersion, final ReleaseTrack releaseTrack )
+        {
+            this.product = product;
+            this.pluginName = pluginName;
+            this.pluginVersion = pluginVersion;
+            this.releaseTrack = releaseTrack;
+            this.forPlugin = true;
+            this.forFileInPlugin = !forPlugin;
+            this.fileInPluginName = null;
+        }
+
+        public ParsedRequest( final DownloadServlet.DownloadInfo product, final String pluginName, final String pluginVersion, final ReleaseTrack releaseTrack, final String fileInPluginName )
+        {
+            this.product = product;
+            this.pluginName = pluginName;
+            this.pluginVersion = pluginVersion;
+            this.releaseTrack = releaseTrack;
+            this.forPlugin = false;
+            this.forFileInPlugin = !forPlugin;
+            this.fileInPluginName = fileInPluginName;
+        }
+
     }
 }

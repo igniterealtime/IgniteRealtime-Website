@@ -138,7 +138,7 @@ public class Openfire_4_2_3_VersionCheckerIT
         assertNotNull( response.getEntity() );
         final Set<String> reportedPluginNames = processAvailablePluginsResponse( EntityUtils.toString( response.getEntity() ) );
         assertNotNull( reportedPluginNames );
-        assertTrue( reportedPluginNames.contains( "IntegrationTesting" ) );
+        assertTrue( reportedPluginNames.contains( "Bookmarks" ) );
     }
 
     /**
@@ -149,7 +149,7 @@ public class Openfire_4_2_3_VersionCheckerIT
      * as it was defined in Openfire 4.2.3.
      *
      * @param response The server response containing available plugins
-     * @return The availabe plugin names, as parsed from the response.
+     * @return The available plugin names, as parsed from the response.
      */
     public static Set<String> processAvailablePluginsResponse( String response ) throws Exception
     {

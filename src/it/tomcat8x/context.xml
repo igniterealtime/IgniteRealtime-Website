@@ -14,7 +14,7 @@
 
     <!-- WEB-57: Path to the base builds dir. Note, do not include a trailing "/". -->
     <Parameter name="spark-plugins-path"         value="${catalina.base}/staticfiles/builds/spark/plugins"/>
-    <Parameter name="openfire-plugins-path"      value="${catalina.base}/staticfiles/builds/openfire/plugins"/>
+    <Parameter name="openfire-plugins-path"      value="${catalina.base}/staticfiles/repositories/maven/"/>
     <Parameter name="openfire-plugins-beta-path" value="${catalina.base}/staticfiles/builds/openfire/plugins-beta"/>
     <Parameter name="openfire-plugins-dev-path"  value="${catalina.base}/staticfiles/builds/openfire/plugins-dev "/>
 

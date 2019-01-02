@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Locale;
@@ -50,7 +51,6 @@ public class OpenfireVersionChecker {
     //private static String OPENFIRE_PATH = "http://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
     private static String OPENFIRE_PATH = "http://www.igniterealtime.org/downloads/index.jsp";
     private static String OPENFIRE_LOG = "http://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html";
-    private static String PLUGINS_PATH = "http://www.igniterealtime.org/projects/openfire/plugins/";
     /**
      * Map that keeps the information specified in plugin.xml for each available plugin.
      * Key = filename, value = content of plugin.xml
@@ -178,143 +178,32 @@ public class OpenfireVersionChecker {
             }
         }
         // Get jar files of plugins
-        File pluginDir = new File(pluginsPath);
-        File[] plugins = pluginDir.listFiles(new FilenameFilter() {
-            public boolean accept(File dir, String name) {
-                return name.endsWith(".jar") || name.endsWith(".war");
-            }
-        });
-        // Refresh (if required) information about available plugins
-        Collection<String> availablePlugins = getPluginsInfo(plugins).keySet();
+        final Collection<PluginManager.Metadata> plugins = PluginManager.getLatestRelease( Paths.get( pluginsPath ) );
+
         // Build answer based on available plugins
-        for (String pluginFilename : availablePlugins) {
-            // Get the jar file of the plugin
-            File pluginFile = null;
-            for (File file : plugins) {
-                if (pluginFilename.equals(file.getName())) {
-                    pluginFile = file;
-                    break;
-                }
-            }
-            if (pluginFile == null) {
-                // Should never happen but if jar file is no longer available then skip this plugin
-                continue;
-            }
+        for (PluginManager.Metadata plugin : plugins)
+        {
             // Create answer
             Element latestPlugin = xmlReply.addElement("plugin");
-            // Get the information specified in plugin.xml
-            Document doc = pluginsInfo.get(pluginFilename);
 
-            // Get i18n'ed version of the plugin name and description
-            Element n1 = (Element)doc.selectSingleNode("/plugin/name");
-            String name = (n1 == null ? pluginFilename : geti18nText(pluginFile, n1.getTextTrim(), requesterLocale));
-            latestPlugin.addAttribute("name", name);
-            n1 = (Element) doc.selectSingleNode("/plugin/description");
-            String desc = (n1 == null ? "" : geti18nText(pluginFile, n1.getTextTrim(), requesterLocale));
-            latestPlugin.addAttribute("description", desc);
+            // TODO Get i18n'ed version of the plugin name and description
+            latestPlugin.addAttribute("name", plugin.humanReadableName);
+            latestPlugin.addAttribute("description", plugin.humanReadableName);
 
-            latestPlugin.addAttribute("url", PLUGINS_PATH + pluginFilename);
-            latestPlugin.addAttribute("icon", getIconURL(pluginsPath, pluginFilename));
-            latestPlugin.addAttribute("readme", getReadmeURL(pluginsPath, pluginFilename));
-            latestPlugin.addAttribute("changelog", getChangelogURL(pluginsPath, pluginFilename));
+            latestPlugin.addAttribute("url", plugin.getDownloadURL() );
+            latestPlugin.addAttribute("icon", plugin.getIconURL() );
+            latestPlugin.addAttribute("readme", plugin.getReadmeURL() );
+            latestPlugin.addAttribute("changelog", plugin.getChangelogURL() );
+            latestPlugin.addAttribute("latest", plugin.getVersion() );
+            latestPlugin.addAttribute("licenseType", plugin.getLicenceType() );
+            latestPlugin.addAttribute("author", plugin.getAuthor() );
+            latestPlugin.addAttribute("minServerVersion", plugin.getMinimumRequiredOpenfireVersion() );
 
-            Element version = (Element) doc.selectSingleNode("/plugin/version");
-            Element licenseType = (Element) doc.selectSingleNode("/plugin/licenseType");
-            Element author = (Element) doc.selectSingleNode("/plugin/author");
-            Element minVersion = (Element) doc.selectSingleNode("/plugin/minServerVersion");
-
-            latestPlugin.addAttribute("latest", version != null ? version.getTextTrim() : null);
-            latestPlugin.addAttribute("licenseType",
-                    licenseType != null ? licenseType.getTextTrim() : null);
-            latestPlugin.addAttribute("author", author != null ? author.getTextTrim() : null);
-            latestPlugin.addAttribute("minServerVersion",
-                    minVersion != null ? minVersion.getTextTrim() : null);
             // Include size of plugin
-            latestPlugin.addAttribute("fileSize", Long.toString(pluginFile.length()));
+            latestPlugin.addAttribute("fileSize", Long.toString( plugin.getFileSize() ));
         }
     }
 
-    private static String getChangelogURL(String pluginsPath, String pluginFilename) {
-        // Remove .jar or .war extension
-        String folder = pluginFilename.replaceFirst(".jar", "").toLowerCase();
-        folder = folder.replaceFirst(".war", "").toLowerCase();
-        String realPath = pluginsPath + File.separator + folder + File.separator + "changelog.html";
-        if (new File(realPath).exists()) {
-            return PLUGINS_PATH + folder + "/changelog.html";
-        }
-        else {
-            return null;
-        }
-    }
-
-    private static String getReadmeURL(String pluginsPath, String pluginFilename) {
-        // Remove .jar or .war extension
-        String folder = pluginFilename.replaceFirst(".jar", "").toLowerCase();
-        folder = folder.replaceFirst(".war", "").toLowerCase();
-        String realPath = pluginsPath + File.separator + folder + File.separator + "readme.html";
-        if (new File(realPath).exists()) {
-            return PLUGINS_PATH + folder + "/readme.html";
-        }
-        else {
-            return null;
-        }
-    }
-
-    private static String getIconURL(String pluginsPath, String pluginFilename) {
-        // Replacing .jar or .war extension with .gif
-        String file = pluginFilename.replaceFirst(".jar", ".gif").toLowerCase();
-        file = file.replaceFirst(".war", ".gif").toLowerCase();
-        String realPath = pluginsPath + File.separator + "cache" + File.separator + file;
-        if (new File(realPath).exists()) {
-            return PLUGINS_PATH + "cache/" + file;
-        }
-        else {
-            return null;
-        }
-    }
-
-    private static Map<String, Document> getPluginsInfo(File[] plugins) throws Exception {
-        long latestPlugin = 0;
-        // Get the date of the latest update plugin
-        for (File file : plugins) {
-            latestPlugin = latestPlugin < file.lastModified() ? file.lastModified() : latestPlugin;
-        }
-        // Update cache of plugins versions (if first time or a plugin has been updated, or cache contains old data)
-        if (pluginsInfo == null || latestPlugin > lastPluginDate || lastRefresh + (1000*60*60*24) < System.currentTimeMillis()) {
-            pluginsInfo = new ConcurrentHashMap<String, Document>();
-            lastPluginDate = latestPlugin;
-            lastRefresh = System.currentTimeMillis();
-            for (File file : plugins) {
-                String x1 = new String(getPluginFile(file, "plugin.xml"));
-                Document doc1 = (new SAXReader()).read(new ByteArrayInputStream(x1.getBytes()));
-                Element name = (Element)doc1.selectSingleNode("/plugin/name");
-                if (name != null) {
-                    pluginsInfo.put(file.getName(), doc1);
-                }
-            }
-        }
-        return pluginsInfo;
-    }
-
-    private static byte[] getPluginFile(File jarFile, String name) throws IOException {
-        ZipFile zipFile = new JarFile(jarFile);
-        for (Enumeration e=zipFile.entries(); e.hasMoreElements(); ) {
-            JarEntry entry = (JarEntry)e.nextElement();
-            if (name.equals(entry.getName().toLowerCase())) {
-                InputStream in = new BufferedInputStream(zipFile.getInputStream(entry));
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                byte[] b = new byte[512];
-                int len;
-                while ((len=in.read(b)) != -1) {
-                    out.write(b,0,len);
-                }
-                out.flush();
-                out.close();
-                return out.toByteArray();
-            }
-        }
-        return null;
-    }
 
     private static String geti18nText(File jarFile, String key, Locale locale) {
         if (key == null) {
