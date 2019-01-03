@@ -353,7 +353,12 @@ public class PluginManager
                 humanReadableName = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/name" );
                 humanReadableDescription = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/description" );
                 minimumRequiredOpenfireVersion = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/minServerVersion" );
-                version = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/version" );
+                final String versionText = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/version" );
+                if ( versionText != null ) {
+                    version = versionText.replace( ' ', '-' );
+                } else {
+                    version = null;
+                }
                 final String dateText = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/date" );
 
                 author = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/author" );
