@@ -268,6 +268,44 @@ public class PluginManager
                 .collect( Collectors.toList());
     }
 
+    /**
+     * Sort a collection of metadata by <ol><li>Version, </li>Release Date</ol> (in that order).
+     *
+     * Note that the name of the plugin is not used. This works around issues that have multiple names
+     * (such as 'XML Debugger plugin' and 'Debugger plugin'). The argument provided to this method should
+     * therefor only include instances of Metadata for the same plugin.
+     *
+     * @param unordered A collection that needs ordering.
+     * @return The ordered collection.
+     */
+    public static List<Metadata> sortByVersionAndReleaseDate( Collection<Metadata> unordered )
+    {
+        return unordered.stream()
+            .sorted( Comparator.comparing( (PluginManager.Metadata o) -> o.version ).reversed() // TODO don't base version-sorting on alphabet.
+                         .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.isRelease ? o.releaseDate : o.snapshotCreationDate ).reversed()  )
+            )
+            .collect( Collectors.toList() );
+    }
+
+    /**
+     * Sort a collection of metadata by <ol><li>Version, </li>Release Date</ol> (in that order)
+     * and returns the first few results from the ordered result.
+     *
+     * Note that the name of the plugin is not used. This works around issues that have multiple names
+     * (such as 'XML Debugger plugin' and 'Debugger plugin'). The argument provided to this method should
+     * therefor only include instances of Metadata for the same plugin.
+     *
+     * @param unordered A collection that needs ordering.
+     * @param max The maximum number of results of the ordered collection to return.
+     * @return The ordered collection.
+     */
+    public static List<Metadata> sortByVersionAndReleaseDate( Collection<Metadata> unordered, final int max )
+    {
+        return sortByVersionAndReleaseDate( unordered ).stream()
+            .limit( max )
+            .collect( Collectors.toList());
+    }
+
     public static class Metadata
     {
         // The archive as stored in the Maven repository.

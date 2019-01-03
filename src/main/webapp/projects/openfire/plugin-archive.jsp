@@ -90,7 +90,10 @@
                         </tr>
                         <%
                             {
-                            final List<PluginManager.Metadata> plugins = PluginManager.sortByNameVersionAndReleaseDate( PluginManager.getReleases( pluginDir, pluginName ) );
+                            final List<PluginManager.Metadata> plugins =
+                                PluginManager.sortByVersionAndReleaseDate(
+                                    PluginManager.getReleases( pluginDir, pluginName )
+                                );
                         %>
                         <%  if (plugins == null || plugins.isEmpty()) { %>
                         <tbody>
@@ -195,7 +198,7 @@
                         <%
                             {
                             final List<PluginManager.Metadata> plugins =
-                                PluginManager.sortByNameVersionAndReleaseDate(
+                                PluginManager.sortByVersionAndReleaseDate(
                                     PluginManager.getSnapshots( pluginDir, pluginName ), 20
                                 );
 
