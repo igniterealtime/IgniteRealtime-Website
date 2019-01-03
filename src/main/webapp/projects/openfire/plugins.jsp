@@ -55,7 +55,6 @@
                     <p>Plugins extend and enhance the functionality of Openfire (formerly Wildfire). Below is a list of
                     plugins available for <a href="index.jsp">Openfire</a>. To install plugins,
                     copy the .jar file into the <tt>plugins</tt> directory of your Openfire installation.
-                    <a href="plugins-beta.jsp">Beta plugins</a> are also available.
                     </p>
 
                 <!-- BEGIN plugins -->
