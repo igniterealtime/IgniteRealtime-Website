@@ -191,7 +191,7 @@ public class PluginManager
             .filter( metadata -> metadata.isRelease )
             .collect(
                 Collectors.toMap(
-                    Metadata::getHumanReadableName,
+                    Metadata::getPluginFileName,
                     Function.identity(),
                     BinaryOperator.maxBy( Comparator.comparing( Metadata::getVersion ) )
                 )
