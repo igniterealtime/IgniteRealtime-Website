@@ -188,7 +188,7 @@ public class OpenfireVersionChecker {
 
             // TODO Get i18n'ed version of the plugin name and description
             latestPlugin.addAttribute("name", plugin.humanReadableName);
-            latestPlugin.addAttribute("description", plugin.humanReadableName);
+            latestPlugin.addAttribute("description", plugin.humanReadableDescription);
 
             latestPlugin.addAttribute("url", plugin.getDownloadURL() );
             latestPlugin.addAttribute("icon", plugin.getIconURL() );
