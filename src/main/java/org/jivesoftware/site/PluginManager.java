@@ -103,7 +103,7 @@ public class PluginManager
         else
         {
             // FIXME: don't use alphabetical sorting
-            stream = stream.sorted( Comparator.comparing( metadata -> metadata.version ) );
+            stream = stream.sorted( Comparator.comparing( (Metadata::getVersion ) ).reversed() );
         }
 
         final Optional<Metadata> first = stream.findFirst();
