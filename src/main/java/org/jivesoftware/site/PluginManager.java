@@ -128,7 +128,7 @@ public class PluginManager
             final Set<Metadata> cachedResult = cache.get( path );
             final boolean isRefreshing = refreshing.computeIfAbsent( path, p -> false );
             final long refreshed = lastRefreshed.computeIfAbsent( path, p -> System.currentTimeMillis() );
-            final boolean isStale = System.currentTimeMillis() - refreshed > 10*60*1000;
+            final boolean isStale = System.currentTimeMillis() - refreshed > Duration.ofMinutes( 10 ).toMillis();
 
             if ( isRefreshing )
             {
