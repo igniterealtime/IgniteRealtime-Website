@@ -44,8 +44,7 @@ to let people play games against each other. By itself, IM is a powerful communi
 it can become a much more powerful tool when it's tailored to specific business purposes.</p>
 
 <p>Sparkplugs are easy enough for virtually any organization with Java experience 
-to create. We (Jive Software) will also be creating high value commercial Sparkplugs
-to compliment Spark deployments.</p> 
+to create.</p>
 
 <h2>Start of the Day</h2>
 

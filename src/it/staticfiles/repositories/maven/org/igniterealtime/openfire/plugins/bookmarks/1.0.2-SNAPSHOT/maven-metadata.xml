@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>org.igniterealtime.openfire.plugins</groupId>
+  <artifactId>bookmarks</artifactId>
+  <version>1.0.2-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20181228.143303</timestamp>
+      <buildNumber>15</buildNumber>
+    </snapshot>
+    <lastUpdated>20181228143303</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>1.0.2-20181228.143303-15</value>
+        <updated>20181228143303</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>1.0.2-20181228.143303-15</value>
+        <updated>20181228143303</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>openfire-plugin-assembly</classifier>
+        <extension>jar</extension>
+        <value>1.0.2-20181228.143303-15</value>
+        <updated>20181228143303</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

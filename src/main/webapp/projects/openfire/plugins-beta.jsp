@@ -19,26 +19,6 @@
  <%
      String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-beta-path");
      File pluginDir = new File(openfirePluginsPath);
-
-
-
-    String pName = request.getParameter("plugin");
-    File plugin = null;
-    if (pName != null) {
-        plugin = new File(pluginDir, pName);
-    }
-    if (plugin != null) {
-        String imageDownload = request.getParameter("img");
-        if (imageDownload != null && Boolean.valueOf(imageDownload).booleanValue()) {
-            response.setContentType("image/gif");
-            OutputStream resOut = response.getOutputStream();
-            byte [] image = getPluginFile(plugin, "logo_small.gif");
-            resOut.write(image);
-            resOut.close();
-            return;
-        }
-    }
-
 %>
 
 
@@ -113,51 +93,7 @@
             </tr>
 
         <%
-            File[] plugins = pluginDir.listFiles(new FilenameFilter() {
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(".jar") || name.endsWith(".war");
-                }
-            });
-            if (plugins != null) {
-                Arrays.sort(plugins, new Comparator() {
-                    public int compare(Object o1, Object o2) {
-                        File f1 = (File)o1;
-                        File f2 = (File)o2;
-                        try {
-                            String x1 = new String(getPluginFile(f1, "plugin.xml"));
-                            String x2 = new String(getPluginFile(f2, "plugin.xml"));
-                            Document doc1 = (new SAXReader()).read(new ByteArrayInputStream(x1.getBytes()));
-                            Document doc2 = (new SAXReader()).read(new ByteArrayInputStream(x2.getBytes()));
-                            Element n1 = (Element)doc1.selectSingleNode("/plugin/name");
-                            Element n2 = (Element)doc2.selectSingleNode("/plugin/name");
-                            String name1 = (n1 == null ? f1.getName() : geti18nText(f1, n1.getTextTrim()));
-                            String name2 = (n2 == null ? f2.getName() : geti18nText(f2, n2.getTextTrim()));
-                            Element lic1 = (Element)doc1.selectSingleNode("/plugin/licenseType");
-                            Element lic2 = (Element)doc2.selectSingleNode("/plugin/licenseType");
-                            String license1 = (lic1 == null ? "gpl" : lic1.getTextTrim());
-                            String license2 = (lic2 == null ? "gpl" : lic2.getTextTrim());
-                            // Sort by license first.
-                            if (license1.equals(license2)) {
-                                return name1.toLowerCase().compareTo(name2.toLowerCase());
-                            }
-                            else {
-                                if (license1.equals("commercial")) {
-                                    return 1;
-                                }
-                                else if (license2.equals("commercial")) {
-                                    return -1;
-                                }
-                                else {
-                                    return 0;
-                                }
-                            }
-                        }
-                        catch (Exception e) {
-                            return 0;
-                        }
-                    }
-                });
-            }
+            File[] plugins = PluginDownloadServlet.getPlugins( pluginDir );
         %>
 
         <%  if (plugins == null || plugins.length == 0) { %>
@@ -176,7 +112,6 @@
 
         <%  DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
             SimpleDateFormat parser = new SimpleDateFormat("MM/dd/yyyy");
-            boolean commercialShown = false;
             for (int i=0; plugins!=null && i<plugins.length; i++) {
                 String pluginXML = new String(getPluginFile(plugins[i], "plugin.xml"));
                 if (pluginXML != null) {
@@ -186,70 +121,8 @@
                     // See if a README and changelog exist.
                     boolean readmeExists = pluginFileExists(plugins[i], "readme.html");
                     boolean changelogExists = pluginFileExists(plugins[i], "changelog.html");
-                    boolean iconExists = pluginFileExists(plugins[i], "logo_small.gif");
-                                        boolean licenseExists = pluginFileExists(plugins[i], "license.html");
-
-                    // If the icon exists, make sure it's extracted. We can't serve up images
-                    // directly from JSP so we just put them on the file system.
-                    if (iconExists) {
-                        File cache = new File(pluginDir, "cache");
-                        if (!cache.exists()) {
-                            cache.mkdir();
-                        }
-                        File pluginIcon = new File(pluginDir, "cache" + File.separator +
-                                pname + ".gif");
-                        if (!pluginIcon.exists()) {
-                            writePluginFile(plugins[i], cache, "logo_small.gif", pname + ".gif");
-                        }
-                        else {
-                            if (pluginIcon.lastModified() < plugins[i].lastModified()) {
-                                pluginIcon.delete();
-                                writePluginFile(plugins[i], cache, "logo_small.gif", pname + ".gif");
-                            }
-                        }
-                    }
-                    if (readmeExists) {
-                        File extractDir = new File(pluginDir, pname);
-                        if (!extractDir.exists()) {
-                            extractDir.mkdir();
-                        }
-                        File readme = new File(extractDir, "readme.html");
-                        if (!readme.exists()) {
-                            writePluginFile(plugins[i], extractDir, "readme.html", "readme.html");
-                        }
-                        else if (plugins[i].lastModified() > readme.lastModified()) {
-                            readme.delete();
-                            writePluginFile(plugins[i], extractDir, "readme.html", "readme.html");
-                        }
-                    }
-                    if (changelogExists) {
-                        File extractDir = new File(pluginDir, pname);
-                        if (!extractDir.exists()) {
-                            extractDir.mkdir();
-                        }
-                        File changelog = new File(extractDir, "changelog.html");
-                        if (!changelog.exists()) {
-                            writePluginFile(plugins[i], extractDir, "changelog.html", "changelog.html");
-                        }
-                        else if (plugins[i].lastModified() > changelog.lastModified()) {
-                            changelog.delete();
-                            writePluginFile(plugins[i], extractDir, "changelog.html", "changelog.html");
-                        }
-                    }
-                                        if (licenseExists) {
-                        File extractDir = new File(pluginDir, pname);
-                        if (!extractDir.exists()) {
-                            extractDir.mkdir();
-                        }
-                        File license = new File(extractDir, "LICENSE.html");
-                        if (!license.exists()) {
-                            writePluginFile(plugins[i], extractDir, "license.html", "LICENSE.html");
-                        }
-                        else if (plugins[i].lastModified() > license.lastModified()) {
-                            license.delete();
-                            writePluginFile(plugins[i], extractDir, "license.html", "LICENSE.html");
-                        }
-                    }
+                    boolean iconGifExists = pluginFileExists(plugins[i], "logo_small.gif");
+                    boolean iconPngExists = pluginFileExists(plugins[i], "logo_small.png");
 
                     // Parse the XML
                     SAXReader saxReader = new SAXReader();
@@ -264,35 +137,7 @@
                     Element pluginDate = (Element)doc.selectSingleNode("/plugin/date");
                     Element pluginLicense = (Element)doc.selectSingleNode("/plugin/licenseType");
                     String licenseType = (pluginLicense == null ? "gpl" : pluginLicense.getTextTrim());
-                    if (licenseType.equals("commercial") && !commercialShown) {
-                        commercialShown = true;
         %>
-
-                    <tr>
-                    <td colspan="5">
-                    <br/>
-                    <a name="commercial"></a>
-                    <br/></td>
-                    </tr>
-                    <tr class="pluginTableHeader">
-                        <td class="pluginType">
-                            Beta Commercial Plugins
-                        </td>
-                        <td>
-                            Info
-                        </td>
-                        <td>
-                            File
-                        </td>
-                        <td>
-                            Version
-                        </td>
-                        <td class="pluginDate">
-                            Date
-                        </td>
-                    </tr>
-
-        <%          } %>
 
                 <tr valign="middle">
                     <td class="c1">
@@ -300,7 +145,13 @@
                         <tr>
                             <td width="1%">
                                 <span class="plugicon">
-                                <img src="plugins-beta/cache/<%= URLEncoder.encode(pname, "utf-8") %>.gif" alt="" />
+                                <% if (iconPngExists) { %>
+                                    <img src="plugins-beta/<%= URLEncoder.encode(pname, "utf-8") %>/logo_small.png" alt="" />
+                                <% } else if (iconGifExists) { %>
+                                    <img src="plugins-beta/<%= URLEncoder.encode(pname, "utf-8") %>/logo_small.gif" alt="" />
+                                <% } else { %>
+                                    <img src="../../images/icon_plugin.gif" width="16" height="16" alt="Plugin">
+                                <% } %>
                                 </span>
                             </td>
                             <td width="99%">
@@ -369,79 +220,6 @@
  </cache:cache>
  
      </div>
-
-
-
-<%!
-    private byte[] getPluginFile(File jarFile, String name) throws IOException {
-        ZipFile zipFile = new JarFile(jarFile);
-        for (Enumeration e=zipFile.entries(); e.hasMoreElements(); ) {
-            JarEntry entry = (JarEntry)e.nextElement();
-            if (name.equals(entry.getName().toLowerCase())) {
-                InputStream in = new BufferedInputStream(zipFile.getInputStream(entry));
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                byte[] b = new byte[512];
-                int len = 0;
-                while ((len=in.read(b)) != -1) {
-                    out.write(b,0,len);
-                }
-                out.flush();
-                out.close();
-                return out.toByteArray();
-            }
-        }
-        return null;
-    }
-%>
-<%!
-    public String geti18nText(File jarFile, String key) {
-        if (key == null) {
-            return null;
-        }
-        // Look for the key symbol:
-        if (key.indexOf("${") == 0 && key.indexOf("}") == key.length()-1) {
-            ResourceBundle bundle = getResourceBundle(jarFile);
-            if (bundle != null) {
-                return bundle.getString(key.substring(2, key.length()-1));
-            }
-        }
-        return key;
-    }
-%>
-<%!
-    private ResourceBundle getResourceBundle(File jarFile) {
-        try {
-            String pluginName = jarFile.getName().substring(0, jarFile.getName().lastIndexOf(".jar"));
-            URLClassLoader classLoader = new URLClassLoader(new URL[] { jarFile.toURL() });
-            return ResourceBundle.getBundle("i18n/" + pluginName + "_i18n", Locale.ENGLISH, classLoader);
-        }
-        catch (Exception e) {
-            LoggerFactory.getLogger( this.getClass() ).warn( "Unable to get resource bundle for file {}", jarFile, e );
-            return null;
-        }
-    }
-%>
-<%!
-    private boolean pluginFileExists(File jarFile, String name) throws IOException {
-        ZipFile zipFile = new JarFile(jarFile);
-        for (Enumeration e=zipFile.entries(); e.hasMoreElements(); ) {
-            JarEntry entry = (JarEntry)e.nextElement();
-            if (name.equals(entry.getName().toLowerCase())) {
-                return true;
-            }
-        }
-        return false;
-    }
-%>
-<%!
-    private void writePluginFile(File jarFile, File destination, String fileName, String destinationName) throws IOException {
-        byte [] fileBytes = getPluginFile(jarFile, fileName);
-        File file = new File(destination, destinationName);
-        FileOutputStream out = new FileOutputStream(file);
-        out.write(fileBytes);
-        out.close();
-    }
-%>
 
              </div>
              <!-- END body content area -->

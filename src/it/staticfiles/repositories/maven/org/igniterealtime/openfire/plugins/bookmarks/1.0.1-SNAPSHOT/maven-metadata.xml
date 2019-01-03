@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<metadata>
+  <groupId>org.igniterealtime.openfire.plugins</groupId>
+  <artifactId>bookmarks</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <buildNumber>2</buildNumber>
+      <timestamp>20181223.094753</timestamp>
+    </snapshot>
+    <lastUpdated>20181223094753</lastUpdated>
+  </versioning>
+</metadata>
