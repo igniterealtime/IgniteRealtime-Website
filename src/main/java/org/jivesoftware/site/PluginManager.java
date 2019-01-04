@@ -1,10 +1,5 @@
 package org.jivesoftware.site;
 
-import org.dom4j.DocumentException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import javax.servlet.ServletConfig;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,7 +8,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
@@ -22,6 +25,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import javax.servlet.ServletConfig;
+
+import org.dom4j.DocumentException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PluginManager
 {
@@ -104,6 +113,10 @@ public class PluginManager
         {
             // FIXME: don't use alphabetical sorting
             stream = stream.sorted( Comparator.comparing( (Metadata::getVersion ) ).reversed() );
+        }
+
+        if (!parsedRequest.snapshotQualifier.isEmpty()) {
+            stream = stream.filter(metadata -> parsedRequest.snapshotQualifier.equals(metadata.snapshotQualifier));
         }
 
         final Optional<Metadata> first = stream.findFirst();
@@ -330,6 +343,7 @@ public class PluginManager
         public final boolean isRelease;
         public final boolean isSnapshot;
         public final Date snapshotCreationDate;
+        public final String snapshotQualifier;
 
         public Metadata( Path mavenFile ) throws IOException, DocumentException
         {
@@ -392,6 +406,20 @@ public class PluginManager
             {
                 // file format: bookmarks-1.0.1-20181223.093556-1-openfire-plugin-assembly.jar
                 final String fileName = mavenFile.getFileName().toString();
+                if (version != null) {
+                    // The qualifier is everything between the second and fourth dash
+                    final int firstDash = fileName.indexOf('-');
+                    final int secondDash = fileName.indexOf('-', firstDash + 1);
+                    final int thirdDash = fileName.indexOf('-', secondDash + 1);
+                    final int fourthDash = fileName.indexOf('-', thirdDash + 1);
+                    if (secondDash > 0 && fourthDash > secondDash) {
+                        snapshotQualifier = fileName.substring(secondDash + 1, fourthDash);
+                    } else {
+                        snapshotQualifier = "";
+                    }
+                } else {
+                    snapshotQualifier = "";
+                }
                 final Matcher m = Pattern.compile( "[0-9]{8}\\.[0-9]{6}" ).matcher( fileName );
                 Date result = null;
                 if ( m.find() )
@@ -412,6 +440,7 @@ public class PluginManager
             else
             {
                 snapshotCreationDate = null;
+                snapshotQualifier = "";
             }
         }
 

@@ -6,17 +6,13 @@
         return;
     }
 %>
-<%@ page import="org.jivesoftware.site.PluginDownloadServlet"%>
-<%@ page import="org.jivesoftware.site.PluginManager"%>
-<%@ page import="java.io.File"%>
 <%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.nio.file.Path"%>
+<%@ page import="java.nio.file.Paths"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="java.util.List"%>
-<%@ page import="java.nio.file.Path" %>
-<%@ page import="java.nio.file.Paths" %>
-<%@ page import="java.util.Set" %>
-<%@ page import="java.util.Comparator" %>
-<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="org.jivesoftware.site.PluginManager"%>
+<%@ page import="java.nio.charset.StandardCharsets" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
@@ -204,7 +200,7 @@
                                 );
 
                         %>
-                        <%  if (plugins == null || plugins.isEmpty()) { %>
+                        <% if (plugins.isEmpty()) { %>
                         <tbody>
                         <tr>
                             <td colspan="6">No plugins.</td>
@@ -217,6 +213,7 @@
                             for ( PluginManager.Metadata plugin : plugins )
                             {
                                 final String version = plugin.getVersion().replace( ' ', '-' );
+                                final String snapshotParam = plugin.snapshotQualifier.isEmpty() ? "" : "?snapshot=" + URLEncoder.encode(plugin.snapshotQualifier, StandardCharsets.UTF_8.name());
                                 try {
                         %>
                         <tr valign="middle">
@@ -226,7 +223,7 @@
                                         <td width="1%">
                                             <span class="plugicon">
                                             <% if (plugin.hasIcon) { %>
-                                                <img src="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/<%= URLEncoder.encode(plugin.iconFileName, "utf-8") %>" alt="" />
+                                                <img src="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/<%= URLEncoder.encode(plugin.iconFileName, "utf-8") %><%=snapshotParam%>" alt="" />
                                             <% } else { %>
                                                 <img src="../../images/icon_plugin.gif" width="16" height="16" alt="Plugin">
                                             <% } %>
@@ -242,15 +239,15 @@
                             </td>
                             <td class="c2" nowrap>
                                 <% if( plugin.hasReadme) { %>
-                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
+                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html<%=snapshotParam%>"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>
                                 &nbsp;
                                 <% } if(plugin.hasChangelog) { %>
-                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
+                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html<%=snapshotParam%>"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
                                 <% } %>
                             </td>
                             <td class="c3" nowrap>
-                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>"><%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %></a>
+                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %><%=snapshotParam%>"><%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %></a>
                             </td>
                             <td class="c4" align="center" nowrap style="width: unset">
                                 <%= (plugin.version != null ? plugin.version : "&nbsp;") %>
