@@ -38,9 +38,6 @@
                 <div class="ignite_int_body_padding">
                     <p>
                         Below are links to the current <b>beta</b> releases.
-
-                        <b>Looking for Openfire beta plugins?</b> Visit the
-                        <a href="../projects/openfire/plugins-beta.jsp">beta plugins</a> page.
                     </p>
                 </div>
 
