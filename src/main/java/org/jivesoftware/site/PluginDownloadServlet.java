@@ -1,11 +1,29 @@
 package org.jivesoftware.site;
 
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.BufferedInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Objects;
+import java.util.ResourceBundle;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
+import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
 
 import javax.activation.MimetypesFileTypeMap;
 import javax.servlet.ServletConfig;
@@ -13,17 +31,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Servlet used for downloading and capturing of data for all Openfire and Spark plugins on Ignite.
@@ -78,7 +92,7 @@ public class PluginDownloadServlet extends HttpServlet {
         //   <path>/<version>/pluginname.jar
         // for files that are part of plugins:
         //   <path>/version>/pluginname/<file>
-        final ParsedRequest parsedRequest = parse( requestURI );
+        final ParsedRequest parsedRequest = parse( requestURI, request.getQueryString() );
 
         final Path plugin = pluginManager.findPluginFile( parsedRequest );
 
@@ -487,7 +501,7 @@ public class PluginDownloadServlet extends HttpServlet {
     //   <path>/<version>/pluginname.jar
     // for files that are part of plugins:
     //   <path>/version>/pluginname/<file>
-    protected static ParsedRequest parse( final String uri )
+    protected static ParsedRequest parse(final String uri, final String queryString)
     {
         final boolean isPlugin = parseIsPlugin( uri );
         final DownloadServlet.DownloadInfo product = parseProduct( uri );
@@ -495,20 +509,33 @@ public class PluginDownloadServlet extends HttpServlet {
         final String pluginName = parsePluginName( uri );
         final String pluginVersion = parsePluginVersion( uri );
         final String fileInPluginName = parseFileInPluginName( uri );
+        final String snapshotQualifier = parseSnapshotQualifier(queryString);
 
         if ( isPlugin )
         {
-            return new ParsedRequest( product, pluginName, pluginVersion, releaseTrack );
+            return new ParsedRequest(product, pluginName, pluginVersion, releaseTrack, snapshotQualifier);
         }
         else
         {
-            return new ParsedRequest( product, pluginName, pluginVersion, releaseTrack, fileInPluginName );
+            return new ParsedRequest(product, pluginName, pluginVersion, releaseTrack, fileInPluginName, snapshotQualifier);
         }
     }
 
     static boolean parseIsPlugin( final String uri )
     {
         return uri.endsWith( ".jar" );
+    }
+
+    private static String parseSnapshotQualifier(final String queryString) {
+        if (queryString != null) {
+            final String[] parameterKeyValues = queryString.split("&");
+            for (final String parameterKeyValue : parameterKeyValues) {
+                if (parameterKeyValue.startsWith("snapshot=")) {
+                    return parameterKeyValue.substring(parameterKeyValue.indexOf('=') + 1);
+                }
+            }
+        }
+        return "";
     }
 
     static DownloadServlet.DownloadInfo parseProduct( final String uri )
@@ -722,25 +749,29 @@ public class PluginDownloadServlet extends HttpServlet {
          */
         public final String fileInPluginName;
 
+        /**
+         * The timestamp that distinguishes between different versions of the same SNAPSHOT (or an empty string, if none)
+         */
+        final String snapshotQualifier;
 
 
-        public ParsedRequest( final DownloadServlet.DownloadInfo product, final String pluginName, final String pluginVersion, final ReleaseTrack releaseTrack )
-        {
+        public ParsedRequest(final DownloadServlet.DownloadInfo product, final String pluginName, final String pluginVersion, final ReleaseTrack releaseTrack, final String snapshotQualifier) {
             this.product = product;
             this.pluginName = pluginName;
             this.pluginVersion = pluginVersion;
             this.releaseTrack = releaseTrack;
+            this.snapshotQualifier = snapshotQualifier;
             this.forPlugin = true;
             this.forFileInPlugin = !forPlugin;
             this.fileInPluginName = null;
         }
 
-        public ParsedRequest( final DownloadServlet.DownloadInfo product, final String pluginName, final String pluginVersion, final ReleaseTrack releaseTrack, final String fileInPluginName )
-        {
+        public ParsedRequest(final DownloadServlet.DownloadInfo product, final String pluginName, final String pluginVersion, final ReleaseTrack releaseTrack, final String fileInPluginName, final String snapshotQualifier) {
             this.product = product;
             this.pluginName = pluginName;
             this.pluginVersion = pluginVersion;
             this.releaseTrack = releaseTrack;
+            this.snapshotQualifier = snapshotQualifier;
             this.forPlugin = false;
             this.forFileInPlugin = !forPlugin;
             this.fileInPluginName = fileInPluginName;
