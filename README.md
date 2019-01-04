@@ -21,3 +21,11 @@ of the biggest and most active Open Source communities.
 
 [Ignite Realtime]: http://www.igniterealtime.org
 [XMPP (Jabber)]: http://xmpp.org/
+
+Testing changes
+===============
+Run the command
+```
+mvn package cargo:run
+```
+to compile the local code and run it as a website on port 8080, and attach a remote debugger to port 5005.
