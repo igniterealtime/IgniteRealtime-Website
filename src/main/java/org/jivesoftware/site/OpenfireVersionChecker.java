@@ -5,27 +5,16 @@
 
 package org.jivesoftware.site;
 
-import java.io.BufferedInputStream;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.StringReader;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Paths;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
-import java.util.zip.ZipFile;
 
 import org.dom4j.Document;
 import org.dom4j.DocumentFactory;
@@ -194,7 +183,7 @@ public class OpenfireVersionChecker {
             latestPlugin.addAttribute("icon", plugin.getIconURL() );
             latestPlugin.addAttribute("readme", plugin.getReadmeURL() );
             latestPlugin.addAttribute("changelog", plugin.getChangelogURL() );
-            latestPlugin.addAttribute("latest", plugin.getVersion() );
+            latestPlugin.addAttribute("latest", plugin.getPluginVersion() );
             latestPlugin.addAttribute("licenseType", plugin.getLicenceType() );
             latestPlugin.addAttribute("author", plugin.getAuthor() );
             latestPlugin.addAttribute("minServerVersion", plugin.getMinimumRequiredOpenfireVersion() );

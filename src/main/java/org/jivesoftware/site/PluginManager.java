@@ -93,7 +93,7 @@ public class PluginManager
         final Collection<Metadata> plugins = getPlugins( Paths.get( repoPath ) );
 
         Stream<Metadata> stream = plugins.stream();
-        if ( parsedRequest.pluginVersion != null && parsedRequest.pluginVersion.toUpperCase().endsWith( "-SNAPSHOT" ) )
+        if (parsedRequest.pluginVersion != null && parsedRequest.pluginVersion.toUpperCase().endsWith("-SNAPSHOT") || parsedRequest.snapshotQualifier != null)
         {
             stream = stream.filter( metadata -> metadata.isSnapshot );
         }
@@ -106,13 +106,13 @@ public class PluginManager
 
         if ( parsedRequest.pluginVersion != null )
         {
-            stream = stream.filter( metadata -> metadata.version.equalsIgnoreCase( parsedRequest.pluginVersion ) );
+            stream = stream.filter( metadata -> metadata.mavenVersion.equalsIgnoreCase( parsedRequest.pluginVersion ) );
             stream = stream.sorted( Comparator.comparing( metadata -> metadata.mavenFile.toFile().lastModified() ) );
         }
         else
         {
             // FIXME: don't use alphabetical sorting
-            stream = stream.sorted( Comparator.comparing( (Metadata::getVersion ) ).reversed() );
+            stream = stream.sorted( Comparator.comparing( (Metadata::getPluginVersion) ).reversed() );
         }
 
         if (parsedRequest.snapshotQualifier != null) {
@@ -206,7 +206,7 @@ public class PluginManager
                 Collectors.toMap(
                     Metadata::getPluginFileName,
                     Function.identity(),
-                    BinaryOperator.maxBy( Comparator.comparing( Metadata::getVersion ) )
+                    BinaryOperator.maxBy( Comparator.comparing( Metadata::getPluginVersion) )
                 )
             ).values();
     }
@@ -260,7 +260,7 @@ public class PluginManager
         return unordered.stream()
             .sorted(
                 Comparator.comparing( (PluginManager.Metadata o) -> o.humanReadableName.toLowerCase() )
-                .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.version ).reversed() ) // TODO don't base version-sorting on alphabet.
+                .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.pluginVersion).reversed() ) // TODO don't base version-sorting on alphabet.
                 .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.isRelease ? o.releaseDate : o.snapshotCreationDate ).reversed()  )
             )
             .collect( Collectors.toList() );
@@ -294,7 +294,7 @@ public class PluginManager
     public static List<Metadata> sortByVersionAndReleaseDate( Collection<Metadata> unordered )
     {
         return unordered.stream()
-            .sorted( Comparator.comparing( (PluginManager.Metadata o) -> o.version ).reversed() // TODO don't base version-sorting on alphabet.
+            .sorted( Comparator.comparing( (PluginManager.Metadata o) -> o.pluginVersion).reversed() // TODO don't base version-sorting on alphabet.
                          .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.isRelease ? o.releaseDate : o.snapshotCreationDate ).reversed()  )
             )
             .collect( Collectors.toList() );
@@ -338,7 +338,10 @@ public class PluginManager
         public final String author;
         public final String licenseType;
         public final String minimumRequiredOpenfireVersion;
-        public final String version;
+        // In an ideal world, the plugin version (from the plugin.xml) would match the maven version (from the pom.xml)
+        // However, that's not the case, particularly for older plugins, so distinguish between the two.
+        public final String pluginVersion;
+        public final String mavenVersion;
         public final Date releaseDate;
         public final boolean isRelease;
         public final boolean isSnapshot;
@@ -369,9 +372,9 @@ public class PluginManager
                 minimumRequiredOpenfireVersion = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/minServerVersion" );
                 final String versionText = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/version" );
                 if ( versionText != null ) {
-                    version = versionText.replace( ' ', '-' );
+                    pluginVersion = versionText.replace( ' ', '-' );
                 } else {
-                    version = null;
+                    pluginVersion = null;
                 }
                 final String dateText = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/date" );
 
@@ -398,21 +401,17 @@ public class PluginManager
             // this matches the plugin name (and is easier than parsing the file name itself)
             pluginName = mavenFile.getParent().getParent().getFileName().toString();
             pluginFileName = pluginName + mavenFile.toString().substring( mavenFile.toString().lastIndexOf('.') );
-
-            isSnapshot = mavenFile.getParent().getFileName().toString().toUpperCase().endsWith( "-SNAPSHOT" );
+            mavenVersion = mavenFile.getParent().getFileName().toString();
+            isSnapshot = mavenVersion.toUpperCase().endsWith( "-SNAPSHOT" );
             isRelease = !isSnapshot;
 
             if ( isSnapshot )
             {
                 // file format: bookmarks-1.0.1-20181223.093556-1-openfire-plugin-assembly.jar
                 final String fileName = mavenFile.getFileName().toString();
-                if (version != null) {
-                    final Matcher snapshotQualifierMatcher = Pattern.compile(".*-(\\d{8}\\.\\d{6}-\\d*).*").matcher(fileName);
-                    if (snapshotQualifierMatcher.matches()) {
-                        snapshotQualifier = snapshotQualifierMatcher.group(1);
-                    } else {
-                        snapshotQualifier = null;
-                    }
+                final Matcher snapshotQualifierMatcher = Pattern.compile(".*-(\\d{8}\\.\\d{6}-\\d*).*").matcher(mavenVersion);
+                if (snapshotQualifierMatcher.matches()) {
+                    snapshotQualifier = snapshotQualifierMatcher.group(1);
                 } else {
                     snapshotQualifier = null;
                 }
@@ -490,9 +489,9 @@ public class PluginManager
             return minimumRequiredOpenfireVersion;
         }
 
-        public String getVersion()
+        public String getPluginVersion()
         {
-            return version;
+            return pluginVersion;
         }
 
         public Date getReleaseDate()
@@ -517,7 +516,7 @@ public class PluginManager
 
         public String getDownloadURL()
         {
-            return PLUGINS_PATH + getVersion() + '/' + pluginFileName;
+            return PLUGINS_PATH + getPluginVersion() + '/' + pluginFileName;
         }
 
         public String getIconURL()
@@ -525,7 +524,7 @@ public class PluginManager
             if ( !hasIcon ) {
                 return null;
             }
-            return PLUGINS_PATH + getVersion() + '/' + pluginName + '/' + iconFileName;
+            return PLUGINS_PATH + getPluginVersion() + '/' + pluginName + '/' + iconFileName;
         }
 
         public String getReadmeURL()
@@ -533,7 +532,7 @@ public class PluginManager
             if ( !hasReadme ) {
                 return null;
             }
-            return PLUGINS_PATH + getVersion() + '/' + pluginName + '/' + "readme.html";
+            return PLUGINS_PATH + getPluginVersion() + '/' + pluginName + '/' + "readme.html";
         }
 
         public String getChangelogURL()
@@ -541,7 +540,7 @@ public class PluginManager
             if ( !hasChangelog ) {
                 return null;
             }
-            return PLUGINS_PATH + getVersion() + '/' + pluginName + '/' + "changelog.html";
+            return PLUGINS_PATH + getPluginVersion() + '/' + pluginName + '/' + "changelog.html";
         }
 
         public String getLicenceType()

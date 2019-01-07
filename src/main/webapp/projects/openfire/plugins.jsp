@@ -122,18 +122,18 @@
                             </td>
                             <td class="c2" nowrap>
                                 <% if( plugin.hasReadme) { %>
-                                <a href="plugins/<%= URLEncoder.encode(plugin.version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
+                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>
                                 &nbsp;
                                 <% } if(plugin.hasChangelog) { %>
-                                <a href="plugins/<%= URLEncoder.encode(plugin.version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
+                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
                                 <% } %>
                             </td>
                             <td class="c3" nowrap>
-                                <a href="plugins/<%= URLEncoder.encode(plugin.version, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>"><%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %></a>
+                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>"><%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %></a>
                             </td>
                             <td class="c4" align="center" nowrap>
-                                <%= (plugin.version != null ? plugin.version : "&nbsp;") %>
+                                <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
                             </td>
                             <td class="c4" align="center" nowrap>
                                 <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
