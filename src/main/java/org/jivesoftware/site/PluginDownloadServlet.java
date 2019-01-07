@@ -535,7 +535,7 @@ public class PluginDownloadServlet extends HttpServlet {
                 }
             }
         }
-        return "";
+        return null;
     }
 
     static DownloadServlet.DownloadInfo parseProduct( final String uri )

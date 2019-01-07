@@ -213,7 +213,7 @@
                             for ( PluginManager.Metadata plugin : plugins )
                             {
                                 final String version = plugin.getVersion().replace( ' ', '-' );
-                                final String snapshotParam = plugin.snapshotQualifier.isEmpty() ? "" : "?snapshot=" + URLEncoder.encode(plugin.snapshotQualifier, StandardCharsets.UTF_8.name());
+                                final String snapshotParam = plugin.snapshotQualifier == null ? "" : "?snapshot=" + URLEncoder.encode(plugin.snapshotQualifier, StandardCharsets.UTF_8.name());
                                 try {
                         %>
                         <tr valign="middle">

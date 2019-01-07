@@ -115,7 +115,7 @@ public class PluginManager
             stream = stream.sorted( Comparator.comparing( (Metadata::getVersion ) ).reversed() );
         }
 
-        if (!parsedRequest.snapshotQualifier.isEmpty()) {
+        if (parsedRequest.snapshotQualifier != null) {
             stream = stream.filter(metadata -> parsedRequest.snapshotQualifier.equals(metadata.snapshotQualifier));
         }
 
@@ -407,18 +407,14 @@ public class PluginManager
                 // file format: bookmarks-1.0.1-20181223.093556-1-openfire-plugin-assembly.jar
                 final String fileName = mavenFile.getFileName().toString();
                 if (version != null) {
-                    // The qualifier is everything between the second and fourth dash
-                    final int firstDash = fileName.indexOf('-');
-                    final int secondDash = fileName.indexOf('-', firstDash + 1);
-                    final int thirdDash = fileName.indexOf('-', secondDash + 1);
-                    final int fourthDash = fileName.indexOf('-', thirdDash + 1);
-                    if (secondDash > 0 && fourthDash > secondDash) {
-                        snapshotQualifier = fileName.substring(secondDash + 1, fourthDash);
+                    final Matcher snapshotQualifierMatcher = Pattern.compile(".*-(\\d{8}\\.\\d{6}-\\d*).*").matcher(fileName);
+                    if (snapshotQualifierMatcher.matches()) {
+                        snapshotQualifier = snapshotQualifierMatcher.group(1);
                     } else {
-                        snapshotQualifier = "";
+                        snapshotQualifier = null;
                     }
                 } else {
-                    snapshotQualifier = "";
+                    snapshotQualifier = null;
                 }
                 final Matcher m = Pattern.compile( "[0-9]{8}\\.[0-9]{6}" ).matcher( fileName );
                 Date result = null;
