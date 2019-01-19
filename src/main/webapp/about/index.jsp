@@ -63,7 +63,7 @@
                         real-time messaging. Since 2004, it's been an approved standard of the IETF
                         (the same organization that standardized email and World Wide Web protocols).
                         A rich set of <a href="https://xmpp.org/extensions/">extensions</a> to
-                        the protocol are maintained by the <a href="https://xmpp.org/about/xmpp-standards-foundation.html">XMPP Software Foundation</a>.
+                        the protocol are maintained by the <a href="https://xmpp.org/about/xmpp-standards-foundation.html">XMPP Standards Foundation</a>.
                         Today, XMPP is used by leading companies, millions of users worldwide and
                         is the best choice for open real-time collaboration.
                     </p>
