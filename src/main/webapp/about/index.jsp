@@ -62,8 +62,8 @@
             XMPP (also known as Jabber) is the leading open standard for presence and
                         real-time messaging. Since 2004, it's been an approved standard of the IETF
                         (the same organization that standardized email and World Wide Web protocols).
-                        A rich set of <a href="http://www.xmpp.org/extensions/">extensions</a> to
-                        the protocol are maintained by the <a href="http://www.jabber.org">Jabber Software Foundation</a>.
+                        A rich set of <a href="https://xmpp.org/extensions/">extensions</a> to
+                        the protocol are maintained by the <a href="https://xmpp.org/about/xmpp-standards-foundation.html">XMPP Software Foundation</a>.
                         Today, XMPP is used by leading companies, millions of users worldwide and
                         is the best choice for open real-time collaboration.
                     </p>
@@ -112,8 +112,8 @@
                         <br/> 
 
                         <p><strong>Websites:</strong></p> -->
-                        <p><a href="http://www.xmpp.org">XMPP.org Website</a></p>
-                        <p><a href="http://planet.jabber.org">Planet Jabber Blogs</a></p>
+                        <p><a href="https://xmpp.org">XMPP.org Website</a></p>
+                        <p><a href="https://planet.jabber.org">Planet Jabber Blogs</a></p>
 
                     </div>
                 </div>
