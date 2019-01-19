@@ -99,7 +99,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     }
 #ignite_bigpanel h1.openfire,
 #ignite_smallpanel h1.openfire {
-    background: transparent url(../images/logo_openfire.gif) no-repeat left;
+    background: transparent url(../images/logo_openfire.png) no-repeat left;
     padding-left: 48px;
     }
 #ignite_bigpanel h1.spark, 
@@ -119,7 +119,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     }
 #ignite_bigpanel h1.smack, 
 #ignite_smallpanel h1.smack {
-    background: transparent url(../images/logo_xmpp.png) no-repeat left;
+    background: transparent url(../images/logo_smack.png) no-repeat left;
     padding-left: 43px;
     }
 #ignite_bigpanel h1.tinder, 
