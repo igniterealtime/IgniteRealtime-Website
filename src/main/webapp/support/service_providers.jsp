@@ -15,10 +15,10 @@
     <div id="ignite_subnav">
         <ul>
             <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Support</a></li>
-            <li id="subnav02"><a href="articles.jsp">Articles</a></li>
+            <%--<li id="subnav02"><a href="articles.jsp">Articles</a></li>--%>
             <li id="subnav03"><a href="group_chat.jsp">Group Chat</a></li>
             <li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
-            <li id="subnav05"><a href="service_providers.jsp" class="ignite_subnav_current">Professional Partners</a></li>
+            <li id="subnav05"><a href="service_providers.jsp">Professional Partners</a></li>
         </ul>
     </div>
 
@@ -45,6 +45,16 @@
                         providers listed below, including support services, customizations,
                         and hosting.
                     </p>
+
+                    <div class="ignite_service-provider">
+                        <span class="ignite_service-provider_logo"><img src="../images/logo-goodbytes-32.png" alt="GoodBytes" width="32" height="32" border="0"></span>
+                        <h3>GoodBytes</h3>
+                        <span class="ignite_service-provider_url"><a href="https://www.goodbytes.nl/ignite.html">goodbytes.nl</a></span>
+                        <p>
+                            GoodBytes specializes in Openfire development and integration challenges,
+                            and provides installation, configuration, and maintenance services.
+                        </p>
+                    </div>
 
                     <div class="ignite_service-provider">
                         <span class="ignite_service-provider_logo"><img src="../images/logo_v2_small.gif" alt="Version 2 Software" width="45" height="32" border="0"></span>
@@ -76,9 +86,9 @@
             <%@ include file="/includes/sidebar_enterprise.jspf" %>
             
             <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-            
-            <%@ include file="/includes/sidebar_createaccount.jspf" %>
-            
+
+            <%@ include file="/includes/sidebar_chat.jspf" %>
+
         </div>
         <!-- END right column (sidebar) -->
     

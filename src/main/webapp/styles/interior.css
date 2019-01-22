@@ -1187,6 +1187,8 @@ img.ignite_body_image_right {
     font-size: 8pt;
     }
 .ignite_service-provider_logo {
+    display: inline-block;
+    width: 60px;
     float: left;
     }
 .ignite_service-provider_logo img {
