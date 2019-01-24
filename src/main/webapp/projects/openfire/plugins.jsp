@@ -97,9 +97,9 @@
                                         <td width="1%">
                                             <span class="plugicon">
                                             <% if (plugin.hasIcon) { %>
-                                                <img style="height: 16px; width: 16px;" src="plugins/<%= URLEncoder.encode(pluginName, "utf-8") %>/<%= URLEncoder.encode(plugin.iconFileName, "utf-8") %>" alt="" />
+                                                <img style="height: 16px; width: 16px;" src="plugins/<%= URLEncoder.encode(pluginName, "utf-8") %>/<%= URLEncoder.encode(plugin.iconFileName, "utf-8") %>" alt="Plugin" />
                                             <% } else { %>
-                                                <img style="height: 16px; width: 16px;" src="../../images/icon_plugin.gif" width="16" height="16" alt="Plugin">
+                                                <img style="height: 16px; width: 16px;" src="../../images/icon_plugin.gif" alt="Plugin">
                                             <% } %>
                                             </span>
                                         </td>

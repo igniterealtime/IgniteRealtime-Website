@@ -222,9 +222,9 @@
                                         <td width="1%">
                                             <span class="plugicon">
                                             <% if (plugin.hasIcon) { %>
-                                                <img src="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/<%= URLEncoder.encode(plugin.iconFileName, "utf-8") %><%=snapshotParam%>" alt="" />
+                                                <img style="height: 16px; width: 16px;" src="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/<%= URLEncoder.encode(plugin.iconFileName, "utf-8") %><%=snapshotParam%>" alt="Plugin" />
                                             <% } else { %>
-                                                <img src="../../images/icon_plugin.gif" width="16" height="16" alt="Plugin">
+                                                <img style="height: 16px; width: 16px;" src="../../images/icon_plugin.gif" alt="Plugin">
                                             <% } %>
                                             </span>
                                         </td>
