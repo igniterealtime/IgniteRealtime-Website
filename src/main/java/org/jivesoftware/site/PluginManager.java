@@ -409,7 +409,7 @@ public class PluginManager
             {
                 // file format: bookmarks-1.0.1-20181223.093556-1-openfire-plugin-assembly.jar
                 final String fileName = mavenFile.getFileName().toString();
-                final Matcher snapshotQualifierMatcher = Pattern.compile(".*-(\\d{8}\\.\\d{6}-\\d*).*").matcher(mavenVersion);
+                final Matcher snapshotQualifierMatcher = Pattern.compile(".*-(\\d{8}\\.\\d{6}-\\d*).*").matcher(fileName);
                 if (snapshotQualifierMatcher.matches()) {
                     snapshotQualifier = snapshotQualifierMatcher.group(1);
                 } else {
