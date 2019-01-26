@@ -46,7 +46,7 @@
                     <p>If you need professional support or services see our <a href="service_providers.jsp">directory of professional partners</a>.</p>
                 </div>
                     
-                <div id="ignite_support_main">
+                <%--<div id="ignite_support_main">
                 <%
                     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
                     String restBaseUrl = baseUrl+"/api/core/v3";
@@ -54,17 +54,17 @@
                     String allThreadsUrl = baseUrl+"/content?filterID=all~objecttype~objecttype[thread]";
                 %>
                     <!-- BEGIN search -->
-                    <%--<div id="ignite_support_search">
+                    <div id="ignite_support_search">
                         <strong>Search the community:</strong>
                         <form action="<%= baseUrl %>/search.jspa">
                         <input type="text" name="q" size="40" maxlength="100">
                         <input type="image" src="../images/ignite_support_searchbtn.gif" name="Submit" class="ignite_support_search">
                         </form>
-                    </div>--%>
+                    </div>
                     <!-- END support -->
                     
                     <!-- BEGIN recent support activity block -->
-                    <%--<div id="ignite_support_activity">
+                    <div id="ignite_support_activity">
                     
                         <div>
                             <div id="ignite_support_activity_forums">
@@ -128,19 +128,19 @@
                     
             
                     <!-- END recent support activity block -->
-                    </div>--%>
+                    </div>
                     
-                    <div id="ignite_support_issuetracker">
+                    
+                <!-- END body support area -->
+                </div>--%>
+                <div id="ignite_support_issuetracker">
                             <h4>Issue tracker</h4>
                             <p>Use the official Ignite Realtime Issue Tracker to browse projects
                                 and find issues. You may also vote for issues, see which issues are
                                 popular, and view the road map. Note: to report new issues, please
                                 post them in the <a href="https://discourse.igniterealtime.org">forums</a>.</p>
                             <strong><a href="https://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
-                        </div>
-                    
-                <!-- END body support area -->
-                </div>
+                   </div>
             </div>
         <!-- END left column (main content) -->
         </div>
