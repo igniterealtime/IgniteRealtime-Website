@@ -133,13 +133,14 @@
                     
                 <!-- END body support area -->
                 </div>--%>
-                <div id="ignite_support_issuetracker">
+                <!--<div id="ignite_support_issuetracker">-->
+                <div>
                             <h4>Issue tracker</h4>
                             <p>Use the official Ignite Realtime Issue Tracker to browse projects
                                 and find issues. You may also vote for issues, see which issues are
                                 popular, and view the road map. Note: to report new issues, please
                                 post them in the <a href="https://discourse.igniterealtime.org">forums</a>.</p>
-                            <strong><a href="https://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
+                            <strong><a href="https://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong><br>
                    </div>
             </div>
         <!-- END left column (main content) -->
