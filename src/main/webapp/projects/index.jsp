@@ -64,6 +64,18 @@
                 </div>
                 <!-- END project - smack -->
                 
+                <!-- BEGIN project - pade -->
+                <div class="ignite_project_big">
+                <div class="ignite_project_type">Client</div>
+                    <div class="ignite_project_content">
+                        <a href="pade/index.jsp" class="ignite_project_pade">
+                        <h1>Pàdé <span><%= Versions.getVersion("pade") %></span></h1></a>
+                        <p>Unified real-time collaboration client optimized for business and organizations implemented as a cross-platform browser extension.</p>
+                        <p><a href="pade/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+                    </div>
+                </div>
+                <!-- END project - pade -->                
+                
                 
                 <!-- BEGIN other projects -->
                 <div class="ignite_project_listing">
