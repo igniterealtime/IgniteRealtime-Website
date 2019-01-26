@@ -21,7 +21,7 @@
             <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Support</a></li>
             <%--<li id="subnav02"><a href="articles.jsp">Articles</a></li>--%>
             <li id="subnav03"><a href="group_chat.jsp">Group Chat</a></li>
-            <li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
+            <li id="subnav04"><a href="https://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
             <li id="subnav05"><a href="service_providers.jsp">Professional Partners</a></li>
         </ul>
     </div>
@@ -64,9 +64,9 @@
                     <!-- END support -->
                     
                     <!-- BEGIN recent support activity block -->
-                    <div id="ignite_support_activity">
+                    <%--<div id="ignite_support_activity">
                     
-                        <%--<div>
+                        <div>
                             <div id="ignite_support_activity_forums">
                                 <h4>Recent Support Discussions</h4>
                                 <cache:cache time="60" key="<%= recentMessagesUrl %>">
@@ -123,11 +123,14 @@
                                     <li class="ignite_support_projlink"><a href="../projects/tinder/documentation.jsp">Tinder API <%= Versions.getVersion("tinder") %></a></li>
                                     <!--<li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>-->
                                 </ul>
-                            </div>--%>
+                            </div>
                         </div> 
                     
+            
+                    <!-- END recent support activity block -->
+                    </div>--%>
                     
-                        <div id="ignite_support_issuetracker">
+                    <div id="ignite_support_issuetracker">
                             <h4>Issue tracker</h4>
                             <p>Use the official Ignite Realtime Issue Tracker to browse projects
                                 and find issues. You may also vote for issues, see which issues are
@@ -135,9 +138,6 @@
                                 post them in the <a href="https://discourse.igniterealtime.org">forums</a>.</p>
                             <strong><a href="https://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
                         </div>
-            
-                    <!-- END recent support activity block -->
-                    </div>
                     
                 <!-- END body support area -->
                 </div>
