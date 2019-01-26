@@ -46,7 +46,7 @@
                     <p>If you need professional support or services see our <a href="service_providers.jsp">directory of professional partners</a>.</p>
                 </div>
                     
-                <div id="ignite_support_main">
+                <!--<div id="ignite_support_main">
                 <%
                     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
                     String restBaseUrl = baseUrl+"/api/core/v3";
@@ -120,11 +120,11 @@
                                     <li class="ignite_support_projlink"><a href="../projects/openfire/documentation.jsp">Openfire <%= Versions.getVersion("openfire") %></a></li>
                                     <li class="ignite_support_projlink"><a href="../projects/spark/documentation.jsp">Spark <%= Versions.getVersion("spark") %></a></li>
                                     <li class="ignite_support_projlink"><a href="../projects/smack/documentation.jsp">Smack API <%= Versions.getVersion("smack") %></a></li>
-                                    <li class="ignite_support_projlink"><a href="../projects/tinder/documentation.jsp">Smack API <%= Versions.getVersion("tinder") %></a></li>
-                                    <li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>
+                                    <li class="ignite_support_projlink"><a href="../projects/tinder/documentation.jsp">Tinder API <%= Versions.getVersion("tinder") %></a></li>
+                                    <!--<li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>-->
                                 </ul>
                             </div>
-                        </div>	
+                        </div>-->
                     
                     
                         <div id="ignite_support_issuetracker">
@@ -132,8 +132,8 @@
                             <p>Use the official Ignite Realtime Issue Tracker to browse projects
                                 and find issues. You may also vote for issues, see which issues are
                                 popular, and view the road map. Note: to report new issues, please
-                                post them in the <a href="<%= allThreadsUrl %>">forums</a>.</p>
-                            <strong><a href="http://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
+                                post them in the <a href="https://discourse.igniterealtime.org">forums</a>.</p>
+                            <strong><a href="https://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong>
                         </div>
             
                     <!-- END recent support activity block -->
