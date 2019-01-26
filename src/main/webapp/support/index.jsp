@@ -46,7 +46,7 @@
                     <p>If you need professional support or services see our <a href="service_providers.jsp">directory of professional partners</a>.</p>
                 </div>
                     
-                <!--<div id="ignite_support_main">
+                <%--<div id="ignite_support_main">
                 <%
                     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
                     String restBaseUrl = baseUrl+"/api/core/v3";
@@ -124,7 +124,7 @@
                                     <!--<li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>-->
                                 </ul>
                             </div>
-                        </div>-->
+                        </div> --%>
                     
                     
                         <div id="ignite_support_issuetracker">
