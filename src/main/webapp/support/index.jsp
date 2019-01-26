@@ -46,7 +46,7 @@
                     <p>If you need professional support or services see our <a href="service_providers.jsp">directory of professional partners</a>.</p>
                 </div>
                     
-                <%--<div id="ignite_support_main">
+                <div id="ignite_support_main">
                 <%
                     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
                     String restBaseUrl = baseUrl+"/api/core/v3";
@@ -54,19 +54,19 @@
                     String allThreadsUrl = baseUrl+"/content?filterID=all~objecttype~objecttype[thread]";
                 %>
                     <!-- BEGIN search -->
-                    <div id="ignite_support_search">
+                    <%--<div id="ignite_support_search">
                         <strong>Search the community:</strong>
                         <form action="<%= baseUrl %>/search.jspa">
                         <input type="text" name="q" size="40" maxlength="100">
                         <input type="image" src="../images/ignite_support_searchbtn.gif" name="Submit" class="ignite_support_search">
                         </form>
-                    </div>
+                    </div>--%>
                     <!-- END support -->
                     
                     <!-- BEGIN recent support activity block -->
                     <div id="ignite_support_activity">
                     
-                        <div>
+                        <%--<div>
                             <div id="ignite_support_activity_forums">
                                 <h4>Recent Support Discussions</h4>
                                 <cache:cache time="60" key="<%= recentMessagesUrl %>">
@@ -123,8 +123,8 @@
                                     <li class="ignite_support_projlink"><a href="../projects/tinder/documentation.jsp">Tinder API <%= Versions.getVersion("tinder") %></a></li>
                                     <!--<li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>-->
                                 </ul>
-                            </div>
-                        </div> --%>
+                            </div>--%>
+                        </div> 
                     
                     
                         <div id="ignite_support_issuetracker">
