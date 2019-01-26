@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
 <head>
-<title>Spark IM Client</title>
+<title>Pade</title>
 <meta name="body-id" content="projects" />
 <meta name="panel-name" content="pade" />
 <style type="text/css" media="screen">
