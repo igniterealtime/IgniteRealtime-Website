@@ -70,7 +70,7 @@
 
                     <iframe src="candy.jsp" style="width:100%;height:400px;"></iframe>
                     
-                    <p>Alternatively, you may use any XMPP client (Spark, Exodus, Pandion, Trillian, etc) 
+                    <p>Alternatively, you may use any <a href="https://xmpp.org/software/clients.html">XMPP client</a> 
                     to connect to the group chat service at conference.igniterealtime.org. The chat name is
                     &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p>
 
