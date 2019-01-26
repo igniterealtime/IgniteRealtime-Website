@@ -107,6 +107,11 @@ styles specific to the interior pages for the Ignite Real Time site.
     background: transparent url(../images/logo_spark.gif) no-repeat left;
     padding-left: 40px;
     }
+#ignite_bigpanel h1.pade, 
+#ignite_smallpanel h1.pade {
+    background: transparent url(../images/logo_pade.png) no-repeat left;
+    padding-left: 40px;
+    }    
 #ignite_bigpanel h1.sparkweb, 
 #ignite_smallpanel h1.sparkweb {
     background: transparent url(../images/logo_sparkweb.gif) no-repeat left;
@@ -335,7 +340,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     border-top: 4px solid #000;
     }
 
-img.ignite_body_image_right {	
+img.ignite_body_image_right {   
     margin: 2px 0 10px 15px;
     float: right;
     }
@@ -381,6 +386,7 @@ img.ignite_body_image_right {
 .ignite_project_big img.ignite_projects_openfire,
 .ignite_project_big img.ignite_projects_spark,
 .ignite_project_big img.ignite_projects_smack,
+.ignite_project_big img.ignite_projects_pade,
 .ignite_project_small img.ignite_projects_sparkweb, 
 .ignite_project_small img.ignite_projects_asterisk, 
 .ignite_project_small img.ignite_projects_tinder, 
@@ -390,6 +396,7 @@ img.ignite_body_image_right {
     }
 .ignite_project_big a.ignite_project_openfire,
 .ignite_project_big a.ignite_project_spark,
+.ignite_project_big a.ignite_project_pade,
 .ignite_project_big a.ignite_project_smack {
     display: block;
     padding-left: 43px;
@@ -398,6 +405,7 @@ img.ignite_body_image_right {
     }
 .ignite_project_big a:hover.ignite_project_openfire,
 .ignite_project_big a:hover.ignite_project_spark,
+.ignite_project_big a:hover.ignite_project_pade,
 .ignite_project_big a:hover.ignite_project_smack {
     color: #555;
     text-decoration: underline;
@@ -409,6 +417,9 @@ img.ignite_body_image_right {
 .ignite_project_big a.ignite_project_spark {
     background: transparent url(../images/logo_spark.gif) no-repeat 4px 0;
     }
+.ignite_project_big a.ignite_project_pade {
+    background: transparent url(../images/logo_pade.png) no-repeat 4px 0;
+    }    
 .ignite_project_big a.ignite_project_smack {
     background: transparent url(../images/logo_smack.png) no-repeat 4px 0;
     }
@@ -793,7 +804,7 @@ img.ignite_body_image_right {
     margin-right: 10px;
     }
 
-.ignite_body_screenshots {	
+.ignite_body_screenshots {  
     float: left;
     padding: 0 15px 15px 15px;
     }
@@ -801,11 +812,11 @@ img.ignite_body_image_right {
     color: #497cb3;
     text-align: center;
     }
-.ignite_body_screenshots table {	
+.ignite_body_screenshots table {    
     width: 440px;
     margin: 0;
     }
-.ignite_body_screenshots tr td {	
+.ignite_body_screenshots tr td {    
     text-align: center;
     padding: 10px 0 10px 0;
     }
@@ -825,7 +836,7 @@ img.ignite_body_image_right {
 .ignite_body_screenshots_enterprise {
     background-color: #f9f9f9;
     }
-.ignite_body_screenshots_enterprise table {	
+.ignite_body_screenshots_enterprise table { 
     width: 200px;
     margin: 0;
     }

@@ -18,6 +18,12 @@
         avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/wroot/45/16_1.png";
         profileLink = "https://discourse.igniterealtime.org/u/wroot";
         profile = "He is known to remember EVERYTHING and shamelessly remind you about promises you made and already forgot ten years ago.";
+    }    
+    else if (project.equals("pade")) {
+        name = "dele";
+        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/dele_olajide/120/5885_1.png";
+        profileLink = "https://discourse.igniterealtime.org/u/dele_olajide";
+        profile = "is a systems integrator. A fancy name for a jack or all trades and master of none.";
     }
     else if (project.equals("sparkweb")) {
         name = "vacant";
