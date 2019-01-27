@@ -23,7 +23,7 @@
         name = "dele";
         avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/dele_olajide/45/5885_1.png";
         profileLink = "https://discourse.igniterealtime.org/u/dele_olajide";
-        profile = "is a systems integrator. A fancy name for a jack or all trades and master of none.";
+        profile = "is a systems integrator.<br/> A fancy name for a jack of all trades and master of none ;-)";
     }
     else if (project.equals("sparkweb")) {
         name = "vacant";
