@@ -53,7 +53,7 @@
                 <!-- END project - spark -->
                 
                 <!-- BEGIN project - smack -->
-                <div class="ignite_project_big">
+                <div class="ignite_project_big ignite_project_big_left">
                 <div class="ignite_project_type">Client Library</div>
                     <div class="ignite_project_content">
                         <a href="smack/index.jsp" class="ignite_project_smack">

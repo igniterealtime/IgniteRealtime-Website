@@ -1127,6 +1127,9 @@ img.ignite_body_image_right {
 .ignite_support_projlink a.spark {
     background: transparent url(../images/logo_spark_16x16.gif) no-repeat left;
     }
+.ignite_support_projlink a.pade {
+    background: transparent url(../images/logo_pade_16x16.png) no-repeat left;
+    }    
 .ignite_support_projlink a.sparkweb {
     background: transparent url(../images/logo_sparkweb_16x16.gif) no-repeat left;
     }
