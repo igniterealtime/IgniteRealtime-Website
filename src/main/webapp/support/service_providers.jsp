@@ -41,7 +41,7 @@
                 <div class="ignite_int_body_support">
                     
                     
-                    <p>Get professional assistance for Openfire (formerly Wildfire) and Spark from the service
+                    <p>Get professional assistance for Openfire (formerly Wildfire) Smack and Spark from the service
                         providers listed below, including support services, customizations,
                         and hosting.
                     </p>
