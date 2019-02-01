@@ -65,6 +65,15 @@
                             and provides installation, configuration, and maintenance services.
                         </p>
                     </div>
+                    
+                    <div class="ignite_service-provider">
+                        <span class="ignite_service-provider_logo"><img src="../images/logo_ihive.svg" alt="Industrious Hive" width="56" height="32" border="0"></span>
+                        <h3>Industrious Hive</h3>
+                        <span class="ignite_service-provider_url"><a href="https://industrioushive.com/">industrioushive.com</a></span>
+                        <p>
+                            Industrious Hive offers a commercial version of Openfire with Pàdé called BeeKeeper. We provide proffessional services which includes consulting, software development, integration, installation, configuration and maintenance services.
+                        </p>
+                    </div>                    
 
                     <div class="ignite_service-provider">
                         <span class="ignite_service-provider_logo"><img src="../images/logo_v2_small.gif" alt="Version 2 Software" width="45" height="32" border="0"></span>
