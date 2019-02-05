@@ -114,6 +114,7 @@
                         <p><strong>Websites:</strong></p> -->
                         <p><a href="https://xmpp.org">XMPP.org Website</a></p>
                         <p><a href="https://planet.jabber.org">Planet Jabber Blogs</a></p>
+                        <p><a href="https://twitter.com/IgniteRealtime">Ignite Realtime on Twitter</a></p>
 
                     </div>
                 </div>
