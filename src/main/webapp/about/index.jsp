@@ -30,7 +30,7 @@
                     <h2 class="larger">Our Community</h2>
                     
                     <p>
-                        Igniterealtime is an Open Source community composed of end-users, developers and service providers
+                        Ignite Realtime is an Open Source community composed of end-users, developers and service providers
                         around the world who are interested in applying innovative, open-standards-based Real Time
                         Collaboration to their businesses. We're aimed at disrupting proprietary, non-open
                         standards-based systems and invite you to participate in what's already one of the biggest
