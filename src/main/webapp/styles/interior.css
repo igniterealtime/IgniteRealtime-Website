@@ -475,6 +475,7 @@ img.ignite_body_image_right {
     text-decoration: underline;
     }
 .ignite_project_table-description {
+    float: left;
     color: #666;
     }
 .ignite_project_table-version {
