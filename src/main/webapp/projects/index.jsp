@@ -69,7 +69,7 @@
                 <div class="ignite_project_type">Client</div>
                     <div class="ignite_project_content">
                         <a href="pade/index.jsp" class="ignite_project_pade">
-                        <h1>Pàdé <span><%= Versions.getVersion("pade") %></span></h1></a>
+                        <h1>PÃ dÃ© <span><%= Versions.getVersion("pade") %></span></h1></a>
                         <p>Unified real-time collaboration client optimized for business and organizations implemented as a cross-platform browser extension.</p>
                         <p><a href="pade/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
                     </div>
@@ -86,7 +86,7 @@
                             <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="tinder/index.jsp">Tinder</a>
                             </td>
-                            <td class="ignite_project_table-description">
+                            <td class="ignite_project_table-description" width="505">
                             A Java based XMPP library, providing an implementation for XMPP stanzas and components.
                             </td>
                             <td class="ignite_project_table-version">
@@ -100,7 +100,7 @@
                             <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="whack/index.jsp">Whack</a>
                             </td>
-                            <td class="ignite_project_table-description">
+                            <td class="ignite_project_table-description" width="505">
                                 Easy to use Java XMPP component library.
                             </td>
                             <td class="ignite_project_table-version">
@@ -110,11 +110,11 @@
                                 <a href="whack/index.jsp">Learn More</a>
                             </td>
                         </tr>
-                        <tr class="ignite_project_table-row-even">
+                        <tr class="ignite_project_table-row-odd">
                             <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="asterisk/index.jsp">Asterisk-IM</a>
                             </td>
-                            <td class="ignite_project_table-description">
+                            <td class="ignite_project_table-description" width="505">
                                 Asterisk-IM integration for Openfire.
                             </td>
                             <td class="ignite_project_table-version">
@@ -138,7 +138,7 @@
                             <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="xiff/index.jsp">XIFF</a>
                             </td>
-                            <td class="ignite_project_table-description">
+                            <td class="ignite_project_table-description" width="505">
                                 Flash XMPP client library.
                             </td>
                             <td class="ignite_project_table-version">
@@ -152,7 +152,7 @@
                             <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="sparkweb/index.jsp">SparkWeb</a>
                             </td>
-                            <td class="ignite_project_table-description">
+                            <td class="ignite_project_table-description" width="505">
                                 Flash based real-time collaboration web client.
                             </td>
                             <td class="ignite_project_table-version">
