@@ -25,7 +25,7 @@ public class FeedItem extends SummaryFeedItem
         contents = firstPost.getString( "cooked" );
         publishedDate = javax.xml.bind.DatatypeConverter.parseDateTime( firstPost.getString( "created_at" ) ).getTime();
         tags = ((List<String>) entry.getJSONArray( "tags" )).toArray( new String[0] );
-        replyCount = entry.getInt( "reply_count" );
+        replyCount = entry.getInt( "posts_count" );
     }
 
 //    public FeedItem( SyndEntry entry )
