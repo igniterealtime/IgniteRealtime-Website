@@ -68,7 +68,7 @@
                     people that are paid to be readily available and answer your questions. It might take some time for
                     anyone to read your message.</p>
 
-                    <iframe src="candy.jsp" style="width:100%;height:400px;"></iframe>
+                    <iframe src="converse.jsp" style="width:100%;height:400px;"></iframe>
                     
                     <p>Alternatively, you may use any <a href="https://xmpp.org/software/clients.html">XMPP client</a> 
                     to connect to the group chat service at conference.igniterealtime.org. The chat name is
@@ -77,7 +77,7 @@
 
                     
                     <h3>About Group Chat</h3>
-                    <p>The web-based group chat client used is <a href="https://candy-chat.github.io/candy/">Candy</a>.</p>
+                    <p>The web-based group chat client used is <a href="https://conversejs.org">ConverseJS</a>.</p>
                     
                 </div>
             
