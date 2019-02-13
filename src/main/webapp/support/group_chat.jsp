@@ -68,7 +68,7 @@
                     people that are paid to be readily available and answer your questions. It might take some time for
                     anyone to read your message.</p>
 
-                    <iframe src="converse.jsp" style="width:100%;height:400px;"></iframe>
+                    <iframe src="converse.jsp" style="width:100%;height:420px;"></iframe>
                     
                     <p>Alternatively, you may use any <a href="https://xmpp.org/software/clients.html">XMPP client</a> 
                     to connect to the group chat service at conference.igniterealtime.org. The chat name is
