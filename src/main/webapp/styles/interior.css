@@ -955,6 +955,12 @@ img.ignite_body_image_right {
     width: 680px;
     clear: both;
     padding: 10px 0 30px 15px;
+}
+
+/* Group chat page styles */
+.ignite_int_body_groupchat {
+    width: 954px;
+    clear: both;
     }
 
 
