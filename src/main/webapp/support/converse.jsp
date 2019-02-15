@@ -18,7 +18,7 @@
 
     <style>
         .converse-container {
-            height: 400px;
+            height: 558px;
         }
     </style>
 </head>

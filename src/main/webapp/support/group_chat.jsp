@@ -44,62 +44,44 @@
 
     <!-- BEGIN body area -->
     <div id="ignite_body">
-        
-        <!-- BEGIN left column (main content) -->
-        <div id="ignite_body_leftcol">
-            
-            <!-- BEGIN body content area -->
-            <div id="ignite_int_body">
-            
-                <!-- BEGIN body header -->
-                <div id="ignite_body_header">
-                    <h2>Group Chat</h2>
-                </div>
-                <!-- END body header -->
-                
-                
-                <div class="ignite_int_body_support">
-                    
-                    
-                    <p>Chat live with the community about igniterealtime.org projects. The chat
-                    service is available at all times.</p>
 
-                    <p>Feel free to ask any question you like, but please note that you're talking to volunteers, not
-                    people that are paid to be readily available and answer your questions. It might take some time for
-                    anyone to read your message.</p>
+        <!-- BEGIN body header -->
+        <!-- <div id="ignite_body_header">
+           <h2>Group Chat</h2>
+        </div> -->
+        <!-- END body header -->
 
-                    <iframe src="converse.jsp" style="width:100%;height:420px;"></iframe>
-                    
-                    <p>Alternatively, you may use any <a href="https://xmpp.org/software/clients.html">XMPP client</a> 
-                    to connect to the group chat service at conference.igniterealtime.org. The chat name is
-                    &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p>
+                 <!-- BEGIN group chat area -->
+                        <div class="ignite_int_body_groupchat">
 
+                            <p>Chat live with the community about Ignite Realtime projects. The chat
+                            service is available at all times. Feel free to ask any question you like, but please note
+                            that you're talking to volunteers, not people that are paid to be readily available and answer
+                            your questions. It might take some time for anyone to read your message.</p>
 
-                    
-                    <h3>About Group Chat</h3>
-                    <p>The web-based group chat client used is <a href="https://conversejs.org">ConverseJS</a>.</p>
-                    
-                </div>
-            
-            
-            </div>
-            <!-- END body content area -->
-            
-        </div>
-        <!-- END left column (main content) -->
+                            <iframe src="converse.jsp" style="width:100%;height:574px;"></iframe>
+
+                            <!-- <p>Alternatively, you may use any <a href="https://xmpp.org/software/clients.html">XMPP client</a>
+                            to connect to the group chat service at conference.igniterealtime.org. The chat name is
+                            &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p> -->
+
+                            <p>The web-based group chat client used is <a href="https://conversejs.org">ConverseJS</a>.</p>
+
+                        </div>
+                 <!-- END group chat area -->
         
         <!-- BEGIN right column (sidebar) -->
-        <div id="ignite_body_rightcol">
+        <!-- <div id="ignite_body_rightcol">
 
         <%--    <%@ include file="/includes/sidebar_chat.jspf" %> --%>
 
-            <%@ include file="/includes/sidebar_enterprise.jspf" %>
+         <%--   <%@ include file="/includes/sidebar_enterprise.jspf" %> --%>
             
-            <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
+         <%--   <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %> --%>
             
-            <%@ include file="/includes/sidebar_testimonial.jspf" %>
+         <%--   <%@ include file="/includes/sidebar_testimonial.jspf" %> --%>
             
-        </div>
+        </div> -->
         <!-- END right column (sidebar) -->
     
     </div>
