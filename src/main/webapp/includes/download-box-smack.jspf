@@ -11,7 +11,7 @@
 
     DecimalFormat formatter = new DecimalFormat("0.00");
     String basedir = buildsPath + "/smack";
-    File binZip = new File(basedir, "smack_" + version + ".zip");
+    File binZip = new File(basedir, "smack-" + version + ".zip");
 
     String buildDate = "UNKNOWN";
     if (binZip.exists()) {
