@@ -38,7 +38,7 @@
                 <a href="<%=request.getContextPath()%>/builds/smack/docs/<%= version %>/README.html">Readme & License</a> |
                 <a href="<%=request.getContextPath()%>/builds/smack/docs/<%= version %>/changelog.html">Changelog</a> |
                 <a href="nightly_smack.jsp">Nightly Builds</a> |
-                <a href="source.jsp">Source Code</a>
+                <a href="https://github.com/igniterealtime/Smack">Source Code</a>
             </span>
 
             <h2>Smack <%= version %></h2>

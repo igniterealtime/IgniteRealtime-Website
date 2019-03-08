@@ -30,7 +30,7 @@
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
                 <!-- <a href="#"><strong>Plugins</strong></a> |  -->
-                <a href="source.jsp">Source Code</a>
+                <a href="https://github.com/igniterealtime/Whack">Source Code</a>
             </span>
 
             <h2>Whack <%= version %></h2>

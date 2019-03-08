@@ -38,7 +38,7 @@
                 <!--<a href="/builds/tinder/docs/latest/README.html">Readme & License</a>--></li> |
                 <a href="https://discourse.igniterealtime.org/t/tinder-release-notes/63977">Changelog</a> |
                 <%--<a href="nightly_tinder.jsp">Nightly Builds</a> |  --%>
-                <a href="source.jsp">Source Code</a>
+                <a href="https://github.com/igniterealtime/tinder">Source Code</a>
             </span>
 
             <h2>Tinder <%= version %></h2>

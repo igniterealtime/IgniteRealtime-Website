@@ -37,8 +37,8 @@
                 <!-- <a href="#"><strong>Plugins</strong></a> |  -->
                 <a href="<%=request.getContextPath()%>/builds/xiff/docs/latest/README.html">Readme & License</a> |
                 <a href="<%=request.getContextPath()%>/builds/xiff/docs/latest/changelog.html">Changelog</a> |
-                <a href="nightly_xiff.jsp">Nightly Builds</a> 
-                <!-- <a href="#">Source Code</a> -->
+                <!-- <a href="nightly_xiff.jsp">Nightly Builds</a>  | -->
+                <a href="https://github.com/igniterealtime/XIFF">Source Code</a>
             </span>
 
             <h2>XIFF <%= version %></h2>
