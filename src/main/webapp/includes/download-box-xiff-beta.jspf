@@ -38,7 +38,7 @@
                 <a href="<%=request.getContextPath()%>/builds/xiff/docs/<%= version %>/README.html">Readme & License</a> |
                 <a href="<%=request.getContextPath()%>/builds/xiff/docs/<%= version %>/changelog.html">Changelog</a><!--  |
                 <a href="#">Nightly Builds</a> |  -->
-                <!-- <a href="#">Source Code</a> -->
+                <a href="https://github.com/igniterealtime/XIFF">Source Code</a>
             </span>
 
             <h2>XIFF <%= version %></h2>

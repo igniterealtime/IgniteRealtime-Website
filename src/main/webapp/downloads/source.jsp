@@ -48,15 +48,9 @@
                         We welcome your contribution! If you'd like to contribute, please create a pull request with
                         your changes for the relevant project.
                     </p>
-
-                    <p>
-                        For your convenience, several source code archives have been made available in the table below.
-                        Note that these files could lag behind a little. For the most up-to-date sources, please visit
-                        our GitHub pages.
-                    </p>
                 </div>
 
-                <div class="ignite_download_panel ignite_download_source_panel">
+                <!-- <div class="ignite_download_panel ignite_download_source_panel">
                     <%
                     String path = request.getContextPath();
                     String buildsPath = application.getInitParameter("builds-path");
@@ -95,7 +89,7 @@
                             <span class="ignite_download_item_size"><%= formatter.format(srcTar.length()/1024.0/1024.0) %> MB</span>
                         </div>
                 <% } %>
-                </div>
+                </div> -->
 
             </div>
             <!-- END body content area -->

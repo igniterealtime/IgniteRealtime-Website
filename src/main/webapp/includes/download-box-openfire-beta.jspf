@@ -51,7 +51,7 @@
                 <a href="<%=request.getContextPath()%>/builds/openfire/docs/latest/LICENSE.html">License</a> |
                 <a href="<%=request.getContextPath()%>/builds/openfire/docs/latest/changelog.html">Changelog</a> |  -->
                 <a href="nightly_openfire.jsp">Nightly Builds</a> |
-                <a href="source.jsp">Source Code</a>
+                <a href="https://github.com/igniterealtime/Openfire">Source Code</a>
             </span>
 
             <h2>Openfire <%= version %></h2>
