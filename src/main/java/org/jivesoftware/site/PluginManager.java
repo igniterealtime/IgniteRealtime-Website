@@ -205,7 +205,7 @@ public class PluginManager
             .filter( metadata -> metadata.isRelease )
             .collect(
                 Collectors.toMap(
-                    Metadata::getPluginFileName,
+                    Metadata::getPluginFileNameLowerCase,
                     Function.identity(),
                     BinaryOperator.maxBy( Comparator.comparing( Metadata::getPluginVersion) )
                 )
@@ -342,6 +342,8 @@ public class PluginManager
 
         // The 'canonical' name of the plugin (which is the filename without the file extension)
         public final String pluginName;
+        // The lower case of the plugin, to allow for case changes (certificatemanager.jar / certificateManager.jar)
+        public final String pluginNameLowerCase;
         public final String humanReadableName;
         public final String humanReadableDescription;
         public final String author;
@@ -409,6 +411,7 @@ public class PluginManager
 
             // this matches the plugin name (and is easier than parsing the file name itself)
             pluginName = mavenFile.getParent().getParent().getFileName().toString();
+            pluginNameLowerCase = pluginName.toLowerCase();
             pluginFileName = pluginName + mavenFile.toString().substring( mavenFile.toString().lastIndexOf('.') );
             mavenVersion = mavenFile.getParent().getFileName().toString();
             isSnapshot = mavenVersion.toUpperCase().endsWith( "-SNAPSHOT" );
@@ -461,6 +464,11 @@ public class PluginManager
         public String getPluginFileName()
         {
             return pluginFileName;
+        }
+
+        private String getPluginFileNameLowerCase()
+        {
+            return pluginNameLowerCase;
         }
 
         public boolean isHasReadme()
