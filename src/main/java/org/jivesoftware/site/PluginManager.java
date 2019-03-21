@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 
 import javax.servlet.ServletConfig;
 
+import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.dom4j.DocumentException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -294,9 +295,17 @@ public class PluginManager
     public static List<Metadata> sortByVersionAndReleaseDate( Collection<Metadata> unordered )
     {
         return unordered.stream()
-            .sorted( Comparator.comparing( (PluginManager.Metadata o) -> o.pluginVersion).reversed() // TODO don't base version-sorting on alphabet.
-                         .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.isRelease ? o.releaseDate : o.snapshotCreationDate ).reversed()  )
-            )
+            .sorted((plugin1, plugin2) -> {
+                final DefaultArtifactVersion version1 = new DefaultArtifactVersion(plugin1.mavenVersion);
+                final DefaultArtifactVersion version2 = new DefaultArtifactVersion(plugin2.mavenVersion);
+                final int versionCompare = version2.compareTo(version1);
+                if (versionCompare == 0) {
+                    // The versions are the same, so use the dates instead
+                    return plugin2.releaseDate.compareTo(plugin1.releaseDate);
+                } else {
+                    return versionCompare;
+                }
+            })
             .collect( Collectors.toList() );
     }
 
