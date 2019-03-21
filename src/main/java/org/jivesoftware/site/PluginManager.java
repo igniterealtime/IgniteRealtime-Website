@@ -301,7 +301,11 @@ public class PluginManager
                 final int versionCompare = version2.compareTo(version1);
                 if (versionCompare == 0) {
                     // The versions are the same, so use the dates instead
-                    return plugin2.releaseDate.compareTo(plugin1.releaseDate);
+                    if (plugin1.isSnapshot && plugin2.isSnapshot) {
+                        return plugin2.snapshotCreationDate.compareTo(plugin1.snapshotCreationDate);
+                    } else {
+                        return plugin2.releaseDate.compareTo(plugin1.releaseDate);
+                    }
                 } else {
                     return versionCompare;
                 }
