@@ -183,7 +183,7 @@ public class OpenfireVersionChecker {
             latestPlugin.addAttribute("icon", plugin.getIconURL() );
             latestPlugin.addAttribute("readme", plugin.getReadmeURL() );
             latestPlugin.addAttribute("changelog", plugin.getChangelogURL() );
-            latestPlugin.addAttribute("latest", plugin.getPluginVersion() );
+            latestPlugin.addAttribute("latest", plugin.getPluginVersion().replace("-Release-", ".") );
             latestPlugin.addAttribute("licenseType", plugin.getLicenceType() );
             latestPlugin.addAttribute("author", plugin.getAuthor() );
             latestPlugin.addAttribute("minServerVersion", plugin.getMinimumRequiredOpenfireVersion() );
