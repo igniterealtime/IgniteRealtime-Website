@@ -67,6 +67,7 @@
                             <td style="text-align: center;">Info</td>
                             <td>File</td>
                             <td style="text-align: center;">Version</td>
+                            <td style="text-align: center;">Released</td>
                             <td style="text-align: center;">Min Openfire Version</td>
                             <td style="text-align: center;">Other Versions</td>
                         </tr>
@@ -85,6 +86,7 @@
             <%  } %>
                     <tbody>
             <%
+            final DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
             for ( PluginManager.Metadata plugin : plugins )
             {
                 final String pluginName = plugin.pluginFileName.substring( 0, plugin.pluginFileName.length() - 4 );
@@ -134,6 +136,9 @@
                             </td>
                             <td class="c4" align="center" nowrap>
                                 <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
+                            </td>
+                            <td class="c4" align="center" nowrap>
+                                <%= (plugin.releaseDate != null ? formatter.format(plugin.releaseDate) : "&nbsp;") %>
                             </td>
                             <td class="c4" align="center" nowrap>
                                 <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
