@@ -10,6 +10,8 @@ import java.io.StringReader;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
@@ -40,6 +42,7 @@ public class OpenfireVersionChecker {
     //private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
     private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/index.jsp";
     private static String OPENFIRE_LOG = "https://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html";
+    private static final DateFormat RELEASE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * Map that keeps the information specified in plugin.xml for each available plugin.
      * Key = filename, value = content of plugin.xml
@@ -187,6 +190,7 @@ public class OpenfireVersionChecker {
             latestPlugin.addAttribute("licenseType", plugin.getLicenceType() );
             latestPlugin.addAttribute("author", plugin.getAuthor() );
             latestPlugin.addAttribute("minServerVersion", plugin.getMinimumRequiredOpenfireVersion() );
+            latestPlugin.addAttribute("releaseDate", RELEASE_DATE_FORMAT.format(plugin.releaseDate));
 
             // Include size of plugin
             latestPlugin.addAttribute("fileSize", Long.toString( plugin.getFileSize() ));
