@@ -1,9 +1,9 @@
-<%@ page import="org.jivesoftware.site.PluginManager"%>
 <%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.nio.file.Path"%>
+<%@ page import="java.nio.file.Paths"%>
 <%@ page import="java.text.DateFormat"%>
-<%@ page import="java.util.List"%>
-<%@ page import="java.nio.file.Path" %>
-<%@ page import="java.nio.file.Paths" %>
+<%@ page import="java.util.List" %>
+<%@ page import="org.jivesoftware.site.PluginManager" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
@@ -115,7 +115,7 @@
                                     <%  } %>
                                 </table>
                             </td>
-                            <td class="c2" style="white-space: nowrap;">
+                            <td class="c2" style="white-space: nowrap; text-align: center">
                                 <% if( plugin.hasReadme) { %>
                                 <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>

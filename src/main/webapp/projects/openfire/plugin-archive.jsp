@@ -130,7 +130,7 @@
                                     <%  } %>
                                 </table>
                             </td>
-                            <td class="c2" nowrap>
+                            <td class="c2" style="white-space: nowrap;">
                                 <% if( plugin.hasReadme) { %>
                                 <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>
@@ -139,18 +139,18 @@
                                 <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
                                 <% } %>
                             </td>
-                            <td class="c3" nowrap>
+                            <td class="c3" style="white-space: nowrap;">
                                 <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>">Download</a>
                             </td>
-                            <td class="c4" align="center" nowrap>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
                             </td>
-                            <td class="c5" nowrap>
+                            <td class="c5" style="white-space: nowrap;">
                                 <% if (plugin.releaseDate != null) { %>
                                 <%= formatter.format(plugin.releaseDate) %>
                                 <% } %>
                             </td>
-                            <td class="c4" align="center" nowrap>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
                                 <%= (plugin.priorToOpenfireVersion == null ? "+" : "<br>- " + plugin.priorToOpenfireVersion) %>
                             </td>
@@ -225,7 +225,7 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td class="c2" nowrap>
+                            <td class="c2" style="white-space: nowrap; text-align: center">
                                 <% if( plugin.hasReadme) { %>
                                 <a href="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html<%=snapshotParam%>"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>
@@ -234,18 +234,18 @@
                                 <a href="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html<%=snapshotParam%>"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
                                 <% } %>
                             </td>
-                            <td class="c3" nowrap>
+                            <td class="c3" style="white-space: nowrap;">
                                 <a href="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %><%=snapshotParam%>">Download</a>
                             </td>
-                            <td class="c4" align="center" nowrap style="width: unset">
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
                             </td>
-                            <td class="c5" nowrap style="width: unset">
+                            <td class="c5" style="white-space: nowrap;">
                                 <% if (plugin.snapshotCreationDate != null) { %>
                                 <%= formatter.format(plugin.snapshotCreationDate) %>
                                 <% } %>
                             </td>
-                            <td class="c4" align="center" nowrap>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
                                 <%= (plugin.priorToOpenfireVersion == null ? "+" : "<br>- " + plugin.priorToOpenfireVersion) %>
                             </td>
