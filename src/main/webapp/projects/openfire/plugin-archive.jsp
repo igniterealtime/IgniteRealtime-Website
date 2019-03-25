@@ -7,12 +7,12 @@
     }
 %>
 <%@ page import="java.net.URLEncoder"%>
+<%@ page import="java.nio.charset.StandardCharsets"%>
 <%@ page import="java.nio.file.Path"%>
 <%@ page import="java.nio.file.Paths"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="java.util.List"%>
-<%@ page import="org.jivesoftware.site.PluginManager"%>
-<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="org.jivesoftware.site.PluginManager" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
@@ -45,12 +45,6 @@
 <!-- BEGIN body area -->
 <div id="ignite_body">
 
-    <!-- BEGIN left column (main content) -->
-    <div id="ignite_body_leftcol">
-
-        <!-- BEGIN body content area -->
-        <div id="ignite_int_body">
-
             <!-- BEGIN body header -->
             <div id="ignite_body_header">
                 <h2><%= URLEncoder.encode(pluginName, "utf-8") %> Plugin Archive</h2>
@@ -72,7 +66,7 @@
                 </p>
 
                 <!-- BEGIN plugins -->
-                <div id="plugins">
+                <div id="plugins" style="width:100%">
                     <a name="opensource"></a>
 
                     <table cellpadding="3" cellspacing="0" border="0" width="100%">
@@ -81,8 +75,8 @@
                             <td style="text-align: center;">Info</td>
                             <td>File</td>
                             <td style="text-align: center;">Version</td>
-                            <td style="text-align: center;">Min Openfire Version</td>
-                            <td>Date</td>
+                            <td style="text-align: center;">Released</td>
+                            <td style="text-align: center;">Openfire Version</td>
                         </tr>
                         <%
                             {
@@ -136,7 +130,7 @@
                                     <%  } %>
                                 </table>
                             </td>
-                            <td class="c2" nowrap>
+                            <td class="c2" style="white-space: nowrap;">
                                 <% if( plugin.hasReadme) { %>
                                 <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>
@@ -145,19 +139,20 @@
                                 <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
                                 <% } %>
                             </td>
-                            <td class="c3" nowrap>
-                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>"><%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %></a>
+                            <td class="c3" style="white-space: nowrap;">
+                                <a href="plugins/<%= URLEncoder.encode(version, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>">Download</a>
                             </td>
-                            <td class="c4" align="center" nowrap>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
                             </td>
-                            <td class="c4" align="center" nowrap>
-                                <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
-                            </td>
-                            <td class="c5" nowrap>
+                            <td class="c5" style="white-space: nowrap;">
                                 <% if (plugin.releaseDate != null) { %>
                                 <%= formatter.format(plugin.releaseDate) %>
                                 <% } %>
+                            </td>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
+                                <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
+                                <%= (plugin.priorToOpenfireVersion == null ? "+" : "<br>- " + plugin.priorToOpenfireVersion) %>
                             </td>
                         </tr>
                         <%  }
@@ -171,17 +166,11 @@
                         %>
                         </tbody>
                     </table>
-                </div>
-                <!-- END plugins -->
 
-                <p style="margin-top: 3em;">
-                    The plugins below, so-called SNAPSHOTS, are build automatically by the continuous integration
-                    system. They represent the latest development, but are untested.
-                </p>
-
-                <!-- BEGIN plugins -->
-                <div id="plugin-snapshots">
-                    <a name="opensource"></a>
+                    <p style="margin-top: 3em;">
+                        The plugins below, so-called SNAPSHOTS, are build automatically by the continuous integration
+                        system. They represent the latest development, but are untested.
+                    </p>
 
                     <table cellpadding="3" cellspacing="0" border="0" width="100%">
                         <tr class="pluginTableHeader">
@@ -189,8 +178,8 @@
                             <td style="text-align: center;">Info</td>
                             <td>File</td>
                             <td style="text-align: center;">Version</td>
-                            <td style="text-align: center;">Min Openfire Version</td>
-                            <td>Date</td>
+                            <td>Built at</td>
+                            <td style="text-align: center;">Openfire Version</td>
                         </tr>
                         <%
                             {
@@ -203,7 +192,7 @@
                         <% if (plugins.isEmpty()) { %>
                         <tbody>
                         <tr>
-                            <td colspan="6">No plugins.</td>
+                            <td colspan="6">No snapshots.</td>
                         </tr>
                         </tbody>
                         <%  } %>
@@ -236,7 +225,7 @@
                                     </tr>
                                 </table>
                             </td>
-                            <td class="c2" nowrap>
+                            <td class="c2" style="white-space: nowrap; text-align: center">
                                 <% if( plugin.hasReadme) { %>
                                 <a href="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html<%=snapshotParam%>"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>
@@ -245,19 +234,20 @@
                                 <a href="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html<%=snapshotParam%>"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
                                 <% } %>
                             </td>
-                            <td class="c3" nowrap>
-                                <a href="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %><%=snapshotParam%>"><%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %></a>
+                            <td class="c3" style="white-space: nowrap;">
+                                <a href="plugins/<%= URLEncoder.encode(plugin.mavenVersion, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %><%=snapshotParam%>">Download</a>
                             </td>
-                            <td class="c4" align="center" nowrap style="width: unset">
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
                             </td>
-                            <td class="c4" align="center" nowrap>
-                                <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
-                            </td>
-                            <td class="c5" nowrap style="width: unset">
+                            <td class="c5" style="white-space: nowrap;">
                                 <% if (plugin.snapshotCreationDate != null) { %>
                                 <%= formatter.format(plugin.snapshotCreationDate) %>
                                 <% } %>
+                            </td>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
+                                <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
+                                <%= (plugin.priorToOpenfireVersion == null ? "+" : "<br>- " + plugin.priorToOpenfireVersion) %>
                             </td>
                         </tr>
                         <%  }
@@ -274,24 +264,6 @@
                 </div>
                 <!-- END plugins -->
             </div>
-
-        </div>
-        <!-- END body content area -->
-
-    </div>
-    <!-- END left column (main content) -->
-
-    <!-- BEGIN right column (sidebar) -->
-    <div id="ignite_body_rightcol">
-
-        <jsp:include page="/includes/sidebar_projectlead.jsp">
-            <jsp:param name="project" value="openfire" />
-        </jsp:include>
-
-        <%@ include file="/includes/sidebar_enterprise.jspf" %>
-
-    </div>
-    <!-- END right column (sidebar) -->
 
 </div>
 <!-- END body area -->

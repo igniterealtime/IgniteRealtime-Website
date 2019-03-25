@@ -353,6 +353,7 @@ public class PluginManager
         public final String author;
         public final String licenseType;
         public final String minimumRequiredOpenfireVersion;
+        public final String priorToOpenfireVersion;
         // In an ideal world, the plugin version (from the plugin.xml) would match the maven version (from the pom.xml)
         // However, that's not the case, particularly for older plugins, so distinguish between the two.
         public final String pluginVersion;
@@ -385,6 +386,7 @@ public class PluginManager
                 humanReadableName = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/name" );
                 humanReadableDescription = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/description" );
                 minimumRequiredOpenfireVersion = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/minServerVersion" );
+                priorToOpenfireVersion = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/priorToServerVersion" );
                 final String versionText = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/version" );
                 if ( versionText != null ) {
                     pluginVersion = versionText.replace( ' ', '-' );
