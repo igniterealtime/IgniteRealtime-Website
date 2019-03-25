@@ -1,6 +1,4 @@
-<%@ page import="org.jivesoftware.site.PluginDownloadServlet"%>
 <%@ page import="org.jivesoftware.site.PluginManager"%>
-<%@ page import="java.io.File"%>
 <%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="java.util.List"%>
@@ -38,12 +36,6 @@
     <!-- BEGIN body area -->
     <div id="ignite_body">
         
-        <!-- BEGIN left column (main content) -->
-        <div id="ignite_body_leftcol">
-            
-            <!-- BEGIN body content area -->
-            <div id="ignite_int_body">
-            
                 <!-- BEGIN body header -->
                 <div id="ignite_body_header">
                     <h2>Openfire Plugins</h2>
@@ -58,7 +50,8 @@
                     </p>
 
                 <!-- BEGIN plugins -->
-                <div id="plugins">
+                <div id="plugins" style="width:100%">
+
                 <a name="opensource"></a>
                 
                     <table cellpadding="3" cellspacing="0" border="0" width="100%">
@@ -68,8 +61,8 @@
                             <td>File</td>
                             <td style="text-align: center;">Version</td>
                             <td style="text-align: center;">Released</td>
-                            <td style="text-align: center;">Min Openfire Version</td>
-                            <td style="text-align: center;">Other Versions</td>
+                            <td style="text-align: center;">Openfire Version</td>
+                            <td style="text-align: center;">Archive</td>
                         </tr>
             <%
                 final List<PluginManager.Metadata> plugins =
@@ -122,7 +115,7 @@
                                     <%  } %>
                                 </table>
                             </td>
-                            <td class="c2" nowrap>
+                            <td class="c2" style="white-space: nowrap;">
                                 <% if( plugin.hasReadme) { %>
                                 <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
                                 <% } else { %>
@@ -131,20 +124,21 @@
                                 <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
                                 <% } %>
                             </td>
-                            <td class="c3" nowrap>
-                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>"><%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %></a>
+                            <td class="c3" style="white-space: nowrap;">
+                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>">Download</a>
                             </td>
-                            <td class="c4" align="center" nowrap>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
                             </td>
-                            <td class="c4" align="center" nowrap>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.releaseDate != null ? formatter.format(plugin.releaseDate) : "&nbsp;") %>
                             </td>
-                            <td class="c4" align="center" nowrap>
+                            <td class="c4" style="white-space: nowrap; text-align: center">
                                 <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
+                                <%= (plugin.priorToOpenfireVersion == null ? "+" : "<br>- " + plugin.priorToOpenfireVersion) %>
                             </td>
-                            <td class="c5" nowrap>
-                                <a href="plugin-archive.jsp?plugin=<%= URLEncoder.encode(pluginName, "utf-8") %>">Archive...</a>
+                            <td class="c5" style="white-space: nowrap">
+                                <a href="plugin-archive.jsp?plugin=<%= URLEncoder.encode(pluginName, "utf-8") %>">Archive</a>
                             </td>
                         </tr>
             <%  }
@@ -159,31 +153,8 @@
                     </table>
                 </div>
                 <!-- END plugins -->
-                
                 </div>
 
-            </div>
-            <!-- END body content area -->
-            
-        </div>
-        <!-- END left column (main content) -->
-        
-        <!-- BEGIN right column (sidebar) -->
-        <div id="ignite_body_rightcol">
-            
-            <jsp:include page="/includes/sidebar_projectlead.jsp">
-                <jsp:param name="project" value="openfire" />
-            </jsp:include>
-            
-            <jsp:include page="/includes/sidebar_snapshot.jsp">
-                <jsp:param name="project" value="openfire"/>
-            </jsp:include>
-            
-            <%@ include file="/includes/sidebar_enterprise.jspf" %>
-            
-        </div>
-        <!-- END right column (sidebar) -->
-    
     </div>
     <!-- END body area -->
 
