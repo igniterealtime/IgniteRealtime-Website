@@ -14,7 +14,7 @@
     <meta name="author" content="JC Brand" />
     <meta name="keywords" content="xmpp chat webchat converse.js" />
     <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/4.1.2/css/converse.min.css">
-    <script src="https://cdn.conversejs.org/4.1.2/dist/converse.min.js" charset="utf-8"></script>
+    <script src="https://cdn.conversejs.org/4.2.0/dist/converse.min.js" charset="utf-8"></script>
 
     <style>
         .converse-container {
