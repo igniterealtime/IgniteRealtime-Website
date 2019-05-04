@@ -13,7 +13,7 @@
     <meta name="description" content="Converse.js: An XMPP chat client which can be integrated into any website" />
     <meta name="author" content="JC Brand" />
     <meta name="keywords" content="xmpp chat webchat converse.js" />
-    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/4.1.2/css/converse.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/4.2.0/css/converse.min.css">
     <script src="https://cdn.conversejs.org/4.2.0/dist/converse.min.js" charset="utf-8"></script>
 
     <style>
