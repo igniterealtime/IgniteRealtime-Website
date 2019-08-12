@@ -40,7 +40,8 @@
         ],
         bosh_service_url: 'https://igniterealtime.org/http-bind/',
         hide_offline_users: 'true',
-        jid: 'igniterealtime.org', 
+        jid: 'igniterealtime.org',
+        singleton: 'true',
         view_mode: 'embedded',
     });
 </script>
