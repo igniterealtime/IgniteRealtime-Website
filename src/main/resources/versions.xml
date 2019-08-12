@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <versions>
     <!--<product name="wildfire" version="3.3.0" date="April 12, 2007" />-->
-    <product name="openfire" version="4.4.0" date="June 28, 2019" />
+    <product name="openfire" version="4.4.1" date="August 12, 2019" />
     <product name="openfire-beta" version="4.4.0.beta" date="June 24, 2019" />
     <product name="spark" version="2.8.3" date="January 29, 2017" />
     <product name="pade" version="1.2.6" date="May 6, 2019" />    
