@@ -39,9 +39,9 @@
             'open_chat@conference.igniterealtime.org',
         ],
         bosh_service_url: 'https://igniterealtime.org/http-bind/',
+        hide_offline_users: 'true',
         jid: 'igniterealtime.org', 
         view_mode: 'embedded',
-        hide_offline_users: 'true',
     });
 </script>
 </html>
