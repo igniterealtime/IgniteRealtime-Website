@@ -41,6 +41,7 @@
         bosh_service_url: 'https://igniterealtime.org/http-bind/',
         jid: 'igniterealtime.org', 
         view_mode: 'embedded',
+        hide_offline_users: 'true',
     });
 </script>
 </html>
