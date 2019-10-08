@@ -141,12 +141,12 @@ public class PluginManager
         synchronized ( cache )
         {
             final Set<Metadata> cachedResult = cache.get( path );
-            final Instant startedRefreshing = refreshing.computeIfAbsent( path, p -> Instant.now() );
+            final Instant startedRefreshing = refreshing.get( path );
             final long refreshed = lastRefreshed.computeIfAbsent( path, p -> System.currentTimeMillis() );
             final boolean isStale = System.currentTimeMillis() - refreshed > Duration.ofMinutes( 10 ).toMillis();
 
             // Don't allow refreshes to take longer than two hours.
-            if ( Duration.between( startedRefreshing, Instant.now() ).abs().toHours() < 2 )
+            if ( startedRefreshing != null && Duration.between( startedRefreshing, Instant.now() ).abs().toHours() < 2 )
             {
                 // Always return something immediately, even if it's empty, if we're already refreshing.
                 // This prevents re-indexing the same path more than once at the same time.
