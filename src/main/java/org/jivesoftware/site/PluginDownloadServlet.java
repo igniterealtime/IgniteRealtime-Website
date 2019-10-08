@@ -72,7 +72,7 @@ public class PluginDownloadServlet extends HttpServlet {
 
     public void doGet( HttpServletRequest request, HttpServletResponse response) throws IOException
     {
-        final String requestURI = request.getRequestURI();
+        String requestURI = request.getRequestURI();
         if ( !validateFilename( requestURI ) )
         {
             response.sendError( HttpServletResponse.SC_NOT_FOUND );
@@ -92,6 +92,13 @@ public class PluginDownloadServlet extends HttpServlet {
         //   <path>/<version>/pluginname.jar
         // for files that are part of plugins:
         //   <path>/version>/pluginname/<file>
+
+        // As observed in the logs, something is performing queries with a malformed path,
+        // like this: /projects/openfire;/plugins/1.2.2-SNAPSHOT/userstatus/readme.html
+        // We're correcting for that here:
+        if ( requestURI.startsWith( "projects/openfire;/" ) ) {
+            requestURI = "projects/openfire/"+ requestURI.substring( "projects/openfire;/".length() );
+        }
         final ParsedRequest parsedRequest = parse( requestURI, request.getQueryString() );
 
         final Path plugin = pluginManager.findPluginFile( parsedRequest );

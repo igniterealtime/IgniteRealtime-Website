@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Collections;
@@ -44,7 +45,7 @@ public class PluginManager
     private String openfirePluginsBetaPath;
     private String openfirePluginsDevPath;
 
-    private static Map<Path, Boolean> refreshing = new ConcurrentHashMap<>();
+    private static Map<Path, Instant> refreshing = new ConcurrentHashMap<>();
     private static Map<Path, Long> lastRefreshed = new ConcurrentHashMap<>();
     private static Map<Path, Set<Metadata>> cache = new ConcurrentHashMap<>();
 
@@ -140,11 +141,12 @@ public class PluginManager
         synchronized ( cache )
         {
             final Set<Metadata> cachedResult = cache.get( path );
-            final boolean isRefreshing = refreshing.computeIfAbsent( path, p -> false );
+            final Instant startedRefreshing = refreshing.computeIfAbsent( path, p -> Instant.now() );
             final long refreshed = lastRefreshed.computeIfAbsent( path, p -> System.currentTimeMillis() );
             final boolean isStale = System.currentTimeMillis() - refreshed > Duration.ofMinutes( 10 ).toMillis();
 
-            if ( isRefreshing )
+            // Don't allow refreshes to take longer than two hours.
+            if ( Duration.between( startedRefreshing, Instant.now() ).abs().toHours() < 2 )
             {
                 // Always return something immediately, even if it's empty, if we're already refreshing.
                 // This prevents re-indexing the same path more than once at the same time.
@@ -159,36 +161,46 @@ public class PluginManager
             }
 
             Log.debug( "Refreshing stale result..." );
-            refreshing.put( path, true );
+            refreshing.put( path, Instant.now() );
         }
 
-        final long start = System.currentTimeMillis();
-        final Set<Metadata> result = Files.walk( path )
-            .filter( Files::isRegularFile )
-            .filter( p -> p.getFileName().toString().toLowerCase().endsWith( "-openfire-plugin-assembly.jar" ) )
-            .map( ( Path mavenFile ) -> {
-                try
-                {
-                    return new Metadata( mavenFile );
-                }
-                catch ( IOException | DocumentException e )
-                {
-                    e.printStackTrace();
-                }
-                return null;
-            } )
-            .filter( Objects::nonNull )
-            .collect( Collectors.toSet() );
-        final long executionTime = System.currentTimeMillis() - start;
-        Log.error( "Indexed {} in {} ", path, Duration.of( executionTime, ChronoUnit.MILLIS).toString() );
-
-        synchronized ( cache )
+        try
         {
-            cache.put( path, result );
-            refreshing.put( path, false );
+            final long start = System.currentTimeMillis();
+            final Set<Metadata> result = Files.walk( path )
+                .filter( Files::isRegularFile )
+                .filter( p -> p.getFileName().toString().toLowerCase().endsWith( "-openfire-plugin-assembly.jar" ) )
+                .map( ( Path mavenFile ) -> {
+                    try
+                    {
+                        return new Metadata( mavenFile );
+                    }
+                    catch ( IOException | DocumentException e )
+                    {
+                        e.printStackTrace();
+                    }
+                    return null;
+                } )
+                .filter( Objects::nonNull )
+                .collect( Collectors.toSet() );
+            final long executionTime = System.currentTimeMillis() - start;
+            Log.error( "Indexed {} in {} ", path, Duration.of( executionTime, ChronoUnit.MILLIS ).toString() );
+
+            Log.debug( "Refreshed stale result!" );
+            synchronized ( cache )
+            {
+                cache.put( path, result );
+                refreshing.remove( path );
+            }
+            return result;
         }
-        Log.debug( "Refreshed stale result!" );
-        return result;
+        finally
+        {
+            synchronized ( cache )
+            {
+                refreshing.remove( path );
+            }
+        }
     }
 
     /**
