@@ -67,11 +67,11 @@
                     </div>
                     
                     <div class="ignite_service-provider">
-                        <span class="ignite_service-provider_logo"><img src="../images/logo_ihive.svg" alt="Industrious Hive" width="56" height="32" border="0"></span>
-                        <h3>Industrious Hive</h3>
-                        <span class="ignite_service-provider_url"><a href="https://industrioushive.com/">industrioushive.com</a></span>
+                        <span class="ignite_service-provider_logo"><img src="https://s.gravatar.com/avatar/3f633b302d459da237f35b47fd89a7eb" alt="Dele Olajide" width="32" border="0"></span>
+                        <h3>Dele Olajide</h3>
+                        <span class="ignite_service-provider_url"><a href="https://github.com/sponsors/deleolajide">Professional Services</a></span>
                         <p>
-                            Industrious Hive offers a commercial version of Openfire with Pàdé called BeeKeeper. We provide professional services which includes consulting, software development, integration, installation, configuration and maintenance services.
+                            Dele is a System Integrator and a full stack developer. He is also a long time member of the Ignite Real-Time Community and can provide proffesional services for open source real-time communications projects which include Openfire, Smack, Spark and PÃ dÃ©.
                         </p>
                     </div>                    
 
