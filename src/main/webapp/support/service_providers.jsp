@@ -71,7 +71,7 @@
                         <h3>Dele Olajide</h3>
                         <span class="ignite_service-provider_url"><a href="https://github.com/sponsors/deleolajide">Professional Services</a></span>
                         <p>
-                            Dele is a System Integrator and a full stack developer. He is also a long time member of the Ignite Real-Time Community and can provide proffesional services for open source real-time communications projects which include Openfire, Smack, Spark and Pàdé.
+                            Dele is a System Integrator and a full stack developer. He is also a long time member of the Ignite Realtime Community and can provide proffesional services for open source real-time communications projects which include Openfire, Smack, Spark and P&agrave;d&eacute;.
                         </p>
                     </div>                    
 
