@@ -14,10 +14,13 @@
         profile = "Dave Cridland is also a member of the XMPP Council, the technical steering group that approves XMPP Extension Protocols.";
     }
     else if (project.equals("spark")) {
-        name = "wroot";
-        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/wroot/45/16_1.png";
-        profileLink = "https://discourse.igniterealtime.org/u/wroot";
-        profile = "He is known to remember EVERYTHING and shamelessly remind you about promises you made and already forgot ten years ago.";
+     // name = "wroot";
+     // avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/wroot/45/16_1.png";
+     // profileLink = "https://discourse.igniterealtime.org/u/wroot";
+     // profile = "He is known to remember EVERYTHING and shamelessly remind you about promises you made and already forgot ten years ago.";
+        name = "vacant";
+        avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/d/e19b73/45.png";
+        profile = "Nobody is working on the project currently.";
     }    
     else if (project.equals("pade")) {
         name = "dele";
