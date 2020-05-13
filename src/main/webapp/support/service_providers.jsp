@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="ignite_service-provider">
-                        <span class="ignite_service-provider_logo"><img src="../images/logo-surevine.png" alt="Surevine" width="45" height="45" border="0"></span>
+                        <span class="ignite_service-provider_logo"><img src="../images/logo-surevine.png" alt="Surevine" width="32" height="32" border="0"></span>
                         <div class="ignite_service-provider_content">
                             <h3>Surevine</h3>
                             <span class="ignite_service-provider_url"><a href="https://www.surevine.com">www.surevine.com</a></span>
