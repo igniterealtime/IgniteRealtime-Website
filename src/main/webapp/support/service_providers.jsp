@@ -86,6 +86,18 @@
                         </p>
                     </div>
 
+                    <div class="ignite_service-provider">
+                        <span class="ignite_service-provider_logo"><img src="../images/logo-surevine.png" alt="Surevine" width="45" height="45" border="0"></span>
+                        <h3>Surevine</h3>
+                        <span class="ignite_service-provider_url"><a href="https://www.surevine.com">www.surevine.com</a></span>
+                        <p>Surevine specialises in secure collaboration solutions. We are technology
+                            agnostic but often find ourselves comprising solutions from open-source
+                            components and have a strong heritage in all things XMPP, including many
+                            of the Ignite Realtime components, and particularly Openfire. We can
+                            offer consultancy, support and bespoke development, as well as hosting,
+                            of XMPP-based digital services.
+                        </p>
+                    </div>
 
                     <p>&nbsp;</p>
                     
