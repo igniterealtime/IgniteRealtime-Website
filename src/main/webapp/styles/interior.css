@@ -1213,7 +1213,10 @@ img.ignite_body_image_right {
     float: left;
     }
 .ignite_service-provider_logo img {
-    margin: 1px 15px 0 0;
+    margin: 15px 15px 0 0;
+    }
+.ignite_service-provider_content {
+    overflow: hidden; /* Overflow used to trigger hanging indent around the company logos */
     }
 
 .ignite_support_launchGC {
