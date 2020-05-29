@@ -48,6 +48,10 @@
         eh.setAttribution("Erik Horemans, CEO Inteno Belgium");
         quotes.add(eh);
 
+        Quote surevine = new Quote();
+        surevine.setText("Openfire is a fully featured XMPP server and its extensible plugin based architecture provides us with a valuable feature platform. Its active development team has created a community of users that we are happy to be a part of!");
+        surevine.setAttribution("John Atherton, CTO & Co-founder, Surevine");
+        quotes.add(surevine);
     }
 %>
 
