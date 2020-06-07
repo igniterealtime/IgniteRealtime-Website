@@ -24,23 +24,23 @@
 
     <!-- BEGIN body area -->
     <div id="ignite_body">
-        
+
         <!-- BEGIN left column (main content) -->
         <div id="ignite_body_leftcol">
-            
+
             <!-- BEGIN body content area -->
             <div id="ignite_int_body">
-            
+
                 <!-- BEGIN body header -->
                 <div id="ignite_body_header">
                     <h2>Professional Partners</h2>
                 </div>
                 <!-- END body header -->
-                
-                
+
+
                 <div class="ignite_int_body_support">
-                    
-                    
+
+
                     <p>Get professional assistance for Openfire, Smack and Spark from the service
                         providers listed below, including support services, customizations,
                         and hosting.
@@ -58,7 +58,7 @@
                     </div>
 
                     <div class="ignite_service-provider">
-                        <span class="ignite_service-provider_logo"><img src="../images/logo_evoludata.png" alt="EvoluData" width="50" height="35" border="0"></span>
+                        <span class="ignite_service-provider_logo"><img src="../images/evoludata-icon.png" alt="EvoluData" width="32" height="32" border="0"></span>
                         <div class="ignite_service-provider_content">
                             <h3>EvoluData</h3>
                             <span class="ignite_service-provider_url"><a href="https://evoludata.com">evoludata.com</a></span>
@@ -121,29 +121,29 @@
                     </div>
 
                     <p>&nbsp;</p>
-                    
+
                 </div>
-            
-            
+
+
             </div>
             <!-- END body content area -->
-            
+
         </div>
         <!-- END left column (main content) -->
-        
+
         <!-- BEGIN right column (sidebar) -->
         <div id="ignite_body_rightcol">
-            
-            
+
+
             <%@ include file="/includes/sidebar_enterprise.jspf" %>
-            
+
             <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
 
             <%@ include file="/includes/sidebar_chat.jspf" %>
 
         </div>
         <!-- END right column (sidebar) -->
-    
+
     </div>
     <!-- END body area -->
 
