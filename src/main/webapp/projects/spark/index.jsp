@@ -19,7 +19,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Spark</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Spark</a></li>
             <li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
             <li id="subnav05"><a href="https://issues.igniterealtime.org/projects/SPARK/">Issue Tracker</a></li>
@@ -73,7 +73,7 @@
                 </div>
                 
                 <div id="ignite_bigpanel_download">
-                    <a href="../../downloads/index.jsp#spark">Download</a>
+                    <a href="../../downloads/#spark">Download</a>
                     <span>
                         <strong>Spark <%= Versions.getVersion("spark") %></strong> Latest build: <%= Versions.getVersionDate("spark") %>
                     </span>

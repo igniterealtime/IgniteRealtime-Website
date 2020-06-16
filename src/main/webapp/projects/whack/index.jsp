@@ -19,7 +19,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Whack</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Whack</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <!--<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>-->
             <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
@@ -68,7 +68,7 @@
                 </div>
                 
                 <div id="ignite_bigpanel_download">
-                    <a href="../../downloads/index.jsp#whack">Download</a>
+                    <a href="../../downloads/#whack">Download</a>
                     <span>
                         <strong>Whack <%= Versions.getVersion("whack") %></strong> Latest build: <%= Versions.getVersionDate("whack") %>
                     </span>

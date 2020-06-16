@@ -14,7 +14,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Openfire</a></li>
             <li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
             <li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
             <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
@@ -74,7 +74,7 @@
                     
                     <!-- <h3>Other:</h3>
                     <ul>
-                    <li><a href="../../articles/index.jsp">Articles</a></li>
+                    <li><a href="../../articles/">Articles</a></li>
                     </ul> -->
                 
                 

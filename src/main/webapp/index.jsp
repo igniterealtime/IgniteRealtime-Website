@@ -68,7 +68,7 @@
                 <p>Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.</p>
                 
                     <div style="width: 150px;">
-                        <a href="about/index.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
+                        <a href="about/" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
                     </div>
 
                 </div>
@@ -166,14 +166,14 @@
             
             <div class="sidebar sidebar_dark sidebar_grad">
                 <h1 class="sidebar_header">Projects</h1>
-                <div><strong><a href="projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %> <a href="downloads/index.jsp#openfire" class="button_download">Download</a></div>
-                <div><strong><a href="projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %> <a href="downloads/index.jsp#spark" class="button_download">Download</a></div>
-                <div><strong><a href="projects/pade/index.jsp">Pàdé</a></strong> <%= Versions.getVersion("pade") %> <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba" class="button_download">Install</a></div>                
-        <!--        <div><strong><a href="projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %> <a href="downloads/index.jsp#sparkweb" class="button_download">Download</a></div> -->
-                <div><strong><a href="projects/smack/index.jsp">Smack</a></strong> <%= Versions.getVersion("smack") %> <a href="downloads/index.jsp#smack" class="button_download">Download</a></div>
-                <div><strong><a href="projects/tinder/index.jsp">Tinder</a></strong> <%= Versions.getVersion("tinder") %> <a href="downloads/index.jsp#tinder" class="button_download">Download</a></div>
-                <div><strong><a href="projects/whack/index.jsp">Whack</a></strong> <%= Versions.getVersion("whack") %> <a href="downloads/index.jsp#whack" class="button_download">Download</a></div>
-        <!--        <div><strong><a href="projects/xiff/index.jsp">XIFF</a></strong> <%= Versions.getVersion("xiff") %> <a href="downloads/index.jsp#xiff" class="button_download">Download</a></div> -->
+                <div><strong><a href="projects/openfire/">Openfire</a></strong> <%= Versions.getVersion("openfire") %> <a href="downloads/#openfire" class="button_download">Download</a></div>
+                <div><strong><a href="projects/spark/">Spark</a></strong> <%= Versions.getVersion("spark") %> <a href="downloads/#spark" class="button_download">Download</a></div>
+                <div><strong><a href="projects/pade/">Pàdé</a></strong> <%= Versions.getVersion("pade") %> <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba" class="button_download">Install</a></div>                
+        <!--        <div><strong><a href="projects/sparkweb/">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %> <a href="downloads/#sparkweb" class="button_download">Download</a></div> -->
+                <div><strong><a href="projects/smack/">Smack</a></strong> <%= Versions.getVersion("smack") %> <a href="downloads/#smack" class="button_download">Download</a></div>
+                <div><strong><a href="projects/tinder/">Tinder</a></strong> <%= Versions.getVersion("tinder") %> <a href="downloads/#tinder" class="button_download">Download</a></div>
+                <div><strong><a href="projects/whack/">Whack</a></strong> <%= Versions.getVersion("whack") %> <a href="downloads/#whack" class="button_download">Download</a></div>
+        <!--        <div><strong><a href="projects/xiff/">XIFF</a></strong> <%= Versions.getVersion("xiff") %> <a href="downloads/#xiff" class="button_download">Download</a></div> -->
             </div>
 
             <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
@@ -214,30 +214,30 @@
                 <%--<div class="ignite_sidebar_hdr ignite_sidebar_hdr_projects"></div>--%>
                 <%--<div class="ignite_sidebar_body_projects">--%>
                     <%--<div class="ignite_sidebar_body_project1">--%>
-                        <%--<span><strong><a href="/projects/openfire/index.jsp">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="/downloads/index.jsp#openfire"></a>--%>
+                        <%--<span><strong><a href="/projects/openfire/">Openfire</a></strong> <%= Versions.getVersion("openfire") %></span> <a href="/downloads/#openfire"></a>--%>
                     <%--</div>--%>
                     <%--<div class="ignite_sidebar_body_project2">--%>
-                        <%--<span><strong><a href="/projects/spark/index.jsp">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/index.jsp#spark"></a>--%>
+                        <%--<span><strong><a href="/projects/spark/">Spark</a></strong> <%= Versions.getVersion("spark") %></span> <a href="/downloads/#spark"></a>--%>
                     <%--</div>--%>
                     <%--<div class="ignite_sidebar_body_project3">--%>
-                        <%--<span><strong><a href="/projects/sparkweb/index.jsp">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="/downloads/index.jsp#sparkweb"></a>--%>
+                        <%--<span><strong><a href="/projects/sparkweb/">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %></span> <a href="/downloads/#sparkweb"></a>--%>
                     <%--</div>--%>
                     <%--&lt;%&ndash;--%>
                     <%--<div class="ignite_sidebar_body_project4">--%>
-                        <%--<span><strong><a href="/projects/asterisk/index.jsp">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="/downloads/index.jsp#asterisk"></a>--%>
+                        <%--<span><strong><a href="/projects/asterisk/">Asterisk</a></strong> <%= Versions.getVersion("asterisk-im") %></span> <a href="/downloads/#asterisk"></a>--%>
                     <%--</div>--%>
                     <%--&ndash;%&gt;--%>
                     <%--<div class="ignite_sidebar_body_project4">--%>
-                        <%--<span><strong><a href="/projects/smack/index.jsp">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/index.jsp#smack"></a>--%>
+                        <%--<span><strong><a href="/projects/smack/">Smack API</a></strong> <%= Versions.getVersion("smack") %></span> <a href="/downloads/#smack"></a>--%>
                     <%--</div>--%>
                     <%--<div class="ignite_sidebar_body_project5">--%>
-                        <%--<span><strong><a href="/projects/tinder/index.jsp">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="/downloads/index.jsp#tinder"></a>--%>
+                        <%--<span><strong><a href="/projects/tinder/">Tinder API</a></strong> <%= Versions.getVersion("tinder") %></span> <a href="/downloads/#tinder"></a>--%>
                     <%--</div>--%>
                     <%--<div class="ignite_sidebar_body_project6">--%>
-                        <%--<span><strong><a href="/projects/whack/index.jsp">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/index.jsp#whack"></a>--%>
+                        <%--<span><strong><a href="/projects/whack/">Whack API</a></strong> <%= Versions.getVersion("whack") %></span> <a href="/downloads/#whack"></a>--%>
                     <%--</div>--%>
                     <%--<div class="ignite_sidebar_body_project7">--%>
-                        <%--<span><strong><a href="/projects/xiff/index.jsp">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/index.jsp#xiff"></a>--%>
+                        <%--<span><strong><a href="/projects/xiff/">XIFF API</a></strong> <%= Versions.getVersion("xiff") %></span> <a href="/downloads/#xiff"></a>--%>
                     <%--</div>--%>
                     <%--<div class="ignite_sidebar_body_project8" style="text-align: center;">--%>
                     <%--</div>--%>

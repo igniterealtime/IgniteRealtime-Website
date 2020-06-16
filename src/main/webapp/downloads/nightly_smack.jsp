@@ -49,7 +49,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp">Releases</a></li>
+            <li id="subnav01"><a href="./">Releases</a></li>
             <li id="subnav02"><a href="source.jsp">Source</a></li>
             <li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
         </ul>
@@ -72,19 +72,19 @@
 
 
             <div class="ignite_int_body_padding">
-                <a href="index.jsp" class="ignite_back">Back to Downloads</a>
+                <a href="./" class="ignite_back">Back to Downloads</a>
             </div>
 
             <div>
                 <p>
-                Below are nightly builds for the Smack API. Please see the <a href="index.jsp">official builds</a>
+                Below are nightly builds for the Smack API. Please see the <a href="./">official builds</a>
                 page if you're looking for a specific release. 
                 </p>
 
                 <p>
                 Daily builds are provided for those that require early access to changes before they are officially
                 released. These builds are <b>not extensively tested</b>, so most users should use
-                <a href="index.jsp">official releases</a> instead.
+                <a href="./">official releases</a> instead.
                 </p>
             </div>
 

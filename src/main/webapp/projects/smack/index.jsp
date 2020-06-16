@@ -19,7 +19,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Smack</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Smack</a></li>
             <li id="subnav02"><a href="//igniterealtime.org/projects/smack/readme">Readme</a></li>
             <li id="subnav03"><a href="//download.igniterealtime.org/smack/docs/latest/javadoc/">JavaDocs</a></li>
             <li id="subnav04"><a href="//download.igniterealtime.org/smack/docs/latest/documentation/">Documentation</a></li>
@@ -69,7 +69,7 @@
                 </div>
                 
                 <div id="ignite_bigpanel_download">
-                    <a href="../../downloads/index.jsp#smack">Download</a>
+                    <a href="../../downloads/#smack">Download</a>
                     <span>
                         <strong>Smack <%= Versions.getVersion("smack") %></strong> Latest build: <%= Versions.getVersionDate("smack") %>
                     </span>
