@@ -63,7 +63,7 @@
                             <h3>EvoluData</h3>
                             <span class="ignite_service-provider_url"><a href="https://evoludata.com">evoludata.com</a></span>
                             <p>
-                                EvoluData offers consulting for all WikiSuite components including Openfire, Pàdé, Converse and Jitsi Meeting.
+                                EvoluData offers consulting for all WikiSuite components including Openfire, P&agrave;d&eacute;, Converse and Jitsi Meet.
                             </p>
                         </div>
                     </div>
