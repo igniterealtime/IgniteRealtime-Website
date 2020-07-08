@@ -32,7 +32,7 @@
 
 <div id="ignite_subnav">
     <ul>
-        <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Openfire</a></li>
+        <li id="subnav01"><a href="./" class="ignite_subnav_project">Openfire</a></li>
         <li id="subnav03"><a href="plugins.jsp" class="ignite_subnav_current">Plugins</a></li>
         <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
         <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
@@ -60,7 +60,7 @@
                     listing of most recent releases of all plugins</a>.
                 </p>
                 <p>
-                    Plugins extend and enhance the functionality of <a href="index.jsp">Openfire</a>.
+                    Plugins extend and enhance the functionality of <a href="./">Openfire</a>.
                     To install plugins, copy the .jar file into the <tt>plugins</tt> directory of
                     your Openfire installation.
                 </p>

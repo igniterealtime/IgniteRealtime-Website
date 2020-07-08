@@ -14,7 +14,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Support</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Support</a></li>
             <%--<li id="subnav02"><a href="articles.jsp">Articles</a></li>--%>
             <li id="subnav03"><a href="group_chat.jsp">Group Chat</a></li>
             <li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>

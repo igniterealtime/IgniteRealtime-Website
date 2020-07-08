@@ -40,7 +40,7 @@ public class OpenfireVersionChecker {
 
     protected static DocumentFactory docFactory = DocumentFactory.getInstance();
     //private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
-    private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/index.jsp";
+    private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/";
     private static String OPENFIRE_LOG = "https://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html";
     private static final DateFormat RELEASE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     /**

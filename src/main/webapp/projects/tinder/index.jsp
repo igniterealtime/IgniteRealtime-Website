@@ -19,7 +19,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Tinder</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Tinder</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
             <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
@@ -71,7 +71,7 @@
                 </div>
                 
                 <div id="ignite_bigpanel_download">
-                    <a href="../../downloads/index.jsp#tinder">Download</a>
+                    <a href="../../downloads/#tinder">Download</a>
                     <span>
                         <strong>Tinder <%= Versions.getVersion("tinder") %></strong> Latest build: <%= Versions.getVersionDate("tinder") %>
                     </span>

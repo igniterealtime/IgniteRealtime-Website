@@ -19,7 +19,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Asterisk-IM</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Asterisk-IM</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
             <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/PHONE">Issue Tracker</a></li>
@@ -57,8 +57,8 @@
                     <p>The Asterisk-IM project integrates the <a href="http://www.asterisk.org/" target="_blank">Asterisk
 <acronym title="Private Branch eXchange -- A Phone System">PBX</acronym></a> and Openfire XMPP
 (Jabber) server to create a unified communication platform for telephony and instant messaging.</p>
-                    <p>Asterisk-IM is easily deployed as a plugin for <a href="../openfire/index.jsp">Openfire</a> and is
-fully supported in the <a href="../spark/index.jsp">Spark</a> IM client. Read more about Asterisk-IM's <a href="arch.jsp">architecture</a> or find out more about <a href="clients.jsp">client compatability</a>.</p>
+                    <p>Asterisk-IM is easily deployed as a plugin for <a href="../openfire/">Openfire</a> and is
+fully supported in the <a href="../spark/">Spark</a> IM client. Read more about Asterisk-IM's <a href="arch.jsp">architecture</a> or find out more about <a href="clients.jsp">client compatability</a>.</p>
                 </div>
                 
                 <div id="ignite_bigpanel_close">

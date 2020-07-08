@@ -19,7 +19,7 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="index.jsp" class="ignite_subnav_project">Pàdé</a></li>   
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">Pàdé</a></li>   
             <li id="subnav02"><a href="https://github.com/igniterealtime/Pade/releases">Releases</a></li>    
             <li id="subnav03"><a href="https://github.com/igniterealtime/Pade">Source Code</a></li>            
             <li id="subnav04"><a href="https://igniterealtime.github.io/Pade/">Documentation</a></li>
