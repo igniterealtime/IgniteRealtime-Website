@@ -61,7 +61,7 @@
                 <li id="nav01"><a href="<%= request.getContextPath() %>/">Home</a></li>
                 <li id="nav02"><a href="<%= request.getContextPath() %>/projects/">Projects</a></li>
                 <li id="nav03"><a href="<%= request.getContextPath() %>/downloads/">Downloads</a></li>
-                <li id="nav04"><a href="https://discourse.igniterealtime.org">Community</a></li>
+                <li id="nav04"><a href="https://discourse.igniterealtime.org/">Community</a></li>
                 <li id="nav05"><a href="<%= request.getContextPath() %>/fans/">Fans</a></li>
                 <li id="nav07"><a href="<%= request.getContextPath() %>/support/">Support</a></li>
                 <li id="nav08"><a href="<%= request.getContextPath() %>/about/">About</a></li>
@@ -85,7 +85,7 @@
     
     <!-- BEGIN footer -->
     <div id="ignite_footer">
-        <div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/">Home</a> | <a href="<%= request.getContextPath() %>/projects/">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/">Downloads</a> | <a href="https://discourse.igniterealtime.org">Community</a> | <a href="<%= request.getContextPath() %>/fans/">Fans</a> | <a href="<%= request.getContextPath() %>/support/">Support</a> | <a href="<%= request.getContextPath() %>/about/">About</a> </div>
+        <div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/">Home</a> | <a href="<%= request.getContextPath() %>/projects/">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/">Downloads</a> | <a href="https://discourse.igniterealtime.org/">Community</a> | <a href="<%= request.getContextPath() %>/fans/">Fans</a> | <a href="<%= request.getContextPath() %>/support/">Support</a> | <a href="<%= request.getContextPath() %>/about/">About</a> </div>
     </div>
     <!-- END footer -->
 

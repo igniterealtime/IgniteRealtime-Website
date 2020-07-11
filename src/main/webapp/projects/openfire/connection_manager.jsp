@@ -87,7 +87,7 @@
                     <p>Yes, the module is dual-licensed under the Open Source <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> license or a comercial software license agreement available from Jive Software.</p>
                     
                     <h5>How do I get support?</h5>
-                    <p>Support is available from the user community in the <a href="https://discourse.igniterealtime.org">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
+                    <p>Support is available from the user community in the <a href="https://discourse.igniterealtime.org/">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
                     
                     
                     <h5>Download</h5>

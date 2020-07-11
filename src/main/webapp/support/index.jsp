@@ -139,7 +139,7 @@
                             <p>Use the official Ignite Realtime Issue Tracker to browse projects
                                 and find issues. You may also vote for issues, see which issues are
                                 popular, and view the road map. Note: to report new issues, please
-                                post them in the <a href="https://discourse.igniterealtime.org">forums</a>.</p>
+                                post them in the <a href="https://discourse.igniterealtime.org/">forums</a>.</p>
                             <p><strong><a href="https://issues.igniterealtime.org" class="ignite_link_arrow">View the Issue Tracker</a></strong></p>
                    </div>
             </div>
