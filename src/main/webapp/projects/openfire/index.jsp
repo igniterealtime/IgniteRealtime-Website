@@ -23,10 +23,10 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Openfire</a></li>
             <li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/OF">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/OF">Issue Tracker</a></li>
             <li id="subnav06"><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
             <li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
-            <li id="subnav08"><a href="http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
+            <li id="subnav08"><a href="https://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
     </div>
 
