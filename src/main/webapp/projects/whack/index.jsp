@@ -56,7 +56,7 @@
                 <div id="ignite_bigpanel_content" style="width: 630px;">
                     <h1 class="whack">Whack <span><%= Versions.getVersion("whack") %></span></h1>
                     <p>
-                        Whack is an Open Source XMPP (Jabber) component library for XMPP components.
+                        Whack is an Open Source XMPP component library for XMPP components.
                         A pure Java library, it can be embedded into your applications to create anything from
                         a full XMPP component to simple XMPP integrations such as sending intercepting and
                         acting on certain messages.

@@ -81,7 +81,7 @@
                     <p>Each connection manager should handle at least five thousand concurrent  users. Experimental support for non-blocking connections is under development, which will greatly increase the number of connections that each connection manager module can support.</p>
                     
                     <h5>Can connection managers be used with other servers?</h5>
-                    <p>Yes (in theory). The connection manager protocol is being developed through the open <a href="http://www.xmpp.org/extensions/">XEP</a> process. We hope to work with other server vendors so that the entire XMPP/Jabber community supports the protocol. We also expect there will be other implementations of connection managers that will be compatible with Openfire. For example, a connection manager written with native code may be able to achieve very high scalability on a specific platform.</p>
+                    <p>Yes (in theory). The connection manager protocol is being developed through the open <a href="https://xmpp.org/extensions/">XEP</a> process. We hope to work with other server vendors so that the entire XMPP community supports the protocol. We also expect there will be other implementations of connection managers that will be compatible with Openfire. For example, a connection manager written with native code may be able to achieve very high scalability on a specific platform.</p>
                     
                     <h5>Does Openfire Connection Manager Module use the same license as Openfire?</h5>
                     <p>Yes, the module is dual-licensed under the Open Source <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> license or a comercial software license agreement available from Jive Software.</p>

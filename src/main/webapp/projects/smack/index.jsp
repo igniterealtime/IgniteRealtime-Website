@@ -57,7 +57,7 @@
                 <div id="ignite_bigpanel_content" style="width: 630px;">
                     <h1 class="smack">Smack <span><%= Versions.getVersion("smack") %></span></h1>
                     <p>
-                        Smack is an Open Source XMPP (Jabber) client library for instant messaging and presence.
+                        Smack is an Open Source XMPP client library for instant messaging and presence.
                         A pure Java library, it can be embedded into your applications to create anything from
                         a full XMPP client to simple XMPP integrations such as sending notification messages
                         and presence-enabling devices.
