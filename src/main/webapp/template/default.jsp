@@ -55,7 +55,7 @@
 
     <!-- BEGIN header -->
     <div id="ignite_header">
-        <a href="./"><div id="ignite_logo"></div></a>
+        <a href="/"><div id="ignite_logo"></div></a>
         <div id="ignite_nav">
             <ol>
                 <li id="nav01"><a href="<%= request.getContextPath() %>/">Home</a></li>
