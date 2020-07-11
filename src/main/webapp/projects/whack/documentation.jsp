@@ -17,7 +17,7 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Whack</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
             <li id="subnav06"><a href="http://www.igniterealtime.org/builds/whack/docs/latest/javadoc/">JavaDocs</a></li>
             
         </ul>

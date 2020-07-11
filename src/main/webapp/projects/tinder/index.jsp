@@ -22,7 +22,7 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Tinder</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
             <li id="subnav06"><a href="http://download.igniterealtime.org/tinder/docs/latest/javadoc/">JavaDocs</a></li>
             
         </ul>

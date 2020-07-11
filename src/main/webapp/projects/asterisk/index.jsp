@@ -22,7 +22,7 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Asterisk-IM</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/PHONE">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/PHONE">Issue Tracker</a></li>
             <!-- <li id="subnav06"><a href="/builds/asterisk-im/docs/latest/javadoc/">JavaDocs</a></li> -->
         </ul>
     </div>
