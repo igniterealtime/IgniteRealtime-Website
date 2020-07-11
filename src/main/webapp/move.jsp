@@ -18,15 +18,15 @@
 <h2>JiveSoftware.org is now IgniteRealtime.org</h2>
 
 <p>
-<a href="http://www.igniterealtime.org/"><img src="images/ignite.png" width="356" height="132" alt="IgniteRealtime" align="center" hspace="10" vspace="10" border="0" /></a>
+<a href="https://igniterealtime.org/"><img src="images/ignite.png" width="356" height="132" alt="IgniteRealtime" align="center" hspace="10" vspace="10" border="0" /></a>
 </p>
 
 <p>
 Our Open Source community has outgrown its old website.
 <br/>
-<a href="http://www.igniterealtime.org/">Click here</a> to go to the homepage now, or this page will take you there in 20 seconds.
+<a href="https://igniterealtime.org/">Click here</a> to go to the homepage now, or this page will take you there in 20 seconds.
 
-<meta http-equiv="refresh" content="20;URL=http://www.igniterealtime.org/">
+<meta http-equiv="refresh" content="20;URL=https://igniterealtime.org/">
 
 </p>
 </div>

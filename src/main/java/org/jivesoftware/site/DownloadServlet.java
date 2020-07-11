@@ -17,7 +17,7 @@ import javax.activation.MimetypesFileTypeMap;
 
 /**
  * Servlet used for downloading and capturing of data for all projects on
- * Jive Software (http://www.jivesoftware.org).
+ * Jive Software (https://www.jivesoftware.org/).
  */
 public class DownloadServlet extends HttpServlet {
 

@@ -46,9 +46,9 @@
                     <h3>Documentation:</h3>
                     <ul>
                     <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://download.igniterealtime.org/spark/docs/latest/README.html">Readme &amp; License</a></li>
+                    <a href="https://download.igniterealtime.org/spark/docs/latest/README.html">Readme &amp; License</a></li>
                     <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://download.igniterealtime.org/spark/docs/latest/changelog.html">Changelog</a>
+                    <a href="https://download.igniterealtime.org/spark/docs/latest/changelog.html">Changelog</a>
                     <br>
                     <br></li>
                     <li><a href="https://discourse.igniterealtime.org/t/spark-user-guide-revised/41731">User Guide (wiki)</a></li>
@@ -58,8 +58,8 @@
 
                     <!--<h3>Developer Documentation:</h3>
                     <ul>
-                    <li><a href="http://download.igniterealtime.org/spark/docs/latest/documentation/ide-eclipse-setup.html">Setup Eclipse IDE with the source</a></li>
-                    <li><a href="http://download.igniterealtime.org/spark/docs/latest/documentation/ide-intellij-setup.html">Setup IntelliJ IDE with the source</a></li>
+                    <li><a href="https://download.igniterealtime.org/spark/docs/latest/documentation/ide-eclipse-setup.html">Setup Eclipse IDE with the source</a></li>
+                    <li><a href="https://download.igniterealtime.org/spark/docs/latest/documentation/ide-intellij-setup.html">Setup IntelliJ IDE with the source</a></li>
                     </ul>-->
                 
                 

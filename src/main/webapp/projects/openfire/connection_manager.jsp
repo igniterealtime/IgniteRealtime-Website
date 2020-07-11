@@ -47,7 +47,7 @@
             <li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
             <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
-            <li id="subnav06"><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+            <li id="subnav06"><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
             <li id="subnav07"><a href="connection_manager.jsp" class="ignite_subnav_current">Connection Manager Module</a></li>
             <li id="subnav08"><a href="https://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
@@ -84,10 +84,10 @@
                     <p>Yes (in theory). The connection manager protocol is being developed through the open <a href="http://www.xmpp.org/extensions/">XEP</a> process. We hope to work with other server vendors so that the entire XMPP/Jabber community supports the protocol. We also expect there will be other implementations of connection managers that will be compatible with Openfire. For example, a connection manager written with native code may be able to achieve very high scalability on a specific platform.</p>
                     
                     <h5>Does Openfire Connection Manager Module use the same license as Openfire?</h5>
-                    <p>Yes, the module is dual-licensed under the Open Source <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> license or a comercial software license agreement available from Jive Software.</p>
+                    <p>Yes, the module is dual-licensed under the Open Source <a href="https://www.gnu.org/copyleft/gpl.html">GPL</a> license or a comercial software license agreement available from Jive Software.</p>
                     
                     <h5>How do I get support?</h5>
-                    <p>Support is available from the user community in the <a href="https://discourse.igniterealtime.org">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
+                    <p>Support is available from the user community in the <a href="https://discourse.igniterealtime.org">discussion forums</a>. Enterprise-grade email and phone support is also <a href="https://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
                     
                     
                     <h5>Download</h5>

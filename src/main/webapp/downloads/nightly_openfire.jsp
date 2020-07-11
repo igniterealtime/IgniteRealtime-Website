@@ -177,7 +177,7 @@
                         <tr>
                             <td width="1%"><img src="<%= icon %>" alt="" width="17" height="16" border="0"></td>
                             <td>
-                                <a href="http://download.igniterealtime.org/openfire/dailybuilds/<%= file.getName() %>"><%= file.getName() %></a></td>
+                                <a href="https://download.igniterealtime.org/openfire/dailybuilds/<%= file.getName() %>"><%= file.getName() %></a></td>
                             <% if ( isFirst ) {
                                 isFirst = false;
                             %>

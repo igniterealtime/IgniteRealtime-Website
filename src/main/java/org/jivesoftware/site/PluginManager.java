@@ -38,7 +38,7 @@ public class PluginManager
 {
     private static final Logger Log = LoggerFactory.getLogger( PluginManager.class );
 
-    private static String PLUGINS_PATH = "http://www.igniterealtime.org/projects/openfire/plugins/";
+    private static String PLUGINS_PATH = "https://igniterealtime.org/projects/openfire/plugins/";
 
     private String sparkPluginsPath;
     private String openfirePluginsPath;

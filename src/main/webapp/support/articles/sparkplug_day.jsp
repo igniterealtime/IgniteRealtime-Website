@@ -39,7 +39,7 @@ for Sparkplug Day were to:
 <p>Sparkplugs dynamically extend the functionality of the Spark instant messaging client.
 They can be used to expose a search repository, tie into an organization's inventory system,
 provide queuing and routing functionality for chats (such as our 
-<a href="http://www.jivesoftware.com/products/liveassistant/?source=Website-Ignite">Live Assistant</a> product), or even
+<a href="https://www.jivesoftware.com/products/liveassistant/?source=Website-Ignite">Live Assistant</a> product), or even
 to let people play games against each other. By itself, IM is a powerful communication medium; but
 it can become a much more powerful tool when it's tailored to specific business purposes.</p>
 
@@ -88,7 +88,7 @@ uses the file transfer API to intercept requests based on those configuration se
 <p>
 Reversi (also known as Othello) is a two-player game where each player tries
 to capture as many stones as possible by flipping the other player's stones.
-See the <a href="http://en.wikipedia.org/wiki/Reversi">Wikipedia entry</a> for 
+See the <a href="https://en.wikipedia.org/wiki/Reversi">Wikipedia entry</a> for 
 a complete explanation.</p>
 
 <p>Bill and I worked on this plugin, which allows a user to invite a buddy to 

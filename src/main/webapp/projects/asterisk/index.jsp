@@ -54,7 +54,7 @@
             <div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
                 <div id="ignite_bigpanel_content">
                     <h1 class="asterisk">Asterisk-IM <span><%= Versions.getVersion("asterisk-im") %></span></h1>
-                    <p>The Asterisk-IM project integrates the <a href="http://www.asterisk.org/" target="_blank">Asterisk
+                    <p>The Asterisk-IM project integrates the <a href="https://www.asterisk.org/" target="_blank">Asterisk
 <acronym title="Private Branch eXchange -- A Phone System">PBX</acronym></a> and Openfire XMPP
 (Jabber) server to create a unified communication platform for telephony and instant messaging.</p>
                     <p>Asterisk-IM is easily deployed as a plugin for <a href="../openfire/">Openfire</a> and is

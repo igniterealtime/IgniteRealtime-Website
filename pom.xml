@@ -8,11 +8,11 @@
     <packaging>war</packaging>
     <version>1.0.0</version>
     <name>Ignite Realtime Public website</name>
-    <url>https://www.igniterealtime.org</url>
+    <url>https://igniterealtime.org/</url>
 
     <organization>
         <name>Ignite Realtime Foundation</name>
-        <url>https://www.igniterealtime.org</url>
+        <url>https://igniterealtime.org/</url>
     </organization>
 
     <licenses>
@@ -33,7 +33,7 @@
             <email>guus.der.kinderen@gmail.com</email>
             <url>https://discourse.igniterealtime.org/users/Guus</url>
             <organization>Ignite Realtime Foundation</organization>
-            <organizationUrl>https://www.igniterealtime.org</organizationUrl>
+            <organizationUrl>https://igniterealtime.org/</organizationUrl>
             <roles>
                 <role>developer</role>
             </roles>

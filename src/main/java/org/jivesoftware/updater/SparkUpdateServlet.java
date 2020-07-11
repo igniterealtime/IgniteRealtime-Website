@@ -33,7 +33,7 @@ import java.util.List;
 
 /**
  * Provides support for global updating of the Jive Spark IM client.
- * (<a href="http://www.jivesoftware.org/spark">Spark</a>).<p>
+ * (<a href="https://www.jivesoftware.org/spark">Spark</a>).<p>
  * <p/>
  * The basic functionality is to query the server for the latest client
  * version and return that information. The version comparison is left to
@@ -180,11 +180,11 @@ public class SparkUpdateServlet extends HttpServlet {
         version.setUpdateTime(build.lastModified());
 
         // Set download url
-        version.setDownloadURL("http://www.igniterealtime.org/updater/updater?filename=" + latestFile);
+        version.setDownloadURL("https://igniterealtime.org/updater/updater?filename=" + latestFile);
         //version.setDownloadURL("http://s3.amazonaws.com/jive/spark/" + latestFile);
 
         // Include the url to the change log.
-        version.setChangeLogURL("http://www.igniterealtime.org/builds/spark/docs/latest/changelog.html");
+        version.setChangeLogURL("https://igniterealtime.org/builds/spark/docs/latest/changelog.html");
 
         final String xml = xstream.toXML(version);
 

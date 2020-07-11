@@ -1,1 +1,1 @@
-    <link rel="shortcut icon" href="http://www.igniterealtime.org/favicon.ico" />
+    <link rel="shortcut icon" href="https://igniterealtime.org/favicon.ico" />

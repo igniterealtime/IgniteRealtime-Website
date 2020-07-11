@@ -4,7 +4,7 @@ IgniteRealtime.org Website
 About
 -----
 
-This is the code that drives the [IgniteRealtime Website](http://igniterealtime.org).
+This is the code that drives the [IgniteRealtime Website](https://igniterealtime.org/).
 
 Bug Tracking
 ------------
@@ -19,7 +19,7 @@ are interested in applying innovative, open-standards-based Real Time Collaborat
 We're aimed at disrupting proprietary, non-open standards-based systems and invite you to participate in what's already one 
 of the biggest and most active Open Source communities.
 
-[Ignite Realtime]: http://www.igniterealtime.org
+[Ignite Realtime]: https://igniterealtime.org/
 [XMPP (Jabber)]: http://xmpp.org/
 
 Testing changes

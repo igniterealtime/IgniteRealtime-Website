@@ -511,7 +511,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 		"name", "SparkWeb",
 		"allowScriptAccess","sameDomain",
 		"type", "application/x-shockwave-flash",
-		"pluginspage", "http://www.adobe.com/go/getflashplayer"
+		"pluginspage", "https://www.adobe.com/go/getflashplayer"
 	);
 } else if (hasRequestedVersion) {
 	// if we've detected an acceptable version
@@ -528,11 +528,11 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 			"wmode", "opaque",
 			"allowScriptAccess","sameDomain",
 			"type", "application/x-shockwave-flash",
-			"pluginspage", "http://www.adobe.com/go/getflashplayer"
+			"pluginspage", "https://www.adobe.com/go/getflashplayer"
 	);
   } else {  // flash is too old or we can't detect the plugin 
     var alternateContent = 'This content requires the Adobe Flash Player. '
-   	+ '<a href=http://www.adobe.com/go/getflash/>Get Flash</a>';
+   	+ '<a href=https://www.adobe.com/go/getflash/>Get Flash</a>';
     document.write(alternateContent);  // insert non-flash content
   }
   detectFlashPlayer()
@@ -541,7 +541,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 <noscript>
   	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
 			 width="100%" height="100%"
-			codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
+			codebase="https://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab">
 			<param name="movie" value="SparkWeb.swf" />
 			<param name="quality" value="high" />
 			<param name="bgcolor" value="#869ca7" />
@@ -553,7 +553,7 @@ if ( hasProductInstall && !hasRequestedVersion ) {
 				quality="high"
 				allowScriptAccess="sameDomain"
 				type="application/x-shockwave-flash"
-				pluginspage="http://www.adobe.com/go/getflashplayer">
+				pluginspage="https://www.adobe.com/go/getflashplayer">
 			</embed>
 	</object>
 </noscript>
