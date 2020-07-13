@@ -120,7 +120,7 @@ We've been using the new Spark 1.1 release (which includes support for
 <a href="sparkplug_day.jsp">Sparkplugs</a>) for several weeks at Jive
 Software and I'm happy to report that it's solved all of our file transfer
 grumbling. Let us know how the new feature is working for you in 
-<a href="https://discourse.igniterealtime.org">the forums</a>.
+<a href="https://discourse.igniterealtime.org/">the forums</a>.
 
 <br/><br/><br/>
 
