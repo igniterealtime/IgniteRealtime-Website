@@ -79,6 +79,18 @@
                             </p>
                         </div>
                     </div>
+                   
+                    <div class="ignite_service-provider">
+                        <span class="ignite_service-provider_logo"><img src="../images/fsoki-32.png" alt="Free-Solutions" width="32" border="0"></span>
+                        <div class="ignite_service-provider_content">
+                            <h3>Free-Solutions</h3>
+                            <span class="ignite_service-provider_url"><a href="https://www.free-solutions.ch/hosting">Openfire SaaS & Baremetal servers</a></span>
+                            <p>
+                                Openfire + Jitsi + P&agrave;d&eacute; SaaS or Baremetal servers. Private Chat & realtime collaborative servers and services.
+                               Also providing expertise and consulting for realtime webrtc/jitsi/openfire projects
+                            </p>
+                        </div>
+                    </div>
 
                     <div class="ignite_service-provider">
                         <span class="ignite_service-provider_logo"><img src="../images/logo-goodbytes-32.png" alt="GoodBytes" width="32" height="32" border="0"></span>
