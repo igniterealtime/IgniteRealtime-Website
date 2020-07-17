@@ -32,7 +32,7 @@
     I will go through various techniques that can be used to add features to Openfire via plugins.
     The idea for the plugin described in this article came from
 
-    requests posted on the Ignite Realtime <a href="https://discourse.igniterealtime.org">forums</a>.
+    requests posted on the Ignite Realtime <a href="https://discourse.igniterealtime.org/">forums</a>.
     Specifically, forum members asked for the
 
     ability to send a user some sort of welcome message each time they logged in. The message could

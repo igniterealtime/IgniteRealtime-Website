@@ -48,7 +48,7 @@ possible ways it can be applied.</p>
 <h2>Protocol Details</h2>
 <img src="images/pubsub_1.png" width="311" height="301" alt="Collection and Root Nodes" align="right" hspace="5" vspace="5" />
 <p>The pubsub specification is defined by 
-<a href="http://www.jabber.org/jeps/jep-0060.html">JEP-0060</a> and is fully 
+<a href="https://xmpp.org/extensions/xep-0060.html">XEP-0060</a> and is fully 
 implemented in <a href="../../projects/openfire/">Openfire</a> (formerly Wildfire) 2.6 and later. The primary
 objects in the pubsub service are called "nodes", which users subscribe and 
 publish to. Nodes are hierarchical (tree structure) and come in two types:

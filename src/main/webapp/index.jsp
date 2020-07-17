@@ -16,7 +16,7 @@
     String baseUrl = config.getServletContext().getInitParameter("discourse_baseurl");
     if ( baseUrl == null || baseUrl.isEmpty() )
     {
-        baseUrl = "https://discourse.igniterealtime.org";
+        baseUrl = "https://discourse.igniterealtime.org/";
     }
 
     request.setAttribute( "baseUrl", baseUrl );

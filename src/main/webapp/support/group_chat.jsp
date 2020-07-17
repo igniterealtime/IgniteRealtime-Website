@@ -65,7 +65,7 @@
                             to connect to the group chat service at conference.igniterealtime.org. The chat name is
                             &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p> -->
 
-                            <p>The web-based group chat client used is <a href="https://conversejs.org">ConverseJS</a>.</p>
+                            <p>The web-based group chat client used is <a href="https://conversejs.org/">ConverseJS</a>.</p>
 
                         </div>
                  <!-- END group chat area -->

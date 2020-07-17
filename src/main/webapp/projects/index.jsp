@@ -34,7 +34,7 @@
                     <div class="ignite_project_content">
                         <a href="openfire/" class="ignite_project_openfire">
                         <h1 class="openfire">Openfire <span><%= Versions.getVersion("openfire") %></span></h1></a>
-                        <p>Openfire is a cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.</p> 
+                        <p>Openfire is a cross-platform real-time collaboration server based on the XMPP protocol.</p> 
                         <p><a href="openfire/" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
                     </div>
                 </div>

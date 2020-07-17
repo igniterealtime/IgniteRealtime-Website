@@ -408,7 +408,7 @@ and covers the following areas:
         <p>
 
         For technical support, please use our
-        <a href="https://discourse.igniterealtime.org">community forums</a>.
+        <a href="https://discourse.igniterealtime.org/">community forums</a>.
         </p>
     </li>
 </ol>

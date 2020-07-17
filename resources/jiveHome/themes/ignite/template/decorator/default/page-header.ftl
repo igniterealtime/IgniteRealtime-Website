@@ -2,7 +2,7 @@
 <a name="top"></a>
     <div id="jive-global-header" class="clearfix">
         <div id="jive-global-header-texture">
-            <a href="https://igniterealtime.org" id="jive-global-header-logo"></a>
+            <a href="https://igniterealtime.org/" id="jive-global-header-logo"></a>
             <a href="https://www.jivesoftware.com?source=Website-Ignite"><div id="ignite_jive"></div></a>
             <div id="ignite_nav">
                 <ol>
