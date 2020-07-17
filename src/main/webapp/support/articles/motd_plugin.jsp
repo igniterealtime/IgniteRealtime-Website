@@ -39,7 +39,7 @@
     be something serious, such as a company's instant messaging
 
     usage policy or something a little bit zanier, like what you find on the lower right-hand corner
-    of <a href="http://slashdot.org/">Slashdot</a>. In either
+    of <a href="https://slashdot.org/">Slashdot</a>. In either
 
     case, we can add this "Message of the Day" (MotD) feature to Openfire without writing a lot of
     code, while still covering a lot of Openfire plugin related
@@ -53,7 +53,7 @@
     details.
 
 
-    <p>I've made the <a href="http://www.version2software.com/downloads/motd.zip">source</a> to this
+    <p>I've made the <a href="http://version2software.com/downloads/motd.zip">source</a> to this
         plugin available on the Version 2 Software website. I
 
         would suggest that you download the source so you can see it in full, as I only

@@ -39,9 +39,9 @@ public class OpenfireVersionChecker {
     private static final Logger Log = LoggerFactory.getLogger( OpenfireVersionChecker.class );
 
     protected static DocumentFactory docFactory = DocumentFactory.getInstance();
-    //private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
-    private static String OPENFIRE_PATH = "https://www.igniterealtime.org/downloads/";
-    private static String OPENFIRE_LOG = "https://www.igniterealtime.org/builds/openfire/docs/latest/changelog.html";
+    //private static String OPENFIRE_PATH = "https://igniterealtime.org/downloads/download-landing.jsp?file=builds/openfire/";
+    private static String OPENFIRE_PATH = "https://igniterealtime.org/downloads/";
+    private static String OPENFIRE_LOG = "https://igniterealtime.org/builds/openfire/docs/latest/changelog.html";
     private static final DateFormat RELEASE_DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
     /**
      * Map that keeps the information specified in plugin.xml for each available plugin.

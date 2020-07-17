@@ -18,7 +18,7 @@
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
             <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
-            <li id="subnav06"><a href="http://www.igniterealtime.org/builds/whack/docs/latest/javadoc/">JavaDocs</a></li>
+            <li id="subnav06"><a href="https://igniterealtime.org/builds/whack/docs/latest/javadoc/">JavaDocs</a></li>
             
         </ul>
     </div>
@@ -47,12 +47,12 @@
                     <h3>Documentation:</h3>
                     <ul>
                     <!--<li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://www.igniterealtime.org/builds/whack/docs/latest/README.html">Readme & License</a></li>
+                    <a href="https://igniterealtime.org/builds/whack/docs/latest/README.html">Readme & License</a></li>
                     <li><img src="/images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://www.igniterealtime.org/builds/whack/docs/latest/changelog.html">Changelog</a>
+                    <a href="https://igniterealtime.org/builds/whack/docs/latest/changelog.html">Changelog</a>
                     <br>
                     <br></li>-->
-                    <li><a href="http://www.igniterealtime.org/builds/whack/docs/latest/documentation/">Whack documentation</a></li>
+                    <li><a href="https://igniterealtime.org/builds/whack/docs/latest/documentation/">Whack documentation</a></li>
                 
                 
                 </div>

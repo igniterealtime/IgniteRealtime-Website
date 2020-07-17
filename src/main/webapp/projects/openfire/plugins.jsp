@@ -27,7 +27,7 @@
             <li id="subnav03"><a href="plugins.jsp" class="ignite_subnav_current">Plugins</a></li>
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
             <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
-            <li id="subnav06"><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+            <li id="subnav06"><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
             <li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
             <!--<li id="subnav08"><a href="../../roadmap.jsp">https://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel</a></li>-->
         </ul>

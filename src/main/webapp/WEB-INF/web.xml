@@ -30,10 +30,10 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     </context-param>
 
     <!-- Hostname where our downloads are hosted. S3/Cloudfront, should almost never change.
-         Default: http://download.igniterealtime.org Note, do not include a trailing "/". -->
+         Default: https://download.igniterealtime.org Note, do not include a trailing "/". -->
     <context-param>
         <param-name>download-host</param-name>
-        <param-value>http://download.igniterealtime.org</param-value>
+        <param-value>https://download.igniterealtime.org</param-value>
     </context-param>
 
     <context-param>

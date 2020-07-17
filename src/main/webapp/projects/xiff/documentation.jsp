@@ -45,9 +45,9 @@
                     <h3>Documentation:</h3>
                     <ul>
                     <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://download.igniterealtime.org/xiff/docs/latest/README.html">Readme</a></li>
+                    <a href="https://download.igniterealtime.org/xiff/docs/latest/README.html">Readme</a></li>
                     <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://download.igniterealtime.org/xiff/docs/latest/changelog.html">Changelog</a>
+                    <a href="https://download.igniterealtime.org/xiff/docs/latest/changelog.html">Changelog</a>
                     <br>
                     <br></li>
                 

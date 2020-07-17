@@ -45,9 +45,9 @@
                     <h3>Documentation:</h3>
                     <ul>
                     <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://www.igniterealtime.org/builds/sparkweb/docs/latest/README.html">Readme &amp; License</a></li>
+                    <a href="https://igniterealtime.org/builds/sparkweb/docs/latest/README.html">Readme &amp; License</a></li>
                     <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="http://www.igniterealtime.org/builds/sparkweb/docs/latest/changelog.html">Changelog</a>
+                    <a href="https://igniterealtime.org/builds/sparkweb/docs/latest/changelog.html">Changelog</a>
                     <br>
                     <br></li>
                     </ul>

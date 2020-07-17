@@ -68,9 +68,9 @@ An RSS feed for download statistics.
 
     <channel>
         <title>Download Statistics for IgniteRealtime.org</title>
-        <link>http://www.igniterealtime.org/rss/downloadstats.jsp</link>
+        <link>https://igniterealtime.org/rss/downloadstats.jsp</link>
         <language>en</language>
-        <generator>www.igniterealtime.org</generator>
+        <generator>igniterealtime.org</generator>
         <pubDate><%= dateString %></pubDate>
 
         <item>
