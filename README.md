@@ -20,7 +20,7 @@ We're aimed at disrupting proprietary, non-open standards-based systems and invi
 of the biggest and most active Open Source communities.
 
 [Ignite Realtime]: http://www.igniterealtime.org
-[XMPP (Jabber)]: http://xmpp.org/
+[XMPP]: https://xmpp.org/
 
 Testing changes
 ===============

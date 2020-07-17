@@ -28,24 +28,24 @@
 
     <!-- BEGIN body area -->
     <div id="ignite_body">
-        
+
         <!-- BEGIN left column (main content) -->
         <div id="ignite_body_leftcol">
-            
+
             <!-- BEGIN body content area -->
             <div id="ignite_int_body">
-            
+
                 <!-- BEGIN body header -->
                 <div id="ignite_body_header">
                     <h1>Support</h1>
                 </div>
                 <!-- END body header -->
-                
+
                 <div id="ignite_support_findprovider">
                     <img src="../images/ignite_support_profsupport.gif" alt="" width="203" height="27" border="0">
                     <p>If you need professional support or services see our <a href="service_providers.jsp">directory of professional partners</a>.</p>
                 </div>
-                    
+
                 <%--<div id="ignite_support_main">
                 <%
                     String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
@@ -62,10 +62,10 @@
                         </form>
                     </div>
                     <!-- END support -->
-                    
+
                     <!-- BEGIN recent support activity block -->
                     <div id="ignite_support_activity">
-                    
+
                         <div>
                             <div id="ignite_support_activity_forums">
                                 <h4>Recent Support Discussions</h4>
@@ -101,7 +101,7 @@
                             <% } %>
                                 </cache:cache>
                                 <strong><a href="<%= allThreadsUrl %>" class="ignite_link_arrow">See all support discussions</a></strong>
-                            </div>	
+                            </div>
                             <div id="ignite_support_activity_articles">
                                 <h4>Recent Articles</h4>
                                 <div class="articles"><a href="articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
@@ -113,8 +113,8 @@
                             </div>
                             <div id="ignite_support_activity_documentation">
                                 <h4>Documentation</h4>
-                                <p>Documentation such as installation guides, change logs and other product documents can 
-                                be found in each project page's Documentation section. The links below will take you to 
+                                <p>Documentation such as installation guides, change logs and other product documents can
+                                be found in each project page's Documentation section. The links below will take you to
                                 the documentation section inside of each project.</p>
                                 <ul>
                                     <li class="ignite_support_projlink"><a href="../projects/openfire/documentation.jsp">Openfire <%= Versions.getVersion("openfire") %></a></li>
@@ -124,13 +124,13 @@
                                     <!--<li class="ignite_support_projlink"><a href="../projects/xiff/documentation.jsp">XIFF API <%= Versions.getVersion("xiff") %></a></li>-->
                                 </ul>
                             </div>
-                        </div> 
-                    
-            
+                        </div>
+
+
                     <!-- END recent support activity block -->
                     </div>
-                    
-                    
+
+
                 <!-- END body support area -->
                 </div>--%>
                 <!--<div id="ignite_support_issuetracker">-->
@@ -147,14 +147,14 @@
         </div>
         <!-- BEGIN right column (sidebar) -->
         <div id="ignite_body_rightcol">
-            
-            
+
+
             <%@ include file="/includes/sidebar_enterprise.jspf" %>
-            
-            <%@ include file="/includes/sidebar_chat.jspf" %>		
+
+            <%@ include file="/includes/sidebar_chat.jspf" %>
         </div>
         <!-- END right column (sidebar) -->
-    
+
     </div>
     <!-- END body area -->
 

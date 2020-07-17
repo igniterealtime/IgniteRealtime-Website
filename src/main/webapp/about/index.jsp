@@ -59,7 +59,7 @@
 
 
                     <p>
-            XMPP (also known as Jabber) is the leading open standard for presence and
+                        XMPP (formerly Jabber) is the leading open standard for presence and
                         real-time messaging. Since 2004, it's been an approved standard of the IETF
                         (the same organization that standardized email and World Wide Web protocols).
                         A rich set of <a href="https://xmpp.org/extensions/">extensions</a> to

@@ -55,7 +55,7 @@
             </span>
 
             <h2>Openfire <%= version %></h2>
-            <p>Cross-platform real-time collaboration server based on the XMPP (Jabber) protocol.</p>
+            <p>Cross-platform real-time collaboration server based on the XMPP protocol.</p>
 
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="openfireWindowsBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('openfireWindows','openfireLinux', 'openfireMac'); return false;"></a></span>

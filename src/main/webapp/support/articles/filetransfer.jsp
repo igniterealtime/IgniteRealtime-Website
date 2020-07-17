@@ -11,7 +11,7 @@
         <li id="subnav01"><a href="../" class="ignite_subnav_project">Support</a></li>
         <li id="subnav02"><a href="../articles.jsp" class="ignite_subnav_current">Articles</a></li>
         <li id="subnav03"><a href="../group_chat.jsp">Group Chat</a></li>
-        <li id="subnav04"><a href="http://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
+        <li id="subnav04"><a href="https://issues.igniterealtime.org/">Issue Tracker</a></li>
         <li id="subnav05"><a href="../service_providers.jsp">Service providers</a></li>
     </ul>
 </div>
@@ -120,7 +120,7 @@ We've been using the new Spark 1.1 release (which includes support for
 <a href="sparkplug_day.jsp">Sparkplugs</a>) for several weeks at Jive
 Software and I'm happy to report that it's solved all of our file transfer
 grumbling. Let us know how the new feature is working for you in 
-<a href="https://discourse.igniterealtime.org">the forums</a>.
+<a href="https://discourse.igniterealtime.org/">the forums</a>.
 
 <br/><br/><br/>
 

@@ -22,7 +22,7 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Whack</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <!--<li id="subnav04"><a href="documentation.jsp">Documentation</a></li>-->
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
             <li id="subnav06"><a href="http://www.igniterealtime.org/builds/whack/docs/latest/javadoc/">JavaDocs</a></li>
             
         </ul>
@@ -56,7 +56,7 @@
                 <div id="ignite_bigpanel_content" style="width: 630px;">
                     <h1 class="whack">Whack <span><%= Versions.getVersion("whack") %></span></h1>
                     <p>
-                        Whack is an Open Source XMPP (Jabber) component library for XMPP components.
+                        Whack is an Open Source XMPP component library for XMPP components.
                         A pure Java library, it can be embedded into your applications to create anything from
                         a full XMPP component to simple XMPP integrations such as sending intercepting and
                         acting on certain messages.

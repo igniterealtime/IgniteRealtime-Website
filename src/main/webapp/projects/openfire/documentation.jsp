@@ -17,10 +17,10 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Openfire</a></li>
             <li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
             <li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
             <li id="subnav06"><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
             <li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
-            <li id="subnav08"><a href="http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
+            <li id="subnav08"><a href="https://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
     </div>
 
@@ -66,7 +66,7 @@
                     <ul>
                     <li><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/index.html">JavaDocs</a> - Openfire API documentation.</li>
                     <li><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/source-build.html">Building the Source</a> - Instructions for downloading and compiling the Openfire source code.</li>
-                    <li><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/protocol-support.html">Protocol Support</a> - Provides details on the XMPP support and JEPs that Openfire implements.</li>
+                    <li><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/protocol-support.html">Protocol Support</a> - Provides details on the XMPP support and XEPs that Openfire implements.</li>
                     <li><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/plugin-dev-guide.html">Plugin Developer Guide</a> - A guide to writing and installing plugins for Openfire.</li>
                     <li><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/translator-guide.html">Translator Guide</a> - Information for those interested in translating the admin console of Openfire into other languages.</li>
                     <li><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/database-guide.html">Database Schema Guide</a> - A tour of the Openfire database schema for developers and database administrators.</li>

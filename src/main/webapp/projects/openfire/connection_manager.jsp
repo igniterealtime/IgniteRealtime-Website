@@ -46,10 +46,10 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Openfire</a></li>
             <li id="subnav03"><a href="plugins.jsp">Plugins</a></li>
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
             <li id="subnav06"><a href="http://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
             <li id="subnav07"><a href="connection_manager.jsp" class="ignite_subnav_current">Connection Manager Module</a></li>
-            <li id="subnav08"><a href="http://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
+            <li id="subnav08"><a href="https://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel">Roadmap</a></li>
         </ul>
     </div>
 
@@ -81,13 +81,13 @@
                     <p>Each connection manager should handle at least five thousand concurrent  users. Experimental support for non-blocking connections is under development, which will greatly increase the number of connections that each connection manager module can support.</p>
                     
                     <h5>Can connection managers be used with other servers?</h5>
-                    <p>Yes (in theory). The connection manager protocol is being developed through the open <a href="http://www.xmpp.org/extensions/">XEP</a> process. We hope to work with other server vendors so that the entire XMPP/Jabber community supports the protocol. We also expect there will be other implementations of connection managers that will be compatible with Openfire. For example, a connection manager written with native code may be able to achieve very high scalability on a specific platform.</p>
+                    <p>Yes (in theory). The connection manager protocol is being developed through the open <a href="https://xmpp.org/extensions/">XEP</a> process. We hope to work with other server vendors so that the entire XMPP community supports the protocol. We also expect there will be other implementations of connection managers that will be compatible with Openfire. For example, a connection manager written with native code may be able to achieve very high scalability on a specific platform.</p>
                     
                     <h5>Does Openfire Connection Manager Module use the same license as Openfire?</h5>
                     <p>Yes, the module is dual-licensed under the Open Source <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a> license or a comercial software license agreement available from Jive Software.</p>
                     
                     <h5>How do I get support?</h5>
-                    <p>Support is available from the user community in the <a href="https://discourse.igniterealtime.org">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
+                    <p>Support is available from the user community in the <a href="https://discourse.igniterealtime.org/">discussion forums</a>. Enterprise-grade email and phone support is also <a href="http://www.jivesoftware.com/products/openfire?source=Website-Ignite">available</a> from Jive Software.</p>
                     
                     
                     <h5>Download</h5>

@@ -23,7 +23,7 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">XIFF</a></li>
             <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
             <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-            <li id="subnav05"><a href="http://issues.igniterealtime.org/browse/XIFF">Issue Tracker</a></li>
+            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/XIFF">Issue Tracker</a></li>
         </ul>
     </div>
 
@@ -56,13 +56,13 @@
                     <h1 class="xiff">XIFF <span><%= Versions.getVersion("xiff") %></span></h1>
                     <p>
                         XIFF is an Open Source Flash library for instant messaging and presence clients
-                        using the XMPP (Jabber) protocol. XIFF includes an extension architecture that makes
+                        using the XMPP protocol. XIFF includes an extension architecture that makes
                         it easy to add functionality for additional protocol extensions, or even your own
                         special-needs extensions. There are quite a few extensions already included in the
-                        library, giving it support for XML-RPC over XMPP (<a href="http://www.xmpp.org/extensions/xep-0009.html">XEP-0009</a>),
-                        Multi-user conferencing (<a href="http://www.xmpp.org/extensions/xep-0045.html">XEP-0045</a>),
-                        Service browsing (<a href="http://www.xmpp.org/extensions/xep-0030.html">XEP-0030</a>),
-                        and XHTML message support (<a href="http://www.xmpp.org/extensions/xep-0009.html">XEP-0071</a>).
+                        library, giving it support for XML-RPC over XMPP (<a href="https://xmpp.org/extensions/xep-0009.html">XEP-0009</a>),
+                        Multi-user conferencing (<a href="https://xmpp.org/extensions/xep-0045.html">XEP-0045</a>),
+                        Service browsing (<a href="https://xmpp.org/extensions/xep-0030.html">XEP-0030</a>),
+                        and XHTML message support (<a href="https://xmpp.org/extensions/xep-0009.html">XEP-0071</a>).
                     </p>
                 </div>
                 
