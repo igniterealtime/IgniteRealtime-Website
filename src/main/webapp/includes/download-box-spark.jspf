@@ -66,7 +66,7 @@
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/online/<%= binExe.getName() %>"><%= binExe.getName() %></a> Online installation, does not include Java JRE
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binExe.getName() %>"><%= binExe.getName() %></a> Online installation, does not include Java JRE
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binExe.length()/1024.0/1024.0) %> MB</span>
