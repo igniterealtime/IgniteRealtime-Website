@@ -3,7 +3,7 @@
     <!--<product name="wildfire" version="3.3.0" date="April 12, 2007" />-->
     <product name="openfire" version="4.5.2" date="May 18, 2020" />
     <product name="openfire-beta" version="4.6.0.beta" date="June 7, 2020" />
-    <product name="spark" version="2.8.3" date="January 29, 2017" />
+    <product name="spark" version="2.9.0" date="August 17, 2020" />
     <product name="pade" version="1.6.8" date="July 31, 2020" />    
     <!-- <product name="spark-beta" version="2.6.0.rc1" date="November 22, 2010" /> -->
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
