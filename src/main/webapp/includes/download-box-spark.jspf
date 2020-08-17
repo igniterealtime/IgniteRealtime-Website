@@ -12,7 +12,7 @@
     DecimalFormat formatter = new DecimalFormat("0.00");
     String basedir = buildsPath + "/spark";
     File binExe = new File(basedir, "spark_" + version.replace('.','_') + ".exe");
-    File binExeWithJRE = new File(basedir, "/online/spark_" + version.replace('.','_') + "-with-jre" + ".exe");
+    File binExeWithJRE = new File(basedir, "/spark_" + version.replace('.','_') + "-with-jre" + ".exe");
     File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
     File binDmgWithJRE = new File(basedir, "spark_" + version.replace('.','_') + "-with-jre.dmg");
     File binTar = new File(basedir, "spark_" + version.replace('.','_') + ".tar.gz");
