@@ -12,13 +12,11 @@
     DecimalFormat formatter = new DecimalFormat("0.00");
     String basedir = buildsPath + "/spark";
     File binExe = new File(basedir, "spark_" + version.replace('.','_') + ".exe");
-    File binExeAlt = new File(basedir, "/online/spark_" + version.replace('.','_') + "_online" + ".exe");
-    File binMsiAlt = new File(basedir, "/online/spark_" + version.replace('.','_') + "_online" + ".msi");
+    File binExeWithJRE = new File(basedir, "/online/spark_" + version.replace('.','_') + "-with-jre" + ".exe");
     File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
+    File binDmgWithJRE = new File(basedir, "spark_" + version.replace('.','_') + "-with-jre.dmg");
     File binTar = new File(basedir, "spark_" + version.replace('.','_') + ".tar.gz");
-    File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
     File rpm = new File(basedir, "spark-" + version + ".rpm");
-    File rpmSrc = new File(basedir, "spark-" + version + ".src.rpm");
     File debian = new File(basedir, "spark_" + version.replace('.','_') + ".deb");
 
     String buildDate = "UNKNOWN";
@@ -60,37 +58,19 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binExe.getName() %>"><%= binExe.getName() %></a> Offline installation, includes Java JRE (recommended)
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binExeWithJRE.getName() %>"><%= binExeWithJRE.getName() %></a> Offline installation, includes Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binExeWithJRE.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/online/<%= binExe.getName() %>"><%= binExe.getName() %></a> Online installation, does not include Java JRE
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binExe.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_even">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/online/<%= binExeAlt.getName() %>"><%= binExeAlt.getName() %></a> Online installation, does not include Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binExeAlt.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <!--
-                    <div class="ignite_download_item_odd">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binMsi.getName() %>"><%= binMsi.getName() %></a> MSI package, includes Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsi.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <div class="ignite_download_item_even">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/online/<%= binMsiAlt.getName() %>"><%= binMsiAlt.getName() %></a> Online MSI package, does not include Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsiAlt.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    -->
                 </div>
             </div>
             <!-- END windows -->
@@ -114,14 +94,6 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)rpm.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_odd">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_linux.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= rpmSrc.getName() %>"><%= rpmSrc.getName() %></a> source RPM for Red Hat Linux and variants
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)rpmSrc.length()/1024.0/1024.0) %> MB</span>
-                    </div>
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_debian.gif" alt="" width="17" height="16" border="0">
@@ -140,7 +112,17 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binDmg.getName() %>"><%= binDmg.getName() %></a> Requires OSX 10.6.7 or higher (includes Java JRE)
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binDmgWithJRE.getName() %>"><%= binDmgWithJRE.getName() %></a> Requires OSX 10.6.7 or higher (includes Java JRE)
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binDmgWithJRE.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
+                            <a href="<%= path %>/downloads/download-landing.jsp?file=spark/<%= binDmg.getName() %>"><%= binDmg.getName() %></a> Requires OSX 10.6.7 or higher
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binDmg.length()/1024.0/1024.0) %> MB</span>
