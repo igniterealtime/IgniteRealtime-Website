@@ -45,7 +45,7 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=whack/<%= binJar.getName() %>"><%= binJar.getName() %></a>
+                            <a href="/downloadServlet?filename=whack/<%= binJar.getName() %>"><%= binJar.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binJar.length()/1024.0/1024.0) %> MB</span>

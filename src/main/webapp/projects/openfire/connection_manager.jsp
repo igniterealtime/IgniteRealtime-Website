@@ -100,7 +100,7 @@
                         <div class="ignite_download_item_odd">
                             <span class="ignite_download_item_details">
                                 <img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                                <a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= zip.getName() %>"><%= zip.getName() %></a> - Windows archive file
+                                <a href="/downloadServlet?filename=connectionmanager/<%= zip.getName() %>"><%= zip.getName() %></a> - Windows archive file
                             </span>
                             <span class="ignite_download_item_date">
                                 <%= buildDate %>
@@ -112,7 +112,7 @@
                         <div class="ignite_download_item_even">
                             <span class="ignite_download_item_details">
                                 <img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                                <a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> - Unix/Linux archive file
+                                <a href="/downloadServlet?filename=connectionmanager/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> - Unix/Linux archive file
                             </span>
                             <span class="ignite_download_item_date">
                                 <%= buildDate %>
@@ -130,7 +130,7 @@
                         <div class="ignite_download_item_odd">
                             <span class="ignite_download_item_details">
                                 <img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                                <a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= srcZip.getName() %>"><%= srcZip.getName() %></a> - Windows archive file
+                                <a href="/downloadServlet?filename=connectionmanager/<%= srcZip.getName() %>"><%= srcZip.getName() %></a> - Windows archive file
                             </span>
                             <span class="ignite_download_item_date">
                                 <%= buildDate %>
@@ -142,7 +142,7 @@
                         <div class="ignite_download_item_even">
                             <span class="ignite_download_item_details">
                                 <img src="../../images/icon_zip.gif" alt="" width="17" height="16" border="0">
-                                <a href="<%= path %>/downloads/download-landing.jsp?file=connectionmanager/<%= srcTarGz.getName() %>"><%= srcTarGz.getName() %></a> - Unix/Linux archive file
+                                <a href="/downloadServlet?filename=connectionmanager/<%= srcTarGz.getName() %>"><%= srcTarGz.getName() %></a> - Unix/Linux archive file
                             </span>
                             <span class="ignite_download_item_date">
                                 <%= buildDate %>
