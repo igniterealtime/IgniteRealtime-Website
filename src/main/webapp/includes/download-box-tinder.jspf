@@ -53,7 +53,7 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=tinder/<%= binZip.getName() %>"><%= binZip.getName() %></a>
+                            <a href="/downloadServlet?filename=tinder/<%= binZip.getName() %>"><%= binZip.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binZip.length()/1024.0/1024.0) %> MB</span>
@@ -61,7 +61,7 @@
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="<%= path %>/downloads/download-landing.jsp?file=tinder/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a>
+                            <a href="/downloadServlet?filename=tinder/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binTarGz.length()/1024.0/1024.0) %> MB</span>
