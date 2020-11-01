@@ -30,7 +30,7 @@
 
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
-                <a href="https://github.com/igniterealtime/Smack/releases"><strong>Old versions</strong></a>
+                <a href="https://github.com/igniterealtime/Smack/releases"><strong>Old versions</strong></a> |
                 <a href="<%=request.getContextPath()%>/builds/smack/docs/latest/README.html">Readme & License</a> |
                 <a href="<%=request.getContextPath()%>/builds/smack/docs/latest/changelog.html">Changelog</a> |
                 <a href="nightly_smack.jsp">Nightly Builds</a> |
