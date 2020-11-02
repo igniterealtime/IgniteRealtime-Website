@@ -46,12 +46,11 @@
 
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
-                <a href="<%=request.getContextPath()%>/projects/openfire/plugins.jsp"><strong>Plugins</strong></a> |
-                <!-- <a href="<%=request.getContextPath()%>/builds/openfire/docs/latest/README.html">Readme</a> |
-                <a href="<%=request.getContextPath()%>/builds/openfire/docs/latest/LICENSE.html">License</a> |
+                <a href="<%=request.getContextPath()%>/projects/openfire/plugins.jsp">Plugins</a> |
+                <!-- <a href="<%=request.getContextPath()%>/builds/openfire/docs/latest/README.html">Readme & License</a> |
                 <a href="<%=request.getContextPath()%>/builds/openfire/docs/latest/changelog.html">Changelog</a> |  -->
                 <a href="nightly_openfire.jsp">Nightly Builds</a> |
-                <a href="https://github.com/igniterealtime/Openfire">Source Code</a>
+                <a href="https://github.com/igniterealtime/Openfire">Source</a>
             </span>
 
             <h2>Openfire <%= version %></h2>
