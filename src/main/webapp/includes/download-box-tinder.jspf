@@ -33,12 +33,11 @@
 
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
-                <!-- <a href="#"><strong>Plugins</strong></a> |  -->
                 <a href="https://discourse.igniterealtime.org/t/introducing-tinder-an-xmpp-object-implementation-library/63975">Readme</a>
                 <!--<a href="/builds/tinder/docs/latest/README.html">Readme & License</a>--></li> |
                 <a href="https://discourse.igniterealtime.org/t/tinder-release-notes/63977">Changelog</a> |
                 <%--<a href="nightly_tinder.jsp">Nightly Builds</a> |  --%>
-                <a href="https://github.com/igniterealtime/tinder">Source Code</a>
+                <a href="https://github.com/igniterealtime/tinder">Source</a>
             </span>
 
             <h2>Tinder <%= version %></h2>
