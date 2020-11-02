@@ -33,7 +33,7 @@
 
         <div class="ignite_downloads_content">
             <span class="ignite_downloads_info">
-                <a href="https://github.com/igniterealtime/Sparkweb">Source Code</a>
+                <a href="https://github.com/igniterealtime/Sparkweb">Source</a>
             </span>
 
             <h2>SparkWeb <%= version %></h2>
