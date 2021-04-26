@@ -11,12 +11,12 @@
     DecimalFormat formatter = new DecimalFormat("0.00");
     String basedir = buildsPath + "/spark/beta";
     File binExe = new File(basedir, "spark_" + version.replace('.','_') + ".exe");
-    File binExeAlt = new File(basedir, "spark_" + version.replace('.','_') + "_online" + ".exe");
-    File debian = new File(basedir, "spark_" + version + "_all.deb");
-    File binMsiAlt = new File(basedir, "spark_" + version.replace('.','_') + "_online" + ".msi");
+    File binExeAlt = new File(basedir, "spark_" + version.replace('.','_') + "-with-jre" + ".exe");
+    File debian = new File(basedir, "spark_" + version.replace('.','_') + ".deb");
     File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
+    File binDmgAlt = new File(basedir, "spark_" + version.replace('.','_') + "-with-jre.dmg");
     File binTar = new File(basedir, "spark_" + version.replace('.','_') + ".tar.gz");
-    File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
+    File rpm = new File(basedir, "spark-" + version + ".rpm");
 
     String buildDate = "UNKNOWN";
     if (binExe.exists()) {
@@ -71,26 +71,6 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binExeAlt.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <% if (binMsi.exists()) { %>
-                    <div class="ignite_download_item_odd">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=spark/beta/<%= binMsi.getName() %>"><%= binMsi.getName() %></a> MSI package, includes Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsi.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <% } %>
-                    <% if (binMsiAlt.exists()) { %>
-                    <div class="ignite_download_item_even">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=spark/beta/<%= binMsiAlt.getName() %>"><%= binMsiAlt.getName() %></a> Online MSI package, does not include Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsiAlt.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <% } %>
                 </div>
             </div>
             <!-- END windows -->
@@ -116,6 +96,14 @@
                         <span class="ignite_download_item_size"><%= formatter.format((double)debian.length()/1024.0/1024.0) %> MB</span>
                     </div>
                     <% } %>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_linux.gif" alt="" width="17" height="16" border="0">
+                            <a href="/downloadServlet?filename=spark/beta/<%= rpm.getName() %>"><%= rpm.getName() %></a> RPM
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)rpm.length()/1024.0/1024.0) %> MB</span>
+                    </div>
                 </div>
             </div>
             <!-- END linux -->
@@ -130,6 +118,14 @@
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binDmg.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
+                            <a href="/downloadServlet?filename=spark/beta/<%= binDmgAlt.getName() %>"><%= binDmgAlt.getName() %></a>
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binDmgAlt.length()/1024.0/1024.0) %> MB</span>
                     </div>
                 </div>
             </div>
