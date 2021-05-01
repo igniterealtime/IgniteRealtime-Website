@@ -26,6 +26,7 @@
             <li id="subnav05"><a href="//download.igniterealtime.org/smack/docs/latest/changelog.html">Changelog</a></li>
             <li id="subnav06"><a href="//issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
             <li id="subnav07"><a href="https://github.com/igniterealtime/Smack">Source</a></li>
+            <li id="subnav08"><a href="${baseUrl}/projects/smack/resources">Resources</a></li>
         </ul>
     </div>
 
