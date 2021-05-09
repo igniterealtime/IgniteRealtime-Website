@@ -48,7 +48,7 @@
 
                     <h3>Audits:</h3>
                     <ul>
-                    <li><a href="https://download.igniterealtime.org/smack/docs/smack-omemo-audit-0.2.pdf">Security Audit: smack-omemo</a></li>
+                    <li><a href="https://download.igniterealtime.org/smack/docs/smack-omemo-audit-1.0.pdf">Security Audit: smack-omemo</a></li>
                     </ul>
 
                 </div>
