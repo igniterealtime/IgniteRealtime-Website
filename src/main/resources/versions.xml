@@ -7,7 +7,7 @@
     <product name="pade" version="1.6.14" date="June 8, 2020" />    
     <product name="spark-beta" version="3.0.0-beta" date="April 26, 2021" />
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
-    <product name="smack" version="4.4.2" date="March 25, 2021" />
+    <product name="smack" version="4.4.4" date="November 1, 2021" />
     <!-- <product name="smack-beta" version="3.2.0.Beta2" date="February 23, 2011" /> -->
     <product name="tinder" version="1.3.0" date="April 19, 2017" />
     <product name="whack" version="2.0.1" date="November 29, 2016" />
