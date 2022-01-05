@@ -19,13 +19,13 @@
 
     <div id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="./" class="ignite_subnav_project">Pàdé</a></li>   
+            <li id="subnav01"><a href="./" class="ignite_subnav_project">P&agrave;d&eacute;</a></li>
             <li id="subnav02"><a href="https://github.com/igniterealtime/Pade/releases">Releases</a></li>    
             <li id="subnav03"><a href="https://github.com/igniterealtime/Pade">Source Code</a></li>            
             <li id="subnav04"><a href="https://igniterealtime.github.io/Pade/">Documentation</a></li>
             <li id="subnav05"><a href="https://github.com/igniterealtime/pade/issues">Issue Tracker</a></li>
             <li id="subnav06"><a href="https://conversejs.org/">Converse</a></li>
-            <li id="subnav07"><a href="https://jitsi.org/jitsi-meet/">Jitsi-Meet</a></li>            
+            <li id="subnav07"><a href="https://jitsi.org/jitsi-meet/">Jitsi-Meet</a></li>
             <li id="subnav08"><a href="https://collecttix.github.io/ctxSip/">CTX SIP Phone</a></li>             
             <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
         </ul>
@@ -57,8 +57,8 @@
             %>
             <div id="ignite_bigpanel" <% if (!panelCookieSet) { %> style="display:block" <% } %>>
                 <div id="ignite_bigpanel_content">
-                    <h1 class="pade">Pàdé <span><%= Versions.getVersion("pade") %></span></h1>
-                    <p>Pàdé is the Yoruba word for "Meet". It is a unified real-time collaboration client optimized for business and organizations implemented as a cross-platform browser extension.</p>
+                    <h1 class="pade">P&agrave;d&eacute; <span><%= Versions.getVersion("pade") %></span></h1>
+                    <p>P&agrave;d&eacute; is the Yoruba word for "Meet". It is a unified real-time collaboration client optimized for business and organizations implemented as a cross-platform browser extension.</p>
                     <ul>
                         <li>Converse.js for XMPP chat/groupchat with Openfire</li>
                         <li>Jitsi Meet for SFU-based WebRTC audio/video conferencing, screen share and real-time application collaboration with Jitsi Video-bridge.</li>
@@ -77,7 +77,7 @@
                 <div id="ignite_bigpanel_download">
                     <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba">Install</a>
                     <span>
-                      <strong>Pàdé <%= Versions.getVersion("pade") %></strong> Latest build: <%= Versions.getVersionDate("pade") %>
+                      <strong>P&agrave;d&eacute; <%= Versions.getVersion("pade") %></strong> Latest build: <%= Versions.getVersionDate("pade") %>
                     </span>
                 </div>
                 
@@ -90,7 +90,7 @@
                 (same details as above for 'large panel')
             -->
             <div id="ignite_smallpanel" <% if (panelCookieSet) { %> style="display:block" <% } %>>
-                <h1 class="pade">Pàdé <span><%= Versions.getVersion("pade") %></span></h1>
+                <h1 class="pade">P&agrave;d&eacute; <span><%= Versions.getVersion("pade") %></span></h1>
                 <div id="ignite_smallpanel_open">
                     <a href="#" onClick="closePanel('pade'); return false;"></a>
                 </div>

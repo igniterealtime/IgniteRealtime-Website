@@ -15,6 +15,16 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <mime-type>text/javascript;charset=UTF-8</mime-type>
     </mime-mapping>
 
+    <jsp-config>
+        <jsp-property-group>
+            <url-pattern>*.jsp</url-pattern>
+            <url-pattern>*.jspf</url-pattern>
+            <url-pattern>*.tag</url-pattern>
+            <url-pattern>*.tagx</url-pattern>
+            <page-encoding>UTF-8</page-encoding>
+        </jsp-property-group>
+    </jsp-config>
+
     <!-- WEB-50: Database connection parameters are retrieved from the Tomcat context configuration (via JNDI). -->
     <resource-ref>
         <description>DB Connection</description>
