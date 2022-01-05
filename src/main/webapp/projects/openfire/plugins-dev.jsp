@@ -1,7 +1,4 @@
- <%@ page import="java.util.zip.ZipFile,
-                 java.util.jar.JarFile,
-                 java.util.jar.JarEntry,
-                 java.io.*,
+ <%@ page import="java.io.*,
                  org.dom4j.io.SAXReader,
                  org.dom4j.Document,
                  org.dom4j.Element,
