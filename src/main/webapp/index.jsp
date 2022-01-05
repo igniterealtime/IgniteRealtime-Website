@@ -168,7 +168,7 @@
                 <h1 class="sidebar_header">Projects</h1>
                 <div><strong><a href="projects/openfire/">Openfire</a></strong> <%= Versions.getVersion("openfire") %> <a href="downloads/#openfire" class="button_download">Download</a></div>
                 <div><strong><a href="projects/spark/">Spark</a></strong> <%= Versions.getVersion("spark") %> <a href="downloads/#spark" class="button_download">Download</a></div>
-                <div><strong><a href="projects/pade/">Pàdé</a></strong> <%= Versions.getVersion("pade") %> <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba" class="button_download">Install</a></div>                
+                <div><strong><a href="projects/pade/">P&agrave;d&eacute;</a></strong> <%= Versions.getVersion("pade") %> <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba" class="button_download">Install</a></div>
         <!--        <div><strong><a href="projects/sparkweb/">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %> <a href="downloads/#sparkweb" class="button_download">Download</a></div> -->
                 <div><strong><a href="projects/smack/">Smack</a></strong> <%= Versions.getVersion("smack") %> <a href="downloads/#smack" class="button_download">Download</a></div>
                 <div><strong><a href="projects/tinder/">Tinder</a></strong> <%= Versions.getVersion("tinder") %> <a href="downloads/#tinder" class="button_download">Download</a></div>
