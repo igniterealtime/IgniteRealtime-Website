@@ -16,22 +16,25 @@
 
 <head>
 <title>Ignite Realtime: <decorator:title /></title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="Content-Language" content="en-us" />
-<meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="jive, jive software, java, open source, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, xiff, asterisk" />"/>
-
+<meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="ignite, igniterealtime, jive, jive software, java, open source, openfire, wildfire, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, xiff, asterisk" />"/>
+<meta property="og:title" content="Ignite Realtime: <decorator:title />" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<%=request.getRequestURL()%>" />
+<meta property="og:image" content="https://www.igniterealtime.org/images/screenshot-ignite-large.jpg" />
 <style type="text/css" media="screen">
     @import url(https://fonts.googleapis.com/css?family=Dosis:600);
     @import "<%= request.getContextPath() %>/styles/global.css";
 </style>
 
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>
     
 <!--
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/cookies.js"></script>
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/scriptaculous.js"></script>
-<script type="text/javascript" language="JavaScript" src="<%= request.getContextPath() %>/scripts/window.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/scripts/cookies.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/scripts/scriptaculous.js"></script>
+<script type="text/javascript" src="<%= request.getContextPath() %>/scripts/window.js"></script>
 -->
 
 <decorator:head />

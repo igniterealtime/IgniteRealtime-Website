@@ -76,9 +76,9 @@
             </td>
             <td class="ignite_fans_screenshots">
                 <a href="../images/screenshot-ignite-large.jpg">
-                    <img src="../images/ignite_fans_ss-ignite.gif" alt="" width="200" height="125" border="0">
+                    <img src="../images/screenshot-ignite-large.jpg" alt="Screenshot of the Ignite Realtime website home page." style="width: 200px; border: 0">
                 </a>
-                <span>420 x 420 screenshot of the Ignite Realtime website home page.</span>
+                <span>963 x 963 screenshot of the Ignite Realtime website home page.</span>
 <textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a href="/">
 <img src="../images/screenshot-ignite-large.jpg" border="0" alt="Ignite Realtime">
 </a>
@@ -129,9 +129,9 @@
             </td>
             <td class="ignite_fans_screenshots">
                 <a href="../images/screenshot-openfire-large.gif">
-                    <img src="../images/ignite_fans_ss-openfire.gif" alt="" width="200" height="125" border="0">
+                    <img src="../images/screenshot-openfire-large.gif" alt="Screenshot of the Openfire real-time communications server." style="width: 200px; border: 0">
                 </a>
-                <span>420 x 441 screenshot of the Openfire real-time communications server.</span>
+                <span>1414 x 1310 screenshot of the Openfire real-time communications server.</span>
 <textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a href="../projects/openfire/">
 <img src="../images/screenshot-openfire-large.gif" border="0" alt="Openfire RTC Server">
 </a>
@@ -182,9 +182,9 @@
             </td>
             <td class="ignite_fans_screenshots">
                 <a href="../images/screenshot-spark-large.gif">
-                    <img src="../images/ignite_fans_ss-spark.gif" alt="" width="202" height="125" border="0">
+                    <img src="../images/screenshot-spark-large.gif" alt="Screenshot of the chat window of the Spark real-time communications client." style="width: 200px; border: 0">
                 </a>
-                <span>376 x 393 screenshot of the chat window of the Spark real-time communications client.</span>
+                <span>741 x 434 screenshot of the chat window of the Spark real-time communications client.</span>
 <textarea cols="20" rows="3" name="ignitescreenshot" wrap="off"><a href="../projects/spark/">
 <img src="../images/screenshot-spark-large.gif" border="0" alt="Spark RTC Client">
 </a>
