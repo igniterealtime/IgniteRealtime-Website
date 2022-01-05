@@ -491,6 +491,9 @@ pre.jive_quote {
 .ignite_blog_entry_body img {
     border: none;
     }
+.ignite_blog_entry_body .emoji {
+    height: 1em;
+}
 .ignite_blog_entry_body a img {
     border: 1px solid #999;
     margin-right: 4px;
