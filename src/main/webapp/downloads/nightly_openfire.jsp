@@ -79,12 +79,7 @@
             <p>
             Below are nightly builds for Openfire.
             Please see the <a href="./">official builds</a>
-            page if you're looking for a specific release. Each day has 3 builds:</p>
-            <ul>
-             <li>generic binary build in gzip compressed tar format (.tar.gz)</li>
-             <li>generic binary build in zip format (.zip)</li>
-             <li>binary build installer for Ubuntu/Debian (.deb)</li>
-            </ul>
+            page if you're looking for a specific release.</p>
 
     <p>If you are looking for the latest source code, please see our
     <a href="https://github.com/Igniterealtime/Openfire">GitHub Repository</a>.</p>
