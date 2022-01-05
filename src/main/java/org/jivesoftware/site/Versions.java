@@ -50,12 +50,12 @@ public class Versions {
         {
             try ( InputStream in = Versions.class.getResourceAsStream("/versions.xml") )
             {
-                final Iterator iter = new XPP3Reader().read(in).getRootElement().elementIterator("product");
+                final Iterator<Element> iter = new XPP3Reader().read(in).getRootElement().elementIterator("product");
 
                 final Map<String, Product> update = new HashMap<>();
                 while (iter.hasNext())
                 {
-                    final Element element = (Element)iter.next();
+                    final Element element = iter.next();
 
                     final String name    = element.attributeValue("name");
                     final String version = element.attributeValue("version");

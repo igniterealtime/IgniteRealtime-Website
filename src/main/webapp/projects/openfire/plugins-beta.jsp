@@ -1,7 +1,4 @@
- <%@ page import="java.util.zip.ZipFile,
-                 java.util.jar.JarFile,
-                 java.util.jar.JarEntry,
-                 java.io.*,
+ <%@ page import="java.io.*,
                  org.dom4j.io.SAXReader,
                  org.dom4j.Document,
                  org.dom4j.Element,
@@ -9,8 +6,6 @@
                  java.net.*,
                  java.text.SimpleDateFormat, java.util.*"
 %>
- <%@ page import="org.slf4j.LoggerFactory" %>
-
  <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
