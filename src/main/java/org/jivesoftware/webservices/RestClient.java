@@ -11,9 +11,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class RestClient {
 
@@ -37,20 +35,7 @@ public class RestClient {
 
             // Deal with the response.
             // Use caution: ensure correct character encoding and is not binary data
-            String response = "";
-            final InputStream is = method.getResponseBodyAsStream();
-            if ( is != null )
-            {
-                final ByteArrayOutputStream os = new ByteArrayOutputStream();
-                final byte[] buffer = new byte[ 4096 ];
-
-                int len;
-                while ( ( len = is.read( buffer ) ) > 0 )
-                {
-                    os.write( buffer, 0, len );
-                }
-                response = new String( os.toByteArray() );
-            }
+            String response = method.getResponseBodyAsString();
             response = StringUtils.removeStart( response, "throw 'allowIllegalResourceCall is false.';" );
             response = StringUtils.trim( response );
 
