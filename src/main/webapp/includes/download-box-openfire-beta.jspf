@@ -53,7 +53,7 @@
             <p>Cross-platform real-time collaboration server based on the XMPP protocol.</p>
 
             <p>As of Openfire version 4.7.0-beta, a Java Runtime Environment (JRE) is
-            <a href="https://discourse.igniterealtime.org/t//91023">no longer distributed</a>
+            <a href="https://discourse.igniterealtime.org/t/91023">no longer distributed</a>
             with the Openfire release.</p>
 
             <span class="ignite_download_choose">Choose your platform:</span>
