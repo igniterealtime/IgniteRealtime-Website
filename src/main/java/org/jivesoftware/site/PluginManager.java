@@ -410,11 +410,15 @@ public class PluginManager
                 author = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/author" );
                 licenseType = PluginDownloadServlet.getMetadataFromPlugin( archive, "/plugin/licenseType" );
 
-                SimpleDateFormat parser = new SimpleDateFormat( "MM/dd/yyyy");
+                SimpleDateFormat parser = null;
+                String dateStringFormat = null;
                 Date result = null;
                 if ( dateText != null ) {
                     try
                     {
+                        // GH199 - default to ISO if a dash is found in the right spot
+                        dateStringFormat = dateText.substring(4, 5).equals('-') ? "yyyy-MM-dd" : "MM/dd/yyyy";
+                        parser = new SimpleDateFormat( dateStringFormat );
                         result = parser.parse( dateText );
                     } catch ( Exception e ) {
                         result = null;
