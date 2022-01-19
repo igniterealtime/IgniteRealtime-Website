@@ -14,15 +14,10 @@
     String ver = version.replace('.', '_');
     File winInstaller = new File(basedir, "openfire_" + ver + ".exe");
     File winInstaller64 = new File(basedir, "openfire_" + ver + "_x64.exe");
-    File winInstaller_jre = new File(basedir, "openfire_" + ver + "_bundledJRE.exe");
-    File winInstaller_jre64 = new File(basedir, "openfire_" + ver + "_bundledJRE_x64.exe");
     File zip = new File(basedir, "openfire_" + ver + ".zip");
-    File rpm32 = new File(basedir, "openfire-" + version + "-1.i686.rpm");
     File rpmnoarch = new File(basedir, "openfire-" + version + "-1.noarch.rpm");
-    File rpm64 = new File(basedir, "openfire-" + version + "-1.x86_64.rpm");
     File binTarGz = new File(basedir, "openfire_" + ver + ".tar.gz");
     File dmg = new File(basedir, "openfire_" + ver + ".dmg");
-    File solaris = new File(basedir, "JSopenfire-" + version + "-ALL.pkg.gz");
     File debian = new File(basedir, "openfire_" + version + "_all.deb");
     File war = new File(basedir, "openfire_" + ver + ".war");
     File srcZip = new File(basedir, "openfire_src_" + ver + ".zip");
@@ -58,6 +53,10 @@
             <a style="color: #666;" target="_blank" href="https://discourse.igniterealtime.org/t/more-on-the-renaming-of-wildfire/68578">Read about the name change</a>
             </p>
 
+            <p>As of Openfire version 4.7.0, a Java Runtime Environment (JRE) is
+            <a href="https://discourse.igniterealtime.org/t//91023">no longer distributed</a>
+            with the Openfire release.</p>
+
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="openfireWindowsBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('openfireWindows','openfireLinux', 'openfireMac'); return false;"></a></span>
             <span id="openfireLinuxBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('openfireLinux','openfireWindows', 'openfireMac'); return false;"></a></span>
@@ -69,7 +68,7 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> 32-bit, No Java JRE
+                            <a href="/downloadServlet?filename=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> 32-bit
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller.length()/1024.0/1024.0) %> MB</span>
@@ -77,31 +76,15 @@
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= winInstaller64.getName() %>"><%= winInstaller64.getName() %></a> 64-bit, No Java JRE <b>(recommended)</b>
+                            <a href="/downloadServlet?filename=openfire/<%= winInstaller64.getName() %>"><%= winInstaller64.getName() %></a> 64-bit <b>(recommended)</b>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller64.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_odd">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= winInstaller_jre.getName() %>"><%= winInstaller_jre.getName() %></a> 32-bit, Includes 32-bit Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller_jre.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <div class="ignite_download_item_even">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= winInstaller_jre64.getName() %>"><%= winInstaller_jre64.getName() %></a> 64-bit, Includes 64-bit Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller_jre64.length()/1024.0/1024.0) %> MB</span>
-                    </div>
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= zip.getName() %>"><%= zip.getName() %></a> Does not include Java JRE
+                            <a href="/downloadServlet?filename=openfire/<%= zip.getName() %>"><%= zip.getName() %></a>
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)zip.length()/1024.0/1024.0) %> MB</span>
@@ -117,56 +100,26 @@
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_linux.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= rpmnoarch.getName() %>"><%= rpmnoarch.getName() %></a> RPM (no JRE bundled) for Red Hat Linux and variants
+                            <a href="/downloadServlet?filename=openfire/<%= rpmnoarch.getName() %>"><%= rpmnoarch.getName() %></a> RPM for Red Hat Linux and variants
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)rpmnoarch.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <% } %>
-                    <% if (rpm32.exists()) { %>
-                    <div class="ignite_download_item_even">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_linux.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= rpm32.getName() %>"><%= rpm32.getName() %></a> RPM (32bit JRE bundled) for Red Hat Linux and variants
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)rpm32.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <% } %>
-                    <% if (rpm64.exists()) { %>
-                    <div class="ignite_download_item_odd">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_linux.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= rpm64.getName() %>"><%= rpm64.getName() %></a> RPM (64bit JRE bundled) for Red Hat Linux and variants
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)rpm64.length()/1024.0/1024.0) %> MB</span>
                     </div>
                     <% } %>
                     <% if (debian.exists()) { %>
                     <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_debian.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= debian.getName() %>"><%= debian.getName() %></a> Debian package, no Java JRE
+                            <a href="/downloadServlet?filename=openfire/<%= debian.getName() %>"><%= debian.getName() %></a> Debian package
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)debian.length()/1024.0/1024.0) %> MB</span>
                     </div>
                     <% } %>
-                    <% if (solaris.exists()) { %>
                     <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_solaris.gif" alt="" width="17" height="16" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= solaris.getName() %>"><%= solaris.getName() %></a> Solaris package, no Java JRE
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)solaris.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <% } %>
-                    <div class="ignite_download_item_even">
-                        <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="/downloadServlet?filename=openfire/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> Works on most Unix variants, no Java JRE 
+                            <a href="/downloadServlet?filename=openfire/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> Works on most Unix variants
                         </span>
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binTarGz.length()/1024.0/1024.0) %> MB</span>
