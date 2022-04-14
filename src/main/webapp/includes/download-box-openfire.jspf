@@ -57,6 +57,8 @@
             <a href="https://discourse.igniterealtime.org/t/91023">no longer distributed</a>
             with the Openfire release.</p>
 
+            <p>Checksums for Openfire distributables are available in the <a href="https://github.com/igniterealtime/Openfire/releases">Github 'releases' section</a> of the Openfire source code repository.</p>
+
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="openfireWindowsBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('openfireWindows','openfireLinux', 'openfireMac'); return false;"></a></span>
             <span id="openfireLinuxBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('openfireLinux','openfireWindows', 'openfireMac'); return false;"></a></span>

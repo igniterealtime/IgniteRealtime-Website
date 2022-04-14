@@ -48,6 +48,8 @@
             <h2>Spark <%= version %></h2>
             <p>Cross-platform real-time collaboration client optimized for business and organizations.</p>
 
+            <p>Checksums for Spark distributables are available in the <a href="https://github.com/igniterealtime/Spark/releases">Github 'releases' section</a> of the Spark source code repository.</p>
+
             <span class="ignite_download_choose">Choose your platform:</span>
             <span id="sparkWindowsBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkWindows','sparkLinux','sparkMac'); return false;"></a></span>
             <span id="sparkLinuxBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('sparkLinux','sparkWindows','sparkMac'); return false;"></a></span>
