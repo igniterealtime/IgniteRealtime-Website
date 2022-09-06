@@ -47,9 +47,10 @@
         <tr>
             <td class="ignite_fans_logos">
                 <img src="../images/ignite_fans_logo-ignite.gif" alt="" width="200" height="74" border="0">
-                <span><a href="logo-igniterealtime.tif">TIFF</a> (653 KB)</span>
-                <span><a href="logo-igniterealtime.eps">EPS</a> (514 KB)</span>
-                <span><a href="logo-igniterealtime.png">PNG</a> (28 KB)</span>
+                <hr style="height: 0"/>
+                <span><a href="logo-igniterealtime.tif">TIFF</a> (653 kB)</span>
+                <span><a href="logo-igniterealtime.eps">EPS</a> (514 kB)</span>
+                <span><a href="logo-igniterealtime.png">PNG</a> (28 kB)</span>
             </td>
             <td class="ignite_fans_buttons">
                 <div class="ignite_fans_button1">
@@ -99,9 +100,16 @@
         <tr>
             <td class="ignite_fans_logos">
                 <img src="../images/ignite_fans_logo-openfire.gif" alt="" width="138" height="43" border="0">
-                <span><a href="logo-openfire.tif">TIFF</a> (1,972 KB)</span>
-                <span><a href="logo-openfire.eps">EPS</a> (445 KB)</span>
-                <span><a href="logo-openfire.png">PNG</a> (24 KB)</span>
+                <hr style="height: 0"/>
+                <span><a href="logo-openfire.tif">TIFF</a> (1,972 kB)</span>
+                <span><a href="logo-openfire.eps">EPS</a> (445 kB)</span>
+                <span><a href="logo-openfire.png">PNG</a> (24 kB)</span>
+                <span><a href="logo-openfire.svg">SVG</a> (18 kB)</span>
+                <hr style="height: 0"/>
+                <img src="logo-openfire-notext.svg" alt="" height="43" border="0"><br>
+                <hr style="height: 0"/>
+                <span><a href="logo-openfire-notext.svg">SVG</a> (14.6 kB)</span>
+
             </td>
             <td class="ignite_fans_buttons">
                 <div class="ignite_fans_button1">
@@ -151,10 +159,17 @@
     <table>
         <tr>
             <td class="ignite_fans_logos">
-                <img src="../images/ignite_fans_logo-spark.gif" alt="" width="107" height="50" border="0">
-                <span><a href="logo-spark.tif">TIFF</a> (1,866 KB)</span>
-                <span><a href="logo-spark.eps">EPS</a> (438 KB)</span>
-                <span><a href="logo-spark.png">PNG</a> (21 KB)</span>
+                <img src="../images/ignite_fans_logo-spark.gif" alt="" width="107" height="50" border="0">'
+                <hr style="height: 0"/>
+                <span><a href="logo-spark.tif">TIFF</a> (1,866 kB)</span>
+                <span><a href="logo-spark.eps">EPS</a> (438 kB)</span>
+                <span><a href="logo-spark.png">PNG</a> (21 kB)</span><br>
+                <span><a href="logo-spark.svg">SVG</a> (4.2 kB)</span>
+                <hr style="height: 0"/>
+                <img src="logo-spark-notext.svg" alt="" height="43" border="0"><br>
+                <hr style="height: 0"/>
+                <span><a href="logo-spark-notext.svg">SVG</a> (2.3 kB)</span>
+
             </td>
             <td class="ignite_fans_buttons">
                 <div class="ignite_fans_button1">
