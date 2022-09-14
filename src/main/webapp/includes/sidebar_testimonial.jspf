@@ -55,7 +55,7 @@
 
         Quote boomtown = new Quote();
         boomtown.setText("The messaging/presence service in our CXMEngine SaaS application is based on Openfire. It’s the most extensible open source XMPP platform I’ve worked with, and its intuitive architecture, client interoperability, APIs, documentation, and active development community have been a critical foundation to our platform growth.");
-        boomtown.setAttribution("Daniel Duerr, CTO, Boomtown");
+        boomtown.setAttribution("Daniel Duerr, CTO, OvationCXM");
         quotes.add(boomtown);
     }
 %>
