@@ -22,12 +22,11 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">P&agrave;d&eacute;</a></li>
             <li id="subnav02"><a href="https://github.com/igniterealtime/Pade/releases">Releases</a></li>    
             <li id="subnav03"><a href="https://github.com/igniterealtime/Pade">Source Code</a></li>            
-            <li id="subnav04"><a href="https://igniterealtime.github.io/Pade/">Documentation</a></li>
+            <li id="subnav04"><a href="https://igniterealtime.github.io/pade/help/">Documentation</a></li>
             <li id="subnav05"><a href="https://github.com/igniterealtime/pade/issues">Issue Tracker</a></li>
             <li id="subnav06"><a href="https://conversejs.org/">Converse</a></li>
             <li id="subnav07"><a href="https://jitsi.org/jitsi-meet/">Jitsi-Meet</a></li>
-            <li id="subnav08"><a href="https://collecttix.github.io/ctxSip/">CTX SIP Phone</a></li>             
-            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
+            <li id="subnav08"><a href="https://github.com/igniterealtime/openfire-pade-plugin">Openfire Plugin</a></li>             
         </ul>
     </div>
 
