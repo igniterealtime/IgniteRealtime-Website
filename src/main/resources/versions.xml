@@ -4,7 +4,7 @@
     <product name="openfire" version="4.7.3" date="August 2, 2022" />
     <product name="openfire-beta" version="4.7.0.beta" date="December 3, 2021" />
     <product name="spark" version="2.9.4" date="November 14, 2020" />
-    <product name="pade" version="2.0.9" date="March 31, 2022" />    
+    <product name="pade" version="2.0.10" date="September 30, 2022" />    
     <product name="spark-beta" version="3.0.0-beta" date="April 26, 2021" />
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
     <product name="smack" version="4.4.6" date="June 29, 2022" />
