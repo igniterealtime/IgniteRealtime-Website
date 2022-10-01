@@ -31,6 +31,7 @@ import javax.servlet.ServletConfig;
 
 import org.apache.maven.artifact.versioning.DefaultArtifactVersion;
 import org.dom4j.DocumentException;
+import org.jivesoftware.util.PluginVersionComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -113,8 +114,7 @@ public class PluginManager
         }
         else
         {
-            // FIXME: don't use alphabetical sorting
-            stream = stream.sorted( Comparator.comparing( (Metadata::getPluginVersion) ).reversed() );
+            stream = stream.sorted( Comparator.comparing( Metadata::getPluginVersion, new PluginVersionComparator() ).reversed() );
         }
 
         if (parsedRequest.snapshotQualifier != null) {
@@ -273,7 +273,7 @@ public class PluginManager
         return unordered.stream()
             .sorted(
                 Comparator.comparing( (PluginManager.Metadata o) -> o.humanReadableName.toLowerCase() )
-                .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.pluginVersion).reversed() ) // TODO don't base version-sorting on alphabet.
+                .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.pluginVersion, new PluginVersionComparator()).reversed() )
                 .thenComparing( Comparator.comparing( (PluginManager.Metadata o) -> o.isRelease ? o.releaseDate : o.snapshotCreationDate ).reversed()  )
             )
             .collect( Collectors.toList() );
