@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  * using a left-zero pad to 25 characters, then reconstructing the value again by merging each section with full stop
  * characters. The resulting value is alphabetically compared.
  *
- * The intention here is to have a poor-mans solution that allows x.y.z formatted strings that use multiple digets per
+ * The intention here is to have a "poor man's solution" that allows x.y.z formatted strings that use multiple digits per
  * segment to be correctly sorted, when alphabetic sorting is used.
  * Examples:
  * <pre>
