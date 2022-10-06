@@ -219,7 +219,7 @@ public class PluginManager
                 Collectors.toMap(
                     Metadata::getPluginFileNameLowerCase,
                     Function.identity(),
-                    BinaryOperator.maxBy( Comparator.comparing( Metadata::getPluginVersion) )
+                    BinaryOperator.maxBy( Comparator.comparing( Metadata::getPluginVersion, new PluginVersionComparator()) )
                 )
             ).values();
     }
