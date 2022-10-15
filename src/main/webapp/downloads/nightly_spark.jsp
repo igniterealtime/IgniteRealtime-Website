@@ -106,15 +106,20 @@
     if (files != null && files.length > 0) {
         Arrays.sort(files, new FileComparator());
         boolean odd = false;
-        for (int i=0; i < (files.length / 8); i++) {
-            File file1 = files[8 * i];
-            File file2 = files[8 * i + 1];
-            File file3 = files[8 * i + 2];
-            File file4 = files[8 * i + 3];
-            File file5 = files[8 * i + 4];
-            File file6 = files[8 * i + 5];
-            File file7 = files[8 * i + 6];
-            File file8 = files[8 * i + 7];
+        for (int i=0; i < (files.length / 13); i++) {
+            File file1 = files[13 * i];
+            File file2 = files[13 * i + 1];
+            File file3 = files[13 * i + 2];
+            File file4 = files[13 * i + 3];
+            File file5 = files[13 * i + 4];
+            File file6 = files[13 * i + 5];
+            File file7 = files[13 * i + 6];
+            File file8 = files[13 * i + 7];
+            File file9 = files[13 * i + 8];
+            File file10 = files[13 * i + 9];
+            File file11 = files[13 * i + 10];
+            File file12 = files[13 * i + 11];
+            File file13 = files[13 * i + 12];
             odd = !odd;
     %>
                 <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
@@ -126,7 +131,12 @@
                         <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file5.getName() %>"><%= file5.getName() %></a> (<%= mbFormat.format(file5.length()/(1024.0*1024.0)) %> MB)<br />
                         <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file6.getName() %>"><%= file6.getName() %></a> (<%= mbFormat.format(file6.length()/(1024.0*1024.0)) %> MB)<br />
                         <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file7.getName() %>"><%= file7.getName() %></a> (<%= mbFormat.format(file7.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file8.getName() %>"><%= file8.getName() %></a> (<%= mbFormat.format(file8.length()/(1024.0*1024.0)) %> MB)
+                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file8.getName() %>"><%= file8.getName() %></a> (<%= mbFormat.format(file8.length()/(1024.0*1024.0)) %> MB)<br />
+                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file9.getName() %>"><%= file9.getName() %></a> (<%= mbFormat.format(file9.length()/(1024.0*1024.0)) %> MB)<br />
+                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file10.getName() %>"><%= file10.getName() %></a> (<%= mbFormat.format(file10.length()/(1024.0*1024.0)) %> MB)<br />
+                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file11.getName() %>"><%= file11.getName() %></a> (<%= mbFormat.format(file11.length()/(1024.0*1024.0)) %> MB)<br />
+                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file12.getName() %>"><%= file12.getName() %></a> (<%= mbFormat.format(file12.length()/(1024.0*1024.0)) %> MB)<br />
+                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file13.getName() %>"><%= file13.getName() %></a> (<%= mbFormat.format(file13.length()/(1024.0*1024.0)) %> MB)
                     </span>
                     <span class="ignite_download_item_date">
                         <%= dateFormat.format(new Date(file1.lastModified())) %>
