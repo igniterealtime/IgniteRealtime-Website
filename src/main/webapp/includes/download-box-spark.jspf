@@ -142,7 +142,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)rpm.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_even">
+                    <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_debian.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=spark/<%= debian.getName() %>"><%= debian.getName() %></a> Debian package, no Java JRE
@@ -167,7 +167,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=spark/<%= binDmg.getName() %>"><%= binDmg.getName() %></a> Requires OSX 10.6.7 or higher
