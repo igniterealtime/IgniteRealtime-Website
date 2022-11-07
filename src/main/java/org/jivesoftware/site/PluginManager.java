@@ -142,7 +142,7 @@ public class PluginManager
         {
             final Set<Metadata> cachedResult = cache.get( path );
             final Instant startedRefreshing = refreshing.get( path );
-            final long refreshed = lastRefreshed.computeIfAbsent( path, p -> System.currentTimeMillis() );
+            final long refreshed = lastRefreshed.getOrDefault( path, 0L );
             final boolean isStale = System.currentTimeMillis() - refreshed > Duration.ofMinutes( 10 ).toMillis();
 
             // Don't allow refreshes to take longer than two hours.
@@ -191,6 +191,7 @@ public class PluginManager
             {
                 cache.put( path, result );
                 refreshing.remove( path );
+                lastRefreshed.put( path, System.currentTimeMillis() );
             }
             return result;
         }
