@@ -13,6 +13,11 @@
     String basedir = buildsPath + "/spark";
     File binExe = new File(basedir, "spark_" + version.replace('.','_') + ".exe");
     File binExeWithJRE = new File(basedir, "/spark_" + version.replace('.','_') + "-with-jre" + ".exe");
+    File binExe64 = new File(basedir, "spark_" + version.replace('.','_') + "-64bit" + ".exe");
+    File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
+    File binMsiWithJRE = new File(basedir, "/spark_" + version.replace('.','_') + "-with-jre" + ".msi");
+    File binMsi64 = new File(basedir, "spark_" + version.replace('.','_') + "-64bit" ".msi");
+    File binArm = new File(basedir, "spark_" + version.replace('.','_') + "-arm" + ".exe");
     File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
     File binDmgWithJRE = new File(basedir, "spark_" + version.replace('.','_') + "-with-jre.dmg");
     File binTar = new File(basedir, "spark_" + version.replace('.','_') + ".tar.gz");
@@ -74,6 +79,46 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binExe.length()/1024.0/1024.0) %> MB</span>
                     </div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="/downloadServlet?filename=spark/<%= binExe64.getName() %>"><%= binExe64.getName() %></a> Online 64-bit installation, does not include Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binExe64.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="/downloadServlet?filename=spark/<%= binMsi.getName() %>"><%= binMsi.getName() %></a> Online MSI installation for IT Administrators, does not include Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsi.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="/downloadServlet?filename=spark/<%= binMsiWithJRE.getName() %>"><%= binMsiWithJRE.getName() %></a> Offline MSI installation for IT Administrators, includes Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsiWithJRE.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_even">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="/downloadServlet?filename=spark/<%= binMsi64.getName() %>"><%= binMsi64.getName() %></a> Online MSI 64-bit installation for IT Administrators, does not include Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binMsi64.length()/1024.0/1024.0) %> MB</span>
+                    </div>
+                    <div class="ignite_download_item_odd">
+                        <span class="ignite_download_item_details">
+                            <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
+                            <a href="/downloadServlet?filename=spark/<%= binArm.getName() %>"><%= binArm.getName() %></a> Online ARM installation, does not include Java JRE
+                        </span>
+                        <span class="ignite_download_item_date"><%= buildDate %></span>
+                        <span class="ignite_download_item_size"><%= formatter.format((double)binArm.length()/1024.0/1024.0) %> MB</span>
+                    </div>
                 </div>
             </div>
             <!-- END windows -->
@@ -97,7 +142,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)rpm.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_even">
+                    <div class="ignite_download_item_odd">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_debian.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=spark/<%= debian.getName() %>"><%= debian.getName() %></a> Debian package, no Java JRE
@@ -122,7 +167,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item_even">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=spark/<%= binDmg.getName() %>"><%= binDmg.getName() %></a> Requires OSX 10.6.7 or higher
