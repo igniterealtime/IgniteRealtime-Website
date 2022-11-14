@@ -16,7 +16,7 @@
     File binExe64 = new File(basedir, "spark_" + version.replace('.','_') + "-64bit" + ".exe");
     File binMsi = new File(basedir, "spark_" + version.replace('.','_') + ".msi");
     File binMsiWithJRE = new File(basedir, "/spark_" + version.replace('.','_') + "-with-jre" + ".msi");
-    File binMsi64 = new File(basedir, "spark_" + version.replace('.','_') + "-64bit" ".msi");
+    File binMsi64 = new File(basedir, "spark_" + version.replace('.','_') + "-64bit" + ".msi");
     File binArm = new File(basedir, "spark_" + version.replace('.','_') + "-arm" + ".exe");
     File binDmg = new File(basedir, "spark_" + version.replace('.','_') + ".dmg");
     File binDmgWithJRE = new File(basedir, "spark_" + version.replace('.','_') + "-with-jre.dmg");
