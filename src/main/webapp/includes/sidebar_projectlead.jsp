@@ -58,6 +58,12 @@
         profileLink = "https://discourse.igniterealtime.org/u/mhterres";
         profile = "Single-handedly responsible for saving the Belgian beer industry.";
     }
+    else if (project.equals("botz")) {
+        name = "Guus";
+        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/guus/45/15_1.png";
+        profileLink = "https://discourse.igniterealtime.org/u/guus";
+        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
+    }
     else {
         name = "vacant";
         avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/d/e19b73/45.png";
