@@ -31,6 +31,9 @@
                 else if (project.equals("whack")) {
                     license = "Open Source Apache";
                 }
+                else if (project.equals("botz")) {
+                    license = "Open Source Apache";
+                }
                 else if (project.equals("xiff")) {
                     license = "Open Source LGPL";
                 }
@@ -61,7 +64,9 @@
                 else if (project.equals("asterisk-im")) {
                     platform = "Cross-Platform";
                 }
-
+                else if (project.equals("botz")) {
+                    platform = "Openfire";
+                }
             %>
             <!-- BEGIN grey sidebar box 'SNAPSHOT' -->
             <div class="ignite_sidebar_greybox">

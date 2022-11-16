@@ -84,6 +84,20 @@
                     <table border cellpadding="0" cellspacing="0" border="0" width="100%">
                         <tr class="ignite_project_table-row-odd">
                             <td class="ignite_project_table-title" nowrap="nowrap">
+                                <a href="botz/">Botz</a>
+                            </td>
+                            <td class="ignite_project_table-description" width="505">
+                                Create bots in Openfire.
+                            </td>
+                            <td class="ignite_project_table-version">
+                                <%= Versions.getVersion("botz") %>
+                            </td>
+                            <td class="ignite_project_table-link" nowrap="nowrap">
+                                <a href="botz/">Learn More</a>
+                            </td>
+                        </tr>
+                        <tr class="ignite_project_table-row-even">
+                            <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="tinder/">Tinder</a>
                             </td>
                             <td class="ignite_project_table-description" width="505">
@@ -96,7 +110,7 @@
                                 <a href="tinder/">Learn More</a>
                             </td>
                         </tr>
-                        <tr class="ignite_project_table-row-even">
+                        <tr class="ignite_project_table-row-odd">
                             <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="whack/">Whack</a>
                             </td>
@@ -110,7 +124,7 @@
                                 <a href="whack/">Learn More</a>
                             </td>
                         </tr>
-                        <tr class="ignite_project_table-row-odd">
+                        <tr class="ignite_project_table-row-even">
                             <td class="ignite_project_table-title" nowrap="nowrap">
                                 <a href="asterisk/">Asterisk-IM</a>
                             </td>
