@@ -9,6 +9,9 @@
     <style type="text/css" media="screen">
         @import "../../styles/interior.css";
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 </head>
 <body>
 
@@ -76,8 +79,7 @@
 
                 <p>The following is the code snippet that shows a way to use Botz classes in a plugin. The sample plugin is a parrot bot service that simply echoes packets back to the sender.</p>
 
-                <pre><code>
-import org.igniterealtime.openfire.botz.BotzConnection;
+                <pre><code class="language-java">import org.igniterealtime.openfire.botz.BotzConnection;
 import org.igniterealtime.openfire.botz.BotzPacketReceiver;
 
 public class ParrotBot implements Plugin
@@ -127,8 +129,7 @@ public class ParrotBot implements Plugin
 
                 <p>To use the library in an Openfire plugin, it needs to be defined as a dependency of your plugin project. The dependency can be obtained from Ignite's Maven repository, as shown in this snippet of a <code>pom.xml</code> file:</p>
 
-<pre><code>
-&lt;dependencies&gt;
+<pre><code class="language-xml">&lt;dependencies&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.igniterealtime.openfire.botz&lt;/groupId&gt;
         &lt;artifactId&gt;botz&lt;/artifactId&gt;
