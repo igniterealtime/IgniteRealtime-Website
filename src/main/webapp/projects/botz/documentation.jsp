@@ -123,8 +123,27 @@ public class ParrotBot implements Plugin
 
                 <h3>Installation</h3>
 
-                <p>The Botz library is not a plugin in itself, and does not contain any plugin-related class. It is meant for use in an application development. To use the library in an Openfire plugin development, copy <code>botz-openfire-version.jar</code> file into the lib directory of the plugin directory structure. If there is more than one plugin that will use Botz library, the JAR file can be copied to a global class path like <code>$OPENFIRE_HOME/lib</code>.</p>
+                <p>The Botz library is not a plugin in itself, and does not contain any plugin-related class. It is meant for use in an application development.</p>
 
+                <p>To use the library in an Openfire plugin, it needs to be defined as a dependency of your plugin project. The dependency can be obtained from Ignite's Maven repository, as shown in this snippet of a <code>pom.xml</code> file:</p>
+
+<pre><code>
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.igniterealtime.openfire.botz&lt;/groupId&gt;
+        &lt;artifactId&gt;botz&lt;/artifactId&gt;
+        &lt;version&gt;1.1.0&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+
+&lt;repositories&gt;
+    &lt;repository&gt;
+        &lt;id&gt;igniterealtime&lt;/id&gt;
+        &lt;name&gt;Ignite Realtime Repository&lt;/name&gt;
+        &lt;url&gt;https://igniterealtime.org/archiva/repository/maven/&lt;/url&gt;
+    &lt;/repository&gt;
+&lt;/repositories&gt;
+</code></pre>
             </div>
 
 
