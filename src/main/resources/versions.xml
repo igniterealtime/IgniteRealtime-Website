@@ -3,7 +3,7 @@
     <!--<product name="wildfire" version="3.3.0" date="April 12, 2007" />-->
     <product name="openfire" version="4.7.4" date="November 9, 2022" />
     <product name="openfire-beta" version="4.7.0.beta" date="December 3, 2021" />
-    <product name="spark" version="3.0.0" date="November 14, 2022" />
+    <product name="spark" version="3.0.1" date="December 12, 2022" />
     <product name="pade" version="2.0.10" date="September 30, 2022" />
     <product name="botz" version="1.1.0" date="October 13, 2022" />
     <!--<product name="spark-beta" version="3.0.0-beta" date="April 26, 2021" />-->
