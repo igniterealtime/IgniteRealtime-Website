@@ -44,8 +44,8 @@
 //        quotes.add(reiser);
 
         Quote eh = new Quote();
-        eh.setText("At Inteno we managed to quickly create a massively scalable IoT service delivery platform using OpenFire at its core. Thanks to the extendible architecture of OpenFire, adding device management capabilities was straight forward to do.");
-        eh.setAttribution("Erik Horemans, CEO Inteno Belgium");
+        eh.setText("At Genexis we managed to quickly create a massively scalable IoT service delivery platform using Openfire at its core. Thanks to the extendible architecture of OpenFire, adding device management capabilities was straight forward to do.");
+        eh.setAttribution("Erik Horemans, CEO Genexis Belgium");
         quotes.add(eh);
 
         Quote surevine = new Quote();
