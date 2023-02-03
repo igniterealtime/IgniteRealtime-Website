@@ -22,7 +22,7 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Smack</a></li>
             <li id="subnav02"><a href="//igniterealtime.org/projects/smack/readme">Readme</a></li>
             <li id="subnav03"><a href="//download.igniterealtime.org/smack/docs/latest/javadoc/">Javadoc</a></li>
-            <li id="subnav04"><a href="//download.igniterealtime.org/smack/docs/latest/changelog.html">Changelog</a></li>
+            <li id="subnav04"><a href="https://github.com/igniterealtime/Smack/blob/master/CHANGELOG.md">Changelog</a></li>
             <li id="subnav05"><a href="//issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
             <li id="subnav06"><a href="https://github.com/igniterealtime/Smack">Source</a></li>
             <li id="subnav07"><a href="${baseUrl}/projects/smack/resources">Resources</a></li>
