@@ -22,14 +22,13 @@
             <li id="subnav01"><a href="./" class="ignite_subnav_project">Smack</a></li>
             <li id="subnav02"><a href="//igniterealtime.org/projects/smack/readme">Readme</a></li>
             <li id="subnav03"><a href="//download.igniterealtime.org/smack/docs/latest/javadoc/">Javadoc</a></li>
-            <li id="subnav04"><a href="//download.igniterealtime.org/smack/docs/latest/documentation/">Documentation</a></li>
-            <li id="subnav05"><a href="//download.igniterealtime.org/smack/docs/latest/changelog.html">Changelog</a></li>
-            <li id="subnav06"><a href="//issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
-            <li id="subnav07"><a href="https://github.com/igniterealtime/Smack">Source</a></li>
-            <li id="subnav08"><a href="${baseUrl}/projects/smack/resources">Resources</a></li>
-            <li id="subnav09"><a href="https://download.igniterealtime.org/smack/dailybuilds/javadoc/">Nightly Javadoc</a></li>
-            <li id="subnav10"><a href="https://download.igniterealtime.org/smack/dailybuilds/jacoco/">Nightly CodeCov</a></li>
-            <li id="subnav11"><a href="https://download.igniterealtime.org/smack/dailybuilds/sinttest-javadoc/">Nightly Sinttest Javadoc</a></li>
+            <li id="subnav04"><a href="https://github.com/igniterealtime/Smack/blob/master/CHANGELOG.md">Changelog</a></li>
+            <li id="subnav05"><a href="//issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
+            <li id="subnav06"><a href="https://github.com/igniterealtime/Smack">Source</a></li>
+            <li id="subnav07"><a href="${baseUrl}/projects/smack/resources">Resources</a></li>
+            <li id="subnav08"><a href="https://download.igniterealtime.org/smack/dailybuilds/javadoc/">Nightly Javadoc</a></li>
+            <li id="subnav09"><a href="https://download.igniterealtime.org/smack/dailybuilds/jacoco/">Nightly CodeCov</a></li>
+            <li id="subnav10"><a href="https://download.igniterealtime.org/smack/dailybuilds/sinttest-javadoc/org/igniterealtime/smack/inttest/package-summary.html">Nightly Sinttest Javadoc</a></li>
         </ul>
     </div>
 
