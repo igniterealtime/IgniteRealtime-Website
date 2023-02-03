@@ -29,7 +29,7 @@
             <li id="subnav08"><a href="${baseUrl}/projects/smack/resources">Resources</a></li>
             <li id="subnav09"><a href="https://download.igniterealtime.org/smack/dailybuilds/javadoc/">Nightly Javadoc</a></li>
             <li id="subnav10"><a href="https://download.igniterealtime.org/smack/dailybuilds/jacoco/">Nightly CodeCov</a></li>
-            <li id="subnav11"><a href="https://download.igniterealtime.org/smack/dailybuilds/sinttest-javadoc/">Nightly Sinttest Javadoc</a></li>
+            <li id="subnav11"><a href="https://download.igniterealtime.org/smack/dailybuilds/sinttest-javadoc/org/igniterealtime/smack/inttest/package-summary.html">Nightly Sinttest Javadoc</a></li>
         </ul>
     </div>
 
