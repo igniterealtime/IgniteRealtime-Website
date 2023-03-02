@@ -76,6 +76,11 @@ hr {
     overflow: hidden;
 }
 
+/* Discourse's RSS feed includes meta data for media. Don't show those elements */
+.meta {
+    display: none;
+}
+
 /* IGNITE header elements, including logo and navigation */
 #ignite_header {
     width: 100%;
