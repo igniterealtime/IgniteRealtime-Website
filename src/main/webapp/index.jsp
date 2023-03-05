@@ -32,6 +32,7 @@
 <style type="text/css" media="screen">
     @import "styles/home.css";
 </style>
+<link rel="me" href="https://toot.igniterealtime.org/@news"/>
 </head>
 <body>
 
