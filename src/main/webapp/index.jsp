@@ -66,7 +66,7 @@
         <% } %>>
                 <div id="ignite_bigpanel_content">
                 <h1>Open Realtime. </h1>
-                <p>Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.</p>
+                <p>Ignite Realtime is the community site for the users and developers of open source Real Time Communications projects like Openfire, Smack, Spark, and Pàdé. Your involvement is helping to change the open RTC landscape.</p>
                 
                     <div style="width: 150px;">
                         <a href="about/" class="ignite_link_arrow"><strong>Learn More</strong></a><br />
@@ -96,9 +96,8 @@
         <% } %>>
                 <div id="ignite_smallpanel_content">
                     <h1>Open Realtime.</h1>
-                    <!-- Ignite Real Time is the community site for Jive Software's open source
-                    alternatives to enterprise instant messaging. -->
-                    Ignite Realtime is the community site for the users and developers of Jive Software's open source Real Time Communications projects. Your involvement is helping to change the open RTC landscape.
+                    <!-- Ignite Real Time is the community site for open source alternatives to enterprise instant messaging. -->
+                    Ignite Realtime is the community site for the users and developers of open source Real Time Communications projects like Openfire, Smack, Spark, and Pàdé. Your involvement is helping to change the open RTC landscape.
                 </div>
                 <div id="ignite_smallpanel_open">
                     <a href="#" onClick="closePanel('home'); return false;"></a>
