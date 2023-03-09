@@ -5,7 +5,7 @@
     <product name="openfire-beta" version="4.7.0.beta" date="December 3, 2021" />
     <product name="spark" version="3.0.1" date="December 12, 2022" />
     <product name="pade" version="2.1.1" date="January 5, 2023" />
-    <product name="botz" version="1.1.0" date="October 13, 2022" />
+    <product name="botz" version="1.2.0" date="March 9, 2023" />
     <!--<product name="spark-beta" version="3.0.0-beta" date="April 26, 2021" />-->
     <product name="sparkweb" version="0.9.0" date="April 28, 2008" />
     <product name="smack" version="4.4.6" date="June 29, 2022" />
