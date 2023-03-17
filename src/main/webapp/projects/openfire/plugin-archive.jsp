@@ -13,6 +13,11 @@
 <%@ page import="java.text.DateFormat"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.jivesoftware.site.PluginManager" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="java.io.InputStreamReader" %>
+<%@ page import="org.jivesoftware.site.PluginDownloadServlet" %>
+<%@ page import="java.util.jar.JarFile" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
@@ -65,6 +70,39 @@
                     your Openfire installation.
                 </p>
 
+                <%
+                    final List<PluginManager.Metadata> plugins =
+                        PluginManager.sortByVersionAndReleaseDate(
+                            PluginManager.getReleases( pluginDir, pluginName )
+                        );
+
+                    if (plugins != null && !plugins.isEmpty()) {
+                        final PluginManager.Metadata latestPluginMetadata = plugins.get(0);
+                        if (latestPluginMetadata.hasReadme) {
+                            try (final InputStream input = PluginDownloadServlet.getUncompressedEntryFromArchive(new JarFile( latestPluginMetadata.getMavenFile().toFile() ), "readme.html")) {
+                                final InputStreamReader isr = new InputStreamReader(input);
+                                final BufferedReader reader = new BufferedReader(isr);
+                                String line;
+                                boolean doOutput = false;
+                                while ((line = reader.readLine()) != null) {
+                                    if (line.contains("</body>")) {
+                                        doOutput = false;
+                                    }
+                                    if (doOutput) {
+                                        out.println(line);
+                                    }
+                                    if (line.contains("<body>")) {
+                                        doOutput = true;
+                                    }
+                                }
+                            } catch (Exception e) {
+                                // This should not prevent the rest of the page from displaying.
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                %>
+
                 <!-- BEGIN plugins -->
                 <div id="plugins" style="width:100%">
                     <a name="opensource"></a>
@@ -80,10 +118,6 @@
                         </tr>
                         <%
                             {
-                            final List<PluginManager.Metadata> plugins =
-                                PluginManager.sortByVersionAndReleaseDate(
-                                    PluginManager.getReleases( pluginDir, pluginName )
-                                );
                         %>
                         <%  if (plugins == null || plugins.isEmpty()) { %>
                         <tbody>
@@ -181,14 +215,6 @@
                             <td>Built at</td>
                             <td style="text-align: center;">Openfire Version</td>
                         </tr>
-                        <%
-                            {
-                            final List<PluginManager.Metadata> plugins =
-                                PluginManager.sortByVersionAndReleaseDate(
-                                    PluginManager.getSnapshots( pluginDir, pluginName ), 20
-                                );
-
-                        %>
                         <% if (plugins.isEmpty()) { %>
                         <tbody>
                         <tr>
@@ -255,7 +281,6 @@
                         {
                             // Ignore one plugin, iterate to the next plugin.
                             e.printStackTrace();
-                        }
                         }
                         }
                         %>
