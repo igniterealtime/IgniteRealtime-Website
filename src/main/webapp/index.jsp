@@ -1,12 +1,6 @@
 <%@ page import="org.jivesoftware.site.Versions" %>
 <%@ page import="org.jivesoftware.webservices.RestClient" %>
-<%@ page import="net.sf.json.JSONObject" %>
-<%@ page import="net.sf.json.JSONArray" %>
-<%@ page import="org.apache.commons.lang.StringUtils" %>
-<%@ page import="java.util.Date" %>
-<%@ page import="java.text.DateFormat" %>
 <%@ page import="org.jivesoftware.site.FeedManager" %>
-<%@ page import="com.sun.syndication.feed.synd.SyndEntry" %>
 
 <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>

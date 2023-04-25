@@ -1,7 +1,4 @@
 <%@ page import="org.jivesoftware.site.Versions"%>
-<%@ page import="org.jivesoftware.webservices.RestClient" %>
-<%@ page import="net.sf.json.JSONObject" %>
-<%@ page import="net.sf.json.JSONArray" %>
 
 <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
