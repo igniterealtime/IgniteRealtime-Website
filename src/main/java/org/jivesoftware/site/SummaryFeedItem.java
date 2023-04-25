@@ -1,6 +1,6 @@
 package org.jivesoftware.site;
 
-import net.sf.json.JSONObject;
+import org.json.JSONObject;
 
 /**
  * A summary representation of a Discourse RSS item.

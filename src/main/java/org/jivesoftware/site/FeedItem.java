@@ -1,9 +1,9 @@
 package org.jivesoftware.site;
 
-import net.sf.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * A representation of a Discourse RSS item.
@@ -24,7 +24,12 @@ public class FeedItem extends SummaryFeedItem
         final JSONObject firstPost = entry.getJSONObject( "post_stream" ).getJSONArray( "posts" ).getJSONObject( 0 );
         contents = firstPost.getString( "cooked" );
         publishedDate = javax.xml.bind.DatatypeConverter.parseDateTime( firstPost.getString( "created_at" ) ).getTime();
-        tags = ((List<String>) entry.getJSONArray( "tags" )).toArray( new String[0] );
+
+        final JSONArray arrayElements = entry.getJSONArray("tags");
+        tags = new String[arrayElements.length()];
+        for (int i=0; i<arrayElements.length(); i++) {
+            tags[i] = arrayElements.getString(i);
+        }
         replyCount = entry.getInt( "posts_count" );
     }
 
