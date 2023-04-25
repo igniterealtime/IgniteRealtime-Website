@@ -1,13 +1,12 @@
 package org.jivesoftware.webservices;
 
-import net.sf.json.JSONException;
-import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.lang.StringUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -36,10 +35,7 @@ public class RestClient {
             // Deal with the response.
             // Use caution: ensure correct character encoding and is not binary data
             String response = method.getResponseBodyAsString();
-            response = StringUtils.removeStart( response, "throw 'allowIllegalResourceCall is false.';" );
-            response = StringUtils.trim( response );
-
-            result = JSONObject.fromObject( response );
+            result = new JSONObject(response);
         } catch (JSONException e ) {
             Log.warn( "Invalid content while querying '{}'", url, e );
         } catch (HttpException e) {
