@@ -23,7 +23,7 @@ public class SummaryFeedItem
 
         final JSONObject firstPost = entry.getJSONObject( "post_stream" ).getJSONArray( "posts" ).getJSONObject( 0 );
         authorUsername = firstPost.getString( "username" );
-        authorName = firstPost.getString( "name" );
+        authorName = firstPost.optString( "name" );
         if ( authorName == null || authorName.isEmpty() )
         {
             authorName = authorUsername;
