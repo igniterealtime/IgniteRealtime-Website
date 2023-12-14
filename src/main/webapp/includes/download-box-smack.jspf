@@ -4,10 +4,14 @@
 <%  String path = request.getContextPath();
     String buildsPath = application.getInitParameter("builds-path");
 
-    String mavenCoordinates = "unknown";
+    String mavenCoordinates = "<a href='https://search.maven.org/search?q=g:org.igniterealtime.smack'>org.igniterealtime.smack</a>"
+        + ":<a href='https://search.maven.org/artifact/org.igniterealtime.smack/smack-java8-full'>smack-java8-full</a>:";
+
     String version = Versions.getVersion("smack");
     if (version != null) {
-        mavenCoordinates = "org.igniterealtime.smack:smack-java8-full:" + version;
+        mavenCoordinates += version;
+    } else {
+        mavenCoordinates += "[version]";
     }
 %>
 
