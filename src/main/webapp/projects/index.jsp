@@ -58,7 +58,7 @@
                     <div class="ignite_project_content">
                         <a href="smack/" class="ignite_project_smack">
                         <h1>Smack <span><%= Versions.getVersion("smack") %></span></h1></a>
-                        <p>Easy to use Java XMPP client library.</p>
+                        <p>Modular, portable and easy to use XMPP client library for Android and Java.</p>
                         <p><a href="smack/" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
                     </div>
                 </div>

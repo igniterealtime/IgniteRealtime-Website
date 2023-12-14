@@ -32,7 +32,7 @@
             </span>
 
             <h2>Smack <%= version %></h2>
-            <p>Easy to use Java XMPP client library.</p>
+            <p>Modular, portable and easy to use XMPP client library for Android and Java.</p>
 
             <span class="ignite_download_choose">Maven Coordinates: <%= mavenCoordinates %></span>
 
