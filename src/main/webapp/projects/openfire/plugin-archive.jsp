@@ -24,7 +24,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
 <head>
-    <title>Openfire Plugins</title>
+    <title>Openfire <%= URLEncoder.encode(pluginName, "utf-8") %> Plugin Archive</title>
     <meta name="body-id" content="projects" />
     <style type="text/css" media="screen">
         @import "../../styles/interior.css";
