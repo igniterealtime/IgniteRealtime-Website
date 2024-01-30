@@ -5,7 +5,7 @@
     // starting within the hour.
 
     // Compute current offset of PST to UTC.
-    int zoneOffset = Math.abs(TimeZone.getTimeZone("America/Los_Angeles").getOffset(System.currentTimeMillis()) / (1000 * 60 * 60));
+    //int zoneOffset = Math.abs(TimeZone.getTimeZone("America/Los_Angeles").getOffset(System.currentTimeMillis()) / (1000 * 60 * 60));
 
     // Day of week.
     final int chatDay = java.util.Calendar.WEDNESDAY;
