@@ -220,7 +220,12 @@
                             <td>Built at</td>
                             <td style="text-align: center;">Openfire Version</td>
                         </tr>
-                        <% if (plugins.isEmpty()) { %>
+                        <%
+                            final List<PluginManager.Metadata> snapshots =
+                                PluginManager.sortByVersionAndReleaseDate(
+                                    PluginManager.getSnapshots( pluginDir, pluginName ), 20
+                                );
+                            if (snapshots.isEmpty()) { %>
                         <tbody>
                         <tr>
                             <td colspan="6">No snapshots.</td>
@@ -230,7 +235,7 @@
                         <tbody>
                         <%  DateFormat formatter = DateFormat.getDateTimeInstance( DateFormat.DEFAULT, DateFormat.DEFAULT );
 
-                            for ( PluginManager.Metadata plugin : plugins )
+                            for ( PluginManager.Metadata plugin : snapshots )
                             {
                                 final String snapshotParam = plugin.snapshotQualifier == null ? "" : "?snapshot=" + URLEncoder.encode(plugin.snapshotQualifier, StandardCharsets.UTF_8.name());
                                 try {
