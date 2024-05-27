@@ -3,6 +3,7 @@ package org.jivesoftware.site;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URI;
 import java.util.Date;
 
 /**
@@ -62,7 +63,16 @@ public class FeedItem extends SummaryFeedItem
             startVideoSrc += "data-video-src=\"".length();
         }
         int endVideoSrc = data.indexOf('"', startVideoSrc);
-        final String videoSrc = data.substring(startVideoSrc, endVideoSrc);
+        String videoSrc = data.substring(startVideoSrc, endVideoSrc);
+        if (!videoSrc.startsWith("http")) {
+            videoSrc = "https://discourse.igniterealtime.org" + videoSrc;
+        }
+
+        try {
+            videoSrc = URI.create(videoSrc).normalize().toString();
+        } catch (IllegalArgumentException e) {
+            return data;
+        }
 
         // Thumbnail ('poster')
         final String videoPoster;
@@ -73,7 +83,11 @@ public class FeedItem extends SummaryFeedItem
             if (endVideoPoster < 0) {
                 return data; // No closing quote? Sounds dodgy. Better abort.
             } else {
-                videoPoster = data.substring(startVideoPoster, endVideoPoster);
+                try {
+                    videoPoster = URI.create(data.substring(startVideoPoster, endVideoPoster)).normalize().toString();
+                } catch (IllegalArgumentException e) {
+                    return data;
+                }
             }
         } else {
             videoPoster = null;
