@@ -58,17 +58,6 @@
                     </div>
 
                     <div class="ignite_service-provider">
-                        <span class="ignite_service-provider_logo"><img src="../images/evoludata-icon.png" alt="EvoluData" width="32" height="32" border="0"></span>
-                        <div class="ignite_service-provider_content">
-                            <h3>EvoluData</h3>
-                            <span class="ignite_service-provider_url"><a href="https://evoludata.com/Openfire">evoludata.com/Openfire</a></span>
-                            <p>
-                                EvoluData offers consulting for all WikiSuite components including Openfire, P&agrave;d&eacute;, Converse and Jitsi Meet.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="ignite_service-provider">
                         <span class="ignite_service-provider_logo"><img src="../images/logo_smack.png" alt="Florian Schmaus" width="34" height="33" border="0"></span>
                         <div class="ignite_service-provider_content">
                             <h3>Florian Schmaus</h3>
