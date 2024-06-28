@@ -12,9 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * FeedManager
@@ -46,7 +45,7 @@ public class FeedManager {
         try {
             SyndFeed feed = feedFetcher.retrieveFeed(new URL(baseUrl + "/" + feedUrl ));
             if (null != feed) {
-                return (List<SyndEntry>)feed.getEntries();
+                return (List<SyndEntry>)feed.getEntries().stream().filter(Objects::nonNull).collect(Collectors.toList());
             }
         } catch (Exception e) {
             Log.warn("Problem getting Community Blog RSS feed '{}'.", baseUrl + "/" + feedUrl, e);
@@ -56,14 +55,34 @@ public class FeedManager {
 
     public List<SummaryFeedItem> getItems( String baseUrl, String feedUrl, int max )
     {
+        return getTaggedItems(baseUrl, feedUrl, null, max);
+    }
+
+    public List<SummaryFeedItem> getTaggedItems( String baseUrl, String feedUrl, String tag, int max )
+    {
         final List<SummaryFeedItem> result = new ArrayList<>( max );
 
         final List<SyndEntry> entries = getBlogFeedEntries( baseUrl, feedUrl );
-        for ( int i=0; i < entries.size() && i < max; i++ )
-        {
-            result.add( new FeedItem( getJSON( entries.get( i ).getLink() ) ) );
+        for (final SyndEntry entry : entries) {
+            if (entry == null) {
+                continue;
+            }
+            final JSONObject json = getJSON(entry.getLink());
+            if (json == null) {
+                continue;
+            }
+            final FeedItem item = new FeedItem(json);
+            if (tag != null) {
+                if (Arrays.stream(item.getTags()).anyMatch(t -> t.equalsIgnoreCase(tag))) {
+                    result.add(item);
+                }
+            } else {
+                result.add(item);
+            }
+            if (result.size() >= max) {
+                break;
+            }
         }
-
         return result;
     }
 
