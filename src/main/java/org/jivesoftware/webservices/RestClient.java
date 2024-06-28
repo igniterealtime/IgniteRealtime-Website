@@ -17,7 +17,10 @@ public class RestClient {
 
     private static final Logger Log = LoggerFactory.getLogger( RestClient.class );
 
-    private static final CacheConfig cacheConfig = CacheConfig.DEFAULT;
+    private static final CacheConfig cacheConfig = CacheConfig.custom()
+        .setMaxObjectSize(250_000L) // The RSS feeds' JSON is easily 100k.
+        .setMaxCacheEntries(250) // prevent the default amount of 1000 entries to be cached, when they _can_ be 250k each.
+        .build();
 
     public JSONObject get(String url) {
         JSONObject result = null;
