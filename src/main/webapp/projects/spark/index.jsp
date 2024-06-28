@@ -1,8 +1,20 @@
 <%@ page import="org.jivesoftware.site.Versions"%>
-
+<%@ page import="org.jivesoftware.webservices.RestClient"%>
+<%@ page import="org.jivesoftware.site.FeedManager"%>
 <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
+<%
+    String baseUrl = config.getServletContext().getInitParameter("discourse_baseurl");
+    if ( baseUrl == null || baseUrl.isEmpty() )
+    {
+        baseUrl = "https://discourse.igniterealtime.org/";
+    }
+
+    request.setAttribute( "baseUrl", baseUrl );
+    request.setAttribute( "feedManager", FeedManager.getInstance() );
+    request.setAttribute( "restClient", new RestClient() );
+%>
 <html>
 <head>
 <title>Spark IM Client</title>
@@ -91,8 +103,26 @@
                 </div>
             </div>
             <!-- END small panel -->
-            
-            
+
+            <!-- BEGIN 'latest blog entries' column -->
+            <div id="ignite_home_body_leftcol">
+                <!-- BEGIN blog header -->
+                <div id="ignite_blog_header">
+                    <span id="ignite_blog_header_label">
+                        Latest <a href="${baseUrl}/tags/c/blogs/ignite-realtime-blogs/5/spark">Blog</a> Entries
+                    </span>
+                </div>
+                <!-- END blog header -->
+
+                <%-- Show blog feed --%>
+                <cache:cache time="600" key="${baseUrl.concat('/tags/c/blogs/ignite-realtime-blogs/5/spark')}">
+                    <c:forEach items="${feedManager.getTaggedItems( baseUrl, '/c/blogs/ignite-realtime-blogs.rss', 'spark', 5 )}" var="item" varStatus="status">
+                        <ir:blogpost item="${item}" isOdd="${status.count % 2 != 0}"/>
+                    </c:forEach>
+                </cache:cache>
+            </div>
+            <!-- END 'latest blog entries' column -->
+
         </div>
         <!-- END left column (main content) -->
         

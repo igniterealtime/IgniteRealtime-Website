@@ -1,10 +1,8 @@
-<%@ page import="org.jivesoftware.site.Versions" %>
-<%@ page import="org.jivesoftware.webservices.RestClient" %>
-<%@ page import="org.jivesoftware.site.FeedManager" %>
-
+<%@ page import="org.jivesoftware.site.Versions"%>
+<%@ page import="org.jivesoftware.webservices.RestClient"%>
+<%@ page import="org.jivesoftware.site.FeedManager"%>
 <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
 <%
     String baseUrl = config.getServletContext().getInitParameter("discourse_baseurl");
@@ -17,7 +15,6 @@
     request.setAttribute( "feedManager", FeedManager.getInstance() );
     request.setAttribute( "restClient", new RestClient() );
 %>
-
 <html>
 <head>
 <title>a real time collaboration community site</title>
@@ -119,35 +116,13 @@
                     <!-- END blog header -->
 
                     <%-- Show blog feed --%>
-
                     <cache:cache time="600" key="${baseUrl.concat('/c/blogs/ignite-realtime-blogs.rss')}">
                         <c:forEach items="${feedManager.getItems( baseUrl, '/c/blogs/ignite-realtime-blogs.rss', 5 )}" var="item" varStatus="status">
                             <ir:blogpost item="${item}" isOdd="${status.count % 2 != 0}"/>
                         </c:forEach>
                     </cache:cache>
 
-                            <%--<% try { %>--%>
-                <%--<%--%>
-                    <%--RestClient client = new RestClient();--%>
-                    <%--String blogSearchUrl = restBaseUrl + "/search/places?filter=search(Ignite,Realtime,Blog)&filter=type(blog)";--%>
-                    <%--JSONObject result = client.get(blogSearchUrl);--%>
-                    <%--JSONArray results = result.getJSONArray("list");--%>
-                    <%--JSONObject blog = (JSONObject)results.get(0);--%>
-                    <%--String contentsUrl = blog.getJSONObject("resources").getJSONObject("contents").getString("ref");--%>
-
-                    <%--String blogRestUrl = contentsUrl + "?count=5";--%>
-                    <%--result = client.get(blogRestUrl);--%>
-                    <%--JSONArray posts = result.getJSONArray("list");--%>
-                    <%--request.setAttribute("posts", posts);--%>
-                <%--%>--%>
-                    <%--<jsp:include page="/includes/blogposts.jsp" />--%>
-                <%--<% } catch (Exception e) { %>--%>
-                    <%--<cache:usecached />--%>
-                <%--<% } %>--%>
-                    <%--</cache:cache>--%>
                 </div>
-
-                <style type="text/css"></style>
                 <!-- END 'latest blog entries' column -->
             </div>
             <!-- END home page body content area -->
