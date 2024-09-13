@@ -52,14 +52,11 @@
 
 
 
-<!-- BEGIN page 'wrapper' -->
-<div id="ignite_wrapper">
-                                                              
-
-    <!-- BEGIN header -->
-    <div id="ignite_header">
+<!-- BEGIN header -->
+<div id="ignite_header">
+    <div class="clearfix" id="ignite_header_contents">
         <a href="/"><div id="ignite_logo"></div></a>
-        <div id="ignite_nav">
+        <div class="clearfix" id="ignite_nav">
             <ol>
                 <li id="nav01"><a href="<%= request.getContextPath() %>/">Home</a></li>
                 <li id="nav02"><a href="<%= request.getContextPath() %>/projects/">Projects</a></li>
@@ -69,23 +66,26 @@
                 <li id="nav07"><a href="<%= request.getContextPath() %>/support/">Support</a></li>
                 <li id="nav08"><a href="<%= request.getContextPath() %>/about/">About</a></li>
             </ol>
-        <!--    <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
+            <!--    <div id="ignite_nav_groupchat" class="ignite_nav_groupchat" style="display: none;">
                 <span class="ignite_nav_groupchat_block" id="ignite_nav_groupchat_block"></span>
                 <span id="ignite_nav_groupchat_moreinfo" style="display: none;"><a href="<%= request.getContextPath() %>/support/group_chat.jsp">More Information</a></span>
             </div> -->
         </div>
     </div>
-    <!-- END header -->
+</div>
+<!-- END header -->
     <!-- <script type="text/javascript">
     // The javascript timer for the header group chat callout
     runGroupChatTimer();
     </script> -->
 
+<!-- BEGIN page 'wrapper' -->
+<div id="ignite_wrapper">
 
 
     <decorator:body />
 
-    
+
     <!-- BEGIN footer -->
     <div id="ignite_footer">
         <div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/">Home</a> | <a href="<%= request.getContextPath() %>/projects/">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/">Downloads</a> | <a href="https://discourse.igniterealtime.org/">Community</a> | <a href="<%= request.getContextPath() %>/fans/">Fans</a> | <a href="<%= request.getContextPath() %>/support/">Support</a> | <a href="<%= request.getContextPath() %>/about/">About</a> </div>
