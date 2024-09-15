@@ -1,98 +1,63 @@
-<%@ page import="org.jivesoftware.site.Versions"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
 <head>
 <title>Spark IM Client</title>
 <meta name="body-id" content="projects" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "../../styles/interior.css";
 </style>
 </head>
 <body>
 
-    <div id="ignite_subnav">
-        <ul>
-            <li id="subnav01"><a href="./" class="ignite_subnav_project">Spark</a></li>
-            <li id="subnav03"><a href="sparkplug-kit.jsp">Sparkplug Kit</a></li>
-            <li id="subnav04"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
-            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/SPARK">Issue Tracker</a></li>
-            <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
-        </ul>
-    </div>
+<jsp:include page="/includes/navigation.jspf">
+    <jsp:param name="project" value="spark"/>
+</jsp:include>
 
-    <!-- BEGIN body area -->
-    <div id="ignite_body">
+<section id="ignite_body">
         
-        <!-- BEGIN left column (main content) -->
-        <div id="ignite_body_leftcol">
-            
-            <!-- BEGIN body content area -->
-            <div id="ignite_int_body">
-            
-                <!-- BEGIN body header -->
-                <div id="ignite_body_header">
-                    <h2>Spark <%= Versions.getVersion("spark") %> Documentation</h2>
-                </div>
-                <!-- END body header -->
-                
-                
-                <div class="ignite_int_body_padding">
-                    
-                    
-                    <p>The current Spark documentation can be found below. All documentation is also distributed in each release (except for the user guide, which is an online wiki page).</p>
-                    
-                    <h3>Documentation:</h3>
-                    <ul>
-                    <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="https://download.igniterealtime.org/spark/docs/latest/README.html">Readme &amp; License</a></li>
-                    <li><img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" border="0" />
-                    <a href="https://download.igniterealtime.org/spark/docs/latest/changelog.html">Changelog</a>
-                    <br>
-                    <br></li>
+    <main id="ignite_body_leftcol">
+        <article id="ignite_int_body">
+
+            <header id="ignite_body_header">
+                <h2>Spark Documentation</h2>
+            </header>
+
+            <div class="ignite_int_body_padding">
+                <p>
+                    The current Spark documentation can be found below. All documentation is also distributed in each
+                    release (except for the user guide, which is an online wiki page).
+                </p>
+
+                <h3>Documentation:</h3>
+                <ul>
+                    <li>
+                        <img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" />
+                        <a href="https://download.igniterealtime.org/spark/docs/latest/README.html">Readme &amp; License</a>
+                    </li>
+                    <li>
+                        <img src="../../images/icon_txt.gif" width="16" height="16" alt="txt" />
+                        <a href="https://download.igniterealtime.org/spark/docs/latest/changelog.html">Changelog</a>
+                    </li>
                     <li><a href="https://discourse.igniterealtime.org/t/spark-user-guide-revised/41731">User Guide (wiki)</a></li>
                     <li><a href="https://discourse.igniterealtime.org/t/developer-and-administrator-guide">Developer and Administrator Guide</a></li>
-                    </ul>
+                </ul>
 
-
-                    <!--<h3>Developer Documentation:</h3>
-                    <ul>
+                <h3>Developer Documentation:</h3>
+                <ul>
                     <li><a href="https://download.igniterealtime.org/spark/docs/latest/documentation/ide-eclipse-setup.html">Setup Eclipse IDE with the source</a></li>
                     <li><a href="https://download.igniterealtime.org/spark/docs/latest/documentation/ide-intellij-setup.html">Setup IntelliJ IDE with the source</a></li>
-                    </ul>-->
-                
-                
-                
-                </div>
-                
-                
+                </ul>
             </div>
-            <!-- END body content area -->
-            
-        </div>
-        <!-- END left column (main content) -->
-        
-        <!-- BEGIN right column (sidebar) -->
-        <div id="ignite_body_rightcol">
-            
-            <jsp:include page="/includes/sidebar_projectlead.jsp">
-                <jsp:param name="project" value="spark" />
-            </jsp:include>
 
-            <jsp:include page="/includes/sidebar_snapshot.jsp">
-                <jsp:param name="project" value="spark"/>
-            </jsp:include>
-            
-            <%@ include file="/includes/sidebar_enterprise.jspf" %>
-            
-        </div>
-        <!-- END right column (sidebar) -->
-    
-    </div>
-    <!-- END body area -->
+        </article>
+    </main>
 
+    <section id="ignite_body_sidebar">
+        <jsp:include page="/includes/sidebar_projectside.jsp">
+            <jsp:param name="project" value="spark"/>
+        </jsp:include>
+    </section>
 
+</section>
 
 </body>
 </html>

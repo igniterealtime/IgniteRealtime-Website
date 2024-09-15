@@ -56,6 +56,5 @@
                 <jsp:param name="projectID" value="<%= jiraID %>"/>
             </jsp:include>	
             --%>
-            
-            <%--<%@ include file="/includes/sidebar_enterprise.jspf" %> --%>
+
             

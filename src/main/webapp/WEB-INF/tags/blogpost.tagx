@@ -7,10 +7,12 @@
     <jsp:directive.attribute name="item" required="true" type="org.jivesoftware.site.FeedItem" />
     <jsp:directive.attribute name="isOdd" required="true" type="java.lang.Boolean"/>
 
+    <c:set var="baseUrl" value="${not empty initParam.discourse_baseurl ? initParam.discourse_baseurl : 'https://discourse.igniterealtime.org/'}"/>
+
     <jsp:body>
         <div class="ignite_blog_entry ${isOdd ? 'ignite_blog_entry_odd' : '' }">
             <div class="ignite_blog_entry_header">
-                <img src="${requestScope.feedManager.getAvatarUrl(requestScope.baseUrl, item, 32)}"
+                <img src="${requestScope.feedManager.getAvatarUrl(baseUrl, item, 32)}"
                      alt="${item.authorName}"
                      width="32" height="32" />
 

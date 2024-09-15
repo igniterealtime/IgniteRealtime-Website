@@ -1,180 +1,167 @@
-<%@ page import="java.text.DecimalFormat,
-                 java.io.File,
-                 java.util.Arrays,
-                 java.util.Comparator,
-                 java.io.FileFilter,
-                 java.util.Date,
-                 java.text.DateFormat,
-                 java.text.SimpleDateFormat" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.util.*" %>
+<%@ page import="java.util.regex.Matcher" %>
+<%@ page import="java.util.regex.Pattern" %>
+<%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.time.ZoneId" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%!
-    private static class FileComparator implements Comparator {
+    private static class FileComparator implements Comparator<File> {
         private String clean(String in) {
             int pos = in.indexOf("src_");
             if (pos > -1) {
-                return in.substring(0,pos) + in.substring(pos+"src_".length(), in.length());
+                return in.substring(0,pos) + in.substring(pos+"src_".length());
             }
             return in;
         }
-        public int compare(Object o1, Object o2) {
-            String s1 = ((File)o1).getName();
-            String s2 = ((File)o2).getName();
+        public int compare(File o1, File o2) {
+            String s1 = o1.getName();
+            String s2 = o2.getName();
             return -clean(s1).compareTo(clean(s2));
         }
     }
 %>
-
-<%
-    DecimalFormat mbFormat = new DecimalFormat("#0.00");
-    DateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
-
-    String buildsPath = (String)application.getInitParameter("builds-path");
-    String path = null;
-    File buildDir = null;
-    File[] files = null;
-%>
-
 <html>
 <head>
 <title>Spark Nightly Builds</title>
 <meta name="body-id" content="downloads" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "../styles/interior.css";
 </style>
 </head>
 <body>
 
-    <div id="ignite_subnav">
+    <nav id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="./">Releases</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_current">Releases</a></li>
             <li id="subnav02"><a href="source.jsp">Source</a></li>
             <li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
+            <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
-    </div>
+    </nav>
 
-<!-- BEGIN body area -->
-<div id="ignite_body">
+    <section id="ignite_body">
 
-    <!-- BEGIN left column (main content) -->
-    <div id="ignite_body_leftcol">
+        <main id="ignite_body_leftcol">
+            <article id="ignite_int_body">
 
-        <!-- BEGIN body content area -->
-        <div id="ignite_int_body">
+                <header id="ignite_body_header">
+                    <h1>Downloads</h1> <strong>Spark Nightly Builds</strong>
+                </header>
 
-            <!-- BEGIN body header -->
-            <div id="ignite_body_header">
-                <h1>Downloads</h1> <strong>Spark Nightly Builds</strong>
-            </div>
-            <!-- END body header -->
-
-
-            <div class="ignite_int_body_padding">
-                <a href="./" class="ignite_back">Back to Downloads</a>
-            </div>
-
-            <div>
-            <p>
-            Below are nightly builds for Spark. Please see the <a href="./">official builds</a>
-            page if you're looking for a specific release. 
-            </p>
-
-            <p>
-            Daily builds are provided for those that require early access to changes before they are officially
-            released. These builds are <b>not extensively tested</b>, so most users should use
-            <a href="./">official releases</a> instead.
-            </p>
-            </div>
-
-            <div class="ignite_download_panel ignite_download_source_panel">
-                <div class="ignite_download_panel_label">
-                    <h4>Binary Builds</h4>
+                <div class="ignite_int_body_padding">
+                    <a href="./" class="ignite_back">Back to Downloads</a>
                 </div>
+
+                <p>
+                    Below are nightly builds for Spark. Please see the <a href="./">official builds</a>
+                    page if you're looking for a specific release.
+                </p>
+
+                <p>
+                    Daily builds are provided for those that require early access to changes before they are officially
+                    released. These builds are <b>not extensively tested</b>, so most users should use
+                    <a href="./">official releases</a> instead.
+                </p>
+
+                <div class="ignite_download_panel ignite_download_source_panel">
+                    <div class="ignite_download_panel_label">
+                        <h4>Binary Builds</h4>
+                    </div>
 
 
 <%
+    String buildsPath = application.getInitParameter("builds-path");
+
     // Binaries
-    path = buildsPath + "/spark/dailybuilds/";
-    buildDir = new File(path);
-    files = buildDir.listFiles(new FileFilter() {
-        public boolean accept(File pathname) {
-            return pathname.getName().indexOf("_src") == -1;
-        }
-    });
-    if (files != null && files.length > 0) {
-        Arrays.sort(files, new FileComparator());
-        boolean odd = false;
-        for (int i=0; i < (files.length / 13); i++) {
-            File file1 = files[13 * i];
-            File file2 = files[13 * i + 1];
-            File file3 = files[13 * i + 2];
-            File file4 = files[13 * i + 3];
-            File file5 = files[13 * i + 4];
-            File file6 = files[13 * i + 5];
-            File file7 = files[13 * i + 6];
-            File file8 = files[13 * i + 7];
-            File file9 = files[13 * i + 8];
-            File file10 = files[13 * i + 9];
-            File file11 = files[13 * i + 10];
-            File file12 = files[13 * i + 11];
-            File file13 = files[13 * i + 12];
-            odd = !odd;
+    String path = buildsPath + "/spark/dailybuilds/";
+    File buildDir = new File(path);
+    File[] allFiles = buildDir.listFiles(pathname -> !pathname.getName().contains( "_src" ));
+    if (allFiles != null && allFiles.length > 0) {
+        // Group and sort by date (as denoted in the filename).
+        final Pattern datePattern = Pattern.compile( "([0-9]{4}[0-9]{2}[0-9]{2})");
+        final SortedMap<String, List<File>> filesByDate = new TreeMap<>( Collections.reverseOrder() );
+        filesByDate.putAll(
+            Arrays.stream( allFiles )
+                .sorted( new FileComparator() )
+                .collect( Collectors.groupingBy(file -> {
+                    final Matcher matcher = datePattern.matcher( file.getName() );
+                    if ( matcher.find() ) {
+                        return matcher.group( 1 );
+                    } else {
+                        return "unknown date";
+                    }
+                }) )
+        );
+
+        // Print all date-entries.
+        for ( Map.Entry<String, List<File>> entry : filesByDate.entrySet() )
+        {
+            final String date = entry.getKey();
+            final List<File> files = entry.getValue();
+            files.sort( new FileComparator() );
     %>
-                <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
-                    <span class="ignite_download_item_details">
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file1.getName() %>"><%= file1.getName() %></a> (<%= mbFormat.format(file1.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file2.getName() %>"><%= file2.getName() %></a> (<%= mbFormat.format(file2.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file3.getName() %>"><%= file3.getName() %></a> (<%= mbFormat.format(file3.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file4.getName() %>"><%= file4.getName() %></a> (<%= mbFormat.format(file4.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file5.getName() %>"><%= file5.getName() %></a> (<%= mbFormat.format(file5.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file6.getName() %>"><%= file6.getName() %></a> (<%= mbFormat.format(file6.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file7.getName() %>"><%= file7.getName() %></a> (<%= mbFormat.format(file7.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file8.getName() %>"><%= file8.getName() %></a> (<%= mbFormat.format(file8.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file9.getName() %>"><%= file9.getName() %></a> (<%= mbFormat.format(file9.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file10.getName() %>"><%= file10.getName() %></a> (<%= mbFormat.format(file10.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file11.getName() %>"><%= file11.getName() %></a> (<%= mbFormat.format(file11.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file12.getName() %>"><%= file12.getName() %></a> (<%= mbFormat.format(file12.length()/(1024.0*1024.0)) %> MB)<br />
-                        <img src="../images/logo_spark_16x16.gif" alt="" width="17" height="16" border="0"><a href="https://download.igniterealtime.org/spark/dailybuilds/<%= file13.getName() %>"><%= file13.getName() %></a> (<%= mbFormat.format(file13.length()/(1024.0*1024.0)) %> MB)
-                    </span>
-                    <span class="ignite_download_item_date">
-                        <%= dateFormat.format(new Date(file1.lastModified())) %>
-                    </span>
-                    <span class="ignite_download_item_size">
-                    </span>
+                <div class="ignite_download_item">
+    <%
+        request.setAttribute("buildDate", Date.from(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyyMMdd")).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        request.setAttribute("files", files);
+    %>
+                    <c:forEach var="file" items="${files}" varStatus="varStatus">
+                        <span class="ignite_download_item_details">
+                            <c:choose>
+                                <c:when test="${file.name.toLowerCase().endsWith('.deb')}">
+                                    <img src="../images/icon_debian.gif" alt="" width="17" height="16">
+                                </c:when>
+                                <c:when test="${file.name.toLowerCase().endsWith('.rpm')}">
+                                    <img src="../images/icon_linux.gif" alt="" width="17" height="16">
+                                </c:when>
+                                <c:when test="${file.name.toLowerCase().endsWith('.exe')}">
+                                    <img src="../images/icon_win.gif" alt="" width="17" height="16">
+                                </c:when>
+                                <c:when test="${file.name.toLowerCase().endsWith('.msi')}">
+                                    <img src="../images/icon_win.gif" alt="" width="17" height="16">
+                                </c:when>
+                                <c:when test="${file.name.toLowerCase().endsWith('.dmg')}">
+                                    <img src="../images/icon_macosx.gif" alt="" width="17" height="16">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="../images/icon_zip.gif" alt="" width="17" height="16">
+                                </c:otherwise>
+                            </c:choose>
+                            <a href="https://download.igniterealtime.org/spark/dailybuilds/<c:out value="${file.name}"/>"><c:out value="${file.name}"/></a><br />
+                        </span>
+                        <span class="ignite_download_item_date">
+                            <c:if test="${varStatus.first}">
+                                <fmt:formatDate type="date" dateStyle="long" value="${buildDate}"/>
+                            </c:if>
+                        </span>
+                        <span class="ignite_download_item_size">
+                            <fmt:formatNumber type="number" pattern="#0.00" value="${file.length()/(1024.0*1024.0)}" /> MB
+                        </span>
+                    </c:forEach>
                 </div>
-
-
-    <%  } %>
-
-<%  } %>
-
-                <br>
-                <br>
+    <%
+        }
+    } else {
+    %>
+                    <div style="width: 100%; padding: 25px; text-align:center">
+                        <strong>No nightly builds currently available.</strong>
+                    </div>
+    <% } %>
+                    <br>
                 </div>
+            </article>
+        </main>
 
-        </div>
-        <!-- END body content area -->
+        <section id="ignite_body_sidebar">
+            <jsp:directive.include file="/includes/sidebar_48hrsnapshot.jspf" />
+            <jsp:directive.include file="/includes/sidebar_testimonial.jspf" />
+        </section>
 
-    </div>
-    <!-- END left column (main content) -->
-
-    <!-- BEGIN right column (sidebar) -->
-    <div id="ignite_body_rightcol">
-
-
-        <%@ include file="/includes/sidebar_enterprise.jspf" %>
-
-        <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-
-        <%@ include file="/includes/sidebar_testimonial.jspf" %>
-
-    </div>
-    <!-- END right column (sidebar) -->
-
-</div>
-<!-- END body area -->
+    </section>
 
 </body>
 </html>

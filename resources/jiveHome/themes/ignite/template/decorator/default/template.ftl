@@ -29,8 +29,8 @@
 
     ${page.head}
 
-    <style type="text/css"><@s.action name='custom-css' executeResult='true' ignoreContextParams='true' /></style>
-    <style type="text/css"><@s.action name='custom-css-container' executeResult='true' ignoreContextParams='true' /></style>
+    <style><@s.action name='custom-css' executeResult='true' ignoreContextParams='true' /></style>
+    <style><@s.action name='custom-css-container' executeResult='true' ignoreContextParams='true' /></style>
 
 </head>
 <body id="community" class="${page.getProperty("body.class")!}" >

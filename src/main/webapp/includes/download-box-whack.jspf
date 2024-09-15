@@ -19,7 +19,7 @@
     }
 %>
 
-<a name="whack">&nbsp;</a>
+<a id="whack">&nbsp;</a>
 <div class="ignite_downloads">
     <div class="ignite_int_body_padding">
 
@@ -41,7 +41,7 @@
             <!-- BEGIN cross platform -->
             <div class="ignite_download_panel" id="whackCp" style="display: none;">
                 <div>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="/downloadServlet?filename=whack/<%= binJar.getName() %>"><%= binJar.getName() %></a>

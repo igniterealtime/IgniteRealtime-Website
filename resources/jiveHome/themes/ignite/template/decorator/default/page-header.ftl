@@ -1,5 +1,5 @@
 <!-- BEGIN header -->
-<a name="top"></a>
+<a id="top"></a>
     <div id="jive-global-header" class="clearfix">
         <div id="jive-global-header-texture">
             <a href="https://igniterealtime.org/" id="jive-global-header-logo"></a>

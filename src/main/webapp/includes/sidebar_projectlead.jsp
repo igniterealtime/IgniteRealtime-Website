@@ -82,7 +82,7 @@
                     <tr valign="top"><td><a href="<%= profileLink %>"><img src="<%= avatarSrc %>" alt="<%= name %>"  align="left" /></a></td>
                     <td>
                     <strong><a href="<%= profileLink %>"><%= name %></a></strong>
-                    <%= profile %></td></tr></table></p>
+                    <%= profile %></td></tr></table>
                 </div>
                 <div class="ignite_sidebar_btm-g"></div>
             </div>

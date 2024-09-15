@@ -14,7 +14,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     width: 100%;
     margin: 0;
     padding: 0;
-    background: #fff url(../images/ignite_subnav-bg.gif) repeat-x;
+    background: #fff linear-gradient(to top, #D7D7D7 1px, #EAEAEA 1px, #F5F5F5);
     overflow: hidden;
     }
 #ignite_subnav ul {
@@ -52,17 +52,14 @@ styles specific to the interior pages for the Ignite Real Time site.
     }
 #ignite_subnav ul li a.ignite_subnav_current, 
 #ignite_subnav ul li a:visited.ignite_subnav_current {
-    background: transparent url(../images/ignite_subnav-current.gif) repeat-x;
-    background-position: 4px;
-    /*background: transparent url(../images/ignite_subnav-proj-on.gif) no-repeat bottom center;*/
-    /*background-position: center 3px;*/
+    background: #fff linear-gradient(to top, #D7D7D7 2px, #EAEAEA 2px, #FFFFFF 75%);
     font-weight: bold;
     }
 
 /* large 'open dialog' promo-style panel on the interior pages */
 #ignite_bigpanel {
     display: none;
-    width: 700px;
+    width: 870px;
     height: 254px;
     padding: 0;
     margin-bottom: 15px;
@@ -71,7 +68,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     }
 #ignite_bigpanel_content {
     display: inline;
-    width: 390px;
+    width: 550px;
     height: 194px;
     margin: 0 0 0 18px;
     float: left;
@@ -93,7 +90,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     font-family: Georgia, "Times New Roman", Times, serif;
     font-size: 22pt;
     font-weight: normal;
-    margin: 20px 0 0 0;
+    margin: 20px 0 0 18px;
     padding: 0 0 0 18px;
     float: left;
     }
@@ -149,6 +146,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     color: #ababab;
     font-size: 12pt;
     font-weight: bold;
+    margin: 0 1ch;
     }
 #ignite_bigpanel_download {
     width: 390px;
@@ -196,7 +194,11 @@ styles specific to the interior pages for the Ignite Real Time site.
     }
 #ignite_bigpanel_close a:hover {
     background: transparent url(../images/ignite_bigpanel_close-over.gif) no-repeat;
-    }
+}
+#ignite_bigpanel a.close {
+    color: transparent;
+    user-select: none;
+}
 #ignite_bigpanel_screenshot {
     width: 235px;
     height: 224px;
@@ -216,7 +218,12 @@ styles specific to the interior pages for the Ignite Real Time site.
 #ignite_bigpanel_screenshot a:hover {
     color: #ccc;
     text-decoration: underline;
-    } 
+    }
+#ignite_bigpanel_screenshot > img{
+    max-width: 210px;
+    max-height: 210px;
+}
+
 #ignite_bigpanel_tryitlive {
     padding: 40px 0 0 0;
     float: right;
@@ -246,7 +253,7 @@ styles specific to the interior pages for the Ignite Real Time site.
 
 #ignite_smallpanel {
     display: none;
-    width: 700px;
+    width: 870px;
     height: 70px;
     padding: 0;
     margin-bottom: 15px;
@@ -266,7 +273,6 @@ styles specific to the interior pages for the Ignite Real Time site.
 
 #ignite_int_body {
     float: left;
-    width: 700px;
     background-color: #fff;
     }
 #ignite_int_full {
@@ -277,7 +283,6 @@ styles specific to the interior pages for the Ignite Real Time site.
 .ignite_int_body_padding {
     float: left;
     width: 95%;
-    clear: both;
     padding: 10px 0 10px 20px;
     }
 #ignite_body_header {
@@ -286,7 +291,8 @@ styles specific to the interior pages for the Ignite Real Time site.
     height: 65px;
     padding: 0;
     margin: 0 0 20px 0;
-    background: transparent url(../images/ignite_body_hdr.gif) repeat-x;
+    background: transparent linear-gradient(to bottom, white, whitesmoke);
+    border-bottom: 1px dotted gray;
     overflow: hidden;
     }
 #ignite_body_header h1 {
@@ -351,10 +357,11 @@ img.ignite_body_image_right {
     overflow: hidden;
     padding: 0;
     margin: 10px 0 0 0;
-    width: 341px;
+    width: 417px;
     height: 170px;
     background: transparent url(../images/ignite_projects_bg.gif) no-repeat;
     background-position: 0 18px;
+    background-size: contain;
     }
 .ignite_project_listing {
     margin-bottom: 20px;
@@ -374,7 +381,7 @@ img.ignite_body_image_right {
     }
 .ignite_project_big div.ignite_project_content {
     float: left;
-    width: 300px;
+    width: 370px;
     padding: 17px 0 10px 15px;
     overflow: hidden;
     }
@@ -485,6 +492,30 @@ img.ignite_body_image_right {
     font-size: 8pt;
     }
 
+.ignite_project_banner_warning {
+    border: 1px solid #dcdcdc;
+    float: left;
+    width: 100%;
+    margin: 15px 0;
+    background-color: #fbf8ea;
+}
+.ignite_project_banner_warning h1 {
+    float: left;
+    padding: 15px 10px;
+    margin: 0;
+    font-weight: normal;
+    font-size: 20pt;
+    color: #505050;
+    text-transform: uppercase;
+}
+.ignite_project_banner_warning p {
+    display: block;
+    float: left;
+    max-width: 600px;
+    font-size: 8pt;
+    padding: 8px 12px 8px 12px;
+}
+
 .ignite_downloads {
     float: left;
     width: 100%;
@@ -493,7 +524,7 @@ img.ignite_body_image_right {
     padding-bottom: 20px;
     }
 
-.ignite_downloads div.ignite_int_body_padding {
+.ignite_downloads .ignite_int_body_padding {
     float: left;
     width: 100%;
     padding: 10px 0 10px 20px;
@@ -505,7 +536,7 @@ img.ignite_body_image_right {
     padding-top: 6px;
     }
 .ignite_downloads_content {
-    width: 600px;
+    width: 720px;
     float: left;
     }
 
@@ -692,8 +723,7 @@ img.ignite_body_image_right {
     float: left;
     }
 
-.ignite_download_item_odd, 
-.ignite_download_item_even {
+.ignite_download_item {
     width: 100%;
     float: left;
     border-top: 1px solid #e6e6e6;
@@ -703,7 +733,7 @@ img.ignite_body_image_right {
     font-size: 8pt;
     }
 
-.ignite_download_item_odd {
+.ignite_download_item:nth-child(odd) {
     background-color: #f6f6f6;
     }
 
@@ -834,14 +864,6 @@ img.ignite_body_image_right {
     border: 4px solid #f0f0f0;
     }
 
-.ignite_body_screenshots_enterprise {
-    background-color: #f9f9f9;
-    }
-.ignite_body_screenshots_enterprise table { 
-    width: 200px;
-    margin: 0;
-    }
-
 /* Openfire Plugins page table styles */
 #plugins {
     display: block;
@@ -872,30 +894,21 @@ img.ignite_body_image_right {
 #plugins th, #plugins td {
     font-size : 8pt;
 }
-#plugins .c1, #plugins .c2, #plugins .c3, #plugins .c4, #plugins .c5 {
+#plugins > table > tbody > tr > td {
     border-right : 1px solid #e6e6e6;
     border-bottom : 1px solid #e6e6e6;
-    padding: 0 4px 0 7px;
+    padding: 0 2ch;
 }
-#plugins table tbody tr td.c1 table {
+#plugins > table > tbody > tr > td:first-child table {
     border: none;
     margin: 5px 0 5px 0;
 }
-#plugins table tbody tr td.c1 {
+#plugins > table > tbody > tr > td:first-child {
     border-left : 1px solid #e6e6e6;
-    width: 55%;
 }
-#plugins table tbody tr td.c2 {
-    width: 42px;
-    padding: 0 2px;
-}
-#plugins table tbody tr td.c3 {
-}
-#plugins table tbody tr td.c4 {
-    width: 45px;
-}
-#plugins table tbody tr td.c5 {
-    width: 80px;
+#plugins > table > tbody > tr > td:not(:first-child) {
+    width: 1%;
+    white-space: nowrap;
 }
 
 #plugins .plugname {
@@ -952,7 +965,7 @@ img.ignite_body_image_right {
 /* Support page styles */
 .ignite_int_body_support {
     float: left;
-    width: 680px;
+    width: 95%;
     clear: both;
     padding: 10px 0 30px 15px;
 }
@@ -966,10 +979,9 @@ img.ignite_body_image_right {
 
 #ignite_support_search {
     float: left;
-    width: 680px;
+    width: 95%;
     margin: 10px 0 1px 10px;
     padding-bottom: 10px;
-    background: transparent url(../images/ignite_div_dotted.gif) repeat-x bottom;
     }
 #ignite_support_search strong {
     display: block;
@@ -999,13 +1011,12 @@ img.ignite_body_image_right {
     float: left;
     width: 100%;
     border: 1px #CCCCCC solid;
+    background: linear-gradient(to bottom, whitesmoke, white);
     margin-bottom: 45px;
     }
 
 #ignite_support_activity {
     float: left;
-    width: 680px;
-    background: #fff url(../images/ignite_support_activity-bg.gif) repeat-x top;
     margin: 0 0 20px 10px;
     }
 #ignite_support_activity div.discussion, 
@@ -1029,25 +1040,22 @@ img.ignite_body_image_right {
     margin-top: 10px;
     }
 #ignite_support_activity_forums, 
-#ignite_support_activity_news, 
-#ignite_support_activity_articles, 
+#ignite_support_activity_articles,
 #ignite_support_activity_documentation {
     padding: 14px 12px 12px 14px;
     line-height: 10pt;
     float: left;
-    width: 200px;
+    width: 30%;
     }
 #ignite_support_activity_forums h4, 
-#ignite_support_activity_news h4, 
-#ignite_support_activity_articles h4, 
+#ignite_support_activity_articles h4,
 #ignite_support_activity_documentation h4 {
     font-size: 9pt;
     margin: 0;
     padding: 0 0 2px 0;
     }
 #ignite_support_activity_forums div, 
-#ignite_support_activity_news div, 
-#ignite_support_activity_articles div, 
+#ignite_support_activity_articles div,
 #ignite_support_activity_documentation div {
     color: #666;
     padding: 5px 0 5px 0;
@@ -1085,18 +1093,19 @@ img.ignite_body_image_right {
     margin: 0;
     padding: 0;
     }
-#ignite_support_issuetracker {
+#ignite_support_activity_issuetracker {
     float: left;
-    width: 680px;
+    width: 100%;
     margin: 10px 0 1px 0;
     padding-bottom: 5px;
     background: transparent url(../images/ignite_div_dotted.gif) repeat-x top;
     }
-#ignite_support_issuetracker p {
+#ignite_support_activity_issuetracker p {
     margin: 5px 0 8px 0;
     color: #666;
+    font-size: 8pt;
     }
-#ignite_support_issuetracker strong a {
+#ignite_support_activity_issuetracker strong a {
     margin: 0;
     }
 
@@ -1161,7 +1170,7 @@ img.ignite_body_image_right {
     border: 1px solid #dcdcdc;
     float: left;
     width: 100%;
-    margin: 15px 0 35px 0;
+    margin: 15px 0;
     background-color: #fbf8ea;
     }
 #ignite_support_findprovider img {
@@ -1290,7 +1299,7 @@ img.ignite_body_image_right {
 .ignite_fans_block table tr td.ignite_fans_logos {
     text-align: center;
     padding-right: 20px;
-    width: 200px;
+    width: 33%;
     }
 .ignite_fans_block table tr td.ignite_fans_logos img {
     margin: 10px 0 5px 0;
@@ -1312,7 +1321,8 @@ img.ignite_body_image_right {
     font-size: 7pt;
     color: #666;
     padding-right: 20px;
-    }
+    width: 33%;
+}
 .ignite_fans_block table tr td.ignite_fans_buttons span {
     float: left;
     }
@@ -1333,6 +1343,7 @@ img.ignite_body_image_right {
 .ignite_fans_block table tr td.ignite_fans_screenshots {
     font-size: 8pt;
     color: #666;
+    width: 33%;
     }
 .ignite_fans_block table tr td.ignite_fans_screenshots img {
     margin: 10px 0 0 4px;

@@ -8,49 +8,42 @@
 
 <decorator:usePage id="mypage" />
 
-<%  String path = request.getContextPath(); %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">-->
-<html>
+<!doctype html>
+<html xml:lang="en">
 
 <head>
-<title>Ignite Realtime: <decorator:title /></title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-Language" content="en-us" />
-<meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="ignite, igniterealtime, java, open source, openfire, wildfire, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, pade, xiff, asterisk" />"/>
-<meta property="og:title" content="Ignite Realtime: <decorator:title />" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="<%=request.getRequestURL()%>" />
-<meta property="og:image" content="https://www.igniterealtime.org/images/screenshot-ignite-large.jpg" />
-<style type="text/css" media="screen">
-    @import url(https://fonts.googleapis.com/css?family=Dosis:600);
-    @import "<%= request.getContextPath() %>/styles/global.css";
-</style>
+    <title>Ignite Realtime: <decorator:title /></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="ignite, igniterealtime, java, open source, openfire, wildfire, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, pade, xiff, asterisk" />"/>
+    <meta property="og:title" content="Ignite Realtime: <decorator:title />" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%=request.getRequestURL()%>" />
+    <meta property="og:image" content="https://www.igniterealtime.org/images/screenshot-ignite-large.jpg" />
 
-<script type="text/javascript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
-<script type="text/javascript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>
+    <style media="screen">
+        @import url(https://fonts.googleapis.com/css?family=Dosis:600);
+        @import "<%= request.getContextPath() %>/styles/global.css";
+    </style>
 
-<decorator:head />
-                                                                           
+    <script type="text/javascript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
+    <script type="text/javascript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>
+
+    <decorator:head />
+
 </head>
 
 <%
     String bodyID = mypage.getProperty("meta.body-id");
     String panelName = mypage.getProperty("meta.panel-name");
-    String baseUrl = config.getServletContext().getInitParameter("csc_baseurl");
 %>
 
 <body<%= (bodyID != null) ? " id=\""+bodyID+"\"" : "" %>  onLoad="<%= (panelName != null) ? "checkPanel('"+panelName+"');" : "" %>" >
-     
 
-
-
-<!-- BEGIN header -->
-<div id="ignite_header">
+<header id="ignite_header">
     <div class="clearfix" id="ignite_header_contents">
         <a href="/"><div id="ignite_logo"></div></a>
-        <div class="clearfix" id="ignite_nav">
+        <nav class="clearfix" id="ignite_nav">
             <ol>
                 <li id="nav01"><a href="<%= request.getContextPath() %>/">Home</a></li>
                 <li id="nav02"><a href="<%= request.getContextPath() %>/projects/">Projects</a></li>
@@ -60,27 +53,19 @@
                 <li id="nav07"><a href="<%= request.getContextPath() %>/support/">Support</a></li>
                 <li id="nav08"><a href="<%= request.getContextPath() %>/about/">About</a></li>
             </ol>
-        </div>
+        </nav>
     </div>
-</div>
-<!-- END header -->
+</header>
 
-<!-- BEGIN page 'wrapper' -->
-<div id="ignite_wrapper">
-
+<section id="ignite_wrapper">
 
     <decorator:body />
 
+    <footer id="ignite_footer">
+        <nav class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/">Home</a> | <a href="<%= request.getContextPath() %>/projects/">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/">Downloads</a> | <a href="https://discourse.igniterealtime.org/">Community</a> | <a href="<%= request.getContextPath() %>/fans/">Fans</a> | <a href="<%= request.getContextPath() %>/support/">Support</a> | <a href="<%= request.getContextPath() %>/about/">About</a> </nav>
+    </footer>
 
-    <!-- BEGIN footer -->
-    <div id="ignite_footer">
-        <div class="ignite_footer_nav"><a href="<%= request.getContextPath() %>/">Home</a> | <a href="<%= request.getContextPath() %>/projects/">Projects</a> | <a href="<%= request.getContextPath() %>/downloads/">Downloads</a> | <a href="https://discourse.igniterealtime.org/">Community</a> | <a href="<%= request.getContextPath() %>/fans/">Fans</a> | <a href="<%= request.getContextPath() %>/support/">Support</a> | <a href="<%= request.getContextPath() %>/about/">About</a> </div>
-    </div>
-    <!-- END footer -->
-
-
-</div>
-<!-- END page 'wrapper' -->
+</section>
 
 <script type="text/javascript">
   var _paq = _paq || [];

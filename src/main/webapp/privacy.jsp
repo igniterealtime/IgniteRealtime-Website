@@ -2,30 +2,25 @@
 <head>
 <title>Privacy Policy</title>
 <!-- <meta name="body-id" content="about" /> -->
-<style type="text/css" media="screen">
+<style media="screen">
     @import "styles/interior.css";
 </style>
 </head>
 <body>
 
 
-    <!-- BEGIN body area -->
-    <div id="ignite_body">
+        <section id="ignite_body">
         
-        <!-- BEGIN left column (main content) -->
-        <div id="ignite_body_leftcol">
+                <main id="ignite_body_leftcol">
             
-            <!-- BEGIN body content area -->
-            <div id="ignite_int_body">
+                <article id="ignite_int_body">
             
-                <!-- BEGIN body header -->
-                <div id="ignite_body_header">
+                    <header id="ignite_body_header">
                     <h1>Ignite Realtime Privacy Policy</h1>
                 </div>
-                <!-- END body header -->
+
                 
-                
-                <div class="ignite_int_body_padding">
+                <main class="ignite_int_body_padding">
                     
 
                     <p>
@@ -417,24 +412,19 @@ and covers the following areas:
                 </div>
             
             </div>
-            <!-- END body content area -->
-            
+
         </div>
-        <!-- END left column (main content) -->
-        
-        <!-- BEGIN right column (sidebar) -->
-        <div id="ignite_body_rightcol">
+
+            <section id="ignite_body_sidebar">
             
             
             
 
             
             
-        </div>
-        <!-- END right column (sidebar) -->
-    
+        </section>
+
     </div>
-    <!-- END body area -->
 
 
 

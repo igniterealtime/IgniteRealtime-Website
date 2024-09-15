@@ -1,12 +1,8 @@
-<%@ page import="org.jivesoftware.site.Versions"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
 <html>
 <head>
     <title>Botz Documentation</title>
     <meta name="body-id" content="projects" />
-    <style type="text/css" media="screen">
+    <style media="screen">
         @import "../../styles/interior.css";
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/default.min.css">
@@ -15,31 +11,18 @@
 </head>
 <body>
 
-<div id="ignite_subnav">
-    <ul>
-        <li id="subnav01"><a href="./" class="ignite_subnav_project">Botz</a></li>
-        <li id="subnav02"><a href="documentation.jsp" class="ignite_subnav_current">Documentation</a></li>
-        <li id="subnav03"><a href="https://github.com/igniterealtime/Botz/releases">Releases</a></li>
-        <li id="subnav04"><a href="https://github.com/igniterealtime/Botz">Source Code</a></li>
-        <li id="subnav05"><a href="https://github.com/igniterealtime/Botz/issues">Issue Tracker</a></li>
-    </ul>
-</div>
+<jsp:include page="/includes/navigation.jspf">
+    <jsp:param name="project" value="botz"/>
+</jsp:include>
 
-<!-- BEGIN body area -->
-<div id="ignite_body">
+<section id="ignite_body">
 
-    <!-- BEGIN left column (main content) -->
-    <div id="ignite_body_leftcol">
+    <main id="ignite_body_leftcol">
+        <article id="ignite_int_body">
 
-        <!-- BEGIN body content area -->
-        <div id="ignite_int_body">
-
-            <!-- BEGIN body header -->
-            <div id="ignite_body_header">
-                <h2>Botz <%= Versions.getVersion("botz") %> Documentation</h2>
-            </div>
-            <!-- END body header -->
-
+            <header id="ignite_body_header">
+                <h2>Botz Documentation</h2>
+            </header>
 
             <div class="ignite_int_body_padding">
 
@@ -148,30 +131,16 @@ public class ParrotBot implements Plugin
             </div>
 
 
-        </div>
-        <!-- END body content area -->
+        </article>
+    </main>
 
-    </div>
-    <!-- END left column (main content) -->
-
-    <!-- BEGIN right column (sidebar) -->
-    <div id="ignite_body_rightcol">
-
-        <jsp:include page="/includes/sidebar_projectlead.jsp">
-            <jsp:param name="project" value="botz" />
-        </jsp:include>
-
-        <jsp:include page="/includes/sidebar_snapshot.jsp">
+    <section id="ignite_body_sidebar">
+        <jsp:include page="/includes/sidebar_projectside.jsp">
             <jsp:param name="project" value="botz"/>
         </jsp:include>
+    </section>
 
-    </div>
-    <!-- END right column (sidebar) -->
-
-</div>
-<!-- END body area -->
-
-
+</section>
 
 </body>
 </html>

@@ -2,29 +2,21 @@
 <head>
 <title>About</title>
 <meta name="body-id" content="about" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "../styles/interior.css";
 </style>
 </head>
 <body>
 
+    <section id="ignite_body">
 
-    <!-- BEGIN body area -->
-    <div id="ignite_body">
-        
-        <!-- BEGIN left column (main content) -->
-        <div id="ignite_body_leftcol">
-            
-            <!-- BEGIN body content area -->
-            <div id="ignite_int_body">
-            
-                <!-- BEGIN body header -->
-                <div id="ignite_body_header">
+        <main id="ignite_body_leftcol">
+            <article id="ignite_int_body">
+
+                <header id="ignite_body_header">
                     <h1>About</h1>
-                </div>
-                <!-- END body header -->
-                
-                
+                </header>
+
                 <div class="ignite_int_body_padding">
                     
                     <h2 class="larger">Our Community</h2>
@@ -57,7 +49,6 @@
                     
                     <h2 class="larger">The XMPP Protocol</h2>
 
-
                     <p>
                         XMPP (formerly Jabber) is the leading open standard for presence and
                         real-time messaging. Since 2004, it's been an approved standard of the IETF
@@ -85,52 +76,15 @@
                     </p>
                 </div>
             
-            </div>
-            <!-- END body content area -->
-            
-        </div>
-        <!-- END left column (main content) -->
-        
-        <!-- BEGIN right column (sidebar) -->
-        <div id="ignite_body_rightcol">
+            </article>
+        </main>
 
-            
-            <!-- BEGIN sidebar box 'resources' -->
-            <div class="ignite_sidebar_whitebox">
-                <div class="ignite_sidebar_top"></div>
-                <div class="ignite_sidebar_hdr ignite_sidebar_hdr_resources"></div>
-                <div class="ignite_sidebar_body">
-                    <div class="ignite_sidebar_body_resources">
+        <section id="ignite_body_sidebar">
+            <jsp:directive.include file="/includes/sidebar_resources.jspf" />
+            <jsp:directive.include file="/includes/sidebar_testimonial.jspf" />
+        </section>
 
-                    <!--	<p><strong>Whitepapers:</strong></p>
-
-                        <p><a href="jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></p>
-                        <p><a href="jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></p>
-                        <p><a href="jive_bestpractices_wp.pdf">Building a Successful Online Community with Jive Forums</a></p>
-                        <p><a href="OpenfireScalability.pdf">Openfire Scalability Test Results</a></p>
-
-                        <br/> 
-
-                        <p><strong>Websites:</strong></p> -->
-                        <p><a href="https://xmpp.org/">XMPP.org Website</a></p>
-                        <p><a href="https://planet.jabber.org/">Planet Jabber Blogs</a></p>
-                        <p><a href="https://twitter.com/IgniteRealtime">Ignite Realtime on Twitter</a></p>
-
-                    </div>
-                </div>
-                <div class="ignite_sidebar_btm"></div>
-            </div>
-            <!-- END white sidebar box 'resources' -->
-            
-            <%@ include file="/includes/sidebar_testimonial.jspf" %>
-
-        </div>
-        <!-- END right column (sidebar) -->
-    
-    </div>
-    <!-- END body area -->
-
-
+    </section>
 
 </body>
 </html>

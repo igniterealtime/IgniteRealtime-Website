@@ -1,46 +1,52 @@
-
 <html>
-<head><title>All About Pubsub</title></head>
-<meta name="body-id" content="support" />
-<style type="text/css" media="screen">
-    @import "../../styles/interior.css";
-</style>
+<head>
+    <title>All About Pubsub</title>
+    <meta name="body-id" content="support" />
+    <style media="screen">
+        @import "../../styles/interior.css";
+    </style>
+</head>
 <body>
 
-<div id="ignite_subnav">
-    <ul>
-        <li id="subnav01"><a href="../" class="ignite_subnav_project">Support</a></li>
-        <li id="subnav02"><a href="../articles.jsp" class="ignite_subnav_current">Articles</a></li>
-        <li id="subnav03"><a href="../group_chat.jsp">Group Chat</a></li>
-        <li id="subnav04"><a href="https://issues.igniterealtime.org/">Issue Tracker</a></li>
-        <li id="subnav05"><a href="../service_providers.jsp">Service providers</a></li>
-    </ul>
-</div>
+<jsp:include page="/includes/navigation.jspf">
+    <jsp:param name="project" value="support"/>
+</jsp:include>
 
-<!-- BEGIN body area -->
-<div id="ignite_body">
+<section id="ignite_body">
 
-<h1>All About Pubsub</h1>
+    <main class="ignite_int_body_padding">
+        <article id="ignite_int_body">
+
+            <div class="ignite_project_banner_warning">
+                <h1>Outdated</h1>
+                <p>
+                    This article was written a <em>long</em> time ago!<br/>Be aware that parts, or all of it may be outdated!
+                </p>
+            </div>
+
+            <header id="ignite_body_header">
+                <h1>All About Pubsub</h1>
+            </header>
+
 <p>April 17, 2006<br>
 <i>by Gaston Dombiak and Matt Tucker</i></p>
 
 <p>Publish-subscribe (pubsub) is a powerful protocol extension to XMPP. It's 
 like RSS for instant messaging: users subscribe to an item and get notifications 
 when it's updated. The general notification pattern that underlies
-the protocol can be found throughout the web. A couple of examples:
+the protocol can be found throughout the web. A couple of examples:</p>
 
 <ul>
-<p><b>Google Alerts:</b> enter a query or choose a topic, then the 
+<li><b>Google Alerts:</b> enter a query or choose a topic, then the
 <a href="http://www.google.com/alerts">Google Alerts</a> 
 service will send you email updates of the latest relevant 
-Google results (web, news, etc.).</p>
+Google results (web, news, etc.).</li>
 
-<p><b>Forums watches:</b> Community members at igniterealtime.org are
+<li><b>Forums watches:</b> Community members at igniterealtime.org are
 familiar with the watches feature, which notifies them by email when new posts
 are made in a category, forum, or thread.
-</p>
+</li>
 </ul> 
-</p>
 
 <p>In this article, we'll cover the pubsub protocol in detail then discuss
 possible ways it can be applied.</p>
@@ -49,21 +55,19 @@ possible ways it can be applied.</p>
 <img src="images/pubsub_1.png" width="311" height="301" alt="Collection and Root Nodes" align="right" hspace="5" vspace="5" />
 <p>The pubsub specification is defined by 
 <a href="https://xmpp.org/extensions/xep-0060.html">XEP-0060</a> and is fully 
-implemented in <a href="../../projects/openfire/">Openfire</a> (formerly Wildfire) 2.6 and later. The primary
+implemented in <a href="../../projects/openfire/">Openfire</a> 2.6 and later. The primary
 objects in the pubsub service are called "nodes", which users subscribe and 
-publish to. Nodes are hierarchical (tree structure) and come in two types:
+publish to. Nodes are hierarchical (tree structure) and come in two types:</p>
 <ul>
         <li>Leaf node: a node that contains published items.
         <li>Collection node: a node that contains other nodes.
 </ul>
-</p>
 
-<p>So, when a user subscribes to a node, that node is either: <ul>
-            <li>A leaf node, and notifications are sent when new items are published 
-                        to the node.
-            <li>A collection node, and notifications are made on addition/removal of 
-                        child nodes or when new items are published to child nodes.
-</ul></p>
+<p>So, when a user subscribes to a node, that node is either:</p>
+<ul>
+    <li>A leaf node, and notifications are sent when new items are published to the node.
+    <li>A collection node, and notifications are made on addition/removal of child nodes or when new items are published to child nodes.
+</ul>
 
 <p>The diagram at right shows both collection and leaf nodes. There is always
 a root collection node. In this case, we have child collection nodes "music" 
@@ -76,7 +80,8 @@ different access and publishers models. An access model defines who is
 allowed to subscribe and retrieve items while a publisher model defines who 
 is allowed to publish items to the node.</p>
 
-<p>Access models options are:<ul>
+<p>Access models options are:</p>
+<ul>
     <li><b>Open</b>: anyone may subscribe and retrieve items.
         <li><b>Authorize</b>: subscription requests must be approved by an owner 
         and only subscribers may retrieve items.
@@ -87,13 +92,13 @@ is allowed to publish items to the node.</p>
         the specified roster group(s) may subscribe to the node and retrieve items 
         from the node.
 </ul>
-</p>
 
-<p>Publisher model options are:<ul>
+<p>Publisher model options are:</p>
+<ul>
     <li><b>Open</b>: anyone may publish items to the node.
     <li><b>Publishers</b>: owners and publishers are allowed to publish items to the node.
         <li><b>Subscribers</b>: owners, publishers and subscribers are allowed to publish items to the node.
-</ul></p>
+</ul>
  
 <h3>Subscribing to Nodes</h3>
 
@@ -141,13 +146,12 @@ payload of each item.</p>
 items at any time. In other words, pubsub supports both <b>push</b> and <b>pull</b>
 for event notification.</p>
 
-<br clear="right"/>
 <h2>Conclusion</h2>
 
 <p>We've covered the basics of the pubsub protocol and how it can be used as
 an event publishing and notification service. But pubsub isn't just about event
 notification; the framework is powerful enough to support a number of 
-interesting collaboration use cases such as:
+interesting collaboration use cases such as:</p>
 
 <ul>
         <li>File storage and sharing: users could share files to common spaces and
@@ -160,14 +164,12 @@ interesting collaboration use cases such as:
             changing prices of equities to interested parties. 
 </ul>
 
-Have your own ideas about how pubsub can be used? We're looking forward to
+<p>Have your own ideas about how pubsub can be used? We're looking forward to
 seeing them!</p>
 
-<br/><br/><br/>
-
-</div>
-<!-- END body area -->
-
+        </article>
+    </main>
+</section>
 
 </body>
 </html>

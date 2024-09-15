@@ -16,7 +16,7 @@
     <Parameter name="spark-plugins-path"         value="${catalina.base}/staticfiles/builds/spark/plugins"/>
     <Parameter name="openfire-plugins-path"      value="${catalina.base}/staticfiles/repositories/maven/"/>
     <Parameter name="openfire-plugins-beta-path" value="${catalina.base}/staticfiles/builds/openfire/plugins-beta"/>
-    <Parameter name="openfire-plugins-dev-path"  value="${catalina.base}/staticfiles/builds/openfire/plugins-dev "/>
+    <Parameter name="openfire-plugins-dev-path"  value="${catalina.base}/staticfiles/builds/openfire/plugins-dev"/>
 
     <!-- WEB-50: JNDI datasource for the database that the website uses to collect statistics. -->
     <Resource

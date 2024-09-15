@@ -13,11 +13,7 @@ styles specific to the home page for the Ignite Real Time site.
     padding: 0;
     margin-bottom: 15px;
     background-color: white; /* Old browsers */
-    background: -moz-linear-gradient(top, white, #EEE); /* Firefox 3.6-15 */
-    background: -o-linear-gradient(top, white, #EEE); /* For Opera 11.1 to 12.0 */
-    background: -webkit-linear-gradient(top, white, #EEE); /* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, white, #EEE); /* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#EEE', GradientType=0); /* IE6-9 */
     overflow: hidden;
     }
 
@@ -79,12 +75,8 @@ styles specific to the home page for the Ignite Real Time site.
     padding: 0;
     margin-bottom: 15px;
     background-color: white; /* Old browsers */
-    background: -moz-linear-gradient(top, white, #EEE); /* Firefox 3.6-15 */
-    background: -o-linear-gradient(top, white, #EEE); /* For Opera 11.1 to 12.0 */
-    background: -webkit-linear-gradient(top, white, #EEE); /* Opera 11.1-12,Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to bottom, white, #EEE); /* W3C, IE10+, Firefox16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#EEE', GradientType=0); /* IE6-9 */
-    overflow: hidden; 
+    overflow: hidden;
     }
 #ignite_smallpanel_open a {
     float: right;

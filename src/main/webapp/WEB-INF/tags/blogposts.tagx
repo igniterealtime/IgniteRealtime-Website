@@ -1,0 +1,53 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:ir="http://igniterealtime.org/website/tags"
+          xmlns:cache="http://www.opensymphony.com/oscache"
+    xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes" />
+
+    <jsp:directive.attribute name="tag" type="java.lang.String" />
+    <jsp:directive.attribute name="max" required="true" type="java.lang.Integer" />
+    <jsp:directive.attribute name="feedManager" required="true" type="org.jivesoftware.site.FeedManager"/>
+
+    <c:set var="baseUrl" value="${not empty initParam.discourse_baseurl ? initParam.discourse_baseurl : 'https://discourse.igniterealtime.org/'}"/>
+
+    <c:set var="publicUrl">
+        <c:choose>
+            <c:when test="${not empty tag}">
+                <c:out value="${baseUrl}"/>/tags/c/blogs/ignite-realtime-blogs/5/<c:out value="${tag}"/>
+            </c:when>
+            <c:otherwise>
+                <c:out value="${baseUrl}"/>/c/blogs/ignite-realtime-blogs
+            </c:otherwise>
+        </c:choose>
+    </c:set>
+
+    <jsp:body>
+        <header id="ignite_blog_header">
+            <span id="ignite_blog_header_label">
+                Latest <a href="${publicUrl}">Blog</a> Entries
+            </span>
+            <div style="float: right;">
+                <span id="ignite_blog_header_rss">
+                    <a href="${baseUrl}/c/blogs/ignite-realtime-blogs.rss"><img src="/images/rss.gif" width="16" height="16" border="0" alt=""/></a>
+                </span>
+            </div>
+        </header>
+
+        <cache:cache time="600" key="${publicUrl}">
+            <c:set var="items" value="${feedManager.getTaggedItems(baseUrl, '/c/blogs/ignite-realtime-blogs.rss', tag, max)}"/>
+            <c:choose>
+                <c:when test="${not empty items}">
+                    <c:forEach items="${items}" var="item" varStatus="status">
+                        <ir:blogpost item="${item}" isOdd="${status.count % 2 != 0}"/>
+                    </c:forEach>
+                </c:when>
+                <c:otherwise>
+                    <p style="padding: 25px; text-align:center">
+                        <strong>No blog posts currently available.</strong>
+                    </p>
+                </c:otherwise>
+            </c:choose>
+        </cache:cache>
+    </jsp:body>
+
+</jsp:root>

@@ -72,7 +72,7 @@ public class FeedManager {
                 continue;
             }
             final FeedItem item = new FeedItem(json);
-            if (tag != null) {
+            if (tag != null && !tag.isBlank()) {
                 if (Arrays.stream(item.getTags()).anyMatch(t -> t.equalsIgnoreCase(tag))) {
                     result.add(item);
                 }

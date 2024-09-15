@@ -1,110 +1,70 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%
+    request.setAttribute("openfireBeta", Versions.getVersion("openfire-beta"));
+    request.setAttribute("sparkBeta", Versions.getVersion("spark-beta"));
+    request.setAttribute("smackBeta", Versions.getVersion("smack-beta"));
+    request.setAttribute("xiffBeta", Versions.getVersion("xiff-beta"));
+%>
 <html>
 <head>
 <title>Beta Downloads</title>
 <meta name="body-id" content="downloads" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "../styles/interior.css";
 </style>
 </head>
 <body>
 
-    <div id="ignite_subnav">
+    <nav id="ignite_subnav">
         <ul>
             <li id="subnav01"><a href="./">Releases</a></li>
             <li id="subnav02"><a href="source.jsp">Source</a></li>
             <li id="subnav03"><a href="beta.jsp" class="ignite_subnav_current">Beta Releases</a></li>
             <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
-    </div>
+    </nav>
 
-    <!-- BEGIN body area -->
-    <div id="ignite_body">
+    <section id="ignite_body">
 
-        <!-- BEGIN left column (main content) -->
-        <div id="ignite_body_leftcol">
+        <main id="ignite_body_leftcol">
+            <article id="ignite_int_body">
 
-            <!-- BEGIN body content area -->
-            <div id="ignite_int_body">
-
-                <!-- BEGIN body header -->
-                <div id="ignite_body_header">
+                <header id="ignite_body_header">
                     <h1>Downloads</h1> <strong>Beta</strong>
-                </div>
-                <!-- END body header -->
+                </header>
 
+                <p class="ignite_int_body_padding">
+                    Below are links to the current <b>beta</b> releases.
+                </p>
+                <c:if test="${not empty openfireBeta}">
+                    <jsp:directive.include file="/includes/download-box-openfire-beta.jspf" />
+                </c:if>
+                <c:if test="${not empty sparkBeta}">
+                    <jsp:directive.include file="/includes/download-box-spark-beta.jspf" />
+                </c:if>
+                <c:if test="${not empty smackBeta}">
+                    <jsp:directive.include file="/includes/download-box-smack-beta.jspf" />
+                </c:if>
+                <c:if test="${not empty xiffBeta}">
+                    <jsp:directive.include file="/includes/download-box-xiff-beta.jspf" />
+                </c:if>
+                <c:if test="${empty openfireBeta and empty sparkBeta and empty smackBeta and empty xiffBeta}">
+                    <br clear="left"/>
+                    <div style="width: 100%; padding: 25px; text-align:center">
+                        <strong>No beta releases currently available.</strong>
+                    </div>
+                </c:if>
 
-                <div class="ignite_int_body_padding">
-                    <p>
-                        Below are links to the current <b>beta</b> releases.
-                    </p>
-                </div>
+            </article>
+        </main>
 
-             <%
-                String openfireBetaVersion = Versions.getVersion("openfire-beta");
-                if (openfireBetaVersion != null) {
-            %>
-                    <!-- BEGIN openfire downloads -->
-                    <%@ include file="/includes/download-box-openfire-beta.jspf" %>
-                    <!-- END openfire downloads -->
-            <%
-                }
-                String sparkBetaVersion = Versions.getVersion("spark-beta");
-                if (sparkBetaVersion != null) {
-            %>
-                    <!-- BEGIN spark downloads -->
-                    <%@ include file="/includes/download-box-spark-beta.jspf" %>
-                    <!-- END spark downloads -->
-            <%  }
-                String smackBetaVersion = Versions.getVersion("smack-beta");
-                if (smackBetaVersion != null) {
-            %>
-                    <!-- BEGIN smack downloads -->
-                    <%@ include file="/includes/download-box-smack-beta.jspf" %>
-                    <!-- END smack downloads -->
-            <%  }
-                String xiffBetaVersion = Versions.getVersion("xiff-beta");
-                if (xiffBetaVersion != null) {
-            %>
-                    <!-- BEGIN xiff downloads -->
-                    <%@ include file="/includes/download-box-xiff-beta.jspf" %>
-                    <!-- END xiff downloads -->
-            <%  } %>
+        <section id="ignite_body_sidebar">
+            <jsp:directive.include file="/includes/sidebar_48hrsnapshot.jspf" />
+            <jsp:directive.include file="/includes/sidebar_testimonial.jspf" />
+        </section>
 
-            <% if (openfireBetaVersion == null 
-                    && sparkBetaVersion == null 
-                    && smackBetaVersion == null 
-                    && xiffBetaVersion == null) { %>
-                <br clear="left"/>
-                <div style="width: 100%; padding: 25px; text-align:center">
-                    <strong>No beta releases currently available.</strong>
-                </div>
-            <%  } %>
-
-            </div>
-            <!-- END body content area -->
-            
-        </div>
-        <!-- END left column (main content) -->
-        
-        <!-- BEGIN right column (sidebar) -->
-        <div id="ignite_body_rightcol">
-            
-            
-            <%@ include file="/includes/sidebar_enterprise.jspf" %>
-            
-            <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-            
-            <%@ include file="/includes/sidebar_testimonial.jspf" %>
-            
-        </div>
-        <!-- END right column (sidebar) -->
-    
-    </div>
-    <!-- END body area -->
-
-
+    </section>
 
 </body>
 </html>

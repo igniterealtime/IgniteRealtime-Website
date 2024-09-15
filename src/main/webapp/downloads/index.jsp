@@ -4,104 +4,48 @@
 <head>
 <title>Downloads</title>
 <meta name="body-id" content="downloads" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "../styles/interior.css";
 </style>
 </head>
 <body>
 
-    <div id="ignite_subnav">
+    <nav id="ignite_subnav">
         <ul>
             <li id="subnav01"><a href="./" class="ignite_subnav_current">Releases</a></li>
             <li id="subnav02"><a href="source.jsp">Source</a></li>
             <li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
             <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
-    </div>
+    </nav>
 
-    <!-- BEGIN body area -->
-    <div id="ignite_body">
+    <section id="ignite_body">
 
-        <!-- BEGIN left column (main content) -->
-        <div id="ignite_body_leftcol">
+        <main id="ignite_body_leftcol">
+            <article id="ignite_int_body">
 
-            <!-- BEGIN body content area -->
-            <div id="ignite_int_body">
-
-                <!-- BEGIN body header -->
-                <div id="ignite_body_header">
+                <header id="ignite_body_header">
                     <h1>Downloads</h1>
-                </div>
-                <!-- END body header -->
+                </header>
 
-
-        <!--        <div class="ignite_int_body_padding">
-                    <p>
-                        Below are links to the current releases for all projects. If you're looking for
-                        source code or SVN access, please read the <a href="source.jsp">source code</a>
-                        access page. If you would like to test the latest (possibly unstable) code,
-                        check out the <a href="beta.jsp">current betas</a>. Nightly builds are also maintained for the 
-                        <a href="nightly_openfire.jsp">Openfire</a>,
-                        <a href="nightly_smack.jsp">Smack</a>,
-                        <a href="nightly_spark.jsp">Spark</a> and 
-                        <a href="nightly_xiff.jsp">XIFF</a> projects.
-                    </p>
-                </div> -->
-
-
-                <!-- BEGIN openfire downloads -->
-                <%@ include file="/includes/download-box-openfire.jspf" %>
-                <!-- END openfire downloads -->
-
-                <!-- BEGIN spark downloads -->
-                <%@ include file="/includes/download-box-spark.jspf" %>
-                <!-- END spark downloads -->
-
-                <!-- BEGIN smack downloads -->
-                <%@ include file="/includes/download-box-smack.jspf" %>
-                <!-- END smack downloads -->
+                <jsp:directive.include file="/includes/download-box-openfire.jspf" />
+                <jsp:directive.include file="/includes/download-box-spark.jspf" />
+                <jsp:directive.include file="/includes/download-box-smack.jspf" />
+                <jsp:directive.include file="/includes/download-box-tinder.jspf" />
+                <jsp:directive.include file="/includes/download-box-whack.jspf" />
+                <jsp:directive.include file="/includes/download-box-xiff.jspf" />
+                <jsp:directive.include file="/includes/download-box-sparkweb.jspf" />
                 
-                <!-- BEGIN tinder downloads -->
-                <%@ include file="/includes/download-box-tinder.jspf" %>
-                <!-- END tinder downloads -->
+            </article>
+        </main>
 
-                <!-- BEGIN whack downloads -->
-                <%@ include file="/includes/download-box-whack.jspf" %>
-                <!-- END whack downloads -->
-                
-                <!-- BEGIN xiff downloads -->
-                <%@ include file="/includes/download-box-xiff.jspf" %>
-                <!-- END xiff downloads -->
-                
-                <!-- BEGIN sparkweb downloads -->
-                <%@ include file="/includes/download-box-sparkweb.jspf" %>
-                <!-- END sparkweb downloads -->
-                
-                
-                
-            </div>
-            <!-- END body content area -->
-            
-        </div>
-        <!-- END left column (main content) -->
-        
-        <!-- BEGIN right column (sidebar) -->
-        <div id="ignite_body_rightcol">
-            
-            
-            <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-            
-            <%@ include file="/includes/sidebar_install4j.jspf" %>
-            
-            <%@ include file="/includes/sidebar_testimonial.jspf" %>
-            
-        </div>
-        <!-- END right column (sidebar) -->
-    
-    </div>
-    <!-- END body area -->
+        <section id="ignite_body_sidebar">
+            <jsp:directive.include file="/includes/sidebar_48hrsnapshot.jspf" />
+            <jsp:directive.include file="/includes/sidebar_install4j.jspf" />
+            <jsp:directive.include file="/includes/sidebar_testimonial.jspf" />
+        </section>
 
-
+    </section>
 
 </body>
 </html>

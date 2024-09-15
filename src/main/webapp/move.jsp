@@ -5,7 +5,7 @@
 <title>a real time collaboration community site</title>
 <meta name="body-id" content="home" />
 <meta name="panel-name" content="home" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "styles/home.css";
 </style>
 </head>
