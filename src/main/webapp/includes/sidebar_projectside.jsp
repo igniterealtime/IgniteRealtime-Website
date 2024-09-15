@@ -1,56 +1,51 @@
-            <%
-                String project = request.getParameter("project");
-                String jiraID = "";
-                String forumID = "";
-                if ("openfire".equals(project)) {
-                    jiraID = "10010";
-                    forumID = "2008";
-                }
-                else if ("spark".equals(project)) {
-                    jiraID = "10060";
-                    forumID = "2010";
-                }
-                else if ("sparkweb".equals(project)) {
-                    jiraID = "10130";
-                    forumID = "2027";
-                }
-                else if ("smack".equals(project)) {
-                    jiraID = "10011";
-                    forumID = "2001";
-                }
-                else if ("tinder".equals(project)) {
-                    jiraID = "10141";
-                    forumID = "2030";
-                }
-                else if ("whack".equals(project)) {
-                    jiraID = "10040";
-                    forumID = "2002";
-                }
-                else if ("xiff".equals(project)) {
-                    jiraID = "10020";
-                    forumID = "2004";
-                }
-                else if ("asterisk-im".equals(project)) {
-                    jiraID = "10030";
-                    forumID = "2009";
-                }
-                
-            %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <c:choose>
+        <c:when test="${param.project eq 'openfire'}">
+            <c:set var="discourseCategory" value="openfire"/>
+        </c:when>
+        <c:when test="${param.project eq 'spark'}">
+            <c:set var="discourseCategory" value="spark"/>
+        </c:when>
+        <c:when test="${param.project eq 'sparkweb'}">
+            <c:set var="discourseCategory" value="sparkweb"/>
+        </c:when>
+        <c:when test="${param.project eq 'smack'}">
+            <c:set var="discourseCategory" value="smack"/>
+        </c:when>
+        <c:when test="${param.project eq 'tinder'}">
+            <c:set var="discourseCategory" value="tinder-dev"/>
+        </c:when>
+        <c:when test="${param.project eq 'whack'}">
+            <c:set var="discourseCategory" value="whack-dev"/>
+        </c:when>
+        <c:when test="${param.project eq 'xiff'}">
+            <c:set var="discourseCategory" value="xiff"/>
+        </c:when>
+        <c:when test="${param.project eq 'asterisk-im'}">
+            <c:set var="discourseCategory" value="openfire-plugins/asterisk-im"/>
+        </c:when>
+        <c:when test="${param.project eq 'pade'}">
+            <c:set var="discourseCategory" value="pade"/>
+        </c:when>
+        <c:when test="${param.project eq 'botz'}">
+            <c:set var="discourseCategory" value="botz"/>
+        </c:when>
+    </c:choose>
 
-            <jsp:include page="/includes/sidebar_projectlead.jsp">
-                <jsp:param name="project" value="<%= project %>" />
-            </jsp:include>
+    <jsp:include page="/includes/sidebar_projectlead.jsp">
+        <jsp:param name="project" value="${param.project}" />
+    </jsp:include>
 
-            <jsp:include page="/includes/sidebar_snapshot.jsp">
-                <jsp:param name="project" value="<%= project %>"/>
-            </jsp:include>
+    <jsp:include page="/includes/sidebar_snapshot.jsp">
+        <jsp:param name="project" value="${param.project}"/>
+    </jsp:include>
 
-			<%--
-            <jsp:include page="/includes/sidebar_forumactivity.jsp">
-                <jsp:param name="forumID" value="<%= forumID %>"/>
-            </jsp:include>
-			--%>
-            
+    <c:if test="${not empty discourseCategory}">
+        <jsp:include page="/includes/sidebar_forumactivity.jsp">
+            <jsp:param name="discourseCategory" value="${discourseCategory}"/>
+        </jsp:include>
+    </c:if>
+
             <%--
             <jsp:include page="/includes/sidebar_issues.jsp">
                 <jsp:param name="projectID" value="<%= jiraID %>"/>
