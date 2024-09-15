@@ -1,1 +1,0 @@
-    <link rel="shortcut icon" href="https://igniterealtime.org/favicon.ico" />
