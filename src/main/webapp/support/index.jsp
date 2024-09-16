@@ -130,9 +130,7 @@
         </article>
     </main>
 
-    <section id="ignite_body_sidebar">
-        <jsp:include page="/includes/sidebar_chat.jspf"/>
-    </section>
+    <jsp:include page="/includes/sidebar_support.jspf"/>
 
 </section>
 

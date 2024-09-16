@@ -1,34 +1,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <c:choose>
         <c:when test="${param.project eq 'openfire'}">
-            <c:set var="discourseCategory" value="openfire"/>
+            <c:set var="discourseCategory" value="/c/openfire"/>
         </c:when>
         <c:when test="${param.project eq 'spark'}">
-            <c:set var="discourseCategory" value="spark"/>
+            <c:set var="discourseCategory" value="/c/spark"/>
         </c:when>
         <c:when test="${param.project eq 'sparkweb'}">
-            <c:set var="discourseCategory" value="sparkweb"/>
+            <c:set var="discourseCategory" value="/c/sparkweb"/>
         </c:when>
         <c:when test="${param.project eq 'smack'}">
-            <c:set var="discourseCategory" value="smack"/>
+            <c:set var="discourseCategory" value="/c/smack"/>
         </c:when>
         <c:when test="${param.project eq 'tinder'}">
-            <c:set var="discourseCategory" value="tinder-dev"/>
+            <c:set var="discourseCategory" value="/c/tinder-dev"/>
         </c:when>
         <c:when test="${param.project eq 'whack'}">
-            <c:set var="discourseCategory" value="whack-dev"/>
+            <c:set var="discourseCategory" value="/c/whack-dev"/>
         </c:when>
         <c:when test="${param.project eq 'xiff'}">
-            <c:set var="discourseCategory" value="xiff"/>
+            <c:set var="discourseCategory" value="/c/xiff"/>
         </c:when>
         <c:when test="${param.project eq 'asterisk-im'}">
-            <c:set var="discourseCategory" value="openfire-plugins/asterisk-im"/>
+            <c:set var="discourseCategory" value="/c/openfire-plugins/asterisk-im"/>
         </c:when>
         <c:when test="${param.project eq 'pade'}">
-            <c:set var="discourseCategory" value="pade"/>
+            <c:set var="discourseCategory" value="/c/pade"/>
         </c:when>
         <c:when test="${param.project eq 'botz'}">
-            <c:set var="discourseCategory" value="botz"/>
+            <c:set var="discourseCategory" value="/c/botz"/>
         </c:when>
     </c:choose>
 

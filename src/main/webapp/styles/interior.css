@@ -357,7 +357,7 @@ img.ignite_body_image_right {
     overflow: hidden;
     padding: 0;
     margin: 10px 0 0 0;
-    width: 417px;
+    width: 48%;
     height: 170px;
     background: transparent url(../images/ignite_projects_bg.gif) no-repeat;
     background-position: 0 18px;
@@ -381,7 +381,7 @@ img.ignite_body_image_right {
     }
 .ignite_project_big div.ignite_project_content {
     float: left;
-    width: 370px;
+    width: 95%;
     padding: 17px 0 10px 15px;
     overflow: hidden;
     }
@@ -404,7 +404,9 @@ img.ignite_body_image_right {
 .ignite_project_big a.ignite_project_openfire,
 .ignite_project_big a.ignite_project_spark,
 .ignite_project_big a.ignite_project_pade,
-.ignite_project_big a.ignite_project_smack {
+.ignite_project_big a.ignite_project_smack,
+.ignite_project_big a.ignite_project_turnkey,
+.ignite_project_big a.ignite_project_dev {
     display: block;
     padding-left: 43px;
     color: #333;
@@ -430,6 +432,14 @@ img.ignite_body_image_right {
 .ignite_project_big a.ignite_project_smack {
     background: transparent url(../images/logo_smack.png) no-repeat 4px 0;
     }
+.ignite_project_big a.ignite_project_turnkey {
+    background: transparent url(../images/undraw_business_chat_re_gg4h.svg) no-repeat left;
+    background-size: 40px;
+}
+.ignite_project_big a.ignite_project_dev {
+    background: transparent url(../images/undraw_developer_activity_re_39tg.svg) no-repeat left;
+    background-size: 40px;
+}
 .ignite_project_big a h1 {
     display: inline;
     font-family: Georgia, "Times New Roman", Times, serif;

@@ -301,7 +301,7 @@ hr {
 #fans #nav05 a, 
 #store #nav06 a, 
 #support #nav07 a, 
-#about #nav08 a {
+#news #nav08 a {
     background-color: #FDC711; /* Old browsers */
     background: linear-gradient(to bottom, #FDC711, #F26522);
     font-weight: bold;
@@ -314,7 +314,7 @@ hr {
 #fans #nav05 a::after ,
 #store #nav06 a::after ,
 #support #nav07 a::after ,
-#about #nav08 a::after {
+#news #nav08 a::after {
     content: "";
     float: left;
     position: relative;
