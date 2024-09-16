@@ -44,8 +44,8 @@
 </head>
 <body>
 
-        <jsp:param name="project" value="openfire"/>
     <jsp:include page="/includes/navigation.jspf">
+        <jsp:param name="project" value="openfire"/>
     </jsp:include>
 
 <section id="ignite_body">
