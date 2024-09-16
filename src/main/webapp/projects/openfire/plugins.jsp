@@ -58,7 +58,7 @@
                     <td style="text-align: center;">Version</td>
                     <td style="text-align: center;">Released</td>
                     <td style="text-align: center;">Openfire Version</td>
-                    <td style="text-align: center;">Archive</td>
+                    <td style="text-align: center;">All&nbsp;Builds</td>
                 </tr>
                 <tbody>
                     <c:choose>
@@ -128,7 +128,7 @@
                                         <c:out value="${not empty plugin.priorToOpenfireVersion ? '- '.concat(plugin.priorToOpenfireVersion) : '+'}"/>
                                     </td>
                                     <td class="c5" style="white-space: nowrap">
-                                        <a href="plugin-archive.jsp?plugin=${ir:urlEncode(plugin.pluginName)}">Archive</a>
+                                        <a href="plugin-archive.jsp?plugin=${ir:urlEncode(plugin.pluginName)}">All&nbsp;Builds</a>
                                     </td>
                                 </tr>
                             </c:forEach>
