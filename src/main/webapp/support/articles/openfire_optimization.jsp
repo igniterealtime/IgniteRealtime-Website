@@ -98,8 +98,8 @@ for some big performance improvements.</p>
 <p>Most of the String manipulation operations were quickly tracked down to the 
 core packet classes. More precisely, many user address (JID) objects were 
 being created each time the methods <tt>Packet.getFrom()</tt> or <tt>Packet.getTo()</tt> were 
-being called (<a href="http://fisheye.igniterealtime.org/viewrep/svn-org/whack/trunk/source/java/org/xmpp/packet/Packet.java?r1=2659&r2=3140">Packet class diff</a>). Other expensive operations included <tt>JID.toString()</tt> and 
-<tt>JID.toBareJID()</tt> (<a href="http://fisheye.igniterealtime.org/viewrep/svn-org/whack/trunk/source/java/org/xmpp/packet/JID.java?r1=2618&r2=3150&u=3&ignore=&k=">JID class diff</a>).</p>
+being called. Other expensive operations included <tt>JID.toString()</tt> and
+<tt>JID.toBareJID()</tt>.</p>
 
 <p>After caching the String representation of the JID and caching the "to" and 
 "from" JIDs of packets, the profile picture started to look much better. 
