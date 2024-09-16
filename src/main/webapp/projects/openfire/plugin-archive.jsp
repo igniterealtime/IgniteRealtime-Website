@@ -177,7 +177,7 @@
                                     </td>
                                     <td class="c4" style="white-space: nowrap; text-align: center">
                                         <c:out value="${not empty plugin.minimumRequiredOpenfireVersion ? plugin.minimumRequiredOpenfireVersion : ''}"/>
-                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '<br>- ' + plugin.priorToOpenfireVersion : '+'}"/>
+                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '- '.concat(plugin.priorToOpenfireVersion) : '+'}"/>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -264,7 +264,7 @@
                                     </td>
                                     <td class="c4" style="white-space: nowrap; text-align: center">
                                         <c:out value="${not empty plugin.minimumRequiredOpenfireVersion ? plugin.minimumRequiredOpenfireVersion : ''}"/>
-                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '<br>- ' + plugin.priorToOpenfireVersion : '+'}"/>
+                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '- '.concat(plugin.priorToOpenfireVersion) : '+'}"/>
                                     </td>
                                 </tr>
 
