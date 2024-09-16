@@ -5,6 +5,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
 <%
     final String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-path");
@@ -57,7 +58,7 @@
                     <td style="text-align: center;">Version</td>
                     <td style="text-align: center;">Released</td>
                     <td style="text-align: center;">Openfire Version</td>
-                    <td style="text-align: center;">Archive</td>
+                    <td style="text-align: center;">All&nbsp;Builds</td>
                 </tr>
                 <tbody>
                     <c:choose>
@@ -124,10 +125,10 @@
                                     </td>
                                     <td class="c4" style="white-space: nowrap; text-align: center">
                                         <c:out value="${not empty plugin.minimumRequiredOpenfireVersion ? plugin.minimumRequiredOpenfireVersion : ''}"/>
-                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '<br>- '.concat(plugin.priorToOpenfireVersion) : '+'}"/>
+                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '- '.concat(plugin.priorToOpenfireVersion) : '+'}"/>
                                     </td>
                                     <td class="c5" style="white-space: nowrap">
-                                        <a href="plugin-archive.jsp?plugin=${ir:urlEncode(plugin.pluginName)}">Archive</a>
+                                        <a href="plugin-archive.jsp?plugin=${ir:urlEncode(plugin.pluginName)}">All&nbsp;Builds</a>
                                     </td>
                                 </tr>
                             </c:forEach>
