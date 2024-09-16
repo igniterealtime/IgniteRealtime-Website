@@ -84,6 +84,7 @@
 
                     <div id="ignite_support_activity_articles">
                             <h4>Recent Articles</h4>
+                        <div class="articles"><a href="articles/openfire_conversations_audio_video.jsp">Preparing Openfire for Audio/Video calls with Conversations</a></div>
                         <div class="articles"><a href="articles/ofmeetings_alternative_zoom.jsp">Openfire Meetings as an alternative to Zoom</a></div>
                         <div class="articles"><a href="articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
                         <div class="articles"><a href="articles/pubsub.jsp">All About Pubsub</a></div>

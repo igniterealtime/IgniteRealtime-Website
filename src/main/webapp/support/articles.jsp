@@ -24,6 +24,13 @@
             <div class="ignite_int_body_support">
 
                 <div class="ignite_article_excerpt">
+                    <h3><a href="articles/openfire_conversations_audio_video.jsp">Preparing Openfire for Audio/Video calls with Conversations</a></h3>
+                    <span class="ignite_support_author">April 20, 2020, by Guus der Kinderen</span>
+                    <p>For audio and video calls  to work well with your instance of Openfire, it is recommended to make use of a STUN and TURN service...
+                        <a href="articles/openfire_conversations_audio_video.jsp">Read More ></a></p>
+                </div>
+
+                <div class="ignite_article_excerpt">
                     <h3><a href="articles/ofmeetings_alternative_zoom.jsp">Openfire Meetings as an alternative to Zoom</a></h3>
                     <span class="ignite_support_author">April 7, 2020, by Dele Olajide</span>
                     <p>Consider Openfire Meetings as an alternative to Zoom if the audio and/or video from your meetings needs...
