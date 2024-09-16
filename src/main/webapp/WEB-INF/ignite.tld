@@ -11,8 +11,18 @@
     <uri>http://igniterealtime.org/website/tags</uri>
 
     <tag-file>
+        <name>blogposts</name>
+        <path>/WEB-INF/tags/blogposts.tagx</path>
+    </tag-file>
+
+    <tag-file>
         <name>blogpost</name>
         <path>/WEB-INF/tags/blogpost.tagx</path>
+    </tag-file>
+
+    <tag-file>
+        <name>heroproductpanel</name>
+        <path>/WEB-INF/tags/heroproductpanel.tagx</path>
     </tag-file>
 
     <function>
@@ -20,4 +30,11 @@
         <function-class>org.jivesoftware.util.StringUtils</function-class>
         <function-signature>java.lang.String displayFriendly(java.util.Date)</function-signature>
     </function>
+
+    <function>
+        <name>urlEncode</name>
+        <function-class>java.net.URLEncoder</function-class>
+        <function-signature>java.lang.String encode(java.lang.String)</function-signature>
+    </function>
+
 </taglib>

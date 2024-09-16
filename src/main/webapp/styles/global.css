@@ -343,7 +343,7 @@ hr {
     max-width: 870px;
     float: left;
     }
-#ignite_body_rightcol {
+#ignite_body_sidebar {
     width: 225px;
     float: right;
     font-size: 8pt;
@@ -587,20 +587,11 @@ a.ignite_up:hover {
 
 /* Sidebar Elements */
 
-/* 'enterprise edition' sidebar, set size to match actual sidebar image */
-.ignite_sidebar_enterprise1,
-.ignite_sidebar_enterprise2, 
 .ignite_sidebar_ofbeta {
     width: 225px;
     height: 154px;
     overflow: hidden;
     margin-bottom: 16px;
-    }
-.ignite_sidebar_enterprise1 {
-    background: transparent url(../images/ignite_sidebar_enterprise1.jpg) no-repeat;
-    }
-.ignite_sidebar_enterprise2 {
-    background: transparent url(../images/ignite_sidebar_enterprise2.jpg) no-repeat;
     }
 .ignite_sidebar_ofbeta {
     background: transparent url(../images/ignite_promo_ofbeta.png) no-repeat;

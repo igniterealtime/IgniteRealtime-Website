@@ -1,23 +1,19 @@
-<%@ page import="java.io.File,
-                 java.io.FileFilter,
-                 java.text.DecimalFormat,
-                 java.time.LocalDate,
-                 java.time.format.DateTimeFormatter" %>
+<%@ page import="java.io.File" %>
+<%@ page import="java.time.LocalDate" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.util.*" %>
-<%@ page import="java.util.function.Function" %>
 <%@ page import="java.util.regex.Matcher" %>
 <%@ page import="java.util.regex.Pattern" %>
 <%@ page import="java.util.stream.Collectors" %>
+<%@ page import="java.time.ZoneId" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
-
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%!
     private static class FileComparator implements Comparator<File> {
         private String clean(String in) {
             int pos = in.indexOf("src_");
             if (pos > -1) {
-                return in.substring(0,pos) + in.substring(pos+"src_".length(), in.length());
+                return in.substring(0,pos) + in.substring(pos+"src_".length());
             }
             return in;
         }
@@ -28,91 +24,66 @@
         }
     }
 %>
-
-<%
-    DecimalFormat mbFormat = new DecimalFormat("#0.00");
-
-    String buildsPath = (String)application.getInitParameter("builds-path");
-    String path = null;
-    File buildDir = null;
-%>
-
 <html>
 <head>
 <title>Openfire Nightly Builds</title>
 <meta name="body-id" content="downloads" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "../styles/interior.css";
 </style>
 </head>
 <body>
 
-    <div id="ignite_subnav">
+    <nav id="ignite_subnav">
         <ul>
-            <li id="subnav01"><a href="./">Releases</a></li>
+            <li id="subnav01"><a href="./" class="ignite_subnav_current">Releases</a></li>
             <li id="subnav02"><a href="source.jsp">Source</a></li>
             <li id="subnav03"><a href="beta.jsp">Beta Releases</a></li>
+            <li id="subnav04"><a href="../projects/openfire/plugins.jsp">Openfire Plugins</a></li>
         </ul>
-    </div>
+    </nav>
 
-<!-- BEGIN body area -->
-<div id="ignite_body">
+    <section id="ignite_body">
 
-    <!-- BEGIN left column (main content) -->
-    <div id="ignite_body_leftcol">
+        <main id="ignite_body_leftcol">
+            <article id="ignite_int_body">
 
-        <!-- BEGIN body content area -->
-        <div id="ignite_int_body">
+                <header id="ignite_body_header">
+                    <h1>Downloads</h1> <strong>Openfire Nightly Builds</strong>
+                </header>
 
-            <!-- BEGIN body header -->
-            <div id="ignite_body_header">
-                <h1>Downloads</h1> <strong>Openfire Nightly Builds</strong>
-            </div>
-            <!-- END body header -->
-
-
-            <div class="ignite_int_body_padding">
-                <a href="./" class="ignite_back">Back to Downloads</a>
-            </div>
-
-            <div>
-            <p>
-            Below are nightly builds for Openfire.
-            Please see the <a href="./">official builds</a>
-            page if you're looking for a specific release.</p>
-
-    <p>If you are looking for the latest source code, please see our
-    <a href="https://github.com/Igniterealtime/Openfire">GitHub Repository</a>.</p>
-
-
-            <p>
-            Daily builds are provided for those that require early access to
-            changes before they are officially
-            released. These builds are <b>not extensively tested</b>, so most users should use
-            <a href="./">official releases</a> instead.
-            </p>
-            </div>
-
-            <div class="ignite_download_panel ignite_download_source_panel">
-                <div class="ignite_download_panel_label">
-                    <h4>Binary Builds</h4>
+                <div class="ignite_int_body_padding">
+                    <a href="./" class="ignite_back">Back to Downloads</a>
                 </div>
 
+                <p>
+                    Below are nightly builds for Openfire. Please see the <a href="./">official builds</a> page if you're
+                    looking for a specific release.
+                </p>
 
+                <p>
+                    If you are looking for the latest source code, please see our
+                    <a href="https://github.com/Igniterealtime/Openfire">GitHub Repository</a>.
+                </p>
+
+                <p>
+                    Daily builds are provided for those that require early access to changes before they are officially
+                    released. These builds are <b>not extensively tested</b>, so most users should use
+                    <a href="./">official releases</a> instead.
+                </p>
+
+                <div class="ignite_download_panel ignite_download_source_panel">
+                    <div class="ignite_download_panel_label">
+                        <h4>Binary Builds</h4>
+                    </div>
 <%
+    String buildsPath = application.getInitParameter("builds-path");
+
     // Binaries
-    path = buildsPath + "/openfire/dailybuilds/";
-    buildDir = new File(path);
-    File[] allFiles = buildDir.listFiles( new FileFilter()
-    {
-        @Override
-        public boolean accept( File pathname )
-        {
-            return !pathname.getName().contains( "_src" );
-        }
-    } );
-    boolean odd = false;
-    if (allFiles != null)
+    String path = buildsPath + "/openfire/dailybuilds/";
+    File buildDir = new File(path);
+    File[] allFiles = buildDir.listFiles(pathname -> !pathname.getName().contains( "_src" ));
+    if (allFiles != null && allFiles.length > 0)
     {
         // Group and sort by date (as denoted in the filename).
         final Pattern datePattern = Pattern.compile( "([0-9]{4}-[0-9]{1,2}-[0-9]{1,2})");
@@ -120,22 +91,14 @@
         filesByDate.putAll(
             Arrays.stream( allFiles )
                 .sorted( new FileComparator() )
-                .collect( Collectors.groupingBy( new Function<File, String>()
-                {
-                    @Override
-                    public String apply( File file )
-                    {
-                        final Matcher matcher = datePattern.matcher( file.getName() );
-                        if ( matcher.find() )
-                        {
-                            return matcher.group( 1 );
-                        }
-                        else
-                        {
-                            return "unknown date";
-                        }
+                .collect( Collectors.groupingBy(file -> {
+                    final Matcher matcher = datePattern.matcher( file.getName() );
+                    if ( matcher.find() ) {
+                        return matcher.group( 1 );
+                    } else {
+                        return "unknown date";
                     }
-            } ) )
+                }) )
         );
 
         // Print all date-entries.
@@ -144,75 +107,67 @@
             final String date = entry.getKey();
             final List<File> files = entry.getValue();
             files.sort( new FileComparator() );
-
-            odd = !odd;
-
     %>
-                <div class="<%= (odd ? "ignite_download_item_odd" : "ignite_download_item_even") %>">
+                <div class="ignite_download_item">
                     <table border="0" width="100%">
     <%
-            final String formattedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd" ) ).format( DateTimeFormatter.ofPattern( "MMMM dd, yyyy" ) );
-            boolean isFirst = true;
-            for ( final File file : files )
-            {
-                String icon = "../images/icon_zip.gif";
-                if ( file.getName().toLowerCase().endsWith( ".deb" ) )
-                {
-                    icon = "../images/icon_debian.gif";
-                }
-                if ( file.getName().toLowerCase().endsWith( ".rpm" ) )
-                {
-                    icon = "../images/icon_linux.gif";
-                }
-                if ( file.getName().toLowerCase().endsWith( ".exe" ) )
-                {
-                    icon = "../images/icon_win.gif";
-                }
+            request.setAttribute("buildDate", Date.from(LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd")).atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            request.setAttribute("files", files);
     %>
+                    <c:forEach var="file" items="${files}" varStatus="varStatus">
                         <tr>
-                            <td width="1%"><img src="<%= icon %>" alt="" width="17" height="16" border="0"></td>
+                            <td width="1%">
+                                <c:choose>
+                                    <c:when test="${file.name.toLowerCase().endsWith('.deb')}">
+                                        <img src="../images/icon_debian.gif" alt="" width="17" height="16">
+                                    </c:when>
+                                    <c:when test="${file.name.toLowerCase().endsWith('.rpm')}">
+                                        <img src="../images/icon_linux.gif" alt="" width="17" height="16">
+                                    </c:when>
+                                    <c:when test="${file.name.toLowerCase().endsWith('.exe')}">
+                                        <img src="../images/icon_win.gif" alt="" width="17" height="16">
+                                    </c:when>
+                                    <c:when test="${file.name.toLowerCase().endsWith('.msi')}">
+                                        <img src="../images/icon_win.gif" alt="" width="17" height="16">
+                                    </c:when>
+                                    <c:when test="${file.name.toLowerCase().endsWith('.dmg')}">
+                                        <img src="../images/icon_macosx.gif" alt="" width="17" height="16">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="../images/icon_zip.gif" alt="" width="17" height="16">
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
                             <td>
-                                <a href="https://download.igniterealtime.org/openfire/dailybuilds/<%= file.getName() %>"><%= file.getName() %></a></td>
-                            <% if ( isFirst ) {
-                                isFirst = false;
-                            %>
-                            <td rowspan="<%= files.size() %>"><%= formattedDate %></td>
-                            <% } %>
-                            <td style="text-align:right;"><%= mbFormat.format(file.length()/(1024.0*1024.0)) %> MB</td>
+                                <a href="https://download.igniterealtime.org/openfire/dailybuilds/<c:out value="${file.name}"/>"><c:out value="${file.name}"/></a></td>
+                                <c:if test="${varStatus.first}">
+                                    <td rowspan="<%= files.size() %>"><fmt:formatDate type="date" dateStyle="long" value="${buildDate}"/></td>
+                                </c:if>
+                            <td style="text-align:right;"><fmt:formatNumber type="number" pattern="#0.00" value="${file.length()/(1024.0*1024.0)}" /> MB</td>
                         </tr>
-    <%
-            }
-    %>
+                    </c:forEach>
+
                     </table>
                 </div>
     <%
         }
-    }
+    } else {
     %>
-
+                <div style="width: 100%; padding: 25px; text-align:center">
+                    <strong>No nightly builds currently available.</strong>
+                </div>
+    <% } %>
                 <br>
                 </div>
-        </div>
-        <!-- END body content area -->
+            </article>
+        </main>
 
-    </div>
-    <!-- END left column (main content) -->
+        <section id="ignite_body_sidebar">
+            <jsp:directive.include file="/includes/sidebar_48hrsnapshot.jspf" />
+            <jsp:directive.include file="/includes/sidebar_testimonial.jspf" />
+        </section>
 
-    <!-- BEGIN right column (sidebar) -->
-    <div id="ignite_body_rightcol">
-
-
-        <%@ include file="/includes/sidebar_enterprise.jspf" %>
-
-        <%@ include file="/includes/sidebar_48hrsnapshot.jspf" %>
-
-        <%@ include file="/includes/sidebar_testimonial.jspf" %>
-
-    </div>
-    <!-- END right column (sidebar) -->
-
-</div>
-<!-- END body area -->
+    </section>
 
 </body>
 </html>

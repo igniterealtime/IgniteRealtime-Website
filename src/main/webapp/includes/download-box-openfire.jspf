@@ -30,7 +30,7 @@
     }
 %>
 
-<a name="openfire">&nbsp;</a>
+<a id="openfire">&nbsp;</a>
 <div class="ignite_downloads">
     <div class="ignite_int_body_padding">
 
@@ -49,7 +49,7 @@
             </span>
 
             <h2>Openfire <%= version %></h2>
-            <p>Openfire (formerly Wildfire) is a cross-platform real-time collaboration server based on the XMPP protocol.
+            <p>Openfire is a cross-platform real-time collaboration server based on the XMPP protocol.
             <a style="color: #666;" target="_blank" href="https://discourse.igniterealtime.org/t/more-on-the-renaming-of-wildfire/68578">Read about the name change</a>
             </p>
 
@@ -67,7 +67,7 @@
             <!-- BEGIN windows -->
             <div class="ignite_download_panel" id="openfireWindows" style="display: none;">
                 <div>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=openfire/<%= winInstaller.getName() %>"><%= winInstaller.getName() %></a> 32-bit
@@ -75,7 +75,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_even">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_win.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=openfire/<%= winInstaller64.getName() %>"><%= winInstaller64.getName() %></a> 64-bit <b>(recommended)</b>
@@ -83,7 +83,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)winInstaller64.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_even">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="/downloadServlet?filename=openfire/<%= zip.getName() %>"><%= zip.getName() %></a>
@@ -99,7 +99,7 @@
             <div class="ignite_download_panel" id="openfireLinux" style="display: none;">
                 <div>
                     <% if (rpmnoarch.exists()) { %>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_linux.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=openfire/<%= rpmnoarch.getName() %>"><%= rpmnoarch.getName() %></a> RPM for Red Hat Linux and variants
@@ -109,7 +109,7 @@
                     </div>
                     <% } %>
                     <% if (debian.exists()) { %>
-                    <div class="ignite_download_item_even">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_debian.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=openfire/<%= debian.getName() %>"><%= debian.getName() %></a> Debian package
@@ -118,7 +118,7 @@
                         <span class="ignite_download_item_size"><%= formatter.format((double)debian.length()/1024.0/1024.0) %> MB</span>
                     </div>
                     <% } %>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="/downloadServlet?filename=openfire/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a> Works on most Unix variants
@@ -133,7 +133,7 @@
             <!-- BEGIN mac -->
             <div class="ignite_download_panel" id="openfireMac" style="display: none;">
                 <div>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_macosx.gif" alt="" width="17" height="16" border="0">
                             <a href="/downloadServlet?filename=openfire/<%= dmg.getName() %>"><%= dmg.getName() %></a>

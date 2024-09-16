@@ -1,0 +1,128 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:choose>
+    <c:when test="${param.project eq 'asterisk-im'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">Asterisk-IM</a></li>
+                <!-- <li id="subnav03"><a href="plugins.jsp">Plugins</a></li> -->
+                <li id="subnav04"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/PHONE">Issue Tracker</a></li>
+                <!-- <li id="subnav06"><a href="/builds/asterisk-im/docs/latest/javadoc/">JavaDocs</a></li> -->
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'botz'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">Botz</a></li>
+                <li id="subnav02"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav03"><a href="https://github.com/igniterealtime/Botz/releases">Releases</a></li>
+                <li id="subnav04"><a href="https://github.com/igniterealtime/Botz">Source Code</a></li>
+                <li id="subnav05"><a href="https://github.com/igniterealtime/Botz/issues">Issue Tracker</a></li>
+            </ul>>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'openfire'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">Openfire</a></li>
+                <li id="subnav03"><a href="plugins.jsp" class="${pageContext.request.servletPath.endsWith('plugins.jsp') ? 'ignite_subnav_current' : ''}">Plugins</a></li>
+                <li id="subnav04"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/OF">Issue Tracker</a></li>
+                <li id="subnav06"><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
+                <li id="subnav07"><a href="connection_manager.jsp" class="${pageContext.request.servletPath.endsWith('connection_manager.jsp') ? 'ignite_subnav_current' : ''}">Connection Manager Module</a></li>
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'pade'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">P&agrave;d&eacute;</a></li>
+                <li id="subnav02"><a href="https://github.com/igniterealtime/Pade/releases">Releases</a></li>
+                <li id="subnav03"><a href="https://github.com/igniterealtime/Pade">Source Code</a></li>
+                <li id="subnav04"><a href="https://igniterealtime.github.io/pade/help/">Documentation</a></li>
+                <li id="subnav05"><a href="https://github.com/igniterealtime/pade/issues">Issue Tracker</a></li>
+                <li id="subnav06"><a href="https://conversejs.org/">Converse</a></li>
+                <li id="subnav07"><a href="https://jitsi.org/jitsi-meet/">Jitsi-Meet</a></li>
+                <li id="subnav08"><a href="https://github.com/igniterealtime/openfire-pade-plugin">Openfire Plugin</a></li>
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'smack'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">Smack</a></li>
+                <li id="subnav02"><a href="//igniterealtime.org/projects/smack/readme">Readme</a></li>
+                <li id="subnav03"><a href="//download.igniterealtime.org/smack/docs/latest/javadoc/">Javadoc</a></li>
+                <li id="subnav04"><a href="https://github.com/igniterealtime/Smack/blob/master/CHANGELOG.md">Changelog</a></li>
+                <li id="subnav05"><a href="//issues.igniterealtime.org/browse/SMACK">Issue Tracker</a></li>
+                <li id="subnav06"><a href="https://github.com/igniterealtime/Smack">Source</a></li>
+                <li id="subnav07"><a href="resources.jsp" class="${pageContext.request.servletPath.endsWith('resources.jsp') ? 'ignite_subnav_current' : ''}">Resources</a></li>
+                <li id="subnav08"><a href="https://download.igniterealtime.org/smack/dailybuilds/javadoc/">Nightly Javadoc</a></li>
+                <li id="subnav09"><a href="https://download.igniterealtime.org/smack/dailybuilds/jacoco/">Nightly CodeCov</a></li>
+                <li id="subnav10"><a href="https://download.igniterealtime.org/smack/dailybuilds/sinttest-javadoc/org/igniterealtime/smack/inttest/package-summary.html">Nightly Sinttest Javadoc</a></li>
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'spark'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">Spark</a></li>
+                <li id="subnav03"><a href="sparkplug-kit.jsp" class="${pageContext.request.servletPath.endsWith('sparkplug-kit.jsp') ? 'ignite_subnav_current' : ''}">Sparkplug Kit</a></li>
+                <li id="subnav04"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav05"><a href="https://issues.igniterealtime.org/projects/SPARK/">Issue Tracker</a></li>
+                <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'sparkweb'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">SparkWeb</a></li>
+                <li id="subnav04"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/SW">Issue Tracker</a></li>
+                <!--<li id="subnav06"><a href="../../roadmap.jsp">Roadmap</a></li>-->
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'tinder'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">Tinder</a></li>
+                <li id="subnav04"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/TINDER">Issue Tracker</a></li>
+                <li id="subnav06"><a href="https://download.igniterealtime.org/tinder/docs/latest/javadoc/">JavaDocs</a></li>
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'whack'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">Whack</a></li>
+                <li id="subnav04"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/WHACK">Issue Tracker</a></li>
+                <li id="subnav06"><a href="https://igniterealtime.org/builds/whack/docs/latest/javadoc/">JavaDocs</a></li>
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'xiff'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="./" class="ignite_subnav_project">XIFF</a></li>
+                <li id="subnav04"><a href="documentation.jsp" class="${pageContext.request.servletPath.endsWith('documentation.jsp') ? 'ignite_subnav_current' : ''}">Documentation</a></li>
+                <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/XIFF">Issue Tracker</a></li>
+            </ul>
+        </nav>
+    </c:when>
+    <c:when test="${param.project eq 'support'}">
+        <nav id="ignite_subnav">
+            <ul>
+                <li id="subnav01"><a href="${pageContext.request.servletPath.contains('/articles/') ? "../" : "./"}" class="ignite_subnav_project">Support</a></li>
+                <li id="subnav02"><a href="${pageContext.request.servletPath.contains('/articles/') ? "../" : ""}articles.jsp" class="${pageContext.request.servletPath.endsWith('articles.jsp') or pageContext.request.servletPath.contains('/articles/') ? 'ignite_subnav_current' : ''}">Articles</a></li>
+                <li id="subnav03"><a href="${pageContext.request.servletPath.contains('/articles/') ? "../" : ""}group_chat.jsp" class="${pageContext.request.servletPath.endsWith('group_chat.jsp') ? 'ignite_subnav_current' : ''}">Group Chat</a></li>
+                <li id="subnav04"><a href="${pageContext.request.servletPath.contains('/articles/') ? "../" : ""}https://issues.igniterealtime.org/secure/Dashboard.jspa">Issue Tracker</a></li>
+                <li id="subnav05"><a href="${pageContext.request.servletPath.contains('/articles/') ? "../" : ""}service_providers.jsp" class="${pageContext.request.servletPath.endsWith('service_providers.jsp') ? 'ignite_subnav_current' : ''}">Professional Partners</a></li>
+            </ul>
+        </nav>
+    </c:when>
+</c:choose>

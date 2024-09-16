@@ -23,7 +23,7 @@
     }
 %>
 
-<a name="sparkweb">&nbsp;</a>
+<a id="sparkweb">&nbsp;</a>
 <div class="ignite_downloads">
     <div class="ignite_int_body_padding">
 
@@ -45,7 +45,7 @@
             <!-- BEGIN cross platform -->
             <div class="ignite_download_panel" id="sparkwebCp" style="display: none;">
                 <div>
-                    <div class="ignite_download_item_odd">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="/downloadServlet?filename=sparkweb/<%= binZip.getName() %>"><%= binZip.getName() %></a>
@@ -53,7 +53,7 @@
                         <span class="ignite_download_item_date"><%= buildDate %></span>
                         <span class="ignite_download_item_size"><%= formatter.format((double)binZip.length()/1024.0/1024.0) %> MB</span>
                     </div>
-                    <div class="ignite_download_item_even">
+                    <div class="ignite_download_item">
                         <span class="ignite_download_item_details">
                             <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
                             <a href="/downloadServlet?filename=sparkweb/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a>

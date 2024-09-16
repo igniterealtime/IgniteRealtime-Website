@@ -1,0 +1,70 @@
+<jsp:root xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0">
+    <jsp:output omit-xml-declaration="yes" />
+
+    <jsp:directive.attribute name="productId" required="true" type="java.lang.String" description="e.g: asterisk"/>
+    <jsp:directive.attribute name="productName" required="true" type="java.lang.String" description="e.g: Asterisk-IM"/>
+    <jsp:directive.attribute name="version" required="false" type="java.lang.String"/>
+    <jsp:directive.attribute name="versionDate" required="false" type="java.lang.String"/>
+    <jsp:directive.attribute name="image" required="false" type="java.lang.String"/>
+
+    <jsp:body>
+
+        <!--
+            If there is no cookie, show this panel (there is an 'onload' in the decorator that runs a script from
+            /scripts/ignite.js, may want to change that). The cookie is defined by the meta 'panel-name' in the head,
+            and set with the onclick of the links below, closePanel().
+        -->
+        <div id="ignite_bigpanel" style="${not empty cookie[productId] ? '' : 'display:block'}">
+            <div id="ignite_bigpanel_content">
+                <h1 class="${productId}"><c:out value="${productName}"/>
+                    <c:if test="${not empty version}">
+                        <span><c:out value="${version}"/></span>
+                    </c:if>
+                </h1>
+                <jsp:doBody/>
+            </div>
+
+            <div id="ignite_bigpanel_close">
+                <a href="#" onClick="closePanel('${productId}'); return false;" class="close">&amp;nbsp;</a>
+            </div>
+
+            <c:if test="${not empty image}">
+                <div id="ignite_bigpanel_screenshot">
+                    <img src="${image}" alt="" />
+                </div>
+            </c:if>
+
+            <c:if test="${not empty version}">
+                <div id="ignite_bigpanel_download">
+                    <c:choose>
+                        <c:when test="${productId eq 'pade'}">
+                            <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba">Install</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="../../downloads/#${productId}">Download</a>
+                        </c:otherwise>
+                    </c:choose>
+                    <span>
+                        <strong><c:out value="${productName}"/>&amp;nbsp;<c:out value="${version}"/></strong> Latest release: <c:out value="${versionDate}"/>
+                    </span>
+                </div>
+            </c:if>
+
+        </div>
+
+        <!-- If there is a cookie, show this panel (same details as above for 'large panel') -->
+        <div id="ignite_smallpanel" style="${not empty cookie[productId] ? 'display:block' : ''}">
+            <h1 class="${productId}"><c:out value="${productName}"/>
+                <c:if test="${not empty version}">
+                    <span><c:out value="${version}"/></span>
+                </c:if>
+            </h1>
+            <div id="ignite_smallpanel_open">
+                <a href="#" onClick="closePanel('${productId}'); return false;" class="close">&amp;nbsp;</a>
+            </div>
+        </div>
+
+    </jsp:body>
+
+</jsp:root>

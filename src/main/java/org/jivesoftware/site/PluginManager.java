@@ -479,6 +479,21 @@ public class PluginManager
             return mavenFile;
         }
 
+        public String getPluginNameLowerCase()
+        {
+            return pluginNameLowerCase;
+        }
+
+        public String getLicenseType()
+        {
+            return licenseType;
+        }
+
+        public String getMavenVersion()
+        {
+            return mavenVersion;
+        }
+
         public String getPluginName()
         {
             return pluginName;
@@ -529,6 +544,11 @@ public class PluginManager
             return minimumRequiredOpenfireVersion;
         }
 
+        public String getPriorToOpenfireVersion()
+        {
+            return priorToOpenfireVersion;
+        }
+
         public String getPluginVersion()
         {
             return pluginVersion;
@@ -547,6 +567,11 @@ public class PluginManager
         public boolean isSnapshot()
         {
             return isSnapshot;
+        }
+
+        public String getSnapshotQualifier()
+        {
+            return snapshotQualifier;
         }
 
         public Date getSnapshotCreationDate()

@@ -1,25 +1,33 @@
 <html>
-<head><title>IM File Transfer Made Easy</title></head>
-<meta name="body-id" content="support" />
-<style type="text/css" media="screen">
-    @import "../../styles/interior.css";
-</style>
+<head>
+    <title>IM File Transfer Made Easy</title>
+    <meta name="body-id" content="support" />
+    <style media="screen">
+        @import "../../styles/interior.css";
+    </style>
+</head>
 <body>
 
-<div id="ignite_subnav">
-    <ul>
-        <li id="subnav01"><a href="../" class="ignite_subnav_project">Support</a></li>
-        <li id="subnav02"><a href="../articles.jsp" class="ignite_subnav_current">Articles</a></li>
-        <li id="subnav03"><a href="../group_chat.jsp">Group Chat</a></li>
-        <li id="subnav04"><a href="https://issues.igniterealtime.org/">Issue Tracker</a></li>
-        <li id="subnav05"><a href="../service_providers.jsp">Service providers</a></li>
-    </ul>
-</div>
+<jsp:include page="/includes/navigation.jspf">
+    <jsp:param name="project" value="support"/>
+</jsp:include>
 
-<!-- BEGIN body area -->
-<div id="ignite_body">
+<section id="ignite_body">
 
-<h1>IM File Transfer Made Easy</h1>
+    <main class="ignite_int_body_padding">
+        <article id="ignite_int_body">
+
+            <div class="ignite_project_banner_warning">
+                <h1>Outdated</h1>
+                <p>
+                    This article was written a <em>long</em> time ago!<br/>Be aware that parts, or all of it may be outdated!
+                </p>
+            </div>
+
+            <header id="ignite_body_header">
+                <h1>IM File Transfer Made Easy</h1>
+            </header>
+
 <p>Feb 7, 2006<br>
 <i>by Matt Tucker</i></p>
 
@@ -66,7 +74,7 @@ Some of the major areas of improvement over version 1.0 are:</p>
 <a href="images/filetransfer_4.png"><img src="images/filetransfer_4_small.png" width="150" height="132" border="0" alt="Receiving a file" /></a>
 </center>
 
-<br clear="right">
+<br/>
 
 <h2>Making File Transfer Just Work</h2>
 
@@ -74,7 +82,7 @@ Some of the major areas of improvement over version 1.0 are:</p>
 that fails to connect and resort to sending the file by email. The usual 
 culprit is a firewall or other network setting problems.</p>
 
-<p>The combination of Spark 1.1 and the <a href="../../projects/openfire/">Openfire</a> (formerly Wildfire) IM
+<p>The combination of Spark 1.1 and the <a href="../../projects/openfire/">Openfire</a> IM
 server works around file transfer connection issues with a three part file 
 transfer approach. Each approach offers a different
 balance of speed and reliability -- but the key point is that the transfer
@@ -112,7 +120,7 @@ the file into chunks of data and sending them as encoded messages (bottom
 diagram on the right). This method will work regardless of either user's 
 network configuration but is slower than the other two alternatives.
 
-<br clear="right">
+<br/>
 
 <h2>Feedback?</h2>
 
@@ -122,11 +130,10 @@ Software and I'm happy to report that it's solved all of our file transfer
 grumbling. Let us know how the new feature is working for you in 
 <a href="https://discourse.igniterealtime.org/">the forums</a>.
 
-<br/><br/><br/>
+        </article>
+    </main>
 
-</div>
-<!-- END body area -->
-
+</section>
 
 </body>
 </html>

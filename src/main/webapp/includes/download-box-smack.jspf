@@ -15,7 +15,7 @@
     }
 %>
 
-<a name="smack">&nbsp;</a>
+<a id="smack">&nbsp;</a>
 <div class="ignite_downloads">
     <div class="ignite_int_body_padding">
 

@@ -1,164 +1,143 @@
-<%@ page import="java.net.URLEncoder"%>
 <%@ page import="java.nio.file.Path"%>
 <%@ page import="java.nio.file.Paths"%>
-<%@ page import="java.text.DateFormat"%>
-<%@ page import="java.util.List" %>
 <%@ page import="org.jivesoftware.site.PluginManager" %>
+<%@ page import="java.util.function.Function" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.stream.Collectors" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/xml" prefix="x" %>
+<%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
+<%
+    final String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-path");
+    final Path pluginDir = Paths.get( openfirePluginsPath );
+    final Map<String, PluginManager.Metadata> plugins =
+        PluginManager.sortByNameVersionAndReleaseDate(
+            PluginManager.getLatestRelease( pluginDir )
+        ).stream()
+            .collect(Collectors.toMap(plugin -> plugin.pluginFileName.substring( 0, plugin.pluginFileName.length() - 4 ), Function.identity()));
+
+    request.setAttribute("plugins", plugins);
+%>
 <html>
 <head>
 <title>Openfire Plugins</title>
 <meta name="body-id" content="projects" />
-<style type="text/css" media="screen">
+<style media="screen">
     @import "../../styles/interior.css";
 </style>
-<%
-    String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-path");
-    Path pluginDir = Paths.get( openfirePluginsPath );
-%>
-
 </head>
 <body>
 
-    <div id="ignite_subnav">
-        <ul>
-            <li id="subnav01"><a href="./" class="ignite_subnav_project">Openfire</a></li>
-            <li id="subnav03"><a href="plugins.jsp" class="ignite_subnav_current">Plugins</a></li>
-            <li id="subnav04"><a href="documentation.jsp">Documentation</a></li>
-            <li id="subnav05"><a href="https://issues.igniterealtime.org/browse/JM">Issue Tracker</a></li>
-            <li id="subnav06"><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/javadoc/">JavaDocs</a></li>
-            <li id="subnav07"><a href="connection_manager.jsp">Connection Manager Module</a></li>
-            <!--<li id="subnav08"><a href="../../roadmap.jsp">https://issues.igniterealtime.org/browse/OF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel</a></li>-->
-        </ul>
-    </div>
+<jsp:include page="/includes/navigation.jspf">
+    <jsp:param name="project" value="openfire"/>
+</jsp:include>
 
-    <!-- BEGIN body area -->
-    <div id="ignite_body">
+<section id="ignite_body">
         
-                <!-- BEGIN body header -->
-                <div id="ignite_body_header">
-                    <h2>Openfire Plugins</h2>
-                </div>
-                <!-- END body header -->
-                
-                
-                <div class="ignite_int_body_padding">
-                    <p>Plugins extend and enhance the functionality of Openfire (formerly Wildfire). Below is a list of
-                    plugins available for <a href="./">Openfire</a>. To install plugins,
-                    copy the .jar file into the <tt>plugins</tt> directory of your Openfire installation.
-                    </p>
+    <header id="ignite_body_header">
+        <h2>Openfire Plugins</h2>
+    </header>
 
-                <!-- BEGIN plugins -->
-                <div id="plugins" style="width:100%">
+    <main class="ignite_int_body_padding">
 
-                <a name="opensource"></a>
-                
-                    <table cellpadding="3" cellspacing="0" border="0" width="100%">
-                        <tr class="pluginTableHeader">
-                            <td class="pluginType">Open Source Plugins</td>
-                            <td style="text-align: center;">Info</td>
-                            <td>File</td>
-                            <td style="text-align: center;">Version</td>
-                            <td style="text-align: center;">Released</td>
-                            <td style="text-align: center;">Openfire Version</td>
-                            <td style="text-align: center;">Archive</td>
-                        </tr>
-            <%
-                final List<PluginManager.Metadata> plugins =
-                    PluginManager.sortByNameVersionAndReleaseDate(
-                        PluginManager.getLatestRelease( pluginDir )
-                    );
+        <p>
+            Plugins extend and enhance the functionality of Openfire. Below is a list of plugins
+            available for <a href="./">Openfire</a>. To install plugins, copy the .jar file into the <tt>plugins</tt>
+            directory of your Openfire installation.
+        </p>
 
-                if (plugins == null || plugins.isEmpty()) { %>
-                    <tbody>
-                        <tr>
-                            <td colspan="6">No plugins.</td>
-                        </tr>
-                    </tbody>
-            <%  } %>
-                    <tbody>
-            <%
-            final DateFormat formatter = DateFormat.getDateInstance(DateFormat.MEDIUM);
-            for ( PluginManager.Metadata plugin : plugins )
-            {
-                final String pluginName = plugin.pluginFileName.substring( 0, plugin.pluginFileName.length() - 4 );
-                try {
-                    %>
-                        <tr valign="middle">
-                            <td class="c1">
-                                <table cellpadding="1" cellspacing="0" border="0" width="100%">
-                                    <tr>
-                                        <td width="1%">
-                                            <span class="plugicon">
-                                            <% if (plugin.hasIcon) { %>
-                                                <img style="height: 16px; width: 16px;" src="plugins/<%= URLEncoder.encode(pluginName, "utf-8") %>/<%= URLEncoder.encode(plugin.iconFileName, "utf-8") %>" alt="Plugin" />
-                                            <% } else { %>
-                                                <img style="height: 16px; width: 16px;" src="../../images/icon_plugin.gif" alt="Plugin">
-                                            <% } %>
-                                            </span>
-                                        </td>
-                                        <td width="99%">
-                                            <span class="plugname">
-                                            <b><%= plugin.humanReadableName %></b>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <%  if (plugin.humanReadableDescription != null) { %>
-                                    <tr>
-                                        <td colspan="2">
-                                            <span class="description">
-                                            <%= plugin.humanReadableDescription %>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                    <%  } %>
-                                </table>
-                            </td>
-                            <td class="c2" style="white-space: nowrap; text-align: center">
-                                <% if( plugin.hasReadme) { %>
-                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" border="0" alt="README"></a>
-                                <% } else { %>
-                                &nbsp;
-                                <% } if(plugin.hasChangelog) { %>
-                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(pluginName, "utf-8") %>/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" border="0" alt="Changelog"></a>
-                                <% } %>
-                            </td>
-                            <td class="c3" style="white-space: nowrap;">
-                                <a href="plugins/<%= URLEncoder.encode(plugin.pluginVersion, "utf-8") %>/<%= URLEncoder.encode(plugin.pluginFileName, "utf-8") %>">Download</a>
-                            </td>
-                            <td class="c4" style="white-space: nowrap; text-align: center">
-                                <%= (plugin.pluginVersion != null ? plugin.pluginVersion : "&nbsp;") %>
-                            </td>
-                            <td class="c4" style="white-space: nowrap; text-align: center">
-                                <%= (plugin.releaseDate != null ? formatter.format(plugin.releaseDate) : "&nbsp;") %>
-                            </td>
-                            <td class="c4" style="white-space: nowrap; text-align: center">
-                                <%= (plugin.minimumRequiredOpenfireVersion != null ? plugin.minimumRequiredOpenfireVersion : "&nbsp;") %>
-                                <%= (plugin.priorToOpenfireVersion == null ? "+" : "<br>- " + plugin.priorToOpenfireVersion) %>
-                            </td>
-                            <td class="c5" style="white-space: nowrap">
-                                <a href="plugin-archive.jsp?plugin=<%= URLEncoder.encode(pluginName, "utf-8") %>">Archive</a>
-                            </td>
-                        </tr>
-            <%  }
-                catch ( Exception e )
-                {
-                    // Ignore one plugin, iterate to the next plugin.
-                    e.printStackTrace();
-                }
-            }
-            %>
-                    </tbody>
-                    </table>
-                </div>
-                <!-- END plugins -->
-                </div>
+        <div id="plugins" style="width:100%">
 
-    </div>
-    <!-- END body area -->
+            <a id="opensource"></a>
 
-
+            <table cellpadding="3" cellspacing="0" width="100%">
+                <tr class="pluginTableHeader">
+                    <td class="pluginType">Plugins</td>
+                    <td style="text-align: center;">Info</td>
+                    <td style="text-align: center;">File</td>
+                    <td style="text-align: center;">Version</td>
+                    <td style="text-align: center;">Released</td>
+                    <td style="text-align: center;">Openfire Version</td>
+                    <td style="text-align: center;">Archive</td>
+                </tr>
+                <tbody>
+                    <c:choose>
+                        <c:when test="${empty plugins}">
+                            <tr>
+                                <td colspan="7">No plugins.</td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach items="${plugins}" var="pluginEntry">
+                                <c:set var="pluginName" value="${pluginEntry.key}"/>
+                                <c:set var="plugin" value="${pluginEntry.value}"/>
+                                <tr valign="middle">
+                                    <td class="c1">
+                                        <table cellpadding="1" cellspacing="0" width="100%">
+                                            <tr>
+                                                <td width="1%">
+                                                    <span class="plugicon">
+                                                        <c:choose>
+                                                            <c:when test="${plugin.hasIcon}">
+                                                                <img style="height: 16px; width: 16px;" src="plugins/${ir:urlEncode(pluginName)}/${ir:urlEncode(plugin.iconFileName)}" alt="Plugin" />
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <img style="height: 16px; width: 16px;" src="../../images/icon_plugin.gif" alt="Plugin">
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </span>
+                                                </td>
+                                                <td width="99%">
+                                                    <span class="plugname">
+                                                        <b><c:out value="${plugin.humanReadableName}"/></b>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <c:if test="${not empty plugin.humanReadableDescription}">
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <span class="description">
+                                                            <c:out value="${plugin.humanReadableDescription}"/>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </c:if>
+                                        </table>
+                                    </td>
+                                    <td class="c2" style="white-space: nowrap; text-align: center">
+                                        <c:if test="${plugin.hasReadme}">
+                                            <a href="plugins/${ir:urlEncode(plugin.pluginVersion)}/${ir:urlEncode(pluginName)}/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" alt="ReadMe"></a>
+                                        </c:if>
+                                        <c:if test="${plugin.hasChangelog}">
+                                            <a href="plugins/${ir:urlEncode(plugin.pluginVersion)}/${ir:urlEncode(pluginName)}/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" alt="Changelog"></a>
+                                        </c:if>
+                                    </td>
+                                    <td class="c3" style="white-space: nowrap;">
+                                        <a href="plugins/${ir:urlEncode(plugin.pluginVersion)}/${ir:urlEncode(plugin.pluginFileName)}">Download</a>
+                                    </td>
+                                    <td class="c4" style="white-space: nowrap; text-align: center">
+                                        <c:out value="${not empty plugin.pluginVersion ? plugin.pluginVersion : ''}"/>
+                                    </td>
+                                    <td class="c4" style="white-space: nowrap; text-align: center">
+                                        <c:if test="${not empty plugin.releaseDate}">
+                                            <fmt:formatDate type="date" dateStyle="medium" value="${plugin.releaseDate}"/>
+                                        </c:if>
+                                    </td>
+                                    <td class="c4" style="white-space: nowrap; text-align: center">
+                                        <c:out value="${not empty plugin.minimumRequiredOpenfireVersion ? plugin.minimumRequiredOpenfireVersion : ''}"/>
+                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '<br>- ' + plugin.priorToOpenfireVersion : '+'}"/>
+                                    </td>
+                                    <td class="c5" style="white-space: nowrap">
+                                        <a href="plugin-archive.jsp?plugin=${ir:urlEncode(plugin.pluginName)}">Archive</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</section>
 
 </body>
 </html>

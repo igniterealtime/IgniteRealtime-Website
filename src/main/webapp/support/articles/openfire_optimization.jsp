@@ -1,28 +1,36 @@
 <html>
-<head><title>Openfire Optimization</title></head>
-<style type="text/css" media="screen">
-    @import "../../styles/interior.css";
-</style>
+<head>
+    <title>Openfire Optimization</title>
+    <style media="screen">
+        @import "../../styles/interior.css";
+    </style>
+</head>
 <body>
 
-<div id="ignite_subnav">
-    <ul>
-        <li id="subnav01"><a href="../" class="ignite_subnav_project">Support</a></li>
-        <li id="subnav02"><a href="../articles.jsp" class="ignite_subnav_current">Articles</a></li>
-        <li id="subnav03"><a href="../group_chat.jsp">Group Chat</a></li>
-        <li id="subnav04"><a href="https://issues.igniterealtime.org/">Issue Tracker</a></li>
-        <li id="subnav05"><a href="../service_providers.jsp">Service providers</a></li>
-    </ul>
-</div>
+<jsp:include page="/includes/navigation.jspf">
+    <jsp:param name="project" value="support"/>
+</jsp:include>
 
-<!-- BEGIN body area -->
-<div id="ignite_body">
+<section id="ignite_body">
 
-<h1>Behind the Scenes: Openfire Optimization</h1>
+    <main class="ignite_int_body_padding">
+        <article id="ignite_int_body">
+
+            <div class="ignite_project_banner_warning">
+                <h1>Outdated</h1>
+                <p>
+                    This article was written a <em>long</em> time ago!<br/>Be aware that parts, or all of it may be outdated!
+                </p>
+            </div>
+
+            <header id="ignite_body_header">
+                <h1>Behind the Scenes: Openfire Optimization</h1>
+            </header>
+
 <p>Dec. 19, 2005<br>
 <i>by Gaston Dombiak and Matt Tucker</i></p>
 
-<p>A major priority for Openfire (formerly Wildfire) is to provide the fastest and most scalable 
+<p>A major priority for Openfire is to provide the fastest and most scalable
 XMPP server implementation available. The 
 <a href="/forum/entry!default.jspa?categoryID=17&externalID=422">
 Pampero</a> project will be the major 
@@ -148,7 +156,6 @@ later. A partial list of the optimizations:</p>
 <img src="images/article_optimization_2_small.gif" border="0" width="350" height="272" alt="Profiling Openfire Server 2.4.0" title="Profiling Openfire Server 2.4.0"/>
 </a>
 </center>
-<br><br>
 
 <p>The server is now spending 51% doing network I/O and parsing XML. String 
 operations declined from 62% to 5%. In other words, the server is now spending 
@@ -163,7 +170,7 @@ Some stats on the testing setup:</p>
 
 <ul>
     <li>140 concurrent users.</li>
-  <li>Each user sent 100 messages with a delay of 5 milliseconds 
+    <li>Each user sent 100 messages with a delay of 5 milliseconds
     (14K total messages sent).</li>
     <li>The server installations ran on a developer notebook: Dell Inspiron 
     9200 with a 2Ghz CPU and 2GB RAM.</li>
@@ -201,10 +208,9 @@ Pampero</a>
 project, which is the next big opportunity for performance improvements in 
 Openfire.</p>
 
-<br/><br/><br/>
-
-</div>
-<!-- END body area -->
+        </article>
+    </main>
+</section>
 
 </body>
 </html>
