@@ -5,6 +5,7 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.stream.Collectors" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
 <%
     final String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-beta-path");
@@ -123,7 +124,7 @@
                                 </td>
                                 <td class="c4" style="white-space: nowrap; text-align: center">
                                     <c:out value="${not empty plugin.minimumRequiredOpenfireVersion ? plugin.minimumRequiredOpenfireVersion : ''}"/>
-                                    <c:out value="${not empty plugin.priorToOpenfireVersion ? '<br>- ' + plugin.priorToOpenfireVersion : '+'}"/>
+                                    <c:out value="${not empty plugin.priorToOpenfireVersion ? '- '.concat(plugin.priorToOpenfireVersion) : '+'}"/>
                                 </td>
                             </tr>
                         </c:forEach>
