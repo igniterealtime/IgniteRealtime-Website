@@ -99,6 +99,9 @@ public class PluginDownloadServlet extends HttpServlet {
         if ( requestURI.startsWith( "projects/openfire;/" ) ) {
             requestURI = "projects/openfire/"+ requestURI.substring( "projects/openfire;/".length() );
         }
+        if ( requestURI.startsWith( "/projects/openfire;/" ) ) {
+            requestURI = "/projects/openfire/"+ requestURI.substring( "/projects/openfire;/".length() );
+        }
         final ParsedRequest parsedRequest = parse( requestURI, request.getQueryString() );
 
         final Path plugin = pluginManager.findPluginFile( parsedRequest );
