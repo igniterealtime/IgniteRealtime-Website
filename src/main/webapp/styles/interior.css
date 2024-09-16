@@ -1419,4 +1419,8 @@ img.ignite_body_image_right {
         padding : 0;
         margin : 0;
         margin-left : 1em;
-    }    
+    }
+
+    figure.articles > img {
+        max-width: 95%;
+    }

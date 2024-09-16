@@ -51,7 +51,7 @@
                 After you install the plugin, you can add your TURN and STUN services to its configuration, as shown
                 below. This will allow clients to discover the availability of these services!
             </p>
-            <figure>
+            <figure class="articles">
                 <img src="images/conversations_audio_video_1.jpeg" alt="Screenshot of the Openfire admin console, showing External Service Discovery configuration.">
             </figure>
             <p>
