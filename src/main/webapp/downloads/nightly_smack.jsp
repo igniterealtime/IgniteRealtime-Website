@@ -70,6 +70,7 @@
                         final SortedMap<Date, File> filesByDate = new TreeMap<>(Collections.reverseOrder());
                         filesByDate.putAll(
                             Arrays.stream(allFiles)
+                                .filter(File::isFile)
                                 .collect(Collectors.toMap(file -> {
                                     final Matcher matcher = datePattern.matcher(file.getName());
                                     if (matcher.find()) {

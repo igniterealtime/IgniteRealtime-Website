@@ -90,6 +90,7 @@
         final SortedMap<String, List<File>> filesByDate = new TreeMap<>( Collections.reverseOrder() );
         filesByDate.putAll(
             Arrays.stream( allFiles )
+                .filter(File::isFile)
                 .sorted( new FileComparator() )
                 .collect( Collectors.groupingBy(file -> {
                     final Matcher matcher = datePattern.matcher( file.getName() );
