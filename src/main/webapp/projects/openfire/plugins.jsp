@@ -124,7 +124,7 @@
                                     </td>
                                     <td class="c4" style="white-space: nowrap; text-align: center">
                                         <c:out value="${not empty plugin.minimumRequiredOpenfireVersion ? plugin.minimumRequiredOpenfireVersion : ''}"/>
-                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '<br>- ' + plugin.priorToOpenfireVersion : '+'}"/>
+                                        <c:out value="${not empty plugin.priorToOpenfireVersion ? '<br>- '.concat(plugin.priorToOpenfireVersion) : '+'}"/>
                                     </td>
                                     <td class="c5" style="white-space: nowrap">
                                         <a href="plugin-archive.jsp?plugin=${ir:urlEncode(plugin.pluginName)}">Archive</a>
