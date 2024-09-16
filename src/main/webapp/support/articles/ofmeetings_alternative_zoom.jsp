@@ -87,7 +87,7 @@
     <li>
         Confirm the focus bot user has logged in ok like this. If not, check log files and get help from the
         IgniteRealtime community.<br/>
-        <figure>
+        <figure class="articles">
             <img src="images/ofmeet_zoom_1.png" alt="Screenshot of the Openfire admin console, showing an online session of a user named 'focus'.">
         </figure>
     </li>
@@ -95,7 +95,7 @@
         If you have an active focus user, then you can do a quick peer-to-peer test with two browser tabs on your
         desktop. Open both of them to the same <tt>https://your_server:7443/ofmeet/testconf</tt> and confirm that it is
         showing in the conference summary like this:<br/>
-        <figure>
+        <figure class="articles">
             <img src="images/ofmeet_zoom_2.png" alt="Screenshot of the Openfire admin console, showing an active conference on the Meetings Summary page.">
         </figure>
     </li>
