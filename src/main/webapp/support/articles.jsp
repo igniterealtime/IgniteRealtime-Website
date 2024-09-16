@@ -22,7 +22,14 @@
             </header>
 
             <div class="ignite_int_body_support">
-                    
+
+                <div class="ignite_article_excerpt">
+                    <h3><a href="articles/ofmeetings_alternative_zoom.jsp">Openfire Meetings as an alternative to Zoom</a></h3>
+                    <span class="ignite_support_author">April 7, 2020, by Dele Olajide</span>
+                    <p>Consider Openfire Meetings as an alternative to Zoom if the audio and/or video from your meetings needs...
+                        <a href="articles/ofmeetings_alternative_zoom.jsp">Read More ></a></p>
+                </div>
+
                 <div class="ignite_article_excerpt">
                     <h3><a href="articles/pubsub.jsp">All About Pubsub</a></h3>
                     <span class="ignite_support_author">April 17, 2006, by Gaston Dombiak and Matt Tucker</span>
