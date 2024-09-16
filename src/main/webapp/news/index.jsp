@@ -75,13 +75,9 @@
             <jsp:param name="sidebarClasses" value="sidebar_light sidebar_gray"/>
         </jsp:include>
 
-    <!--        <h4>Recent Articles</h4>
-                <div class="articles"><a href="../support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
-                <div class="articles"><a href="../support/articles/pubsub.jsp">All About Pubsub</a></div>
-                <div class="articles"><a href="../support/articles/sparkplug_day.jsp">Sparkplug Day</a></div>
-                <div class="articles"><a href="../support/articles/filetransfer.jsp">IM File Transfer Made Easy</a></div>
-                <div class="articles"><a href="../support/articles/openfire_optimization.jsp">Behind the Scenes: Openfire Optimization</a></div>
+        <jsp:include page="/includes/sidebar_recent_articles.jspf"/>
 
+    <!--
             <h4>Whitepapers</h4>
                 <div class="articles"><a href="../about/jive_caseforim_wp.pdf">Why Your Business Should Use Enterprise Instant Messaging Now</a></div>
                 <div class="articles"><a href="../about/jive_xmpp_wp.pdf">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>

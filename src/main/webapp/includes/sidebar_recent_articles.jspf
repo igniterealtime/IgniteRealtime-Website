@@ -1,0 +1,9 @@
+<div class="sidebar sidebar_light">
+    <h1 class="sidebar_header">Recent Articles</h1>
+    <div class="articles"><a href="/support/articles/xmpp_network_graph.jsp">Creating the XMPP Network Graph</a></div>
+    <div class="articles"><a href="/support/articles/openfire_conversations_audio_video.jsp">Preparing Openfire for Audio/Video calls with Conversations</a></div>
+    <div class="articles"><a href="/support/articles/ofmeetings_alternative_zoom.jsp">Openfire Meetings as an alternative to Zoom</a></div>
+    <div class="articles"><a href="/support/articles/motd_plugin.jsp">Openfire Plugin Development: Message of the Day</a></div>
+    <div class="articles"><a href="/support/articles/pubsub.jsp">All About Pubsub</a></div>
+    <div><strong><a href="/support/articles.jsp">Browse all articles</a></strong></div>
+</div>
