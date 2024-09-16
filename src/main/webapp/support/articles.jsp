@@ -24,9 +24,17 @@
             <div class="ignite_int_body_support">
 
                 <div class="ignite_article_excerpt">
+                    <h3><a href="articles/xmpp_network_graph.jsp">Creating the XMPP Network Graph</a></h3>
+                    <span class="ignite_support_author">January 24, 2024, by Guus der Kinderen</span>
+                    <p>Guus describes how he used Openfire, XMPP and the XMPP Standards Foundation's specification
+                        process to create a nifty new online application...
+                        <a href="articles/xmpp_network_graph.jsp">Read More ></a></p>
+                </div>
+
+                <div class="ignite_article_excerpt">
                     <h3><a href="articles/openfire_conversations_audio_video.jsp">Preparing Openfire for Audio/Video calls with Conversations</a></h3>
                     <span class="ignite_support_author">April 20, 2020, by Guus der Kinderen</span>
-                    <p>For audio and video calls  to work well with your instance of Openfire, it is recommended to make use of a STUN and TURN service...
+                    <p>For audio and video calls to work well with your instance of Openfire, it is recommended to make use of a STUN and TURN service...
                         <a href="articles/openfire_conversations_audio_video.jsp">Read More ></a></p>
                 </div>
 
