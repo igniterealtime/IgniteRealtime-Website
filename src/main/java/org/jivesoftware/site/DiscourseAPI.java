@@ -115,8 +115,14 @@ public class DiscourseAPI extends HttpServlet
 
         public void run() {
             final Map<Integer, Long> results = new HashMap<>();
-            results.put(3, doSimpleQuery(3, 7));
-            results.put(4, doSimpleQuery(4, 7));
+            final Long a = doSimpleQuery(3, 7);
+            if (a != null) {
+                results.put(3, a);
+            }
+            final Long b = doSimpleQuery(4, 7);
+            if (b != null) {
+                results.put(4, b);
+            }
 
             // Replace all values in the object used by the website in one go.
             counts.clear();
