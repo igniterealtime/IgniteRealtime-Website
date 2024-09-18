@@ -18,6 +18,9 @@
     <Parameter name="openfire-plugins-beta-path" value="${catalina.base}/staticfiles/builds/openfire/plugins-beta"/>
     <Parameter name="openfire-plugins-dev-path"  value="${catalina.base}/staticfiles/builds/openfire/plugins-dev"/>
 
+    <!-- Used to interact with Discourse's API -->
+    <Parameter name="discourse-api-key" value="CHANGEME"/>
+
     <!-- WEB-50: JNDI datasource for the database that the website uses to collect statistics. -->
     <Resource
         name="jdbc/stats"

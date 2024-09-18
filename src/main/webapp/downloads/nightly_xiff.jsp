@@ -118,7 +118,7 @@
     </main>
 
     <section id="ignite_body_sidebar">
-        <jsp:directive.include file="/includes/sidebar_48hrsnapshot.jspf" />
+        <jsp:directive.include file="/includes/sidebar_7daySnapshot.jspf" />
         <jsp:directive.include file="/includes/sidebar_testimonial.jspf" />
     </section>
 </section>

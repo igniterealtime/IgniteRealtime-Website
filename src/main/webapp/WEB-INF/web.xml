@@ -104,6 +104,11 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
+        <servlet-name>DiscourseAPI</servlet-name>
+        <servlet-class>org.jivesoftware.site.DiscourseAPI</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet>
         <servlet-name>DownloadServlet</servlet-name>
         <servlet-class>org.jivesoftware.site.DownloadServlet</servlet-class>
         <load-on-startup>2</load-on-startup>
