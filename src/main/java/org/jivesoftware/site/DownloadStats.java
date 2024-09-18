@@ -37,11 +37,11 @@ public class DownloadStats extends HttpServlet {
     // SQL for inserting the update info check
     private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, region, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,NOW(),?,?,?,?,?)";
 
-    // SQL for counting the total number of downloads
-    private static String COUNT_TOTAL_DOWNLOADS = "SELECT count(*) FROM downloadInfo";
+    // SQL for counting the total number of downloads by type.
+    private static String COUNT_TOTAL_DOWNLOADS_BY_TYPE = "SELECT type, count(type) FROM downloadInfo GROUP BY type";
 
-    // SQL for counting the total number of downloads for a particular download type
-    private static String COUNT_TOTAL_DOWNLOADS_FOR_TYPE = "SELECT count(*) FROM downloadInfo WHERE type = ?";
+    // SQL for counting the total number of downloads in the last 7 days.
+    private static String COUNT_TOTAL_DOWNLOADS_LAST_7_DAYS = "SELECT count(*) FROM downloadInfo WHERE time >= DATE(NOW() - INTERVAL 7 DAY)";
 
     // Period between cache updates
     private static long CACHE_PERIOD = 30 * 60 * 1000; // 30 minutes
@@ -50,8 +50,9 @@ public class DownloadStats extends HttpServlet {
     private static long lastUpdate = 0;
 
     // Using a Hashtable for synchronization
-    private static Map<String, Long> counts = new Hashtable<String, Long>();
+    private static Map<String, Long> counts = new Hashtable<>();
     private static final String TOTAL = "total";
+    private static final String TOTAL7DAYS = "total7days";
 
     // A reference to the builds directory
     private static File buildsDirectory;
@@ -137,7 +138,23 @@ public class DownloadStats extends HttpServlet {
      */
     public static long getTotalDownloads() {
         collectTotals();
-        return counts.get(TOTAL);
+        if (counts.containsKey(TOTAL)) {
+            return counts.get(TOTAL);
+        }
+        return 0;
+    }
+
+    /**
+     * Count the total number of downloads in the last 7 days.
+     *
+     * @return the total number of downloads in the last 7 days.
+     */
+    public static long getTotalDownloadsLast7Days() {
+        collectTotals();
+        if (counts.containsKey(TOTAL7DAYS)) {
+            return counts.get(TOTAL7DAYS);
+        }
+        return 0;
     }
 
     /**
@@ -164,7 +181,7 @@ public class DownloadStats extends HttpServlet {
     }
 
     private static class DownloadStatsRunnable implements Runnable {
-        private Map<String, Long> counts = null;
+        private Map<String, Long> counts;
 
         public DownloadStatsRunnable(Map<String, Long> counts) {
             this.counts = counts;
@@ -175,76 +192,77 @@ public class DownloadStats extends HttpServlet {
             Connection con = null;
             PreparedStatement pstmt = null;
             ResultSet rs = null;
-            // The count starts at 1282298 which is an estimate of the number of downloads prior to
-            // accurate download stats being collected. This number was derived by performing a linear
-            // regression from the time the project was first available until November 30, 2006.
-            long count = 1282298L;
 
-            // Get the total count
+            final Map<String, Long> results = new Hashtable<>();
+            long total = 0L;
             try {
                 con = connectionManager.getConnection();
-                pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS);
+                pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_BY_TYPE);
                 rs = pstmt.executeQuery();
-                if (rs.next()) {
-                    count += rs.getLong(1);
+
+                while (rs.next()) {
+                    final int type = rs.getInt(2);
+                    long amount = rs.getLong(1);
+
+                    final DownloadServlet.DownloadInfo downloadInfo = DownloadServlet.DownloadInfo.getDownloadInfo(type);
+                    if (downloadInfo == null) {
+                        continue;
+                    }
+
+                    // The count starts at an estimate of the number of downloads prior to
+                    // accurate download stats being collected. This number was derived by performing a linear
+                    // regression from the time the project was first available until November 30, 2006.
+                    switch (downloadInfo) {
+                        case openfire:
+                            amount += 675774L;
+                            break;
+                        case spark:
+                            amount += 438159L;
+                            break;
+                        case smack:
+                            amount += 332007L;
+                            break;
+                        case xiff:
+                            amount += 4683L;
+                            break;
+                        default:
+                            break;
+                    }
+                    total += amount;
+                    results.put(downloadInfo.getName(), amount);
                 }
-            }
-            catch (Exception e) {
-                Log.warn("Error counting total downloads.", e);
+                results.put(TOTAL, total);
+
+                // Combine Openfire and Wildfire results (as they're different historical names for the same project).
+                results.put(DownloadServlet.DownloadInfo.openfire.getName(), results.get(DownloadServlet.DownloadInfo.openfire.getName()) + results.get(DownloadServlet.DownloadInfo.wildfire.getName()));
+                results.remove(DownloadServlet.DownloadInfo.wildfire.getName());
+                results.put(DownloadServlet.DownloadInfo.openfire_plugin.getName(), results.get(DownloadServlet.DownloadInfo.openfire_plugin.getName()) + results.get(DownloadServlet.DownloadInfo.wildfire_plugin.getName()));
+                results.remove(DownloadServlet.DownloadInfo.wildfire_plugin.getName());
+
+                results.forEach((key, value) -> System.out.println(key + ": " + value));
+
+                rs.close();
+                pstmt.close();
+
+                pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_LAST_7_DAYS);
+                rs = pstmt.executeQuery();
+                long lastDays = 0L;
+                if (rs.next()) {
+                    lastDays = rs.getLong(1);
+                }
+                results.put(TOTAL7DAYS, lastDays);
+
+                // Replace all values in the object used by the website in one go.
+                counts.clear();
+                counts.putAll(results);
+            } catch (Exception e) {
+                Log.warn("Error counting downloads.", e);
             }
             finally {
                 if (rs != null) {
                     try { rs.close(); } catch (Exception e) { Log.debug( "An exception occurred that can probably be ignored.", e); }
                 }
                 DbConnectionManager.close(pstmt, con);
-            }
-            counts.put(TOTAL, count);
-
-            // Get the count for each type
-            for (DownloadServlet.DownloadInfo type : DownloadServlet.DownloadInfo.values()) {
-                // The count starts at an estimate of the number of downloads prior to
-                // accurate download stats being collected. This number was derived by performing a linear
-                // regression from the time the project was first available until November 30, 2006.
-                switch (type) {
-                    case openfire:
-                        count = 675774L;
-                        break;
-                    case spark:
-                        count = 438159L;
-                        break;
-                    case smack:
-                        count = 332007L;
-                        break;
-                    case xiff:
-                        count = 4683L;
-                        break;
-                    default:
-                        count = 0L;
-                }
-
-                try {
-                    con = connectionManager.getConnection();
-                    pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_FOR_TYPE);
-                    pstmt.setInt(1, type.getType());
-                    rs = pstmt.executeQuery();
-                    if (rs.next()) {
-                        count += rs.getLong(1);
-                    }
-                }
-                catch (Exception e) {
-                    String name = null;
-                    if (type != null) {
-                        name = type.getName();
-                    }
-                    Log.warn( "Error counting downloads for type " + name, e);
-                }
-                finally {
-                    if (rs != null) {
-                        try { rs.close(); } catch (Exception e) { Log.debug( "An exception occurred that can probably be ignored.", e); }
-                    }
-                    DbConnectionManager.close(pstmt, con);
-                }
-                counts.put(type.getName(), count);
             }
         }
     }

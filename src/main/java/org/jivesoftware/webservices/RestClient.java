@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class RestClient {
 
@@ -29,6 +30,39 @@ public class RestClient {
         {
             final ClassicHttpRequest httpGet = ClassicRequestBuilder.get(url).build();
             result = httpclient.execute(httpGet, response -> {
+                try {
+                    return new JSONObject(EntityUtils.toString(response.getEntity()));
+                } catch (JSONException e) {
+                    Log.warn("Invalid content while querying '{}'", url, e);
+                    return null;
+                }
+            });
+        } catch (IOException e) {
+            Log.warn("Fatal transport error while querying '{}'", url, e);
+        }
+
+        return result;
+    }
+
+    public JSONObject post(String url, Map<String, String> headers, Map<String, String> parameters)
+    {
+        JSONObject result = null;
+
+        try (final CloseableHttpClient httpclient = CachingHttpClients.custom().setCacheConfig(cacheConfig).build())
+        {
+            final ClassicRequestBuilder builder = ClassicRequestBuilder.post(url);
+            if (headers != null) {
+                for (Map.Entry<String, String> header : headers.entrySet()) {
+                    builder.addHeader(header.getKey(), header.getValue());
+                }
+            }
+            if (parameters != null) {
+                for (Map.Entry<String, String> entry : parameters.entrySet()) {
+                    builder.addParameter(entry.getKey(), entry.getValue());
+                }
+            }
+            final ClassicHttpRequest httpPost = builder.build();
+            result = httpclient.execute(httpPost, response -> {
                 try {
                     return new JSONObject(EntityUtils.toString(response.getEntity()));
                 } catch (JSONException e) {

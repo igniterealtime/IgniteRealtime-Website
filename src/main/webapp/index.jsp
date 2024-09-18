@@ -132,8 +132,6 @@
     <!--        <div><strong><a href="projects/xiff/">XIFF</a></strong> <%= Versions.getVersion("xiff") %> <a href="downloads/#xiff" class="button_download">Download</a></div> -->
         </div>
 
-        <jsp:include page="/includes/sidebar_48hrsnapshot.jspf"/>
-
         <jsp:include page="/includes/sidebar_forumactivity.jsp">
             <jsp:param name="discourseCategory" value="/latest"/>
             <jsp:param name="headerText" value="In the community"/>
