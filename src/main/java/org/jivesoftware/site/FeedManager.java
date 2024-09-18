@@ -93,7 +93,10 @@ public class FeedManager {
         final List<SyndEntry> entries = getBlogFeedEntries( baseUrl, feedUrl );
         for ( int i=0; i < entries.size() && i < max; i++ )
         {
-            result.add( new SummaryFeedItem( getJSON( entries.get( i ).getLink() ) ) );
+            final JSONObject entry = getJSON(entries.get(i).getLink());
+            if (entry != null) {
+                result.add(new SummaryFeedItem(entry));
+            }
         }
 
         return result;
