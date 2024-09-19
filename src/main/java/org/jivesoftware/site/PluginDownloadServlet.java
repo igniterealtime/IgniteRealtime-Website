@@ -299,6 +299,10 @@ public class PluginDownloadServlet extends HttpServlet {
     {
         try ( final InputStream in = getUncompressedEntryFromArchive( archive, "plugin.xml" ) )
         {
+            if (in == null) {
+                Log.info("Unable to find 'plugin.xml' in '{}", archive);
+                return null;
+            }
             final SAXReader saxReader = new SAXReader();
             final Document doc = saxReader.read(in);
             final Element element = (Element)doc.selectSingleNode( propertyPath );
