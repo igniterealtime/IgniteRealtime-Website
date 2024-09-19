@@ -40,7 +40,7 @@ public class DownloadStats extends HttpServlet {
     private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, region, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,NOW(),?,?,?,?,?)";
 
     // SQL for counting the total number of downloads by type.
-    private static String COUNT_TOTAL_DOWNLOADS_BY_TYPE_SINCE = "SELECT type, count(type) FROM downloadInfo WHERE time > '2024-09-18 00:00:00' GROUP BY type;";
+    private static String COUNT_TOTAL_DOWNLOADS_BY_TYPE_SINCE = "SELECT type, count(type) FROM downloadInfo WHERE time > '2024-09-18 00:00:00' GROUP BY type";
 
     // SQL for counting the total number of downloads in the last 7 days.
     private static String COUNT_TOTAL_DOWNLOADS_LAST_7_DAYS = "SELECT count(*) FROM downloadInfo WHERE time >= DATE(NOW() - INTERVAL 7 DAY)";
