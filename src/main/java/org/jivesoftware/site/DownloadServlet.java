@@ -68,25 +68,6 @@ public class DownloadServlet extends HttpServlet {
         {
             return Arrays.stream(DownloadInfo.values()).filter(d -> d.getType() == type).findFirst().orElse(null);
         }
-
-        public static DownloadInfo getDownloadInfo(int type)
-        {
-            switch (type) {
-                case 0: return openfire;
-                case 1: return spark;
-                case 2: return smack;
-                case 3: return xiff;
-                case 4: return spark_update;
-                case 5: return openfire_plugin;
-                case 6: return spark_plugin;
-                case 7: return wildfire;
-                case 8: return wildfire_plugin;
-                case 9: return whack;
-                case 10: return sparkweb;
-                case 11: return tinder;
-                default: return null;
-            }
-        }
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws

@@ -207,10 +207,10 @@ public class DownloadStats extends HttpServlet {
                 rs = pstmt.executeQuery();
 
                 while (rs.next()) {
-                    final int type = rs.getInt(2);
-                    long amount = rs.getLong(1);
-
-                    final DownloadServlet.DownloadInfo downloadInfo = DownloadServlet.DownloadInfo.getDownloadInfo(type);
+                    final int type = rs.getInt(1);
+                    long amount = rs.getLong(2);
+                    Log.debug("Iterate over type {}, amount {}", type, amount);
+                    final DownloadServlet.DownloadInfo downloadInfo = DownloadServlet.DownloadInfo.forType(type);
                     if (downloadInfo == null) {
                         continue;
                     }
