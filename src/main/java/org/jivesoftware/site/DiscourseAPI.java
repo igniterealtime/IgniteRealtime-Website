@@ -34,6 +34,9 @@ public class DiscourseAPI extends HttpServlet
         {
             baseUrl = "https://discourse.igniterealtime.org/";
         }
+        if (!baseUrl.endsWith("/")) {
+            baseUrl = baseUrl + "/";
+        }
 
         apiKey = servletConfig.getServletContext().getInitParameter("discourse-api-key");
 
@@ -76,7 +79,7 @@ public class DiscourseAPI extends HttpServlet
         parameters.put("download", "true");
 
         try {
-            return restClient.post(baseUrl + "/admin/plugins/explorer/queries/"+queryId+"/run", headers, parameters).getJSONArray("rows").getJSONArray(0).getLong(0);
+            return restClient.post(baseUrl + "admin/plugins/explorer/queries/"+queryId+"/run", headers, parameters).getJSONArray("rows").getJSONArray(0).getLong(0);
         } catch (Throwable t) {
             Log.warn("Unable to interact with Discourse's API.", t);
             return null;
