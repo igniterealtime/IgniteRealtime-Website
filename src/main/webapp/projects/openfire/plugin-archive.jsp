@@ -20,6 +20,7 @@
 <%@ page import="java.util.jar.JarFile" %>
 <%@ page import="org.jsoup.Jsoup" %>
 <%@ page import="org.jsoup.safety.Safelist" %>
+<%@ page import="org.slf4j.LoggerFactory" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
 <%
@@ -56,7 +57,7 @@
                 request.setAttribute("cleanHtml", cleanHtml);
             } catch (Exception e) {
                 // This should not prevent the rest of the page from displaying.
-                e.printStackTrace();
+                LoggerFactory.getLogger("plugin-archive.jsp").warn("Unexpected exception while processing readme of {}", latestPluginMetadata.mavenFile, e);
             }
         }
     }

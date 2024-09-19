@@ -177,7 +177,7 @@ public class PluginManager
                     }
                     catch ( IOException | DocumentException e )
                     {
-                        e.printStackTrace();
+                        Log.warn("Unable to read metadata from '{}'", mavenFile, e);
                     }
                     return null;
                 } )
