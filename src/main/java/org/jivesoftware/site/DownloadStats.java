@@ -240,12 +240,17 @@ public class DownloadStats extends HttpServlet {
                 results.put(TOTAL, total);
 
                 // Combine Openfire and Wildfire results (as they're different historical names for the same project).
-                results.put(DownloadServlet.DownloadInfo.openfire.getName(), results.get(DownloadServlet.DownloadInfo.openfire.getName()) + results.get(DownloadServlet.DownloadInfo.wildfire.getName()));
-                results.remove(DownloadServlet.DownloadInfo.wildfire.getName());
-                results.put(DownloadServlet.DownloadInfo.openfire_plugin.getName(), results.get(DownloadServlet.DownloadInfo.openfire_plugin.getName()) + results.get(DownloadServlet.DownloadInfo.wildfire_plugin.getName()));
-                results.remove(DownloadServlet.DownloadInfo.wildfire_plugin.getName());
-
-                results.forEach((key, value) -> System.out.println(key + ": " + value));
+                if (results.containsKey(DownloadServlet.DownloadInfo.wildfire.getName()))
+                {
+                    final long added = results.containsKey(DownloadServlet.DownloadInfo.openfire.getName()) ?  results.get(DownloadServlet.DownloadInfo.openfire.getName()) + results.get(DownloadServlet.DownloadInfo.wildfire.getName()) : results.get(DownloadServlet.DownloadInfo.wildfire.getName());
+                    results.put(DownloadServlet.DownloadInfo.openfire.getName(), added);
+                    results.remove(DownloadServlet.DownloadInfo.wildfire.getName());
+                }
+                if (results.containsKey(DownloadServlet.DownloadInfo.wildfire_plugin.getName())) {
+                    final long added = results.containsKey(DownloadServlet.DownloadInfo.openfire.getName()) ?  results.get(DownloadServlet.DownloadInfo.openfire.getName()) + results.get(DownloadServlet.DownloadInfo.wildfire_plugin.getName()) : results.get(DownloadServlet.DownloadInfo.wildfire_plugin.getName());
+                    results.put(DownloadServlet.DownloadInfo.openfire_plugin.getName(), added);
+                    results.remove(DownloadServlet.DownloadInfo.wildfire_plugin.getName());
+                }
 
                 rs.close();
                 pstmt.close();
