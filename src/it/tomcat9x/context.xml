@@ -29,7 +29,7 @@
         type="javax.sql.DataSource"
         username="tomcat-website"
         password="CHANGEME"
-        driverClassName="com.mysql.jdbc.Driver"
+        driverClassName="com.mysql.cj.jdbc.Driver"
         url="jdbc:mysql://CHANGEME:3306/stats?characterEncoding=UTF-8"
     />
 </Context>
