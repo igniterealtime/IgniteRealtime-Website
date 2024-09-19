@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -56,6 +57,16 @@ public class DownloadServlet extends HttpServlet {
 
         public String getName() {
             return name;
+        }
+
+        public static DownloadInfo forName(String name)
+        {
+            return Arrays.stream(DownloadInfo.values()).filter(d -> d.getName().equals(name)).findFirst().orElse(null);
+        }
+
+        public static DownloadInfo forType(int type)
+        {
+            return Arrays.stream(DownloadInfo.values()).filter(d -> d.getType() == type).findFirst().orElse(null);
         }
 
         public static DownloadInfo getDownloadInfo(int type)

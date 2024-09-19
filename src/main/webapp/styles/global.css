@@ -873,6 +873,10 @@ div.ignite_sidebar_body_stat span {
 div.ignite_sidebar_body_stat strong {
     float: right;
     }
+div.ignite_sidebar_body_stat em {
+    padding-left: 1em;
+    padding-top: 0.5em;
+    }
 
 
 /* quote sidebar (in your words) */
