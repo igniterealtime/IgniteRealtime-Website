@@ -110,7 +110,7 @@ public class PluginDownloadServlet extends HttpServlet {
         if ( plugin == null || !Files.exists( plugin ) || !Files.isRegularFile( plugin ) )
         {
             // Not a file, return 404
-            Log.info( "File {} does not exist (or is not a regular file).", plugin );
+            Log.info( "File {} does not exist (or is not a regular file). Unable to process request: {} / {}", plugin, requestURI, request.getQueryString()  );
             response.sendError( HttpServletResponse.SC_NOT_FOUND );
             return;
         }
