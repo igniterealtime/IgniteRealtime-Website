@@ -387,7 +387,7 @@ public class DownloadStats extends HttpServlet {
             }
             catch ( Exception e )
             {
-                Log.warn( "Unable to retrieve info", e );
+                Log.warn( "Unable to retrieve location info for {}", ipAddress, e );
             }
 
             pstmt.setString( 1, ipAddress );
@@ -403,7 +403,7 @@ public class DownloadStats extends HttpServlet {
         }
         catch ( Exception e )
         {
-            Log.warn( "Unable to process download information for " + ipAddress, e );
+            Log.warn( "Unable to process download information for {} {} {} {} {} {}", ipAddress, product, version, fileType, fileName, downloadInfo, e );
         }
         finally
         {
