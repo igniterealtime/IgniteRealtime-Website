@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Hashtable;
 import java.util.Map;
 
@@ -176,7 +178,7 @@ public class DownloadStats extends HttpServlet {
             try {
                 collectorThread.join();
             }
-            catch (Exception e) { Log.debug( "An exception occurred that can probably be ignored.", e); }
+            catch (Exception e) { Log.info( "An exception occurred while collecting download stats.", e); }
         }
     }
 
@@ -188,6 +190,8 @@ public class DownloadStats extends HttpServlet {
         }
 
         public void run() {
+            Log.info("Retrieving downloads statistics...");
+
             final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
             Connection con = null;
             PreparedStatement pstmt = null;
@@ -197,6 +201,8 @@ public class DownloadStats extends HttpServlet {
             long total = 0L;
             try {
                 con = connectionManager.getConnection();
+
+                Instant start = Instant.now();
                 pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_BY_TYPE);
                 rs = pstmt.executeQuery();
 
@@ -243,7 +249,9 @@ public class DownloadStats extends HttpServlet {
 
                 rs.close();
                 pstmt.close();
+                Log.debug("Queried all download stats in {}", Duration.between(start, Instant.now()));
 
+                start = Instant.now();
                 pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_LAST_7_DAYS);
                 rs = pstmt.executeQuery();
                 long lastDays = 0L;
@@ -251,10 +259,14 @@ public class DownloadStats extends HttpServlet {
                     lastDays = rs.getLong(1);
                 }
                 results.put(TOTAL7DAYS, lastDays);
+                Log.debug("Queried last 7 days download stats in {}", Duration.between(start, Instant.now()));
 
                 // Replace all values in the object used by the website in one go.
                 counts.clear();
                 counts.putAll(results);
+
+                Log.debug("Retrieved downloads statistics:");
+                results.forEach((key, value) -> Log.debug("- {} : {}", key, value));
             } catch (Exception e) {
                 Log.warn("Error counting downloads.", e);
             }

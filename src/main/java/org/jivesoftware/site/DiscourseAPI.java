@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -105,7 +107,7 @@ public class DiscourseAPI extends HttpServlet
             try {
                 collectorThread.join();
             }
-            catch (Exception e) { Log.debug( "An exception occurred that can probably be ignored.", e); }
+            catch (Exception e) { Log.info( "An exception occurred while collecting Discourse stats.", e); }
         }
     }
 
@@ -117,6 +119,9 @@ public class DiscourseAPI extends HttpServlet
         }
 
         public void run() {
+            Log.info("Retrieving Discourse statistics...");
+
+            Instant start = Instant.now();
             final Map<Integer, Long> results = new HashMap<>();
             final Long a = doSimpleQuery(3, 7);
             if (a != null) {
@@ -126,10 +131,14 @@ public class DiscourseAPI extends HttpServlet
             if (b != null) {
                 results.put(4, b);
             }
+            Log.debug("Queried all Discourse stats in {}", Duration.between(start, Instant.now()));
 
             // Replace all values in the object used by the website in one go.
             counts.clear();
             counts.putAll(results);
+
+            Log.debug("Retrieved Discourse statistics:");
+            results.forEach((key, value) -> Log.debug("- {} : {}", key, value));
         }
     }
 }
