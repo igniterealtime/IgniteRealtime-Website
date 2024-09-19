@@ -40,7 +40,7 @@ public class DownloadStats extends HttpServlet {
     private static final String ADD_UPDATE_INFO = "insert into checkUpdateInfo (ipAddress, os, type, time, country, region, city, currentVersion, latestVersion) values (INET_ATON(?),?,?,NOW(),?,?,?,?,?)";
 
     // SQL for counting the total number of downloads by type.
-    private static String COUNT_TOTAL_DOWNLOADS_BY_TYPE = "SELECT type, count(type) FROM downloadInfo GROUP BY type";
+    private static String COUNT_TOTAL_DOWNLOADS_BY_TYPE_SINCE = "SELECT type, count(type) FROM downloadInfo WHERE time > '2024-09-18 00:00:00' GROUP BY type;";
 
     // SQL for counting the total number of downloads in the last 7 days.
     private static String COUNT_TOTAL_DOWNLOADS_LAST_7_DAYS = "SELECT count(*) FROM downloadInfo WHERE time >= DATE(NOW() - INTERVAL 7 DAY)";
@@ -197,13 +197,36 @@ public class DownloadStats extends HttpServlet {
             PreparedStatement pstmt = null;
             ResultSet rs = null;
 
+            // The count starts at the amount of downloads that were recorded prior to or before 2024-11-18
+            // (using the query: SELECT type, count(type) FROM downloadInfo WHERE time <= '2024-09-18 00:00:00' GROUP BY type; )
             final Map<String, Long> results = new Hashtable<>();
+            results.put(DownloadServlet.DownloadInfo.openfire.getName(), 8614972L);
+            results.put(DownloadServlet.DownloadInfo.spark.getName(), 7843967L);
+            results.put(DownloadServlet.DownloadInfo.smack.getName(), 534770L);
+            results.put(DownloadServlet.DownloadInfo.xiff.getName(), 97746L);
+            results.put(DownloadServlet.DownloadInfo.spark_update.getName(), 5251304L);
+            results.put(DownloadServlet.DownloadInfo.openfire_plugin.getName(), 9303870L);
+            results.put(DownloadServlet.DownloadInfo.spark_plugin.getName(), 408748L);
+            results.put(DownloadServlet.DownloadInfo.wildfire.getName(), 53636L);
+            results.put(DownloadServlet.DownloadInfo.wildfire_plugin.getName(), 0L);
+            results.put(DownloadServlet.DownloadInfo.whack.getName(), 70773L);
+            results.put(DownloadServlet.DownloadInfo.sparkweb.getName(), 520493L);
+            results.put(DownloadServlet.DownloadInfo.tinder.getName(), 122609L);
+
+            // Additionally, an estimate of the number of downloads prior to accurate download stats being
+            // collected is added. This number was derived by performing a linear regression from the time the
+            // project was first available until November 30, 2006.
+            results.compute(DownloadServlet.DownloadInfo.openfire.getName(), (k,v) -> (v == null ? 0L : v) + 675774L);
+            results.compute(DownloadServlet.DownloadInfo.spark.getName(), (k,v) -> (v == null ? 0L : v) + 438159L);
+            results.compute(DownloadServlet.DownloadInfo.smack.getName(), (k,v) -> (v == null ? 0L : v) + 332007);
+            results.compute(DownloadServlet.DownloadInfo.xiff.getName(), (k,v) -> (v == null ? 0L : v) + 4683L);
+
             long total = 0L;
             try {
                 con = connectionManager.getConnection();
 
                 Instant start = Instant.now();
-                pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_BY_TYPE);
+                pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_BY_TYPE_SINCE);
                 rs = pstmt.executeQuery();
 
                 while (rs.next()) {
@@ -215,27 +238,8 @@ public class DownloadStats extends HttpServlet {
                         continue;
                     }
 
-                    // The count starts at an estimate of the number of downloads prior to
-                    // accurate download stats being collected. This number was derived by performing a linear
-                    // regression from the time the project was first available until November 30, 2006.
-                    switch (downloadInfo) {
-                        case openfire:
-                            amount += 675774L;
-                            break;
-                        case spark:
-                            amount += 438159L;
-                            break;
-                        case smack:
-                            amount += 332007L;
-                            break;
-                        case xiff:
-                            amount += 4683L;
-                            break;
-                        default:
-                            break;
-                    }
                     total += amount;
-                    results.put(downloadInfo.getName(), amount);
+                    results.compute(downloadInfo.getName(), (k,v) -> (v == null ? 0L : v) + amount);
                 }
                 results.put(TOTAL, total);
 
