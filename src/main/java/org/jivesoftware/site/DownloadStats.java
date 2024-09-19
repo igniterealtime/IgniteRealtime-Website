@@ -283,6 +283,7 @@ public class DownloadStats extends HttpServlet {
         if (ipAddress != null && ipAddress.contains(",")) {
             ipAddress = ipAddress.substring(ipAddress.indexOf(",")+1).trim();
         }
+
         final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -345,6 +346,11 @@ public class DownloadStats extends HttpServlet {
     public static void addUpdateToDatabase( String ipAddress, String product, String version, String fileType,
                                             String fileName, DownloadServlet.DownloadInfo downloadInfo )
     {
+        // Correct for X-Forwarded-For header value sometimes containing a list of IPs. Use the last one.
+        if (ipAddress != null && ipAddress.contains(",")) {
+            ipAddress = ipAddress.substring(ipAddress.indexOf(",")+1).trim();
+        }
+
         final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
         Connection con = null;
         PreparedStatement pstmt = null;
@@ -397,6 +403,11 @@ public class DownloadStats extends HttpServlet {
     public static void addCheckUpdate( String ipAddress, String os, String currentVersion, String latestVersion,
                                        DownloadServlet.DownloadInfo info )
     {
+        // Correct for X-Forwarded-For header value sometimes containing a list of IPs. Use the last one.
+        if (ipAddress != null && ipAddress.contains(",")) {
+            ipAddress = ipAddress.substring(ipAddress.indexOf(",")+1).trim();
+        }
+
         final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
         Connection con = null;
         PreparedStatement pstmt = null;
