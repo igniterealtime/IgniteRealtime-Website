@@ -480,7 +480,7 @@ public class PluginDownloadServlet extends HttpServlet {
                 }
                 catch ( IOException | DocumentException e )
                 {
-                    e.printStackTrace();
+                    Log.warn("Unable to load metadata from '{}'", mavenFile, e);
                 }
                 return null;
             } )
