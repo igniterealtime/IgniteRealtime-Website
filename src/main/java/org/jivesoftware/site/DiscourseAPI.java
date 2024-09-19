@@ -119,7 +119,7 @@ public class DiscourseAPI extends HttpServlet
         }
 
         public void run() {
-            Log.info("Retrieving Discourse statistics...");
+            Log.debug("Retrieving Discourse statistics...");
 
             Instant start = Instant.now();
             final Map<Integer, Long> results = new HashMap<>();
@@ -131,7 +131,7 @@ public class DiscourseAPI extends HttpServlet
             if (b != null) {
                 results.put(4, b);
             }
-            Log.debug("Queried all Discourse stats in {}", Duration.between(start, Instant.now()));
+            Log.info("Queried all Discourse stats in {}", Duration.between(start, Instant.now()));
 
             // Replace all values in the object used by the website in one go.
             counts.clear();

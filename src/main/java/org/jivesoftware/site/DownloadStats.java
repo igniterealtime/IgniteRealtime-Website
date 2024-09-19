@@ -190,7 +190,7 @@ public class DownloadStats extends HttpServlet {
         }
 
         public void run() {
-            Log.info("Retrieving downloads statistics...");
+            Log.debug("Retrieving downloads statistics...");
 
             final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
             Connection con = null;
@@ -254,7 +254,7 @@ public class DownloadStats extends HttpServlet {
 
                 rs.close();
                 pstmt.close();
-                Log.debug("Queried all download stats in {}", Duration.between(start, Instant.now()));
+                Log.info("Queried all-time download stats in {}", Duration.between(start, Instant.now()));
 
                 start = Instant.now();
                 pstmt = con.prepareStatement(COUNT_TOTAL_DOWNLOADS_LAST_7_DAYS);
@@ -264,7 +264,7 @@ public class DownloadStats extends HttpServlet {
                     lastDays = rs.getLong(1);
                 }
                 results.put(TOTAL7DAYS, lastDays);
-                Log.debug("Queried last 7 days download stats in {}", Duration.between(start, Instant.now()));
+                Log.info("Queried last 7 days download stats in {}", Duration.between(start, Instant.now()));
 
                 // Replace all values in the object used by the website in one go.
                 counts.clear();
