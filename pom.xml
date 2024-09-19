@@ -120,7 +120,7 @@
                     <configuration>
                         <configfiles>
                             <configfile>
-                                <file>${project.basedir}/src/it/tomcat8x/context.xml</file>
+                                <file>${project.basedir}/src/it/tomcat9x/context.xml</file>
                                 <todir>conf</todir>
                             </configfile>
                         </configfiles>
