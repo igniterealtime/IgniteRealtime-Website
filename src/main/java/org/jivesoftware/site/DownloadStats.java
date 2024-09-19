@@ -279,6 +279,10 @@ public class DownloadStats extends HttpServlet {
      */
     public static void addListingToDatabase( String ipAddress, String product, String os, int type, ServletContext context )
     {
+        // Correct for X-Forwarded-For header value sometimes containing a list of IPs. Use the last one.
+        if (ipAddress != null && ipAddress.contains(",")) {
+            ipAddress = ipAddress.substring(ipAddress.indexOf(",")+1).trim();
+        }
         final DbConnectionManager connectionManager = DbConnectionManager.getInstance();
         Connection con = null;
         PreparedStatement pstmt = null;

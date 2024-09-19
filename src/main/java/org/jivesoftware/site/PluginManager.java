@@ -35,6 +35,8 @@ import org.jivesoftware.util.PluginVersionComparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static org.jivesoftware.site.PluginDownloadServlet.getUncompressedEntryFromArchive;
+
 public class PluginManager
 {
     private static final Logger Log = LoggerFactory.getLogger( PluginManager.class );
@@ -382,6 +384,10 @@ public class PluginManager
             this.mavenFile = mavenFile;
             try ( final JarFile archive = new JarFile( mavenFile.toFile() ) )
             {
+                if (getUncompressedEntryFromArchive(archive, "plugin.xml") == null) {
+                    throw new IOException("Unable to find 'plugin.xml' in: " + mavenFile);
+                }
+
                 this.hasReadme = PluginDownloadServlet.archiveContainsEntry( archive, "readme.html");
                 this.hasChangelog = PluginDownloadServlet.archiveContainsEntry( archive, "changelog.html");
 
