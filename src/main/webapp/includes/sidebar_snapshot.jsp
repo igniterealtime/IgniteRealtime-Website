@@ -10,7 +10,7 @@
                 long downloads = 0;
 
                 try {
-                    downloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.valueOf(project));
+                    downloads = DownloadStats.getDownloadsForType(DownloadServlet.DownloadInfo.forName(project));
                 }
                 catch (Exception e) { LoggerFactory.getLogger( "sidebar_snapshot.jsp" ).debug( "An exception occurred that can probably be ignored.", e); }
 

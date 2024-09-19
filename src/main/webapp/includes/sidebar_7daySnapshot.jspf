@@ -13,7 +13,7 @@
     <div class="ignite_sidebar_body">
         <c:if test="${downloadsLast7Days gt 0}">
             <div class="ignite_sidebar_body_stat">
-                <span>Recent Downloads</span> <strong><fmt:formatNumber value="${downloadsLast7Days}"/></strong>
+                <span>Downloads</span> <strong><fmt:formatNumber value="${downloadsLast7Days}"/></strong>
             </div>
         </c:if>
 
@@ -32,6 +32,9 @@
 <%--                <strong><%= blogService48.getBlogPostCount() %></strong>--%>
 <%--            </div>--%>
         </cache:cache>
+        <div class="ignite_sidebar_body_stat">
+            <em>Activity in last 7 days</em>
+        </div>
     </div>
     <div class="ignite_sidebar_btm"></div>
 </div>
