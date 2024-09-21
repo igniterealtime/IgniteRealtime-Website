@@ -2,10 +2,12 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="org.jivesoftware.site.DownloadStats" %>
 <%@ page import="org.jivesoftware.site.DiscourseAPI" %>
+<%@ page import="org.jivesoftware.site.GitHubAPI" %>
 <%
     request.setAttribute("downloadsLast7Days", DownloadStats.getTotalDownloadsLast7Days());
     request.setAttribute("activeMembers", DiscourseAPI.getActiveMembersLast7Days());
     request.setAttribute("newPosts", DiscourseAPI.getNewPostsLast7Days());
+    request.setAttribute("commits", GitHubAPI.getTotalCommitCountLastWeek());
 %>
 <div class="ignite_sidebar_bluebox_photo">
     <div class="ignite_sidebar_top"></div>
@@ -31,6 +33,12 @@
 <%--            <div class="ignite_sidebar_body_stat"><span>Blog Entries</span>--%>
 <%--                <strong><%= blogService48.getBlogPostCount() %></strong>--%>
 <%--            </div>--%>
+        <cache:cache time="30" key="/github/statistics/usage">
+            <c:if test="${not empty commits}">
+                <div class="ignite_sidebar_body_stat"><span>Code Commits</span>
+                    <strong><fmt:formatNumber value="${commits}"/></strong>
+                </div>
+            </c:if>
         </cache:cache>
         <div class="ignite_sidebar_body_stat">
             <em>Activity in last 7 days</em>
