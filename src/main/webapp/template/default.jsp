@@ -14,7 +14,7 @@
 <head>
     <title>Ignite Realtime: <decorator:title /></title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />	
     <meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="ignite, igniterealtime, java, open source, openfire, wildfire, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, pade, xiff, asterisk" />"/>
     <meta property="og:title" content="Ignite Realtime: <decorator:title />" />
     <meta property="og:type" content="website" />

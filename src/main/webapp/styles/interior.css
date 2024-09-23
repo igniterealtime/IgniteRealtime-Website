@@ -357,7 +357,7 @@ img.ignite_body_image_right {
     overflow: hidden;
     padding: 0;
     margin: 10px 0 0 0;
-    width: 48%;
+    /* width: 48%; go full width for mobile compatibility*/
     height: 170px;
     background: transparent url(../images/ignite_projects_bg.gif) no-repeat;
     background-position: 0 18px;
