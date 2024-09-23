@@ -6,6 +6,7 @@ import org.apache.hc.client5.http.impl.classic.*;
 import org.apache.hc.core5.http.*;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.http.io.support.ClassicRequestBuilder;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -24,24 +25,55 @@ public class RestClient {
         .build();
 
     public JSONObject get(String url) {
-        JSONObject result = null;
+        return get(url, null);
+    }
+
+    public JSONObject get(String url, Map<String, String> headers)
+    {
+        try {
+            final String result = getAsString(url, headers);
+            if (result == null) {
+                return null;
+            }
+            return new JSONObject(result);
+        } catch (JSONException e) {
+            Log.warn("Invalid content while querying '{}' for a JSON Object", url, e);
+            return null;
+        }
+    }
+
+    public JSONArray getAsArray(String url, Map<String, String> headers)
+    {
+        try {
+            final String result = getAsString(url, headers);
+            if (result == null) {
+                return null;
+            }
+            return new JSONArray(result);
+        } catch (JSONException e) {
+            Log.warn("Invalid content while querying '{}' for a JSON Array", url, e);
+            return null;
+        }
+    }
+
+    public String getAsString(String url, Map<String, String> headers) {
 
         try (final CloseableHttpClient httpclient = CachingHttpClients.custom().setCacheConfig(cacheConfig).build())
         {
-            final ClassicHttpRequest httpGet = ClassicRequestBuilder.get(url).build();
-            result = httpclient.execute(httpGet, response -> {
-                try {
-                    return new JSONObject(EntityUtils.toString(response.getEntity()));
-                } catch (JSONException e) {
-                    Log.warn("Invalid content while querying '{}'", url, e);
-                    return null;
+            final ClassicRequestBuilder builder = ClassicRequestBuilder.get(url);
+            if (headers != null) {
+                for (Map.Entry<String, String> header : headers.entrySet()) {
+                    builder.addHeader(header.getKey(), header.getValue());
                 }
-            });
+            }
+
+            final ClassicHttpRequest httpGet = builder.build();
+            return httpclient.execute(httpGet, response -> EntityUtils.toString(response.getEntity()));
         } catch (IOException e) {
             Log.warn("Fatal transport error while querying '{}'", url, e);
         }
 
-        return result;
+        return null;
     }
 
     public JSONObject post(String url, Map<String, String> headers, Map<String, String> parameters)
