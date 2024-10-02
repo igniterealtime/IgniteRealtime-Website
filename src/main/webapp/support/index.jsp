@@ -83,7 +83,12 @@
                     </div>
 
                     <div id="ignite_support_activity_articles">
-                            <h4>Recent Articles</h4>
+                        <h4>Whitepapers</h4>
+                        <div class="articles"><a href="articles/whitepaper_xmpp.jsp">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
+
+                        <hr style="margin: 1em 0;">
+
+                        <h4>Recent Articles</h4>
                         <div class="articles"><a href="articles/xmpp_network_graph.jsp">Creating the XMPP Network Graph</a></div>
                         <div class="articles"><a href="articles/openfire_conversations_audio_video.jsp">Preparing Openfire for Audio/Video calls with Conversations</a></div>
                         <div class="articles"><a href="articles/ofmeetings_alternative_zoom.jsp">Openfire Meetings as an alternative to Zoom</a></div>

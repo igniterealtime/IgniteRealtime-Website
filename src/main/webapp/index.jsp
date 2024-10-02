@@ -106,6 +106,9 @@
                     Ignite Realtime furthers XMPP through best of breed protocol implementations,
                     development of new protocol extensions, and participation to the XMPP Standards Foundation (XSF).
                 </p>
+                <p>
+                    <a href="support/articles/whitepaper_xmpp.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a>
+                </p>
             </div>
 
         </article>

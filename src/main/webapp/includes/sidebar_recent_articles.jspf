@@ -1,4 +1,4 @@
-<div class="sidebar sidebar_light">
+<div class="sidebar sidebar_light sidebar_gray">
     <h1 class="sidebar_header">Recent Articles</h1>
     <div class="articles"><a href="/support/articles/xmpp_network_graph.jsp">Creating the XMPP Network Graph</a></div>
     <div class="articles"><a href="/support/articles/openfire_conversations_audio_video.jsp">Preparing Openfire for Audio/Video calls with Conversations</a></div>

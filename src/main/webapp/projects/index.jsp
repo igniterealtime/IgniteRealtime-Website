@@ -177,6 +177,7 @@
 
     <section id="ignite_body_sidebar">
         <jsp:include page="/includes/sidebar_7daySnapshot.jspf"/>
+        <jsp:include page="/includes/sidebar_whitepapers.jspf"/>
         <jsp:include page="/includes/sidebar_recent_articles.jspf"/>
         <jsp:include page="/includes/sidebar_chat.jspf"/>
         <jsp:include page="/includes/sidebar_testimonial.jspf"/>
