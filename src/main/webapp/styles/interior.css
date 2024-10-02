@@ -288,7 +288,6 @@ styles specific to the interior pages for the Ignite Real Time site.
 #ignite_body_header {
     float: left;
     width: 100%;
-    height: 65px;
     padding: 0;
     margin: 0 0 20px 0;
     background: transparent linear-gradient(to bottom, white, whitesmoke);
@@ -297,7 +296,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     }
 #ignite_body_header h1 {
     float: left;
-    padding: 20px 10px 0 20px;
+    padding: 20px 10px 10px 20px;
     margin: 0;
     font-weight: normal;
     font-size: 20pt;
@@ -306,7 +305,7 @@ styles specific to the interior pages for the Ignite Real Time site.
     }
 #ignite_body_header h2 {
     float: left;
-    padding: 22px 10px 0 20px;
+    padding: 22px 10px 10px 20px;
     margin: 0;
     font-weight: normal;
     font-size: 16pt;
@@ -1202,7 +1201,7 @@ img.ignite_body_image_right {
     }
 
 
-.ignite_article_excerpt, 
+.ignite_article_excerpt,
 .ignite_service-provider {
     border-bottom: 1px solid #dcdcdc;
     }

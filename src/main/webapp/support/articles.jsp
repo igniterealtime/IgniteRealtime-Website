@@ -16,7 +16,19 @@
 
     <main id="ignite_body_leftcol">
         <article id="ignite_int_body">
-            
+
+            <header id="ignite_body_header">
+                <h2>Whitepapers</h2>
+            </header>
+
+            <div class="ignite_int_body_support">
+                <div class="ignite_article_excerpt">
+                    <h3><a href="articles/whitepaper_xmpp.jsp">XMPP: The Protocol for Open, Extensible Instant Messaging</a></h3>
+                    <p>XMPP is open, flexible and extensible, making it the protocol of choice for real-time communications over the Internet. It enables the reliable transport of any structured XML data between individuals or applications.
+                        <a href="articles/whitepaper_xmpp.jsp">Read&nbsp;More&nbsp;></a></p>
+                </div>
+            </div>
+
             <header id="ignite_body_header">
                 <h2>Articles</h2>
             </header>
