@@ -1,4 +1,3 @@
-<%@ page import="org.jivesoftware.site.Versions"%>
 <%@ page import="org.jivesoftware.site.FeedManager"%>
 <%@ taglib uri="http://www.opensymphony.com/oscache" prefix="cache" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -49,10 +48,10 @@
 
                 <div class="ignite_project_big ignite_project_big_left" style="height: unset; background: linear-gradient(to bottom, whitesmoke, white);">
                     <div class="ignite_project_content">
-                        <a href="projects/" class="ignite_project_turnkey"><h1>Turn-key IM Solutions</h1></a>
+                        <a href="about/im-solutions.jsp" class="ignite_project_turnkey"><h1>Turn-key IM Solutions</h1></a>
                         <p>Our client and server products allow you set up a cross-platform, real-time collaboration server optimized for business and organizations in moments!</p>
                         <p>Highly customizable through plugins and configuration, our clients and servers easily integrate in your pre-existing ICT infrastructure.</p>
-                        <p><a href="projects/" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+                        <p><a href="about/im-solutions.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
                     </div>
                 </div>
                 <div class="ignite_project_big" style="height: unset; background: linear-gradient(to bottom, whitesmoke, white);">
@@ -123,17 +122,7 @@
             <jsp:param name="hideAuthor" value="true"/>
         </jsp:include>
 
-        <div class="sidebar sidebar_dark sidebar_grad">
-            <h1 class="sidebar_header">Projects</h1>
-            <div><strong><a href="projects/openfire/">Openfire</a></strong> <%= Versions.getVersion("openfire") %> <a href="downloads/#openfire" class="button_download">Download</a></div>
-            <div><strong><a href="projects/spark/">Spark</a></strong> <%= Versions.getVersion("spark") %> <a href="downloads/#spark" class="button_download">Download</a></div>
-            <div><strong><a href="projects/pade/">P&agrave;d&eacute;</a></strong> <%= Versions.getVersion("pade") %> <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba" class="button_download">Install</a></div>
-    <!--        <div><strong><a href="projects/sparkweb/">SparkWeb</a></strong> <%= Versions.getVersion("sparkweb") %> <a href="downloads/#sparkweb" class="button_download">Download</a></div> -->
-            <div><strong><a href="projects/smack/">Smack</a></strong> <%= Versions.getVersion("smack") %> <a href="downloads/#smack" class="button_download">Download</a></div>
-            <div><strong><a href="projects/tinder/">Tinder</a></strong> <%= Versions.getVersion("tinder") %> <a href="downloads/#tinder" class="button_download">Download</a></div>
-            <div><strong><a href="projects/whack/">Whack</a></strong> <%= Versions.getVersion("whack") %> <a href="downloads/#whack" class="button_download">Download</a></div>
-    <!--        <div><strong><a href="projects/xiff/">XIFF</a></strong> <%= Versions.getVersion("xiff") %> <a href="downloads/#xiff" class="button_download">Download</a></div> -->
-        </div>
+        <jsp:include page="/includes/sidebar_projects.jspf"/>
 
         <jsp:include page="/includes/sidebar_forumactivity.jsp">
             <jsp:param name="discourseCategory" value="/latest"/>

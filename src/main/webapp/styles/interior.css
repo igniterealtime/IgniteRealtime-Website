@@ -350,6 +350,30 @@ img.ignite_body_image_right {
     float: right;
     }
 
+#ignite_body_header_with_content {
+    background: linear-gradient(to bottom, white, #EEE);
+    padding: 0 18px 18px;
+    font-size: 10pt;
+    border-bottom: 1px dotted gray;
+}
+
+#ignite_body_header_with_content h1 {
+    font-size: 20pt;
+    font-weight: normal;
+    margin: 20px 0 4px 0;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+#ignite_body_header_with_content h1 span.subtitle {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ababab;
+    font-size: 10pt;
+    font-weight: bold;
+    margin: 0 1ch;
+    text-transform: uppercase;
+}
+
 /* projects page styles */
 .ignite_project_big {
     float: left;
