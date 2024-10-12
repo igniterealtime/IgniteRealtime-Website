@@ -1,0 +1,11 @@
+<%@ page import="org.jivesoftware.site.Versions"%>
+
+<div class="sidebar sidebar_dark sidebar_grad">
+    <h1 class="sidebar_header">Projects</h1>
+    <div><strong><a href="<%=request.getContextPath()%>/projects/openfire/">Openfire</a></strong> <%= Versions.getVersion("openfire") %> <a href="<%=request.getContextPath()%>/downloads/#openfire" class="button_download">Download</a></div>
+    <div><strong><a href="<%=request.getContextPath()%>/projects/spark/">Spark</a></strong> <%= Versions.getVersion("spark") %> <a href="<%=request.getContextPath()%>/downloads/#spark" class="button_download">Download</a></div>
+    <div><strong><a href="<%=request.getContextPath()%>/projects/pade/">P&agrave;d&eacute;</a></strong> <%= Versions.getVersion("pade") %> <a href="https://chrome.google.com/webstore/detail/pade-unified-communicatio/fohfnhgabmicpkjcpjpjongpijcffaba" class="button_download">Install</a></div>
+    <div><strong><a href="<%=request.getContextPath()%>/projects/smack/">Smack</a></strong> <%= Versions.getVersion("smack") %> <a href="<%=request.getContextPath()%>/downloads/#smack" class="button_download">Download</a></div>
+    <div><strong><a href="<%=request.getContextPath()%>/projects/tinder/">Tinder</a></strong> <%= Versions.getVersion("tinder") %> <a href="<%=request.getContextPath()%>/downloads/#tinder" class="button_download">Download</a></div>
+    <div><strong><a href="<%=request.getContextPath()%>/projects/whack/">Whack</a></strong> <%= Versions.getVersion("whack") %> <a href="<%=request.getContextPath()%>/downloads/#whack" class="button_download">Download</a></div>
+</div>
