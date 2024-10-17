@@ -14,7 +14,7 @@
 %>
 <html>
 <head>
-<title>a real time collaboration community site</title>
+<title>A real time collaboration community site</title>
 <meta name="body-id" content="home" />
 <meta name="panel-name" content="home" />
 <style media="screen">
@@ -56,10 +56,10 @@
                 </div>
                 <div class="ignite_project_big" style="height: unset; background: linear-gradient(to bottom, whitesmoke, white);">
                     <div class="ignite_project_content">
-                        <a href="projects/" class="ignite_project_dev"><h1>Development Platform</h1></a>
+                        <a href="about/dev-platform.jsp" class="ignite_project_dev"><h1>Development Platform</h1></a>
                         <p>Our server product and libraries are exceptionally well suited as a development platform for your custom instant messaging or data sharing solution!</p>
                         <p>The software that we produce is based on well established open standards, has extensive extension APIs and come with a great deal of pre-existing functionality - ideal to form the basis of your project!</p>
-                        <p><a href="projects/" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+                        <p><a href="about/dev-platform.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
                     </div>
                 </div>
 
