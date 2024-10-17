@@ -3,7 +3,7 @@
 <%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
 <html>
 <head>
-    <title>a real time collaboration community site</title>
+    <title>Our Instant Messaging Solutions</title>
     <meta name="body-id" content="home" />
     <meta name="panel-name" content="home" />
     <style media="screen">
