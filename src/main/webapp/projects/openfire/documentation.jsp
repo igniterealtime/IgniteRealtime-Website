@@ -46,6 +46,7 @@
                 <h3>Advanced Server Administration</h3>
                 <p>The following guides cover more specialized topics. These aren't necessarily applicable to every Openfire installation.</p>
                 <ul>
+                    <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/network-configuration-guide.html">Network Configuration Guide</a> - Describes how to make Openfire accessible to its users.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/ssl-guide.html">TLS Guide</a> - A guide to setting up Openfire's TLS secure socket support.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/separating-admin-users-guide.html">Separating Administrative Users Guide</a> - A guide to setting up Openfire to work with different user stores for admins and non-administrative users.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/load-balancing.html">Load Balancing Guide</a> - How to spread client and server connections over multiple instances of Openfire.</li>
@@ -66,6 +67,7 @@
                 <p>Guides for developers that work with the Openfire source code.</p>
                 <ul>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/source-build.html">Building the Source</a> - Instructions for downloading and compiling the Openfire source code.</li>
+                    <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/demoboot-guide.html">Starting an auto-provisioned instance of Openfire (demoboot)</a> - Starting a running Openfire instance without running through the setup.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/ide-vscode-setup.html">Openfire Source Code in Visual Studio Code</a> - A short tutorial on how to work with the Openfire source code in the Visual Studio Code IDE.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/plugin-dev-guide.html">Plugin Developer Guide</a> - A guide to writing and installing plugins for Openfire.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/translator-guide.html">Translator Guide</a> - Information for those interested in translating the admin console of Openfire into other languages.</li>
@@ -93,6 +95,7 @@
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/client-minimal-working-example-stropejs.html">Strophe.js: A Minimal Working Example (in Javascript)</a> - Shows how to use a client implemented with the Strophe.js library (Javascript) to connect to Openfire.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/client-minimal-working-example-twistedwords.html">Twisted Words: A Minimal Working Example (in Python)</a> - Shows how to use a client implemented with the Twisted Words library (Python) to connect to Openfire.</li>
                     <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/client-minimal-working-example-xmppdotnet.html">XmppDotNet: A Minimal Working Example (in C# / .NET)</a> - Shows how to use a client implemented with the XmppDotNet library (.NET) to connect to Openfire.</li>
+                    <li><a href="https://download.igniterealtime.org/openfire/docs/latest/documentation/client-minimal-working-example-whixp.html">Whixp: A Minimal Working Example (in Dart)</a> - Shows how to use a client implemented with the Whixp library (Dart) to connect to Openfire.</li>
                 </ul>
 
                 <h3>Reference Documentation</h3>
