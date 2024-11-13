@@ -8,4 +8,7 @@
     <div><strong><a href="<%=request.getContextPath()%>/projects/smack/">Smack</a></strong> <%= Versions.getVersion("smack") %> <a href="<%=request.getContextPath()%>/downloads/#smack" class="button_download">Download</a></div>
     <div><strong><a href="<%=request.getContextPath()%>/projects/tinder/">Tinder</a></strong> <%= Versions.getVersion("tinder") %> <a href="<%=request.getContextPath()%>/downloads/#tinder" class="button_download">Download</a></div>
     <div><strong><a href="<%=request.getContextPath()%>/projects/whack/">Whack</a></strong> <%= Versions.getVersion("whack") %> <a href="<%=request.getContextPath()%>/downloads/#whack" class="button_download">Download</a></div>
+    <div style="text-align: center;">
+        <strong><a href="/roadmap.jsp">Roadmap</a></strong>
+    </div>
 </div>
