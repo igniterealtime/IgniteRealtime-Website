@@ -6,11 +6,8 @@
         return;
     }
 %>
-<%@ page import="java.net.URLEncoder"%>
-<%@ page import="java.nio.charset.StandardCharsets"%>
 <%@ page import="java.nio.file.Path"%>
 <%@ page import="java.nio.file.Paths"%>
-<%@ page import="java.text.DateFormat"%>
 <%@ page import="java.util.List"%>
 <%@ page import="org.jivesoftware.site.PluginManager" %>
 <%@ page import="java.io.BufferedReader" %>
@@ -22,6 +19,7 @@
 <%@ page import="org.jsoup.safety.Safelist" %>
 <%@ page import="org.slf4j.LoggerFactory" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://igniterealtime.org/website/tags" prefix="ir" %>
 <%
     String openfirePluginsPath = config.getServletContext().getInitParameter("openfire-plugins-path");
