@@ -53,6 +53,7 @@
                                         <li>Add support for the Online Certificate Status Protocol</li>
                                         <li>Add for Certificate Revocation List support</li>
                                         <li>Additional options for archiving chat rooms</li>
+                                        <li>Improved IPv6 support</li>
                                     </ul></td>
                                     <td><ul>
                                         <li>Bump support for modern SASL (authentication) mechanism</li>
