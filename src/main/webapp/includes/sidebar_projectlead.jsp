@@ -11,7 +11,7 @@
         name = "dwd";
         avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/d/e19b73/45.png";
         profileLink = "https://discourse.igniterealtime.org/u/dwd";
-        profile = "Dave Cridland is also a member of the XMPP Council, the technical steering group that approves XMPP Extension Protocols.";
+        profile = "Tech wizard by trade, problem solver by nature, pun master by choice.";
     }
     else if (project.equals("spark")) {
      // name = "wroot";
@@ -26,7 +26,7 @@
         name = "dele";
         avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/dele_olajide/45/5885_1.png";
         profileLink = "https://discourse.igniterealtime.org/u/dele_olajide";
-        profile = "is a systems integrator.<br/> A fancy name for a jack of all trades and master of none ;-)";
+        profile = "The man who sees opportunities in challenges—and knows how to make them happen.";
     }
     else if (project.equals("sparkweb")) {
         name = "vacant";
@@ -38,19 +38,19 @@
         name = "Flow";
         avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/flow/45/13_1.png";
         profileLink = "https://discourse.igniterealtime.org/u/flow";
-        profile = "Florian Schmaus is also a member of the XMPP Standards Foundation.";
+        profile = "Tech enthusiast with a knack for solving the unsolvable—one line of code at a time.";
     }
     else if (project.equals("tinder")) {
         name = "Guus";
         avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/guus/45/15_1.png";
         profileLink = "https://discourse.igniterealtime.org/u/guus";
-        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
+        profile = "Guus believes in a world where every chat app is interoperable, every server is optimized, and every bio has a punchline. And honestly? We’re just here for the ride.";
     }
     else if (project.equals("whack")) {
         name = "Guus";
         avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/guus/45/15_1.png";
         profileLink = "https://discourse.igniterealtime.org/u/guus";
-        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
+        profile = "Guus believes in a world where every chat app is interoperable, every server is optimized, and every bio has a punchline. And honestly? We’re just here for the ride.";
     }
     else if (project.equals("asterisk-im")) {
         name = "Marcelo";
@@ -62,7 +62,7 @@
         name = "Guus";
         avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/guus/45/15_1.png";
         profileLink = "https://discourse.igniterealtime.org/u/guus";
-        profile = "Won't tell us where he's from, but says he's from the 'Nether Lands' ... wait that's a real country?";
+        profile = "Guus believes in a world where every chat app is interoperable, every server is optimized, and every bio has a punchline. And honestly? We’re just here for the ride.";
     }
     else {
         name = "vacant";
