@@ -68,7 +68,7 @@
                     <span class="ignite_service-provider_logo"><img src="../images/logo-goodbytes-32.png" alt="GoodBytes" width="32" height="32" border="0"></span>
                     <div class="ignite_service-provider_content">
                         <h3>GoodBytes</h3>
-                        <span class="ignite_service-provider_url"><a href="https://www.goodbytes.nl/ignite.html">goodbytes.nl</a></span>
+                        <span class="ignite_service-provider_url"><a href="https://www.goodbytes.nl">goodbytes.nl</a></span>
                         <p>
                             GoodBytes specializes in Openfire development and integration challenges,
                             and provides installation, configuration, and maintenance services.
