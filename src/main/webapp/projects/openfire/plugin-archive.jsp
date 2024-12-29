@@ -157,10 +157,10 @@
                                     </td>
                                     <td class="c2" style="white-space: nowrap;">
                                         <c:if test="${plugin.hasReadme}">
-                                            <a href="plugins/${ir:urlEncode(version)}/${ir:urlEncode(pluginName)}/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" alt="ReadMe"></a>
+                                            <a href="plugins/${ir:urlEncode(version)}/${ir:urlEncode(param.plugin)}/readme.html"><img src="../../images/doc-readme-16x16.gif" width="16" height="16" alt="ReadMe"></a>
                                         </c:if>
                                         <c:if test="${plugin.hasChangelog}">
-                                            <a href="plugins/${ir:urlEncode(version)}/${ir:urlEncode(pluginName)}/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" alt="Changelog"></a>
+                                            <a href="plugins/${ir:urlEncode(version)}/${ir:urlEncode(param.plugin)}/changelog.html"><img src="../../images/doc-changelog-16x16.gif" width="16" height="16" alt="Changelog"></a>
                                         </c:if>
                                     </td>
                                     <td class="c3" style="white-space: nowrap;">
