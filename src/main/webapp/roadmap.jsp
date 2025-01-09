@@ -40,7 +40,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 5.0.x, Q4 2024 - Q1 2025</th>
+                                    <th>Version 5.0.x, Q1 2025</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -49,13 +49,15 @@
                                     <td class="label">Openfire</td>
                                     <td><ul>
                                         <li>Upgrade of embedded webserver Jetty, from 10 to 12</li>
-                                        <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
                                         <li>Add support for the Online Certificate Status Protocol</li>
                                         <li>Add for Certificate Revocation List support</li>
                                         <li>Additional options for archiving chat rooms</li>
                                         <li>Improved IPv6 support</li>
+                                        <li>Reproducible builds</li>
+                                        <li>Improved support to integrate with multiple external data sources</li>
                                     </ul></td>
                                     <td><ul>
+                                        <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
                                         <li>Bump support for modern SASL (authentication) mechanism</li>
                                         <li>XEP-0440: SASL Channel-Binding Type Capability</li>
                                         <li>XEP-0474: SASL SCRAM Downgrade Protection</li>
@@ -80,7 +82,7 @@
                     </div>
                 </p>
 
-                <p>* Plan as of November 13, 2024. Subject to change; we make no promises on future releases. :-)</p>
+                <p>* Plan as of January 9, 2025. Subject to change; we make no promises on future releases. :-)</p>
 
                 <h2>Can we please have ... ?</h2>
 
