@@ -55,6 +55,7 @@
                                         <li>Improved IPv6 support</li>
                                         <li>Reproducible builds</li>
                                         <li>Improved support to integrate with multiple external data sources</li>
+                                        <li>Official Docker images</li>
                                     </ul></td>
                                     <td><ul>
                                         <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
