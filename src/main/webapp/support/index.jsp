@@ -109,7 +109,7 @@
                             <li class="ignite_support_projlink"><a href="../projects/openfire/documentation.jsp">Openfire <c:out value="${versionOpenfire}"/></a></li>
                             <li class="ignite_support_projlink"><a href="../projects/spark/documentation.jsp">Spark <c:out value="${versionSpark}"/></a></li>
                             <li class="ignite_support_projlink"><a href="../projects/smack/readme">Smack API <c:out value="${versionSmack}"/></a></li>
-                            <li class="ignite_support_projlink"><a href="https://igniterealtime.github.io/pade/help/">Pàdé <c:out value="${versionPade}"/></a></li>
+                            <li class="ignite_support_projlink"><a href="https://igniterealtime.github.io/openfire-pade-plugin/help/">Pàdé <c:out value="${versionPade}"/></a></li>
                             <li class="ignite_support_projlink"><a href="../projects/botz/documentation.jsp">Botz <c:out value="${versionBotz}"/></a></li>
                             <li class="ignite_support_projlink"><a href="../projects/tinder/documentation.jsp">Tinder API <c:out value="${versionTinder}"/></a></li>
                             <li class="ignite_support_projlink"><a href="../projects/whack/documentation.jsp">Whack API <c:out value="${versionWhack}"/></a></li>
