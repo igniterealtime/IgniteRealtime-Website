@@ -11,7 +11,7 @@ jobs:
 
     steps:
       # Checkout Repo
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup JDK ${{ matrix.java }}
         uses: actions/setup-java@v1
@@ -19,7 +19,7 @@ jobs:
           java-version: ${{ matrix.java }}
 
       - name: Cache Maven repository
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-java${{ matrix.java }}-maven-${{ hashFiles('**/pom.xml') }}

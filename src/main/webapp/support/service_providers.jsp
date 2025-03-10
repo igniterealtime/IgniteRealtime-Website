@@ -91,19 +91,6 @@
                     </div>
                 </div>
 
-                <div class="ignite_service-provider">
-                    <span class="ignite_service-provider_logo"><img src="../images/logo_v2_small.gif" alt="Version 2 Software" width="45" height="32" border="0"></span>
-                    <div class="ignite_service-provider_content">
-                        <h3>Version 2 Software</h3>
-                        <span class="ignite_service-provider_url"><a href="http://version2software.com/">version2software.com</a></span>
-                        <p>Version 2 Software creates custom software solutions, specializing in the
-                            customization and integration of Openfire and Spark. Version 2 Software
-                            has developed a number of Openfire and Spark plugins for both the Ignite
-                            Realtime community and private organizations.
-                        </p>
-                    </div>
-                </div>
-
             </div>
 
         </article>
