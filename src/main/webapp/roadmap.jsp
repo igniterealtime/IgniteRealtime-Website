@@ -40,7 +40,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 5.0.x, Q1 2025</th>
+                                    <th>Version 5.0.x, Q2 2025</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -83,7 +83,56 @@
                     </div>
                 </p>
 
-                <p>* Plan as of January 9, 2025. Subject to change; we make no promises on future releases. :-)</p>
+                <h2 class="road">Tinder*</h2>
+                <p>
+                <div class="road-table">
+                    <table width="100%">
+                        <thead>
+                        <tr>
+                            <th class="nothing">&nbsp;</th>
+                            <th>Version 2.1.0x, Q2 2025</th>
+                            <th>Future</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="label">Tinder</td>
+                            <td><ul>
+                                <li>Minimum Java version: 11</li>
+                                <li>Maintenance: update various dependencies</li>
+                                <li>Drop unused / deprecated code</li>
+                            </ul></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <h2 class="road">Whack*</h2>
+                <p>
+                <div class="road-table">
+                    <table width="100%">
+                        <thead>
+                        <tr>
+                            <th class="nothing">&nbsp;</th>
+                            <th>Version 3.0.0x, Q2 2025</th>
+                            <th>Future</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="label">Whack</td>
+                            <td><ul>
+                                <li>Improve reconnection logic</li>
+                                <li>Drop unused & outdated embedded webserver</li>
+                                <li>Allow for custom Executor Services</li>
+                            </ul></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                </p>
+
+                <p>* Plan as of April 9, 2025. Subject to change; we make no promises on future releases. :-)</p>
 
                 <h2>Can we please have ... ?</h2>
 
