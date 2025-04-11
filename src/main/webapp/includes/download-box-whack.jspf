@@ -1,22 +1,15 @@
-<%@ page import="org.jivesoftware.site.Versions, java.io.File, java.text.DecimalFormat, java.text.SimpleDateFormat, java.util.Date"%>
+<%@ page import="org.jivesoftware.site.Versions"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
 <%  { %>
 
-<%  String path = request.getContextPath();
-    String buildsPath = application.getInitParameter("builds-path");
-
+<%
     String version = Versions.getVersion("whack");
     if (version == null) {
         version = "0.0";
     }
-
-    DecimalFormat formatter = new DecimalFormat("0.00");
-    String basedir = buildsPath + "/whack";
-    File binJar = new File(basedir, "whack_" + version.replace('.','_') + ".jar");
-    String buildDate = "UNKNOWN";
-    if (binJar.exists()) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
-        buildDate = dateFormat.format(new Date(binJar.lastModified()));
-    }
+    version = URLEncoder.encode(version, StandardCharsets.UTF_8);
+    String mavenCoordinates = "<a href='https://search.maven.org/artifact/org.igniterealtime/whack/" + version + "/jar'>org.igniterealtime:whack:" + version + "</a>:";
 %>
 
 <a id="whack">&nbsp;</a>
@@ -35,24 +28,7 @@
             <h2>Whack <%= version %></h2>
             <p>Easy to use Java XMPP component library.</p>
 
-            <span class="ignite_download_choose">Choose your platform:</span>
-            <span id="whackCpBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('whackCp'); return false;"></a></span>
-
-            <!-- BEGIN cross platform -->
-            <div class="ignite_download_panel" id="whackCp" style="display: none;">
-                <div>
-                    <div class="ignite_download_item">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="/downloadServlet?filename=whack/<%= binJar.getName() %>"><%= binJar.getName() %></a>
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binJar.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                </div>
-            </div>
-            <!-- END cross platform -->
-
+            <span class="ignite_download_choose">Maven Coordinates: <%= mavenCoordinates %></span>
         </div>
     </div>
 </div>

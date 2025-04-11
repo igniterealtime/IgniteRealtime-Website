@@ -1,26 +1,15 @@
-<%@ page import="org.jivesoftware.site.Versions, java.io.File, java.text.DecimalFormat, java.text.SimpleDateFormat, java.util.Date"%>
+<%@ page import="org.jivesoftware.site.Versions"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
 <%  { %>
 
-<%  String path = request.getContextPath();
-    String buildsPath = application.getInitParameter("builds-path");
-
-    String version = Versions.getVersion("tinder");
+<%  String version = Versions.getVersion("tinder");
     if (version == null) {
         version = "0.0";
     }
 
-    DecimalFormat formatter = new DecimalFormat("0.00");
-    String basedir = buildsPath + "/tinder";
-    File binZip = new File(basedir, "tinder_" + version.replace('.','_') + ".zip");
-    File binTarGz = new File(basedir, "tinder_" + version.replace('.','_') + ".tar.gz");
-    File srcZip = new File(basedir, "tinder_src_" + version.replace('.','_') + ".zip");
-    File srcTarGz = new File(basedir, "tinder_src_" + version.replace('.','_') + ".tar.gz");
-
-    String buildDate = "UNKNOWN";
-    if (binZip.exists()) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy");
-        buildDate = dateFormat.format(new Date(binZip.lastModified()));
-    }
+    version = URLEncoder.encode(version, StandardCharsets.UTF_8);
+    String mavenCoordinates = "<a href='https://search.maven.org/artifact/org.igniterealtime/tinder/"+ version + "/jar'>org.igniterealtime:tinder:"+version+"</a>:";
 %>
 
 <a id="tinder">&nbsp;</a>
@@ -35,7 +24,7 @@
             <span class="ignite_downloads_info">
                 <a href="https://discourse.igniterealtime.org/t/introducing-tinder-an-xmpp-object-implementation-library/63975">Readme</a>
                 <!--<a href="/builds/tinder/docs/latest/README.html">Readme & License</a>--></li> |
-                <a href="https://discourse.igniterealtime.org/t/tinder-release-notes/63977">Changelog</a> |
+                <a href="https://igniterealtime.atlassian.net/projects/TINDER/versions/10360/tab/release-report-all-issues">Changelog</a> |
                 <%--<a href="nightly_tinder.jsp">Nightly Builds</a> |  --%>
                 <a href="https://github.com/igniterealtime/tinder">Source</a>
             </span>
@@ -43,31 +32,7 @@
             <h2>Tinder <%= version %></h2>
             <p>A Java based XMPP library, providing an implementation for XMPP stanzas and components.</p>
 
-            <span class="ignite_download_choose">Choose your platform:</span>
-            <span id="tinderCpBtn" class="ignite_download_btn"><a href="#" onClick="toggleDownloadPanel('tinderCp'); return false;"></a></span>
-
-            <!-- BEGIN cross platform -->
-            <div class="ignite_download_panel" id="tinderCp" style="display: none;">
-                <div>
-                    <div class="ignite_download_item">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="/downloadServlet?filename=tinder/<%= binZip.getName() %>"><%= binZip.getName() %></a>
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binZip.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                    <div class="ignite_download_item">
-                        <span class="ignite_download_item_details">
-                            <img src="<%=request.getContextPath()%>/images/icon_zip.gif" alt="" width="17" height="18" border="0">
-                            <a href="/downloadServlet?filename=tinder/<%= binTarGz.getName() %>"><%= binTarGz.getName() %></a>
-                        </span>
-                        <span class="ignite_download_item_date"><%= buildDate %></span>
-                        <span class="ignite_download_item_size"><%= formatter.format((double)binTarGz.length()/1024.0/1024.0) %> MB</span>
-                    </div>
-                </div>
-            </div>
-            <!-- END cross platform -->
+            <span class="ignite_download_choose">Maven Coordinates: <%= mavenCoordinates %></span>
 
         </div>
     </div>
