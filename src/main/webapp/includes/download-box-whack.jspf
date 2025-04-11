@@ -9,7 +9,7 @@
         version = "0.0";
     }
     version = URLEncoder.encode(version, StandardCharsets.UTF_8);
-    String mavenCoordinates = "<a href='https://search.maven.org/artifact/org.igniterealtime/whack/" + version + "/jar'>org.igniterealtime:whack:" + version + "</a>:";
+    String mavenCoordinates = "<a href='https://search.maven.org/artifact/org.igniterealtime/whack/" + version + "/jar'>org.igniterealtime:whack:" + version + "</a>";
 %>
 
 <a id="whack">&nbsp;</a>
