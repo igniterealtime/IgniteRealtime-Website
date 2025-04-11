@@ -9,7 +9,7 @@
     }
 
     version = URLEncoder.encode(version, StandardCharsets.UTF_8);
-    String mavenCoordinates = "<a href='https://search.maven.org/artifact/org.igniterealtime/tinder/"+ version + "/jar'>org.igniterealtime:tinder:"+version+"</a>:";
+    String mavenCoordinates = "<a href='https://search.maven.org/artifact/org.igniterealtime/tinder/"+ version + "/jar'>org.igniterealtime:tinder:"+version+"</a>";
 %>
 
 <a id="tinder">&nbsp;</a>
