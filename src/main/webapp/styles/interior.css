@@ -274,6 +274,7 @@ styles specific to the interior pages for the Ignite Real Time site.
 #ignite_int_body {
     float: left;
     background-color: #fff;
+    width: 100%;
     }
 #ignite_int_full {
     float: left;
@@ -376,34 +377,22 @@ img.ignite_body_image_right {
 
 /* projects page styles */
 .ignite_project_big {
-    float: left;
-    overflow: hidden;
-    padding: 0;
     margin: 10px 0 0 0;
-    width: 48%;
-    height: 170px;
-    background: transparent url(../images/ignite_projects_bg.gif) no-repeat;
-    background-position: 0 18px;
+}
+.ignite_project_big_gradient {
+    background: linear-gradient(to bottom, whitesmoke, white);
     background-size: contain;
     }
 .ignite_project_listing {
     margin-bottom: 20px;
 }
-.ignite_project_big_left {
-    margin-right: 18px;
-    }
 .ignite_project_type {
-    float: left;
-    clear: both;
-    margin: 0;
-    padding: 0;
     font-weight: bold;
     text-transform: uppercase;
     font-size: 10pt;
     color: #ccc;
     }
 .ignite_project_big div.ignite_project_content {
-    float: left;
     width: 95%;
     padding: 17px 0 10px 15px;
     overflow: hidden;
@@ -451,7 +440,7 @@ img.ignite_body_image_right {
     }
 .ignite_project_big a.ignite_project_pade {
     background: transparent url(../images/logo_pade.png) no-repeat 4px 0;
-    }    
+    }
 .ignite_project_big a.ignite_project_smack {
     background: transparent url(../images/logo_smack.png) no-repeat 4px 0;
     }
@@ -500,7 +489,11 @@ img.ignite_body_image_right {
     padding: 4px;
     margin: 0;
     border: 0;
+    width: 1%;
     }
+.ignite_project_table table tr td.ignite_project_table-description {
+    width: 97%;
+}
 .ignite_project_table table tr td.ignite_project_table-title {
     padding-left: 6px;
     }

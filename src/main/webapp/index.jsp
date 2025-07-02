@@ -46,21 +46,26 @@
                     and most active Open Source communities anywhere.
                 </p>
 
-                <div class="ignite_project_big ignite_project_big_left" style="height: unset; background: linear-gradient(to bottom, whitesmoke, white);">
-                    <div class="ignite_project_content">
-                        <a href="about/im-solutions.jsp" class="ignite_project_turnkey"><h1>Turn-key IM Solutions</h1></a>
-                        <p>Our client and server products allow you set up a cross-platform, real-time collaboration server optimized for business and organizations in moments!</p>
-                        <p>Highly customizable through plugins and configuration, our clients and servers easily integrate in your pre-existing ICT infrastructure.</p>
-                        <p><a href="about/im-solutions.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); grid-gap:18px">
+
+                    <div class="ignite_project_big ignite_project_big_gradient">
+                        <div class="ignite_project_content">
+                            <a href="about/im-solutions.jsp" class="ignite_project_turnkey"><h1>Turn-key IM Solutions</h1></a>
+                            <p>Our client and server products allow you set up a cross-platform, real-time collaboration server optimized for business and organizations in moments!</p>
+                            <p>Highly customizable through plugins and configuration, our clients and servers easily integrate in your pre-existing ICT infrastructure.</p>
+                            <p><a href="about/im-solutions.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+                        </div>
                     </div>
-                </div>
-                <div class="ignite_project_big" style="height: unset; background: linear-gradient(to bottom, whitesmoke, white);">
-                    <div class="ignite_project_content">
-                        <a href="about/dev-platform.jsp" class="ignite_project_dev"><h1>Development Platform</h1></a>
-                        <p>Our server product and libraries are exceptionally well suited as a development platform for your custom instant messaging or data sharing solution!</p>
-                        <p>The software that we produce is based on well established open standards, has extensive extension APIs and come with a great deal of pre-existing functionality - ideal to form the basis of your project!</p>
-                        <p><a href="about/dev-platform.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+
+                    <div class="ignite_project_big">
+                        <div class="ignite_project_content">
+                            <a href="about/dev-platform.jsp" class="ignite_project_dev"><h1>Development Platform</h1></a>
+                            <p>Our server product and libraries are exceptionally well suited as a development platform for your custom instant messaging or data sharing solution!</p>
+                            <p>The software that we produce is based on well established open standards, has extensive extension APIs and come with a great deal of pre-existing functionality - ideal to form the basis of your project!</p>
+                            <p><a href="about/dev-platform.jsp" class="ignite_link_arrow"><strong>Learn More</strong></a></p>
+                        </div>
                     </div>
+
                 </div>
 
                 <hr/>
