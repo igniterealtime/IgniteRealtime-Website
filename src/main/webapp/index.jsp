@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="ignite_project_big">
+                    <div class="ignite_project_big ignite_project_big_gradient">
                         <div class="ignite_project_content">
                             <a href="about/dev-platform.jsp" class="ignite_project_dev"><h1>Development Platform</h1></a>
                             <p>Our server product and libraries are exceptionally well suited as a development platform for your custom instant messaging or data sharing solution!</p>
