@@ -34,11 +34,7 @@
 
         <iframe src="converse.jsp" style="width:100%;height:574px;"></iframe>
 
-        <!-- <p>Alternatively, you may use any <a href="https://xmpp.org/software/clients.html">XMPP client</a>
-        to connect to the group chat service at conference.igniterealtime.org. The chat name is
-        &quot;Open Chat&quot; and its address is open_chat@conference.igniterealtime.org.</p> -->
-
-        <p>The web-based group chat client used is <a href="https://conversejs.org/">ConverseJS</a>.</p>
+        <p>The web-based group chat client used is <a href="https://conversejs.org/">ConverseJS</a>. Alternatively, you can join with your own client, using the chat room address <a href="xmpp:open_chat@conference.igniterealtime.org?join">open_chat@conference.igniterealtime.org</a></p>
 
     </main>
 
