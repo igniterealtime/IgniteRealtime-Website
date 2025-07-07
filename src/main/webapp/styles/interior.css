@@ -284,7 +284,7 @@ styles specific to the interior pages for the Ignite Real Time site.
 .ignite_int_body_padding {
     float: left;
     width: 95%;
-    padding: 10px 0 10px 20px;
+    padding: 1em;
     }
 #ignite_body_header {
     float: left;
@@ -553,7 +553,7 @@ img.ignite_body_image_right {
 .ignite_downloads .ignite_int_body_padding {
     float: left;
     width: 100%;
-    padding: 10px 0 10px 20px;
+    padding: 1em;
     }
 
 .ignite_downloads_logo {
