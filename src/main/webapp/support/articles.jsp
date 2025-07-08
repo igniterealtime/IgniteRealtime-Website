@@ -26,6 +26,9 @@
                     <h3><a href="articles/whitepaper_xmpp.jsp">XMPP: The Protocol for Open, Extensible Instant Messaging</a></h3>
                     <p>XMPP is open, flexible and extensible, making it the protocol of choice for real-time communications over the Internet. It enables the reliable transport of any structured XML data between individuals or applications.
                         <a href="articles/whitepaper_xmpp.jsp">Read&nbsp;More&nbsp;></a></p>
+                    <h3><a href="articles/whitepaper_digital_sovereignty.jsp">Empowering Digital Sovereignty with Openfire: A Secure and Customizable Communication Platform</a></h3>
+                    <p>Openfire is an open-source, real-time collaboration server using the XMPP protocol, offering secure, customizable, and interoperable communication solutions that enhance digital sovereignty for organizations.
+                        <a href="articles/whitepaper_digital_sovereignty.jsp">Read&nbsp;More&nbsp;></a></p>
                 </div>
             </div>
 

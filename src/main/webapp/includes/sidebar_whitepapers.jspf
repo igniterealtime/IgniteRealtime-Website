@@ -8,4 +8,5 @@
 <div class="sidebar sidebar_light">
     <h1 class="sidebar_header">Whitepapers</h1>
     <div class="articles"><a href="/support/articles/whitepaper_xmpp.jsp">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
+    <div class="articles"><a href="/support/articles/whitepaper_digital_sovereignty.jsp.jsp">Empowering Digital Sovereignty with Openfire: A Secure and Customizable Communication Platform</a></div>
 </div>

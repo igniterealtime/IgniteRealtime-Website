@@ -85,6 +85,7 @@
                     <div id="ignite_support_activity_articles">
                         <h4>Whitepapers</h4>
                         <div class="articles"><a href="articles/whitepaper_xmpp.jsp">XMPP: The Protocol for Open, Extensible Instant Messaging</a></div>
+                        <div class="articles"><a href="articles/whitepaper_digital_sovereignty.jsp">Empowering Digital Sovereignty with Openfire: A Secure and Customizable Communication Platform</a></div>
 
                         <hr style="margin: 1em 0;">
 
