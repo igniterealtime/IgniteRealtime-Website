@@ -44,7 +44,8 @@
     <div class="clearfix" id="ignite_header_contents">
         <a href="/"><div id="ignite_logo"></div></a>
         <nav class="clearfix" id="ignite_nav">
-            <ol>
+            <button class="menu" onclick="document.getElementById('nav-list').style.display = (document.getElementById('nav-list').style.display === 'block' ? 'none' : 'block')">Menu</button>
+            <ol id="nav-list">
                 <li id="nav01"><a href="<%= request.getContextPath() %>/">Home</a></li>
                 <li id="nav02"><a href="<%= request.getContextPath() %>/projects/">Projects</a></li>
                 <li id="nav03"><a href="<%= request.getContextPath() %>/downloads/">Downloads</a></li>
@@ -54,6 +55,7 @@
                 <li id="nav08"><a href="<%= request.getContextPath() %>/news/">News</a></li>
             </ol>
         </nav>
+
     </div>
 </header>
 
