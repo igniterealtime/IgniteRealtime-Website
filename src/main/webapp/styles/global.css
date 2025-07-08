@@ -224,108 +224,168 @@ hr {
     color: #333;
     }
 
-#ignite_nav {
-    height: 42px;
-    clear: both;
-    margin: 0 0 0 0;
-    padding: 0;
-    box-shadow: 0 3px 3px #DDD;
-    background-color: #FDC711; /* Old browsers */
-    background: linear-gradient(to bottom, #FDC711, #F26522);
+@media (width >= 560px) {
+    #ignite_nav {
+        height: 42px;
+        clear: both;
+        margin: 0 0 0 0;
+        padding: 0;
+        box-shadow: 0 3px 3px #DDD;
+        background-color: #FDC711; /* Old browsers */
+        background: linear-gradient(to bottom, #FDC711, #F26522);
+    }
+
+    #ignite_nav button.menu {
+        display: none;
+    }
+
+    #ignite_nav_groupchat {
+        float: left;
+        font-size: 8pt;
+        color: #333;
+    }
+
+    #ignite_nav_groupchat strong {
+        color: #fff;
+        font-size: 9pt;
+    }
+
+    #ignite_nav_groupchat a {
+        color: #fff;
+    }
+
+    #ignite_nav_groupchat span {
+        display: block;
+        float: left;
+        padding: 4px 6px 3px 6px;
+        margin-right: 8px;
+        margin-top: 11px;
+    }
+
+    #ignite_nav_groupchat span.ignite_nav_groupchat-block {
+        background-color: #fcb106;
+        border: 1px solid #ffe793;
+        -moz-border-radius: 3px;
+        margin-left: 10px;
+        padding-top: 3px;
+    }
+
+    #ignite_nav ol {
+        margin: 0 0 0 5px;
+        padding: 0;
+        list-style-type: none;
+    }
+
+    #ignite_nav ol li {
+        float: left;
+        margin: 4px 0 0 0;
+        padding: 10px 2px 10px 0;
+        color: #fff;
+        font-size: 11pt;
+        box-shadow: 1px 0 2px -1px #aa4b1d;
+    }
+
+    #ignite_nav ol li a,
+    #ignite_nav ol li a:visited {
+        margin: 0 0 0 0;
+        padding: 10px 11px 9px 11px;
+        color: #fff;
+        font-size: 11pt;
+        text-decoration: none;
+    }
+
+    #ignite_nav ol li a:hover,
+    #ignite_nav ol li a:active {
+        text-decoration: underline;
+    }
+
+    #ignite_nav ol li a.ignite_nav_current,
+    #ignite_nav ol li a:hover.ignite_nav_current {
+        background-color: #FDC711; /* Old browsers */
+        background: linear-gradient(to bottom, #FDC711, #F26522);
+        font-weight: bold;
+    }
+
+    /* set current page nav, define first id in body tag of each section */
+    #home #nav01 a,
+    #projects #nav02 a,
+    #downloads #nav03 a,
+    #community #nav04 a,
+    #fans #nav05 a,
+    #store #nav06 a,
+    #support #nav07 a,
+    #news #nav08 a {
+        background-color: #FDC711; /* Old browsers */
+        background: linear-gradient(to bottom, #FDC711, #F26522);
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    #home #nav01 a::after,
+    #projects #nav02 a::after,
+    #downloads #nav03 a::after,
+    #community #nav04 a::after,
+    #fans #nav05 a::after,
+    #store #nav06 a::after,
+    #support #nav07 a::after,
+    #news #nav08 a::after {
+        content: "";
+        float: left;
+        position: relative;
+        left: 50%;
+        top: 20px;
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid #F5F5F5;
+    }
 }
 
-#ignite_nav_groupchat {
-    float: left;
-    font-size: 8pt;
-    color: #333;
-    }
-#ignite_nav_groupchat strong {
-    color: #fff;
-    font-size: 9pt;
-    }
-#ignite_nav_groupchat a {
-    color: #fff;
-    }
-#ignite_nav_groupchat span {
-    display: block;
-    float: left;
-    padding: 4px 6px 3px 6px;
-    margin-right: 8px;
-    margin-top: 11px;
-    }
-#ignite_nav_groupchat span.ignite_nav_groupchat-block {
-    background-color: #fcb106;
-    border: 1px solid #ffe793;
-    -moz-border-radius: 3px;
-    margin-left: 10px;
-    padding-top: 3px;
+@media (width < 560px)
+{
+    #ignite_nav {
+        clear: both;
+        float: left;
     }
 
-#ignite_nav ol {
-    margin: 0 0 0 5px;
-    padding: 0;
-    list-style-type: none;
+    #ignite_nav button.menu {
+        display: block;
+
+        border: none;
+        box-shadow: 0 3px 3px #DDD;
+        background-color: #FDC711; /* Old browsers */
+        background: linear-gradient(to bottom, #FDC711, #F26522);
+
+        margin: 0;
+        padding: 12px;
+        color: #fff;
+        font-size: 11pt;
+        text-decoration: none;
     }
-#ignite_nav ol li {
-    float: left;
-    margin: 4px 0 0 0;
-    padding: 10px 2px 10px 0;
-    color: #fff;
-    font-size: 11pt;
-    box-shadow: 1px 0 2px -1px #aa4b1d;
+
+    #ignite_nav ol {
+        list-style-type: none;
+        display: none;
+        z-index: 1;
+        margin: 0;
+        padding: 0;
     }
-#ignite_nav ol li a, 
-#ignite_nav ol li a:visited  {
-    margin: 0 0 0 0;
-    padding: 10px 11px 9px 11px;
-    color: #fff;
-    font-size: 11pt;
-    text-decoration: none;
+
+    #ignite_nav ol li {
+        margin: 0;
+        padding: 12px;
+        box-shadow: 0 3px 3px #DDD;
+        background-color: #FDC711; /* Old browsers */
+        background: linear-gradient(to bottom, #FDC711, #F26522);
     }
-#ignite_nav ol li a:hover, 
-#ignite_nav ol li a:active  {
-    text-decoration: underline;
+
+    #ignite_nav ol li a {
+        text-decoration: none;
+        display: block;
+        color: white;
     }
-#ignite_nav ol li a.ignite_nav_current, 
-#ignite_nav ol li a:hover.ignite_nav_current {
-    background-color: #FDC711; /* Old browsers */
-    background: linear-gradient(to bottom, #FDC711, #F26522);
-    font-weight: bold;
-    }
-/* set current page nav, define first id in body tag of each section */
-#home #nav01 a, 
-#projects #nav02 a, 
-#downloads #nav03 a, 
-#community #nav04 a, 
-#fans #nav05 a, 
-#store #nav06 a, 
-#support #nav07 a, 
-#news #nav08 a {
-    background-color: #FDC711; /* Old browsers */
-    background: linear-gradient(to bottom, #FDC711, #F26522);
-    font-weight: bold;
-    text-decoration: none;
-    }
-#home #nav01 a::after ,
-#projects #nav02 a::after ,
-#downloads #nav03 a::after ,
-#community #nav04 a::after ,
-#fans #nav05 a::after ,
-#store #nav06 a::after ,
-#support #nav07 a::after ,
-#news #nav08 a::after {
-    content: "";
-    float: left;
-    position: relative;
-    left: 50%;
-    top: 20px;
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 5px solid #F5F5F5;
 }
-
 
 /* IGNITE body elements, including content and sidebar areas */
 #ignite_body {
