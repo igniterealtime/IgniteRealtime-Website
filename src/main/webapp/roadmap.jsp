@@ -40,23 +40,13 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 5.0.x, Q2 2025</th>
+                                    <th>Version 5.0.x, Q4 2025</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="label">Openfire</td>
-                                    <td><ul>
-                                        <li>Upgrade of embedded webserver Jetty, from 10 to 12</li>
-                                        <li>Add support for the Online Certificate Status Protocol</li>
-                                        <li>Add for Certificate Revocation List support</li>
-                                        <li>Additional options for archiving chat rooms</li>
-                                        <li>Improved IPv6 support</li>
-                                        <li>Reproducible builds</li>
-                                        <li>Improved support to integrate with multiple external data sources</li>
-                                        <li>Official Docker images</li>
-                                    </ul></td>
                                     <td><ul>
                                         <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
                                         <li>Bump support for modern SASL (authentication) mechanism</li>
@@ -66,15 +56,8 @@
                                         <li>XEP-0388: Extensible SASL Profile (SASL2)</li>
                                         <li>XEP-0386: Bind 2</li>
                                         <li>XEP-0484: Fast Authentication Streamlining Tokens</li>
+                                        <li>Improved support for avatars</li>
                                     </ul></td>
-                                </tr>
-                                <tr>
-                                    <td class="label">Hazelcast plugin</td>
-                                    <td>
-                                        <ul>
-                                            <li>Update to version 5.5.x of Hazelcast</li>
-                                        </ul>
-                                    </td>
                                     <td>
                                     </td>
                                 </tr>
@@ -83,56 +66,7 @@
                     </div>
                 </p>
 
-                <h2 class="road">Tinder*</h2>
-                <p>
-                <div class="road-table">
-                    <table width="100%">
-                        <thead>
-                        <tr>
-                            <th class="nothing">&nbsp;</th>
-                            <th>Version 2.1.0x, Q2 2025</th>
-                            <th>Future</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="label">Tinder</td>
-                            <td><ul>
-                                <li>Minimum Java version: 11</li>
-                                <li>Maintenance: update various dependencies</li>
-                                <li>Drop unused / deprecated code</li>
-                            </ul></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-
-                <h2 class="road">Whack*</h2>
-                <p>
-                <div class="road-table">
-                    <table width="100%">
-                        <thead>
-                        <tr>
-                            <th class="nothing">&nbsp;</th>
-                            <th>Version 3.0.0x, Q2 2025</th>
-                            <th>Future</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td class="label">Whack</td>
-                            <td><ul>
-                                <li>Improve reconnection logic</li>
-                                <li>Drop unused & outdated embedded webserver</li>
-                                <li>Allow for custom Executor Services</li>
-                            </ul></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </div>
-                </p>
-
-                <p>* Plan as of April 9, 2025. Subject to change; we make no promises on future releases. :-)</p>
+                <p>* Plan as of July 9, 2025. Subject to change; we make no promises on future releases. :-)</p>
 
                 <h2>Can we please have ... ?</h2>
 
