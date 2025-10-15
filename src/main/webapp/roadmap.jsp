@@ -48,7 +48,6 @@
                                 <tr>
                                     <td class="label">Openfire</td>
                                     <td><ul>
-                                        <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
                                         <li>Bump support for modern SASL (authentication) mechanism</li>
                                         <li>XEP-0440: SASL Channel-Binding Type Capability</li>
                                         <li>XEP-0474: SASL SCRAM Downgrade Protection</li>
@@ -58,15 +57,51 @@
                                         <li>XEP-0484: Fast Authentication Streamlining Tokens</li>
                                         <li>Improved support for avatars</li>
                                     </ul></td>
-                                    <td>
-                                    </td>
+                                    <td><ul>
+                                        <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
+                                    </ul></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </p>
 
-                <p>* Plan as of July 9, 2025. Subject to change; we make no promises on future releases. :-)</p>
+                <h2 class="road">Smack*</h2>
+                <p>
+                <div class="road-table">
+                    <table width="100%">
+                        <thead>
+                        <tr>
+                            <th class="nothing">&nbsp;</th>
+                            <th>Version 4.5.0, Q4 2025</th>
+                            <th>Future</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="label">Smack</td>
+                            <td><ul>
+                                <li>Requires Java 11 or newer.</li>
+                                <li>Raises Android minimum API level to 26.</li>
+                                <li>Renamed artifacts for Java 11 (e.g., smack-java11-full).</li>
+                                <li>Improved WebSocket and XMPP-over-WebSocket support.</li>
+                                <li>Updated OMEMO / Signal encryption modules.</li>
+                                <li>Enhanced stream management and reconnection reliability.</li>
+                                <li>Refined service discovery (XEP-0030) behavior.</li>
+                                <li>Better XML parser and resolver performance.</li>
+                                <li>Expanded unit tests and code coverage.</li>
+                                <li>Fixed critical NIO (SmackReactor) bug improving stability.</li>
+                                <li>Numerous bug fixes and stability improvements.</li>
+                                <li>Modernized build system for new toolchains.</li>
+                            </ul></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                </p>
+
+                <p>* Plan as of October 15, 2025. Subject to change; we make no promises on future releases. :-)</p>
 
                 <h2>Can we please have ... ?</h2>
 
