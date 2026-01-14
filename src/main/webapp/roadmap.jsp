@@ -40,7 +40,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 5.0.x, Q4 2025</th>
+                                    <th>Version 5.1.0, Q1 2026</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -73,7 +73,7 @@
                         <thead>
                         <tr>
                             <th class="nothing">&nbsp;</th>
-                            <th>Version 4.5.0, Q4 2025</th>
+                            <th>Version 4.5.0, Q1 2026</th>
                             <th>Future</th>
                         </tr>
                         </thead>
@@ -101,24 +101,24 @@
                 </div>
                 </p>
 
-                <p>* Plan as of October 15, 2025. Subject to change; we make no promises on future releases. :-)</p>
+                <p>* Plan as of January 14, 2026. Subject to change; we make no promises on future releases. :-)</p>
 
                 <h2>Can we please have ... ?</h2>
 
                 <p>
-                    If you're interesting to getting a particular change or feature on the road map, there are a couple
+                    If you're interested in getting a particular change or feature on the road map, there are a couple
                     of routes that you can take.
                 </p>
 
                 <p>
-                    <strong>Contribute!</strong> The Ignite Realtime community is an open source community, that makes
+                    <strong>Contribute!</strong> The Ignite Realtime community is an open source community that makes
                     available <a href="support/">a lot of resources</a> that allows you to implement your changes
                     yourself. Please consider engaging with the community to help you get your changes added to the project!
                 </p>
 
                 <p>
                     Alternatively, you can seek help from one of our <a href="support/service_providers.jsp">Professional
-                    Partners</a>, than can help you realize changes in our projects.
+                    Partners</a>, which can help you realize changes in our projects.
                 </p>
 
             </section>
