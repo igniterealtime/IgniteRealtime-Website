@@ -50,6 +50,17 @@
                 Openfire's interoperability with other XMPP-based platforms and clients is another significant advantage. By supporting the XMPP protocol, Openfire enables seamless communication and collaboration with users on other XMPP servers and clients, fostering a decentralized and open communication ecosystem. This interoperability allows organizations to maintain control over their communication infrastructure while still being able to connect and collaborate with external partners, customers, or stakeholders. Moreover, Openfire's compatibility with other XMPP solutions reduces the risk of vendor lock-in and promotes a more open and competitive market for communication tools.
             </p>
 
+            <h2>The XMPP Protocol</h2>
+            <p>
+                XMPP (formerly Jabber) is the leading open standard for presence and real-time messaging. Since 2004, it's been an approved standard of the IETF (the same organization that standardized email and World Wide Web protocols). A rich set of extensions to the protocol are maintained by the XMPP Standards Foundation. Today, XMPP is used by leading companies, millions of users worldwide and is the best choice for open real-time collaboration.
+            </p>
+            <p>
+                Open standards are critical in order to achieve a completely federated environment where real time collaboration software works seamlessly together. This will drive the medium forward as a unified productivity tool and provide the greatest benefit to end users. The hundreds of interoperable software products that use XMPP prove the reality of this vision.
+            </p>
+            <p>
+                Ignite Realtime furthers XMPP through best of breed protocol implementations, development of new protocol extensions, and participation to the XMPP Standards Foundation (XSF).
+            </p>
+
             <h2>Conclusion</h2>
             <p>
                 Openfire offers a powerful and secure communication platform that supports digital sovereignty by enabling organizations to maintain control over their data, infrastructure, and technologies. With its robust security features, customization capabilities, compliance-friendly nature, and interoperability with other XMPP solutions like Pádè and Spark, Openfire empowers users to create a communication environment that aligns with their unique needs and requirements. As digital sovereignty continues to gain importance in today's interconnected world, Openfire provides a valuable solution for organizations seeking to enhance their autonomy, privacy, and security in digital interactions.
