@@ -40,7 +40,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 5.1.0, Q1 2026</th>
+                                    <th>Version 5.1.0, Q2 2026</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -48,22 +48,55 @@
                                 <tr>
                                     <td class="label">Openfire</td>
                                     <td><ul>
-                                        <li>Bump support for modern SASL (authentication) mechanism</li>
-                                        <li>XEP-0440: SASL Channel-Binding Type Capability</li>
-                                        <li>XEP-0474: SASL SCRAM Downgrade Protection</li>
-                                        <li>Add support for channel binding</li>
-                                        <li>XEP-0388: Extensible SASL Profile (SASL2)</li>
-                                        <li>XEP-0386: Bind 2</li>
-                                        <li>XEP-0484: Fast Authentication Streamlining Tokens</li>
+                                        <li>Java 25 support</li>
+                                        <li>Improved stability under a high load</li>
+                                        <li>Health Checks in Docker image</li>
                                         <li>Improved support for avatars</li>
+                                        <li>Optional rate limitation of connection attempts</li>
+                                        <li>Various XMPP compliance fixes</li>
                                     </ul></td>
                                     <td><ul>
+                                        <li>Support XEP-0467: XMPP over QUIC</li>
+                                        <li>Bump support for modern SASL (authentication) mechanism</li>
+                                        <li>Support XEP-0440: SASL Channel-Binding Type Capability</li>
+                                        <li>Support XEP-0474: SASL SCRAM Downgrade Protection</li>
+                                        <li>Add support for channel binding</li>
+                                        <li>Support XEP-0388: Extensible SASL Profile (SASL2)</li>
+                                        <li>Support XEP-0386: Bind 2</li>
+                                        <li>Support XEP-0484: Fast Authentication Streamlining Tokens</li>
                                         <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
                                     </ul></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </p>
+
+                <h2 class="road">Spark*</h2>
+                <p>
+                <div class="road-table">
+                    <table width="100%">
+                        <thead>
+                        <tr>
+                            <th class="nothing">&nbsp;</th>
+                            <th>Version 3.2.0, Q2 2026</th>
+                            <th>Future</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td class="label">Spark</td>
+                            <td><ul>
+                                <li>Reach <a href="https://xmpp.org/about/compliance-suites/">Core compliance level</a>.</li>
+                                <li>Support XEP-0115: Entity Capabilities</li>
+                                <li>Support XEP-0163: Personal Eventing Protocol</li>
+                                <li>Support XEP-0368: SRV records for XMPP over TLS</li>
+                            </ul></td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
                 </p>
 
                 <h2 class="road">Smack*</h2>
@@ -73,7 +106,7 @@
                         <thead>
                         <tr>
                             <th class="nothing">&nbsp;</th>
-                            <th>Version 4.5.0, Q1 2026</th>
+                            <th>Version 4.5.0, Q2 2026</th>
                             <th>Future</th>
                         </tr>
                         </thead>
@@ -101,7 +134,7 @@
                 </div>
                 </p>
 
-                <p>* Plan as of January 14, 2026. Subject to change; we make no promises on future releases. :-)</p>
+                <p>* Plan as of April 8, 2026. Subject to change; we make no promises on future releases. :-)</p>
 
                 <h2>Can we please have ... ?</h2>
 
