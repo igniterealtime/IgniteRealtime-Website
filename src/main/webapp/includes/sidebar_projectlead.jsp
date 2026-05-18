@@ -8,10 +8,10 @@
     String profileLink = null;
     String profile = null;
     if (project.equals("openfire")) {
-        name = "dwd";
-        avatarSrc = "https://discourse.igniterealtime.org/letter_avatar_proxy/v2/letter/d/e19b73/45.png";
-        profileLink = "https://discourse.igniterealtime.org/u/dwd";
-        profile = "Tech wizard by trade, problem solver by nature, pun master by choice.";
+        name = "Guus";
+        avatarSrc = "https://discourse.igniterealtime.org/user_avatar/discourse.igniterealtime.org/guus/45/15_1.png";
+        profileLink = "https://discourse.igniterealtime.org/u/guus";
+        profile = "Guus believes in a world where every chat app is interoperable, every server is optimized, and every bio has a punchline. And honestly? We’re just here for the ride.";
     }
     else if (project.equals("spark")) {
      // name = "wroot";
