@@ -40,7 +40,7 @@
                             <thead>
                                 <tr>
                                     <th class="nothing">&nbsp;</th>
-                                    <th>Version 5.1.0, Q2 2026</th>
+                                    <th>Version 5.2.0, Q4 2026</th>
                                     <th>Future</th>
                                 </tr>
                             </thead>
@@ -48,22 +48,14 @@
                                 <tr>
                                     <td class="label">Openfire</td>
                                     <td><ul>
-                                        <li>Java 25 support</li>
-                                        <li>Improved stability under a high load</li>
-                                        <li>Health Checks in Docker image</li>
-                                        <li>Improved support for avatars</li>
-                                        <li>Optional rate limitation of connection attempts</li>
-                                        <li>Various XMPP compliance fixes</li>
-                                    </ul></td>
-                                    <td><ul>
                                         <li>Support XEP-0467: XMPP over QUIC</li>
                                         <li>Bump support for modern SASL (authentication) mechanism</li>
-                                        <li>Support XEP-0440: SASL Channel-Binding Type Capability</li>
                                         <li>Support XEP-0474: SASL SCRAM Downgrade Protection</li>
-                                        <li>Add support for channel binding</li>
                                         <li>Support XEP-0388: Extensible SASL Profile (SASL2)</li>
                                         <li>Support XEP-0386: Bind 2</li>
                                         <li>Support XEP-0484: Fast Authentication Streamlining Tokens</li>
+                                    </ul></td>
+                                    <td><ul>
                                         <li>Update implementation of XEP-0289 'Federated MUC for Constrained Environments'</li>
                                     </ul></td>
                                 </tr>
@@ -79,7 +71,7 @@
                         <thead>
                         <tr>
                             <th class="nothing">&nbsp;</th>
-                            <th>Version 3.2.0, Q2 2026</th>
+                            <th>Version 3.2.0, Q3 2026</th>
                             <th>Future</th>
                         </tr>
                         </thead>
@@ -106,7 +98,7 @@
                         <thead>
                         <tr>
                             <th class="nothing">&nbsp;</th>
-                            <th>Version 4.5.0, Q2 2026</th>
+                            <th>Version 4.5.0, Q3 2026</th>
                             <th>Future</th>
                         </tr>
                         </thead>
@@ -134,7 +126,6 @@
                 </div>
                 </p>
 
-                <p>* Plan as of April 8, 2026. Subject to change; we make no promises on future releases. :-)</p>
 
                 <h2>Can we please have ... ?</h2>
 
