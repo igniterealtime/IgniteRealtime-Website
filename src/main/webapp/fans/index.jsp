@@ -23,6 +23,12 @@
                     buttons, and logos. To add the screenshots or buttons, simply copy and paste the code
                     below the image into your site or blog.
                 </p>
+                <p>
+                    <strong>License</strong>: The logos, buttons, and screenshots on this page are made available by the
+                    Ignite Realtime Foundation under the Creative Commons Attribution-ShareAlike 4.0 International license
+                    (CC BY-SA 4.0). The Ignite Realtime name and logo are also trademarks of the Foundation; the license
+                    covers copyright, not trademark rights.
+                </p>
             </div>
 
             <div class="ignite_fans_block">
