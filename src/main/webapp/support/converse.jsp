@@ -50,7 +50,8 @@
             jid: '<%= xmppDomain %>',
             muc_fetch_members: false,
             singleton: true,
-            theme: 'default',
+            dark_theme: 'dracula',
+            theme: 'nordic',
             view_mode: 'embedded'
         });
     </script>
