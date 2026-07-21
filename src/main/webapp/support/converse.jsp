@@ -1,6 +1,9 @@
 <%@page contentType="text/html; charset=UTF-8" %>
 <%
     String xmppDomain = application.getInitParameter("xmpp-domain");
+
+    // Bump this value to upgrade Converse.
+    String converseCdn = "https://cdn.conversejs.org/14.0.0/dist";
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,18 +14,18 @@
     <meta name="description" content="Converse.js: An XMPP chat client which can be integrated into any website" />
     <meta name="author" content="JC Brand" />
     <meta name="keywords" content="xmpp chat webchat converse.js" />
-    <link rel="stylesheet" type="text/css" media="screen" href="https://cdn.conversejs.org/14.0.0/dist/converse.min.css">
-    <script type="module" src="https://cdn.conversejs.org/14.0.0/dist/converse.min.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="<%= converseCdn %>/converse.min.css">
+    <script type="module" src="<%= converseCdn %>/converse.min.js"></script>
 
     <style>
         .converse-container {
             height: 558px;
         }
 
-        /* <converse-root> is a custom element, so it defaults to display:inline.
-           Converse only sets 'position: relative' on it in embedded mode, while its
-           inner <converse-chats> uses height:100%. Without a block box and a definite
-           height to resolve against, the chat collapses to zero height. */
+        /* converse-root is a custom element, so it defaults to display:inline. In
+           embedded mode Converse only sets 'position: relative' on it, while the
+           converse-chats element inside it uses height:100%. Without a block box and a
+           definite height to resolve against, the chat collapses to zero height. */
         .converse-container converse-root {
             display: block;
             height: 100%;
@@ -37,6 +40,7 @@
 
     <script type="module">
         converse.initialize({
+            assets_path: '<%= converseCdn %>',
             authentication: 'anonymous',
             auto_login: true,
             auto_join_rooms: [
