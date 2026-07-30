@@ -2,9 +2,7 @@
 <head>
     <title>Group Chat</title>
     <meta name="body-id" content="support" />
-    <style media="screen">
-        @import "../styles/interior.css";
-    </style>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/interior.css" />
     <style>
         ul.changelogentry li {
             margin-left: 2.5em;

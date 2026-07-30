@@ -21,10 +21,8 @@
     <meta property="og:url" content="<%=request.getRequestURL()%>" />
     <meta property="og:image" content="https://www.igniterealtime.org/images/screenshot-ignite-large.jpg" />
 
-    <style media="screen">
-        @import url(https://fonts.googleapis.com/css?family=Dosis:600);
-        @import "<%= request.getContextPath() %>/styles/global.css";
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:600" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/global.css" />
 
     <script type="text/javascript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
     <script type="text/javascript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>

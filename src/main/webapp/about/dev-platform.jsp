@@ -6,9 +6,7 @@
     <title>Our Projects as Development platforms</title>
     <meta name="body-id" content="home" />
     <meta name="panel-name" content="home" />
-    <style media="screen">
-        @import "../styles/interior.css";
-    </style>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/interior.css" />
 </head>
 <body>
 
