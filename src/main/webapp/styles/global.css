@@ -458,6 +458,41 @@ hr {
     }
 }
 
+@media (max-width: 767px) {
+    #ignite_body {
+        display: block;
+    }
+
+    #ignite_body_full,
+    #ignite_body_leftcol {
+        width: auto;
+        max-width: 100%;
+        float: none;
+    }
+
+    #ignite_body_sidebar {
+        width: auto;
+        max-width: 100%;
+        float: none;
+        clear: both;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0 16px;
+    }
+
+    #ignite_body_leftcol table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
 
 /* blog presentation styles */
 #ignite_blog_header, 
