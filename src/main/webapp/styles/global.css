@@ -400,6 +400,16 @@ hr {
         float: none;
         clear: both;
     }
+
+    #ignite_body_leftcol table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
 }
 
 /* IGNITE body elements, including content and sidebar areas */
