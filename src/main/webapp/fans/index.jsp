@@ -2,9 +2,7 @@
 <head>
     <title>Fans</title>
     <meta name="body-id" content="fans"/>
-    <style media="screen">
-        @import "../styles/interior.css";
-    </style>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/interior.css" />
 </head>
 <body>
 

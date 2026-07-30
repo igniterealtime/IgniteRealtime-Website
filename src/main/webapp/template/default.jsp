@@ -14,17 +14,15 @@
 <head>
     <title>Ignite Realtime: <decorator:title /></title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="keywords" content="<decorator:getProperty property="meta.keywords" default="ignite, igniterealtime, java, open source, openfire, wildfire, jive messenger, xmpp, chat, jabber, smack, whack, sparkweb, tinder, pade, xiff, asterisk" />"/>
     <meta property="og:title" content="Ignite Realtime: <decorator:title />" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="<%=request.getRequestURL()%>" />
     <meta property="og:image" content="https://www.igniterealtime.org/images/screenshot-ignite-large.jpg" />
 
-    <style media="screen">
-        @import url(https://fonts.googleapis.com/css?family=Dosis:600);
-        @import "<%= request.getContextPath() %>/styles/global.css";
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:600" />
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/styles/global.css" />
 
     <script type="text/javascript" src="<%= request.getContextPath() %>/scripts/kitchensink.js"></script>
     <script type="text/javascript" src="<%= request.getContextPath() %>/scripts/ignite.js"></script>

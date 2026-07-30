@@ -224,9 +224,8 @@ hr {
     color: #333;
     }
 
-@media (width >= 560px) {
+@media (min-width: 768px) {
     #ignite_nav {
-        height: 42px;
         clear: both;
         margin: 0 0 0 0;
         padding: 0;
@@ -271,13 +270,14 @@ hr {
     }
 
     #ignite_nav ol {
+        display: flex;
+        flex-wrap: wrap;
         margin: 0 0 0 5px;
         padding: 0;
         list-style-type: none;
     }
 
     #ignite_nav ol li {
-        float: left;
         margin: 4px 0 0 0;
         padding: 10px 2px 10px 0;
         color: #fff;
@@ -342,7 +342,7 @@ hr {
     }
 }
 
-@media (width < 560px)
+@media (max-width: 767px)
 {
     #ignite_nav {
         clear: both;
@@ -387,6 +387,31 @@ hr {
     }
 }
 
+@media (max-width: 767px)
+{
+    #ignite_body_full,
+    #ignite_body_leftcol {
+        width: auto;
+        max-width: 100%;
+        float: none;
+    }
+    #ignite_body_sidebar {
+        width: 100%;
+        float: none;
+        clear: both;
+    }
+
+    #ignite_body_leftcol table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
 /* IGNITE body elements, including content and sidebar areas */
 #ignite_body {
     width: 100%;
@@ -407,6 +432,67 @@ hr {
     font-size: 8pt;
     }
 
+/* Desktop: lay out content and sidebar as a flex row so the sidebar can't
+   float-drop and cling to the right edge in the ~768-1104px range. */
+@media (min-width: 768px) {
+    #ignite_body {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+    }
+    #ignite_body_leftcol {
+        flex: 1;
+        min-width: 0;
+        max-width: none;
+    }
+    /* The leftcol wraps a floated, full-width article (#ignite_int_body) on
+       some pages (e.g. home). Neutralize its float inside the flex row so the
+       column shares width with the sidebar instead of consuming the full row. */
+    #ignite_body_leftcol > #ignite_int_body {
+        float: none;
+        width: 100%;
+    }
+    #ignite_body_sidebar {
+        flex: 0 0 225px;
+        float: none;
+    }
+}
+
+@media (max-width: 767px) {
+    #ignite_body {
+        display: block;
+    }
+
+    #ignite_body_full,
+    #ignite_body_leftcol {
+        width: auto;
+        max-width: 100%;
+        float: none;
+    }
+
+    #ignite_body_sidebar {
+        width: auto;
+        max-width: 100%;
+        float: none;
+        clear: both;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 0 16px;
+    }
+
+    #ignite_body_leftcol table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+}
 
 /* blog presentation styles */
 #ignite_blog_header, 
