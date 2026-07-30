@@ -387,6 +387,21 @@ hr {
     }
 }
 
+@media (max-width: 800px)
+{
+    #ignite_body_full,
+    #ignite_body_leftcol {
+        width: auto;
+        max-width: 100%;
+        float: none;
+    }
+    #ignite_body_sidebar {
+        width: 100%;
+        float: none;
+        clear: both;
+    }
+}
+
 /* IGNITE body elements, including content and sidebar areas */
 #ignite_body {
     width: 100%;
