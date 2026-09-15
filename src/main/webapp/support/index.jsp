@@ -126,7 +126,7 @@
                             issues, please post them in the <a href="https://discourse.igniterealtime.org/">forums</a>.
                         </p>
                         <p>
-                            <strong><a href="https://issues.igniterealtime.org/" class="ignite_link_arrow">View the Issue Tracker</a></strong>
+                            <strong><a href="https://igniterealtime.atlassian.net/" class="ignite_link_arrow">View the Issue Tracker</a></strong>
                         </p>
                    </div>
                 </div>
