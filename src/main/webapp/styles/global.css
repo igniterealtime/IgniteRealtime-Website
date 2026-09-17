@@ -433,14 +433,17 @@ hr {
     }
 
 /* Desktop: lay out content and sidebar as a flex row so the sidebar can't
-   float-drop and cling to the right edge in the ~768-1104px range. */
+   float-drop and cling to the right edge in the ~768-1104px range. This only
+   applies to pages that actually have a sidebar; pages without one (e.g. the
+   plugin listings) keep the plain block/float flow. Browsers without :has()
+   support simply fall back to that same float layout. */
 @media (min-width: 768px) {
-    #ignite_body {
+    #ignite_body:has(> #ignite_body_sidebar) {
         display: flex;
         gap: 20px;
         align-items: flex-start;
     }
-    #ignite_body_leftcol {
+    #ignite_body:has(> #ignite_body_sidebar) > #ignite_body_leftcol {
         flex: 1;
         min-width: 0;
         max-width: none;
@@ -448,11 +451,11 @@ hr {
     /* The leftcol wraps a floated, full-width article (#ignite_int_body) on
        some pages (e.g. home). Neutralize its float inside the flex row so the
        column shares width with the sidebar instead of consuming the full row. */
-    #ignite_body_leftcol > #ignite_int_body {
+    #ignite_body:has(> #ignite_body_sidebar) > #ignite_body_leftcol > #ignite_int_body {
         float: none;
         width: 100%;
     }
-    #ignite_body_sidebar {
+    #ignite_body:has(> #ignite_body_sidebar) > #ignite_body_sidebar {
         flex: 0 0 225px;
         float: none;
     }
