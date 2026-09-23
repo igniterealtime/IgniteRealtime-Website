@@ -31,7 +31,7 @@ public class FeedItem extends SummaryFeedItem
         final JSONArray arrayElements = entry.getJSONArray("tags");
         tags = new String[arrayElements.length()];
         for (int i=0; i<arrayElements.length(); i++) {
-            tags[i] = arrayElements.getString(i);
+            tags[i] = arrayElements.getJSONObject(i).getString("slug");
         }
         replyCount = entry.getInt( "posts_count" );
     }
