@@ -60,46 +60,55 @@ public class FeedManager {
 
     public List<SummaryFeedItem> getTaggedItems( String baseUrl, String feedUrl, String tag, int max )
     {
-        final List<SummaryFeedItem> result = new ArrayList<>( max );
+        try {
+            final List<SummaryFeedItem> result = new ArrayList<>(max);
 
-        final List<SyndEntry> entries = getBlogFeedEntries( baseUrl, feedUrl );
-        for (final SyndEntry entry : entries) {
-            if (entry == null) {
-                continue;
-            }
-            final JSONObject json = getJSON(entry.getLink());
-            if (json == null) {
-                continue;
-            }
-            final FeedItem item = new FeedItem(json);
-            if (tag != null && !tag.isBlank()) {
-                if (Arrays.stream(item.getTags()).anyMatch(t -> t.equalsIgnoreCase(tag))) {
+            final List<SyndEntry> entries = getBlogFeedEntries(baseUrl, feedUrl);
+            for (final SyndEntry entry : entries) {
+                if (entry == null) {
+                    continue;
+                }
+                final JSONObject json = getJSON(entry.getLink());
+                if (json == null) {
+                    continue;
+                }
+                final FeedItem item = new FeedItem(json);
+                if (tag != null && !tag.isBlank()) {
+                    if (Arrays.stream(item.getTags()).anyMatch(t -> t.equalsIgnoreCase(tag))) {
+                        result.add(item);
+                    }
+                } else {
                     result.add(item);
                 }
-            } else {
-                result.add(item);
+                if (result.size() >= max) {
+                    break;
+                }
             }
-            if (result.size() >= max) {
-                break;
-            }
+            return result;
+        } catch (Exception e) {
+            Log.warn("Problem getting Community Blog RSS feed '{}'.", baseUrl + "/" + feedUrl, e);
+            return Collections.emptyList();
         }
-        return result;
     }
 
     public List<SummaryFeedItem> getSummaryItems( String baseUrl, String feedUrl, int max )
     {
-        final List<SummaryFeedItem> result = new ArrayList<>( max );
+        try {
+            final List<SummaryFeedItem> result = new ArrayList<>(max);
 
-        final List<SyndEntry> entries = getBlogFeedEntries( baseUrl, feedUrl );
-        for ( int i=0; i < entries.size() && i < max; i++ )
-        {
-            final JSONObject entry = getJSON(entries.get(i).getLink());
-            if (entry != null) {
-                result.add(new SummaryFeedItem(entry));
+            final List<SyndEntry> entries = getBlogFeedEntries(baseUrl, feedUrl);
+            for (int i = 0; i < entries.size() && i < max; i++) {
+                final JSONObject entry = getJSON(entries.get(i).getLink());
+                if (entry != null) {
+                    result.add(new SummaryFeedItem(entry));
+                }
             }
-        }
 
-        return result;
+            return result;
+        } catch (Exception e) {
+            Log.warn("Problem getting Community Blog RSS feed '{}'.", baseUrl + "/" + feedUrl, e);
+            return Collections.emptyList();
+        }
     }
 
     public JSONObject getJSON( String link )
