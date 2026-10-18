@@ -119,7 +119,11 @@
                                 <li>Numerous bug fixes and stability improvements.</li>
                                 <li>Modernized build system for new toolchains.</li>
                             </ul></td>
-                            <td></td>
+                            <td><ul>
+                                <li>Support for <a href="https://xmpp.org/extensions/xep-0484.html">FAST (XEP-0484)</a></li>
+                                <li>Support for <a href="https://xmpp.org/extensions/xep-0388.html">SASL2 (XEP-0388)</a></li>
+                                <li>Support for <a href="https://xmpp.org/extensions/xep-0386.html">Bind2 (XEP-0386)</a></li>
+                            </ul></td>
                         </tr>
                         </tbody>
                     </table>
